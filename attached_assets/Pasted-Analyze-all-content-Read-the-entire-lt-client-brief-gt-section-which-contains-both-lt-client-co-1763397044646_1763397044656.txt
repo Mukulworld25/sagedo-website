@@ -1,0 +1,91 @@
+Analyze all content: Read the entire &lt;client_brief&gt; section, which contains both &lt;client_complaints&gt; and a &lt;project_spec_table&gt;.
+
+Synthesize, Don't Just List: Do not just repeat the client's words. Integrate the information. For example, the complaint about the "plane blue" background is directly resolved by the "Nebula background" spec in the table. You must connect these dots. The complaint about the "gallery section" needs to be added as a feature to the relevant page (Home, Contact, or About) in the final spec.
+
+Resolve Conflicts/Ambiguities: The client's complaints (e.g., "Contact section should be named as orders section") must override or modify the details in the table (which lists a "Contact" page). Your final spec should reflect this synthesized decision.
+
+Adopt a Professional Tone: The client's tone is informal and emotional. Your output's tone must be formal, structured, professional, and clear.
+
+Internal Monologue: Before writing the final output, use &lt;thinking&gt; tags to outline your synthesis. Explicitly state how you will merge the complaints into the structured table's data.
+
+Output Format: Produce your final output as a clean, well-structured Project Specification Document in Markdown. Use the exact section headers defined in the &lt;output_structure&gt;.
+</instructions>
+
+<output_structure>
+
+Project Specification: BrandSAGEDO AI
+
+1. Project Overview
+
+(A high-level summary of the project, its goals, and the "BrandSAGE" identity.)
+
+2. Core Requirements & Client Mandates
+
+(A synthesized list of the most critical, non-negotiable requirements, drawn from both the complaints and the table. e.g., "Immediate replacement of the current blue background...")
+
+3. Visual Design & UI/UX
+
+(Detail the "Nebula" background, the "Tesla-style" hero, and any other visual directives, including animations for service cards.)
+
+4. Page-by-Page Breakdown
+
+(Go through each page from the spec table, integrating the client's new requests.)
+
+1. Home Page: (Hero, "Namaste" button, etc.)
+
+2. Services Page: (4 categories, search, share, card animations.)
+
+3. About Page: (NEW: Add company info, social media handles, and the requested Gallery Section for testimonials and work images, as per client complaint.)
+
+4. Orders Page (FKA Contact): (Per client request, rename "Contact" to "Orders." Include the Google Form and File Upload functionality.)
+
+5. Login/Dashboard: (Netlify Identity, Offline AI features, Save/Export.)
+
+6. Delivery Page: (Progress Timeline details.)
+
+5. Service Categories & Delivery
+
+(Detail the 4 service categories and the 70/30 instant/email delivery system.)
+
+Business (10)
+
+Student (7)
+
+Professional (8)
+
+Personal/Others (5)
+
+6. Functional & Technical Stack
+
+(List the complete tech stack and functional requirements.)
+
+Tech Stack: (Astro, Tailwind, etc.)
+
+Core Functionality: (Netlify Identity, HuggingFace JS, PWA, etc.)
+
+Notifications: (WhatsApp alert via Make.com.)
+
+Performance: (<0.7s Load, Netlify Drop hosting.)
+
+7. Actionable Summary & Next Steps
+
+(A brief summary for the development team on the primary areas of focus.)
+</output_structure>
+
+<client_brief>
+<client_complaints>
+I can see the site have been deployed however there are multiple gaps in what i want and what i have i am going to give you all the data of the discussions that i have done with the team and how well my website have to looker all the thing that i wanted it to have i am give the the bulitis for quick and prior correction and the others i want you to understand the requirement the needs and the features i want.
+
+the background is plane blue which i hate the most i want it to be something so unique matching with the niche the the person gets so engaged watching it it can be a lavitaing ai tools logos in the galaxy or some office space that looks just stunning.
+
+I also want a gallery section in the home page on in the contact or about page in which i can easy upload the testimonials the work done images and all other.
+
+In the service category i want the 4 major sectors that i have divided my services that are sa following and each of the category i need sample images as there card that will scroll down or pop up with good animations.
+
+The contact section should be named as orders section and there should be a about section which have all the information about the company all my social media handles and all other things.
+</client_complaints>
+
+<project_spec_table>
+CategoryDetailsBrandSAGEDO AILanguage100% English + "Namaste" button onlyDesignNebula backgroundPages1. Home (Hero + Namaste) 2. Services (4 Categories, Search, Share) 3. Contact (Google Form + File Upload) 4. Login (Netlify Identity) 5. Dashboard (Offline AI + Save + Export PDF) 6. Delivery (Progress Timeline)Services (4 Categories)Business (10): Landing Page, Full Website, Ads, Product Content, Email, Consultancy, Automations, Workflows, Data Mgmt, GPTs Student (7): Research, Productivity, Time Charts, PPTs, Reports, Projects, Problem Solving Professional (8): Resume, LinkedIn, Interview, GPTs, Dashboards, Research, Project/Freelancing Consultancy Personal/Others (5): Social Media, AI Learning, Diet, Tech Learning, TravelDelivery System70% Instant (Client-side AI → Download/Copy) 30% Email (Google Form → Your Gmail) Progress Timeline (Uploaded → Under Process → Half Done → Finalizing → Completed)NotificationWhatsApp Alert in 5 sec (Make.com + Google Form)UI/UXTesla heroTechAstro + Tailwind + Netlify Identity + HuggingFace JS + LocalStorage + PWACost₹0 ForeverSpeed<0.7s LoadHostingNetlify Drop
+</project_spec_table>
+</client_brief>

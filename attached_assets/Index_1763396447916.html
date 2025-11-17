@@ -1,0 +1,728 @@
+<button onclick="trackOrder()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 py-3 rounded-xl font-bold hover:scale-105 transition shadow-lg shadow-purple-500/50">Track Order</button>
+    </div>
+    <div id="timeline"></div>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="hidden min-h-screen pt-32 px-6">
+  <div class="max-w-5xl mx-auto">
+    <h1 class="text-5xl font-black mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Dashboard</h1>
+    <div class="bg-gradient-to-r from-purple-600/30 to-pink-600/30 backdrop-blur border border-purple-500/50 p-6 rounded-2xl mb-8 shadow-lg shadow-purple-500/30">
+      <div class="flex justify-between items-center flex-wrap gap-4">
+        <p class="text-2xl font-bold"><span id="user-badge">🥉</span> <span id="user-email">Welcome!</span></p>
+        <button onclick="handleLogout()" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full text-sm font-bold transition">Logout</button>
+      </div>
+    </div>
+    <div class="bg-slate-800/40 backdrop-blur border border-purple-500/30 p-6 rounded-2xl mb-8">
+      <p class="text-3xl font-bold">💰 <span id="token-balance">0</span> Tokens</p>
+      <button onclick="showEarn()" class="mt-4 bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-2 rounded-full shadow-lg shadow-green-500/30 hover:scale-105 transition">Earn More</button>
+    </div>
+    <div id="golden-ticket" class="bg-gradient-to-r from-yellow-500 to-amber-500 p-6 rounded-2xl mb-8 hidden shadow-lg shadow-yellow-500/30">
+      <p class="text-xl font-bold text-yellow-900">🎫 1 Golden Ticket Ready!</p>
+      <div id="golden-tasks" class="grid grid-cols-2 gap-4 mt-4"></div>
+    </div>
+    <div id="earn-tab" class="bg-slate-800/40 backdrop-blur border border-purple-500/30 p-6 rounded-2xl hidden">
+      <h3 class="text-xl font-bold mb-4">Earn Tokens</h3>
+      <div class="space-y-3">
+        <button onclick="earn(100,'Refer')" class="w-full bg-gradient-to-r from-green-600 to-emerald-600 p-4 rounded-xl hover:scale-105 transition shadow-lg">Refer Friend → +100</button>
+        <button onclick="earn(50,'Survey')" class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 p-4 rounded-xl hover:scale-105 transition shadow-lg">Complete Survey → +50</button>
+        <button onclick="earn(10,'Login')" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 p-4 rounded-xl hover:scale-105 transition shadow-lg">Daily Login → +10</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADMIN -->
+<section id="admin" class="hidden min-h-screen pt-32 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex justify-between items-center mb-8 flex-wrap gap-4">
+      <h1 class="text-5xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Admin Dashboard</h1>
+      <button onclick="refreshAdmin()" class="bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-3 rounded-full hover:scale-105 transition shadow-lg">🔄 Refresh</button>
+    </div>
+    <div class="grid md:grid-cols-4 gap-6 mb-8">
+      <div class="bg-gradient-to-br from-blue-600 to-blue-700 p-6 rounded-2xl shadow-lg"><p class="text-sm mb-2 text-blue-100">Total Orders</p><p class="text-4xl font-black" id="admin-total">0</p></div>
+      <div class="bg-gradient-to-br from-yellow-600 to-yellow-700 p-6 rounded-2xl shadow-lg"><p class="text-sm mb-2 text-yellow-100">Needs Action</p><p class="text-4xl font-black" id="admin-pending">0</p></div>
+      <div class="bg-gradient-to-br from-purple-600 to-purple-700 p-6 rounded-2xl shadow-lg"><p class="text-sm mb-2 text-purple-100">In Progress</p><p class="text-4xl font-black" id="admin-processing">0</p></div>
+      <div class="bg-gradient-to-br from-green-600 to-green-700 p-6 rounded-2xl shadow-lg"><p class="text-sm mb-2 text-green-100">Delivered</p><p class="text-4xl font-black" id="admin-delivered">0</p></div>
+    </div>
+    <div class="bg-slate-800/40 backdrop-blur border border-purple-500/30 rounded-2xl overflow-hidden">
+      <table class="w-full">
+        <thead class="bg-slate-700/50"><tr>
+          <th class="px-6 py-4 text-left text-sm font-semibold">Order ID</th>
+          <th class="px-6 py-4 text-left text-sm font-semibold">Customer</th>
+          <th class="px-6 py-4 text-left text-sm font-semibold">Service</th>
+          <th class="px-6 py-4 text-left text-sm font-semibold">Status</th>
+          <th class="px-6 py-4 text-left text-sm font-semibold">Actions</th>
+        </tr></thead>
+        <tbody id="admin-orders"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer class="py-12 border-t border-purple-500/20 bg-slate-950/80 backdrop-blur mt-20">
+  <div class="max-w-7xl mx-auto text-center px-6">
+    <p class="text-slate-500">Made in India 🇮🇳 • © 2024 SAGEDO AI • All Rights Reserved</p>
+    <button onclick="showSection('admin')" class="mt-4 text-slate-600 hover:text-purple-400 text-xs transition">Admin</button>
+  </div>
+</footer>
+
+</div>
+
+<script>
+// CONFIG
+const CONFIG = {
+  emailJS: { serviceId: 'service_Sagedo00', templateId: 'template_sagedo01', publicKey: 'tOl_VEndfPKrAKUtX' },
+  cloudinary: { cloudName: 'dqhqxypag', uploadPreset: 'sagedo_uploads' },
+  whatsapp: { number: '917018709291' },
+  adminEmail: 'sagedoai00@gmail.com'
+};
+emailjs.init(CONFIG.emailJS.publicKey);
+
+// SERVICES DATA
+const services = {
+  bar1: [
+    {name:"1 Ad Copy",price:100,cat:"Business"},{name:"1 Email Template",price:150,cat:"Business"},
+    {name:"5 Product Names",price:200,cat:"Business"},{name:"1 Landing Page Outline",price:500,cat:"Business"},
+    {name:"1 Research Outline",price:100,cat:"Student"},{name:"1 PPT Outline",price:200,cat:"Student"},
+    {name:"5 Photo Edits",price:300,cat:"Student"},{name:"1 Resume Summary",price:100,cat:"Professional"},
+    {name:"1 LinkedIn Bio",price:150,cat:"Professional"},{name:"1 CV",price:300,cat:"Professional"},
+    {name:"1 Reel Script",price:100,cat:"Personal"},{name:"1 Diet Plan",price:150,cat:"Personal"},
+    {name:"5 Photo Edits",price:200,cat:"Personal"}
+  ],
+  bar2: [{name:"5 Ad Copies",price:600,cat:"Business"},{name:"1 Full Website",price:1000,cat:"Business"},{name:"1 Full PPT",price:600,cat:"Student"},{name:"1 Video Project",price:800,cat:"Personal"}],
+  bar3: [{name:"Full Website (5 pages)",price:5000,cat:"Business"},{name:"Automation Workflow",price:10000,cat:"Business"}]
+};
+const allServices = [...services.bar1, ...services.bar2, ...services.bar3];
+
+// STORAGE
+const StorageManager = {
+  get(key) { try { return JSON.parse(localStorage.getItem(key)); } catch { return null; } },
+  set(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); return true; } catch { return false; } },
+  remove(key) { localStorage.removeItem(key); }
+};
+
+// USER STATE
+const UserState = {
+  isLoggedIn() { return StorageManager.get('user') !== null; },
+  getUser() { return StorageManager.get('user'); },
+  login(email) {
+    StorageManager.set('user', { email, joinedDate: new Date().toISOString() });
+    if (!StorageManager.get('welcomeGiven')) {
+      this.addTokens(150);
+      StorageManager.set('goldenTicket', true);
+      StorageManager.set('welcomeGiven', true);
+      showToast('🎉 Welcome! ₹150 + Golden Ticket!', 'success');
+    }
+    updateAuthUI();
+    showSection('dashboard');
+  },
+  logout() { StorageManager.remove('user'); updateAuthUI(); showSection('hero'); },
+  getTokens() { return StorageManager.get('tokens') || 0; },
+  addTokens(amount) { const current = this.getTokens(); StorageManager.set('tokens', current + amount); updateTokenDisplay(); }
+};
+
+// UI HELPERS
+function showToast(msg, type='info') {
+  const c = document.getElementById('toast-container');
+  const t = document.createElement('div');
+  const colors = {success:'bg-green-600',error:'bg-red-600',info:'bg-blue-600',warning:'bg-yellow-600'};
+  t.className = `toast ${colors[type]} text-white p-4 rounded-xl shadow-lg mb-4`;
+  t.innerHTML = `<div class="flex items-center justify-between"><span>${msg}</span><button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-2xl">×</button></div>`;
+  c.appendChild(t);
+  setTimeout(() => t.remove(), 5000);
+}
+
+function showSection(id) {
+  ['hero','services','about','orders','delivery','dashboard','admin'].forEach(s => document.getElementById(s)?.classList.add('hidden'));
+  document.getElementById(id)?.classList.remove('hidden');
+  if (id === 'dashboard') { updateTokenDisplay(); checkGoldenTicket(); }
+  if (id === 'admin') refreshAdmin();
+  if (id === 'delivery') updateDeliveryTimeline();
+  if (id === 'services') observeServiceCards();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  menu.classList.toggle('translate-x-full');
+}
+
+function sayNamaste(btn) {
+  btn.innerText = "नमस्ते 🙏";
+  setTimeout(() => btn.innerText = "Namaste 🙏", 2000);
+}
+
+// AUTH
+function handleLogin() {
+  const email = prompt('Enter your email:');
+  if (email && email.includes('@')) UserState.login(email);
+  else if (email) showToast('Invalid email', 'error');
+}
+
+function handleLogout() {
+  if (confirm('Logout?')) UserState.logout();
+}
+
+function updateAuthUI() {
+  const c = document.getElementById('auth-container');
+  const u = UserState.getUser();
+  if (!u) c.innerHTML = '<button onclick="handleLogin()" class="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-2 rounded-full text-sm font-bold shadow-lg shadow-purple-500/50 hover:scale-105 transition">Login</button>';
+  else c.innerHTML = `<button onclick="showSection('dashboard')" class="bg-white text-black px-4 py-2 rounded-full text-xs font-bold hover:bg-purple-100 transition">Dashboard</button>`;
+}
+
+// DASHBOARD
+function updateTokenDisplay() {
+  const t = UserState.getTokens();
+  const el = document.getElementById('token-balance');
+  if (el) el.textContent = t;
+}
+
+function showEarn() { document.getElementById('earn-tab')?.classList.toggle('hidden'); }
+
+function earn(amt, action) {
+  UserState.addTokens(amt);
+  showToast(`✅ +${amt} Tokens from ${action}!`, 'success');
+}
+
+function checkGoldenTicket() {
+  const has = StorageManager.get('goldenTicket');
+  const cont = document.getElementById('golden-ticket');
+  const tasks = document.getElementById('golden-tasks');
+  if (has && cont && tasks) {
+    cont.classList.remove('hidden');
+    tasks.innerHTML = services.bar1.map(t => `<button onclick="useGoldenTicket('${t.name}')" class="p-3 bg-yellow-600/30 rounded-lg hover:bg-yellow-500/50 text-yellow-900 font-bold border border-yellow-600/50 transition hover:scale-105">${t.name}<br><span class="text-sm">FREE</span></button>`).join('');
+  } else if (cont) cont.classList.add('hidden');
+}
+
+function useGoldenTicket(name) {
+  StorageManager.set('goldenTicket', false);
+  showToast(`🎉 Redeemed: ${name}!`, 'success');
+  checkGoldenTicket();
+  addDelivery(name, 0, 'Golden', UserState.getUser()?.email || 'Guest', 'GT-'+Date.now());
+}
+
+// SERVICES
+function renderServices(list=allServices) {
+  const c = document.getElementById('cards');
+  if (!c) return;
+  c.innerHTML = list.map(s => `<div class="service-card bg-slate-800/40 backdrop-blur border border-purple-500/20 p-6 rounded-xl hover:border-purple-400"><div class="mb-3"><h4 class="font-bold text-lg">${s.name}</h4><p class="text-sm text-slate-400">${s.cat||''}</p></div><p class="text-purple-400 font-bold text-xl mb-3">₹${s.price}</p>${services.bar1.includes(s)?'<span class="inline-block text-xs bg-yellow-600 text-white px-2 py-1 rounded mb-3">Golden</span>':''}<button onclick="quickOrder('${s.name}')" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 py-2 rounded-lg hover:scale-105 transition font-semibold shadow-lg shadow-purple-500/30">Order Now</button></div>`).join('');
+  observeServiceCards();
+}
+
+function observeServiceCards() {
+  const cards = document.querySelectorAll('.service-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, index * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  cards.forEach(card => observer.observe(card));
+}
+
+function quickOrder(name) {
+  showSection('orders');
+  document.getElementById('service').value = name;
+  showToast('Service selected', 'info');
+}
+
+function populateServiceDropdown() {
+  const s = document.getElementById('service');
+  if (s) s.innerHTML = '<option value="">Select Service</option>' + allServices.map(x => `<option value="${x.name}">${x.name} - ₹${x.price}</option>`).join('');
+}
+
+document.getElementById('search')?.addEventListener('input', e => {
+  const term = e.target.value.toLowerCase();
+  renderServices(allServices.filter(s => s.name.toLowerCase().includes(term) || (s.cat && s.cat.toLowerCase().includes(term))));
+});
+
+// FORM SUBMISSION
+document.getElementById('contact-form')?.addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type="submit"]');
+  const txt = document.getElementById('submit-text');
+  const ldr = document.getElementById('submit-loader');
+  txt.textContent = 'Processing...';
+  ldr.classList.remove('hidden');
+  btn.disabled = true;
+  try {
+    const data = {
+      id: 'ORD-'+Date.now(),
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      service: document.getElementById('service').value,
+      message: document.getElementById('message').value,
+      timestamp: new Date().toISOString(),
+      status: 'pending'
+    };
+    const svc = allServices.find(s => s.name === data.service);
+    data.price = svc ? svc.price : 0;
+    const orders = StorageManager.get('orders') || [];
+    orders.push(data);
+    StorageManager.set('orders', orders);
+    await emailjs.send(CONFIG.emailJS.serviceId, CONFIG.emailJS.templateId, {
+      order_id: data.id, customer_name: data.name, customer_email: data.email,
+      phone: data.phone, service: data.service, price: data.price, message: data.message
+    });
+    const wa = `New Order!%0AID: ${data.id}%0ACustomer: ${data.name}%0AService: ${data.service}`;
+    window.open(`https://wa.me/${CONFIG.whatsapp.number}?text=${wa}`, '_blank');
+    addDelivery(data.service, data.price, 'Orders', data.email, data.id);
+    showToast(`✅ Order ${data.id} submitted!`, 'success');
+    e.target.reset();
+    setTimeout(() => { alert(`Order ID: ${data.id}\n\nSave this to track!`); showSection('delivery'); }, 1500);
+  } catch (err) {
+    console.error(err);
+    showToast('❌ Failed. Try WhatsApp.', 'error');
+  } finally {
+    txt.textContent = 'Submit Order';
+    ldr.classList.add('hidden');
+    btn.disabled = false;
+  }
+});
+
+// DELIVERY
+function addDelivery(svc, price, src, email, id) {
+  const dels = StorageManager.get('deliveries') || [];
+  dels.push({ id, service: svc, price, source: src, customerEmail: email, status: 'pending', createdAt: new Date().toISOString(),
+    steps: [
+      { name: 'Order Received', completed: true, timestamp: new Date().toISOString() },
+      { name: 'Processing', completed: false },
+      { name: 'Finalizing', completed: false },
+      { name: 'Delivered', completed: false }
+    ]
+  });
+  StorageManager.set('deliveries', dels);
+}
+
+function trackOrder() {
+  const id = document.getElementById('order-id-input').value.trim();
+  if (!id) { showToast('Enter Order ID', 'warning'); return; }
+  const dels = StorageManager.get('deliveries') || [];
+  const ord = dels.find(d => d.id === id);
+  if (!ord) { showToast('Order not found', 'error'); return; }
+  updateDeliveryTimeline([ord]);
+  showToast('Order found!', 'success');
+}
+
+function updateDeliveryTimeline(specific = null) {
+  const timeline = document.getElementById('timeline');
+  if (!timeline) return;
+  let dels = specific || StorageManager.get('deliveries') || [];
+  if (!specific && UserState.isLoggedIn()) {
+    const email = UserState.getUser().email;
+    dels = dels.filter(d => d.customerEmail === email);
+  }
+  if (dels.length === 0) {
+    timeline.innerHTML = '<div class="bg-slate-800/40 backdrop-blur border border-purple-500/30 p-8 rounded-2xl text-center"><p class="text-slate-400 text-lg">No deliveries found</p><button onclick="showSection(\'services\')" class="mt-4 bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 rounded-full hover:scale-105 transition shadow-lg">Browse Services</button></div>';
+    return;
+  }
+  timeline.innerHTML = dels.reverse().map(d => {
+    const prog = (d.steps.filter(s => s.completed).length / d.steps.length) * 100;
+    const colors = {pending:'bg-yellow-600',processing:'bg-blue-600',finalizing:'bg-purple-600',delivered:'bg-green-600'};
+    return `<div class="bg-slate-800/40 backdrop-blur border border-purple-500/30 p-6 rounded-2xl"><div class="flex flex-col sm:flex-row justify-between items-start mb-4 gap-4"><div><h3 class="text-xl font-bold">${d.service}</h3><p class="text-sm text-slate-400">${d.id} • ${new Date(d.createdAt).toLocaleDateString()}</p><p class="text-purple-400 font-semibold mt-1">₹${d.price}</p></div><span class="${colors[d.status]} text-white px-3 py-1 rounded-full text-xs font-semibold uppercase">${d.status}</span></div><div class="mb-4"><div class="bg-slate-700/50 rounded-full h-2"><div class="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all" style="width:${prog}%"></div></div><p class="text-xs text-slate-400 mt-1">${Math.round(prog)}% Complete</p></div><div class="space-y-2">${d.steps.map((s,i) => `<div class="flex items-center space-x-3"><div class="w-6 h-6 rounded-full ${s.completed?'bg-purple-500':'bg-slate-700'} flex items-center justify-center text-xs font-bold">${s.completed?'✓':i+1}</div><span class="${s.completed?'text-white font-semibold':'text-slate-500'}">${s.name}</span></div>`).join('')}</div></div>`;
+  }).join('');
+}
+
+// ADMIN
+function refreshAdmin() {
+  const orders = StorageManager.get('orders') || [];
+  const dels = StorageManager.get('deliveries') || [];
+  const tot = document.getElementById('admin-total');
+  const pnd = document.getElementById('admin-pending');
+  const prc = document.getElementById('admin-processing');
+  const dlv = document.getElementById('admin-delivered');
+  if (tot) tot.textContent = orders.length;
+  if (pnd) pnd.textContent = dels.filter(d => d.status === 'pending').length;
+  if (prc) prc.textContent = dels.filter(d => d.status === 'processing').length;
+  if (dlv) dlv.textContent = dels.filter(d => d.status === 'delivered').length;
+  const tbody = document.getElementById('admin-orders');
+  if (!tbody) return;
+  if (orders.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" class="px-6 py-8 text-center text-slate-400">No orders yet</td></tr>';
+    return;
+  }
+  tbody.innerHTML = orders.slice().reverse().map(o => `<tr class="hover:bg-slate-700/30 transition border-b border-slate-700/30"><td class="px-6 py-4 text-sm font-mono text-purple-400">${o.id}</td><td class="px-6 py-4"><div class="text-sm font-semibold">${o.name}</div><div class="text-xs text-slate-400">${o.email}</div><div class="text-xs text-slate-500">📱 ${o.phone}</div></td><td class="px-6 py-4 text-sm">${o.service}</td><td class="px-6 py-4"><select onchange="updateOrderStatus('${o.id}', this.value)" class="bg-slate-700/50 border border-purple-500/30 px-3 py-1 rounded text-sm cursor-pointer"><option value="pending" ${o.status==='pending'?'selected':''}>Pending</option><option value="processing" ${o.status==='processing'?'selected':''}>Processing</option><option value="finalizing" ${o.status==='finalizing'?'selected':''}>Finalizing</option><option value="delivered" ${o.status==='delivered'?'selected':''}>Delivered</option></select></td><td class="px-6 py-4"><button onclick="viewOrder('${o.id}')" class="bg-gradient-to-r from-blue-600 to-cyan-600 px-3 py-1 rounded text-xs font-semibold hover:scale-105 transition shadow-lg">View</button></td></tr>`).join('');
+}
+
+function updateOrderStatus(id, status) {
+  const orders = StorageManager.get('orders') || [];
+  const dels = StorageManager.get('deliveries') || [];
+  const oi = orders.findIndex(o => o.id === id);
+  if (oi !== -1) { orders[oi].status = status; StorageManager.set('orders', orders); }
+  const di = dels.findIndex(d => d.id === id);
+  if (di !== -1) {
+    dels[di].status = status;
+    const steps = dels[di].steps;
+    if (status === 'pending') steps[0].completed = true;
+    if (status === 'processing') { steps[0].completed = true; steps[1].completed = true; steps[1].timestamp = new Date().toISOString(); }
+    if (status === 'finalizing') { steps[0].completed = true; steps[1].completed = true; steps[2].completed = true; steps[2].timestamp = new Date().toISOString(); }
+    if (status === 'delivered') steps.forEach(s => { s.completed = true; if (!s.timestamp) s.timestamp = new Date().toISOString(); });
+    StorageManager.set('deliveries', dels);
+  }
+  showToast(`Order ${id} updated to ${status}`, 'success');
+  refreshAdmin();
+}
+
+function viewOrder(id) {
+  const orders = StorageManager.get('orders') || [];
+  const o = orders.find(x => x.id === id);
+  if (!o) { showToast('Order not found', 'error'); return; }
+  alert(`ORDER DETAILS\n\nID: ${o.id}\nCustomer: ${o.name}\nEmail: ${o.email}\nPhone: ${o.phone}\nService: ${o.service}\nPrice: ₹${o.price}\nStatus: ${o.status}\nMessage: ${o.message}\nDate: ${new Date(o.timestamp).toLocaleString()}`);
+}
+
+// NEBULA BACKGROUND
+const canvas = document.getElementById('nebula-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let aiLogos = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+class Star {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.z = Math.random() * canvas.width;
+    this.size = Math.random() * 2;
+  }
+  update() {
+    this.z -= 2;
+    if (this.z <= 0) {
+      this.z = canvas.width;
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+    }
+  }
+  draw() {
+    const x = (this.x - canvas.width / 2) * (canvas.width / this.z);
+    const y = (this.y - canvas.height / 2) * (canvas.width / this.z);
+    const size = (1 - this.z / canvas.width) * this.size;
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+    ctx.beginPath();
+    ctx.arc(canvas.width / 2 + x, canvas.height / 2 + y, size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+class AILogo {
+  constructor(emoji) {
+    this.emoji = emoji;
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.vx = (Math.random() - 0.5) * 0.5;
+    this.vy = (Math.random() - 0.5) * 0.5;
+    this.rotation = Math.random() * Math.PI * 2;
+    this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+  }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.rotation += this.rotationSpeed;
+    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+  }
+  draw() {
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rotation);
+    ctx.font = '40px Arial';
+    ctx.shadowColor = 'rgba(138, 43, 226, 0.8)';
+    ctx.shadowBlur = 20;
+    ctx.fillText(this.emoji, -20, 20);
+    ctx.restore();
+  }
+}
+
+// Initialize
+for (let i = 0; i < 100; i++) particles.push(new Star());
+const logos = ['🤖', '🧠', '⚡', '💡', '🚀', '✨', '🎯'];
+for (let i = 0; i < 7; i++) aiLogos.push(new AILogo(logos[i]));
+
+function drawNebula() {
+  const gradient = ctx.createRadialGradient(canvas.width/2, canvas.height/2, 0, canvas.width/2, canvas.height/2, canvas.width/2);
+  gradient.addColorStop(0, 'rgba(15, 23, 42, 1)');
+  gradient.addColorStop(0.5, 'rgba(30, 27, 75, 0.9)');
+  gradient.addColorStop(1, 'rgba(88, 28, 135, 0.6)');
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function animate() {
+  drawNebula();
+  particles.forEach(p => { p.update(); p.draw(); });
+  aiLogos.forEach(logo => { logo.update(); logo.draw(); });
+  requestAnimationFrame(animate);
+}
+animate();
+
+// INIT
+document.addEventListener('DOMContentLoaded', () => {
+  updateAuthUI();
+  renderServices();
+  populateServiceDropdown();
+  if (UserState.isLoggedIn()) updateTokenDisplay();
+  console.log('✅ SAGEDO AI Initialized!');
+});
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAGEDO AI - Premium AI Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <style>
+    body{font-family:sans-serif;overflow-x:hidden}
+    #nebula-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+    .content-layer{position:relative;z-index:1}
+    .toast{position:fixed;top:80px;right:20px;z-index:9999;animation:slideIn 0.3s}
+    @keyframes slideIn{from{transform:translateX(400px)}to{transform:translateX(0)}}
+    .spinner{border:3px solid rgba(255,255,255,0.3);border-top-color:#ef4444;border-radius:50%;width:24px;height:24px;animation:spin 0.8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .service-card{transition:all 0.4s cubic-bezier(0.4,0,0.2,1);opacity:0;transform:translateY(30px)}
+    .service-card.visible{opacity:1;transform:translateY(0)}
+    .service-card:hover{transform:translateY(-12px) scale(1.02);box-shadow:0 20px 40px rgba(139,92,246,0.4)}
+    .gallery-item{transition:transform 0.3s;cursor:pointer}
+    .gallery-item:hover{transform:scale(1.05)}
+  </style>
+</head>
+<body class="bg-slate-950 text-white">
+
+<!-- Nebula Background Canvas -->
+<canvas id="nebula-canvas"></canvas>
+
+<div class="content-layer">
+<div id="toast-container"></div>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/917018709291?text=Hi%20SAGEDO" target="_blank" class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 p-4 rounded-full shadow-lg hover:scale-110 transition">
+  <svg class="w-8 h-8" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav class="fixed top-0 w-full z-50 bg-slate-950/60 backdrop-blur-xl border-b border-purple-500/20 p-4">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <a href="#" onclick="showSection('hero');return false" class="text-2xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">SAGEDO AI</a>
+    <div class="hidden md:flex space-x-6 items-center">
+      <a href="#" onclick="showSection('services');return false" class="text-slate-300 hover:text-purple-400 transition">Services</a>
+      <a href="#" onclick="showSection('about');return false" class="text-slate-300 hover:text-purple-400 transition">About</a>
+      <a href="#" onclick="showSection('orders');return false" class="text-slate-300 hover:text-purple-400 transition">Orders</a>
+      <a href="#" onclick="showSection('delivery');return false" class="text-slate-300 hover:text-purple-400 transition">Track</a>
+      <div id="auth-container"></div>
+    </div>
+    <button onclick="toggleMobileMenu()" class="md:hidden text-white">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-slate-900/95 backdrop-blur-xl z-50 p-6 transform translate-x-full transition-transform duration-300 border-l border-purple-500/20">
+  <button onclick="toggleMobileMenu()" class="absolute top-4 right-4 text-white">✕</button>
+  <div class="mt-12 space-y-6">
+    <a href="#" onclick="showSection('services');toggleMobileMenu();return false" class="block text-lg text-slate-300 hover:text-purple-400">Services</a>
+    <a href="#" onclick="showSection('about');toggleMobileMenu();return false" class="block text-lg text-slate-300 hover:text-purple-400">About</a>
+    <a href="#" onclick="showSection('orders');toggleMobileMenu();return false" class="block text-lg text-slate-300 hover:text-purple-400">Orders</a>
+    <a href="#" onclick="showSection('delivery');toggleMobileMenu();return false" class="block text-lg text-slate-300 hover:text-purple-400">Track</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero" class="min-h-screen flex items-center justify-center">
+  <div class="text-center max-w-5xl px-6 pt-20">
+    <h1 class="text-6xl md:text-8xl font-black mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent animate-pulse">
+      Problem? Need Help?<br><span class="text-purple-400">Afcoz!</span>
+    </h1>
+    <p class="text-2xl text-slate-300 mb-8">Claim Your FREE ₹150 + 1 Golden Task</p>
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+      <button onclick="sayNamaste(this)" class="px-8 py-3 border-2 border-purple-400 rounded-full text-purple-400 hover:bg-purple-400 hover:text-white transition font-bold">Namaste 🙏</button>
+      <button onclick="showSection('orders')" class="px-10 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-bold hover:scale-105 transition shadow-lg shadow-purple-500/50">Get Free Kit Now</button>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="hidden py-24 px-6">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-5xl font-black text-center mb-12 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Our Services</h2>
+    <input type="text" id="search" placeholder="Search services..." class="w-full p-4 mb-8 bg-slate-800/50 backdrop-blur border border-purple-500/30 rounded-xl text-white placeholder:text-slate-500 focus:border-purple-400 outline-none">
+    
+    <div class="grid md:grid-cols-3 gap-6 mb-12">
+      <div class="bg-gradient-to-br from-green-600/20 to-green-800/20 backdrop-blur border border-green-500/30 p-8 rounded-2xl text-center">
+        <h3 class="text-3xl font-bold text-green-400">₹100–₹500</h3>
+        <p class="text-slate-300">Basic Tasks • Golden Ticket</p>
+      </div>
+      <div class="bg-gradient-to-br from-purple-600/30 to-pink-600/30 backdrop-blur border border-purple-500/50 p-8 rounded-2xl text-center shadow-lg shadow-purple-500/30">
+        <h3 class="text-3xl font-bold text-white">₹500–₹1,000</h3>
+        <p class="text-purple-100">Pro (Most Popular)</p>
+      </div>
+      <div class="bg-gradient-to-br from-violet-600/20 to-purple-800/20 backdrop-blur border border-violet-500/30 p-8 rounded-2xl text-center">
+        <h3 class="text-3xl font-bold text-violet-400">₹1,000–₹10,000</h3>
+        <p class="text-slate-300">Enterprise Solutions</p>
+      </div>
+    </div>
+
+    <div id="cards" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+  </div>
+</section>
+
+<!-- ABOUT PAGE (NEW) -->
+<section id="about" class="hidden py-24 px-6">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-5xl font-black text-center mb-12 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">About SAGEDO AI</h2>
+    
+    <!-- Company Info -->
+    <div class="bg-slate-800/30 backdrop-blur border border-purple-500/20 p-10 rounded-3xl mb-12">
+      <h3 class="text-3xl font-bold mb-6 text-purple-400">Our Mission</h3>
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        SAGEDO AI is a premium AI-powered service delivery platform designed to provide instant, accessible, and professional solutions across Business, Student, Professional, and Personal services. We leverage cutting-edge AI technology to deliver 70% of our services instantly through client-side processing, while our expert team handles complex custom projects.
+      </p>
+      <p class="text-lg text-slate-300 leading-relaxed">
+        Operating at zero ongoing cost, we maintain enterprise-grade performance standards with sub-0.7s load times, making premium AI services accessible to everyone.
+      </p>
+    </div>
+
+    <!-- Social Media -->
+    <div class="bg-slate-800/30 backdrop-blur border border-purple-500/20 p-10 rounded-3xl mb-12">
+      <h3 class="text-3xl font-bold mb-6 text-purple-400 text-center">Connect With Us</h3>
+      <div class="flex flex-wrap justify-center gap-6">
+        <a href="#" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-full transition">
+          <svg class="w-5 h-5" fill="white" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          LinkedIn
+        </a>
+        <a href="#" class="flex items-center gap-2 bg-sky-600 hover:bg-sky-700 px-6 py-3 rounded-full transition">
+          <svg class="w-5 h-5" fill="white" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+          Twitter
+        </a>
+        <a href="#" class="flex items-center gap-2 bg-pink-600 hover:bg-pink-700 px-6 py-3 rounded-full transition">
+          <svg class="w-5 h-5" fill="white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Instagram
+        </a>
+        <a href="https://wa.me/917018709291" target="_blank" class="flex items-center gap-2 bg-green-600 hover:bg-green-700 px-6 py-3 rounded-full transition">
+          <svg class="w-5 h-5" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="bg-slate-800/30 backdrop-blur border border-purple-500/20 p-10 rounded-3xl">
+      <h3 class="text-3xl font-bold mb-8 text-purple-400 text-center">Gallery & Testimonials</h3>
+      
+      <!-- Testimonials -->
+      <div class="mb-12">
+        <h4 class="text-2xl font-bold mb-6 text-center text-slate-200">What Clients Say</h4>
+        <div class="grid md:grid-cols-3 gap-6" id="testimonials-grid">
+          <div class="bg-slate-700/50 p-6 rounded-xl border border-purple-500/20">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-xl font-bold">R</div>
+              <div class="ml-3">
+                <p class="font-bold">Rajesh Kumar</p>
+                <p class="text-sm text-slate-400">Business Owner</p>
+              </div>
+            </div>
+            <p class="text-slate-300 italic">"SAGEDO AI transformed my business with their automation solutions. Highly professional and fast delivery!"</p>
+            <div class="mt-3 text-yellow-400">★★★★★</div>
+          </div>
+          <div class="bg-slate-700/50 p-6 rounded-xl border border-purple-500/20">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center text-xl font-bold">P</div>
+              <div class="ml-3">
+                <p class="font-bold">Priya Sharma</p>
+                <p class="text-sm text-slate-400">Student</p>
+              </div>
+            </div>
+            <p class="text-slate-300 italic">"Their research assistance saved me weeks of work. The quality exceeded my expectations!"</p>
+            <div class="mt-3 text-yellow-400">★★★★★</div>
+          </div>
+          <div class="bg-slate-700/50 p-6 rounded-xl border border-purple-500/20">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-xl font-bold">A</div>
+              <div class="ml-3">
+                <p class="font-bold">Amit Patel</p>
+                <p class="text-sm text-slate-400">Professional</p>
+              </div>
+            </div>
+            <p class="text-slate-300 italic">"Got my dream job thanks to their resume optimization service. Worth every rupee!"</p>
+            <div class="mt-3 text-yellow-400">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio -->
+      <div>
+        <h4 class="text-2xl font-bold mb-6 text-center text-slate-200">Our Work</h4>
+        <div class="grid md:grid-cols-4 gap-4" id="portfolio-grid">
+          <div class="gallery-item bg-gradient-to-br from-purple-600/20 to-pink-600/20 h-48 rounded-xl border border-purple-500/30 flex items-center justify-center">
+            <div class="text-center">
+              <div class="text-4xl mb-2">🎨</div>
+              <p class="text-sm font-semibold">Landing Pages</p>
+            </div>
+          </div>
+          <div class="gallery-item bg-gradient-to-br from-blue-600/20 to-cyan-600/20 h-48 rounded-xl border border-blue-500/30 flex items-center justify-center">
+            <div class="text-center">
+              <div class="text-4xl mb-2">📊</div>
+              <p class="text-sm font-semibold">Business Analytics</p>
+            </div>
+          </div>
+          <div class="gallery-item bg-gradient-to-br from-green-600/20 to-emerald-600/20 h-48 rounded-xl border border-green-500/30 flex items-center justify-center">
+            <div class="text-center">
+              <div class="text-4xl mb-2">📝</div>
+              <p class="text-sm font-semibold">Content Creation</p>
+            </div>
+          </div>
+          <div class="gallery-item bg-gradient-to-br from-orange-600/20 to-red-600/20 h-48 rounded-xl border border-orange-500/30 flex items-center justify-center">
+            <div class="text-center">
+              <div class="text-4xl mb-2">🤖</div>
+              <p class="text-sm font-semibold">AI Solutions</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDERS (formerly Contact) -->
+<section id="orders" class="hidden min-h-screen flex items-center justify-center px-6 py-24">
+  <div class="max-w-lg w-full bg-slate-800/40 backdrop-blur-xl border border-purple-500/30 p-10 rounded-3xl shadow-2xl shadow-purple-500/20">
+    <h1 class="text-5xl font-black text-center mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Place Your Order</h1>
+    <p class="text-center text-slate-400 mb-8">Fill the form below and we'll get back to you within 5 seconds via WhatsApp</p>
+    <form id="contact-form" class="space-y-6">
+      <input type="text" id="name" placeholder="Your Name" required class="w-full p-4 bg-slate-700/50 backdrop-blur border border-purple-500/30 rounded-xl text-white placeholder:text-slate-400 focus:border-purple-400 outline-none">
+      <input type="email" id="email" placeholder="Your Email" required class="w-full p-4 bg-slate-700/50 backdrop-blur border border-purple-500/30 rounded-xl text-white placeholder:text-slate-400 focus:border-purple-400 outline-none">
+      <input type="tel" id="phone" placeholder="WhatsApp Number" required class="w-full p-4 bg-slate-700/50 backdrop-blur border border-purple-500/30 rounded-xl text-white placeholder:text-slate-400 focus:border-purple-400 outline-none">
+      <select id="service" required class="w-full p-4 bg-slate-700/50 backdrop-blur border border-purple-500/30 rounded-xl text-white focus:border-purple-400 outline-none">
+        <option value="">Select Service</option>
+      </select>
+      <textarea id="message" placeholder="Describe your requirements..." rows="5" required class="w-full p-4 bg-slate-700/50 backdrop-blur border border-purple-500/30 rounded-xl text-white placeholder:text-slate-400 focus:border-purple-400 outline-none"></textarea>
+      <input type="file" id="file" multiple accept="image/*,.pdf,.doc,.docx" class="w-full p-4 bg-slate-700/50 backdrop-blur border border-purple-500/30 rounded-xl text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700">
+      <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 py-4 rounded-xl font-bold hover:scale-105 transition shadow-lg shadow-purple-500/50 flex items-center justify-center">
+        <span id="submit-text">Submit Order</span>
+        <span id="submit-loader" class="spinner ml-3 hidden"></span>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- DELIVERY -->
+<section id="delivery" class="hidden py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+    <h1 class="text-5xl font-black mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent text-center">Track Your Order</h1>
+    <div class="bg-slate-800/40 backdrop-blur border border-purple-500/30 p-6 rounded-2xl mb-8">
+      <input type="text" id="order-id-input" placeholder="Enter Order ID" class="w-full p-4 bg-slate-700/50 rounded-xl text-white mb-4 border border-purple-500/30 focus:border-purple-400 outline-none">
+      <button onclick="trackOrder()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 py-3 rounded-xl font-bol
