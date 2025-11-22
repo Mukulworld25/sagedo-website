@@ -13,6 +13,9 @@ import Tracking from "@/pages/Tracking";
 import Dashboard from "@/pages/Dashboard";
 import Admin from "@/pages/Admin";
 import Login from "@/pages/Login";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import TermsOfService from "@/pages/TermsOfService";
+import RefundPolicy from "@/pages/RefundPolicy";
 import NotFound from "@/pages/not-found";
 
 import Navigation from "@/components/Navigation";
@@ -32,6 +35,9 @@ function Router() {
         <Route path="/login" component={Login} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/admin" component={Admin} />
+        <Route path="/privacy-policy" component={PrivacyPolicy} />
+        <Route path="/terms-of-service" component={TermsOfService} />
+        <Route path="/refund-policy" component={RefundPolicy} />
         <Route component={NotFound} />
       </Switch>
       <Footer />

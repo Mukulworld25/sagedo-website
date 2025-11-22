@@ -22,6 +22,21 @@ export default function Footer() {
                 Contact
               </button>
             </Link>
+            <Link href="/privacy-policy">
+              <button className="text-muted-foreground hover:text-foreground transition-colors">
+                Privacy Policy
+              </button>
+            </Link>
+            <Link href="/terms-of-service">
+              <button className="text-muted-foreground hover:text-foreground transition-colors">
+                Terms
+              </button>
+            </Link>
+            <Link href="/refund-policy">
+              <button className="text-muted-foreground hover:text-foreground transition-colors">
+                Refund Policy
+              </button>
+            </Link>
             <Link href="/admin">
               <button className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-admin">
                 Admin
