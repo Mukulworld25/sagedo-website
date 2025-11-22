@@ -21,6 +21,7 @@ import NotFound from "@/pages/not-found";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import CookieConsent from "@/components/CookieConsent";
 
 function Router() {
   return (
@@ -42,6 +43,7 @@ function Router() {
       </Switch>
       <Footer />
       <WhatsAppFloat />
+      <CookieConsent />
     </>
   );
 }

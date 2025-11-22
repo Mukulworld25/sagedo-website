@@ -24,6 +24,7 @@ export interface IStorage {
   getUserByEmail(email: string): Promise<User | undefined>;
   createUser(user: any): Promise<User>;
   upsertUser(user: UpsertUser): Promise<User>;
+  deleteUser(id: string): Promise<void>;
 
   // Service operations
   getAllServices(): Promise<Service[]>;
@@ -84,6 +85,13 @@ export class DatabaseStorage implements IStorage {
       })
       .returning();
     return user;
+  }
+
+  async deleteUser(id: string): Promise<void> {
+    // Delete all related data first (cascade delete)
+    await db.delete(tokenTransactions).where(eq(tokenTransactions.userId, id));
+    await db.delete(orders).where(eq(orders.userId, id));
+    await db.delete(users).where(eq(users.id, id));
   }
 
   // Service operations
