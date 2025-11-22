@@ -4,10 +4,17 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
-import { Upload, CheckCircle2 } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Upload, CheckCircle2, CreditCard } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+
+// Declare Razorpay on window
+declare global {
+  interface Window {
+    Razorpay: any;
+  }
+}
 
 export default function Orders() {
   const { toast } = useToast();
@@ -18,6 +25,20 @@ export default function Orders() {
     service: "",
     requirements: "",
   });
+  const [createdOrderId, setCreatedOrderId] = useState<string | null>(null);
+  const [orderAmount, setOrderAmount] = useState(500); // Default ₹500
+
+  // Load Razorpay SDK
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   const uploadMutation = useMutation({
     mutationFn: async (data: FormData) => {
@@ -32,15 +53,15 @@ export default function Orders() {
 
   const orderMutation = useMutation({
     mutationFn: async (orderData: any) => {
-      await apiRequest("POST", "/api/orders", orderData);
+      const response = await apiRequest("POST", "/api/orders", orderData);
+      return response;
     },
-    onSuccess: () => {
+    onSuccess: (data: any) => {
+      setCreatedOrderId(data.id);
       toast({
-        title: "Order Submitted Successfully!",
-        description: "We'll contact you via email and WhatsApp shortly.",
+        title: "Order Created Successfully!",
+        description: "Now you can proceed with payment.",
       });
-      setFormData({ name: "", email: "", service: "", requirements: "" });
-      setFiles([]);
     },
     onError: (error: Error) => {
       toast({
@@ -97,6 +118,99 @@ export default function Orders() {
       requirements: formData.requirements,
       fileUrls,
     });
+  };
+
+  const handlePayment = async () => {
+    if (!createdOrderId) return;
+
+    try {
+      // Create Razorpay order
+      const response = await fetch('/api/payment/create-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+          amount: orderAmount,
+          orderId: createdOrderId
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create payment order');
+      }
+
+      const paymentOrder = await response.json();
+
+      // Open Razorpay checkout
+      const options = {
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+        amount: paymentOrder.amount,
+        currency: 'INR',
+        name: 'SAGE DO',
+        description: formData.service,
+        order_id: paymentOrder.id,
+        handler: async function (response: any) {
+          try {
+            // Verify payment on backend
+            const verifyResponse = await fetch('/api/payment/verify', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              credentials: 'include',
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                orderId: createdOrderId,
+              }),
+            });
+
+            if (verifyResponse.ok) {
+              toast({
+                title: "Payment Successful! 🎉",
+                description: "Your order is being processed. We'll contact you soon!",
+              });
+
+              // Reset form
+              setFormData({ name: "", email: "", service: "", requirements: "" });
+              setFiles([]);
+              setCreatedOrderId(null);
+            } else {
+              throw new Error('Payment verification failed');
+            }
+          } catch (error) {
+            toast({
+              title: "Payment Verification Failed",
+              description: "Please contact support.",
+              variant: "destructive",
+            });
+          }
+        },
+        prefill: {
+          name: formData.name,
+          email: formData.email,
+        },
+        theme: {
+          color: '#3399cc',
+        },
+        modal: {
+          ondismiss: function () {
+            toast({
+              title: "Payment Cancelled",
+              description: "You can complete payment later from your dashboard.",
+            });
+          }
+        }
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (error) {
+      toast({
+        title: "Payment Error",
+        description: "Failed to initiate payment. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -227,46 +341,72 @@ export default function Orders() {
               )}
             </div>
 
-            {/* Submit Button */}
-            <Button
-              type="submit"
-              size="lg"
-              disabled={orderMutation.isPending || uploadMutation.isPending}
-              data-testid="button-submit-order"
-              className="w-full bg-gradient-to-r from-primary to-destructive hover:opacity-90 text-lg py-6"
-            >
-              {orderMutation.isPending || uploadMutation.isPending
-                ? "Submitting..."
-                : "Submit Order"}
-            </Button>
+            {/* Order Amount */}
+            <div className="space-y-2">
+              <Label htmlFor="amount" className="text-foreground">
+                Order Amount (₹) <span className="text-destructive">*</span>
+              </Label>
+              <Input
+                id="amount"
+                type="number"
+                value={orderAmount}
+                onChange={(e) => setOrderAmount(parseInt(e.target.value) || 0)}
+                placeholder="500"
+                min="1"
+                required
+                className="glass border-border/50"
+              />
+              <p className="text-xs text-muted-foreground">Enter the agreed amount for your order</p>
+            </div>
+
+            {/* Submit or Payment Button */}
+            {!createdOrderId ? (
+              <Button
+                type="submit"
+                size="lg"
+                disabled={orderMutation.isPending || uploadMutation.isPending}
+                data-testid="button-submit-order"
+                className="w-full bg-gradient-to-r from-primary to-destructive hover:opacity-90 text-lg py-6"
+              >
+                {orderMutation.isPending || uploadMutation.isPending
+                  ? "Creating Order..."
+                  : "Create Order"}
+              </Button>
+            ) : (
+              <div className="space-y-4">
+                <div className="p-4 rounded-lg border border-green-500/50 bg-green-500/10">
+                  <p className="text-sm text-green-400 font-semibold">✅ Order Created Successfully!</p>
+                  <p className="text-xs text-muted-foreground mt-1">Order ID: {createdOrderId.slice(0, 8)}...</p>
+                </div>
+
+                <Button
+                  type="button"
+                  size="lg"
+                  onClick={handlePayment}
+                  data-testid="button-pay-now"
+                  className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:opacity-90 text-lg py-6 flex items-center justify-center gap-2"
+                >
+                  <CreditCard className="w-5 h-5" />
+                  Pay ₹{orderAmount} Now
+                </Button>
+
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => {
+                    setFormData({ name: "", email: "", service: "", requirements: "" });
+                    setFiles([]);
+                    setCreatedOrderId(null);
+                  }}
+                  className="w-full"
+                >
+                  Create New Order
+                </Button>
+              </div>
+            )}
           </form>
         </Card>
-
-        {/* Alternative: Google Form Embed */}
-        <div className="mt-12">
-          <Card className="glass p-6">
-            <h3 className="text-xl font-bold text-foreground mb-4 text-center">
-              Prefer Google Forms?
-            </h3>
-            <p className="text-muted-foreground text-center mb-6">
-              You can also submit your order using our Google Form below:
-            </p>
-            <div className="w-full overflow-hidden rounded-lg" style={{ height: "800px" }}>
-              <iframe
-                src="https://docs.google.com/forms/d/e/1bxgiSvqRDDbDP8rOeGJu-ueoafXQ57liO48FzQdN6VY/viewform?embedded=true"
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                marginHeight={0}
-                marginWidth={0}
-                title="SAGEDO AI Order Form"
-                data-testid="iframe-google-form"
-              >
-                Loading…
-              </iframe>
-            </div>
-          </Card>
-        </div>
       </div>
     </div>
   );

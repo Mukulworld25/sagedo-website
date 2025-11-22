@@ -19,27 +19,29 @@ import { db } from "./db";
 import { eq, desc } from "drizzle-orm";
 
 export interface IStorage {
-  // User operations (required for Replit Auth)
+  // User operations
   getUser(id: string): Promise<User | undefined>;
+  getUserByEmail(email: string): Promise<User | undefined>;
+  createUser(user: any): Promise<User>;
   upsertUser(user: UpsertUser): Promise<User>;
-  
+
   // Service operations
   getAllServices(): Promise<Service[]>;
   getServiceById(id: string): Promise<Service | undefined>;
   createService(service: InsertService): Promise<Service>;
-  
+
   // Order operations
   getAllOrders(): Promise<Order[]>;
   getOrderById(id: string): Promise<Order | undefined>;
   getOrdersByUserId(userId: string): Promise<Order[]>;
   createOrder(order: InsertOrder): Promise<Order>;
   updateOrderStatus(id: string, status: string, deliveryNotes?: string): Promise<Order>;
-  
+
   // Token operations
   getUserTokenBalance(userId: string): Promise<number>;
   addTokenTransaction(transaction: InsertTokenTransaction): Promise<TokenTransaction>;
   getTokenTransactionsByUserId(userId: string): Promise<TokenTransaction[]>;
-  
+
   // Gallery operations
   getAllGalleryItems(): Promise<Gallery[]>;
   getVisibleGalleryItems(): Promise<Gallery[]>;
@@ -49,7 +51,18 @@ export interface IStorage {
 export class DatabaseStorage implements IStorage {
   // User operations
   async getUser(id: string): Promise<User | undefined> {
+    if (!db) throw new Error('Database not configured');
     const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user;
+  }
+
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.email, email));
+    return user;
+  }
+
+  async createUser(userData: any): Promise<User> {
+    const [user] = await db.insert(users).values(userData).returning();
     return user;
   }
 
@@ -119,7 +132,7 @@ export class DatabaseStorage implements IStorage {
     if (status === "delivered") {
       updateData.deliveredAt = new Date();
     }
-    
+
     const [updatedOrder] = await db
       .update(orders)
       .set(updateData)

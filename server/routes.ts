@@ -1,11 +1,12 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { setupAuth, isAuthenticated, isAdmin } from "./replitAuth";
+import { setupAuth, registerCustomer, loginUser, isAuthenticated, isAdmin } from "./auth";
+import { createPaymentOrder, verifyPaymentSignature } from "./payment";
 import multer from "multer";
 
 // Configure multer for file uploads
-const upload = multer({ 
+const upload = multer({
   storage: multer.memoryStorage(),
   limits: {
     fileSize: 10 * 1024 * 1024, // 10MB max file size
@@ -13,24 +14,68 @@ const upload = multer({
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Auth middleware
+  // Setup authentication
   await setupAuth(app);
 
   // Auth routes
-  app.get('/api/auth/user', async (req: any, res) => {
+
+  // Customer Registration
+  app.post('/api/auth/register', async (req: any, res) => {
     try {
-      // Check if user is authenticated
-      if (!req.isAuthenticated() || !req.user?.claims?.sub) {
-        return res.status(200).json(null);
+      const { email, password, name } = req.body;
+
+      if (!email || !password || !name) {
+        return res.status(400).json({ message: 'All fields required' });
       }
-      
-      const userId = req.user.claims.sub;
-      const user = await storage.getUser(userId);
-      res.json(user);
-    } catch (error) {
-      console.error("Error fetching user:", error);
-      res.status(500).json({ message: "Failed to fetch user" });
+
+      const user = await registerCustomer(email, password, name);
+      req.session.user = {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        isAdmin: false,
+      };
+
+      res.json({ success: true, user: req.session.user });
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
     }
+  });
+
+  // Login (Customer or Admin)
+  app.post('/api/auth/login', async (req: any, res) => {
+    try {
+      const { email, password } = req.body;
+
+      if (!email || !password) {
+        return res.status(400).json({ message: 'Email and password required' });
+      }
+
+      const user = await loginUser(email, password);
+      req.session.user = {
+        id: user.id,
+        email: user.email,
+        name: user.name || user.firstName,
+        isAdmin: user.isAdmin,
+      };
+
+      res.json({ success: true, user: req.session.user });
+    } catch (error: any) {
+      res.status(401).json({ message: error.message });
+    }
+  });
+
+  // Logout
+  app.post('/api/auth/logout', (req: any, res) => {
+    req.session.destroy((err: any) => {
+      if (err) return res.status(500).json({ message: 'Logout failed' });
+      res.json({ success: true });
+    });
+  });
+
+  // Get Current User
+  app.get('/api/auth/user', (req: any, res) => {
+    res.json(req.session.user || null);
   });
 
   // Dashboard routes (protected)
@@ -38,7 +83,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const userId = req.user.claims.sub;
       const user = await storage.getUser(userId);
-      
+
       // Give welcome bonus if user hasn't received it yet
       if (user && !user.hasWelcomeBonus) {
         await storage.addTokenTransaction({
@@ -57,7 +102,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const updatedUser = await storage.getUser(userId);
         return res.json(updatedUser);
       }
-      
+
       res.json(user);
     } catch (error) {
       console.error("Error fetching dashboard user:", error);
@@ -106,8 +151,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const services = await storage.getAllServices();
       res.json(services);
     } catch (error) {
-      console.error("Error fetching services:", error);
-      res.status(500).json({ message: "Failed to fetch services" });
+      console.warn("Database not configured - returning empty services");
+      res.json([]);
     }
   });
 
@@ -124,8 +169,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Orders routes (protected)
-  app.post('/api/orders', isAuthenticated, async (req: any, res) => {
+  // Orders routes (now public - no auth required)
+  app.post('/api/orders', async (req: any, res) => {
     try {
       const { customerName, customerEmail, serviceName, requirements, fileUrls } = req.body;
 
@@ -133,7 +178,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Missing required fields" });
       }
 
-      const userId = req.user.claims.sub;
+      // Use email as userId for guest orders (no auth required)
+      const userId = req.user?.claims?.sub || `guest_${customerEmail}`;
+
+      // Ensure user exists to satisfy foreign key constraint
+      let user = await storage.getUser(userId);
+      if (!user) {
+        user = await storage.upsertUser({
+          id: userId,
+          email: customerEmail,
+          name: customerName || "Guest User",
+          picture: "",
+          isAdmin: false,
+          tokenBalance: 0,
+          hasGoldenTicket: false,
+          hasWelcomeBonus: false,
+        });
+      }
 
       const order = await storage.createOrder({
         userId,
@@ -178,8 +239,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const items = await storage.getVisibleGalleryItems();
       res.json(items);
     } catch (error) {
-      console.error("Error fetching gallery:", error);
-      res.status(500).json({ message: "Failed to fetch gallery" });
+      console.warn("Database not configured - returning empty gallery");
+      res.json([]);
     }
   });
 
@@ -187,7 +248,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post('/api/upload', upload.array('files', 10), async (req, res) => {
     try {
       const files = req.files as Express.Multer.File[];
-      
+
       if (!files || files.length === 0) {
         return res.status(400).json({ message: "No files provided" });
       }
@@ -195,11 +256,60 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // TODO: Upload to Cloudinary or similar service
       // For now, return mock URLs
       const urls = files.map(file => `/uploads/${Date.now()}-${file.originalname}`);
-      
+
       res.json({ urls });
     } catch (error) {
       console.error("Error uploading files:", error);
       res.status(500).json({ message: "Failed to upload files" });
+    }
+  });
+
+  // Payment routes
+  app.post('/api/payment/create-order', isAuthenticated, async (req, res) => {
+    try {
+      const { amount, orderId } = req.body;
+
+      if (!amount || !orderId) {
+        return res.status(400).json({ message: 'Amount and order ID required' });
+      }
+
+      const paymentOrder = await createPaymentOrder(amount, orderId);
+      res.json(paymentOrder);
+    } catch (error) {
+      console.error("Error creating payment order:", error);
+      res.status(500).json({ message: "Failed to create payment order" });
+    }
+  });
+
+  app.post('/api/payment/verify', isAuthenticated, async (req, res) => {
+    try {
+      const { razorpay_order_id, razorpay_payment_id, razorpay_signature, orderId } = req.body;
+
+      if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature || !orderId) {
+        return res.status(400).json({ message: 'Missing payment verification data' });
+      }
+
+      const isValid = verifyPaymentSignature(
+        razorpay_order_id,
+        razorpay_payment_id,
+        razorpay_signature
+      );
+
+      if (isValid) {
+        // Update order as paid
+        const order = await storage.getOrderById(orderId);
+        if (order) {
+          await storage.updateOrderStatus(orderId, 'processing');
+          // TODO: Update payment fields in order
+        }
+
+        res.json({ success: true, message: 'Payment verified successfully' });
+      } else {
+        res.status(400).json({ success: false, message: 'Invalid payment signature' });
+      }
+    } catch (error) {
+      console.error("Error verifying payment:", error);
+      res.status(500).json({ message: "Payment verification failed" });
     }
   });
 
@@ -217,7 +327,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.patch('/api/admin/orders/:id', isAuthenticated, isAdmin, async (req, res) => {
     try {
       const { status, deliveryNotes } = req.body;
-      
+
       if (!status) {
         return res.status(400).json({ message: "Status is required" });
       }

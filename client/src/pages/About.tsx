@@ -1,22 +1,29 @@
 import { Card } from "@/components/ui/card";
-import { Instagram, Linkedin, Twitter, Youtube, MessageCircle } from "lucide-react";
+import { Instagram, Linkedin, Mail, Youtube, MessageCircle } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { Gallery as GalleryType } from "@shared/schema";
+import { samplePortfolio, sampleTestimonials } from "@/data/sampleData";
 
 export default function About() {
   const { data: galleryItems = [] } = useQuery<GalleryType[]>({
     queryKey: ["/api/gallery"],
   });
 
-  const testimonials = galleryItems.filter((item) => item.type === "testimonial" && item.isVisible);
-  const workShowcase = galleryItems.filter((item) => item.type === "work_showcase" && item.isVisible);
+  // Merge database items with sample data (samples only show if DB is empty)
+  const allTestimonials = galleryItems.length > 0
+    ? galleryItems.filter((item) => item.type === "testimonial" && item.isVisible)
+    : sampleTestimonials;
+
+  const allWorkShowcase = galleryItems.length > 0
+    ? galleryItems.filter((item) => item.type === "work_showcase" && item.isVisible)
+    : samplePortfolio;
 
   const socialMedia = [
-    { name: "Instagram", icon: Instagram, handle: "@sagedoai", followers: "1.2K", color: "from-pink-600 to-purple-600", url: "#" },
-    { name: "LinkedIn", icon: Linkedin, handle: "@sagedo-ai", followers: "800", color: "from-blue-600 to-blue-700", url: "#" },
-    { name: "Twitter", icon: Twitter, handle: "@sagedoai", followers: "650", color: "from-sky-500 to-blue-600", url: "#" },
-    { name: "YouTube", icon: Youtube, handle: "@SAGEDOAI", followers: "2.1K", color: "from-red-600 to-red-700", url: "#" },
-    { name: "WhatsApp", icon: MessageCircle, handle: "+91 7018709291", followers: "Direct", color: "from-green-600 to-emerald-600", url: "https://wa.me/917018709291" },
+    { name: "Instagram", icon: Instagram, handle: "@sagedoai", status: "Connect", color: "from-pink-600 to-purple-600", url: "https://www.instagram.com/sagedoai", isActive: true },
+    { name: "LinkedIn", icon: Linkedin, handle: "@sagedo-ai", status: "Connect", color: "from-blue-600 to-blue-700", url: "https://www.linkedin.com/company/sagedo-ai", isActive: true },
+    { name: "Email", icon: Mail, handle: "sagedoai@gmail.com", status: "Connect", color: "from-orange-600 to-red-600", url: "mailto:sagedoai@gmail.com", isActive: true },
+    { name: "YouTube", icon: Youtube, handle: "@SAGEDOAI", status: "Coming Soon", color: "from-red-600 to-red-700", url: "#", isActive: false },
+    { name: "WhatsApp", icon: MessageCircle, handle: "+91 7018709291", status: "Connect", color: "from-green-600 to-emerald-600", url: "https://wa.me/917018709291", isActive: true },
   ];
 
   return (
@@ -71,24 +78,42 @@ export default function About() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {socialMedia.map((platform) => (
-              <a
-                key={platform.name}
-                href={platform.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-testid={`link-social-${platform.name.toLowerCase()}`}
-              >
-                <Card className="glass p-6 hover:scale-105 transition-all duration-300 cursor-pointer hover-elevate active-elevate-2">
-                  <div className="flex flex-col items-center text-center space-y-3">
-                    <div className={`p-3 rounded-full bg-gradient-to-r ${platform.color}`}>
-                      <platform.icon className="w-6 h-6 text-white" />
+              platform.isActive ? (
+                <a
+                  key={platform.name}
+                  href={platform.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid={`link-social-${platform.name.toLowerCase()}`}
+                >
+                  <Card className="glass p-6 hover:scale-105 transition-all duration-300 cursor-pointer hover-elevate active-elevate-2">
+                    <div className="flex flex-col items-center text-center space-y-3">
+                      <div className={`p-3 rounded-full bg-gradient-to-r ${platform.color}`}>
+                        <platform.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="font-bold text-foreground">{platform.name}</h3>
+                      <p className="text-sm text-muted-foreground">{platform.handle}</p>
+                      <p className="text-xs font-semibold text-foreground">{platform.status}</p>
                     </div>
-                    <h3 className="font-bold text-foreground">{platform.name}</h3>
-                    <p className="text-sm text-muted-foreground">{platform.handle}</p>
-                    <p className="text-xs font-semibold text-primary">{platform.followers} Followers</p>
-                  </div>
-                </Card>
-              </a>
+                  </Card>
+                </a>
+              ) : (
+                <div
+                  key={platform.name}
+                  data-testid={`card-social-${platform.name.toLowerCase()}`}
+                >
+                  <Card className="glass p-6 opacity-60 cursor-not-allowed">
+                    <div className="flex flex-col items-center text-center space-y-3">
+                      <div className={`p-3 rounded-full bg-gradient-to-r ${platform.color}`}>
+                        <platform.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="font-bold text-foreground">{platform.name}</h3>
+                      <p className="text-sm text-muted-foreground">{platform.handle}</p>
+                      <p className="text-xs font-semibold text-muted-foreground italic">{platform.status}</p>
+                    </div>
+                  </Card>
+                </div>
+              )
             ))}
           </div>
         </section>
@@ -105,11 +130,11 @@ export default function About() {
           </div>
 
           {/* Testimonials */}
-          {testimonials.length > 0 && (
+          {allTestimonials.length > 0 && (
             <div className="mb-12">
               <h3 className="text-2xl font-bold text-foreground mb-6">Client Reviews</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {testimonials.map((testimonial) => (
+                {allTestimonials.map((testimonial) => (
                   <Card
                     key={testimonial.id}
                     className="glass p-6 hover:scale-105 transition-all duration-300"
@@ -130,6 +155,7 @@ export default function About() {
                             src={testimonial.imageUrl}
                             alt={testimonial.clientName || "Client"}
                             className="w-12 h-12 rounded-full object-cover"
+                            loading="lazy"
                           />
                         )}
                         <div>
@@ -147,11 +173,11 @@ export default function About() {
           )}
 
           {/* Work Showcase */}
-          {workShowcase.length > 0 && (
+          {allWorkShowcase.length > 0 && (
             <div>
               <h3 className="text-2xl font-bold text-foreground mb-6">Our Work</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {workShowcase.map((work) => (
+                {allWorkShowcase.map((work) => (
                   <Card
                     key={work.id}
                     className="glass overflow-hidden hover:scale-105 transition-all duration-300"
@@ -163,6 +189,7 @@ export default function About() {
                           src={work.imageUrl}
                           alt={work.title || "Work showcase"}
                           className="w-full h-full object-cover"
+                          loading="lazy"
                         />
                       </div>
                     )}
@@ -176,7 +203,7 @@ export default function About() {
             </div>
           )}
 
-          {testimonials.length === 0 && workShowcase.length === 0 && (
+          {allTestimonials.length === 0 && allWorkShowcase.length === 0 && (
             <Card className="glass p-12 text-center">
               <p className="text-xl text-muted-foreground">
                 Our gallery is being updated. Check back soon to see testimonials and work samples!

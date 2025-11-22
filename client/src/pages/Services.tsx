@@ -3,8 +3,10 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Search, ArrowRight, Star } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
 interface Service {
   id: string;
@@ -19,12 +21,12 @@ interface Service {
 
 const allServices: Service[] = [
   // Business Category (10 services)
-  { id: "1", name: "AI Ad Copy", category: "Business", description: "Generate high-converting ads for Google, Facebook, and Instagram", price: 100, imageUrl: "https://images.unsplash.com/photo-1665686374006-b8f04cf62d57?w=400&h=300&fit=crop&q=80", isGoldenEligible: true, deliveryTime: "24 hours" },
+  { id: "1", name: "AI Ad Copy", category: "Business", description: "Generate high-converting ads for Google, Facebook, and Instagram", price: 100, imageUrl: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&h=300&fit=crop&q=80", isGoldenEligible: true, deliveryTime: "24 hours" },
   { id: "2", name: "Email Template", category: "Business", description: "Professional email templates for marketing campaigns", price: 150, imageUrl: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop&q=80", isGoldenEligible: true, deliveryTime: "24 hours" },
   { id: "3", name: "Product Names (5)", category: "Business", description: "Creative and catchy product names for your brand", price: 200, imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&q=80", isGoldenEligible: true, deliveryTime: "48 hours" },
   { id: "4", name: "Landing Page Outline", category: "Business", description: "Complete landing page structure and content outline", price: 500, imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&q=80", isGoldenEligible: true, deliveryTime: "2-3 days" },
   { id: "5", name: "Full Website (5 pages)", category: "Business", description: "Complete website with 5 pages and responsive design", price: 5000, imageUrl: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&h=300&fit=crop&q=80", isGoldenEligible: false, deliveryTime: "7-10 days" },
-  { id: "6", name: "5 Ad Copies", category: "Business", description: "Bundle of 5 professional ad copies for various platforms", price: 600, imageUrl: "https://images.unsplash.com/photo-1432888622747-4eb9a8f2c293?w=400&h=300&fit=crop&q=80", isGoldenEligible: false, deliveryTime: "3-4 days" },
+  { id: "6", name: "5 Ad Copies", category: "Business", description: "Bundle of 5 professional ad copies for various platforms", price: 600, imageUrl: "https://images.unsplash.com/photo-1557838923-2985c318be48?w=400&h=300&fit=crop&q=80", isGoldenEligible: false, deliveryTime: "3-4 days" },
   { id: "7", name: "Automation Workflow", category: "Business", description: "Custom automation for your business processes", price: 10000, imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&q=80", isGoldenEligible: false, deliveryTime: "14-21 days" },
   { id: "8", name: "Business Consultancy", category: "Business", description: "Strategic business advice and planning session", price: 800, imageUrl: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=300&fit=crop&q=80", isGoldenEligible: false, deliveryTime: "2-3 days" },
   { id: "9", name: "Data Management", category: "Business", description: "Organize and optimize your business data", price: 700, imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&q=80", isGoldenEligible: false, deliveryTime: "3-5 days" },
@@ -60,6 +62,21 @@ const allServices: Service[] = [
 export default function Services() {
   const [activeCategory, setActiveCategory] = useState<string>("Business");
   const [searchQuery, setSearchQuery] = useState("");
+  const { isAuthenticated } = useAuth();
+  const { toast } = useToast();
+  const [, navigate] = useLocation();
+
+  const handleOrderClick = (e: React.MouseEvent, service: Service) => {
+    // If it's a Golden service and user is not logged in, show auth popup
+    if (service.isGoldenEligible && !isAuthenticated) {
+      e.preventDefault();
+      toast({
+        title: "Login Required",
+        description: "Please log in to access Golden Ticket services and free offers. Click 'Login' in the navigation bar.",
+        variant: "destructive",
+      });
+    }
+  };
 
   const categories = ["Business", "Student", "Professional", "Personal"];
 
@@ -106,11 +123,10 @@ export default function Services() {
               onClick={() => setActiveCategory(category)}
               data-testid={`button-category-${category.toLowerCase()}`}
               variant={activeCategory === category ? "default" : "outline"}
-              className={`rounded-full px-6 py-2 transition-all ${
-                activeCategory === category
-                  ? "bg-gradient-to-r from-primary to-destructive hover:opacity-90"
-                  : "glass hover-elevate"
-              }`}
+              className={`rounded-full px-6 py-2 transition-all ${activeCategory === category
+                ? "bg-gradient-to-r from-primary to-destructive hover:opacity-90"
+                : "glass hover-elevate"
+                }`}
             >
               {category}
             </Button>
@@ -131,6 +147,16 @@ export default function Services() {
                   src={service.imageUrl}
                   alt={service.name}
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.onerror = null;
+                    target.style.display = 'none';
+                    const fallback = document.createElement('div');
+                    fallback.className = 'w-full h-full flex items-center justify-center bg-destructive/10 text-destructive font-bold text-xs p-2 text-center';
+                    fallback.textContent = `ASSET MISSING: ${service.name}`;
+                    target.parentElement?.appendChild(fallback);
+                  }}
                 />
                 {service.isGoldenEligible && (
                   <Badge className="absolute top-2 right-2 bg-gradient-to-r from-yellow-500 to-amber-500 text-yellow-950 border-0" data-testid={`badge-golden-${service.id}`}>
@@ -153,6 +179,7 @@ export default function Services() {
                     size="sm"
                     data-testid={`button-order-${service.id}`}
                     className="w-full bg-gradient-to-r from-primary to-destructive hover:opacity-90"
+                    onClick={(e) => handleOrderClick(e, service)}
                   >
                     Order Now <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>

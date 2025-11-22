@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-4">
           <p className="text-muted-foreground text-sm">
-            Made in India 🇮🇳 • © 2024 SAGEDO AI • All Rights Reserved
+            Made in India 🇮🇳 • © 2025 SAGEDO AI • All Rights Reserved
           </p>
           <p className="text-xs text-muted-foreground">
             We Do Your Daily Grind, You Do Grand Things.

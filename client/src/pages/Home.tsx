@@ -1,7 +1,8 @@
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "wouter";
-import { Sparkles, Zap, CheckCircle2, ArrowRight, TrendingUp, FileText } from "lucide-react";
+import { Book, Briefcase, GraduationCap, Heart, ArrowRight, CheckCircle2, Zap, Sparkles, TrendingUp, FileText, Gift, Star } from "lucide-react";
 import { useState } from "react";
 
 export default function Home() {
@@ -60,6 +61,38 @@ export default function Home() {
         </div>
 
         <div className="max-w-5xl mx-auto text-center space-y-8 relative z-10">
+          {/* Brand Logo - Embedded with Background */}
+          <div className="flex justify-center mb-6 relative">
+            {/* Glowing backdrop layer */}
+            <div className="absolute inset-0 -z-10 blur-2xl opacity-40">
+              <img
+                src="/sagedo_logo_icon.png"
+                alt=""
+                className="h-24 md:h-32 w-auto mx-auto animate-pulse"
+                style={{ filter: 'brightness(1.5)' }}
+              />
+            </div>
+            {/* Main logo with blend effect */}
+            <img
+              src="/sagedo_logo_icon.png"
+              alt="SAGE DO AI Logo"
+              className="h-24 md:h-32 w-auto object-contain animate-float hover:scale-110 transition-all duration-500"
+              style={{
+                filter: 'drop-shadow(0 0 25px rgba(239, 68, 68, 0.4)) drop-shadow(0 0 50px rgba(239, 68, 68, 0.2)) brightness(1.1)',
+                opacity: '1'
+              }}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.onerror = null;
+                target.style.display = 'none';
+                const fallback = document.createElement('div');
+                fallback.className = 'text-destructive font-bold text-sm p-4 border border-destructive rounded-lg bg-destructive/10';
+                fallback.textContent = 'ASSET MISSING: sagedo_logo_icon.png';
+                target.parentNode?.appendChild(fallback);
+              }}
+            />
+          </div>
+
           {/* Namaste Button */}
           <div className="flex justify-center mb-4">
             <Button
@@ -108,6 +141,99 @@ export default function Home() {
               </Button>
             </Link>
           </div>
+
+          {/* Trust Signals */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8 max-w-4xl mx-auto">
+            <div className="flex items-center justify-center gap-2 glass p-3 rounded-lg">
+              <CheckCircle2 className="w-5 h-5 text-green-500" />
+              <span className="text-sm font-medium text-foreground">150+ Happy Customers</span>
+            </div>
+            <div className="flex items-center justify-center gap-2 glass p-3 rounded-lg">
+              <Zap className="w-5 h-5 text-yellow-500" />
+              <span className="text-sm font-medium text-foreground">24-48 Hour Delivery</span>
+            </div>
+            <div className="flex items-center justify-center gap-2 glass p-3 rounded-lg">
+              <Sparkles className="w-5 h-5 text-purple-500" />
+              <span className="text-sm font-medium text-foreground">4.8★ Avg Rating</span>
+            </div>
+            <div className="flex items-center justify-center gap-2 glass p-3 rounded-lg">
+              <CheckCircle2 className="w-5 h-5 text-blue-500" />
+              <span className="text-sm font-medium text-foreground">100% Satisfaction</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Golden Ticket Gamification Section */}
+      <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-yellow-500/10 via-amber-500/10 to-orange-500/10">
+        <div className="max-w-5xl mx-auto">
+          <Card className="glass overflow-hidden border-2 border-yellow-500/50 bg-gradient-to-br from-yellow-500/5 to-amber-500/5">
+            <div className="p-8 md:p-12">
+              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12">
+                {/* Left Side - Icon */}
+                <div className="flex-shrink-0">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full blur-2xl opacity-50 animate-pulse"></div>
+                    <div className="relative w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-yellow-500 to-amber-500 rounded-full flex items-center justify-center shadow-2xl">
+                      <Star className="w-12 h-12 md:w-16 md:h-16 text-yellow-950 fill-yellow-950" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Side - Content */}
+                <div className="flex-1 text-center md:text-left">
+                  <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
+                    <Star className="w-6 h-6 text-yellow-500 fill-yellow-500" />
+                    <h2 className="text-3xl md:text-4xl font-black text-transparent bg-gradient-to-r from-yellow-600 via-amber-500 to-yellow-600 bg-clip-text">
+                      Golden Ticket System
+                    </h2>
+                    <Star className="w-6 h-6 text-yellow-500 fill-yellow-500" />
+                  </div>
+
+                  <p className="text-lg md:text-xl text-foreground font-semibold mb-4">
+                    Get <span className="text-2xl md:text-3xl text-yellow-600 font-black">FREE ₹150</span> + 1 Golden Ticket on Signup!
+                  </p>
+
+                  <div className="space-y-3 text-muted-foreground">
+                    <p className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Earn Tokens:</strong> Complete tasks, refer friends, or top up anytime</span>
+                    </p>
+                    <p className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Golden Ticket:</strong> Use it for ANY service delivered within <strong className="text-yellow-600">24-48 hours</strong></span>
+                    </p>
+                    <p className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Fast Services:</strong> All Golden services are marked with a ⭐ badge</span>
+                    </p>
+                  </div>
+
+                  <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+                    <a href="/api/login">
+                      <Button
+                        size="lg"
+                        className="bg-gradient-to-r from-yellow-500 to-amber-500 text-yellow-950 font-bold hover:opacity-90 shadow-lg"
+                      >
+                        <Gift className="mr-2 h-5 w-5" />
+                        Claim FREE ₹150 Now
+                      </Button>
+                    </a>
+                    <Link href="/services">
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        className="border-yellow-500/50 hover:bg-yellow-500/10"
+                      >
+                        <Star className="mr-2 h-5 w-5 text-yellow-500 fill-yellow-500" />
+                        View Golden Services
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
         </div>
       </section>
 
@@ -147,7 +273,7 @@ export default function Home() {
               <Card
                 key={item.step}
                 className="glass p-6 hover:scale-105 transition-transform duration-300 hover-elevate"
-                data-testid={`card-step-${item.step}`}
+                data-testid={`card - step - ${item.step} `}
               >
                 <div className="flex flex-col items-center text-center space-y-4">
                   <div className="w-12 h-12 rounded-full bg-gradient-to-r from-primary to-destructive flex items-center justify-center text-2xl font-black text-primary-foreground">
@@ -177,10 +303,10 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((category) => (
-              <Link key={category.name} href="/services">
+              <Link key={category.name} href="/services" className="block h-full">
                 <Card
-                  className="glass p-6 hover:scale-105 transition-all duration-300 cursor-pointer hover-elevate active-elevate-2"
-                  data-testid={`card-category-${category.name.toLowerCase()}`}
+                  className="glass p-6 hover:scale-105 transition-all duration-300 cursor-pointer hover-elevate active-elevate-2 h-full flex flex-col justify-between"
+                  data-testid={`card - category - ${category.name.toLowerCase()} `}
                 >
                   <div className="text-center space-y-3">
                     <div className="mb-3 flex justify-center">

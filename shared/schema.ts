@@ -24,10 +24,12 @@ export const sessions = pgTable(
   (table) => [index("IDX_session_expire").on(table.expire)],
 );
 
-// Users table (required for Replit Auth + token system)
+// Users table
 export const users = pgTable("users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  email: varchar("email").unique(),
+  email: varchar("email").unique().notNull(),
+  passwordHash: varchar("password_hash"),
+  name: varchar("name"),
   firstName: varchar("first_name"),
   lastName: varchar("last_name"),
   profileImageUrl: varchar("profile_image_url"),
@@ -66,6 +68,8 @@ export const orders = pgTable("orders", {
   paidWithTokens: boolean("paid_with_tokens").default(false),
   paidWithGolden: boolean("paid_with_golden").default(false),
   amountPaid: integer("amount_paid").default(0),
+  paymentId: varchar("payment_id"), // Razorpay payment ID
+  paymentStatus: varchar("payment_status", { length: 50 }).default("pending"), // pending, paid, failed
   deliveryNotes: text("delivery_notes"),
   deliveredAt: timestamp("delivered_at"),
   createdAt: timestamp("created_at").defaultNow(),
