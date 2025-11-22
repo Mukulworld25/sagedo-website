@@ -13,24 +13,24 @@ export default function Admin() {
   const { user, isAuthenticated, isLoading: authLoading } = useAuth();
   const { toast } = useToast();
 
-  // TEMPORARILY DISABLED AUTH CHECK FOR TESTING
-  // useEffect(() => {
-  //   if (!authLoading && (!isAuthenticated || !user?.isAdmin)) {
-  //     window.location.href = "/";
-  //   }
-  // }, [authLoading, isAuthenticated, user]);
+  // Check if user is admin - redirect if not
+  useEffect(() => {
+    if (!authLoading && (!isAuthenticated || !user?.isAdmin)) {
+      window.location.href = "/";
+    }
+  }, [authLoading, isAuthenticated, user]);
 
-  // if (authLoading) {
-  //   return (
-  //     <div className="min-h-screen flex items-center justify-center pt-24">
-  //       <div className="text-muted-foreground">Loading...</div>
-  //     </div>
-  //   );
-  // }
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center pt-24">
+        <div className="text-muted-foreground">Loading...</div>
+      </div>
+    );
+  }
 
-  // if (!isAuthenticated || !user?.isAdmin) {
-  //   return null;
-  // }
+  if (!isAuthenticated || !user?.isAdmin) {
+    return null;
+  }
 
   const { data: orders = [], isLoading } = useQuery<Order[]>({
     queryKey: ["/api/admin/orders"],
