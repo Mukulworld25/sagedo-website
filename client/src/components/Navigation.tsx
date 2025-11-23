@@ -78,16 +78,28 @@ export default function Navigation() {
                     </Button>
                   </>
                 ) : (
-                  <Link href="/login">
-                    <Button
-                      size="sm"
-                      variant="default"
-                      data-testid="button-login"
-                      className="bg-gradient-to-r from-primary to-destructive hover:opacity-90"
-                    >
-                      Login
-                    </Button>
-                  </Link>
+                  <>
+                    <Link href="/login">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        data-testid="button-login"
+                        className="glass"
+                      >
+                        Login
+                      </Button>
+                    </Link>
+                    <Link href="/login?register=true">
+                      <Button
+                        size="sm"
+                        variant="default"
+                        data-testid="button-signup"
+                        className="bg-gradient-to-r from-primary to-destructive hover:opacity-90"
+                      >
+                        Sign Up
+                      </Button>
+                    </Link>
+                  </>
                 )}
               </>
             )}
@@ -149,17 +161,30 @@ export default function Navigation() {
                     </Button>
                   </>
                 ) : (
-                  <Link href="/login">
-                    <Button
-                      size="sm"
-                      variant="default"
-                      data-testid="button-mobile-login"
-                      className="w-full bg-gradient-to-r from-primary to-destructive"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Login
-                    </Button>
-                  </Link>
+                  <div className="space-y-2">
+                    <Link href="/login">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        data-testid="button-mobile-login"
+                        className="w-full glass"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Login
+                      </Button>
+                    </Link>
+                    <Link href="/login?register=true">
+                      <Button
+                        size="sm"
+                        variant="default"
+                        data-testid="button-mobile-signup"
+                        className="w-full bg-gradient-to-r from-primary to-destructive"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Sign Up
+                      </Button>
+                    </Link>
+                  </div>
                 )}
               </div>
             )}
