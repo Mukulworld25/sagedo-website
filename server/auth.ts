@@ -11,7 +11,7 @@ export function setupAuth(app: Express) {
     app.use(session({
         store: new pgStore({
             conString: process.env.DATABASE_URL,
-            createTableIfMissing: false,
+            createTableIfMissing: true,
             tableName: 'sessions',
         }),
         secret: process.env.SESSION_SECRET!,
@@ -20,6 +20,7 @@ export function setupAuth(app: Express) {
         cookie: {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         },
     }));
