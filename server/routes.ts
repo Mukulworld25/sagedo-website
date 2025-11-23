@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { setupAuth, registerCustomer, loginUser, isAuthenticated, isAdmin } from "./auth";
 import { createPaymentOrder, verifyPaymentSignature } from "./payment";
+import { sendPaymentSuccessEmail, sendOrderDeliveredEmail, sendAccountDeletionEmail } from "./email";
 import multer from "multer";
 
 // Configure multer for file uploads
@@ -76,6 +77,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get Current User
   app.get('/api/auth/user', (req: any, res) => {
     res.json(req.session.user || null);
+  });
+
+  // Delete Account
+  app.delete('/api/auth/account', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.session.user.id;
+      const user = await storage.getUser(userId);
+
+      if (user) {
+        // Send confirmation email before deletion
+        await sendAccountDeletionEmail(user.email, user.name || user.firstName || 'User');
+
+        // Delete all user data
+        await storage.deleteUser(userId);
+
+        // Destroy session
+        req.session.destroy();
+
+        res.json({ success: true, message: 'Account deleted successfully' });
+      } else {
+        res.status(404).json({ message: 'User not found' });
+      }
+    } catch (error) {
+      console.error('Error deleting account:', error);
+      res.status(500).json({ message: 'Failed to delete account' });
+    }
   });
 
   // Dashboard routes (protected)
@@ -300,7 +327,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const order = await storage.getOrderById(orderId);
         if (order) {
           await storage.updateOrderStatus(orderId, 'processing');
-          // TODO: Update payment fields in order
+
+          // Send payment success email
+          await sendPaymentSuccessEmail({
+            customerName: order.customerName || 'Customer',
+            customerEmail: order.customerEmail,
+            orderId: order.id,
+            serviceName: order.serviceName,
+            amount: order.amountPaid || 0,
+            orderDate: order.createdAt.toLocaleDateString(),
+            paymentId: razorpay_payment_id,
+            paymentMethod: 'Razorpay'
+          });
         }
 
         res.json({ success: true, message: 'Payment verified successfully' });
@@ -333,6 +371,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const order = await storage.updateOrderStatus(req.params.id, status, deliveryNotes);
+
+      // Send delivery email when order is marked as delivered
+      if (status === 'delivered') {
+        await sendOrderDeliveredEmail({
+          customerName: order.customerName || 'Customer',
+          customerEmail: order.customerEmail,
+          orderId: order.id,
+          serviceName: order.serviceName,
+          amount: order.amountPaid || 0,
+          orderDate: order.createdAt.toLocaleDateString(),
+          deliveryNotes: deliveryNotes
+        });
+      }
+
       res.json(order);
     } catch (error) {
       console.error("Error updating order:", error);

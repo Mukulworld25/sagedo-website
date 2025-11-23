@@ -15,7 +15,6 @@ export default function Navigation() {
     { href: "/about", label: "About" },
     { href: "/orders", label: "Orders" },
     { href: "/track", label: "Track" },
-    { href: "/admin", label: "Admin" },
   ];
 
   return (
