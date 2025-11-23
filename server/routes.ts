@@ -43,6 +43,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Request Password Reset (WhatsApp Flow)
+  app.post('/api/auth/request-reset', async (req: any, res) => {
+    try {
+      const { email } = req.body;
+      const user = await storage.getUserByEmail(email);
+
+      if (!user) {
+        // For security, don't reveal if email exists, but here we want to help legitimate users
+        return res.status(404).json({ message: 'Email not found' });
+      }
+
+      // Construct WhatsApp message
+      const message = `Hi, I need to reset my password for email: ${email}`;
+      const whatsappLink = `https://wa.me/918264065662?text=${encodeURIComponent(message)}`;
+
+      res.json({ success: true, whatsappLink });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   // Login (Customer or Admin)
   app.post('/api/auth/login', async (req: any, res) => {
     try {

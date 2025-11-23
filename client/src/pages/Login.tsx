@@ -115,6 +115,13 @@ export default function Login() {
                         {isRegister && (
                             <p className="text-xs text-muted-foreground">At least 6 characters</p>
                         )}
+                        {!isRegister && (
+                            <div className="text-right">
+                                <a href="/forgot-password" className="text-xs text-primary hover:underline">
+                                    Forgot password?
+                                </a>
+                            </div>
+                        )}
                     </div>
 
                     <Button
