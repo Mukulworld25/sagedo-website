@@ -67,15 +67,8 @@ export default function Services() {
   const [, navigate] = useLocation();
 
   const handleOrderClick = (e: React.MouseEvent, service: Service) => {
-    // If it's a Golden service and user is not logged in, show auth popup
-    if (service.isGoldenEligible && !isAuthenticated) {
-      e.preventDefault();
-      toast({
-        title: "Login Required",
-        description: "Please log in to access Golden Ticket services and free offers. Click 'Login' in the navigation bar.",
-        variant: "destructive",
-      });
-    }
+    // Allow all users to order, including Golden services
+    // Golden ticket benefits will be applied at checkout if user is logged in
   };
 
   const categories = ["Business", "Student", "Professional", "Personal"];
