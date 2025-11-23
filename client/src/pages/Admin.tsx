@@ -16,7 +16,7 @@ export default function Admin() {
   // Check if user is admin - redirect if not
   useEffect(() => {
     if (!authLoading && (!isAuthenticated || !user?.isAdmin)) {
-      window.location.href = "/";
+      window.location.href = "/login";
     }
   }, [authLoading, isAuthenticated, user]);
 
