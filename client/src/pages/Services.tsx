@@ -152,9 +152,9 @@ export default function Services() {
                   }}
                 />
                 {service.isGoldenEligible && (
-                  <Badge className="absolute top-2 right-2 bg-gradient-to-r from-yellow-500 to-amber-500 text-yellow-950 border-0" data-testid={`badge-golden-${service.id}`}>
-                    <Star className="w-3 h-3 mr-1" />
-                    Golden
+                  <Badge className="absolute top-2 right-2 z-50 bg-gradient-to-r from-yellow-400 to-amber-600 text-white border-0 shadow-lg" data-testid={`badge-golden-${service.id}`}>
+                    <Star className="w-3 h-3 mr-1 fill-current" />
+                    Golden Ticket
                   </Badge>
                 )}
               </div>
