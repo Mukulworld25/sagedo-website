@@ -16,6 +16,7 @@ import Login from "@/pages/Login";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
 import RefundPolicy from "@/pages/RefundPolicy";
+import GrievanceOfficer from "@/pages/GrievanceOfficer";
 import NotFound from "@/pages/not-found";
 
 import Navigation from "@/components/Navigation";
@@ -39,6 +40,7 @@ function Router() {
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/terms-of-service" component={TermsOfService} />
         <Route path="/refund-policy" component={RefundPolicy} />
+        <Route path="/grievance-officer" component={GrievanceOfficer} />
         <Route component={NotFound} />
       </Switch>
       <Footer />

@@ -7,7 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 export default function Navigation() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading, user } = useAuth();
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -54,6 +54,9 @@ export default function Navigation() {
               <>
                 {isAuthenticated ? (
                   <>
+                    <span className="text-sm text-muted-foreground">
+                      Logged in as <span className="font-semibold text-foreground">{user?.name || user?.email}</span>
+                    </span>
                     <Link href="/dashboard">
                       <Button
                         size="sm"

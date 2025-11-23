@@ -8,7 +8,6 @@ import { useEffect } from "react";
 import { User, Order } from "@shared/schema";
 import { Coins, Gift, TrendingUp, FileText, Download } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import { isUnauthorizedError } from "@/lib/authUtils";
 
 export default function Dashboard() {
   const { toast } = useToast();
