@@ -1,0 +1,22 @@
+{
+    "short_name": "SAGE DO",
+    "name": "SAGE DO - AI Assistant",
+    "icons": [
+        {
+            "src": "/sagedo_logo_icon.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/sagedo_logo_icon.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#000000",
+    "description": "Your AI Assistant for Daily Tasks"
+}

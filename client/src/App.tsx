@@ -27,6 +27,7 @@ import CookieConsent from "@/components/CookieConsent";
 import { apiRequest } from "@/lib/queryClient";
 import { useEffect } from "react";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import ScrollToTop from "@/components/ScrollToTop";
 
 function Router() {
   useEffect(() => {
@@ -37,6 +38,7 @@ function Router() {
 
   return (
     <>
+      <ScrollToTop />
       <Navigation />
       <Switch>
         <Route path="/" component={Home} />
