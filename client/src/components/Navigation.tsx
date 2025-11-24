@@ -27,6 +27,10 @@ export default function Navigation() {
               alt="SAGEDO AI"
               className="h-10 w-auto object-contain hover:scale-105 transition-transform duration-300"
               style={{ filter: 'drop-shadow(0 0 10px rgba(239, 68, 68, 0.3))' }}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+              }}
             />
             <span className="text-xl font-black bg-gradient-to-r from-primary to-destructive bg-clip-text text-transparent">
               SAGEDO AI

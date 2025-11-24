@@ -156,6 +156,10 @@ export default function About() {
                             alt={testimonial.clientName || "Client"}
                             className="w-12 h-12 rounded-full object-cover"
                             loading="lazy"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = 'none';
+                            }}
                           />
                         )}
                         <div>
@@ -190,6 +194,10 @@ export default function About() {
                           alt={work.title || "Work showcase"}
                           className="w-full h-full object-cover"
                           loading="lazy"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                          }}
                         />
                       </div>
                     )}

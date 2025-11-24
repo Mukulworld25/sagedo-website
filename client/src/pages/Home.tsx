@@ -70,6 +70,10 @@ export default function Home() {
                 alt=""
                 className="h-24 md:h-32 w-auto mx-auto animate-pulse"
                 style={{ filter: 'brightness(1.5)' }}
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
               />
             </div>
             {/* Main logo with blend effect */}
