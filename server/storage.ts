@@ -16,7 +16,6 @@ import {
   type InsertGallery,
   type SiteVisit,
   type InsertSiteVisit,
-  type InsertSiteVisit,
   siteVisits,
   type Feedback,
   type InsertFeedback,
@@ -61,8 +60,6 @@ export interface IStorage {
   getDashboardStats(): Promise<{
     totalLogins: number;
     totalVisitors: number;
-    mostClickedServices: Service[];
-    recentVisitors: SiteVisit[];
     mostClickedServices: Service[];
     recentVisitors: SiteVisit[];
   }>;

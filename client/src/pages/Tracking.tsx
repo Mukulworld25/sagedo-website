@@ -3,19 +3,46 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { useQuery } from "@tanstack/react-query";
-import { CheckCircle2, Circle, Clock, Package, Truck, Home } from "lucide-react";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { CheckCircle2, Circle, Clock, Package, Truck, Home, Star, MessageSquare, ShieldCheck, Zap, Heart } from "lucide-react";
 import { Order } from "@shared/schema";
+import { apiRequest } from "@/lib/queryClient";
 
 export default function Tracking() {
   const { toast } = useToast();
   const [orderId, setOrderId] = useState("");
   const [searchedOrderId, setSearchedOrderId] = useState("");
 
+  // Feedback state
+  const [rating, setRating] = useState(5);
+  const [message, setMessage] = useState("");
+
   const { data: order, isLoading } = useQuery<Order>({
     queryKey: ["/api/orders", searchedOrderId],
     enabled: !!searchedOrderId,
+  });
+
+  const feedbackMutation = useMutation({
+    mutationFn: async () => {
+      await apiRequest("POST", "/api/feedback", { rating, message });
+    },
+    onSuccess: () => {
+      toast({
+        title: "Thank you!",
+        description: "Your feedback helps us improve.",
+      });
+      setMessage("");
+      setRating(5);
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to submit feedback. Please try again.",
+        variant: "destructive",
+      });
+    },
   });
 
   const handleTrack = (e: React.FormEvent) => {
@@ -144,7 +171,7 @@ export default function Tracking() {
 
         {/* Progress Timeline */}
         {order && (
-          <Card className="glass p-8">
+          <Card className="glass p-8 mb-12">
             <h2 className="text-2xl font-bold text-foreground mb-8 text-center">
               Order Progress
             </h2>
@@ -157,29 +184,26 @@ export default function Tracking() {
                 return (
                   <div
                     key={stage.name}
-                    className={`relative flex items-start gap-6 ${
-                      index < stages.length - 1 ? "pb-8" : ""
-                    }`}
+                    className={`relative flex items-start gap-6 ${index < stages.length - 1 ? "pb-8" : ""
+                      }`}
                     data-testid={`stage-${stage.name.toLowerCase()}`}
                   >
                     {/* Vertical Line */}
                     {index < stages.length - 1 && (
                       <div
-                        className={`absolute left-6 top-12 w-0.5 h-full ${
-                          index < currentStageIndex ? "bg-primary" : "bg-border"
-                        }`}
+                        className={`absolute left-6 top-12 w-0.5 h-full ${index < currentStageIndex ? "bg-primary" : "bg-border"
+                          }`}
                       />
                     )}
 
                     {/* Icon Circle */}
                     <div
-                      className={`relative z-10 flex items-center justify-center w-12 h-12 rounded-full border-2 ${
-                        isCompleted
+                      className={`relative z-10 flex items-center justify-center w-12 h-12 rounded-full border-2 ${isCompleted
                           ? "bg-gradient-to-r from-primary to-destructive border-transparent"
                           : isCurrent
-                          ? "bg-background border-primary animate-pulse-glow"
-                          : "bg-background border-border"
-                      }`}
+                            ? "bg-background border-primary animate-pulse-glow"
+                            : "bg-background border-border"
+                        }`}
                     >
                       {isCompleted && index !== currentStageIndex ? (
                         <CheckCircle2 className="w-6 h-6 text-white" />
@@ -193,9 +217,8 @@ export default function Tracking() {
                     {/* Content */}
                     <div className="flex-1 pt-1">
                       <h3
-                        className={`text-lg font-bold ${
-                          isCompleted ? "text-foreground" : "text-muted-foreground"
-                        }`}
+                        className={`text-lg font-bold ${isCompleted ? "text-foreground" : "text-muted-foreground"
+                          }`}
                       >
                         {stage.name}
                       </h3>
@@ -226,7 +249,7 @@ export default function Tracking() {
 
         {/* No Order Found */}
         {searchedOrderId && !order && !isLoading && (
-          <Card className="glass p-12 text-center">
+          <Card className="glass p-12 text-center mb-12">
             <p className="text-xl text-muted-foreground">
               No order found with ID: <strong>{searchedOrderId}</strong>
             </p>
@@ -235,6 +258,91 @@ export default function Tracking() {
             </p>
           </Card>
         )}
+
+        {/* Feedback Section - Embedded */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Card className="glass p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <MessageSquare className="w-6 h-6 text-primary" />
+              <h2 className="text-2xl font-bold text-foreground">Share Your Experience</h2>
+            </div>
+            <p className="text-muted-foreground mb-6">
+              How was your experience with SAGE DO? Your feedback helps us serve you better.
+            </p>
+
+            <div className="space-y-6">
+              <div className="flex justify-center space-x-2">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <button
+                    key={star}
+                    type="button"
+                    onClick={() => setRating(star)}
+                    className={`p-1 transition-colors ${star <= rating ? "text-yellow-500" : "text-muted-foreground"
+                      }`}
+                  >
+                    <Star className="w-8 h-8 fill-current" />
+                  </button>
+                ))}
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="message">Your Message</Label>
+                <Textarea
+                  id="message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Tell us what you think..."
+                  className="glass min-h-[100px]"
+                />
+              </div>
+              <Button
+                onClick={() => feedbackMutation.mutate()}
+                disabled={feedbackMutation.isPending || !message.trim()}
+                className="w-full bg-gradient-to-r from-primary to-destructive"
+              >
+                {feedbackMutation.isPending ? "Submitting..." : "Submit Feedback"}
+              </Button>
+            </div>
+          </Card>
+
+          {/* Why Choose Us - Engaging Content */}
+          <div className="space-y-6">
+            <Card className="glass p-6 flex items-start gap-4">
+              <div className="p-3 rounded-full bg-primary/10 text-primary">
+                <ShieldCheck className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="font-bold text-lg mb-1">Secure & Private</h3>
+                <p className="text-sm text-muted-foreground">
+                  Your data is encrypted and handled with the utmost confidentiality.
+                </p>
+              </div>
+            </Card>
+
+            <Card className="glass p-6 flex items-start gap-4">
+              <div className="p-3 rounded-full bg-primary/10 text-primary">
+                <Zap className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="font-bold text-lg mb-1">Fast Delivery</h3>
+                <p className="text-sm text-muted-foreground">
+                  We prioritize speed without compromising on quality.
+                </p>
+              </div>
+            </Card>
+
+            <Card className="glass p-6 flex items-start gap-4">
+              <div className="p-3 rounded-full bg-primary/10 text-primary">
+                <Heart className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="font-bold text-lg mb-1">Satisfaction Guaranteed</h3>
+                <p className="text-sm text-muted-foreground">
+                  Not happy? We'll work with you until it's right.
+                </p>
+              </div>
+            </Card>
+          </div>
+        </div>
       </div>
     </div>
   );
