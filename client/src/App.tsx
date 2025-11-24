@@ -26,6 +26,7 @@ import WhatsAppFloat from "@/components/WhatsAppFloat";
 import CookieConsent from "@/components/CookieConsent";
 import { apiRequest } from "@/lib/queryClient";
 import { useEffect } from "react";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 function Router() {
   useEffect(() => {
@@ -63,12 +64,14 @@ function Router() {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <TooltipProvider>
-          <Router />
-          <Toaster />
-        </TooltipProvider>
-      </AuthProvider>
+      <ErrorBoundary>
+        <AuthProvider>
+          <TooltipProvider>
+            <Router />
+            <Toaster />
+          </TooltipProvider>
+        </AuthProvider>
+      </ErrorBoundary>
     </QueryClientProvider>
   );
 }
