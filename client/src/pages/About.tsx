@@ -21,7 +21,7 @@ export default function About() {
   const socialMedia = [
     { name: "Instagram", icon: Instagram, handle: "@sagedoai00", status: "Connect", color: "from-pink-600 to-purple-600", url: "https://www.instagram.com/sagedoai00/", isActive: true },
     { name: "LinkedIn", icon: Linkedin, handle: "Mukul Dhiman", status: "Connect", color: "from-blue-600 to-blue-700", url: "https://www.linkedin.com/in/mukul-dhiman25", isActive: true },
-    { name: "Email", icon: Mail, handle: "sagedoai@gmail.com", status: "Connect", color: "from-orange-600 to-red-600", url: "mailto:sagedoai@gmail.com", isActive: true },
+    { name: "Email", icon: Mail, handle: "sagedoai@gmail.com", status: "Connect", color: "from-orange-600 to-red-600", url: "https://mail.google.com/mail/?view=cm&fs=1&to=sagedoai@gmail.com", isActive: true },
     { name: "YouTube", icon: Youtube, handle: "@SAGEDOAI", status: "Coming Soon", color: "from-red-600 to-red-700", url: "#", isActive: false },
     { name: "WhatsApp", icon: MessageCircle, handle: "+91 7018709291", status: "Connect", color: "from-green-600 to-emerald-600", url: "https://wa.me/917018709291", isActive: true },
   ];
