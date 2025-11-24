@@ -4,8 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
-import { Order } from "@shared/schema";
-import { RefreshCw, CheckCircle2, Clock, Package, Truck } from "lucide-react";
+import { Order, Feedback } from "@shared/schema";
+import { RefreshCw, CheckCircle2, Clock, Package, Truck, MessageSquare, Star } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
@@ -38,6 +38,10 @@ export default function Admin() {
 
   const { data: stats } = useQuery({
     queryKey: ["/api/admin/stats"],
+  });
+
+  const { data: feedbacks = [] } = useQuery<Feedback[]>({
+    queryKey: ["/api/admin/feedback"],
   });
 
   const updateStatusMutation = useMutation({
@@ -180,6 +184,41 @@ export default function Admin() {
             </div>
           </Card>
         </div>
+
+        {/* Feedback Section */}
+        <Card className="glass p-6 mb-8">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MessageSquare className="w-6 h-6" />
+            User Feedback
+          </h2>
+          {feedbacks.length > 0 ? (
+            <div className="space-y-4">
+              {feedbacks.map((feedback) => (
+                <div key={feedback.id} className="border-b border-border/50 pb-4 last:border-0 last:pb-0">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <div className="flex">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className={`w-4 h-4 ${i < (feedback.rating || 0) ? "text-yellow-500 fill-current" : "text-muted-foreground"
+                              }`}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-xs text-muted-foreground">
+                        {new Date(feedback.createdAt!).toLocaleDateString()}
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-foreground">{feedback.message}</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-muted-foreground">No feedback received yet.</p>
+          )}
+        </Card>
 
         <h2 className="text-2xl font-bold mb-4">Order Management</h2>
         {/* Orders Stats */}

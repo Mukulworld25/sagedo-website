@@ -462,6 +462,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Feedback routes
+  app.post('/api/feedback', async (req: any, res) => {
+    try {
+      const { message, rating } = req.body;
+      const userId = req.user?.claims?.sub || req.session?.user?.id; // Optional user ID
+
+      if (!message) {
+        return res.status(400).json({ message: "Message is required" });
+      }
+
+      const feedback = await storage.createFeedback({
+        message,
+        rating: rating || null,
+        userId: userId || null,
+      });
+
+      res.json(feedback);
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+      res.status(500).json({ message: "Failed to submit feedback" });
+    }
+  });
+
+  app.get('/api/admin/feedback', isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const feedbacks = await storage.getAllFeedbacks();
+      res.json(feedbacks);
+    } catch (error) {
+      console.error("Error fetching feedback:", error);
+      res.status(500).json({ message: "Failed to fetch feedback" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { FeedbackDialog } from "./FeedbackDialog";
 
 export default function Footer() {
   return (
@@ -47,6 +48,7 @@ export default function Footer() {
                 Admin
               </button>
             </Link>
+            <FeedbackDialog />
           </div>
         </div>
       </div>

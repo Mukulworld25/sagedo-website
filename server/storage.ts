@@ -16,7 +16,11 @@ import {
   type InsertGallery,
   type SiteVisit,
   type InsertSiteVisit,
+  type InsertSiteVisit,
   siteVisits,
+  type Feedback,
+  type InsertFeedback,
+  feedbacks,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, sql, gte } from "drizzle-orm";
@@ -59,7 +63,13 @@ export interface IStorage {
     totalVisitors: number;
     mostClickedServices: Service[];
     recentVisitors: SiteVisit[];
+    mostClickedServices: Service[];
+    recentVisitors: SiteVisit[];
   }>;
+
+  // Feedback operations
+  createFeedback(feedback: InsertFeedback): Promise<Feedback>;
+  getAllFeedbacks(): Promise<Feedback[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -252,11 +262,216 @@ export class DatabaseStorage implements IStorage {
 
     return {
       totalLogins: Number(loginStats?.total || 0),
-      totalVisitors: Number(visitorStats?.count || 0),
-      mostClickedServices,
-      recentVisitors,
-    };
-  }
-}
+      // Feedback operations
+      createFeedback(feedback: InsertFeedback): Promise<Feedback>;
+  getAllFeedbacks(): Promise<Feedback[]>;
+    }
 
-export const storage = new DatabaseStorage();
+    export class DatabaseStorage implements IStorage {
+      // User operations
+      async getUser(id: string): Promise<User | undefined> {
+        if (!db) throw new Error('Database not configured');
+        const [user] = await db.select().from(users).where(eq(users.id, id));
+        return user;
+      }
+
+      async getUserByEmail(email: string): Promise<User | undefined> {
+        const [user] = await db.select().from(users).where(eq(users.email, email));
+        return user;
+      }
+
+      async createUser(userData: any): Promise<User> {
+        const [user] = await db.insert(users).values(userData).returning();
+        return user;
+      }
+
+      async upsertUser(userData: UpsertUser): Promise<User> {
+        const [user] = await db
+          .insert(users)
+          .values({
+            ...userData,
+            tokenBalance: 0,
+            hasGoldenTicket: false,
+            hasWelcomeBonus: false,
+          })
+          .onConflictDoUpdate({
+            target: users.id,
+            set: {
+              ...userData,
+              updatedAt: new Date(),
+            },
+          })
+          .returning();
+        return user;
+      }
+
+      async deleteUser(id: string): Promise<void> {
+        // Delete all related data first (cascade delete)
+        await db.delete(tokenTransactions).where(eq(tokenTransactions.userId, id));
+        await db.delete(orders).where(eq(orders.userId, id));
+        await db.delete(users).where(eq(users.id, id));
+      }
+
+      // Service operations
+      async getAllServices(): Promise<Service[]> {
+        return await db.select().from(services);
+      }
+
+      async getServiceById(id: string): Promise<Service | undefined> {
+        const [service] = await db.select().from(services).where(eq(services.id, id));
+        return service;
+      }
+
+      async createService(service: InsertService): Promise<Service> {
+        const [newService] = await db.insert(services).values(service).returning();
+        return newService;
+      }
+
+      // Order operations
+      async getAllOrders(): Promise<Order[]> {
+        return await db.select().from(orders).orderBy(desc(orders.createdAt));
+      }
+
+      async getOrderById(id: string): Promise<Order | undefined> {
+        const [order] = await db.select().from(orders).where(eq(orders.id, id));
+        return order;
+      }
+
+      async getOrdersByUserId(userId: string): Promise<Order[]> {
+        return await db
+          .select()
+          .from(orders)
+          .where(eq(orders.userId, userId))
+          .orderBy(desc(orders.createdAt));
+      }
+
+      async createOrder(order: InsertOrder): Promise<Order> {
+        const [newOrder] = await db.insert(orders).values(order).returning();
+        return newOrder;
+      }
+
+      async updateOrderStatus(id: string, status: string, deliveryNotes?: string): Promise<Order> {
+        const updateData: any = { status, updatedAt: new Date() };
+        if (deliveryNotes) {
+          updateData.deliveryNotes = deliveryNotes;
+        }
+        if (status === "delivered") {
+          updateData.deliveredAt = new Date();
+        }
+
+        const [updatedOrder] = await db
+          .update(orders)
+          .set(updateData)
+          .where(eq(orders.id, id))
+          .returning();
+        return updatedOrder;
+      }
+
+      // Token operations
+      async getUserTokenBalance(userId: string): Promise<number> {
+        const user = await this.getUser(userId);
+        return user?.tokenBalance || 0;
+      }
+
+      async addTokenTransaction(transaction: InsertTokenTransaction): Promise<TokenTransaction> {
+        const [newTransaction] = await db
+          .insert(tokenTransactions)
+          .values(transaction)
+          .returning();
+
+        // Update user's token balance
+        const user = await this.getUser(transaction.userId);
+        if (user) {
+          const newBalance = (user.tokenBalance || 0) + transaction.amount;
+          await db
+            .update(users)
+            .set({ tokenBalance: newBalance })
+            .where(eq(users.id, transaction.userId));
+        }
+
+        return newTransaction;
+      }
+
+      async getTokenTransactionsByUserId(userId: string): Promise<TokenTransaction[]> {
+        return await db
+          .select()
+          .from(tokenTransactions)
+          .where(eq(tokenTransactions.userId, userId))
+          .orderBy(desc(tokenTransactions.createdAt));
+      }
+
+      // Gallery operations
+      async getAllGalleryItems(): Promise<Gallery[]> {
+        return await db.select().from(gallery).orderBy(desc(gallery.createdAt));
+      }
+
+      async getVisibleGalleryItems(): Promise<Gallery[]> {
+        return await db
+          .select()
+          .from(gallery)
+          .where(eq(gallery.isVisible, true))
+          .orderBy(desc(gallery.createdAt));
+      }
+
+      async createGalleryItem(item: InsertGallery): Promise<Gallery> {
+        const [newItem] = await db.insert(gallery).values(item).returning();
+        return newItem;
+      }
+
+      // Analytics operations
+      async logVisit(visit: InsertSiteVisit): Promise<void> {
+        await db.insert(siteVisits).values(visit);
+      }
+
+      async incrementServiceClick(serviceId: string): Promise<void> {
+        await db
+          .update(services)
+          .set({ clickCount: sql`${services.clickCount} + 1` })
+          .where(eq(services.id, serviceId));
+      }
+
+      async getDashboardStats() {
+        // Total logins (sum of loginCount from users)
+        const [loginStats] = await db
+          .select({ total: sql<number>`sum(${users.loginCount})` })
+          .from(users);
+
+        // Total visitors (count of siteVisits)
+        const [visitorStats] = await db
+          .select({ count: sql<number>`count(*)` })
+          .from(siteVisits);
+
+        // Most clicked services
+        const mostClickedServices = await db
+          .select()
+          .from(services)
+          .orderBy(desc(services.clickCount))
+          .limit(5);
+
+        // Recent visitors
+        const recentVisitors = await db
+          .select()
+          .from(siteVisits)
+          .orderBy(desc(siteVisits.visitedAt))
+          .limit(10);
+
+        return {
+          totalLogins: Number(loginStats?.total || 0),
+          totalVisitors: Number(visitorStats?.count || 0),
+          mostClickedServices,
+          recentVisitors,
+        };
+      }
+
+      // Feedback operations
+      async createFeedback(feedback: InsertFeedback): Promise<Feedback> {
+        const [newFeedback] = await db.insert(feedbacks).values(feedback).returning();
+        return newFeedback;
+      }
+
+      async getAllFeedbacks(): Promise<Feedback[]> {
+        return await db.select().from(feedbacks).orderBy(desc(feedbacks.createdAt));
+      }
+    }
+
+    export const storage = new DatabaseStorage();

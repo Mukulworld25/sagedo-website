@@ -112,6 +112,15 @@ export const siteVisits = pgTable("site_visits", {
   visitedAt: timestamp("visited_at").defaultNow(),
 });
 
+// Feedback system
+export const feedbacks = pgTable("feedbacks", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id), // Nullable for anonymous feedback
+  message: text("message").notNull(),
+  rating: integer("rating"), // 1-5 stars
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 // Relations
 export const usersRelations = relations(users, ({ many }) => ({
   orders: many(orders),
@@ -169,6 +178,11 @@ export const insertSiteVisitSchema = createInsertSchema(siteVisits).omit({
   visitedAt: true,
 });
 
+export const insertFeedbackSchema = createInsertSchema(feedbacks).omit({
+  id: true,
+  createdAt: true,
+});
+
 // Types
 export type UpsertUser = typeof users.$inferInsert;
 export type User = typeof users.$inferSelect;
@@ -188,3 +202,6 @@ export type InsertGallery = z.infer<typeof insertGallerySchema>;
 
 export type SiteVisit = typeof siteVisits.$inferSelect;
 export type InsertSiteVisit = z.infer<typeof insertSiteVisitSchema>;
+
+export type Feedback = typeof feedbacks.$inferSelect;
+export type InsertFeedback = z.infer<typeof insertFeedbackSchema>;
