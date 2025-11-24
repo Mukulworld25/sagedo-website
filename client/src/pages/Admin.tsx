@@ -34,14 +34,17 @@ export default function Admin() {
 
   const { data: orders = [], isLoading } = useQuery<Order[]>({
     queryKey: ["/api/admin/orders"],
+    enabled: isAuthenticated && user?.isAdmin === true,
   });
 
   const { data: stats } = useQuery({
     queryKey: ["/api/admin/stats"],
+    enabled: isAuthenticated && user?.isAdmin === true,
   });
 
   const { data: feedbacks = [] } = useQuery<Feedback[]>({
     queryKey: ["/api/admin/feedback"],
+    enabled: isAuthenticated && user?.isAdmin === true,
   });
 
   const updateStatusMutation = useMutation({

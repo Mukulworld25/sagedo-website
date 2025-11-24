@@ -22,7 +22,7 @@ import NotFound from "@/pages/not-found";
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
+// import WhatsAppFloat from "@/components/WhatsAppFloat";
 import CookieConsent from "@/components/CookieConsent";
 import { apiRequest } from "@/lib/queryClient";
 import { useEffect } from "react";
@@ -57,7 +57,7 @@ function Router() {
         <Route component={NotFound} />
       </Switch>
       <Footer />
-      <WhatsAppFloat />
+      {/* <WhatsAppFloat /> */}
       <CookieConsent />
     </>
   );
