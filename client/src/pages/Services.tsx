@@ -7,6 +7,7 @@ import { Link, useLocation } from "wouter";
 import { Search, ArrowRight, Star } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 
 interface Service {
   id: string;
@@ -67,6 +68,9 @@ export default function Services() {
   const [, navigate] = useLocation();
 
   const handleOrderClick = (e: React.MouseEvent, service: Service) => {
+    // Track click
+    apiRequest("POST", `/api/services/${service.id}/click`).catch(console.error);
+
     // Allow all users to order, including Golden services
     // Golden ticket benefits will be applied at checkout if user is logged in
   };

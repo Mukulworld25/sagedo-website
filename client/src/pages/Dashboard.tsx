@@ -5,6 +5,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useEffect } from "react";
+import { useLocation } from "wouter";
 import { User, Order } from "@shared/schema";
 import { Coins, Gift, TrendingUp, FileText, Download } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
@@ -13,12 +14,13 @@ export default function Dashboard() {
   const { toast } = useToast();
   const { user, isAuthenticated, isLoading } = useAuth();
 
+  const [, setLocation] = useLocation();
+
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      window.location.href = "/login";
-      return;
+      setLocation("/login");
     }
-  }, [isAuthenticated, isLoading]);
+  }, [isAuthenticated, isLoading, setLocation]);
 
   const { data: userDetails } = useQuery<User>({
     queryKey: ["/api/dashboard/user"],
@@ -63,7 +65,12 @@ export default function Dashboard() {
   }
 
   if (!isAuthenticated) {
-    return null;
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center space-y-4">
+        <div className="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full" />
+        <p className="text-muted-foreground animate-pulse">Redirecting to login...</p>
+      </div>
+    );
   }
 
   const tokenBalance = userDetails?.tokenBalance || 0;
@@ -81,11 +88,20 @@ export default function Dashboard() {
               Welcome back, {userDetails?.firstName || user?.email}!
             </p>
           </div>
-          <a href="/api/logout">
-            <Button variant="outline" data-testid="button-logout" className="glass hover-elevate">
-              Logout
-            </Button>
-          </a>
+          <div className="flex gap-4">
+            {userDetails?.isAdmin && (
+              <a href="/admin">
+                <Button variant="default" className="bg-gradient-to-r from-primary to-destructive hover:opacity-90">
+                  Admin Dashboard
+                </Button>
+              </a>
+            )}
+            <a href="/api/logout">
+              <Button variant="outline" data-testid="button-logout" className="glass hover-elevate">
+                Logout
+              </Button>
+            </a>
+          </div>
         </div>
 
         {/* Stats Cards */}
@@ -261,6 +277,6 @@ export default function Dashboard() {
           </div>
         </Card>
       </div>
-    </div>
+    </div >
   );
 }

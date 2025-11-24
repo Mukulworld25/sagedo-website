@@ -14,9 +14,12 @@ import {
   type InsertTokenTransaction,
   type Gallery,
   type InsertGallery,
+  type SiteVisit,
+  type InsertSiteVisit,
+  siteVisits,
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, sql, gte } from "drizzle-orm";
 
 export interface IStorage {
   // User operations
@@ -47,6 +50,16 @@ export interface IStorage {
   getAllGalleryItems(): Promise<Gallery[]>;
   getVisibleGalleryItems(): Promise<Gallery[]>;
   createGalleryItem(item: InsertGallery): Promise<Gallery>;
+
+  // Analytics operations
+  logVisit(visit: InsertSiteVisit): Promise<void>;
+  incrementServiceClick(serviceId: string): Promise<void>;
+  getDashboardStats(): Promise<{
+    totalLogins: number;
+    totalVisitors: number;
+    mostClickedServices: Service[];
+    recentVisitors: SiteVisit[];
+  }>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -198,6 +211,51 @@ export class DatabaseStorage implements IStorage {
   async createGalleryItem(item: InsertGallery): Promise<Gallery> {
     const [newItem] = await db.insert(gallery).values(item).returning();
     return newItem;
+  }
+
+  // Analytics operations
+  async logVisit(visit: InsertSiteVisit): Promise<void> {
+    await db.insert(siteVisits).values(visit);
+  }
+
+  async incrementServiceClick(serviceId: string): Promise<void> {
+    await db
+      .update(services)
+      .set({ clickCount: sql`${services.clickCount} + 1` })
+      .where(eq(services.id, serviceId));
+  }
+
+  async getDashboardStats() {
+    // Total logins (sum of loginCount from users)
+    const [loginStats] = await db
+      .select({ total: sql<number>`sum(${users.loginCount})` })
+      .from(users);
+
+    // Total visitors (count of siteVisits)
+    const [visitorStats] = await db
+      .select({ count: sql<number>`count(*)` })
+      .from(siteVisits);
+
+    // Most clicked services
+    const mostClickedServices = await db
+      .select()
+      .from(services)
+      .orderBy(desc(services.clickCount))
+      .limit(5);
+
+    // Recent visitors
+    const recentVisitors = await db
+      .select()
+      .from(siteVisits)
+      .orderBy(desc(siteVisits.visitedAt))
+      .limit(10);
+
+    return {
+      totalLogins: Number(loginStats?.total || 0),
+      totalVisitors: Number(visitorStats?.count || 0),
+      mostClickedServices,
+      recentVisitors,
+    };
   }
 }
 

@@ -24,8 +24,16 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import CookieConsent from "@/components/CookieConsent";
+import { apiRequest } from "@/lib/queryClient";
+import { useEffect } from "react";
 
 function Router() {
+  useEffect(() => {
+    // Track visit
+    apiRequest("POST", "/api/track-visit", { path: window.location.pathname })
+      .catch(err => console.error("Failed to track visit", err));
+  }, []);
+
   return (
     <>
       <Navigation />

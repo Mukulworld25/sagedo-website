@@ -36,6 +36,10 @@ export default function Admin() {
     queryKey: ["/api/admin/orders"],
   });
 
+  const { data: stats } = useQuery({
+    queryKey: ["/api/admin/stats"],
+  });
+
   const updateStatusMutation = useMutation({
     mutationFn: async ({ orderId, status }: { orderId: string; status: string }) => {
       await apiRequest("PATCH", `/api/admin/orders/${orderId}`, { status });
@@ -68,7 +72,7 @@ export default function Admin() {
     updateStatusMutation.mutate({ orderId, status });
   };
 
-  const stats = {
+  const orderStats = {
     total: orders.length,
     pending: orders.filter((o) => o.status === "pending").length,
     processing: orders.filter((o) => o.status === "processing").length,
@@ -107,35 +111,86 @@ export default function Admin() {
           </Button>
         </div>
 
-        {/* Stats */}
+        {/* Analytics Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <Card className="glass p-6 bg-gradient-to-br from-indigo-600/20 to-indigo-700/20">
+            <p className="text-sm text-indigo-100 mb-1">Total Logins</p>
+            <p className="text-4xl font-black text-foreground">
+              {stats?.totalLogins || 0}
+            </p>
+          </Card>
+
+          <Card className="glass p-6 bg-gradient-to-br from-pink-600/20 to-pink-700/20">
+            <p className="text-sm text-pink-100 mb-1">Total Visitors</p>
+            <p className="text-4xl font-black text-foreground">
+              {stats?.totalVisitors || 0}
+            </p>
+          </Card>
+
           <Card className="glass p-6 bg-gradient-to-br from-blue-600/20 to-blue-700/20">
             <p className="text-sm text-blue-100 mb-1">Total Orders</p>
             <p className="text-4xl font-black text-foreground" data-testid="stat-total">
-              {stats.total}
+              {orderStats.total}
             </p>
           </Card>
 
           <Card className="glass p-6 bg-gradient-to-br from-yellow-600/20 to-yellow-700/20">
-            <p className="text-sm text-yellow-100 mb-1">Needs Action</p>
+            <p className="text-sm text-yellow-100 mb-1">Pending Orders</p>
             <p className="text-4xl font-black text-foreground" data-testid="stat-pending">
-              {stats.pending}
+              {orderStats.pending}
             </p>
+          </Card>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          {/* Most Clicked Services */}
+          <Card className="glass p-6">
+            <h2 className="text-xl font-bold mb-4">Most Clicked Services</h2>
+            <div className="space-y-4">
+              {stats?.mostClickedServices?.map((service: any) => (
+                <div key={service.id} className="flex items-center justify-between border-b border-border/50 pb-2">
+                  <span className="font-medium">{service.name}</span>
+                  <Badge variant="secondary">{service.clickCount} clicks</Badge>
+                </div>
+              ))}
+              {(!stats?.mostClickedServices || stats.mostClickedServices.length === 0) && (
+                <p className="text-muted-foreground">No data yet.</p>
+              )}
+            </div>
           </Card>
 
-          <Card className="glass p-6 bg-gradient-to-br from-purple-600/20 to-purple-700/20">
-            <p className="text-sm text-purple-100 mb-1">In Progress</p>
-            <p className="text-4xl font-black text-foreground" data-testid="stat-processing">
-              {stats.processing}
-            </p>
+          {/* Recent Visitors */}
+          <Card className="glass p-6">
+            <h2 className="text-xl font-bold mb-4">Recent Visitors</h2>
+            <div className="space-y-4">
+              {stats?.recentVisitors?.map((visitor: any) => (
+                <div key={visitor.id} className="flex items-center justify-between border-b border-border/50 pb-2">
+                  <div className="flex flex-col">
+                    <span className="text-sm font-medium">{visitor.path}</span>
+                    <span className="text-xs text-muted-foreground">{new Date(visitor.visitedAt).toLocaleString()}</span>
+                  </div>
+                  <Badge variant="outline" className="text-xs max-w-[150px] truncate" title={visitor.userAgent}>
+                    {visitor.userAgent}
+                  </Badge>
+                </div>
+              ))}
+              {(!stats?.recentVisitors || stats.recentVisitors.length === 0) && (
+                <p className="text-muted-foreground">No visitors yet.</p>
+              )}
+            </div>
           </Card>
+        </div>
 
-          <Card className="glass p-6 bg-gradient-to-br from-green-600/20 to-green-700/20">
-            <p className="text-sm text-green-100 mb-1">Delivered</p>
-            <p className="text-4xl font-black text-foreground" data-testid="stat-delivered">
-              {stats.delivered}
-            </p>
-          </Card>
+        <h2 className="text-2xl font-bold mb-4">Order Management</h2>
+        {/* Orders Stats */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {/* Reusing existing cards but filtered */}
+          {/* Actually I replaced the top stats block, so I don't need to duplicate order stats here, 
+               but I should probably keep the detailed order status breakdown if useful. 
+               Let's just show the detailed breakdown below or keep it simple. 
+               The user wanted "useless information" removed. 
+               I'll stick to the top 4 cards I defined above which mix Analytics and Orders.
+           */}
         </div>
 
         {/* Orders Table */}

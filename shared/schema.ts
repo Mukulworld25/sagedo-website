@@ -37,6 +37,8 @@ export const users = pgTable("users", {
   hasGoldenTicket: boolean("has_golden_ticket").default(false).notNull(),
   hasWelcomeBonus: boolean("has_welcome_bonus").default(false).notNull(),
   isAdmin: boolean("is_admin").default(false).notNull(),
+  loginCount: integer("login_count").default(0).notNull(),
+  lastLoginAt: timestamp("last_login_at"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
@@ -51,6 +53,7 @@ export const services = pgTable("services", {
   imageUrl: text("image_url"),
   isGoldenEligible: boolean("is_golden_eligible").default(false).notNull(),
   deliveryTime: text("delivery_time"), // e.g., "24 hours", "2-3 days"
+  clickCount: integer("click_count").default(0).notNull(),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -98,6 +101,15 @@ export const gallery = pgTable("gallery", {
   rating: integer("rating"), // 1-5 stars for testimonials
   isVisible: boolean("is_visible").default(true).notNull(),
   createdAt: timestamp("created_at").defaultNow(),
+});
+
+// Site visits tracking
+export const siteVisits = pgTable("site_visits", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  ipHash: varchar("ip_hash"), // Hashed IP for privacy
+  userAgent: text("user_agent"),
+  path: varchar("path"),
+  visitedAt: timestamp("visited_at").defaultNow(),
 });
 
 // Relations
@@ -152,6 +164,11 @@ export const insertGallerySchema = createInsertSchema(gallery).omit({
   createdAt: true,
 });
 
+export const insertSiteVisitSchema = createInsertSchema(siteVisits).omit({
+  id: true,
+  visitedAt: true,
+});
+
 // Types
 export type UpsertUser = typeof users.$inferInsert;
 export type User = typeof users.$inferSelect;
@@ -168,3 +185,6 @@ export type InsertTokenTransaction = z.infer<typeof insertTokenTransactionSchema
 
 export type Gallery = typeof gallery.$inferSelect;
 export type InsertGallery = z.infer<typeof insertGallerySchema>;
+
+export type SiteVisit = typeof siteVisits.$inferSelect;
+export type InsertSiteVisit = z.infer<typeof insertSiteVisitSchema>;

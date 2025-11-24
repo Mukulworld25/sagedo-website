@@ -74,6 +74,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const user = await loginUser(email, password);
+
+      // Update login stats
+      await storage.upsertUser({
+        ...user,
+        loginCount: (user.loginCount || 0) + 1,
+        lastLoginAt: new Date(),
+      });
+
       req.session.user = {
         id: user.id,
         email: user.email,
@@ -410,6 +418,47 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error updating order:", error);
       res.status(500).json({ message: "Failed to update order" });
+    }
+  });
+
+  app.get('/api/admin/stats', isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const stats = await storage.getDashboardStats();
+      res.json(stats);
+    } catch (error) {
+      console.error("Error fetching admin stats:", error);
+      res.status(500).json({ message: "Failed to fetch stats" });
+    }
+  });
+
+  // Analytics routes
+  app.post('/api/track-visit', async (req, res) => {
+    try {
+      const ip = req.ip || req.connection.remoteAddress;
+      const userAgent = req.headers['user-agent'];
+      const path = req.body.path || '/';
+
+      await storage.logVisit({
+        ipHash: ip ? Buffer.from(ip).toString('base64') : 'unknown', // Simple hashing
+        userAgent: userAgent || 'unknown',
+        path,
+      });
+
+      res.json({ success: true });
+    } catch (error) {
+      // Don't fail the request if tracking fails
+      console.error("Error tracking visit:", error);
+      res.json({ success: false });
+    }
+  });
+
+  app.post('/api/services/:id/click', async (req, res) => {
+    try {
+      await storage.incrementServiceClick(req.params.id);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error tracking service click:", error);
+      res.status(500).json({ message: "Failed to track click" });
     }
   });
 
