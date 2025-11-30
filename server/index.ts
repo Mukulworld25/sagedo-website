@@ -47,7 +47,7 @@ app.use((req, res, next) => {
 
   next();
 });
-
+app.get('/healthz', (req, res) => res.send('OK'));
 (async () => {
   const server = await registerRoutes(app);
 
