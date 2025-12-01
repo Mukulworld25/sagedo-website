@@ -1,24 +1,32 @@
-FROM node:20-alpine
+FROM node:20-alpine AS base
 
+# Install dependencies only when needed
+FROM base AS deps
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
-
-# Install ALL dependencies (including dev deps needed for build)
+COPY package.json package-lock.json* ./
 RUN npm ci
 
-# Copy all source code
+# Build stage
+FROM base AS builder
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Build the app
 RUN npm run build
 
-# Remove dev dependencies after build (keeps image smaller)
-RUN npm prune --production
-
-EXPOSE 3000
+# Production stage
+FROM base AS runner
+WORKDIR /app
 
 ENV NODE_ENV=production
+ENV PORT=3000
+
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/node_modules ./node_modules
+
+EXPOSE 3000
 
 CMD ["npm", "start"]
