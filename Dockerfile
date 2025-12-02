@@ -30,6 +30,7 @@ RUN addgroup --system --gid 1001 expressjs && \
 COPY --from=builder --chown=expressjs:expressjs /app/dist ./dist
 COPY --from=builder --chown=expressjs:expressjs /app/server ./server
 COPY --from=builder --chown=expressjs:expressjs /app/node_modules ./node_modules
+COPY --from=builder --chown=expressjs:expressjs /app/shared ./shared
 COPY --from=builder --chown=expressjs:expressjs /app/package.json ./
 COPY --from=builder --chown=expressjs:expressjs /app/drizzle.config.ts ./
 
