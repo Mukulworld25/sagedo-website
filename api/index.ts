@@ -1,37 +1,35 @@
-import express, { type Request, Response } from "express";
+import "dotenv/config";
+import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "../server/routes";
 
 const app = express();
-
-// 1. Setup Middleware
 app.set('trust proxy', 1);
+
+declare module 'http' {
+  interface IncomingMessage {
+    rawBody: unknown
+  }
+}
+
 app.use(express.json({
-  verify: (req: any, _res, buf) => {
+  verify: (req, _res, buf) => {
     req.rawBody = buf;
   }
 }));
 app.use(express.urlencoded({ extended: false }));
 
-// 2. Logging
-app.use((req, res, next) => {
-  const start = Date.now();
-  const path = req.path;
-  res.on("finish", () => {
-    const duration = Date.now() - start;
-    if (path.startsWith("/api")) {
-      console.log(`${req.method} ${path} ${res.statusCode} in ${duration}ms`);
-    }
+app.get('/api/healthz', (req, res) => res.send('OK'));
+
+// Register all your API routes
+(async () => {
+  await registerRoutes(app);
+  
+  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+    const status = err.status || err.statusCode || 500;
+    const message = err.message || "Internal Server Error";
+    res.status(status).json({ message });
   });
-  next();
-});
+})();
 
-// 3. Lazy Route Registration
-let routesRegistered = false;
-
-export default async function handler(req: Request, res: Response) {
-  if (!routesRegistered) {
-    await registerRoutes(app);
-    routesRegistered = true;
-  }
-  return app(req, res);
-}
+// Export for Vercel serverless
+export default app;
