@@ -8,19 +8,23 @@ import { storage } from './storage';
 // Session setup
 export function setupAuth(app: Express) {
     const pgStore = connectPg(session);
+
+    const isProduction = process.env.NODE_ENV === 'production';
+
     app.use(session({
         store: new pgStore({
             conString: process.env.DATABASE_URL,
             createTableIfMissing: true,
             tableName: 'sessions',
         }),
-        secret: process.env.SESSION_SECRET!,
+        secret: process.env.SESSION_SECRET || 'dev-secret-change-in-production',
         resave: false,
         saveUninitialized: false,
+        proxy: true, // Required for Render/Vercel behind proxy
         cookie: {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax',
+            secure: isProduction, // HTTPS only in production
+            sameSite: isProduction ? 'none' : 'lax', // 'none' required for cross-domain in production
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         },
     }));
