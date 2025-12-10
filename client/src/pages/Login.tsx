@@ -22,7 +22,9 @@ export default function Login() {
 
         try {
             const endpoint = isRegister ? '/api/auth/register' : '/api/auth/login';
-            const response = await fetch(endpoint, {
+            const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
+
+            const response = await fetch(`${API_URL}${endpoint}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
@@ -45,14 +47,15 @@ export default function Login() {
             } else {
                 toast({
                     title: 'Error',
-                    description: data.message,
+                    description: data.message || 'Login failed',
                     variant: 'destructive'
                 });
             }
-        } catch (error) {
+        } catch (error: any) {
+            console.error('Login error:', error);
             toast({
                 title: 'Error',
-                description: 'Something went wrong. Please try again.',
+                description: error.message || 'Something went wrong. Please try again.',
                 variant: 'destructive'
             });
         } finally {
