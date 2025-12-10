@@ -11,31 +11,33 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+  const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
+
   const { data: user, isLoading } = useQuery<User | null>({
     queryKey: ['/api/auth/user'],
     queryFn: async () => {
       try {
-        const response = await fetch('/api/auth/user', {
+        const response = await fetch(`${API_URL}/api/auth/user`, {
           credentials: 'include',
         });
-        
+
         // 401/403 means user is not authenticated - this is expected, treat as anonymous user
         if (response.status === 401 || response.status === 403) {
           return null;
         }
-        
+
         // 204 No Content or empty body - treat as anonymous user
         if (response.status === 204 || response.headers.get('content-length') === '0') {
           return null;
         }
-        
+
         // For any other non-OK status, treat as anonymous user rather than error
         // This prevents network/server errors from blocking public pages
         if (!response.ok) {
           console.warn('Auth check failed:', response.status);
           return null;
         }
-        
+
         // Safely parse JSON, catching any parse errors
         try {
           const data = await response.json();

@@ -27,6 +27,7 @@ export default function Orders() {
   });
   const [createdOrderId, setCreatedOrderId] = useState<string | null>(null);
   const [orderAmount, setOrderAmount] = useState(500); // Default ₹500
+  const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
 
   // Load Razorpay SDK
   useEffect(() => {
@@ -42,9 +43,10 @@ export default function Orders() {
 
   const uploadMutation = useMutation({
     mutationFn: async (data: FormData) => {
-      const response = await fetch("/api/upload", {
+      const response = await fetch(`${API_URL}/api/upload`, {
         method: "POST",
         body: data,
+        credentials: "include",
       });
       if (!response.ok) throw new Error("Upload failed");
       return response.json();
@@ -125,7 +127,7 @@ export default function Orders() {
 
     try {
       // Create Razorpay order
-      const response = await fetch('/api/payment/create-order', {
+      const response = await fetch(`${API_URL}/api/payment/create-order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -152,7 +154,7 @@ export default function Orders() {
         handler: async function (response: any) {
           try {
             // Verify payment on backend
-            const verifyResponse = await fetch('/api/payment/verify', {
+            const verifyResponse = await fetch(`${API_URL}/api/payment/verify`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               credentials: 'include',

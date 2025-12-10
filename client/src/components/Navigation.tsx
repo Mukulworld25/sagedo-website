@@ -8,6 +8,7 @@ export default function Navigation() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isAuthenticated, isLoading, user } = useAuth();
+  const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -76,7 +77,7 @@ export default function Navigation() {
                       variant="default"
                       data-testid="button-logout"
                       onClick={async () => {
-                        await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+                        await fetch(`${API_URL}/api/auth/logout`, { method: 'POST', credentials: 'include' });
                         window.location.href = '/';
                       }}
                       className="bg-gradient-to-r from-primary to-destructive hover:opacity-90"
@@ -160,7 +161,7 @@ export default function Navigation() {
                       data-testid="button-mobile-logout"
                       className="w-full bg-gradient-to-r from-primary to-destructive"
                       onClick={async () => {
-                        await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+                        await fetch(`${API_URL}/api/auth/logout`, { method: 'POST', credentials: 'include' });
                         window.location.href = '/';
                       }}
                     >
