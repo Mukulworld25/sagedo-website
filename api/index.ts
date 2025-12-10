@@ -22,14 +22,3 @@ export default async (req: VercelRequest, res: VercelResponse) => {
   // @ts-ignore - Express and Vercel types are compatible at runtime
   return app(req, res);
 };
-```
-
----
-
-## **VERCEL DASHBOARD SETTINGS:**
-
-Go to: https://vercel.com/mukul-dhimans-projects/sagedo-website/settings/build-and-deployment
-
-**Set Root Directory to:**
-```
-client
