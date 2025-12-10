@@ -65,7 +65,8 @@ app.get('/healthz', (req, res) => res.send('OK'));
   if (app.get("env") === "development") {
     await setupVite(app, server);
   } else {
-    serveStatic(app);
+    // Frontend is deployed separately on Vercel, backend is API-only
+    log("Running in production mode - backend API only (frontend on Vercel)");
   }
 
   // ALWAYS serve the app on the port specified in the environment variable PORT
