@@ -70,6 +70,7 @@ app.use((req, res, next) => {
   next();
 });
 app.get('/healthz', (req, res) => res.send('OK'));
+app.get('/api/health', (req, res) => res.json({ status: 'OK', environment: process.env.NODE_ENV || 'development' }));
 (async () => {
   const server = await registerRoutes(app);
 
