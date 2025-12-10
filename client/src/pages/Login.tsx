@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Login() {
     const [isRegister, setIsRegister] = useState(false);
@@ -15,6 +16,7 @@ export default function Login() {
         name: "",
     });
     const { toast } = useToast();
+    const { setUser } = useAuth();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -34,6 +36,9 @@ export default function Login() {
             const data = await response.json();
 
             if (response.ok) {
+                // Store user in localStorage via AuthContext
+                setUser(data.user);
+
                 toast({
                     title: isRegister ? '🎉 Welcome to SAGE DO!' : '✅ Welcome back!',
                     description: isRegister ? "You've received ₹150 + 1 Golden Ticket!" : 'Successfully logged in'

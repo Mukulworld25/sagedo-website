@@ -7,7 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 export default function Navigation() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { isAuthenticated, isLoading, user } = useAuth();
+  const { isAuthenticated, isLoading, user, logout } = useAuth();
   const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
 
   const navLinks = [
@@ -78,6 +78,7 @@ export default function Navigation() {
                       data-testid="button-logout"
                       onClick={async () => {
                         await fetch(`${API_URL}/api/auth/logout`, { method: 'POST', credentials: 'include' });
+                        logout(); // Clear localStorage
                         window.location.href = '/';
                       }}
                       className="bg-gradient-to-r from-primary to-destructive hover:opacity-90"
@@ -162,6 +163,7 @@ export default function Navigation() {
                       className="w-full bg-gradient-to-r from-primary to-destructive"
                       onClick={async () => {
                         await fetch(`${API_URL}/api/auth/logout`, { method: 'POST', credentials: 'include' });
+                        logout(); // Clear localStorage
                         window.location.href = '/';
                       }}
                     >

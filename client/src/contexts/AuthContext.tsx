@@ -1,65 +1,57 @@
-import { createContext, useContext, ReactNode } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { createContext, useContext, ReactNode, useState, useEffect } from 'react';
 import type { User } from '@shared/schema';
 
 interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
+  setUser: (user: User | null) => void;
+  logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const AUTH_STORAGE_KEY = 'sagedo_auth_user';
+
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
+  const [user, setUserState] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const { data: user, isLoading } = useQuery<User | null>({
-    queryKey: ['/api/auth/user'],
-    queryFn: async () => {
-      try {
-        const response = await fetch(`${API_URL}/api/auth/user`, {
-          credentials: 'include',
-        });
-
-        // 401/403 means user is not authenticated - this is expected, treat as anonymous user
-        if (response.status === 401 || response.status === 403) {
-          return null;
-        }
-
-        // 204 No Content or empty body - treat as anonymous user
-        if (response.status === 204 || response.headers.get('content-length') === '0') {
-          return null;
-        }
-
-        // For any other non-OK status, treat as anonymous user rather than error
-        // This prevents network/server errors from blocking public pages
-        if (!response.ok) {
-          console.warn('Auth check failed:', response.status);
-          return null;
-        }
-
-        // Safely parse JSON, catching any parse errors
-        try {
-          const data = await response.json();
-          return data;
-        } catch (parseError) {
-          console.warn('Auth response parse error:', parseError);
-          return null;
-        }
-      } catch (error) {
-        // Network error - treat as anonymous user
-        console.warn('Auth check network error:', error);
-        return null;
+  // Load user from localStorage on mount
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(AUTH_STORAGE_KEY);
+      if (stored) {
+        const parsedUser = JSON.parse(stored);
+        setUserState(parsedUser);
       }
-    },
-    retry: false,
-    refetchOnWindowFocus: false,
-  });
+    } catch (e) {
+      console.warn('Failed to parse stored user:', e);
+      localStorage.removeItem(AUTH_STORAGE_KEY);
+    }
+    setIsLoading(false);
+  }, []);
+
+  const setUser = (newUser: User | null) => {
+    setUserState(newUser);
+    if (newUser) {
+      localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(newUser));
+    } else {
+      localStorage.removeItem(AUTH_STORAGE_KEY);
+    }
+  };
+
+  const logout = () => {
+    setUserState(null);
+    localStorage.removeItem(AUTH_STORAGE_KEY);
+  };
 
   const value: AuthContextType = {
-    user: user || null,
+    user,
     isAuthenticated: !!user,
     isLoading,
+    setUser,
+    logout,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
