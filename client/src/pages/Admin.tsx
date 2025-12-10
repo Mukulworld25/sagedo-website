@@ -13,25 +13,7 @@ export default function Admin() {
   const { user, isAuthenticated, isLoading: authLoading } = useAuth();
   const { toast } = useToast();
 
-  // Check if user is admin - redirect if not
-  useEffect(() => {
-    if (!authLoading && (!isAuthenticated || !user?.isAdmin)) {
-      window.location.href = "/login";
-    }
-  }, [authLoading, isAuthenticated, user]);
-
-  if (authLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center pt-24">
-        <div className="text-muted-foreground">Loading...</div>
-      </div>
-    );
-  }
-
-  if (!isAuthenticated || !user?.isAdmin) {
-    return null;
-  }
-
+  // ALL HOOKS MUST BE CALLED BEFORE ANY CONDITIONAL RETURNS
   const { data: orders = [], isLoading } = useQuery<Order[]>({
     queryKey: ["/api/admin/orders"],
     enabled: isAuthenticated && user?.isAdmin === true,
@@ -66,6 +48,26 @@ export default function Admin() {
       });
     },
   });
+
+  // Check if user is admin - redirect if not
+  useEffect(() => {
+    if (!authLoading && (!isAuthenticated || !user?.isAdmin)) {
+      window.location.href = "/login";
+    }
+  }, [authLoading, isAuthenticated, user]);
+
+  // NOW we can have conditional returns (after all hooks)
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center pt-24">
+        <div className="text-muted-foreground">Loading...</div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated || !user?.isAdmin) {
+    return null;
+  }
 
   const handleRefresh = () => {
     queryClient.invalidateQueries({ queryKey: ["/api/admin/orders"] });
