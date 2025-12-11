@@ -104,10 +104,10 @@ export default function Orders() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.service) {
+    if (!formData.email || !formData.service) {
       toast({
         title: "Missing Information",
-        description: "Please fill in all required fields.",
+        description: "Please enter your email address.",
         variant: "destructive",
       });
       return;
@@ -277,23 +277,7 @@ export default function Orders() {
 
         <Card className="glass p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Name */}
-            <div className="space-y-2">
-              <Label htmlFor="name" className="text-foreground">
-                Your Name <span className="text-destructive">*</span>
-              </Label>
-              <Input
-                id="name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="John Doe"
-                data-testid="input-name"
-                required
-                className="glass border-border/50"
-              />
-            </div>
-
-            {/* Email */}
+            {/* Email - Primary field */}
             <div className="space-y-2">
               <Label htmlFor="email" className="text-foreground">
                 Email Address <span className="text-destructive">*</span>
@@ -303,28 +287,31 @@ export default function Orders() {
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                placeholder="john@example.com"
+                placeholder="your@email.com"
                 data-testid="input-email"
                 required
                 className="glass border-border/50"
               />
+              <p className="text-xs text-muted-foreground">We'll send order updates to this email</p>
             </div>
 
-            {/* Service */}
-            <div className="space-y-2">
-              <Label htmlFor="service" className="text-foreground">
-                Service Needed <span className="text-destructive">*</span>
-              </Label>
-              <Input
-                id="service"
-                value={formData.service}
-                onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                placeholder="e.g., AI Ad Copy, Resume, PPT Design"
-                data-testid="input-service"
-                required
-                className="glass border-border/50"
-              />
-            </div>
+            {/* Service - Only show if not pre-filled from URL */}
+            {!formData.service && (
+              <div className="space-y-2">
+                <Label htmlFor="service" className="text-foreground">
+                  Service Needed <span className="text-destructive">*</span>
+                </Label>
+                <Input
+                  id="service"
+                  value={formData.service}
+                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                  placeholder="e.g., AI Ad Copy, Resume, PPT Design"
+                  data-testid="input-service"
+                  required
+                  className="glass border-border/50"
+                />
+              </div>
+            )}
 
             {/* Requirements */}
             <div className="space-y-2">

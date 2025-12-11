@@ -15,12 +15,14 @@ export default function ForgotPassword() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
+        const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
 
         try {
-            const res = await fetch("/api/auth/request-reset", {
+            const res = await fetch(`${API_URL}/api/auth/request-reset`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email }),
+                credentials: "include",
             });
 
             const data = await res.json();
