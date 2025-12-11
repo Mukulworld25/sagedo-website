@@ -69,24 +69,21 @@ export default function Home() {
           <div className="flex justify-center mb-4">
             <div className="relative group">
               {/* Glowing backdrop for the brain */}
-              <div className="absolute inset-0 blur-3xl opacity-60 bg-gradient-to-r from-red-600 via-primary to-red-600 rounded-full animate-pulse scale-150" />
+              <div className="absolute inset-0 blur-3xl opacity-50 bg-gradient-to-r from-red-600 via-primary to-red-600 rounded-full animate-pulse scale-125" />
 
-              {/* Circular mask to hide square background */}
-              <div className="relative rounded-full overflow-hidden h-36 md:h-48 w-36 md:w-48">
-                {/* The AI Brain Logo - Clipped to circle */}
-                <img
-                  src="/sagedo_logo_icon.png"
-                  alt="SAGE DO AI"
-                  className="h-full w-full object-cover animate-float hover:scale-110 transition-all duration-500"
-                  style={{
-                    filter: 'drop-shadow(0 0 25px rgba(239, 68, 68, 0.7)) brightness(1.2) contrast(1.1)',
-                  }}
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                  }}
-                />
-              </div>
+              {/* The AI Brain Logo - Clean transparent background */}
+              <img
+                src="/sagedo_logo_icon.png"
+                alt="SAGE DO AI"
+                className="relative h-40 md:h-52 w-auto object-contain animate-float hover:scale-110 transition-all duration-500"
+                style={{
+                  filter: 'drop-shadow(0 0 20px rgba(239, 68, 68, 0.6))',
+                }}
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
+              />
             </div>
           </div>
 
