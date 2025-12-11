@@ -79,12 +79,97 @@ export default function Orders() {
       const response = await apiRequest("POST", "/api/orders", orderData);
       return response;
     },
-    onSuccess: (data: any) => {
-      setCreatedOrderId(data.id);
-      toast({
-        title: "Order Created Successfully!",
-        description: "Now you can proceed with payment.",
-      });
+    onSuccess: async (data: any) => {
+      const orderId = data.id;
+      setCreatedOrderId(orderId);
+
+      // Immediately trigger Razorpay payment
+      try {
+        // Create Razorpay order
+        const response = await fetch(`${API_URL}/api/payment/create-order`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({
+            amount: orderAmount,
+            orderId: orderId
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to create payment order');
+        }
+
+        const paymentOrder = await response.json();
+
+        // Open Razorpay checkout immediately
+        const options = {
+          key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+          amount: paymentOrder.amount,
+          currency: 'INR',
+          name: 'SAGE DO',
+          description: formData.service,
+          order_id: paymentOrder.id,
+          handler: async function (response: any) {
+            try {
+              // Verify payment on backend
+              const verifyResponse = await fetch(`${API_URL}/api/payment/verify`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify({
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature,
+                  orderId: orderId,
+                }),
+              });
+
+              if (verifyResponse.ok) {
+                toast({
+                  title: "Payment Successful! 🎉",
+                  description: "Your order is being processed. We'll contact you soon!",
+                });
+                // Reset form
+                setFormData({ name: "", email: "", service: "", requirements: "" });
+                setFiles([]);
+                setCreatedOrderId(null);
+              } else {
+                throw new Error('Payment verification failed');
+              }
+            } catch (error) {
+              toast({
+                title: "Payment Verification Failed",
+                description: "Please contact support.",
+                variant: "destructive",
+              });
+            }
+          },
+          prefill: {
+            email: formData.email,
+          },
+          theme: {
+            color: '#3399cc',
+          },
+          modal: {
+            ondismiss: function () {
+              toast({
+                title: "Payment Cancelled",
+                description: "Your order is saved. You can pay later.",
+              });
+            },
+          },
+        };
+
+        const razorpay = new (window as any).Razorpay(options);
+        razorpay.open();
+      } catch (error) {
+        toast({
+          title: "Payment Failed",
+          description: "Could not initiate payment. Please try again.",
+          variant: "destructive",
+        });
+      }
     },
     onError: (error: Error) => {
       toast({
