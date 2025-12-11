@@ -6,8 +6,12 @@ import { Book, Briefcase, GraduationCap, Heart, ArrowRight, CheckCircle2, Zap, S
 import { useState } from "react";
 
 export default function Home() {
+  const [namasteClicked, setNamasteClicked] = useState(false);
+
   const handleNamaste = () => {
-    // Namaste functionality - can be expanded later
+    setNamasteClicked(true);
+    // Reset after 2 seconds
+    setTimeout(() => setNamasteClicked(false), 2000);
   };
 
   const categories = [
@@ -102,10 +106,17 @@ export default function Home() {
             <Button
               onClick={handleNamaste}
               data-testid="button-namaste"
-              size="sm"
-              className="bg-gradient-to-r from-primary to-destructive hover:opacity-90 transition-opacity"
+              size="lg"
+              className={`
+                bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 hover:opacity-90 
+                transition-all duration-300 text-lg font-bold px-8 py-3
+                ${namasteClicked
+                  ? 'animate-pulse shadow-[0_0_30px_rgba(249,115,22,0.8)] scale-110'
+                  : 'shadow-lg hover:shadow-[0_0_15px_rgba(249,115,22,0.5)] hover:scale-105'
+                }
+              `}
             >
-              Namaste
+              🙏 Namaste
             </Button>
           </div>
 

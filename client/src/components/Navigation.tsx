@@ -22,19 +22,15 @@ export default function Navigation() {
     <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2">
-            <img
-              src="/sagedo_logo_icon.png"
-              alt="SAGEDO AI"
-              className="h-10 w-auto object-contain hover:scale-105 transition-transform duration-300"
-              style={{ filter: 'drop-shadow(0 0 10px rgba(239, 68, 68, 0.3))' }}
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-              }}
-            />
-            <span className="text-xl font-black bg-gradient-to-r from-primary to-destructive bg-clip-text text-transparent">
-              SAGEDO AI
+          <Link href="/" className="flex items-center gap-1 group">
+            <span className="text-2xl md:text-3xl font-black tracking-tight">
+              <span className="bg-gradient-to-r from-primary via-destructive to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-pulse">
+                SAGE
+              </span>
+              <span className="text-foreground ml-0.5">DO</span>
+            </span>
+            <span className="text-xs text-muted-foreground font-medium hidden sm:inline-block ml-1 opacity-70 group-hover:opacity-100 transition-opacity">
+              AI
             </span>
           </Link>
 
