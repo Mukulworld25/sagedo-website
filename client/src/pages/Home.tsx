@@ -165,6 +165,28 @@ export default function Home() {
               <span className="text-sm font-medium text-foreground">100% Satisfaction</span>
             </div>
           </div>
+
+          {/* AI + Human Excellence Tagline */}
+          <div className="mt-12 max-w-3xl mx-auto">
+            <div className="glass p-6 rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/5 via-destructive/5 to-primary/5">
+              <div className="text-center space-y-3">
+                <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+                  Why Choose SAGEDO?
+                </p>
+                <p className="text-lg md:text-xl font-bold text-foreground">
+                  "Yeah I use AI too, why should I pay you?" 🤔
+                </p>
+                <p className="text-base md:text-lg text-muted-foreground">
+                  Here's the thing — <span className="text-foreground font-medium">every AI needs a human in the loop</span>.
+                  We're the best AI generalists in the game. We prompt it right, verify the output, and polish it
+                  until it's <span className="text-foreground font-medium">not just good — it's perfect</span>.
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  ✨ AI Power + 🧠 Human Expertise = 💯 Near-Perfect Results
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
