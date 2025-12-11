@@ -65,43 +65,19 @@ export default function Home() {
         </div>
 
         <div className="max-w-5xl mx-auto text-center space-y-8 relative z-10">
-          {/* Brand Logo - Animated Text Design */}
-          <div className="flex justify-center mb-6">
-            <div className="relative group">
-              {/* Glowing backdrop */}
-              <div className="absolute inset-0 blur-3xl opacity-60 bg-gradient-to-r from-primary via-destructive to-primary rounded-full animate-pulse" />
-
-              {/* Main Logo */}
-              <div className="relative flex flex-col items-center gap-2 p-6">
-                <span className="text-6xl md:text-8xl font-black tracking-tighter select-none">
-                  <span
-                    className="bg-gradient-to-r from-primary via-red-500 to-destructive bg-clip-text text-transparent bg-[length:200%_auto]"
-                    style={{ animation: 'shimmer 3s linear infinite' }}
-                  >
-                    SAGE
-                  </span>
-                  <span className="text-foreground ml-1">DO</span>
-                </span>
-                <span className="text-sm md:text-base font-semibold text-muted-foreground tracking-[0.3em] uppercase">
-                  Powered by AI
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* AI Brain Logo - Original PNG with better styling */}
-          <div className="flex justify-center mb-2">
+          {/* AI Brain Logo - Main Hero Element */}
+          <div className="flex justify-center mb-4">
             <div className="relative group">
               {/* Glowing backdrop for the brain */}
-              <div className="absolute inset-0 blur-2xl opacity-50 bg-gradient-to-r from-red-600 to-primary rounded-full animate-pulse scale-150" />
+              <div className="absolute inset-0 blur-3xl opacity-60 bg-gradient-to-r from-red-600 via-primary to-red-600 rounded-full animate-pulse scale-125" />
 
-              {/* The AI Brain Logo - Bigger, animated */}
+              {/* The AI Brain Logo - Big, animated, no outer box */}
               <img
                 src="/sagedo_logo_icon.png"
-                alt="SAGE DO AI Brain"
-                className="relative h-32 md:h-40 w-auto object-contain animate-float hover:scale-110 transition-all duration-500"
+                alt="SAGE DO AI"
+                className="relative h-36 md:h-48 w-auto object-contain animate-float hover:scale-110 transition-all duration-500"
                 style={{
-                  filter: 'drop-shadow(0 0 20px rgba(239, 68, 68, 0.6)) drop-shadow(0 0 40px rgba(239, 68, 68, 0.3)) brightness(1.2) contrast(1.1)',
+                  filter: 'drop-shadow(0 0 25px rgba(239, 68, 68, 0.7)) drop-shadow(0 0 50px rgba(239, 68, 68, 0.4)) brightness(1.3) contrast(1.15)',
                 }}
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
