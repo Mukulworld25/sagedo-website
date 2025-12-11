@@ -89,6 +89,28 @@ export default function Home() {
             </div>
           </div>
 
+          {/* AI Brain Logo - Original PNG with better styling */}
+          <div className="flex justify-center mb-2">
+            <div className="relative group">
+              {/* Glowing backdrop for the brain */}
+              <div className="absolute inset-0 blur-2xl opacity-50 bg-gradient-to-r from-red-600 to-primary rounded-full animate-pulse scale-150" />
+
+              {/* The AI Brain Logo - Bigger, animated */}
+              <img
+                src="/sagedo_logo_icon.png"
+                alt="SAGE DO AI Brain"
+                className="relative h-32 md:h-40 w-auto object-contain animate-float hover:scale-110 transition-all duration-500"
+                style={{
+                  filter: 'drop-shadow(0 0 20px rgba(239, 68, 68, 0.6)) drop-shadow(0 0 40px rgba(239, 68, 68, 0.3)) brightness(1.2) contrast(1.1)',
+                }}
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
+              />
+            </div>
+          </div>
+
           {/* Namaste Button */}
           <div className="flex justify-center mb-4">
             <Button
