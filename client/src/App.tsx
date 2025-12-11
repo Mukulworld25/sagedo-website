@@ -12,6 +12,7 @@ import Orders from "@/pages/Orders";
 import Tracking from "@/pages/Tracking";
 import Dashboard from "@/pages/Dashboard";
 import Admin from "@/pages/Admin";
+import OrderDetails from "@/pages/OrderDetails";
 import Login from "@/pages/Login";
 import ForgotPassword from "@/pages/ForgotPassword";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
@@ -50,6 +51,7 @@ function Router() {
         <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/admin" component={Admin} />
+        <Route path="/admin/orders/:id" component={OrderDetails} />
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/terms-of-service" component={TermsOfService} />
         <Route path="/refund-policy" component={RefundPolicy} />

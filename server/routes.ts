@@ -391,6 +391,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get single order details (for admin order detail view)
+  app.get('/api/admin/orders/:id', isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const order = await storage.getOrderById(req.params.id);
+      if (!order) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+
+      // Get customer info if userId exists
+      let customer = null;
+      if (order.userId) {
+        customer = await storage.getUser(order.userId);
+      }
+
+      res.json({
+        ...order,
+        customer: customer ? {
+          id: customer.id,
+          name: customer.name || customer.firstName,
+          email: customer.email,
+          tokenBalance: customer.tokenBalance,
+          hasGoldenTicket: customer.hasGoldenTicket,
+        } : null
+      });
+    } catch (error) {
+      console.error("Error fetching order details:", error);
+      res.status(500).json({ message: "Failed to fetch order details" });
+    }
+  });
   app.patch('/api/admin/orders/:id', isAuthenticated, isAdmin, async (req, res) => {
     try {
       const { status, deliveryNotes } = req.body;

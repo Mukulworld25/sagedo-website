@@ -4,8 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
+import { Link } from "wouter";
 import { Order, Feedback } from "@shared/schema";
-import { RefreshCw, CheckCircle2, Clock, Package, Truck, MessageSquare, Star } from "lucide-react";
+import { RefreshCw, CheckCircle2, Clock, Package, Truck, MessageSquare, Star, Eye } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
@@ -274,8 +275,10 @@ export default function Admin() {
                         className="border-b border-border/50 hover-elevate"
                         data-testid={`row-order-${order.id}`}
                       >
-                        <td className="px-6 py-4 text-sm font-mono text-muted-foreground">
-                          {order.id.slice(0, 8)}...
+                        <td className="px-6 py-4 text-sm font-mono">
+                          <Link href={`/admin/orders/${order.id}`} className="text-primary hover:underline cursor-pointer">
+                            {order.id.slice(0, 8)}...
+                          </Link>
                         </td>
                         <td className="px-6 py-4">
                           <div>
