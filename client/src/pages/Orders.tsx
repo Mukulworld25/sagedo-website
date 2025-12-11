@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { Upload, CheckCircle2, CreditCard } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import { useSearch } from "wouter";
 
 // Declare Razorpay on window
 declare global {
@@ -18,6 +19,7 @@ declare global {
 
 export default function Orders() {
   const { toast } = useToast();
+  const searchString = useSearch();
   const [files, setFiles] = useState<File[]>([]);
   const [formData, setFormData] = useState({
     name: "",
@@ -27,7 +29,26 @@ export default function Orders() {
   });
   const [createdOrderId, setCreatedOrderId] = useState<string | null>(null);
   const [orderAmount, setOrderAmount] = useState(500); // Default ₹500
+  const [deliveryTime, setDeliveryTime] = useState<string>("");
   const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
+
+  // Read URL params and pre-fill form
+  useEffect(() => {
+    const params = new URLSearchParams(searchString);
+    const serviceName = params.get('service');
+    const price = params.get('price');
+    const delivery = params.get('delivery');
+
+    if (serviceName) {
+      setFormData(prev => ({ ...prev, service: serviceName }));
+    }
+    if (price) {
+      setOrderAmount(parseInt(price, 10));
+    }
+    if (delivery) {
+      setDeliveryTime(delivery);
+    }
+  }, [searchString]);
 
   // Load Razorpay SDK
   useEffect(() => {
@@ -226,6 +247,33 @@ export default function Orders() {
             Tell us what you need, and we'll get it done for you.
           </p>
         </div>
+
+        {/* Service Selection Banner - Shows when coming from Services page */}
+        {formData.service && (
+          <Card className="glass p-6 mb-8 border-2 border-primary/50 bg-gradient-to-r from-primary/10 to-destructive/10">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <CheckCircle2 className="w-8 h-8 text-green-500" />
+                <div>
+                  <p className="text-sm text-muted-foreground">Selected Service:</p>
+                  <p className="text-xl font-bold text-foreground">{formData.service}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-6">
+                <div className="text-center">
+                  <p className="text-sm text-muted-foreground">Amount</p>
+                  <p className="text-2xl font-black text-primary">₹{orderAmount}</p>
+                </div>
+                {deliveryTime && (
+                  <div className="text-center">
+                    <p className="text-sm text-muted-foreground">Delivery</p>
+                    <p className="text-lg font-bold text-foreground">{deliveryTime}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </Card>
+        )}
 
         <Card className="glass p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
