@@ -65,40 +65,28 @@ export default function Home() {
         </div>
 
         <div className="max-w-5xl mx-auto text-center space-y-8 relative z-10">
-          {/* Brand Logo - Embedded with Background */}
-          <div className="flex justify-center mb-6 relative">
-            {/* Glowing backdrop layer */}
-            <div className="absolute inset-0 -z-10 blur-2xl opacity-40">
-              <img
-                src="/sagedo_logo_icon.png"
-                alt=""
-                className="h-24 md:h-32 w-auto mx-auto animate-pulse"
-                style={{ filter: 'brightness(1.5)' }}
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                }}
-              />
+          {/* Brand Logo - Animated Text Design */}
+          <div className="flex justify-center mb-6">
+            <div className="relative group">
+              {/* Glowing backdrop */}
+              <div className="absolute inset-0 blur-3xl opacity-60 bg-gradient-to-r from-primary via-destructive to-primary rounded-full animate-pulse" />
+
+              {/* Main Logo */}
+              <div className="relative flex flex-col items-center gap-2 p-6">
+                <span className="text-6xl md:text-8xl font-black tracking-tighter select-none">
+                  <span
+                    className="bg-gradient-to-r from-primary via-red-500 to-destructive bg-clip-text text-transparent bg-[length:200%_auto]"
+                    style={{ animation: 'shimmer 3s linear infinite' }}
+                  >
+                    SAGE
+                  </span>
+                  <span className="text-foreground ml-1">DO</span>
+                </span>
+                <span className="text-sm md:text-base font-semibold text-muted-foreground tracking-[0.3em] uppercase">
+                  Powered by AI
+                </span>
+              </div>
             </div>
-            {/* Main logo with blend effect */}
-            <img
-              src="/sagedo_logo_icon.png"
-              alt="SAGE DO AI Logo"
-              className="h-24 md:h-32 w-auto object-contain animate-float hover:scale-110 transition-all duration-500"
-              style={{
-                filter: 'drop-shadow(0 0 25px rgba(239, 68, 68, 0.4)) drop-shadow(0 0 50px rgba(239, 68, 68, 0.2)) brightness(1.1)',
-                opacity: '1'
-              }}
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.onerror = null;
-                target.style.display = 'none';
-                const fallback = document.createElement('div');
-                fallback.className = 'text-destructive font-bold text-sm p-4 border border-destructive rounded-lg bg-destructive/10';
-                fallback.textContent = 'ASSET MISSING: sagedo_logo_icon.png';
-                target.parentNode?.appendChild(fallback);
-              }}
-            />
           </div>
 
           {/* Namaste Button */}
@@ -109,14 +97,18 @@ export default function Home() {
               size="lg"
               className={`
                 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 hover:opacity-90 
-                transition-all duration-300 text-lg font-bold px-8 py-3
+                transition-all duration-500 text-xl font-bold px-10 py-4 min-w-[160px]
                 ${namasteClicked
-                  ? 'animate-pulse shadow-[0_0_30px_rgba(249,115,22,0.8)] scale-110'
-                  : 'shadow-lg hover:shadow-[0_0_15px_rgba(249,115,22,0.5)] hover:scale-105'
+                  ? 'shadow-[0_0_40px_rgba(249,115,22,0.9)] scale-125 animate-pulse'
+                  : 'shadow-lg hover:shadow-[0_0_20px_rgba(249,115,22,0.6)] hover:scale-110'
                 }
               `}
             >
-              🙏 Namaste
+              {namasteClicked ? (
+                <span className="text-3xl">🙏</span>
+              ) : (
+                <span>Namaste</span>
+              )}
             </Button>
           </div>
 
