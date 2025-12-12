@@ -69,15 +69,15 @@ export default function Home() {
           <div className="flex justify-center mb-4">
             <div className="relative group">
               {/* Glowing backdrop for the brain */}
-              <div className="absolute inset-0 blur-3xl opacity-50 bg-gradient-to-r from-red-600 via-primary to-red-600 rounded-full animate-pulse scale-125" />
+              <div className="absolute inset-0 blur-3xl opacity-60 bg-gradient-to-r from-red-600 via-primary to-red-600 rounded-full animate-pulse scale-125" />
 
-              {/* The AI Brain Logo - mix-blend-mode:multiply makes white transparent */}
+              {/* The AI Brain Logo - Screen blend mode makes black transparent */}
               <img
-                src="/sagedo_logo_icon.png"
+                src="/sagedo_logo_black.png"
                 alt="SAGE DO AI"
-                className="relative h-40 md:h-52 w-auto object-contain animate-float hover:scale-110 transition-all duration-500 mix-blend-multiply"
+                className="relative h-40 md:h-52 w-auto object-contain animate-float hover:scale-110 transition-all duration-500 mix-blend-screen"
                 style={{
-                  filter: 'drop-shadow(0 0 20px rgba(239, 68, 68, 0.6)) brightness(1.1)',
+                  filter: 'drop-shadow(0 0 20px rgba(239, 68, 68, 0.6)) brightness(1.2) contrast(1.1)',
                 }}
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
