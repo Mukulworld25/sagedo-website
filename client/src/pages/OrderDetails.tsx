@@ -137,7 +137,7 @@ export default function OrderDetailsPage() {
     const getStatusColor = (status: string) => {
         switch (status) {
             case 'pending': return 'bg-yellow-500';
-            case 'processing': return 'bg-blue-500';
+            case 'processing': return 'bg-neutral-500';
             case 'finalizing': return 'bg-purple-500';
             case 'delivered': return 'bg-green-500';
             default: return 'bg-gray-500';
@@ -267,17 +267,17 @@ export default function OrderDetailsPage() {
                                 {['pending', 'processing', 'finalizing', 'delivered'].map((status, index) => (
                                     <div key={status} className="flex items-center">
                                         <div className={`w-8 h-8 rounded-full flex items-center justify-center ${order.status === status
-                                                ? getStatusColor(status) + ' text-white'
-                                                : ['pending', 'processing', 'finalizing', 'delivered'].indexOf(order.status) > index
-                                                    ? 'bg-green-500 text-white'
-                                                    : 'bg-muted text-muted-foreground'
+                                            ? getStatusColor(status) + ' text-white'
+                                            : ['pending', 'processing', 'finalizing', 'delivered'].indexOf(order.status) > index
+                                                ? 'bg-green-500 text-white'
+                                                : 'bg-muted text-muted-foreground'
                                             }`}>
                                             {index + 1}
                                         </div>
                                         {index < 3 && (
                                             <div className={`w-12 h-1 ${['pending', 'processing', 'finalizing', 'delivered'].indexOf(order.status) > index
-                                                    ? 'bg-green-500'
-                                                    : 'bg-muted'
+                                                ? 'bg-green-500'
+                                                : 'bg-muted'
                                                 }`} />
                                         )}
                                     </div>

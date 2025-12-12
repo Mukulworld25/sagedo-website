@@ -128,7 +128,7 @@ export default function Dashboard() {
                   {orders.length}
                 </p>
               </div>
-              <div className="p-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600">
+              <div className="p-3 rounded-full bg-gradient-to-r from-neutral-600 to-neutral-500">
                 <FileText className="w-6 h-6 text-white" />
               </div>
             </div>
@@ -197,7 +197,7 @@ export default function Dashboard() {
             >
               <p className="text-lg font-bold text-foreground mb-1">Complete Survey</p>
               <p className="text-sm text-muted-foreground mb-2">Quick 5-minute survey</p>
-              <Badge className="bg-gradient-to-r from-blue-600 to-cyan-600">+50</Badge>
+              <Badge className="bg-gradient-to-r from-neutral-600 to-neutral-500">+50</Badge>
             </Button>
 
             <Button

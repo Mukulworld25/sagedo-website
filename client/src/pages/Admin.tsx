@@ -98,7 +98,7 @@ export default function Admin() {
 
   const statusColors = {
     pending: "bg-yellow-600",
-    processing: "bg-blue-600",
+    processing: "bg-neutral-500",
     finalizing: "bg-purple-600",
     delivered: "bg-green-600",
   };
@@ -137,8 +137,8 @@ export default function Admin() {
             </p>
           </Card>
 
-          <Card className="glass p-6 bg-gradient-to-br from-indigo-600/20 to-indigo-700/20">
-            <p className="text-sm text-indigo-100 mb-1">Total Logins</p>
+          <Card className="glass p-6 bg-gradient-to-br from-neutral-600/20 to-neutral-700/20">
+            <p className="text-sm text-neutral-100 mb-1">Total Logins</p>
             <p className="text-4xl font-black text-foreground">
               {stats?.totalLogins || 0}
             </p>
@@ -151,8 +151,8 @@ export default function Admin() {
             </p>
           </Card>
 
-          <Card className="glass p-6 bg-gradient-to-br from-blue-600/20 to-blue-700/20">
-            <p className="text-sm text-blue-100 mb-1">Total Orders</p>
+          <Card className="glass p-6 bg-gradient-to-br from-neutral-500/20 to-neutral-600/20">
+            <p className="text-sm text-neutral-100 mb-1">Total Orders</p>
             <p className="text-4xl font-black text-foreground" data-testid="stat-total">
               {orderStats.total}
             </p>

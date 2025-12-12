@@ -60,44 +60,6 @@ export default function Home() {
           />
         </div>
 
-        {/* ═══════════════════════════════════════════════════════════════
-            LAYER 2: Floating AI Tool Brand Logos
-        ═══════════════════════════════════════════════════════════════ */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* ChatGPT */}
-          <div className="absolute top-24 left-[8%] w-12 h-12 rounded-xl bg-[#10a37f]/20 border border-[#10a37f]/30 flex items-center justify-center animate-float" style={{ animationDelay: '0s' }}>
-            <span className="text-lg font-bold text-[#10a37f]">GPT</span>
-          </div>
-          {/* Claude */}
-          <div className="absolute top-32 right-[12%] w-12 h-12 rounded-xl bg-[#cc785c]/20 border border-[#cc785c]/30 flex items-center justify-center animate-float" style={{ animationDelay: '1s' }}>
-            <span className="text-lg font-bold text-[#cc785c]">C</span>
-          </div>
-          {/* Gemini */}
-          <div className="absolute top-1/3 left-[5%] w-14 h-14 rounded-xl bg-[#4285f4]/20 border border-[#4285f4]/30 flex items-center justify-center animate-float" style={{ animationDelay: '2s' }}>
-            <span className="text-xl">✨</span>
-          </div>
-          {/* Midjourney */}
-          <div className="absolute top-1/2 right-[6%] w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center animate-float" style={{ animationDelay: '0.5s' }}>
-            <span className="text-lg font-bold text-white/70">MJ</span>
-          </div>
-          {/* Perplexity */}
-          <div className="absolute bottom-1/3 left-[10%] w-11 h-11 rounded-xl bg-[#20b8cd]/20 border border-[#20b8cd]/30 flex items-center justify-center animate-float" style={{ animationDelay: '1.5s' }}>
-            <span className="text-lg">🔍</span>
-          </div>
-          {/* DALL-E */}
-          <div className="absolute bottom-40 right-[15%] w-12 h-12 rounded-xl bg-[#7c3aed]/20 border border-[#7c3aed]/30 flex items-center justify-center animate-float" style={{ animationDelay: '2.5s' }}>
-            <span className="text-lg">🎨</span>
-          </div>
-          {/* Notion AI */}
-          <div className="absolute top-[60%] left-[18%] w-10 h-10 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center animate-float" style={{ animationDelay: '3s' }}>
-            <span className="text-sm font-bold text-white/70">N</span>
-          </div>
-          {/* Copilot */}
-          <div className="absolute bottom-28 right-[25%] w-11 h-11 rounded-xl bg-[#0078d4]/20 border border-[#0078d4]/30 flex items-center justify-center animate-float" style={{ animationDelay: '1.2s' }}>
-            <span className="text-lg">🤖</span>
-          </div>
-        </div>
-
         {/* Subtle Gradient Orbs - Grey tones */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neutral-500/10 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neutral-400/10 rounded-full blur-[120px] pointer-events-none" />
