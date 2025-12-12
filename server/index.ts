@@ -6,16 +6,19 @@ import { setupVite, log } from "./vite";
 const app = express();
 app.set('trust proxy', 1);
 
-// CORS configuration for Vercel frontend
+// CORS configuration for Vercel frontend (including preview deployments)
 app.use((req, res, next) => {
-  const allowedOrigins = [
-    'https://sagedo.vercel.app',
-    'https://sagedo-website.vercel.app',
-    'http://localhost:5173',
-    'http://localhost:3000'
-  ];
   const origin = req.headers.origin;
-  if (origin && allowedOrigins.includes(origin)) {
+
+  // Allow all Vercel preview URLs and production URLs
+  const isAllowedOrigin = origin && (
+    origin.includes('vercel.app') ||
+    origin.includes('localhost:5173') ||
+    origin.includes('localhost:3000') ||
+    origin === 'https://sagedo.vercel.app'
+  );
+
+  if (isAllowedOrigin) {
     res.setHeader('Access-Control-Allow-Origin', origin);
   }
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
