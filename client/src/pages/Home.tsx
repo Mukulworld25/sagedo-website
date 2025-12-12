@@ -67,17 +67,21 @@ export default function Home() {
         <div className="max-w-5xl mx-auto text-center space-y-8 relative z-10">
           {/* AI Brain Logo - Main Hero Element */}
           <div className="flex justify-center mb-4">
-            <div className="relative group">
-              {/* Glowing backdrop for the brain */}
-              <div className="absolute inset-0 blur-3xl opacity-60 bg-gradient-to-r from-red-600 via-primary to-red-600 rounded-full animate-pulse scale-125" />
+            <div className="relative group flex items-center justify-center">
+              {/* Layer 1: Massive Pulsing Red Core Glow */}
+              <div className="absolute inset-0 blur-3xl opacity-40 bg-red-600 rounded-full animate-pulse scale-150 duration-3000" />
 
-              {/* The AI Brain Logo - Pro Clean Transparency */}
+              {/* Layer 2: Rotating "Sparkle" Ring Effect */}
+              <div className="absolute inset-0 rounded-full border border-red-500/20 w-[120%] h-[120%] -left-[10%] -top-[10%] animate-[spin_10s_linear_infinite]" />
+              <div className="absolute inset-0 rounded-full border border-dashed border-red-400/30 w-[140%] h-[140%] -left-[20%] -top-[20%] animate-[spin_15s_linear_infinite_reverse]" />
+
+              {/* The AI Brain Logo - Clean, Huge, & Spectacular */}
               <img
                 src="/sagedo_logo_pro_clean.png"
                 alt="SAGE DO AI"
-                className="relative h-40 md:h-52 w-auto object-contain animate-float hover:scale-110 transition-all duration-500"
+                className="relative h-64 md:h-80 w-auto object-contain animate-float hover:scale-105 transition-all duration-700 z-10"
                 style={{
-                  filter: 'drop-shadow(0 0 25px rgba(239, 68, 68, 0.7)) brightness(1.2) contrast(1.1)',
+                  filter: 'drop-shadow(0 0 30px rgba(239, 68, 68, 0.5)) drop-shadow(0 0 60px rgba(220, 38, 38, 0.3)) brightness(1.15) contrast(1.1)',
                 }}
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
