@@ -51,8 +51,21 @@ export default function Services() {
 
       <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
+          {/* Header with Human Touch */}
           <div className="text-center mb-12">
+            <div className="flex justify-center mb-6">
+              <div className="relative">
+                <img
+                  src="/human_services.png"
+                  alt="SAGE DO Team"
+                  className="w-20 h-20 rounded-full object-cover border-2 border-primary/30 shadow-lg"
+                />
+                <div className="absolute -bottom-1 -right-1 bg-green-500 w-5 h-5 rounded-full border-2 border-background flex items-center justify-center">
+                  <span className="text-[10px]">✓</span>
+                </div>
+              </div>
+            </div>
+            <p className="text-sm text-primary font-medium mb-2">Hi! I'm here to help you 👋</p>
             <h1 className="text-4xl md:text-5xl font-black text-foreground mb-4">
               An AI Assistant for Every Part of Your Life
             </h1>

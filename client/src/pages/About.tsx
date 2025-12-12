@@ -33,6 +33,18 @@ export default function About() {
         <section className="mb-20">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
+              {/* Team Member Image */}
+              <div className="flex items-center gap-4 mb-4">
+                <img
+                  src="/human_about.png"
+                  alt="SAGE DO Team"
+                  className="w-16 h-16 rounded-full object-cover border-2 border-primary/30 shadow-lg"
+                />
+                <div>
+                  <p className="font-semibold text-foreground">Meet Our Team</p>
+                  <p className="text-sm text-muted-foreground">AI + Human Excellence</p>
+                </div>
+              </div>
               <h1 className="text-4xl md:text-5xl font-black text-foreground">
                 About SAGEDO AI
               </h1>
