@@ -538,29 +538,29 @@ export default function Orders() {
           </div>
 
           {/* Right Side - Human Image & Mini-Game (Hidden on mobile) */}
-          <div className="hidden lg:block w-80 flex-shrink-0 space-y-6">
-            {/* Human Image Section */}
-            <div className="relative rounded-2xl overflow-hidden">
+          <div className="hidden lg:block w-96 flex-shrink-0 space-y-6">
+            {/* Human Image Section - Much larger now */}
+            <div className="relative rounded-2xl overflow-hidden shadow-xl">
               <img
-                src="/human_tracking.png"
+                src="/gorgeous_woman.png"
                 alt="SAGE DO Support"
-                className="w-full h-64 object-cover"
+                className="w-full h-80 object-cover"
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/90 to-transparent p-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                    <Sparkles className="w-5 h-5 text-white" />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/80 to-transparent p-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center shadow-lg">
+                    <Sparkles className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground text-sm">AI + Human</p>
-                    <p className="text-xs text-muted-foreground">We'll handle it for you</p>
+                    <p className="font-bold text-foreground">AI + Human Excellence</p>
+                    <p className="text-sm text-muted-foreground">We'll handle it for you ✨</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Mini-Game Widget */}
-            <Card className="glass p-4">
+            {/* Mini-Game Widget - Bigger */}
+            <Card className="glass p-6">
               <MiniGame />
             </Card>
 

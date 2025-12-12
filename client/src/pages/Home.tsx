@@ -49,20 +49,22 @@ export default function Home() {
         }} />
 
         {/* ═══════════════════════════════════════════════════════════════
-            LAYER 1: Large AI Brain Logo Background
+            LAYER 1: Large AI Brain Logo Background - Enhanced visibility with red glow
         ═══════════════════════════════════════════════════════════════ */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          {/* Red glow effect in center */}
+          <div className="absolute w-64 h-64 bg-primary/30 rounded-full blur-[100px]" />
           <img
             src="/sagedo_logo_pro_clean.png"
             alt=""
-            className="w-[600px] h-[600px] md:w-[800px] md:h-[800px] object-contain opacity-[0.04]"
-            style={{ filter: 'grayscale(100%)' }}
+            className="relative w-[600px] h-[600px] md:w-[800px] md:h-[800px] object-contain opacity-[0.15]"
+            style={{ filter: 'contrast(1.2)' }}
           />
         </div>
 
-        {/* Subtle Gradient Orbs - Grey tones */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neutral-500/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neutral-400/10 rounded-full blur-[120px] pointer-events-none" />
+        {/* Subtle Gradient Orbs - Grey and red tones */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neutral-600/15 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24">

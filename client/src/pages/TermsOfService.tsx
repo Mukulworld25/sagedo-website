@@ -91,13 +91,49 @@ export default function TermsOfService() {
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-foreground mb-3">8. Warranties and Disclaimers</h2>
+                        <h2 className="text-2xl font-bold text-foreground mb-3">8. AI Services Disclaimer ⚠️</h2>
+                        <div className="space-y-3 text-muted-foreground bg-amber-500/10 p-4 rounded-lg border border-amber-500/30">
+                            <p>
+                                The services provided by <strong className="text-foreground">SAGE DO</strong> utilize artificial intelligence technologies, including Large Language Models (LLMs).
+                                <strong className="text-foreground"> You acknowledge that these technologies are probabilistic and may produce inaccurate, offensive, biased, or otherwise erroneous outputs ("Hallucinations").</strong>
+                            </p>
+                            <p>
+                                All AI-generated outputs, including but not limited to code, text, resumes, and strategies, are provided <strong className="text-foreground">"as-is"</strong> without warranty of any kind, express or implied. SAGE DO does not guarantee the accuracy, completeness, or reliability of any AI-generated content.
+                            </p>
+                            <p className="font-semibold text-amber-600 dark:text-amber-400">
+                                ⚠️ You act on AI-generated advice strictly at your own risk.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-foreground mb-3">9. Client Responsibility for Verification ✅</h2>
+                        <div className="space-y-3 text-muted-foreground bg-primary/10 p-4 rounded-lg border border-primary/30">
+                            <p>
+                                The Client acknowledges and agrees that they are <strong className="text-foreground">solely responsible for the human review and verification</strong> of all AI-generated deliverables before any public dissemination, commercial use, or reliance upon such materials.
+                            </p>
+                            <p className="font-semibold text-primary">
+                                SAGE DO shall not be liable for any losses or damages arising from the Client's failure to verify the accuracy of the deliverables.
+                            </p>
+                            <p>This includes but is not limited to:</p>
+                            <ul className="list-disc pl-6 space-y-1">
+                                <li>Reviewing all content for factual accuracy before use</li>
+                                <li>Verifying code functionality before deployment</li>
+                                <li>Checking resume/CV information before submission</li>
+                                <li>Validating business strategies before implementation</li>
+                                <li>Proofreading all generated text before publication</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-foreground mb-3">10. Additional Warranties and Disclaimers</h2>
                         <div className="space-y-3 text-muted-foreground">
                             <p>We strive to provide high-quality services but make no warranties of:</p>
                             <ul className="list-disc pl-6 space-y-1">
                                 <li>Uninterrupted or error-free service</li>
                                 <li>Specific results or outcomes</li>
-                                <li>Accuracy of AI-generated content</li>
+                                <li>Accuracy of AI-generated content (see Section 8 above)</li>
                             </ul>
                             <p className="mt-3">Services are provided "as is" and "as available."</p>
                         </div>
