@@ -99,9 +99,12 @@ export default function Navigation() {
                         size="sm"
                         variant="default"
                         data-testid="button-signup"
-                        className="bg-gradient-to-r from-primary to-destructive hover:opacity-90"
+                        className="bg-gradient-to-r from-primary to-destructive hover:opacity-90 relative"
                       >
                         Sign Up
+                        <span className="absolute -top-2 -right-2 bg-green-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold animate-pulse">
+                          FREE
+                        </span>
                       </Button>
                     </Link>
                   </>
@@ -184,10 +187,13 @@ export default function Navigation() {
                         size="sm"
                         variant="default"
                         data-testid="button-mobile-signup"
-                        className="w-full bg-gradient-to-r from-primary to-destructive"
+                        className="w-full bg-gradient-to-r from-primary to-destructive relative"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Sign Up
+                        <span className="ml-2 bg-green-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold animate-pulse">
+                          FREE TRIAL
+                        </span>
                       </Button>
                     </Link>
                   </div>

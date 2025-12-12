@@ -233,6 +233,19 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getDashboardStats() {
+    // Total users count
+    const [userStats] = await db
+      .select({ count: sql<number>`count(*)` })
+      .from(users);
+
+    // Today's signups (users created today)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const [todaySignups] = await db
+      .select({ count: sql<number>`count(*)` })
+      .from(users)
+      .where(gte(users.createdAt, today));
+
     // Total logins (sum of loginCount from users)
     const [loginStats] = await db
       .select({ total: sql<number>`sum(${users.loginCount})` })
@@ -257,11 +270,21 @@ export class DatabaseStorage implements IStorage {
       .orderBy(desc(siteVisits.visitedAt))
       .limit(10);
 
+    // Recent signups (for click-to-view)
+    const recentSignups = await db
+      .select({ id: users.id, email: users.email, name: users.name, createdAt: users.createdAt })
+      .from(users)
+      .orderBy(desc(users.createdAt))
+      .limit(10);
+
     return {
+      totalUsers: Number(userStats?.count || 0),
+      todaySignups: Number(todaySignups?.count || 0),
       totalLogins: Number(loginStats?.total || 0),
       totalVisitors: Number(visitorStats?.count || 0),
       mostClickedServices,
       recentVisitors,
+      recentSignups,
     };
   }
 

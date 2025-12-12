@@ -122,7 +122,21 @@ export default function Admin() {
         </div>
 
         {/* Analytics Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <Card className="glass p-6 bg-gradient-to-br from-green-600/20 to-green-700/20">
+            <p className="text-sm text-green-100 mb-1">Total Users</p>
+            <p className="text-4xl font-black text-foreground">
+              {stats?.totalUsers || 0}
+            </p>
+          </Card>
+
+          <Card className="glass p-6 bg-gradient-to-br from-amber-600/20 to-amber-700/20">
+            <p className="text-sm text-amber-100 mb-1">Today's Signups</p>
+            <p className="text-4xl font-black text-foreground">
+              {stats?.todaySignups || 0}
+            </p>
+          </Card>
+
           <Card className="glass p-6 bg-gradient-to-br from-indigo-600/20 to-indigo-700/20">
             <p className="text-sm text-indigo-100 mb-1">Total Logins</p>
             <p className="text-4xl font-black text-foreground">
