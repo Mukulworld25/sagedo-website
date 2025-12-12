@@ -71,13 +71,13 @@ export default function Home() {
               {/* Glowing backdrop for the brain */}
               <div className="absolute inset-0 blur-3xl opacity-60 bg-gradient-to-r from-red-600 via-primary to-red-600 rounded-full animate-pulse scale-125" />
 
-              {/* The AI Brain Logo - Screen blend mode makes black transparent */}
+              {/* The AI Brain Logo - Python processed circular png */}
               <img
-                src="/sagedo_logo_black.png"
+                src="/sagedo_logo_final_circle.png"
                 alt="SAGE DO AI"
-                className="relative h-40 md:h-52 w-auto object-contain animate-float hover:scale-110 transition-all duration-500 mix-blend-screen"
+                className="relative h-40 md:h-52 w-auto object-contain animate-float hover:scale-110 transition-all duration-500"
                 style={{
-                  filter: 'drop-shadow(0 0 20px rgba(239, 68, 68, 0.6)) brightness(1.2) contrast(1.1)',
+                  filter: 'drop-shadow(0 0 25px rgba(239, 68, 68, 0.7)) brightness(1.2) contrast(1.1)',
                 }}
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
