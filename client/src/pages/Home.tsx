@@ -48,37 +48,59 @@ export default function Home() {
           backgroundSize: '60px 60px'
         }} />
 
-        {/* Floating Elements - Scattered like Bhindi */}
+        {/* ═══════════════════════════════════════════════════════════════
+            LAYER 1: Large AI Brain Logo Background
+        ═══════════════════════════════════════════════════════════════ */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <img
+            src="/sagedo_logo_pro_clean.png"
+            alt=""
+            className="w-[600px] h-[600px] md:w-[800px] md:h-[800px] object-contain opacity-[0.04]"
+            style={{ filter: 'grayscale(100%)' }}
+          />
+        </div>
+
+        {/* ═══════════════════════════════════════════════════════════════
+            LAYER 2: Floating AI Tool Brand Logos
+        ═══════════════════════════════════════════════════════════════ */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Top Left */}
-          <div className="absolute top-24 left-[8%] w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20 animate-float" style={{ animationDelay: '0s' }}>
-            <span className="text-2xl">📄</span>
+          {/* ChatGPT */}
+          <div className="absolute top-24 left-[8%] w-12 h-12 rounded-xl bg-[#10a37f]/20 border border-[#10a37f]/30 flex items-center justify-center animate-float" style={{ animationDelay: '0s' }}>
+            <span className="text-lg font-bold text-[#10a37f]">GPT</span>
           </div>
-          {/* Top Right */}
-          <div className="absolute top-32 right-[12%] w-12 h-12 rounded-2xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center shadow-lg shadow-green-500/20 animate-float" style={{ animationDelay: '1s' }}>
-            <span className="text-xl">✅</span>
+          {/* Claude */}
+          <div className="absolute top-32 right-[12%] w-12 h-12 rounded-xl bg-[#cc785c]/20 border border-[#cc785c]/30 flex items-center justify-center animate-float" style={{ animationDelay: '1s' }}>
+            <span className="text-lg font-bold text-[#cc785c]">C</span>
           </div>
-          {/* Mid Left */}
-          <div className="absolute top-1/2 left-[5%] w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-500/20 animate-float" style={{ animationDelay: '2s' }}>
-            <span className="text-2xl">🤖</span>
+          {/* Gemini */}
+          <div className="absolute top-1/3 left-[5%] w-14 h-14 rounded-xl bg-[#4285f4]/20 border border-[#4285f4]/30 flex items-center justify-center animate-float" style={{ animationDelay: '2s' }}>
+            <span className="text-xl">✨</span>
           </div>
-          {/* Mid Right */}
-          <div className="absolute top-1/2 right-[8%] w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/20 animate-float" style={{ animationDelay: '0.5s' }}>
-            <span className="text-2xl">⚡</span>
+          {/* Midjourney */}
+          <div className="absolute top-1/2 right-[6%] w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center animate-float" style={{ animationDelay: '0.5s' }}>
+            <span className="text-lg font-bold text-white/70">MJ</span>
           </div>
-          {/* Bottom Left */}
-          <div className="absolute bottom-32 left-[15%] w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center shadow-lg shadow-pink-500/20 animate-float" style={{ animationDelay: '1.5s' }}>
-            <span className="text-xl">💼</span>
+          {/* Perplexity */}
+          <div className="absolute bottom-1/3 left-[10%] w-11 h-11 rounded-xl bg-[#20b8cd]/20 border border-[#20b8cd]/30 flex items-center justify-center animate-float" style={{ animationDelay: '1.5s' }}>
+            <span className="text-lg">🔍</span>
           </div>
-          {/* Bottom Right */}
-          <div className="absolute bottom-40 right-[18%] w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 animate-float" style={{ animationDelay: '2.5s' }}>
-            <span className="text-2xl">📊</span>
+          {/* DALL-E */}
+          <div className="absolute bottom-40 right-[15%] w-12 h-12 rounded-xl bg-[#7c3aed]/20 border border-[#7c3aed]/30 flex items-center justify-center animate-float" style={{ animationDelay: '2.5s' }}>
+            <span className="text-lg">🎨</span>
+          </div>
+          {/* Notion AI */}
+          <div className="absolute top-[60%] left-[18%] w-10 h-10 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center animate-float" style={{ animationDelay: '3s' }}>
+            <span className="text-sm font-bold text-white/70">N</span>
+          </div>
+          {/* Copilot */}
+          <div className="absolute bottom-28 right-[25%] w-11 h-11 rounded-xl bg-[#0078d4]/20 border border-[#0078d4]/30 flex items-center justify-center animate-float" style={{ animationDelay: '1.2s' }}>
+            <span className="text-lg">🤖</span>
           </div>
         </div>
 
-        {/* Gradient Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-destructive/10 rounded-full blur-[120px] pointer-events-none" />
+        {/* Subtle Gradient Orbs - Grey tones */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neutral-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neutral-400/10 rounded-full blur-[120px] pointer-events-none" />
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24">
@@ -287,14 +309,14 @@ export default function Home() {
                   key={item.step}
                   onClick={() => setActiveStep(item.step)}
                   className={`w-full text-left p-6 rounded-2xl border transition-all duration-300 ${activeStep === item.step
-                      ? 'bg-primary/10 border-primary/30'
-                      : 'bg-muted/30 border-border/30 hover:bg-muted/50'
+                    ? 'bg-primary/10 border-primary/30'
+                    : 'bg-muted/30 border-border/30 hover:bg-muted/50'
                     }`}
                 >
                   <div className="flex items-start gap-4">
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold transition-colors ${activeStep === item.step
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted text-muted-foreground'
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted text-muted-foreground'
                       }`}>
                       {item.step}
                     </div>
