@@ -66,16 +66,12 @@ export default function Home() {
 
         <div className="max-w-5xl mx-auto text-center space-y-3 relative z-10">
           {/* AI Brain Logo - Main Hero Element */}
-          <div className="flex justify-center mb-2 overflow-hidden">
-            <div className="relative group flex items-center justify-center overflow-hidden">
-              {/* Layer 1: Massive Pulsing Red Core Glow */}
-              <div className="absolute inset-0 blur-3xl opacity-40 bg-red-600 rounded-full animate-pulse scale-150 duration-3000" />
+          <div className="flex justify-center mb-2">
+            <div className="relative group flex items-center justify-center">
+              {/* Subtle Pulsing Red Core Glow */}
+              <div className="absolute inset-0 blur-3xl opacity-40 bg-red-600 rounded-full animate-pulse scale-110" />
 
-              {/* Layer 2: Rotating "Sparkle" Ring Effect */}
-              <div className="absolute inset-0 rounded-full border border-red-500/20 w-[120%] h-[120%] -left-[10%] -top-[10%] animate-[spin_10s_linear_infinite]" />
-              <div className="absolute inset-0 rounded-full border border-dashed border-red-400/30 w-[140%] h-[140%] -left-[20%] -top-[20%] animate-[spin_15s_linear_infinite_reverse]" />
-
-              {/* The AI Brain Logo - Clean, Huge, & Spectacular */}
+              {/* The AI Brain Logo - Clean Transparency */}
               <img
                 src="/sagedo_logo_pro_clean.png"
                 alt="SAGE DO AI"
