@@ -66,8 +66,8 @@ export default function Home() {
 
         <div className="max-w-5xl mx-auto text-center space-y-3 relative z-10">
           {/* AI Brain Logo - Main Hero Element */}
-          <div className="flex justify-center mb-2">
-            <div className="relative group flex items-center justify-center">
+          <div className="flex justify-center mb-2 overflow-hidden">
+            <div className="relative group flex items-center justify-center overflow-hidden">
               {/* Layer 1: Massive Pulsing Red Core Glow */}
               <div className="absolute inset-0 blur-3xl opacity-40 bg-red-600 rounded-full animate-pulse scale-150 duration-3000" />
 
