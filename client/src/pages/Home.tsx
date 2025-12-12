@@ -64,9 +64,9 @@ export default function Home() {
           <Sparkles className="absolute bottom-20 right-1/3 w-16 h-16 text-purple-500 animate-float" style={{ animationDelay: '3s' }} />
         </div>
 
-        <div className="max-w-5xl mx-auto text-center space-y-8 relative z-10">
+        <div className="max-w-5xl mx-auto text-center space-y-3 relative z-10">
           {/* AI Brain Logo - Main Hero Element */}
-          <div className="flex justify-center mb-4">
+          <div className="flex justify-center mb-2">
             <div className="relative group flex items-center justify-center">
               {/* Layer 1: Massive Pulsing Red Core Glow */}
               <div className="absolute inset-0 blur-3xl opacity-40 bg-red-600 rounded-full animate-pulse scale-150 duration-3000" />
@@ -79,7 +79,7 @@ export default function Home() {
               <img
                 src="/sagedo_logo_pro_clean.png"
                 alt="SAGE DO AI"
-                className="relative h-64 md:h-80 w-auto object-contain animate-float hover:scale-105 transition-all duration-700 z-10"
+                className="relative h-44 md:h-56 w-auto object-contain animate-float hover:scale-105 transition-all duration-700 z-10"
                 style={{
                   filter: 'drop-shadow(0 0 30px rgba(239, 68, 68, 0.5)) drop-shadow(0 0 60px rgba(220, 38, 38, 0.3)) brightness(1.15) contrast(1.1)',
                 }}
@@ -92,7 +92,7 @@ export default function Home() {
           </div>
 
           {/* Namaste Button */}
-          <div className="flex justify-center mb-4">
+          <div className="flex justify-center mb-2">
             <Button
               onClick={handleNamaste}
               data-testid="button-namaste"
@@ -114,7 +114,7 @@ export default function Home() {
             </Button>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-foreground leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-foreground leading-tight">
             Problem? Need Help?{" "}
             <span className="bg-gradient-to-r from-primary via-destructive to-primary bg-clip-text text-transparent animate-shimmer">
               Afcoz!
