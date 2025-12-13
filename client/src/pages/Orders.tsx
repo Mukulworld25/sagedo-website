@@ -9,7 +9,6 @@ import { Upload, CheckCircle2, CreditCard, Sparkles } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useSearch } from "wouter";
-import MiniGame from "@/components/MiniGame";
 
 // Declare Razorpay on window
 declare global {
@@ -537,17 +536,23 @@ export default function Orders() {
             </Card>
           </div>
 
-          {/* Right Side - Human Image & Mini-Game (Hidden on mobile) */}
-          <div className="hidden lg:block w-96 flex-shrink-0 space-y-6">
-            {/* Human Image Section - Much larger now */}
-            <div className="relative rounded-2xl overflow-hidden shadow-xl">
+          {/* Right Side - Full Height Human Image (Hidden on mobile) */}
+          <div className="hidden lg:flex lg:flex-col lg:w-1/2 lg:fixed lg:right-0 lg:top-16 lg:bottom-0">
+            {/* Full Height Image Container */}
+            <div className="relative h-full">
               <img
                 src="/gorgeous_woman.png"
                 alt="SAGE DO Support"
-                className="w-full h-80 object-cover"
+                className="w-full h-full object-cover"
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/80 to-transparent p-6">
-                <div className="flex items-center gap-3">
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-transparent" />
+
+              {/* Content overlay at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 p-8 space-y-6">
+                {/* AI + Human Badge */}
+                <div className="flex items-center gap-3 bg-background/80 backdrop-blur-sm p-4 rounded-xl w-fit">
                   <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center shadow-lg">
                     <Sparkles className="w-6 h-6 text-white" />
                   </div>
@@ -556,27 +561,22 @@ export default function Orders() {
                     <p className="text-sm text-muted-foreground">We'll handle it for you ✨</p>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            {/* Mini-Game Widget - Bigger */}
-            <Card className="glass p-6">
-              <MiniGame />
-            </Card>
-
-            {/* Trust Badges */}
-            <div className="space-y-3 text-sm">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <CheckCircle2 className="w-4 h-4 text-green-500" />
-                <span>Fast 24-48 hour delivery</span>
-              </div>
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <CheckCircle2 className="w-4 h-4 text-green-500" />
-                <span>100% Satisfaction guarantee</span>
-              </div>
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <CheckCircle2 className="w-4 h-4 text-green-500" />
-                <span>Secure payment via Razorpay</span>
+                {/* Trust Badges */}
+                <div className="bg-background/80 backdrop-blur-sm p-4 rounded-xl space-y-3">
+                  <div className="flex items-center gap-2 text-foreground">
+                    <CheckCircle2 className="w-5 h-5 text-green-500" />
+                    <span className="font-medium">Fast 24-48 hour delivery</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-foreground">
+                    <CheckCircle2 className="w-5 h-5 text-green-500" />
+                    <span className="font-medium">100% Satisfaction guarantee</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-foreground">
+                    <CheckCircle2 className="w-5 h-5 text-green-500" />
+                    <span className="font-medium">Secure payment via Razorpay</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -586,4 +586,5 @@ export default function Orders() {
     </div>
   );
 }
+
 

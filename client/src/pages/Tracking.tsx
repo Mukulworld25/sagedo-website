@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,9 +6,10 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { CheckCircle2, Circle, Clock, Package, Truck, Home, Star, MessageSquare, ShieldCheck, Zap, Heart } from "lucide-react";
+import { CheckCircle2, Circle, Clock, Package, Truck, Home, Star, MessageSquare, ShieldCheck, Zap, Heart, Gamepad2, Timer } from "lucide-react";
 import { Order } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
+import MiniGame from "@/components/MiniGame";
 
 export default function Tracking() {
   const { toast } = useToast();
@@ -169,6 +170,62 @@ export default function Tracking() {
           </Card>
         )}
 
+        {/* Progress Bar + Mini Game Section (only show when order is found and not delivered) */}
+        {order && order.status !== 'delivered' && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            {/* Visual Progress Bar */}
+            <Card className="glass p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <Timer className="w-6 h-6 text-primary" />
+                <h3 className="text-lg font-bold text-foreground">Order Progress</h3>
+              </div>
+
+              {/* Progress percentage based on status */}
+              {(() => {
+                const progressMap: Record<string, number> = {
+                  pending: 0,
+                  processing: 33,
+                  finalizing: 66,
+                  delivered: 100,
+                };
+                const progress = progressMap[order.status] || 0;
+
+                return (
+                  <>
+                    <div className="flex justify-between text-sm text-muted-foreground mb-2">
+                      <span>{order.status.charAt(0).toUpperCase() + order.status.slice(1)}</span>
+                      <span className="font-bold text-primary">{progress}% Complete</span>
+                    </div>
+                    <div className="h-4 bg-neutral-800 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-primary to-destructive rounded-full transition-all duration-500 ease-out"
+                        style={{ width: `${progress}%` }}
+                      />
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-3">
+                      {order.status === 'pending' && 'Your order is in the queue. We\'ll start working on it soon!'}
+                      {order.status === 'processing' && 'We\'re actively working on your order. Great things take time!'}
+                      {order.status === 'finalizing' && 'Almost there! Final quality checks in progress.'}
+                    </p>
+                  </>
+                );
+              })()}
+            </Card>
+
+            {/* Mini Game - Play while you wait */}
+            <Card className="glass p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <Gamepad2 className="w-6 h-6 text-primary" />
+                <h3 className="text-lg font-bold text-foreground">Play While You Wait</h3>
+              </div>
+              <p className="text-sm text-muted-foreground mb-4">
+                Click the red dots before they disappear! 🎯
+              </p>
+              <MiniGame />
+            </Card>
+          </div>
+        )}
+
         {/* Progress Timeline */}
         {order && (
           <Card className="glass p-8 mb-12">
@@ -199,10 +256,10 @@ export default function Tracking() {
                     {/* Icon Circle */}
                     <div
                       className={`relative z-10 flex items-center justify-center w-12 h-12 rounded-full border-2 ${isCompleted
-                          ? "bg-gradient-to-r from-primary to-destructive border-transparent"
-                          : isCurrent
-                            ? "bg-background border-primary animate-pulse-glow"
-                            : "bg-background border-border"
+                        ? "bg-gradient-to-r from-primary to-destructive border-transparent"
+                        : isCurrent
+                          ? "bg-background border-primary animate-pulse-glow"
+                          : "bg-background border-border"
                         }`}
                     >
                       {isCompleted && index !== currentStageIndex ? (

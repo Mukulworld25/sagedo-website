@@ -1,5 +1,9 @@
 // Extended service data with full descriptions, what you get, and process
 // Based on SAGEDO's unique AI + Human approach
+// UPDATED: New pricing tiers based on India market research (Dec 2024)
+// BAR 1 (₹100-500): Simple tasks, 24-48 hours
+// BAR 2 (₹500-5000): Standard tasks, 2-5 days
+// BAR 3 (₹5000-15000): Premium/complex projects, 5-15 days
 
 export interface ServiceDetail {
     id: string;
@@ -17,7 +21,7 @@ export interface ServiceDetail {
 
 export const allServices: ServiceDetail[] = [
     // =====================
-    // BUSINESS CATEGORY (10 services)
+    // BUSINESS CATEGORY (12 services)
     // =====================
     {
         id: "1",
@@ -37,7 +41,7 @@ export const allServices: ServiceDetail[] = [
             "Our team selects and refines the best option",
             "You receive the final copy via email/dashboard"
         ],
-        price: 100,
+        price: 199,
         imageUrl: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: true,
         deliveryTime: "24 hours"
@@ -61,7 +65,7 @@ export const allServices: ServiceDetail[] = [
             "You review and request any changes",
             "Get final template ready to send"
         ],
-        price: 150,
+        price: 299,
         imageUrl: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: true,
         deliveryTime: "24 hours"
@@ -84,13 +88,38 @@ export const allServices: ServiceDetail[] = [
             "Our team curates the top 5 with availability checks",
             "You pick your favorite and go!"
         ],
-        price: 200,
+        price: 399,
         imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: true,
         deliveryTime: "48 hours"
     },
     {
         id: "4",
+        name: "SEO Blog Article (1500 words)",
+        category: "Business",
+        description: "SEO-optimized blog post to boost your website traffic",
+        fullDescription: "Get found on Google! We write SEO-optimized blog articles that rank. Research-backed, keyword-targeted content that drives organic traffic. Perfect for businesses wanting to build authority and attract customers through content marketing.",
+        whatYouGet: [
+            "1500-word SEO blog article",
+            "Keyword research and optimization",
+            "Meta title and description",
+            "Internal linking suggestions",
+            "Royalty-free images included",
+            "1 revision round included"
+        ],
+        process: [
+            "Share your topic and target keywords",
+            "We research and outline the article",
+            "Write SEO-optimized content",
+            "Deliver ready-to-publish article"
+        ],
+        price: 799,
+        imageUrl: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop&q=80",
+        isGoldenEligible: false,
+        deliveryTime: "2-3 days"
+    },
+    {
+        id: "5",
         name: "Landing Page Blueprint",
         category: "Business",
         description: "Complete landing page structure and content outline",
@@ -108,35 +137,10 @@ export const allServices: ServiceDetail[] = [
             "Create complete page structure with copy suggestions",
             "Deliver blueprint ready for your designer"
         ],
-        price: 500,
+        price: 999,
         imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "2-3 days"
-    },
-    {
-        id: "5",
-        name: "Complete Website (5 Pages)",
-        category: "Business",
-        description: "Full website with 5 pages and responsive design",
-        fullDescription: "Get a complete, professional website without the hassle. We build 5 fully designed pages that work beautifully on all devices. Perfect for startups, portfolios, or small businesses who need an online presence fast.",
-        whatYouGet: [
-            "5 custom-designed pages (Home, About, Services, Contact, +1 more)",
-            "Mobile-responsive design",
-            "Basic SEO setup",
-            "Contact form integration",
-            "Social media links",
-            "2 revision rounds included"
-        ],
-        process: [
-            "Share your brand assets and content",
-            "We create design mockups for approval",
-            "Build and test the full website",
-            "You review, we refine, and launch!"
-        ],
-        price: 5000,
-        imageUrl: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: false,
-        deliveryTime: "7-10 days"
+        deliveryTime: "3-4 days"
     },
     {
         id: "6",
@@ -157,37 +161,13 @@ export const allServices: ServiceDetail[] = [
             "You review and request any tweaks",
             "Launch your campaigns!"
         ],
-        price: 600,
+        price: 799,
         imageUrl: "https://images.unsplash.com/photo-1557838923-2985c318be48?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: false,
         deliveryTime: "3-4 days"
     },
     {
         id: "7",
-        name: "Business Automation Setup",
-        category: "Business",
-        description: "Custom automation for email, social media, leads, and more",
-        fullDescription: "Stop doing repetitive tasks manually! We set up automation for your business - email sequences, lead capture, social media posting, CRM updates, and more. Using tools like Zapier, Make, or custom scripts, we eliminate your daily grind.",
-        whatYouGet: [
-            "Custom automation workflow design",
-            "Full setup and configuration",
-            "Integration with your existing tools",
-            "Documentation on how it works",
-            "1 week of support for troubleshooting"
-        ],
-        process: [
-            "30-min call to understand your current processes",
-            "We design the automation workflow",
-            "Build and test the complete system",
-            "Handover with training documentation"
-        ],
-        price: 10000,
-        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "14-21 days"
-    },
-    {
-        id: "8",
         name: "AI Business Consultation Call",
         category: "Business",
         description: "45-min strategy call for any business problem solvable by AI",
@@ -205,13 +185,13 @@ export const allServices: ServiceDetail[] = [
             "We prepare relevant solutions",
             "Call + follow-up action plan delivered"
         ],
-        price: 800,
+        price: 1499,
         imageUrl: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: false,
         deliveryTime: "2-3 days"
     },
     {
-        id: "9",
+        id: "8",
         name: "Data Solutions & Dashboards",
         category: "Business",
         description: "Data visualization, cleaning, dashboards, reports, and analysis",
@@ -229,13 +209,13 @@ export const allServices: ServiceDetail[] = [
             "Build dashboard/report with visualizations",
             "Deliver with explanation of key insights"
         ],
-        price: 700,
+        price: 1999,
         imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: false,
-        deliveryTime: "3-5 days"
+        deliveryTime: "4-5 days"
     },
     {
-        id: "10",
+        id: "9",
         name: "Marketing Visual Content",
         category: "Business",
         description: "Videos, photos, posters, brochures, banners for marketing",
@@ -253,17 +233,92 @@ export const allServices: ServiceDetail[] = [
             "You review and provide feedback",
             "Final delivery in all needed formats"
         ],
-        price: 400,
+        price: 599,
         imageUrl: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: false,
         deliveryTime: "2-3 days"
     },
-
-    // =====================
-    // STUDENT CATEGORY (7 services)
-    // =====================
+    {
+        id: "10",
+        name: "Complete Website (5 Pages)",
+        category: "Business",
+        description: "Full website with 5 pages and responsive design",
+        fullDescription: "Get a complete, professional website without the hassle. We build 5 fully designed pages that work beautifully on all devices. Perfect for startups, portfolios, or small businesses who need an online presence fast.",
+        whatYouGet: [
+            "5 custom-designed pages (Home, About, Services, Contact, +1 more)",
+            "Mobile-responsive design",
+            "Basic SEO setup",
+            "Contact form integration",
+            "Social media links",
+            "2 revision rounds included"
+        ],
+        process: [
+            "Share your brand assets and content",
+            "We create design mockups for approval",
+            "Build and test the full website",
+            "You review, we refine, and launch!"
+        ],
+        price: 7999,
+        imageUrl: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&h=300&fit=crop&q=80",
+        isGoldenEligible: false,
+        deliveryTime: "7-10 days"
+    },
     {
         id: "11",
+        name: "Business Automation Setup",
+        category: "Business",
+        description: "Custom automation for email, social media, leads, and more",
+        fullDescription: "Stop doing repetitive tasks manually! We set up automation for your business - email sequences, lead capture, social media posting, CRM updates, and more. Using tools like Zapier, Make, or custom scripts, we eliminate your daily grind.",
+        whatYouGet: [
+            "Custom automation workflow design",
+            "Full setup and configuration",
+            "Integration with your existing tools",
+            "Documentation on how it works",
+            "1 week of support for troubleshooting"
+        ],
+        process: [
+            "30-min call to understand your current processes",
+            "We design the automation workflow",
+            "Build and test the complete system",
+            "Handover with training documentation"
+        ],
+        price: 12999,
+        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&q=80",
+        isGoldenEligible: false,
+        deliveryTime: "10-15 days"
+    },
+    {
+        id: "12",
+        name: "Complete Branding Package",
+        category: "Business",
+        description: "Full brand identity with logo, colors, fonts, and guidelines",
+        fullDescription: "Launch your brand with a complete identity. We create your logo, color palette, typography, and brand guidelines. Everything you need to look professional and consistent across all platforms.",
+        whatYouGet: [
+            "Logo design (3 concepts, 1 final)",
+            "Color palette with codes",
+            "Typography selection",
+            "Brand guidelines document",
+            "Social media profile assets",
+            "Business card design",
+            "3 revision rounds included"
+        ],
+        process: [
+            "Discovery call to understand your vision",
+            "We create initial logo concepts",
+            "Develop full brand identity",
+            "Deliver complete brand package"
+        ],
+        price: 14999,
+        imageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop&q=80",
+        isGoldenEligible: false,
+        deliveryTime: "12-15 days"
+    },
+
+    // =====================
+    // STUDENT CATEGORY (8 services)
+    // =====================
+    {
+        id: "13",
         name: "Research Paper Outline",
         category: "Student",
         description: "Structured research paper outline with sources",
@@ -281,13 +336,13 @@ export const allServices: ServiceDetail[] = [
             "Create outline with source suggestions",
             "Deliver ready-to-write framework"
         ],
-        price: 100,
+        price: 199,
         imageUrl: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: true,
         deliveryTime: "24 hours"
     },
     {
-        id: "12",
+        id: "14",
         name: "Presentation Outline (15 slides)",
         category: "Student",
         description: "Professional presentation structure and content plan",
@@ -305,13 +360,13 @@ export const allServices: ServiceDetail[] = [
             "Create content suggestions and flow",
             "Deliver outline ready for design"
         ],
-        price: 200,
+        price: 299,
         imageUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: true,
         deliveryTime: "48 hours"
     },
     {
-        id: "13",
+        id: "15",
         name: "Photo Editing Bundle (5 Photos)",
         category: "Student",
         description: "Professional photo editing for projects and assignments",
@@ -329,13 +384,37 @@ export const allServices: ServiceDetail[] = [
             "We edit and enhance each photo",
             "Deliver edited files"
         ],
-        price: 300,
+        price: 399,
         imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: true,
         deliveryTime: "2-3 days"
     },
     {
-        id: "14",
+        id: "16",
+        name: "Exam Study Notes",
+        category: "Student",
+        description: "Comprehensive study notes for exam preparation",
+        fullDescription: "Exams coming up? We create concise, comprehensive study notes that cover all key topics. Easy to read, easy to remember. Perfect for last-minute revision or structured study.",
+        whatYouGet: [
+            "Comprehensive notes covering all topics",
+            "Key points and concepts highlighted",
+            "Easy-to-scan format",
+            "Practice questions included",
+            "PDF and Word format"
+        ],
+        process: [
+            "Share your syllabus/topics",
+            "We compile and organize key information",
+            "Create easy-to-study notes",
+            "Deliver in preferred format"
+        ],
+        price: 299,
+        imageUrl: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&h=300&fit=crop&q=80",
+        isGoldenEligible: true,
+        deliveryTime: "24-48 hours"
+    },
+    {
+        id: "17",
         name: "Complete Presentation Design",
         category: "Student",
         description: "Fully designed PPT with content, graphics, and animations",
@@ -354,13 +433,13 @@ export const allServices: ServiceDetail[] = [
             "Design slides with professional graphics",
             "Add animations and deliver final PPT"
         ],
-        price: 600,
+        price: 999,
         imageUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: false,
         deliveryTime: "4-5 days"
     },
     {
-        id: "15",
+        id: "18",
         name: "Assignment Writing (Complete)",
         category: "Student",
         description: "Fully personalized assignment writing and formatting",
@@ -378,13 +457,13 @@ export const allServices: ServiceDetail[] = [
             "Format and add proper citations",
             "Deliver with plagiarism report"
         ],
-        price: 250,
+        price: 599,
         imageUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: false,
         deliveryTime: "2-3 days"
     },
     {
-        id: "16",
+        id: "19",
         name: "Essay Writing (1500 words)",
         category: "Student",
         description: "Well-researched essays on any topic",
@@ -402,41 +481,42 @@ export const allServices: ServiceDetail[] = [
             "Write and refine the essay",
             "Deliver proofread final version"
         ],
-        price: 350,
+        price: 699,
         imageUrl: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: false,
         deliveryTime: "3-4 days"
     },
     {
-        id: "17",
-        name: "Exam Study Notes",
+        id: "20",
+        name: "Thesis/Dissertation Assistance",
         category: "Student",
-        description: "Comprehensive study notes for exam preparation",
-        fullDescription: "Exams coming up? We create concise, comprehensive study notes that cover all key topics. Easy to read, easy to remember. Perfect for last-minute revision or structured study.",
+        description: "Help with thesis structure, research, and writing",
+        fullDescription: "Thesis giving you sleepless nights? We provide comprehensive assistance - from topic selection to final editing. Research methodology, literature review, chapters - we help you through every step.",
         whatYouGet: [
-            "Comprehensive notes covering all topics",
-            "Key points and concepts highlighted",
-            "Easy-to-scan format",
-            "Practice questions included",
-            "PDF and Word format"
+            "Thesis structure and outline",
+            "Literature review assistance",
+            "Research methodology guidance",
+            "Chapter-by-chapter writing support",
+            "Formatting and citations",
+            "Multiple revision rounds"
         ],
         process: [
-            "Share your syllabus/topics",
-            "We compile and organize key information",
-            "Create easy-to-study notes",
-            "Deliver in preferred format"
+            "Initial consultation about your topic",
+            "We create detailed thesis plan",
+            "Assist with each chapter",
+            "Final review and formatting"
         ],
-        price: 150,
-        imageUrl: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "24-48 hours"
+        price: 9999,
+        imageUrl: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop&q=80",
+        isGoldenEligible: false,
+        deliveryTime: "15+ days"
     },
 
     // =====================
-    // PROFESSIONAL CATEGORY (8 services)
+    // PROFESSIONAL CATEGORY (10 services)
     // =====================
     {
-        id: "18",
+        id: "21",
         name: "Resume Optimization (ATS-Friendly)",
         category: "Professional",
         description: "Make your resume ATS-friendly and recruiter-ready",
@@ -454,13 +534,13 @@ export const allServices: ServiceDetail[] = [
             "Rewrite sections for impact",
             "Deliver polished, job-ready resume"
         ],
-        price: 100,
+        price: 199,
         imageUrl: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: true,
         deliveryTime: "24 hours"
     },
     {
-        id: "19",
+        id: "22",
         name: "LinkedIn Profile Summary",
         category: "Professional",
         description: "Compelling LinkedIn bio and headline that gets you noticed",
@@ -478,38 +558,13 @@ export const allServices: ServiceDetail[] = [
             "Craft compelling copy",
             "Deliver with implementation tips"
         ],
-        price: 150,
+        price: 299,
         imageUrl: "https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: true,
         deliveryTime: "24 hours"
     },
     {
-        id: "20",
-        name: "Complete Job Hunt Package",
-        category: "Professional",
-        description: "Full automation: job search, resume tailoring, applications",
-        fullDescription: "The complete job hunting solution. We create your master resume, tailor it for specific jobs, set up job search automation, and select opportunities for your approval. You just approve and apply. Less hustle, more offers.",
-        whatYouGet: [
-            "Master resume (ATS-optimized)",
-            "5 job-specific resume variations",
-            "Cover letter template",
-            "Job search automation setup",
-            "Weekly job recommendations for approval",
-            "Interview prep guide"
-        ],
-        process: [
-            "Initial call to understand your goals",
-            "Create master resume and materials",
-            "Set up automated job search",
-            "Weekly curated opportunities + tailored applications"
-        ],
-        price: 5000,
-        imageUrl: "https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "7-10 days"
-    },
-    {
-        id: "21",
+        id: "23",
         name: "Tailored Cover Letter",
         category: "Professional",
         description: "Custom cover letter for specific job applications",
@@ -527,60 +582,10 @@ export const allServices: ServiceDetail[] = [
             "Write tailored cover letter",
             "Deliver ready-to-submit version"
         ],
-        price: 200,
+        price: 349,
         imageUrl: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: true,
         deliveryTime: "24-48 hours"
-    },
-    {
-        id: "22",
-        name: "Professional Portfolio Website",
-        category: "Professional",
-        description: "Personal portfolio website to showcase your work",
-        fullDescription: "Show off your work with a stunning portfolio website. We design and build a professional site that highlights your skills, projects, and achievements. Perfect for freelancers, designers, and professionals.",
-        whatYouGet: [
-            "Custom portfolio website (3-5 pages)",
-            "Mobile-responsive design",
-            "Project/work showcase section",
-            "Contact form",
-            "Basic SEO setup",
-            "2 revision rounds included"
-        ],
-        process: [
-            "Share your work and preferences",
-            "We design mockups for approval",
-            "Build the complete website",
-            "Launch and handover"
-        ],
-        price: 800,
-        imageUrl: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "5-7 days"
-    },
-    {
-        id: "23",
-        name: "Complete LinkedIn Makeover",
-        category: "Professional",
-        description: "Full profile rewrite with copy-paste document",
-        fullDescription: "Get a complete LinkedIn transformation. We rewrite every section - headline, about, experience, skills - with a ready-to-paste document. If you don't approve a suggestion, we provide alternatives. Your profile, perfected.",
-        whatYouGet: [
-            "Complete profile rewrite document",
-            "Headline, About, Experience sections",
-            "Skills and endorsement strategy",
-            "Content posting tips",
-            "Copy-paste ready format",
-            "1 revision round included"
-        ],
-        process: [
-            "Share current profile and goals",
-            "We analyze and rewrite everything",
-            "Create copy-paste document",
-            "You implement + we verify"
-        ],
-        price: 400,
-        imageUrl: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "2-3 days"
     },
     {
         id: "24",
@@ -601,7 +606,7 @@ export const allServices: ServiceDetail[] = [
             "You review and suggest changes",
             "Final version delivered"
         ],
-        price: 100,
+        price: 149,
         imageUrl: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: true,
         deliveryTime: "24 hours"
@@ -625,17 +630,142 @@ export const allServices: ServiceDetail[] = [
             "Create comprehensive prep guide",
             "Deliver ready-to-study material"
         ],
-        price: 250,
+        price: 499,
         imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
+        isGoldenEligible: true,
         deliveryTime: "48 hours"
+    },
+    {
+        id: "26",
+        name: "Complete LinkedIn Makeover",
+        category: "Professional",
+        description: "Full profile rewrite with copy-paste document",
+        fullDescription: "Get a complete LinkedIn transformation. We rewrite every section - headline, about, experience, skills - with a ready-to-paste document. If you don't approve a suggestion, we provide alternatives. Your profile, perfected.",
+        whatYouGet: [
+            "Complete profile rewrite document",
+            "Headline, About, Experience sections",
+            "Skills and endorsement strategy",
+            "Content posting tips",
+            "Copy-paste ready format",
+            "1 revision round included"
+        ],
+        process: [
+            "Share current profile and goals",
+            "We analyze and rewrite everything",
+            "Create copy-paste document",
+            "You implement + we verify"
+        ],
+        price: 799,
+        imageUrl: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&h=300&fit=crop&q=80",
+        isGoldenEligible: false,
+        deliveryTime: "2-3 days"
+    },
+    {
+        id: "27",
+        name: "Professional Portfolio Website",
+        category: "Professional",
+        description: "Personal portfolio website to showcase your work",
+        fullDescription: "Show off your work with a stunning portfolio website. We design and build a professional site that highlights your skills, projects, and achievements. Perfect for freelancers, designers, and professionals.",
+        whatYouGet: [
+            "Custom portfolio website (3-5 pages)",
+            "Mobile-responsive design",
+            "Project/work showcase section",
+            "Contact form",
+            "Basic SEO setup",
+            "2 revision rounds included"
+        ],
+        process: [
+            "Share your work and preferences",
+            "We design mockups for approval",
+            "Build the complete website",
+            "Launch and handover"
+        ],
+        price: 2999,
+        imageUrl: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=300&fit=crop&q=80",
+        isGoldenEligible: false,
+        deliveryTime: "5-7 days"
+    },
+    {
+        id: "28",
+        name: "Complete Job Hunt Package",
+        category: "Professional",
+        description: "Full automation: job search, resume tailoring, applications",
+        fullDescription: "The complete job hunting solution. We create your master resume, tailor it for specific jobs, set up job search automation, and select opportunities for your approval. You just approve and apply. Less hustle, more offers.",
+        whatYouGet: [
+            "Master resume (ATS-optimized)",
+            "5 job-specific resume variations",
+            "Cover letter template",
+            "Job search automation setup",
+            "Weekly job recommendations for approval",
+            "Interview prep guide"
+        ],
+        process: [
+            "Initial call to understand your goals",
+            "Create master resume and materials",
+            "Set up automated job search",
+            "Weekly curated opportunities + tailored applications"
+        ],
+        price: 7999,
+        imageUrl: "https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?w=400&h=300&fit=crop&q=80",
+        isGoldenEligible: false,
+        deliveryTime: "7-10 days"
+    },
+    {
+        id: "29",
+        name: "Freelance Business Setup",
+        category: "Professional",
+        description: "Complete setup for starting your freelance business",
+        fullDescription: "Ready to go freelance? We help you set up everything - portfolio, pricing, proposals, contracts, invoicing templates. Launch your freelance career with professional foundations.",
+        whatYouGet: [
+            "Freelance portfolio (website or PDF)",
+            "Service pricing guide",
+            "Proposal and contract templates",
+            "Invoice templates",
+            "Client onboarding process",
+            "Tips for finding clients"
+        ],
+        process: [
+            "Consultation about your skills and goals",
+            "We create all business documents",
+            "Build portfolio or profile",
+            "Handover with launch strategy"
+        ],
+        price: 6999,
+        imageUrl: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400&h=300&fit=crop&q=80",
+        isGoldenEligible: false,
+        deliveryTime: "7-10 days"
+    },
+    {
+        id: "30",
+        name: "Executive Bio & PR Package",
+        category: "Professional",
+        description: "Professional biography and media kit for executives",
+        fullDescription: "Position yourself as a thought leader. We create a powerful executive biography, speaker profile, and media kit. Perfect for executives, entrepreneurs, and professionals building their personal brand.",
+        whatYouGet: [
+            "Executive biography (short, medium, long versions)",
+            "Speaker profile/one-pager",
+            "Media kit with key facts",
+            "Social media bios",
+            "Professional headshot recommendations",
+            "2 revision rounds included"
+        ],
+        process: [
+            "In-depth interview about your journey",
+            "Research your industry positioning",
+            "Write compelling narrative",
+            "Deliver complete bio package"
+        ],
+        price: 4999,
+        imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=300&fit=crop&q=80",
+        isGoldenEligible: false,
+        deliveryTime: "5-7 days"
     },
 
     // =====================
-    // PERSONAL CATEGORY (5 services)
+    // PERSONAL CATEGORY (8 services)
     // =====================
     {
-        id: "26",
+        id: "31",
         name: "Complete Reel Script",
         category: "Personal",
         description: "Full script with hook, content, captions, and hashtags",
@@ -653,13 +783,13 @@ export const allServices: ServiceDetail[] = [
             "Write complete script package",
             "Deliver ready-to-shoot content"
         ],
-        price: 100,
+        price: 199,
         imageUrl: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: true,
         deliveryTime: "24 hours"
     },
     {
-        id: "27",
+        id: "32",
         name: "Personalized Monthly Diet Plan",
         category: "Personal",
         description: "Super personalized diet and nutrition plan for 30 days",
@@ -678,13 +808,13 @@ export const allServices: ServiceDetail[] = [
             "Create personalized 30-day plan",
             "Deliver with support for execution"
         ],
-        price: 150,
+        price: 349,
         imageUrl: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: true,
         deliveryTime: "2-3 days"
     },
     {
-        id: "28",
+        id: "33",
         name: "Photo Editing (5 Photos)",
         category: "Personal",
         description: "Professional photo editing for social media",
@@ -702,37 +832,13 @@ export const allServices: ServiceDetail[] = [
             "We edit each photo",
             "Deliver enhanced images"
         ],
-        price: 200,
+        price: 399,
         imageUrl: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: true,
         deliveryTime: "2-3 days"
     },
     {
-        id: "29",
-        name: "Social Media Video Creation",
-        category: "Personal",
-        description: "Complete video and image creation for social media",
-        fullDescription: "Need professional videos and images for your social media? We create engaging content for Reels, YouTube Shorts, Stories, and posts. From concept to final edit - we handle everything.",
-        whatYouGet: [
-            "1 edited video (15-60 seconds)",
-            "Captions and subtitles",
-            "Platform-optimized format",
-            "Thumbnail design",
-            "1 revision round included"
-        ],
-        process: [
-            "Share your content and vision",
-            "We create concept and script",
-            "Edit and produce final video",
-            "Deliver ready-to-post content"
-        ],
-        price: 800,
-        imageUrl: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "5-7 days"
-    },
-    {
-        id: "30",
+        id: "34",
         name: "Social Media Content Calendar",
         category: "Personal",
         description: "Content calendar with captions and hashtags for the month",
@@ -751,9 +857,107 @@ export const allServices: ServiceDetail[] = [
             "Create complete monthly calendar",
             "Deliver with posting strategy"
         ],
-        price: 300,
+        price: 599,
         imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=300&fit=crop&q=80",
         isGoldenEligible: false,
         deliveryTime: "3-4 days"
+    },
+    {
+        id: "35",
+        name: "AI Video Editing (Short Form)",
+        category: "Personal",
+        description: "Professional editing for Reels, Shorts, and TikToks",
+        fullDescription: "Transform your raw footage into viral-worthy content. We use AI-powered editing for captions, effects, transitions, and music. Perfect for content creators who want professional results fast.",
+        whatYouGet: [
+            "1 edited short video (15-60 seconds)",
+            "Auto-captions with styling",
+            "Trending transitions and effects",
+            "Music/sound selection",
+            "Platform-optimized export",
+            "1 revision round included"
+        ],
+        process: [
+            "Upload your raw footage",
+            "Share style preferences",
+            "We edit with AI tools + human touch",
+            "Deliver ready-to-post video"
+        ],
+        price: 499,
+        imageUrl: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&h=300&fit=crop&q=80",
+        isGoldenEligible: true,
+        deliveryTime: "24-48 hours"
+    },
+    {
+        id: "36",
+        name: "Social Media Video Creation",
+        category: "Personal",
+        description: "Complete video creation for social media",
+        fullDescription: "Need professional videos for your social media? We create engaging content for Reels, YouTube Shorts, Stories, and posts. From concept to final edit - we handle everything.",
+        whatYouGet: [
+            "1 edited video (up to 2 minutes)",
+            "Captions and subtitles",
+            "Platform-optimized format",
+            "Thumbnail design",
+            "2 revision rounds included"
+        ],
+        process: [
+            "Share your content and vision",
+            "We create concept and script",
+            "Edit and produce final video",
+            "Deliver ready-to-post content"
+        ],
+        price: 1499,
+        imageUrl: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&h=300&fit=crop&q=80",
+        isGoldenEligible: false,
+        deliveryTime: "5-7 days"
+    },
+    {
+        id: "37",
+        name: "Influencer Media Kit",
+        category: "Personal",
+        description: "Professional media kit to attract brand collaborations",
+        fullDescription: "Get more brand deals with a professional media kit. We create a stunning PDF that showcases your stats, audience demographics, past collaborations, and rates. Look professional, get paid more.",
+        whatYouGet: [
+            "Multi-page media kit PDF",
+            "Professional design",
+            "Stats and demographics visualization",
+            "Collaboration showcase",
+            "Rate card section",
+            "1 revision round included"
+        ],
+        process: [
+            "Share your social stats and info",
+            "We design professional layout",
+            "Add all your information",
+            "Deliver ready-to-send kit"
+        ],
+        price: 799,
+        imageUrl: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&h=300&fit=crop&q=80",
+        isGoldenEligible: false,
+        deliveryTime: "3-4 days"
+    },
+    {
+        id: "38",
+        name: "Personal AI Assistant Setup",
+        category: "Personal",
+        description: "Custom ChatGPT/AI assistant tailored to your needs",
+        fullDescription: "Get your own personalized AI assistant! We create custom GPT configurations, prompts, and workflows tailored to your specific needs - content creation, research, scheduling, or any daily task.",
+        whatYouGet: [
+            "Custom AI prompt library (20+ prompts)",
+            "Personalized GPT configuration",
+            "Workflow automation suggestions",
+            "Training on how to use effectively",
+            "1-week support for questions"
+        ],
+        process: [
+            "Consultation about your needs",
+            "We create custom prompts and configs",
+            "Test and refine for your use case",
+            "Training session + handover"
+        ],
+        price: 2999,
+        imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop&q=80",
+        isGoldenEligible: false,
+        deliveryTime: "5-7 days"
     }
 ];

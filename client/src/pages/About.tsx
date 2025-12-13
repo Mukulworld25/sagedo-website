@@ -27,8 +27,20 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Background Logo Watermark (same as homepage) */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        {/* Red glow effect in center */}
+        <div className="absolute w-64 h-64 bg-primary/20 rounded-full blur-[100px]" />
+        <img
+          src="/sagedo_logo_pro_clean.png"
+          alt=""
+          className="relative w-[500px] h-[500px] md:w-[600px] md:h-[600px] object-contain opacity-[0.08]"
+          style={{ filter: 'contrast(1.2)' }}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Company Section */}
         <section className="mb-20">
           <div className="grid md:grid-cols-2 gap-12 items-center">

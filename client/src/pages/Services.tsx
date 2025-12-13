@@ -33,11 +33,20 @@ export default function Services() {
 
   const categories = ["Business", "Student", "Professional", "Personal"];
 
+  // Search across ALL categories when there's a search query
+  // Otherwise, filter by active category
   const filteredServices = allServices.filter((service) => {
     const matchesCategory = service.category === activeCategory;
     const matchesSearch = service.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       service.description.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+
+    // If there's a search query, search ALL services (ignore category)
+    if (searchQuery.trim().length > 0) {
+      return matchesSearch;
+    }
+
+    // If no search query, filter by category
+    return matchesCategory;
   });
 
   return (
