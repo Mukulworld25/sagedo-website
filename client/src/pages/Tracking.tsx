@@ -190,6 +190,31 @@ export default function Tracking() {
                 };
                 const progress = progressMap[order.status] || 0;
 
+                // Calculate countdown timer
+                const getDeliveryHours = (deliveryTime?: string | null): number => {
+                  if (!deliveryTime) return 48; // Default 48 hours
+                  const timeStr = deliveryTime.toLowerCase();
+                  if (timeStr.includes('24 hour')) return 24;
+                  if (timeStr.includes('48 hour')) return 48;
+                  if (timeStr.includes('2-3 day')) return 72;
+                  if (timeStr.includes('3-5 day')) return 120;
+                  if (timeStr.includes('5-7 day')) return 168;
+                  if (timeStr.includes('7-10 day')) return 240;
+                  if (timeStr.includes('10-15 day')) return 360;
+                  if (timeStr.includes('15 day') || timeStr.includes('15+ day')) return 360;
+                  return 48;
+                };
+
+                const deliveryHours = getDeliveryHours(order.deliveryTime);
+                const orderDate = new Date(order.createdAt!);
+                const deliveryDate = new Date(orderDate.getTime() + deliveryHours * 60 * 60 * 1000);
+                const now = new Date();
+                const timeRemaining = deliveryDate.getTime() - now.getTime();
+
+                const days = Math.max(0, Math.floor(timeRemaining / (1000 * 60 * 60 * 24)));
+                const hours = Math.max(0, Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+                const minutes = Math.max(0, Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60)));
+
                 return (
                   <>
                     <div className="flex justify-between text-sm text-muted-foreground mb-2">
@@ -202,6 +227,38 @@ export default function Tracking() {
                         style={{ width: `${progress}%` }}
                       />
                     </div>
+
+                    {/* Countdown Timer */}
+                    {timeRemaining > 0 && (
+                      <div className="mt-4 p-4 bg-neutral-800/50 rounded-lg border border-primary/20">
+                        <div className="text-xs text-muted-foreground mb-2">⏱️ Estimated Delivery In:</div>
+                        <div className="flex gap-3 justify-center text-center">
+                          <div className="bg-neutral-900 rounded-lg p-3 min-w-[60px]">
+                            <div className="text-2xl font-bold text-primary">{days}</div>
+                            <div className="text-xs text-muted-foreground">Days</div>
+                          </div>
+                          <div className="bg-neutral-900 rounded-lg p-3 min-w-[60px]">
+                            <div className="text-2xl font-bold text-primary">{hours}</div>
+                            <div className="text-xs text-muted-foreground">Hours</div>
+                          </div>
+                          <div className="bg-neutral-900 rounded-lg p-3 min-w-[60px]">
+                            <div className="text-2xl font-bold text-primary">{minutes}</div>
+                            <div className="text-xs text-muted-foreground">Mins</div>
+                          </div>
+                        </div>
+                        <div className="text-xs text-center text-muted-foreground mt-2">
+                          Expected by: {deliveryDate.toLocaleDateString()} at {deliveryDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        </div>
+                      </div>
+                    )}
+                    {timeRemaining <= 0 && order.status !== 'delivered' && (
+                      <div className="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-center">
+                        <span className="text-yellow-500 text-sm font-medium">
+                          ⏰ Your order is taking longer than expected. We're on it!
+                        </span>
+                      </div>
+                    )}
+
                     <p className="text-sm text-muted-foreground mt-3">
                       {order.status === 'pending' && 'Your order is in the queue. We\'ll start working on it soon!'}
                       {order.status === 'processing' && 'We\'re actively working on your order. Great things take time!'}
