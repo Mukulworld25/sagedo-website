@@ -92,16 +92,41 @@ export default function Tracking() {
   const currentStageIndex = order ? statusToIndex[order.status] : -1;
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-black text-foreground mb-4">
-            Track Your Order
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground">
-            Enter your order ID to see the current status.
-          </p>
+    <div className="min-h-screen pt-16 pb-16">
+      {/* Large Hero Section with Background Image */}
+      <div className="relative min-h-[400px] lg:min-h-[500px] overflow-hidden mb-8">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src="/tracking_woman.png"
+            alt="SAGE DO Professional"
+            className="w-full h-full object-cover object-top"
+          />
+          {/* Gradient overlays for readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
         </div>
+
+        {/* Hero Content */}
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+          <div className="max-w-xl">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-foreground mb-6 leading-tight">
+              Track Your <span className="text-primary">Order</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8">
+              Enter your order ID to see real-time status and estimated delivery time.
+            </p>
+            <div className="flex items-center gap-3 text-sm text-muted-foreground">
+              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                <CheckCircle2 className="w-5 h-5 text-white" />
+              </div>
+              <span className="font-medium">AI + Human Excellence • We'll handle it for you ✨</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Search Form */}
         <Card className="glass p-8 mb-8">
