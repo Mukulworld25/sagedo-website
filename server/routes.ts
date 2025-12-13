@@ -524,6 +524,81 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Gallery routes (public)
+  app.get('/api/gallery', async (req, res) => {
+    try {
+      const items = await storage.getVisibleGalleryItems();
+      res.json(items);
+    } catch (error) {
+      console.error("Error fetching gallery:", error);
+      res.status(500).json({ message: "Failed to fetch gallery" });
+    }
+  });
+
+  // Admin Gallery routes
+  app.post('/api/admin/gallery', isAuthenticated, isAdmin, upload.single('image'), async (req: any, res) => {
+    try {
+      const { title, description, type, clientName, clientRole, rating } = req.body;
+
+      if (!title || !type) {
+        return res.status(400).json({ message: "Title and type are required" });
+      }
+
+      // If image uploaded, you would handle it here (e.g., upload to cloud storage)
+      // For now, we'll store image URL if provided
+      const imageUrl = req.body.imageUrl || null;
+
+      const item = await storage.createGalleryItem({
+        title,
+        description: description || null,
+        imageUrl,
+        type, // 'work_showcase' or 'testimonial'
+        clientName: clientName || null,
+        clientRole: clientRole || null,
+        rating: rating ? parseInt(rating) : null,
+        isVisible: true,
+      });
+
+      res.json(item);
+    } catch (error) {
+      console.error("Error creating gallery item:", error);
+      res.status(500).json({ message: "Failed to create gallery item" });
+    }
+  });
+
+  // Approve feedback as testimonial (adds to gallery)
+  app.post('/api/admin/feedback/:id/approve', isAuthenticated, isAdmin, async (req: any, res) => {
+    try {
+      const { clientName, clientRole } = req.body;
+      const feedbackId = req.params.id;
+
+      // Get the feedback
+      const feedbacks = await storage.getAllFeedbacks();
+      const feedback = feedbacks.find(f => f.id === feedbackId);
+
+      if (!feedback) {
+        return res.status(404).json({ message: "Feedback not found" });
+      }
+
+      // Create a testimonial gallery item from feedback
+      const item = await storage.createGalleryItem({
+        title: "Client Testimonial",
+        description: feedback.message,
+        imageUrl: null,
+        type: 'testimonial',
+        clientName: clientName || 'Anonymous User',
+        clientRole: clientRole || 'SAGE DO User',
+        rating: feedback.rating,
+        isVisible: true,
+      });
+
+      res.json({ success: true, testimonial: item });
+    } catch (error) {
+      console.error("Error approving feedback:", error);
+      res.status(500).json({ message: "Failed to approve feedback" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

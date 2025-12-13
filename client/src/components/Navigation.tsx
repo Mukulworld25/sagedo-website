@@ -11,7 +11,7 @@ export default function Navigation() {
   const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
 
   // GPT Prompts link - only shown to logged in users
-  const GPT_PROMPTS_LINK = "https://chat.openai.com/g/g-xxxxx"; // Replace with actual GPT link
+  const GPT_PROMPTS_LINK = "https://chatgpt.com/g/g-690c95a9e7dc8191b0338671195897a2-prompt-generator";
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -65,8 +65,8 @@ export default function Navigation() {
                   <button
                     data-testid={`nav-${link.label.toLowerCase()}`}
                     className={`text-sm font-medium px-4 py-2 rounded-lg transition-all duration-200 ${location === link.href
-                        ? "text-foreground bg-neutral-800/50 shadow-inner"
-                        : "text-muted-foreground hover:text-foreground hover:bg-neutral-800/30"
+                      ? "text-foreground bg-neutral-800/50 shadow-inner"
+                      : "text-muted-foreground hover:text-foreground hover:bg-neutral-800/30"
                       }`}
                   >
                     {link.label}
@@ -177,8 +177,8 @@ export default function Navigation() {
                   data-testid={`nav-mobile-${link.label.toLowerCase()}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors ${location === link.href
-                      ? "text-foreground bg-neutral-800/50"
-                      : "text-muted-foreground hover:text-foreground hover:bg-neutral-800/30"
+                    ? "text-foreground bg-neutral-800/50"
+                    : "text-muted-foreground hover:text-foreground hover:bg-neutral-800/30"
                     }`}
                 >
                   {link.label}

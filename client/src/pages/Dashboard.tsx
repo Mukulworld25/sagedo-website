@@ -4,10 +4,10 @@ import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { User, Order } from "@shared/schema";
-import { Coins, Gift, TrendingUp, FileText, Download } from "lucide-react";
+import { Coins, Gift, TrendingUp, FileText, Download, Trash2, AlertTriangle } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 
 export default function Dashboard() {
@@ -55,6 +55,36 @@ export default function Dashboard() {
   const handleEarnTokens = (amount: number, type: string, description: string) => {
     earnTokensMutation.mutate({ amount, type, description });
   };
+
+  // Delete Account feature
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
+
+  const deleteAccountMutation = useMutation({
+    mutationFn: async () => {
+      const response = await fetch(`${API_URL}/api/auth/account`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+      if (!response.ok) throw new Error('Failed to delete account');
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "Account Deleted",
+        description: "Your account has been permanently deleted. Goodbye!",
+      });
+      localStorage.removeItem('sagedo_user');
+      window.location.href = '/';
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
 
   if (isLoading) {
     return (
@@ -275,6 +305,59 @@ export default function Dashboard() {
               <p className="text-sm text-muted-foreground">View usage stats</p>
             </Button>
           </div>
+        </Card>
+
+        {/* Danger Zone - Delete Account */}
+        <Card className="glass p-6 mt-8 border-red-500/20">
+          <h2 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+            <AlertTriangle className="w-5 h-5 text-red-500" />
+            Danger Zone
+          </h2>
+
+          {!showDeleteConfirm ? (
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-foreground font-medium">Delete Account</p>
+                <p className="text-sm text-muted-foreground">
+                  Permanently delete your account and all associated data. This cannot be undone.
+                </p>
+              </div>
+              <Button
+                variant="outline"
+                className="border-red-500/50 text-red-500 hover:bg-red-500/10"
+                onClick={() => setShowDeleteConfirm(true)}
+              >
+                <Trash2 className="w-4 h-4 mr-2" />
+                Delete Account
+              </Button>
+            </div>
+          ) : (
+            <div className="bg-red-500/10 rounded-lg p-4 border border-red-500/30">
+              <p className="text-red-400 font-bold mb-2">⚠️ Are you absolutely sure?</p>
+              <p className="text-sm text-muted-foreground mb-4">
+                This will permanently delete your account, all orders, and you will lose access to GPT Prompts.
+                You cannot undo this action.
+              </p>
+              <div className="flex gap-3">
+                <Button
+                  variant="outline"
+                  className="glass"
+                  onClick={() => setShowDeleteConfirm(false)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  variant="destructive"
+                  onClick={() => deleteAccountMutation.mutate()}
+                  disabled={deleteAccountMutation.isPending}
+                  className="bg-red-600 hover:bg-red-700"
+                >
+                  <Trash2 className="w-4 h-4 mr-2" />
+                  {deleteAccountMutation.isPending ? "Deleting..." : "Yes, Delete My Account"}
+                </Button>
+              </div>
+            </div>
+          )}
         </Card>
       </div>
     </div >
