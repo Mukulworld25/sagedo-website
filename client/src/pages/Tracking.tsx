@@ -93,68 +93,48 @@ export default function Tracking() {
 
   return (
     <div className="min-h-screen pt-16 pb-16">
-      {/* Large Hero Section with Background Image */}
-      <div className="relative min-h-[400px] lg:min-h-[500px] overflow-hidden mb-8">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img
-            src="/tracking_woman.png"
-            alt="SAGE DO Professional"
-            className="w-full h-full object-cover object-top"
-          />
-          {/* Gradient overlays for readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-        </div>
+      {/* Full Height Image Section - Crystal Clear, No Overlay */}
+      <div className="relative min-h-[500px] lg:min-h-[600px] overflow-hidden">
+        {/* Background Image - Clear, No Tint */}
+        <img
+          src="/tracking_woman.png"
+          alt="SAGE DO Professional"
+          className="absolute inset-0 w-full h-full object-cover object-top"
+        />
 
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-          <div className="max-w-xl">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-foreground mb-6 leading-tight">
-              Track Your <span className="text-primary">Order</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8">
-              Enter your order ID to see real-time status and estimated delivery time.
-            </p>
-            <div className="flex items-center gap-3 text-sm text-muted-foreground">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                <CheckCircle2 className="w-5 h-5 text-white" />
+        {/* Transparent Search Bar Overlay */}
+        <div className="absolute inset-0 flex items-center justify-center px-4">
+          <Card className="glass backdrop-blur-md bg-background/30 border-white/20 p-8 w-full max-w-md shadow-2xl">
+            <h2 className="text-2xl font-bold text-foreground mb-4 text-center">Track Your Order</h2>
+            <form onSubmit={handleTrack} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="orderId" className="text-foreground">
+                  Order ID
+                </Label>
+                <Input
+                  id="orderId"
+                  value={orderId}
+                  onChange={(e) => setOrderId(e.target.value)}
+                  placeholder="Enter your order ID"
+                  data-testid="input-order-id"
+                  className="bg-background/50 border-white/30"
+                />
               </div>
-              <span className="font-medium">AI + Human Excellence • We'll handle it for you ✨</span>
-            </div>
-          </div>
+              <Button
+                type="submit"
+                size="lg"
+                disabled={isLoading}
+                data-testid="button-track-order"
+                className="w-full bg-gradient-to-r from-primary to-destructive hover:opacity-90"
+              >
+                {isLoading ? "Tracking..." : "Track Order"}
+              </Button>
+            </form>
+          </Card>
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Search Form */}
-        <Card className="glass p-8 mb-8">
-          <form onSubmit={handleTrack} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="orderId" className="text-foreground">
-                Order ID
-              </Label>
-              <Input
-                id="orderId"
-                value={orderId}
-                onChange={(e) => setOrderId(e.target.value)}
-                placeholder="Enter your order ID"
-                data-testid="input-order-id"
-                className="glass border-border/50"
-              />
-            </div>
-            <Button
-              type="submit"
-              size="lg"
-              disabled={isLoading}
-              data-testid="button-track-order"
-              className="w-full bg-gradient-to-r from-primary to-destructive hover:opacity-90"
-            >
-              {isLoading ? "Tracking..." : "Track Order"}
-            </Button>
-          </form>
-        </Card>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
 
         {/* Mini Game - Always visible (not dependent on order) */}
         <Card className="glass p-6 mb-8">
@@ -410,88 +390,79 @@ export default function Tracking() {
           </Card>
         )}
 
-        {/* Feedback Section - Embedded */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Card className="glass p-8">
-            <div className="flex items-center gap-3 mb-6">
-              <MessageSquare className="w-6 h-6 text-primary" />
-              <h2 className="text-2xl font-bold text-foreground">Share Your Experience</h2>
+        {/* Feedback & Trust Section - Redesigned */}
+        <div className="space-y-6">
+          {/* Feedback Form - Compact Design */}
+          <Card className="glass p-6 border-primary/20">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-destructive flex items-center justify-center">
+                <MessageSquare className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h2 className="text-xl font-bold text-foreground">Share Your Experience</h2>
+                <p className="text-sm text-muted-foreground">Your feedback helps us improve</p>
+              </div>
             </div>
-            <p className="text-muted-foreground mb-6">
-              How was your experience with SAGE DO? Your feedback helps us serve you better.
-            </p>
-
-            <div className="space-y-6">
-              <div className="flex justify-center space-x-2">
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex gap-1 justify-center md:justify-start">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button
                     key={star}
                     type="button"
                     onClick={() => setRating(star)}
-                    className={`p-1 transition-colors ${star <= rating ? "text-yellow-500" : "text-muted-foreground"
-                      }`}
+                    className={`p-1 transition-transform hover:scale-110 ${star <= rating ? "text-yellow-500" : "text-neutral-600"}`}
                   >
-                    <Star className="w-8 h-8 fill-current" />
+                    <Star className="w-7 h-7 fill-current" />
                   </button>
                 ))}
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="message">Your Message</Label>
-                <Textarea
-                  id="message"
+              <div className="flex-1 flex gap-2">
+                <Input
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Tell us what you think..."
-                  className="glass min-h-[100px]"
+                  className="bg-background/50"
                 />
+                <Button
+                  onClick={() => feedbackMutation.mutate()}
+                  disabled={feedbackMutation.isPending || !message.trim()}
+                  className="bg-gradient-to-r from-primary to-destructive shrink-0"
+                >
+                  {feedbackMutation.isPending ? "..." : "Submit"}
+                </Button>
               </div>
-              <Button
-                onClick={() => feedbackMutation.mutate()}
-                disabled={feedbackMutation.isPending || !message.trim()}
-                className="w-full bg-gradient-to-r from-primary to-destructive"
-              >
-                {feedbackMutation.isPending ? "Submitting..." : "Submit Feedback"}
-              </Button>
             </div>
           </Card>
 
-          {/* Why Choose Us - Engaging Content */}
-          <div className="space-y-6">
-            <Card className="glass p-6 flex items-start gap-4">
-              <div className="p-3 rounded-full bg-primary/10 text-primary">
-                <ShieldCheck className="w-6 h-6" />
+          {/* Trust Badges - Horizontal Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="flex items-center gap-3 p-4 rounded-xl bg-neutral-800/50 border border-neutral-700/50">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500/20 to-green-600/20 flex items-center justify-center">
+                <ShieldCheck className="w-6 h-6 text-green-500" />
               </div>
               <div>
-                <h3 className="font-bold text-lg mb-1">Secure & Private</h3>
-                <p className="text-sm text-muted-foreground">
-                  Your data is encrypted and handled with the utmost confidentiality.
-                </p>
+                <h3 className="font-bold text-foreground">Secure & Private</h3>
+                <p className="text-xs text-muted-foreground">100% encrypted data</p>
               </div>
-            </Card>
-
-            <Card className="glass p-6 flex items-start gap-4">
-              <div className="p-3 rounded-full bg-primary/10 text-primary">
-                <Zap className="w-6 h-6" />
+            </div>
+            <div className="flex items-center gap-3 p-4 rounded-xl bg-neutral-800/50 border border-neutral-700/50">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500/20 to-orange-600/20 flex items-center justify-center">
+                <Zap className="w-6 h-6 text-yellow-500" />
               </div>
               <div>
-                <h3 className="font-bold text-lg mb-1">Fast Delivery</h3>
-                <p className="text-sm text-muted-foreground">
-                  We prioritize speed without compromising on quality.
-                </p>
+                <h3 className="font-bold text-foreground">Fast Delivery</h3>
+                <p className="text-xs text-muted-foreground">Speed + quality</p>
               </div>
-            </Card>
-
-            <Card className="glass p-6 flex items-start gap-4">
-              <div className="p-3 rounded-full bg-primary/10 text-primary">
-                <Heart className="w-6 h-6" />
+            </div>
+            <div className="flex items-center gap-3 p-4 rounded-xl bg-neutral-800/50 border border-neutral-700/50">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500/20 to-red-600/20 flex items-center justify-center">
+                <Heart className="w-6 h-6 text-pink-500" />
               </div>
               <div>
-                <h3 className="font-bold text-lg mb-1">Satisfaction Guaranteed</h3>
-                <p className="text-sm text-muted-foreground">
-                  Not happy? We'll work with you until it's right.
-                </p>
+                <h3 className="font-bold text-foreground">Satisfaction</h3>
+                <p className="text-xs text-muted-foreground">100% guaranteed</p>
               </div>
-            </Card>
+            </div>
           </div>
         </div>
       </div>
