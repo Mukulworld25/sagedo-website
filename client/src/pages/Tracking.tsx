@@ -131,6 +131,18 @@ export default function Tracking() {
           </form>
         </Card>
 
+        {/* Mini Game - Always visible (not dependent on order) */}
+        <Card className="glass p-6 mb-8">
+          <div className="flex items-center gap-3 mb-4">
+            <Gamepad2 className="w-6 h-6 text-primary" />
+            <h3 className="text-lg font-bold text-foreground">Play While You Wait 🎮</h3>
+          </div>
+          <p className="text-sm text-muted-foreground mb-4">
+            Click the red dots before they disappear! Beat your high score 🎯
+          </p>
+          <MiniGame />
+        </Card>
+
         {/* Order Details */}
         {order && (
           <Card className="glass p-8 mb-8">

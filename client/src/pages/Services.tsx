@@ -143,9 +143,8 @@ export default function Services() {
                     }}
                   />
                   {service.isGoldenEligible && (
-                    <Badge className="absolute top-2 right-2 z-[1000] bg-gradient-to-r from-yellow-400 to-amber-600 text-white border-0 shadow-lg" data-testid={`badge-golden-${service.id}`}>
-                      <Star className="w-3 h-3 mr-1 fill-current" />
-                      Golden Ticket
+                    <Badge className="absolute top-2 right-2 z-[1000] bg-gradient-to-r from-yellow-400 to-amber-600 text-black border-0 shadow-lg text-xs font-bold animate-pulse" data-testid={`badge-golden-${service.id}`}>
+                      ✨ FREE with Golden Ticket!
                     </Badge>
                   )}
                 </div>
@@ -155,7 +154,14 @@ export default function Services() {
                     {service.description}
                   </p>
                   <div className="flex items-center justify-between">
-                    <span className="text-xl font-bold text-primary" data-testid={`text-service-price-${service.id}`}>₹{service.price}</span>
+                    {service.isGoldenEligible ? (
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg text-muted-foreground line-through">₹{service.price}</span>
+                        <span className="text-xl font-bold text-green-500" data-testid={`text-service-price-${service.id}`}>FREE</span>
+                      </div>
+                    ) : (
+                      <span className="text-xl font-bold text-primary" data-testid={`text-service-price-${service.id}`}>₹{service.price}</span>
+                    )}
                     <span className="text-xs text-muted-foreground" data-testid={`text-service-delivery-${service.id}`}>{service.deliveryTime}</span>
                   </div>
                   <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}&delivery=${encodeURIComponent(service.deliveryTime)}`}>

@@ -3,16 +3,16 @@ import { FeedbackDialog } from "./FeedbackDialog";
 
 export default function Footer() {
   return (
-    <footer className="mt-20 py-12 border-t border-border/20 glass relative overflow-hidden">
+    <footer className="mt-20 py-12 border-t border-border/20 bg-neutral-900 relative overflow-hidden">
       {/* Background Logo Watermark (same as homepage) */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        {/* Red glow effect in center */}
-        <div className="absolute w-48 h-48 bg-primary/15 rounded-full blur-[80px]" />
+        {/* Red glow effect in center - stronger */}
+        <div className="absolute w-64 h-64 bg-primary/25 rounded-full blur-[100px]" />
         <img
           src="/sagedo_logo_pro_clean.png"
           alt=""
-          className="relative w-[300px] h-[300px] object-contain opacity-[0.06]"
-          style={{ filter: 'contrast(1.2)' }}
+          className="relative w-[350px] h-[350px] object-contain opacity-[0.15]"
+          style={{ filter: 'contrast(1.3)' }}
         />
       </div>
 
