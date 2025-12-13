@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { setupAuth, registerCustomer, loginUser, isAuthenticated, isAdmin } from "./auth";
 import { createPaymentOrder, verifyPaymentSignature } from "./payment";
-import { sendPaymentSuccessEmail, sendOrderDeliveredEmail, sendAccountDeletionEmail } from "./email";
+import { sendOrderConfirmationEmail, sendPaymentSuccessEmail, sendOrderDeliveredEmail, sendAccountDeletionEmail } from "./email";
 import multer from "multer";
 
 // Configure multer for file uploads
@@ -268,6 +268,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Order created successfully
       console.log('New order created:', order.id);
+
+      // Send order confirmation email to customer and admin
+      await sendOrderConfirmationEmail({
+        customerName: customerName || 'Customer',
+        customerEmail,
+        orderId: order.id,
+        serviceName,
+        amount: 0, // Amount will be set after payment
+        orderDate: new Date().toLocaleDateString('en-IN'),
+      });
 
       res.json(order);
     } catch (error) {
