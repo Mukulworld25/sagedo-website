@@ -3,8 +3,20 @@ import { FeedbackDialog } from "./FeedbackDialog";
 
 export default function Footer() {
   return (
-    <footer className="mt-20 py-12 border-t border-border/20 glass">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="mt-20 py-12 border-t border-border/20 glass relative overflow-hidden">
+      {/* Background Logo Watermark (same as homepage) */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        {/* Red glow effect in center */}
+        <div className="absolute w-48 h-48 bg-primary/15 rounded-full blur-[80px]" />
+        <img
+          src="/sagedo_logo_pro_clean.png"
+          alt=""
+          className="relative w-[300px] h-[300px] object-contain opacity-[0.06]"
+          style={{ filter: 'contrast(1.2)' }}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center space-y-4">
           <p className="text-muted-foreground text-sm">
             Made in India 🇮🇳 • © 2025 SAGEDO AI • All Rights Reserved

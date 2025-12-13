@@ -1,12 +1,15 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { Order, Feedback } from "@shared/schema";
-import { RefreshCw, CheckCircle2, Clock, Package, Truck, MessageSquare, Star, Eye } from "lucide-react";
+import { RefreshCw, CheckCircle2, Clock, Package, Truck, MessageSquare, Star, Eye, Plus, ImageIcon, ThumbsUp } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
@@ -47,6 +50,69 @@ export default function Admin() {
         description: error.message,
         variant: "destructive",
       });
+    },
+  });
+
+  // Portfolio state
+  const [portfolioTitle, setPortfolioTitle] = useState("");
+  const [portfolioDescription, setPortfolioDescription] = useState("");
+  const [portfolioImageUrl, setPortfolioImageUrl] = useState("");
+  const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
+
+  // Approve feedback as testimonial
+  const approveFeedbackMutation = useMutation({
+    mutationFn: async ({ feedbackId, clientName }: { feedbackId: string; clientName: string }) => {
+      const response = await fetch(`${API_URL}/api/admin/feedback/${feedbackId}/approve`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ clientName, clientRole: 'SAGE DO Customer' }),
+      });
+      if (!response.ok) throw new Error('Failed to approve');
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/feedback"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/gallery"] });
+      toast({
+        title: "Testimonial Added!",
+        description: "Feedback has been approved and added to testimonials.",
+      });
+    },
+    onError: (error: Error) => {
+      toast({ title: "Error", description: error.message, variant: "destructive" });
+    },
+  });
+
+  // Post portfolio work
+  const postPortfolioMutation = useMutation({
+    mutationFn: async () => {
+      const response = await fetch(`${API_URL}/api/admin/gallery`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+          title: portfolioTitle,
+          description: portfolioDescription,
+          imageUrl: portfolioImageUrl || null,
+          type: 'work_showcase',
+        }),
+      });
+      if (!response.ok) throw new Error('Failed to post');
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/gallery"] });
+      setPortfolioTitle("");
+      setPortfolioDescription("");
+      setPortfolioImageUrl("");
+      toast({
+        title: "Portfolio Updated!",
+        description: "Your work has been added to the portfolio.",
+      });
+    },
+    onError: (error: Error) => {
+      toast({ title: "Error", description: error.message, variant: "destructive" });
     },
   });
 
@@ -205,18 +271,19 @@ export default function Admin() {
           </Card>
         </div>
 
-        {/* Feedback Section */}
+        {/* Feedback Section - With Approve Buttons */}
         <Card className="glass p-6 mb-8">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
             <MessageSquare className="w-6 h-6" />
             User Feedback
+            <Badge variant="outline" className="ml-2">{feedbacks.length} total</Badge>
           </h2>
           {feedbacks.length > 0 ? (
             <div className="space-y-4">
               {feedbacks.map((feedback) => (
-                <div key={feedback.id} className="border-b border-border/50 pb-4 last:border-0 last:pb-0">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
+                <div key={feedback.id} className="border-b border-border/50 pb-4 last:border-0 last:pb-0 flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
                       <div className="flex">
                         {[...Array(5)].map((_, i) => (
                           <Star
@@ -230,14 +297,78 @@ export default function Admin() {
                         {new Date(feedback.createdAt!).toLocaleDateString()}
                       </span>
                     </div>
+                    <p className="text-foreground">{feedback.message}</p>
                   </div>
-                  <p className="text-foreground">{feedback.message}</p>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="border-green-500/50 text-green-500 hover:bg-green-500/10 shrink-0"
+                    onClick={() => approveFeedbackMutation.mutate({
+                      feedbackId: feedback.id,
+                      clientName: 'Happy Customer'
+                    })}
+                    disabled={approveFeedbackMutation.isPending}
+                  >
+                    <ThumbsUp className="w-4 h-4 mr-1" />
+                    Approve
+                  </Button>
                 </div>
               ))}
             </div>
           ) : (
             <p className="text-muted-foreground">No feedback received yet.</p>
           )}
+        </Card>
+
+        {/* Portfolio Posting Form */}
+        <Card className="glass p-6 mb-8 border-primary/20">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <ImageIcon className="w-6 h-6 text-primary" />
+            Post Work Showcase
+          </h2>
+          <p className="text-muted-foreground mb-4">
+            Add delivered work to your portfolio. This will appear on the About page.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div className="space-y-2">
+              <Label htmlFor="portfolioTitle">Title</Label>
+              <Input
+                id="portfolioTitle"
+                placeholder="e.g., Logo Design for ABC Corp"
+                value={portfolioTitle}
+                onChange={(e) => setPortfolioTitle(e.target.value)}
+                className="glass"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="portfolioImageUrl">Image URL (optional)</Label>
+              <Input
+                id="portfolioImageUrl"
+                placeholder="https://example.com/image.jpg"
+                value={portfolioImageUrl}
+                onChange={(e) => setPortfolioImageUrl(e.target.value)}
+                className="glass"
+              />
+            </div>
+          </div>
+          <div className="space-y-2 mb-4">
+            <Label htmlFor="portfolioDescription">Description</Label>
+            <Textarea
+              id="portfolioDescription"
+              placeholder="Brief description of the work delivered..."
+              value={portfolioDescription}
+              onChange={(e) => setPortfolioDescription(e.target.value)}
+              className="glass min-h-[80px]"
+            />
+          </div>
+          <Button
+            onClick={() => postPortfolioMutation.mutate()}
+            disabled={!portfolioTitle.trim() || postPortfolioMutation.isPending}
+            className="bg-gradient-to-r from-primary to-destructive"
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            {postPortfolioMutation.isPending ? "Posting..." : "Post to Portfolio"}
+          </Button>
         </Card>
 
         <h2 className="text-2xl font-bold mb-4">Order Management</h2>
@@ -251,6 +382,7 @@ export default function Admin() {
                I'll stick to the top 4 cards I defined above which mix Analytics and Orders.
            */}
         </div>
+
 
         {/* Orders Table */}
         <Card className="glass overflow-hidden">
