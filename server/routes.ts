@@ -137,7 +137,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Dashboard routes (protected)
   app.get('/api/dashboard/user', isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.session.user.id;
       const user = await storage.getUser(userId);
 
       // Give welcome bonus if user hasn't received it yet
@@ -168,7 +168,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get('/api/dashboard/orders', isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.session.user.id;
       const orders = await storage.getOrdersByUserId(userId);
       res.json(orders);
     } catch (error) {
@@ -180,7 +180,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Token routes (protected)
   app.post('/api/tokens/earn', isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.session.user.id;
       const { amount, type, description } = req.body;
 
       if (!amount || !type || !description) {
@@ -234,8 +234,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Missing required fields" });
       }
 
-      // Use email as userId for guest orders (no auth required)
-      const userId = req.user?.claims?.sub || `guest_${customerEmail}`;
+      // Use session user if logged in, otherwise create guest userId
+      const userId = req.session?.user?.id || `guest_${customerEmail}`;
 
       // Ensure user exists to satisfy foreign key constraint
       let user = await storage.getUser(userId);
