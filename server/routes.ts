@@ -332,7 +332,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // File upload route - Now using Cloudinary for permanent storage
+  // File upload route - Now using Supabase Storage
   app.post('/api/upload', upload.array('files', 10), async (req, res) => {
     try {
       const files = req.files as Express.Multer.File[];
@@ -341,24 +341,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "No files provided" });
       }
 
-      // Check if Cloudinary is configured
-      if (!process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
-        console.warn("Cloudinary not configured - returning mock URLs");
+      // Check if Supabase is configured (we need at least URL, key might be optional if public but good practice)
+      if (!process.env.SUPABASE_URL) {
+        console.warn("Supabase not fully configured - returning mock URLs");
         const urls = files.map(file => `/uploads/${Date.now()}-${file.originalname}`);
         return res.json({ urls });
       }
 
-      // Upload to Cloudinary for permanent storage
-      const { uploadMultipleToCloudinary } = await import('./cloudinary');
+      // Upload to Supabase Storage
+      const { uploadMultipleToSupabase } = await import('./supabase');
       const uploadData = files.map(file => ({
         buffer: file.buffer,
         originalName: file.originalname,
       }));
 
-      const results = await uploadMultipleToCloudinary(uploadData);
+      const results = await uploadMultipleToSupabase(uploadData);
       const urls = results.map(r => r.url);
 
-      console.log('Files uploaded to Cloudinary:', urls);
+      console.log('Files uploaded to Supabase:', urls);
       res.json({ urls });
     } catch (error) {
       console.error("Error uploading files:", error);
