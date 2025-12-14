@@ -92,14 +92,19 @@ export class DatabaseStorage implements IStorage {
       .insert(users)
       .values({
         ...userData,
-        tokenBalance: 0,
-        hasGoldenTicket: false,
-        hasWelcomeBonus: false,
+        // Use passed values, only default to 0/false if not provided
+        tokenBalance: userData.tokenBalance ?? 0,
+        hasGoldenTicket: userData.hasGoldenTicket ?? false,
+        hasWelcomeBonus: userData.hasWelcomeBonus ?? false,
       })
       .onConflictDoUpdate({
         target: users.id,
         set: {
           ...userData,
+          // On update, preserve passed values including tokenBalance
+          tokenBalance: userData.tokenBalance,
+          hasGoldenTicket: userData.hasGoldenTicket,
+          hasWelcomeBonus: userData.hasWelcomeBonus,
           updatedAt: new Date(),
         },
       })

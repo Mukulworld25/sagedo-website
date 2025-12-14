@@ -283,30 +283,6 @@ export default function Dashboard() {
           )}
         </Card>
 
-        {/* Offline AI Tools */}
-        <Card className="glass p-6 mt-8">
-          <h2 className="text-2xl font-bold text-foreground mb-6">Offline AI Tools</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <Button variant="outline" className="glass p-6 h-auto flex-col items-start hover-elevate">
-              <FileText className="w-8 h-8 mb-3 text-primary" />
-              <p className="text-lg font-bold text-foreground mb-1">Text Generator</p>
-              <p className="text-sm text-muted-foreground">Generate content offline</p>
-            </Button>
-
-            <Button variant="outline" className="glass p-6 h-auto flex-col items-start hover-elevate">
-              <Download className="w-8 h-8 mb-3 text-primary" />
-              <p className="text-lg font-bold text-foreground mb-1">PDF Export</p>
-              <p className="text-sm text-muted-foreground">Export orders as PDF</p>
-            </Button>
-
-            <Button variant="outline" className="glass p-6 h-auto flex-col items-start hover-elevate">
-              <TrendingUp className="w-8 h-8 mb-3 text-primary" />
-              <p className="text-lg font-bold text-foreground mb-1">Analytics</p>
-              <p className="text-sm text-muted-foreground">View usage stats</p>
-            </Button>
-          </div>
-        </Card>
-
         {/* Danger Zone - Delete Account */}
         <Card className="glass p-6 mt-8 border-red-500/20">
           <h2 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">

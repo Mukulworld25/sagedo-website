@@ -145,24 +145,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get('/api/dashboard/user', isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.session.user.id;
-      const user = await storage.getUser(userId);
+      let user = await storage.getUser(userId);
+
+      // Create user in database if they don't exist (from session-only login)
+      if (!user) {
+        user = await storage.upsertUser({
+          id: userId,
+          email: req.session.user.email,
+          name: req.session.user.name,
+          isAdmin: req.session.user.isAdmin || false,
+          tokenBalance: 150,
+          hasGoldenTicket: true,
+          hasWelcomeBonus: true,
+        });
+        return res.json(user);
+      }
 
       // Give welcome bonus if user hasn't received it yet
-      if (user && !user.hasWelcomeBonus) {
+      if (!user.hasWelcomeBonus) {
+        // Add token transaction
         await storage.addTokenTransaction({
           userId: user.id,
           amount: 150,
           type: 'welcome',
-          description: 'Welcome bonus',
+          description: 'Welcome bonus - FREE GPT + Golden Ticket',
         });
-        // Update user to mark welcome bonus as given
-        await storage.upsertUser({
+        // Update user with BOTH tokenBalance AND hasGoldenTicket
+        const updatedUser = await storage.upsertUser({
           ...user,
+          tokenBalance: (user.tokenBalance || 0) + 150,
           hasGoldenTicket: true,
           hasWelcomeBonus: true,
         });
-        // Fetch updated user
-        const updatedUser = await storage.getUser(userId);
         return res.json(updatedUser);
       }
 
