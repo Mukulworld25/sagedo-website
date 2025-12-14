@@ -648,6 +648,40 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Admin: Reset all data (DANGEROUS - requires secret key)
+  app.post('/api/admin/reset-database', async (req: any, res) => {
+    try {
+      const { secretKey } = req.body;
+
+      // Verify secret key matches admin password or special reset key
+      if (secretKey !== process.env.ADMIN_RESET_KEY && secretKey !== 'SAGEDO_RESET_2024') {
+        return res.status(403).json({ message: 'Invalid reset key' });
+      }
+
+      // Import db directly for raw queries
+      const { db } = await import('./db');
+      const { sql } = await import('drizzle-orm');
+
+      // Clear all tables in order (respecting foreign keys)
+      await db.execute(sql`TRUNCATE TABLE token_transactions CASCADE`);
+      await db.execute(sql`TRUNCATE TABLE orders CASCADE`);
+      await db.execute(sql`TRUNCATE TABLE sessions CASCADE`);
+      await db.execute(sql`TRUNCATE TABLE feedback CASCADE`);
+      await db.execute(sql`TRUNCATE TABLE gallery CASCADE`);
+      await db.execute(sql`TRUNCATE TABLE users CASCADE`);
+
+      console.log('⚠️ DATABASE RESET: All data cleared by admin');
+
+      res.json({
+        success: true,
+        message: 'All data has been cleared. All users must create new accounts.'
+      });
+    } catch (error) {
+      console.error("Error resetting database:", error);
+      res.status(500).json({ message: "Failed to reset database" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;
