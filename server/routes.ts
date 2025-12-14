@@ -269,17 +269,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Order created successfully
       console.log('New order created:', order.id);
 
-      // Send order confirmation email to customer and admin
-      await sendOrderConfirmationEmail({
+      // Send response immediately (don't wait for email)
+      res.json(order);
+
+      // Send order confirmation email in background (fire-and-forget)
+      sendOrderConfirmationEmail({
         customerName: customerName || 'Customer',
         customerEmail,
         orderId: order.id,
         serviceName,
         amount: 0, // Amount will be set after payment
         orderDate: new Date().toLocaleDateString('en-IN'),
-      });
-
-      res.json(order);
+      }).catch(err => console.error('Email failed (background):', err));
     } catch (error) {
       console.error("Error creating order:", error);
       res.status(500).json({ message: "Failed to create order" });
@@ -366,9 +367,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const order = await storage.getOrderById(orderId);
         if (order) {
           await storage.updateOrderStatus(orderId, 'processing');
+        }
 
-          // Send payment success email
-          await sendPaymentSuccessEmail({
+        // Send response immediately (don't wait for email)
+        res.json({ success: true, message: 'Payment verified successfully' });
+
+        // Send payment success email in background (fire-and-forget)
+        if (order) {
+          sendPaymentSuccessEmail({
             customerName: order.customerName || 'Customer',
             customerEmail: order.customerEmail,
             orderId: order.id,
@@ -377,10 +383,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
             orderDate: order.createdAt.toLocaleDateString(),
             paymentId: razorpay_payment_id,
             paymentMethod: 'Razorpay'
-          });
+          }).catch(err => console.error('Payment email failed (background):', err));
         }
-
-        res.json({ success: true, message: 'Payment verified successfully' });
       } else {
         res.status(400).json({ success: false, message: 'Invalid payment signature' });
       }
