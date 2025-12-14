@@ -121,6 +121,14 @@ export const feedbacks = pgTable("feedbacks", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+// Track emails that have used welcome bonus (prevents abuse on account delete/recreate)
+export const usedEmails = pgTable("used_emails", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  email: varchar("email").unique().notNull(),
+  reason: varchar("reason", { length: 50 }).default("welcome_bonus"), // welcome_bonus, golden_ticket_used
+  usedAt: timestamp("used_at").defaultNow(),
+});
+
 // Relations
 export const usersRelations = relations(users, ({ many }) => ({
   orders: many(orders),

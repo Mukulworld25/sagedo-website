@@ -38,20 +38,28 @@ export async function registerCustomer(email: string, password: string, name: st
         throw new Error('Email already registered');
     }
 
+    // Check if this email has previously used welcome bonus (abuse prevention)
+    const emailPreviouslyUsed = await storage.isEmailUsed(email);
+
     // Hash password
     const passwordHash = await bcrypt.hash(password, 10);
 
-    // Create user
+    // Create user - only give bonus if email wasn't previously used
     const user = await storage.createUser({
         id: uuidv4(),
         email,
         passwordHash,
         name,
         isAdmin: false,
-        tokenBalance: 150, // Welcome bonus
-        hasGoldenTicket: true,
-        hasWelcomeBonus: true,
+        tokenBalance: emailPreviouslyUsed ? 0 : 150, // No bonus if email was used before
+        hasGoldenTicket: emailPreviouslyUsed ? false : true,
+        hasWelcomeBonus: emailPreviouslyUsed ? false : true,
     });
+
+    // Mark email as used for future abuse prevention
+    if (!emailPreviouslyUsed) {
+        await storage.markEmailUsed(email, 'welcome_bonus');
+    }
 
     return user;
 }

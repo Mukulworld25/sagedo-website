@@ -302,6 +302,21 @@ export class DatabaseStorage implements IStorage {
   async getAllFeedbacks(): Promise<Feedback[]> {
     return await db.select().from(feedbacks).orderBy(desc(feedbacks.createdAt));
   }
+
+  // Email abuse prevention - track emails that have used welcome bonus
+  async isEmailUsed(email: string): Promise<boolean> {
+    const { usedEmails } = await import("@shared/schema");
+    const [result] = await db.select().from(usedEmails).where(eq(usedEmails.email, email.toLowerCase()));
+    return !!result;
+  }
+
+  async markEmailUsed(email: string, reason: string = 'welcome_bonus'): Promise<void> {
+    const { usedEmails } = await import("@shared/schema");
+    await db.insert(usedEmails).values({
+      email: email.toLowerCase(),
+      reason
+    }).onConflictDoNothing();
+  }
 }
 
 export const storage = new DatabaseStorage();
