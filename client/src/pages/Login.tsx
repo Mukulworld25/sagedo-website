@@ -61,7 +61,7 @@ export default function Login() {
 
                 toast({
                     title: isRegister ? '🎉 Welcome to SAGE DO!' : '✅ Welcome back!',
-                    description: isRegister ? "You've received ₹150 + 1 Golden Ticket!" : 'Successfully logged in'
+                    description: isRegister ? "You've received FREE GPT Prompts + 1 Golden Ticket!" : 'Successfully logged in'
                 });
 
                 if (data.user.isAdmin) {
@@ -110,7 +110,7 @@ export default function Login() {
                     </h1>
                     <p className="text-muted-foreground">
                         {isRegister
-                            ? 'Get ₹150 credits + 1 Golden Ticket on signup!'
+                            ? 'Get FREE GPT Prompts + 1 Golden Ticket on signup!'
                             : 'Login to access your dashboard'}
                     </p>
                 </div>
@@ -179,8 +179,8 @@ export default function Login() {
                                     ))}
                                 </div>
                                 <span className={`text-xs font-medium ${passwordStrength.level === 4 ? 'text-green-500' :
-                                        passwordStrength.level === 3 ? 'text-yellow-500' :
-                                            passwordStrength.level === 2 ? 'text-orange-500' : 'text-red-500'
+                                    passwordStrength.level === 3 ? 'text-yellow-500' :
+                                        passwordStrength.level === 2 ? 'text-orange-500' : 'text-red-500'
                                     }`}>
                                     {passwordStrength.text}
                                 </span>

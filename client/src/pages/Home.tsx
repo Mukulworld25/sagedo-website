@@ -210,7 +210,7 @@ export default function Home() {
                 </div>
 
                 <p className="text-xl md:text-2xl text-foreground font-semibold mb-6">
-                  Get <span className="text-3xl text-amber-500 font-black">FREE ₹150</span> + 1 Golden Ticket on Signup!
+                  Get <span className="text-3xl text-amber-500 font-black">FREE GPT Prompts</span> + 1 Golden Ticket on Signup!
                 </p>
 
                 <div className="space-y-3 text-muted-foreground mb-8">
@@ -232,7 +232,7 @@ export default function Home() {
                   <Link href="/login?register=true">
                     <Button size="lg" className="h-12 px-6 bg-gradient-to-r from-amber-500 to-amber-600 text-amber-950 font-bold hover:opacity-90 rounded-xl shadow-lg shadow-amber-500/25">
                       <Gift className="mr-2 h-5 w-5" />
-                      Claim FREE ₹150 Now
+                      Claim FREE GPT Now
                     </Button>
                   </Link>
                   <Link href="/services">
@@ -428,7 +428,7 @@ export default function Home() {
           </h2>
           <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
             Join 150+ Indians who've already simplified their lives with SAGE DO.
-            Start with FREE ₹150 credits today.
+            Start with FREE GPT Prompts + Golden Ticket today.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/login?register=true">
