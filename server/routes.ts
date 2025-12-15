@@ -265,7 +265,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           id: userId,
           email: customerEmail,
           name: customerName || "Guest User",
-          picture: "",
+          profileImageUrl: "",
           isAdmin: false,
           tokenBalance: 0,
           hasGoldenTicket: false,
