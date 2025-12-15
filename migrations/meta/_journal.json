@@ -8,6 +8,13 @@
       "when": 1763747029213,
       "tag": "0000_huge_supernaut",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1765728615705,
+      "tag": "0001_faulty_white_queen",
+      "breakpoints": true
     }
   ]
 }

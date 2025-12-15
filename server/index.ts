@@ -2,6 +2,9 @@ import "dotenv/config";
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, log } from "./vite";
+import { migrate } from 'drizzle-orm/node-postgres/migrator';
+import { db } from './db';
+import path from 'path';
 
 const app = express();
 app.set('trust proxy', 1);
@@ -75,6 +78,16 @@ app.use((req, res, next) => {
 app.get('/healthz', (req, res) => res.send('OK'));
 app.get('/api/health', (req, res) => res.json({ status: 'OK', environment: process.env.NODE_ENV || 'development' }));
 (async () => {
+  // Run migrations on startup
+  try {
+    log('Running database migrations...');
+    await migrate(db, { migrationsFolder: path.join(process.cwd(), 'migrations') });
+    log('Migrations completed successfully');
+  } catch (error) {
+    console.error('Migration failed:', error);
+    // Don't crash, just log. Some environments behave differently.
+  }
+
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
