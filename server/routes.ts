@@ -394,8 +394,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Payment routes
-  app.post('/api/payment/create-order', isAuthenticated, async (req, res) => {
+  // Payment routes (no auth required - order creation validates user)
+  app.post('/api/payment/create-order', async (req, res) => {
     try {
       const { amount, orderId } = req.body;
 
@@ -411,7 +411,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post('/api/payment/verify', isAuthenticated, async (req, res) => {
+  app.post('/api/payment/verify', async (req, res) => {
     try {
       const { razorpay_order_id, razorpay_payment_id, razorpay_signature, orderId } = req.body;
 
