@@ -246,6 +246,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Debug connection (remove in production)
+  app.get('/api/debug-connection', (req, res) => {
+    const dbUrl = process.env.DATABASE_URL || '';
+    const maskedUrl = dbUrl.replace(/:([^@]+)@/, ':****@');
+    const match = dbUrl.match(/postgres(?:ql)?:\/\/([^:]+):/);
+    const username = match ? match[1] : 'unknown';
+
+    res.json({
+      url_masked: maskedUrl,
+      username_detected: username,
+      node_env: process.env.NODE_ENV
+    });
+  });
+
   // Orders routes (now public - no auth required)
   app.post('/api/orders', async (req: any, res) => {
     try {
