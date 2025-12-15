@@ -403,11 +403,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: 'Amount and order ID required' });
       }
 
+      // Check if Razorpay is configured
+      if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
+        console.error('Razorpay not configured: Missing RAZORPAY_KEY_ID or RAZORPAY_KEY_SECRET');
+        return res.status(500).json({ message: 'Payment gateway not configured' });
+      }
+
+      console.log(`Creating Razorpay order: amount=${amount}, orderId=${orderId}`);
       const paymentOrder = await createPaymentOrder(amount, orderId);
+      console.log('Razorpay order created:', paymentOrder.id);
       res.json(paymentOrder);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error creating payment order:", error);
-      res.status(500).json({ message: "Failed to create payment order" });
+      console.error("Razorpay error details:", error?.error || error?.message || error);
+      res.status(500).json({
+        message: "Failed to create payment order",
+        error: error?.error?.description || error?.message || 'Unknown error'
+      });
     }
   });
 
