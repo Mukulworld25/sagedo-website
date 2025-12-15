@@ -255,11 +255,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Use session user if logged in, otherwise create guest userId
-      const userId = req.session?.user?.id || `guest_${customerEmail}`;
+      let userId = req.session?.user?.id;
 
       // Ensure user exists to satisfy foreign key constraint
-      let user = await storage.getUser(userId);
-      if (!user) {
+      // First check by email (to prevent duplicate email errors)
+      let user = await storage.getUserByEmail(customerEmail);
+      if (user) {
+        userId = user.id; // Use existing user's ID
+      } else if (!userId) {
+        // Create guest user only if no session and no existing user
+        userId = `guest_${Date.now()}_${Math.random().toString(36).slice(2)}`;
         user = await storage.upsertUser({
           id: userId,
           email: customerEmail,
