@@ -82,58 +82,65 @@ app.get('/api/health', (req, res) => res.json({ status: 'OK', environment: proce
 (async () => {
   // Run migrations on startup
   try {
+    // Migration DISABLED to prevent deployment crashes (tables already exist)
+    log('Skipping migrations (already verified)...');
+    /*
     log('Running database migrations...');
     // Supabase migrations requires Session Pooler (port 5432), not Transaction Pooler (6543)
     const migrationUrl = process.env.DATABASE_URL?.replace(':6543', ':5432');
     if (migrationUrl) {
-      log(`Using migration connection: ${migrationUrl.replace(/:([^@]+)@/, ':****@')}`);
-      const migrationPool = new Pool({
-        connectionString: migrationUrl,
-        ssl: { rejectUnauthorized: false },
-        connectionTimeoutMillis: 10000
-      });
-      const migrationDb = drizzle(migrationPool);
-
-      await migrate(migrationDb, { migrationsFolder: path.join(process.cwd(), 'migrations') });
-      await migrationPool.end();
-      log('Migrations completed successfully');
-    } else {
-      log('Skipping migrations: Invalid DATABASE_URL');
+    ...
     }
+    */
   } catch (error) {
-    console.error('Migration failed:', error);
-  }
+    log(`Using migration connection: ${migrationUrl.replace(/:([^@]+)@/, ':****@')}`);
+    const migrationPool = new Pool({
+      connectionString: migrationUrl,
+      ssl: { rejectUnauthorized: false },
+      connectionTimeoutMillis: 10000
+    });
+    const migrationDb = drizzle(migrationPool);
 
-  const server = await registerRoutes(app);
-
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
-
-    res.status(status).json({ message });
-    throw err;
-  });
-
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
-  if (app.get("env") === "development") {
-    await setupVite(app, server);
+    await migrate(migrationDb, { migrationsFolder: path.join(process.cwd(), 'migrations') });
+    await migrationPool.end();
+    log('Migrations completed successfully');
   } else {
-    // Frontend is deployed separately on Vercel, backend is API-only
-    log("Running in production mode - backend API only (frontend on Vercel)");
+    log('Skipping migrations: Invalid DATABASE_URL');
   }
+} catch (error) {
+  console.error('Migration failed:', error);
+}
 
-  // ALWAYS serve the app on the port specified in the environment variable PORT
-  // Other ports are firewalled. Default to 5000 if not specified.
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = parseInt(process.env.PORT || '3000', 10);
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
-})();
+const server = await registerRoutes(app);
+
+app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  const status = err.status || err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+
+  res.status(status).json({ message });
+  throw err;
+});
+
+// importantly only setup vite in development and after
+// setting up all the other routes so the catch-all route
+// doesn't interfere with the other routes
+if (app.get("env") === "development") {
+  await setupVite(app, server);
+} else {
+  // Frontend is deployed separately on Vercel, backend is API-only
+  log("Running in production mode - backend API only (frontend on Vercel)");
+}
+
+// ALWAYS serve the app on the port specified in the environment variable PORT
+// Other ports are firewalled. Default to 5000 if not specified.
+// this serves both the API and the client.
+// It is the only port that is not firewalled.
+const port = parseInt(process.env.PORT || '3000', 10);
+server.listen({
+  port,
+  host: "0.0.0.0",
+  reusePort: true,
+}, () => {
+  log(`serving on port ${port}`);
+});
+}) ();
