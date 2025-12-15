@@ -18,6 +18,7 @@ export const pool = isDatabaseConfigured
         max: 20, // Maximum pool size
         idleTimeoutMillis: 30000,
         connectionTimeoutMillis: 30000, // 30s timeout for Neon wake-up
+        ssl: { rejectUnauthorized: false } // Required for Supabase
     })
     : null as any; // Mock pool when database not configured
 
