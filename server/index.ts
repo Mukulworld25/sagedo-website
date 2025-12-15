@@ -5,6 +5,8 @@ import { setupVite, log } from "./vite";
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import { db } from './db';
 import path from 'path';
+import { Pool } from 'pg';
+import { drizzle } from 'drizzle-orm/node-postgres';
 
 const app = express();
 app.set('trust proxy', 1);
@@ -81,11 +83,25 @@ app.get('/api/health', (req, res) => res.json({ status: 'OK', environment: proce
   // Run migrations on startup
   try {
     log('Running database migrations...');
-    await migrate(db, { migrationsFolder: path.join(process.cwd(), 'migrations') });
-    log('Migrations completed successfully');
+    // Supabase migrations requires Session Pooler (port 5432), not Transaction Pooler (6543)
+    const migrationUrl = process.env.DATABASE_URL?.replace(':6543', ':5432');
+    if (migrationUrl) {
+      log(`Using migration connection: ${migrationUrl.replace(/:([^@]+)@/, ':****@')}`);
+      const migrationPool = new Pool({
+        connectionString: migrationUrl,
+        ssl: { rejectUnauthorized: false },
+        connectionTimeoutMillis: 10000
+      });
+      const migrationDb = drizzle(migrationPool);
+
+      await migrate(migrationDb, { migrationsFolder: path.join(process.cwd(), 'migrations') });
+      await migrationPool.end();
+      log('Migrations completed successfully');
+    } else {
+      log('Skipping migrations: Invalid DATABASE_URL');
+    }
   } catch (error) {
     console.error('Migration failed:', error);
-    // Don't crash, just log. Some environments behave differently.
   }
 
   const server = await registerRoutes(app);
