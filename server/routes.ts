@@ -301,6 +301,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         amount: 0, // Amount will be set after payment
         orderDate: new Date().toLocaleDateString('en-IN'),
       }).catch(err => console.error('Email failed (background):', err));
+    } catch (error: any) {
       console.error("Error creating order:", error);
       res.status(500).json({ message: "Failed to create order", error: error?.message || String(error) });
     }
