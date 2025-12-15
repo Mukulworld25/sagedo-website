@@ -245,23 +245,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Failed to fetch service" });
     }
   });
-  // Debug connection (remove in production)
-  app.get('/api/debug-connection', (req, res) => {
-    const dbUrl = process.env.DATABASE_URL || '';
-    const maskedUrl = dbUrl.replace(/:([^@]+)@/, ':****@');
-    const match = dbUrl.match(/postgres(?:ql)?:\/\/([^:]+):([^@]+)@/);
-    const username = match ? match[1] : 'unknown';
-    const password = match ? match[2] : '';
-    const passwordHint = password.length > 2 ? password.substring(0, 2) + '...' : '***';
-
-    res.json({
-      url_masked: maskedUrl,
-      username_detected: username,
-      password_hint: passwordHint,
-      node_env: process.env.NODE_ENV
-    });
-  });
-
   // Orders routes (now public - no auth required)
   app.post('/api/orders', async (req: any, res) => {
     try {
