@@ -4,6 +4,7 @@ import session from 'express-session';
 import connectPg from 'connect-pg-simple';
 import type { Express, RequestHandler } from 'express';
 import { storage } from './storage';
+import { pool } from './db';
 
 // Session setup
 export function setupAuth(app: Express) {
@@ -13,7 +14,7 @@ export function setupAuth(app: Express) {
 
     app.use(session({
         store: new pgStore({
-            conString: process.env.DATABASE_URL,
+            pool, // Use shared connection pool with SSL config
             createTableIfMissing: true,
             tableName: 'sessions',
         }),
