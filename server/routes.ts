@@ -301,9 +301,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
         amount: 0, // Amount will be set after payment
         orderDate: new Date().toLocaleDateString('en-IN'),
       }).catch(err => console.error('Email failed (background):', err));
-    } catch (error: any) {
       console.error("Error creating order:", error);
       res.status(500).json({ message: "Failed to create order", error: error?.message || String(error) });
+    }
+  });
+
+  // Admin Order Routes
+  app.get('/api/admin/orders', isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const orders = await storage.getAllOrders();
+      res.json(orders);
+    } catch (error) {
+      console.error("Error fetching admin orders:", error);
+      res.status(500).json({ message: "Failed to fetch orders" });
+    }
+  });
+
+  app.patch('/api/admin/orders/:id', isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const { status } = req.body;
+      if (!status) return res.status(400).json({ message: "Status required" });
+
+      const order = await storage.updateOrderStatus(req.params.id, status);
+      res.json(order);
+    } catch (error) {
+      console.error("Error updating order:", error);
+      res.status(500).json({ message: "Failed to update order" });
     }
   });
 
