@@ -25,11 +25,15 @@ export default function Dashboard() {
   const { data: userDetails } = useQuery<User>({
     queryKey: ["/api/dashboard/user"],
     enabled: isAuthenticated,
+    staleTime: 0, // Always refetch fresh data
+    refetchOnMount: 'always',
   });
 
   const { data: orders = [] } = useQuery<Order[]>({
     queryKey: ["/api/dashboard/orders"],
     enabled: isAuthenticated,
+    staleTime: 0,
+    refetchOnMount: 'always',
   });
 
   const earnTokensMutation = useMutation({
