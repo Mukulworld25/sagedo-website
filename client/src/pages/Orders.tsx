@@ -29,7 +29,6 @@ export default function Orders() {
   });
   const [createdOrderId, setCreatedOrderId] = useState<string | null>(null);
   const [orderAmount, setOrderAmount] = useState(500); // Default ₹500
-  const [deliveryTime, setDeliveryTime] = useState<string>("");
   const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
 
   // Read URL params and pre-fill form
@@ -37,16 +36,12 @@ export default function Orders() {
     const params = new URLSearchParams(searchString);
     const serviceName = params.get('service');
     const price = params.get('price');
-    const delivery = params.get('delivery');
 
     if (serviceName) {
       setFormData(prev => ({ ...prev, service: serviceName }));
     }
     if (price) {
       setOrderAmount(parseInt(price, 10));
-    }
-    if (delivery) {
-      setDeliveryTime(delivery);
     }
   }, [searchString]);
 
@@ -352,17 +347,9 @@ export default function Orders() {
                       <p className="text-xl font-bold text-foreground">{formData.service}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-6">
-                    <div className="text-center">
-                      <p className="text-sm text-muted-foreground">Amount</p>
-                      <p className="text-2xl font-black text-primary">₹{orderAmount}</p>
-                    </div>
-                    {deliveryTime && (
-                      <div className="text-center">
-                        <p className="text-sm text-muted-foreground">Delivery</p>
-                        <p className="text-lg font-bold text-foreground">{deliveryTime}</p>
-                      </div>
-                    )}
+                  <div>
+                    <p className="text-sm text-muted-foreground">Amount</p>
+                    <p className="text-2xl font-black text-primary">₹{orderAmount}</p>
                   </div>
                 </div>
               </Card>
@@ -540,13 +527,14 @@ export default function Orders() {
           </div>
 
           {/* Right Side - Full Height Human Image (Hidden on mobile) */}
-          <div className="hidden lg:flex lg:flex-col lg:w-1/2 lg:fixed lg:right-0 lg:top-16 lg:bottom-0">
+          <div className="hidden lg:flex lg:flex-col lg:w-1/2 lg:fixed lg:right-0 lg:top-16 lg:bottom-0 lg:p-4">
             {/* Full Height Image Container */}
-            <div className="relative h-full">
+            <div className="relative h-full rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src="/gorgeous_woman.png"
                 alt="SAGE DO Support"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
+                loading="lazy"
               />
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />

@@ -162,9 +162,8 @@ export default function Services() {
                     ) : (
                       <span className="text-xl font-bold text-primary" data-testid={`text-service-price-${service.id}`}>₹{service.price}</span>
                     )}
-                    <span className="text-xs text-muted-foreground" data-testid={`text-service-delivery-${service.id}`}>{service.deliveryTime}</span>
                   </div>
-                  <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}&delivery=${encodeURIComponent(service.deliveryTime)}`}>
+                  <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}`}>
                     <Button
                       size="sm"
                       data-testid={`button-order-${service.id}`}

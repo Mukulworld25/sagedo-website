@@ -16,7 +16,6 @@ export interface ServiceDetail {
     category: string;
     imageUrl: string;
     isGoldenEligible: boolean;
-    deliveryTime: string;
 }
 
 export const allServices: ServiceDetail[] = [
@@ -43,8 +42,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 199,
         imageUrl: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "24 hours"
+        isGoldenEligible: true
     },
     {
         id: "2",
@@ -67,8 +65,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 299,
         imageUrl: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "24 hours"
+        isGoldenEligible: true
     },
     {
         id: "3",
@@ -90,8 +87,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 399,
         imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "48 hours"
+        isGoldenEligible: true
     },
     {
         id: "4",
@@ -115,8 +111,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 799,
         imageUrl: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "2-3 days"
+        isGoldenEligible: false
     },
     {
         id: "5",
@@ -139,8 +134,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 999,
         imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "3-4 days"
+        isGoldenEligible: false
     },
     {
         id: "6",
@@ -163,8 +157,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 799,
         imageUrl: "https://images.unsplash.com/photo-1557838923-2985c318be48?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "3-4 days"
+        isGoldenEligible: false
     },
     {
         id: "7",
@@ -187,8 +180,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 1499,
         imageUrl: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "2-3 days"
+        isGoldenEligible: false
     },
     {
         id: "8",
@@ -211,8 +203,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 1999,
         imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "4-5 days"
+        isGoldenEligible: false
     },
     {
         id: "9",
@@ -235,8 +226,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 599,
         imageUrl: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "2-3 days"
+        isGoldenEligible: false
     },
     {
         id: "10",
@@ -260,8 +250,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 7999,
         imageUrl: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "7-10 days"
+        isGoldenEligible: false
     },
     {
         id: "11",
@@ -284,8 +273,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 12999,
         imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "10-15 days"
+        isGoldenEligible: false
     },
     {
         id: "12",
@@ -310,8 +298,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 14999,
         imageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "12-15 days"
+        isGoldenEligible: false
     },
 
     // =====================
@@ -338,8 +325,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 199,
         imageUrl: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "24 hours"
+        isGoldenEligible: true
     },
     {
         id: "14",
@@ -362,8 +348,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 299,
         imageUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "48 hours"
+        isGoldenEligible: true
     },
     {
         id: "15",
@@ -386,8 +371,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 399,
         imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "2-3 days"
+        isGoldenEligible: true
     },
     {
         id: "16",
@@ -410,8 +394,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 299,
         imageUrl: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "24-48 hours"
+        isGoldenEligible: true
     },
     {
         id: "17",
@@ -435,8 +418,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 999,
         imageUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "4-5 days"
+        isGoldenEligible: false
     },
     {
         id: "18",
@@ -483,8 +465,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 699,
         imageUrl: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "3-4 days"
+        isGoldenEligible: false
     },
     {
         id: "20",
@@ -508,8 +489,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 9999,
         imageUrl: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "15+ days"
+        isGoldenEligible: false
     },
 
     // =====================
@@ -536,8 +516,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 199,
         imageUrl: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "24 hours"
+        isGoldenEligible: true
     },
     {
         id: "22",
@@ -560,8 +539,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 299,
         imageUrl: "https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "24 hours"
+        isGoldenEligible: true
     },
     {
         id: "23",
@@ -584,8 +562,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 349,
         imageUrl: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "24-48 hours"
+        isGoldenEligible: true
     },
     {
         id: "24",
@@ -608,8 +585,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 149,
         imageUrl: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "24 hours"
+        isGoldenEligible: true
     },
     {
         id: "25",
@@ -632,8 +608,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 499,
         imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "48 hours"
+        isGoldenEligible: true
     },
     {
         id: "26",
@@ -682,8 +657,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 2999,
         imageUrl: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "5-7 days"
+        isGoldenEligible: false
     },
     {
         id: "28",
@@ -707,8 +681,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 7999,
         imageUrl: "https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "7-10 days"
+        isGoldenEligible: false
     },
     {
         id: "29",
@@ -732,8 +705,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 6999,
         imageUrl: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "7-10 days"
+        isGoldenEligible: false
     },
     {
         id: "30",
@@ -757,8 +729,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 4999,
         imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "5-7 days"
+        isGoldenEligible: false
     },
 
     // =====================
@@ -785,8 +756,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 199,
         imageUrl: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "24 hours"
+        isGoldenEligible: true
     },
     {
         id: "32",
@@ -810,8 +780,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 349,
         imageUrl: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "2-3 days"
+        isGoldenEligible: true
     },
     {
         id: "33",
@@ -834,8 +803,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 399,
         imageUrl: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "2-3 days"
+        isGoldenEligible: true
     },
     {
         id: "34",
@@ -859,8 +827,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 599,
         imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "3-4 days"
+        isGoldenEligible: false
     },
     {
         id: "35",
@@ -884,8 +851,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 499,
         imageUrl: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: true,
-        deliveryTime: "24-48 hours"
+        isGoldenEligible: true
     },
     {
         id: "36",
@@ -908,8 +874,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 1499,
         imageUrl: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "5-7 days"
+        isGoldenEligible: false
     },
     {
         id: "37",
@@ -933,8 +898,7 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 799,
         imageUrl: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "3-4 days"
+        isGoldenEligible: false
     },
     {
         id: "38",
@@ -957,7 +921,6 @@ export const allServices: ServiceDetail[] = [
         ],
         price: 2999,
         imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop&q=80",
-        isGoldenEligible: false,
-        deliveryTime: "5-7 days"
+        isGoldenEligible: false
     }
 ];

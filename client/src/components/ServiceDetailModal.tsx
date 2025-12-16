@@ -2,7 +2,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
-import { Star, Clock, ArrowRight, CheckCircle2, Zap, Users } from "lucide-react";
+import { Star, ArrowRight, CheckCircle2, Zap, Users } from "lucide-react";
 
 interface ServiceDetail {
     id: string;
@@ -15,7 +15,6 @@ interface ServiceDetail {
     category: string;
     imageUrl: string;
     isGoldenEligible: boolean;
-    deliveryTime: string;
 }
 
 interface ServiceDetailModalProps {
@@ -52,21 +51,11 @@ export default function ServiceDetailModal({ service, isOpen, onClose }: Service
                     </div>
                 </div>
 
-                {/* Price and Delivery */}
+                {/* Price */}
                 <div className="flex items-center justify-between mb-6 p-4 rounded-lg bg-card/50 border border-border/30">
-                    <div className="flex items-center gap-4">
-                        <div>
-                            <p className="text-sm text-muted-foreground">Price</p>
-                            <p className="text-3xl font-black text-primary">₹{service.price}</p>
-                        </div>
-                        <div className="h-12 w-px bg-border/50" />
-                        <div className="flex items-center gap-2">
-                            <Clock className="w-5 h-5 text-muted-foreground" />
-                            <div>
-                                <p className="text-sm text-muted-foreground">Delivery</p>
-                                <p className="text-lg font-bold text-foreground">{service.deliveryTime}</p>
-                            </div>
-                        </div>
+                    <div>
+                        <p className="text-sm text-muted-foreground">Price</p>
+                        <p className="text-3xl font-black text-primary">₹{service.price}</p>
                     </div>
                 </div>
 
@@ -123,7 +112,7 @@ export default function ServiceDetailModal({ service, isOpen, onClose }: Service
                 </div>
 
                 {/* CTA Button */}
-                <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}&delivery=${encodeURIComponent(service.deliveryTime)}`}>
+                <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}`}>
                     <Button
                         className="w-full bg-gradient-to-r from-primary to-destructive hover:opacity-90 text-lg py-6"
                         onClick={onClose}
