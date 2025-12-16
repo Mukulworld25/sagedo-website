@@ -5,12 +5,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import { Upload, CheckCircle2, CreditCard, Sparkles, Plus, X, Star } from "lucide-react";
+import { Upload, CheckCircle2, CreditCard, Sparkles, Plus, X, Star, LogIn } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
-import { useSearch, Link } from "wouter";
+import { useSearch, Link, useLocation } from "wouter";
 import { allServices } from "@/data/serviceData";
 import { Badge } from "@/components/ui/badge";
+import { useAuth } from "@/hooks/useAuth";
 
 // Declare Razorpay on window
 declare global {
@@ -22,6 +23,8 @@ declare global {
 export default function Orders() {
   const { toast } = useToast();
   const searchString = useSearch();
+  const [, navigate] = useLocation();
+  const { isAuthenticated, isLoading } = useAuth();
   const [files, setFiles] = useState<File[]>([]);
   const [formData, setFormData] = useState({
     name: "",
@@ -368,14 +371,45 @@ export default function Orders() {
     }
   };
 
+  // If not authenticated, show login required message
+  if (!isLoading && !isAuthenticated) {
+    return (
+      <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-lg mx-auto text-center">
+          <Card className="glass p-12">
+            <LogIn className="w-16 h-16 mx-auto mb-6 text-primary" />
+            <h1 className="text-3xl font-black text-foreground mb-4">
+              Login Required
+            </h1>
+            <p className="text-muted-foreground mb-8">
+              Please login or create an account to place an order. It only takes a minute!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/login">
+                <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-primary to-destructive">
+                  <LogIn className="w-4 h-4 mr-2" /> Login
+                </Button>
+              </Link>
+              <Link href="/register">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto">
+                  Sign Up FREE
+                </Button>
+              </Link>
+            </div>
+          </Card>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Split Layout Container */}
-        <div className="flex flex-col lg:flex-row gap-8">
+        {/* Split Layout Container - increased gap */}
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
 
-          {/* Left Side - Form Content */}
-          <div className="flex-1 lg:max-w-2xl">
+          {/* Left Side - Form Content - narrower to create space */}
+          <div className="flex-1 lg:max-w-xl lg:pr-8">
             <div className="text-center lg:text-left mb-8">
               <h1 className="text-4xl md:text-5xl font-black text-foreground mb-4">
                 Place Your Order
@@ -587,8 +621,8 @@ export default function Orders() {
                     disabled={orderMutation.isPending || uploadMutation.isPending}
                     data-testid="button-submit-order"
                     className={`w-full text-lg py-6 ${isGoldenService || hasOnlyFreeServices
-                        ? 'bg-gradient-to-r from-yellow-500 to-amber-600 hover:opacity-90'
-                        : 'bg-gradient-to-r from-primary to-destructive hover:opacity-90'
+                      ? 'bg-gradient-to-r from-yellow-500 to-amber-600 hover:opacity-90'
+                      : 'bg-gradient-to-r from-primary to-destructive hover:opacity-90'
                       }`}
                   >
                     {orderMutation.isPending || uploadMutation.isPending
@@ -635,9 +669,9 @@ export default function Orders() {
           </div>
 
           {/* Right Side - Full Height Human Image (Hidden on mobile) */}
-          <div className="hidden lg:flex lg:flex-col lg:w-1/2 lg:fixed lg:right-0 lg:top-16 lg:bottom-0 lg:p-4">
+          <div className="hidden lg:flex lg:flex-col lg:w-5/12 lg:fixed lg:right-0 lg:top-16 lg:bottom-0 lg:p-6">
             {/* Full Height Image Container */}
-            <div className="relative h-full rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative h-full rounded-3xl overflow-hidden shadow-2xl border border-border/20">
               <img
                 src="/gorgeous_woman.png"
                 alt="SAGE DO Support"

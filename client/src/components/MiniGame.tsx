@@ -8,6 +8,7 @@ interface Dot {
     id: number;
     x: number;
     y: number;
+    isWrong: boolean;
 }
 
 export default function MiniGame() {
@@ -62,12 +63,21 @@ export default function MiniGame() {
         setTimeout(() => playSound(150, 0.4, 'sawtooth'), 300);
     }, [playSound]);
 
+    // Wrong click sound
+    const playWrongSound = useCallback(() => {
+        playSound(100, 0.5, 'sawtooth');
+    }, [playSound]);
+
     // Generate random dot position
     const spawnDot = useCallback(() => {
+        // 20% chance to spawn a wrong (green) dot
+        const isWrong = Math.random() < 0.2;
+
         const newDot: Dot = {
             id: Date.now(),
             x: Math.random() * 80 + 10, // 10-90%
             y: Math.random() * 70 + 10, // 10-80%
+            isWrong,
         };
         setDots(prev => [...prev, newDot]);
 
@@ -77,6 +87,17 @@ export default function MiniGame() {
         }, 2000);
     }, []);
 
+    // End game (called when wrong dot or timer)
+    const endGame = useCallback(() => {
+        setIsPlaying(false);
+        playGameOverSound();
+        // Save high score
+        if (score > highScore) {
+            setHighScore(score);
+            localStorage.setItem('sagedo-minigame-highscore', score.toString());
+        }
+    }, [score, highScore, playGameOverSound]);
+
     // Game timer
     useEffect(() => {
         if (!isPlaying) return;
@@ -84,13 +105,7 @@ export default function MiniGame() {
         const timer = setInterval(() => {
             setTimeLeft(prev => {
                 if (prev <= 1) {
-                    setIsPlaying(false);
-                    playGameOverSound();
-                    // Save high score
-                    if (score > highScore) {
-                        setHighScore(score);
-                        localStorage.setItem('sagedo-minigame-highscore', score.toString());
-                    }
+                    endGame();
                     return 0;
                 }
                 return prev - 1;
@@ -98,7 +113,7 @@ export default function MiniGame() {
         }, 1000);
 
         return () => clearInterval(timer);
-    }, [isPlaying, score, highScore, playGameOverSound]);
+    }, [isPlaying, endGame]);
 
     // Spawn dots periodically
     useEffect(() => {
@@ -111,11 +126,19 @@ export default function MiniGame() {
         return () => clearInterval(spawner);
     }, [isPlaying, spawnDot]);
 
-    // Handle dot click
-    const handleDotClick = (dotId: number) => {
-        playClickSound();
-        setDots(prev => prev.filter(d => d.id !== dotId));
-        setScore(prev => prev + 1);
+    // Handle correct dot click
+    const handleDotClick = (dot: Dot) => {
+        if (dot.isWrong) {
+            // Wrong dot clicked - GAME OVER!
+            playWrongSound();
+            setDots(prev => prev.filter(d => d.id !== dot.id));
+            endGame();
+        } else {
+            // Correct dot clicked - score!
+            playClickSound();
+            setDots(prev => prev.filter(d => d.id !== dot.id));
+            setScore(prev => prev + 1);
+        }
     };
 
     // Start game
@@ -133,7 +156,7 @@ export default function MiniGame() {
             <div className="flex items-center justify-between mb-4">
                 <div>
                     <h3 className="text-lg font-bold text-foreground">🎯 Click the Dots</h3>
-                    <p className="text-xs text-muted-foreground">Play while you wait!</p>
+                    <p className="text-xs text-muted-foreground">Click red, avoid green!</p>
                 </div>
                 <div className="text-right">
                     <p className="text-sm text-muted-foreground">High Score: <span className="font-bold text-primary">{highScore}</span></p>
@@ -169,8 +192,11 @@ export default function MiniGame() {
                         {dots.map(dot => (
                             <button
                                 key={dot.id}
-                                onClick={() => handleDotClick(dot.id)}
-                                className="absolute w-8 h-8 -ml-4 -mt-4 bg-gradient-to-r from-primary to-destructive rounded-full shadow-lg hover:scale-110 transition-transform animate-pulse cursor-pointer"
+                                onClick={() => handleDotClick(dot)}
+                                className={`absolute w-8 h-8 -ml-4 -mt-4 rounded-full shadow-lg hover:scale-110 transition-transform animate-pulse cursor-pointer ${dot.isWrong
+                                    ? 'bg-gradient-to-r from-green-400 to-emerald-600'
+                                    : 'bg-gradient-to-r from-primary to-destructive'
+                                    }`}
                                 style={{
                                     left: `${dot.x}%`,
                                     top: `${dot.y}%`,
@@ -182,7 +208,7 @@ export default function MiniGame() {
             </div>
 
             <p className="text-xs text-muted-foreground text-center mt-2">
-                Click the red dots before they disappear! 🎮
+                🔴 Click RED dots to score • 🟢 Avoid GREEN dots! 🎮
             </p>
         </div>
     );
