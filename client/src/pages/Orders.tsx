@@ -79,7 +79,8 @@ export default function Orders() {
       const response = await apiRequest("POST", "/api/orders", orderData);
       return response;
     },
-    onSuccess: async (data: any) => {
+    onSuccess: async (response: Response) => {
+      const data = await response.json();
       const orderId = data.id;
       setCreatedOrderId(orderId);
 
