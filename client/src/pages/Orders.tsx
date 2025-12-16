@@ -525,10 +525,10 @@ export default function Orders() {
                   </div>
                 )}
 
-                {/* Requirements */}
+                {/* Requirements - Mandatory */}
                 <div className="space-y-2">
                   <Label htmlFor="requirements" className="text-foreground">
-                    Requirements & Details
+                    Requirements & Details <span className="text-destructive">*</span>
                   </Label>
                   <Textarea
                     id="requirements"
@@ -536,6 +536,7 @@ export default function Orders() {
                     onChange={(e) => setFormData({ ...formData, requirements: e.target.value })}
                     placeholder="Please describe your requirements in detail..."
                     rows={6}
+                    required
                     data-testid="textarea-requirements"
                     className="glass border-border/50"
                   />
