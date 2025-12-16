@@ -29,12 +29,15 @@ export default function Dashboard() {
     refetchOnMount: 'always',
   });
 
-  const { data: orders = [] } = useQuery<Order[]>({
+  const { data: orders = [], isError: ordersError, error: ordersErrorDetails } = useQuery<Order[]>({
     queryKey: ["/api/dashboard/orders"],
     enabled: isAuthenticated,
     staleTime: 0,
     refetchOnMount: 'always',
   });
+
+  // Debug logging
+  console.log('Dashboard Debug:', { isAuthenticated, ordersCount: orders.length, ordersError, userDetails: !!userDetails });
 
   const earnTokensMutation = useMutation({
     mutationFn: async (data: { amount: number; type: string; description: string }) => {
