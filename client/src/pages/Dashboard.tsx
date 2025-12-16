@@ -245,7 +245,7 @@ export default function Dashboard() {
         </Card>
 
         {/* Order History */}
-        <Card className="glass p-6">
+        <div className="p-6 mb-8">
           <h2 className="text-2xl font-bold text-foreground mb-6">Order History</h2>
           {orders.length > 0 ? (
             <div className="overflow-x-auto">
@@ -281,10 +281,10 @@ export default function Dashboard() {
               <p className="text-muted-foreground">No orders yet. Place your first order to get started!</p>
             </div>
           )}
-        </Card>
+        </div>
 
         {/* Danger Zone - Delete Account */}
-        <Card className="glass p-6 mt-8 border-red-500/20">
+        <div className="p-6 mt-8">
           <h2 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
             <AlertTriangle className="w-5 h-5 text-red-500" />
             Danger Zone
@@ -334,7 +334,7 @@ export default function Dashboard() {
               </div>
             </div>
           )}
-        </Card>
+        </div>
       </div>
     </div >
   );
