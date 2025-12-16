@@ -47,6 +47,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Debug endpoint to verify Razorpay config (remove after fix)
+  app.get('/api/debug/razorpay', (req, res) => {
+    const keyId = process.env.RAZORPAY_KEY_ID || 'NOT SET';
+    const keySecret = process.env.RAZORPAY_KEY_SECRET || 'NOT SET';
+    res.json({
+      keyIdPrefix: keyId.substring(0, 20),
+      keyIdLength: keyId.length,
+      keySecretPrefix: keySecret.substring(0, 10),
+      keySecretLength: keySecret.length,
+    });
+  });
+
   // Request Password Reset (WhatsApp Flow)
   app.post('/api/auth/request-reset', async (req: any, res) => {
     try {
