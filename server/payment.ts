@@ -6,10 +6,14 @@ let razorpayInstance: Razorpay | null = null;
 
 function getRazorpay(): Razorpay {
     if (!razorpayInstance) {
-        const keyId = process.env.RAZORPAY_KEY_ID;
-        const keySecret = process.env.RAZORPAY_KEY_SECRET;
+        // TRIM credentials to remove any hidden whitespace
+        const keyId = (process.env.RAZORPAY_KEY_ID || '').trim();
+        const keySecret = (process.env.RAZORPAY_KEY_SECRET || '').trim();
 
-        console.log('Initializing Razorpay with key_id:', keyId?.substring(0, 15) + '...');
+        console.log('Initializing Razorpay:');
+        console.log('  Key ID:', keyId);
+        console.log('  Key ID Length:', keyId.length);
+        console.log('  Key Secret Length:', keySecret.length);
 
         if (!keyId || !keySecret) {
             throw new Error('Razorpay credentials not configured');
