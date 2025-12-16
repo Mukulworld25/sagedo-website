@@ -45,14 +45,14 @@ export async function registerCustomer(email: string, password: string, name: st
     // Hash password
     const passwordHash = await bcrypt.hash(password, 10);
 
-    // Create user - only give bonus if email wasn't previously used
+    // Create user - Golden Ticket on first signup, tokens start at 0 (must be earned)
     const user = await storage.createUser({
         id: uuidv4(),
         email,
         passwordHash,
         name,
         isAdmin: false,
-        tokenBalance: emailPreviouslyUsed ? 0 : 150, // No bonus if email was used before
+        tokenBalance: 0, // Tokens must be earned via referrals, surveys, daily login
         hasGoldenTicket: emailPreviouslyUsed ? false : true,
         hasWelcomeBonus: emailPreviouslyUsed ? false : true,
     });
