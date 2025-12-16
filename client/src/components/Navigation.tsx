@@ -8,7 +8,7 @@ export default function Navigation() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isAuthenticated, isLoading, user, logout } = useAuth();
-  const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
+  const API_URL = ''; // Use relative URL - Vercel proxy forwards to Render
 
   // GPT Prompts link - only shown to logged in users
   const GPT_PROMPTS_LINK = "https://chatgpt.com/g/g-690c95a9e7dc8191b0338671195897a2-prompt-generator";

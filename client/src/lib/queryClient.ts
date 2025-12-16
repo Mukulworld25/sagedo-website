@@ -1,8 +1,7 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 
-// API Base URL - points to your Render backend
-const API_BASE_URL = import.meta.env.VITE_API_URL || "https://sagedo-website.onrender.com";
-
+// Use relative URLs - Vercel proxy forwards /api/* to Render backend
+// This makes cookies work as same-origin
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
     const text = (await res.text()) || res.statusText;
@@ -15,10 +14,8 @@ export async function apiRequest(
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
-  // Prepend API_BASE_URL to relative URLs
-  const fullUrl = url.startsWith('http') ? url : `${API_BASE_URL}${url}`;
-  
-  const res = await fetch(fullUrl, {
+  // Use relative URLs - Vercel proxy handles forwarding to Render
+  const res = await fetch(url, {
     method,
     headers: data ? { "Content-Type": "application/json" } : {},
     body: data ? JSON.stringify(data) : undefined,
@@ -35,11 +32,10 @@ export const getQueryFn: <T>(options: {
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
     async ({ queryKey }) => {
-      // Prepend API_BASE_URL to relative URLs
+      // Use relative URLs - Vercel proxy handles forwarding to Render
       const urlPath = queryKey.join("/") as string;
-      const fullUrl = urlPath.startsWith('http') ? urlPath : `${API_BASE_URL}${urlPath}`;
-      
-      const res = await fetch(fullUrl, {
+
+      const res = await fetch(urlPath, {
         credentials: "include",
       });
       if (unauthorizedBehavior === "returnNull" && res.status === 401) {

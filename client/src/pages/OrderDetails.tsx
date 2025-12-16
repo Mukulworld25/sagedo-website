@@ -55,7 +55,7 @@ export default function OrderDetailsPage() {
     const [, navigate] = useLocation();
     const { toast } = useToast();
     const [deliveryNotes, setDeliveryNotes] = useState("");
-    const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
+    const API_URL = ''; // Use relative URL - Vercel proxy forwards to Render
 
     // Fetch order details
     const { data: order, isLoading, error } = useQuery<OrderDetails>({

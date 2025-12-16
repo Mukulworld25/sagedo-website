@@ -65,7 +65,7 @@ export default function Dashboard() {
 
   // Delete Account feature
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
+  const API_URL = ''; // Use relative URL - Vercel proxy forwards to Render
 
   const deleteAccountMutation = useMutation({
     mutationFn: async () => {

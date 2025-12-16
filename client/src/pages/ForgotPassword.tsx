@@ -15,7 +15,7 @@ export default function ForgotPassword() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
+        const API_URL = ''; // Use relative URL - Vercel proxy forwards to Render
 
         try {
             const res = await fetch(`${API_URL}/api/auth/request-reset`, {

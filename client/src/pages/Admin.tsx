@@ -57,7 +57,7 @@ export default function Admin() {
   const [portfolioTitle, setPortfolioTitle] = useState("");
   const [portfolioDescription, setPortfolioDescription] = useState("");
   const [portfolioImageUrl, setPortfolioImageUrl] = useState("");
-  const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
+  const API_URL = ''; // Use relative URL - Vercel proxy forwards to Render
 
   // Approve feedback as testimonial
   const approveFeedbackMutation = useMutation({

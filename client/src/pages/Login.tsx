@@ -45,7 +45,7 @@ export default function Login() {
 
         try {
             const endpoint = isRegister ? '/api/auth/register' : '/api/auth/login';
-            const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
+            const API_URL = ''; // Use relative URL - Vercel proxy forwards to Render
 
             const response = await fetch(`${API_URL}${endpoint}`, {
                 method: 'POST',

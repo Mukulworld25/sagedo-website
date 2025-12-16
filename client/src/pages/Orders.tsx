@@ -34,7 +34,7 @@ export default function Orders() {
   });
   const [createdOrderId, setCreatedOrderId] = useState<string | null>(null);
   const [orderAmount, setOrderAmount] = useState(500); // Default ₹500
-  const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
+  const API_URL = ''; // Use relative URL - Vercel proxy forwards to Render
 
   // Multi-service cart (up to 3 services)
   interface CartItem {
