@@ -26,6 +26,18 @@ export default function Tracking() {
     }
   }, []);
 
+  // Auto-scroll to order details when order is loaded from URL
+  useEffect(() => {
+    if (order && searchedOrderId) {
+      const element = document.getElementById('order-details');
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+      }
+    }
+  }, [order, searchedOrderId]);
+
   // Feedback state
   const [rating, setRating] = useState(5);
   const [message, setMessage] = useState("");
@@ -188,21 +200,11 @@ export default function Tracking() {
 
       {/* Content Section Below */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
-        {/* Mini Game */}
-        <Card className="glass p-6 mb-8">
-          <div className="flex items-center gap-3 mb-4">
-            <Gamepad2 className="w-6 h-6 text-primary" />
-            <h3 className="text-lg font-bold text-foreground">Play While You Wait 🎮</h3>
-          </div>
-          <p className="text-sm text-muted-foreground mb-4">
-            Click the red dots before they disappear! Beat your high score 🎯
-          </p>
-          <MiniGame />
-        </Card>
+
 
         {/* Order Details */}
         {order && (
-          <Card className="glass p-8 mb-8">
+          <Card id="order-details" className="glass p-8 mb-8">
             <h2 className="text-2xl font-bold text-foreground mb-6">Order Details</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
