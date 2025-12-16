@@ -10,7 +10,12 @@ import { pool } from './db';
 export function setupAuth(app: Express) {
     const pgStore = connectPg(session);
 
-    const isProduction = process.env.NODE_ENV === 'production';
+    // Always use cross-origin settings since Vercel frontend → Render backend
+    const isProduction = process.env.NODE_ENV === 'production' ||
+        process.env.RENDER === 'true' ||
+        !process.env.NODE_ENV; // Default to production behavior
+
+    console.log('Session config:', { isProduction, NODE_ENV: process.env.NODE_ENV });
 
     app.use(session({
         store: new pgStore({
@@ -24,8 +29,8 @@ export function setupAuth(app: Express) {
         proxy: true, // Required for Render/Vercel behind proxy
         cookie: {
             httpOnly: true,
-            secure: isProduction, // HTTPS only in production
-            sameSite: isProduction ? 'none' : 'lax', // 'none' required for cross-domain in production
+            secure: true, // Always HTTPS for cross-origin
+            sameSite: 'none', // Required for cross-domain cookies
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         },
     }));
