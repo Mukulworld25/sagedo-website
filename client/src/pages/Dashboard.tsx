@@ -252,6 +252,79 @@ export default function Dashboard() {
             </Button>
           </div>
         </Card>
+
+        {/* Order History */}
+        <Card className="glass p-6 mb-8">
+          <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+            <FileText className="w-6 h-6" />
+            Order History
+          </h2>
+
+          {orders.length === 0 ? (
+            <div className="text-center py-8">
+              <p className="text-muted-foreground mb-4">You haven't placed any orders yet.</p>
+              <a href="/orders">
+                <Button className="bg-gradient-to-r from-primary to-destructive hover:opacity-90">
+                  Place Your First Order
+                </Button>
+              </a>
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-border">
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Order ID</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Service</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Status</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Date</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((order: any) => (
+                    <tr key={order.id} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
+                      <td className="py-3 px-4">
+                        <span className="font-mono text-sm text-primary">{order.id.slice(0, 8)}...</span>
+                      </td>
+                      <td className="py-3 px-4">
+                        <span className="text-foreground font-medium">{order.serviceName}</span>
+                      </td>
+                      <td className="py-3 px-4">
+                        <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${order.status === 'delivered'
+                            ? 'bg-green-500/20 text-green-400'
+                            : order.status === 'processing'
+                              ? 'bg-blue-500/20 text-blue-400'
+                              : order.status === 'finalizing'
+                                ? 'bg-purple-500/20 text-purple-400'
+                                : 'bg-yellow-500/20 text-yellow-400'
+                          }`}>
+                          {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                        </span>
+                      </td>
+                      <td className="py-3 px-4">
+                        <span className="text-sm text-muted-foreground">
+                          {new Date(order.createdAt).toLocaleDateString('en-IN', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric'
+                          })}
+                        </span>
+                      </td>
+                      <td className="py-3 px-4">
+                        <a href={`/track?orderId=${order.id}`}>
+                          <Button size="sm" variant="outline" className="text-xs">
+                            Track Order
+                          </Button>
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </Card>
       </div>
     </div>
   );
