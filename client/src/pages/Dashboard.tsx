@@ -107,8 +107,10 @@ export default function Dashboard() {
     );
   }
 
-  const tokenBalance = userDetails?.tokenBalance || 0;
-  const hasGoldenTicket = userDetails?.hasGoldenTicket || false;
+  // Use API data if available, fallback to AuthContext user data (from login)
+  const effectiveUser = userDetails || user;
+  const tokenBalance = effectiveUser?.tokenBalance || 0;
+  const hasGoldenTicket = effectiveUser?.hasGoldenTicket || false;
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
