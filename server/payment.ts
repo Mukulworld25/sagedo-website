@@ -1,12 +1,30 @@
 import Razorpay from 'razorpay';
 import crypto from 'crypto';
 
-const razorpay = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID!,
-    key_secret: process.env.RAZORPAY_KEY_SECRET!,
-});
+// Lazy-loaded Razorpay instance to ensure env vars are ready
+let razorpayInstance: Razorpay | null = null;
+
+function getRazorpay(): Razorpay {
+    if (!razorpayInstance) {
+        const keyId = process.env.RAZORPAY_KEY_ID;
+        const keySecret = process.env.RAZORPAY_KEY_SECRET;
+
+        console.log('Initializing Razorpay with key_id:', keyId?.substring(0, 15) + '...');
+
+        if (!keyId || !keySecret) {
+            throw new Error('Razorpay credentials not configured');
+        }
+
+        razorpayInstance = new Razorpay({
+            key_id: keyId,
+            key_secret: keySecret,
+        });
+    }
+    return razorpayInstance;
+}
 
 export async function createPaymentOrder(amount: number, orderId: string) {
+    const razorpay = getRazorpay();
     const order = await razorpay.orders.create({
         amount: Math.round(amount * 100), // Convert to paise
         currency: 'INR',
@@ -31,3 +49,4 @@ export function verifyPaymentSignature(
 
     return generatedSignature === razorpaySignature;
 }
+
