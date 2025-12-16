@@ -258,23 +258,47 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let userId = req.session?.user?.id;
 
       // Ensure user exists to satisfy foreign key constraint
-      // First check by email (to prevent duplicate email errors)
-      let user = await storage.getUserByEmail(customerEmail);
-      if (user) {
-        userId = user.id; // Use existing user's ID
+      // If logged in, always use session user ID
+      if (userId && userId !== 'admin') {
+        // User is logged in - use their session ID directly
+        // No need to lookup or create
       } else if (!userId) {
-        // Create guest user only if no session and no existing user
-        userId = `guest_${Date.now()}_${Math.random().toString(36).slice(2)}`;
-        user = await storage.upsertUser({
-          id: userId,
-          email: customerEmail,
-          name: customerName || "Guest User",
-          profileImageUrl: "",
-          isAdmin: false,
-          tokenBalance: 0,
-          hasGoldenTicket: false,
-          hasWelcomeBonus: false,
-        });
+        // Not logged in - check if user exists by email or create guest
+        let user = await storage.getUserByEmail(customerEmail);
+        if (user) {
+          userId = user.id; // Use existing user's ID
+        } else {
+          // Create guest user
+          userId = `guest_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+          await storage.upsertUser({
+            id: userId,
+            email: customerEmail,
+            name: customerName || "Guest User",
+            profileImageUrl: "",
+            isAdmin: false,
+            tokenBalance: 0,
+            hasGoldenTicket: false,
+            hasWelcomeBonus: false,
+          });
+        }
+      } else if (userId === 'admin') {
+        // Admin placing order - create as guest or find existing user
+        let user = await storage.getUserByEmail(customerEmail);
+        if (user) {
+          userId = user.id;
+        } else {
+          userId = `guest_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+          await storage.upsertUser({
+            id: userId,
+            email: customerEmail,
+            name: customerName || "Guest User",
+            profileImageUrl: "",
+            isAdmin: false,
+            tokenBalance: 0,
+            hasGoldenTicket: false,
+            hasWelcomeBonus: false,
+          });
+        }
       }
 
       const order = await storage.createOrder({
