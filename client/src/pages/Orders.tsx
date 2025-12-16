@@ -163,10 +163,12 @@ export default function Orders() {
 
         const razorpay = new (window as any).Razorpay(options);
         razorpay.open();
-      } catch (error) {
+      } catch (error: any) {
+        console.error('Payment initiation error:', error);
+        console.error('Error details:', error?.message, error?.response);
         toast({
           title: "Payment Failed",
-          description: "Could not initiate payment. Please try again.",
+          description: error?.message || "Could not initiate payment. Please try again.",
           variant: "destructive",
         });
       }
