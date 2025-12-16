@@ -5,10 +5,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import { Upload, CheckCircle2, CreditCard, Sparkles } from "lucide-react";
+import { Upload, CheckCircle2, CreditCard, Sparkles, Plus, X, Star } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
-import { useSearch } from "wouter";
+import { useSearch, Link } from "wouter";
+import { allServices } from "@/data/serviceData";
+import { Badge } from "@/components/ui/badge";
 
 // Declare Razorpay on window
 declare global {
@@ -31,17 +33,50 @@ export default function Orders() {
   const [orderAmount, setOrderAmount] = useState(500); // Default ₹500
   const API_URL = import.meta.env.VITE_API_URL || 'https://sagedo-website.onrender.com';
 
+  // Multi-service cart (up to 3 services)
+  interface CartItem {
+    id: string;
+    name: string;
+    price: number;
+    isGoldenEligible: boolean;
+  }
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [isGoldenService, setIsGoldenService] = useState(false);
+
+  // Calculate total from cart
+  const cartTotal = cart.reduce((sum, item) => sum + (item.isGoldenEligible ? 0 : item.price), 0);
+  const hasOnlyFreeServices = cart.length > 0 && cart.every(item => item.isGoldenEligible);
+
   // Read URL params and pre-fill form
   useEffect(() => {
     const params = new URLSearchParams(searchString);
     const serviceName = params.get('service');
     const price = params.get('price');
+    const serviceId = params.get('id');
 
     if (serviceName) {
       setFormData(prev => ({ ...prev, service: serviceName }));
-    }
-    if (price) {
-      setOrderAmount(parseInt(price, 10));
+
+      // Lookup service to check if Golden Ticket eligible
+      const service = allServices.find(s => s.name === serviceName || s.id === serviceId);
+      if (service) {
+        const isGolden = service.isGoldenEligible;
+        setIsGoldenService(isGolden);
+
+        // Add to cart if not already in
+        if (!cart.find(item => item.id === service.id)) {
+          setCart([{
+            id: service.id,
+            name: service.name,
+            price: service.price,
+            isGoldenEligible: isGolden
+          }]);
+        }
+
+        setOrderAmount(isGolden ? 0 : service.price);
+      } else if (price) {
+        setOrderAmount(parseInt(price, 10));
+      }
     }
   }, [searchString]);
 
@@ -79,7 +114,21 @@ export default function Orders() {
       const orderId = data.id;
       setCreatedOrderId(orderId);
 
-      // Immediately trigger Razorpay payment
+      // If it's a FREE Golden Ticket service, skip payment and show success
+      if (isGoldenService || hasOnlyFreeServices || orderAmount === 0) {
+        toast({
+          title: "Order Submitted Successfully! 🎉",
+          description: "Your FREE service order has been received. We'll contact you soon!",
+        });
+        // Reset form
+        setFormData({ name: "", email: "", service: "", requirements: "" });
+        setFiles([]);
+        setCart([]);
+        setCreatedOrderId(null);
+        return; // Skip payment
+      }
+
+      // For paid services, trigger Razorpay payment
       try {
         // Create Razorpay order
         const response = await fetch(`${API_URL}/api/payment/create-order`, {
@@ -87,7 +136,7 @@ export default function Orders() {
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
           body: JSON.stringify({
-            amount: orderAmount,
+            amount: cartTotal > 0 ? cartTotal : orderAmount,
             orderId: orderId
           }),
         });
@@ -336,20 +385,69 @@ export default function Orders() {
               </p>
             </div>
 
-            {/* Service Selection Banner - Shows when coming from Services page */}
-            {formData.service && (
-              <Card className="glass p-6 mb-8 border-2 border-primary/50 bg-gradient-to-r from-primary/10 to-destructive/10">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                  <div className="flex items-center gap-4">
-                    <CheckCircle2 className="w-8 h-8 text-green-500" />
-                    <div>
-                      <p className="text-sm text-muted-foreground">Selected Service:</p>
-                      <p className="text-xl font-bold text-foreground">{formData.service}</p>
-                    </div>
+            {/* Cart / Selected Services Banner */}
+            {cart.length > 0 && (
+              <Card className={`glass p-6 mb-8 border-2 ${isGoldenService || hasOnlyFreeServices ? 'border-yellow-500/50 bg-gradient-to-r from-yellow-500/10 to-amber-500/10' : 'border-primary/50 bg-gradient-to-r from-primary/10 to-destructive/10'}`}>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-bold text-foreground flex items-center gap-2">
+                      {isGoldenService || hasOnlyFreeServices ? (
+                        <>
+                          <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+                          Golden Ticket Service - FREE!
+                        </>
+                      ) : (
+                        <>
+                          <CheckCircle2 className="w-5 h-5 text-green-500" />
+                          Your Order ({cart.length}/3 services)
+                        </>
+                      )}
+                    </h3>
+                    {cart.length < 3 && !hasOnlyFreeServices && (
+                      <Link href="/services">
+                        <Button variant="outline" size="sm" className="gap-1">
+                          <Plus className="w-4 h-4" /> Add More
+                        </Button>
+                      </Link>
+                    )}
                   </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Amount</p>
-                    <p className="text-2xl font-black text-primary">₹{orderAmount}</p>
+
+                  {/* Cart Items */}
+                  {cart.map((item) => (
+                    <div key={item.id} className="flex items-center justify-between p-3 rounded-lg bg-background/50">
+                      <div className="flex items-center gap-3">
+                        <span className="font-medium text-foreground">{item.name}</span>
+                        {item.isGoldenEligible && (
+                          <Badge className="bg-gradient-to-r from-yellow-400 to-amber-600 text-black text-xs">
+                            ✨ FREE
+                          </Badge>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-3">
+                        {item.isGoldenEligible ? (
+                          <span className="text-green-500 font-bold">₹0</span>
+                        ) : (
+                          <span className="text-primary font-bold">₹{item.price}</span>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => setCart(cart.filter(c => c.id !== item.id))}
+                          className="text-muted-foreground hover:text-destructive transition-colors"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* Total */}
+                  <div className="flex items-center justify-between pt-3 border-t border-border/30">
+                    <span className="text-muted-foreground">Total</span>
+                    {hasOnlyFreeServices ? (
+                      <span className="text-2xl font-black text-green-500">FREE ✨</span>
+                    ) : (
+                      <span className="text-2xl font-black text-primary">₹{cartTotal}</span>
+                    )}
                   </div>
                 </div>
               </Card>
@@ -458,36 +556,46 @@ export default function Orders() {
                   )}
                 </div>
 
-                {/* Order Amount */}
-                <div className="space-y-2">
-                  <Label htmlFor="amount" className="text-foreground">
-                    Order Amount (₹) <span className="text-destructive">*</span>
-                  </Label>
-                  <Input
-                    id="amount"
-                    type="number"
-                    value={orderAmount}
-                    onChange={(e) => setOrderAmount(parseInt(e.target.value) || 0)}
-                    placeholder="500"
-                    min="1"
-                    required
-                    className="glass border-border/50"
-                  />
-                  <p className="text-xs text-muted-foreground">Enter the agreed amount for your order</p>
-                </div>
+                {/* Order Amount - Hide for Golden Ticket services */}
+                {!isGoldenService && !hasOnlyFreeServices && (
+                  <div className="space-y-2">
+                    <Label htmlFor="amount" className="text-foreground">
+                      Order Amount (₹) <span className="text-destructive">*</span>
+                    </Label>
+                    <Input
+                      id="amount"
+                      type="number"
+                      value={cartTotal > 0 ? cartTotal : orderAmount}
+                      onChange={(e) => setOrderAmount(parseInt(e.target.value) || 0)}
+                      placeholder="500"
+                      min="1"
+                      required
+                      className="glass border-border/50"
+                      disabled={cart.length > 0}
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      {cart.length > 0 ? 'Amount calculated from selected services' : 'Enter the agreed amount for your order'}
+                    </p>
+                  </div>
+                )}
 
-                {/* Submit or Payment Button */}
+                {/* Submit Button */}
                 {!createdOrderId ? (
                   <Button
                     type="submit"
                     size="lg"
                     disabled={orderMutation.isPending || uploadMutation.isPending}
                     data-testid="button-submit-order"
-                    className="w-full bg-gradient-to-r from-primary to-destructive hover:opacity-90 text-lg py-6"
+                    className={`w-full text-lg py-6 ${isGoldenService || hasOnlyFreeServices
+                        ? 'bg-gradient-to-r from-yellow-500 to-amber-600 hover:opacity-90'
+                        : 'bg-gradient-to-r from-primary to-destructive hover:opacity-90'
+                      }`}
                   >
                     {orderMutation.isPending || uploadMutation.isPending
-                      ? "Creating Order..."
-                      : "Create Order"}
+                      ? "Submitting..."
+                      : isGoldenService || hasOnlyFreeServices
+                        ? "✨ Submit FREE Order"
+                        : `Pay ₹${cartTotal > 0 ? cartTotal : orderAmount} & Submit`}
                   </Button>
                 ) : (
                   <div className="space-y-4">

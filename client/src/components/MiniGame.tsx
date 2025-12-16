@@ -2,7 +2,7 @@
 // Simple reaction game while waiting for order processing
 // Less than 3KB, no external dependencies
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 interface Dot {
     id: number;
@@ -19,6 +19,48 @@ export default function MiniGame() {
         const saved = localStorage.getItem('sagedo-minigame-highscore');
         return saved ? parseInt(saved, 10) : 0;
     });
+
+    // Audio context for game sounds
+    const audioContextRef = useRef<AudioContext | null>(null);
+
+    // Initialize AudioContext on first interaction
+    const getAudioContext = useCallback(() => {
+        if (!audioContextRef.current) {
+            audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+        }
+        return audioContextRef.current;
+    }, []);
+
+    // Play a simple beep sound
+    const playSound = useCallback((frequency: number, duration: number, type: OscillatorType = 'sine') => {
+        try {
+            const ctx = getAudioContext();
+            const oscillator = ctx.createOscillator();
+            const gainNode = ctx.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(ctx.destination);
+
+            oscillator.type = type;
+            oscillator.frequency.value = frequency;
+
+            gainNode.gain.setValueAtTime(0.3, ctx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+
+            oscillator.start(ctx.currentTime);
+            oscillator.stop(ctx.currentTime + duration);
+        } catch (e) {
+            // Silently fail if audio not supported
+        }
+    }, [getAudioContext]);
+
+    // Sound effects
+    const playClickSound = useCallback(() => playSound(800, 0.1, 'sine'), [playSound]);
+    const playStartSound = useCallback(() => playSound(440, 0.2, 'triangle'), [playSound]);
+    const playGameOverSound = useCallback(() => {
+        playSound(200, 0.3, 'sawtooth');
+        setTimeout(() => playSound(150, 0.4, 'sawtooth'), 300);
+    }, [playSound]);
 
     // Generate random dot position
     const spawnDot = useCallback(() => {
@@ -43,6 +85,7 @@ export default function MiniGame() {
             setTimeLeft(prev => {
                 if (prev <= 1) {
                     setIsPlaying(false);
+                    playGameOverSound();
                     // Save high score
                     if (score > highScore) {
                         setHighScore(score);
@@ -55,7 +98,7 @@ export default function MiniGame() {
         }, 1000);
 
         return () => clearInterval(timer);
-    }, [isPlaying, score, highScore]);
+    }, [isPlaying, score, highScore, playGameOverSound]);
 
     // Spawn dots periodically
     useEffect(() => {
@@ -70,12 +113,14 @@ export default function MiniGame() {
 
     // Handle dot click
     const handleDotClick = (dotId: number) => {
+        playClickSound();
         setDots(prev => prev.filter(d => d.id !== dotId));
         setScore(prev => prev + 1);
     };
 
     // Start game
     const startGame = () => {
+        playStartSound();
         setIsPlaying(true);
         setScore(0);
         setDots([]);
