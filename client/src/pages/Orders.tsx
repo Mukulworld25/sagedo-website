@@ -104,7 +104,7 @@ export default function Orders() {
 
         // Open Razorpay checkout immediately
         const options = {
-          key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_RqLFKSisyWb88o',
+          key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_RsCG3btmCdudEN',
           amount: paymentOrder.amount,
           currency: 'INR',
           name: 'SAGE DO',
@@ -251,7 +251,7 @@ export default function Orders() {
 
       // Open Razorpay checkout
       const options = {
-        key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_RqLFKSisyWb88o',
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_RsCG3btmCdudEN',
         amount: paymentOrder.amount,
         currency: 'INR',
         name: 'SAGE DO',
