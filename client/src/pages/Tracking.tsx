@@ -16,6 +16,16 @@ export default function Tracking() {
   const [orderId, setOrderId] = useState("");
   const [searchedOrderId, setSearchedOrderId] = useState("");
 
+  // Auto-read orderId from URL params (from Dashboard Track button)
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlOrderId = urlParams.get('orderId');
+    if (urlOrderId) {
+      setOrderId(urlOrderId);
+      setSearchedOrderId(urlOrderId);
+    }
+  }, []);
+
   // Feedback state
   const [rating, setRating] = useState(5);
   const [message, setMessage] = useState("");

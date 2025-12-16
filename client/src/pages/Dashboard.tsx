@@ -285,19 +285,31 @@ export default function Dashboard() {
                   {orders.map((order: any) => (
                     <tr key={order.id} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
                       <td className="py-3 px-4">
-                        <span className="font-mono text-sm text-primary">{order.id.slice(0, 8)}...</span>
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-sm text-primary">{order.id.slice(0, 8)}...</span>
+                          <button
+                            onClick={() => {
+                              navigator.clipboard.writeText(order.id);
+                              toast({ title: "Copied!", description: "Order ID copied to clipboard" });
+                            }}
+                            className="text-xs text-muted-foreground hover:text-primary transition-colors"
+                            title="Copy full Order ID"
+                          >
+                            📋
+                          </button>
+                        </div>
                       </td>
                       <td className="py-3 px-4">
                         <span className="text-foreground font-medium">{order.serviceName}</span>
                       </td>
                       <td className="py-3 px-4">
                         <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${order.status === 'delivered'
-                            ? 'bg-green-500/20 text-green-400'
-                            : order.status === 'processing'
-                              ? 'bg-blue-500/20 text-blue-400'
-                              : order.status === 'finalizing'
-                                ? 'bg-purple-500/20 text-purple-400'
-                                : 'bg-yellow-500/20 text-yellow-400'
+                          ? 'bg-green-500/20 text-green-400'
+                          : order.status === 'processing'
+                            ? 'bg-blue-500/20 text-blue-400'
+                            : order.status === 'finalizing'
+                              ? 'bg-purple-500/20 text-purple-400'
+                              : 'bg-yellow-500/20 text-yellow-400'
                           }`}>
                           {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
                         </span>
