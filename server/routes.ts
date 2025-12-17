@@ -274,6 +274,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Services routes (public)
+  app.get('/api/test-email', async (req, res) => {
+    try {
+      console.log('Test email triggered manually');
+      await sendOrderConfirmationEmail({
+        customerName: "Test User",
+        customerEmail: "sagedoai00@gmail.com", // Sending to admin as test
+        orderId: "TEST-12345",
+        serviceName: "Email System Test",
+        amount: 0,
+        orderDate: new Date().toLocaleDateString(),
+        isFree: true
+      });
+      res.json({ success: true, message: "Test email sent to sagedoai00@gmail.com" });
+    } catch (error: any) {
+      console.error("Test email failed:", error);
+      res.status(500).json({ success: false, error: error.message });
+    }
+  });
+
   app.get('/api/services', async (req, res) => {
     try {
       const services = await storage.getAllServices();
