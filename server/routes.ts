@@ -275,55 +275,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Services routes (public)
   app.get('/api/test-email', async (req, res) => {
-    const nodemailer = require('nodemailer');
     const toEmail = (req.query.to as string) || "sagedoai00@gmail.com";
 
+    // First, just return the config diagnostics
     const diagnostics: any = {
       timestamp: new Date().toISOString(),
       gmailUserSet: !!process.env.GMAIL_USER,
-      gmailUser: process.env.GMAIL_USER ? process.env.GMAIL_USER.substring(0, 5) + '***' : 'NOT SET',
+      gmailUser: process.env.GMAIL_USER || 'NOT SET',
       gmailPassSet: !!process.env.GMAIL_APP_PASSWORD,
       gmailPassLength: process.env.GMAIL_APP_PASSWORD?.length || 0,
       gmailPassHasSpaces: process.env.GMAIL_APP_PASSWORD?.includes(' ') || false,
       targetEmail: toEmail,
     };
 
-    console.log('=== EMAIL DIAGNOSTIC ===');
-    console.log(JSON.stringify(diagnostics, null, 2));
-
-    try {
-      const testTransporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: process.env.GMAIL_USER,
-          pass: process.env.GMAIL_APP_PASSWORD,
-        },
-      });
-
-      // Verify SMTP connection first
-      await testTransporter.verify();
-      diagnostics.smtpVerified = true;
-
-      // Send test email
-      const result = await testTransporter.sendMail({
-        from: `"SAGE DO Test" <${process.env.GMAIL_USER}>`,
-        to: toEmail,
-        subject: `SAGE DO Email Test - ${new Date().toLocaleTimeString()}`,
-        text: 'If you receive this, email is working!',
-        html: '<h1>Email System Working!</h1><p>If you see this, SAGE DO can send emails.</p>',
-      });
-
-      diagnostics.success = true;
-      diagnostics.messageId = result.messageId;
-      diagnostics.response = result.response;
-      res.json(diagnostics);
-    } catch (error: any) {
-      diagnostics.success = false;
-      diagnostics.errorCode = error.code;
-      diagnostics.errorMessage = error.message;
-      diagnostics.errorResponse = error.response;
-      res.status(500).json(diagnostics);
+    // If ?send=true, actually try to send
+    if (req.query.send === 'true') {
+      try {
+        await sendOrderConfirmationEmail({
+          customerName: "Test User",
+          customerEmail: toEmail,
+          orderId: "TEST-" + Date.now(),
+          serviceName: "Email System Test",
+          amount: 0,
+          orderDate: new Date().toLocaleDateString(),
+          isFree: true
+        });
+        diagnostics.emailSent = true;
+        diagnostics.success = true;
+      } catch (error: any) {
+        diagnostics.emailSent = false;
+        diagnostics.success = false;
+        diagnostics.errorMessage = error.message;
+      }
     }
+
+    res.json(diagnostics);
   });
 
   app.get('/api/services', async (req, res) => {
