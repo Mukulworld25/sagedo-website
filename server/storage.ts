@@ -317,6 +317,38 @@ export class DatabaseStorage implements IStorage {
       reason
     }).onConflictDoNothing();
   }
+
+  // Token validation methods
+  async updateUserLastLogin(userId: string): Promise<void> {
+    await db.update(users).set({
+      lastLoginAt: new Date(),
+    }).where(eq(users.id, userId));
+  }
+
+  async checkReferral(userId: string, referralEmail: string): Promise<boolean> {
+    // Check token transactions for existing referral
+    const [existing] = await db.select()
+      .from(tokenTransactions)
+      .where(eq(tokenTransactions.userId, userId))
+      .where(eq(tokenTransactions.type, 'referral'))
+      .where(sql`${tokenTransactions.description} ILIKE ${'%' + referralEmail.toLowerCase() + '%'}`);
+    return !!existing;
+  }
+
+  async addReferral(userId: string, referralEmail: string): Promise<void> {
+    // We just store the referral email in the description - no separate table needed
+    // The transaction will be added by the calling code
+  }
+
+  async getLastTokenTransactionByType(userId: string, type: string): Promise<TokenTransaction | undefined> {
+    const [result] = await db.select()
+      .from(tokenTransactions)
+      .where(eq(tokenTransactions.userId, userId))
+      .where(eq(tokenTransactions.type, type))
+      .orderBy(desc(tokenTransactions.createdAt))
+      .limit(1);
+    return result;
+  }
 }
 
 export const storage = new DatabaseStorage();

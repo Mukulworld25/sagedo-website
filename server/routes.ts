@@ -198,14 +198,65 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Token routes (protected)
+  // Token routes (protected) - with validation to prevent abuse
   app.post('/api/tokens/earn', isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.session.user.id;
-      const { amount, type, description } = req.body;
+      const { amount, type, description, referralEmail } = req.body;
 
       if (!amount || !type || !description) {
         return res.status(400).json({ message: "Missing required fields" });
+      }
+
+      // Get user to check eligibility
+      const user = await storage.getUser(userId);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      // Validation based on token type
+      if (type === 'daily_login') {
+        // Check if already claimed today
+        const today = new Date().toDateString();
+        const lastLogin = user.lastLoginAt ? new Date(user.lastLoginAt).toDateString() : null;
+
+        if (lastLogin === today) {
+          return res.status(400).json({ message: "Daily bonus already claimed today! Come back tomorrow." });
+        }
+
+        // Update last login date
+        await storage.updateUserLastLogin(userId);
+      }
+      else if (type === 'referral') {
+        // Require referral email
+        if (!referralEmail || !referralEmail.includes('@')) {
+          return res.status(400).json({ message: "Please enter a valid email for the person you referred." });
+        }
+
+        // Check if same as user's email
+        if (referralEmail.toLowerCase() === user.email.toLowerCase()) {
+          return res.status(400).json({ message: "You cannot refer yourself!" });
+        }
+
+        // Check if already referred this email
+        const existingReferral = await storage.checkReferral(userId, referralEmail);
+        if (existingReferral) {
+          return res.status(400).json({ message: "You have already claimed a referral bonus for this email." });
+        }
+
+        // Store referral
+        await storage.addReferral(userId, referralEmail);
+      }
+      else if (type === 'survey') {
+        // Check if survey already completed today
+        const today = new Date().toDateString();
+        const existingSurvey = await storage.getLastTokenTransactionByType(userId, 'survey');
+        if (existingSurvey) {
+          const surveyDate = new Date(existingSurvey.createdAt!).toDateString();
+          if (surveyDate === today) {
+            return res.status(400).json({ message: "Survey already completed today! Try again tomorrow." });
+          }
+        }
       }
 
       const transaction = await storage.addTokenTransaction({

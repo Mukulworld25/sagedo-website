@@ -50,17 +50,31 @@ export default function Dashboard() {
         description: "Your token balance has been updated.",
       });
     },
-    onError: (error: Error) => {
+    onError: async (error: any) => {
+      // Try to extract error message from response
+      let message = "Failed to earn tokens";
+      try {
+        if (error.message) message = error.message;
+      } catch { }
       toast({
-        title: "Error",
-        description: error.message,
+        title: "Cannot Earn Tokens",
+        description: message,
         variant: "destructive",
       });
     },
   });
 
-  const handleEarnTokens = (amount: number, type: string, description: string) => {
-    earnTokensMutation.mutate({ amount, type, description });
+  const handleEarnTokens = (amount: number, type: string, description: string, referralEmail?: string) => {
+    earnTokensMutation.mutate({ amount, type, description, referralEmail });
+  };
+
+  const handleReferralClick = () => {
+    const email = window.prompt("Enter the email address of the person you referred:");
+    if (email && email.includes('@')) {
+      handleEarnTokens(100, "referral", `Referral bonus for ${email}`, email);
+    } else if (email) {
+      toast({ title: "Invalid Email", description: "Please enter a valid email address.", variant: "destructive" });
+    }
   };
 
   // Delete Account feature
@@ -220,7 +234,7 @@ export default function Dashboard() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <Button
-              onClick={() => handleEarnTokens(100, "referral", "Referral bonus")}
+              onClick={handleReferralClick}
               disabled={earnTokensMutation.isPending}
               data-testid="button-earn-referral"
               variant="outline"
