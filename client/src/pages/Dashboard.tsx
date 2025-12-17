@@ -9,12 +9,28 @@ import { useLocation } from "wouter";
 import { User, Order } from "@shared/schema";
 import { Coins, Gift, TrendingUp, FileText, Download, Trash2, AlertTriangle } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function Dashboard() {
   const { toast } = useToast();
   const { user, isAuthenticated, isLoading } = useAuth();
 
   const [, setLocation] = useLocation();
+  const [isSurveyOpen, setIsSurveyOpen] = useState(false);
+  const [surveyData, setSurveyData] = useState({
+    experience: "",
+    feedback: ""
+  });
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -246,7 +262,7 @@ export default function Dashboard() {
             </Button>
 
             <Button
-              onClick={() => handleEarnTokens(50, "survey", "Survey completion")}
+              onClick={() => setIsSurveyOpen(true)}
               disabled={earnTokensMutation.isPending}
               data-testid="button-earn-survey"
               variant="outline"
@@ -356,6 +372,86 @@ export default function Dashboard() {
           )}
         </Card>
       </div>
+
+      <Dialog open={isSurveyOpen} onOpenChange={setIsSurveyOpen}>
+        <DialogContent className="sm:max-w-[425px] glass border-primary/20">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold">Quick Survey 📝</DialogTitle>
+            <DialogDescription>
+              Help us improve SAGE DO! Complete this quick survey to earn 50 tokens instantly.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="space-y-3">
+              <Label className="text-base">How has your experience been so far?</Label>
+              <RadioGroup
+                value={surveyData.experience}
+                onValueChange={(val) => setSurveyData({ ...surveyData, experience: val })}
+                className="grid grid-cols-3 gap-2"
+              >
+                <div>
+                  <RadioGroupItem value="great" id="great" className="peer sr-only" />
+                  <Label
+                    htmlFor="great"
+                    className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-2 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer"
+                  >
+                    <span>😍</span>
+                    <span className="text-xs mt-1">Great!</span>
+                  </Label>
+                </div>
+                <div>
+                  <RadioGroupItem value="okay" id="okay" className="peer sr-only" />
+                  <Label
+                    htmlFor="okay"
+                    className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-2 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer"
+                  >
+                    <span>🙂</span>
+                    <span className="text-xs mt-1">Okay</span>
+                  </Label>
+                </div>
+                <div>
+                  <RadioGroupItem value="bad" id="bad" className="peer sr-only" />
+                  <Label
+                    htmlFor="bad"
+                    className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-2 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer"
+                  >
+                    <span>😩</span>
+                    <span className="text-xs mt-1">Bad</span>
+                  </Label>
+                </div>
+              </RadioGroup>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="feedback">What feature should we add next?</Label>
+              <Textarea
+                id="feedback"
+                placeholder="I wish SAGE DO could..."
+                value={surveyData.feedback}
+                onChange={(e) => setSurveyData({ ...surveyData, feedback: e.target.value })}
+                className="glass"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button
+              onClick={() => {
+                if (!surveyData.experience) {
+                  toast({ title: "Please rate your experience first!", variant: "destructive" });
+                  return;
+                }
+                handleEarnTokens(50, "survey", "Survey completion");
+                setIsSurveyOpen(false);
+                setSurveyData({ experience: "", feedback: "" }); // Reset
+              }}
+              disabled={earnTokensMutation.isPending}
+              className="w-full bg-gradient-to-r from-primary to-purple-600"
+            >
+              Submit & Earn 50 Tokens 💰
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
+```
