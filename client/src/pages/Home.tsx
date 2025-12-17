@@ -204,13 +204,13 @@ export default function Home() {
                 <div className="flex items-center justify-center md:justify-start gap-2 mb-4">
                   <Star className="w-5 h-5 text-amber-500 fill-amber-500" />
                   <h2 className="text-2xl md:text-3xl font-black text-amber-500">
-                    Golden Ticket System
+                    Welcome Bonus
                   </h2>
                   <Star className="w-5 h-5 text-amber-500 fill-amber-500" />
                 </div>
 
                 <p className="text-xl md:text-2xl text-foreground font-semibold mb-6">
-                  Get <span className="text-3xl text-amber-500 font-black">FREE GPT Prompts</span> + 1 Golden Ticket on Signup!
+                  Get <span className="text-3xl text-amber-500 font-black">FREE GPT Prompts</span> + 1 Free Service Credit on Signup!
                 </p>
 
                 <div className="space-y-3 text-muted-foreground mb-8">
@@ -220,7 +220,7 @@ export default function Home() {
                   </p>
                   <p className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span><strong className="text-foreground">Golden Ticket:</strong> Use it for ANY service delivered within <strong className="text-amber-500">24-48 hours</strong></span>
+                    <span><strong className="text-foreground">Service Credit:</strong> Use it for ANY service delivered within <strong className="text-amber-500">24-48 hours</strong></span>
                   </p>
                   <p className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
@@ -238,7 +238,7 @@ export default function Home() {
                   <Link href="/services">
                     <Button size="lg" variant="outline" className="h-12 px-6 border-amber-500/50 hover:bg-amber-500/10 rounded-xl">
                       <Star className="mr-2 h-5 w-5 text-amber-500 fill-amber-500" />
-                      View Golden Services
+                      View Eligible Services
                     </Button>
                   </Link>
                 </div>
@@ -427,8 +427,8 @@ export default function Home() {
             Ready to Get Things Done?
           </h2>
           <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
-            Join 150+ Indians who've already simplified their lives with SAGE DO.
-            Start with FREE GPT Prompts + Golden Ticket today.
+            Trusted by 150+ Members for AI Automation.
+            Start with FREE GPT Prompts + Welcome Bonus today.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/login?register=true">

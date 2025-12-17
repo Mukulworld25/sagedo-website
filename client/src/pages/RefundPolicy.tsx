@@ -66,7 +66,7 @@ export default function RefundPolicy() {
                             <li>Changes in requirements after service delivery</li>
                             <li>Delays caused by incomplete or incorrect information provided by you</li>
                             <li>Subjective dissatisfaction with delivered content (when it meets agreed specifications)</li>
-                            <li>Token bonuses, promotional credits, or Golden Tickets</li>
+                            <li>Token bonuses, promotional credits, or Welcome Bonus credits</li>
                         </ul>
                     </section>
 

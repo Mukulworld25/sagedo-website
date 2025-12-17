@@ -144,7 +144,7 @@ export default function Services() {
                   />
                   {service.isGoldenEligible && (
                     <Badge className="absolute top-2 right-2 z-[1000] bg-gradient-to-r from-yellow-400 to-amber-600 text-black border-0 shadow-lg text-xs font-bold animate-pulse" data-testid={`badge-golden-${service.id}`}>
-                      ✨ FREE with Golden Ticket!
+                      ✨ FREE Welcome Bonus!
                     </Badge>
                   )}
                 </div>

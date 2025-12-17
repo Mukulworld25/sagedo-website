@@ -61,7 +61,7 @@ export default function Login() {
 
                 toast({
                     title: isRegister ? '🎉 Welcome to SAGE DO!' : '✅ Welcome back!',
-                    description: isRegister ? "You've received FREE GPT Prompts + 1 Golden Ticket!" : 'Successfully logged in'
+                    description: isRegister ? "You've received FREE GPT Prompts + 1 Free Service Credit!" : 'Successfully logged in'
                 });
 
                 if (data.user.isAdmin) {
@@ -110,7 +110,7 @@ export default function Login() {
                     </h1>
                     <p className="text-muted-foreground">
                         {isRegister
-                            ? 'Get FREE GPT Prompts + 1 Golden Ticket on signup!'
+                            ? 'Get FREE GPT Prompts + 1 Free Service Credit on signup!'
                             : 'Login to access your dashboard'}
                     </p>
                 </div>
