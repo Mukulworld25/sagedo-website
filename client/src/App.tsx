@@ -18,7 +18,6 @@ import ForgotPassword from "@/pages/ForgotPassword";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
 import RefundPolicy from "@/pages/RefundPolicy";
-import ShippingPolicy from "@/pages/ShippingPolicy";
 import GrievanceOfficer from "@/pages/GrievanceOfficer";
 import NotFound from "@/pages/not-found";
 
@@ -56,7 +55,7 @@ function Router() {
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/terms-of-service" component={TermsOfService} />
         <Route path="/refund-policy" component={RefundPolicy} />
-        <Route path="/shipping-policy" component={ShippingPolicy} />
+        <Route path="/shipping-policy" component={RefundPolicy} />
         <Route path="/grievance-officer" component={GrievanceOfficer} />
         <Route component={NotFound} />
       </Switch>

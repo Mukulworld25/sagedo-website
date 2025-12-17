@@ -4,16 +4,47 @@ export default function RefundPolicy() {
     return (
         <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-                <h1 className="text-4xl font-black text-foreground mb-8">Refund & Cancellation Policy</h1>
+                <h1 className="text-4xl font-black text-foreground mb-8">Refund, Cancellation & Shipping Policy</h1>
 
                 <Card className="glass p-8 space-y-6">
                     <section>
                         <p className="text-sm text-muted-foreground mb-4">
-                            Last Updated: November 22, 2025
+                            Last Updated: December 17, 2025
                         </p>
                         <p className="text-muted-foreground">
-                            At SAGE DO, we strive for 100% customer satisfaction. This Refund and Cancellation Policy outlines the conditions under which refunds may be issued, in compliance with the Consumer Protection Act, 2019 and Consumer Protection (E-Commerce) Rules, 2020.
+                            At SAGE DO, we strive for 100% customer satisfaction. This policy outlines our refund, cancellation, and delivery terms in compliance with the Consumer Protection Act, 2019 and Consumer Protection (E-Commerce) Rules, 2020.
                         </p>
+                    </section>
+
+                    {/* Shipping & Delivery Section */}
+                    <section className="bg-primary/5 p-6 rounded-lg border border-primary/20">
+                        <h2 className="text-2xl font-bold text-foreground mb-4">📦 Shipping & Delivery Policy</h2>
+
+                        <div className="space-y-4 text-muted-foreground">
+                            <div>
+                                <h3 className="font-semibold text-foreground mb-2">Service Delivery</h3>
+                                <p>SAGE DO is a Platform-as-a-Service (PaaS). <strong className="text-foreground">We do not ship physical products.</strong> All our services are delivered digitally.</p>
+                            </div>
+
+                            <div>
+                                <h3 className="font-semibold text-foreground mb-2">Delivery Timeline</h3>
+                                <p>Services (AI credits/dashboard access) are delivered <strong className="text-foreground">instantly upon successful payment</strong>. For custom service orders, delivery timelines are specified on each service page and typically range from 24 hours to 3-5 business days.</p>
+                            </div>
+
+                            <div>
+                                <h3 className="font-semibold text-foreground mb-2">Confirmation</h3>
+                                <p>A confirmation email is sent to your registered email address immediately after every successful transaction. You can also track your order status in real-time from your dashboard.</p>
+                            </div>
+
+                            <div>
+                                <h3 className="font-semibold text-foreground mb-2">Delivery Methods</h3>
+                                <ul className="list-disc pl-6 space-y-1">
+                                    <li>Email with download links</li>
+                                    <li>Direct access through your SAGE DO dashboard</li>
+                                    <li>Google Drive or cloud storage links (for large files)</li>
+                                </ul>
+                            </div>
+                        </div>
                     </section>
 
                     <section>
@@ -117,11 +148,11 @@ export default function RefundPolicy() {
                     <section>
                         <h2 className="text-2xl font-bold text-foreground mb-3">10. Contact Us</h2>
                         <div className="text-muted-foreground">
-                            <p>For refund and cancellation queries:</p>
+                            <p>For refund, cancellation, or delivery queries:</p>
                             <ul className="list-none space-y-1 mt-2">
                                 <li><strong>Email:</strong> sagedoai00@gmail.com</li>
                                 <li><strong>Phone:</strong> +91 7018709291</li>
-                                <li><strong>WhatsApp:</strong> https://wa.me/917018709291</li>
+                                <li><strong>WhatsApp:</strong> <a href="https://wa.me/917018709291" className="text-primary hover:underline">+91 7018709291</a></li>
                             </ul>
                             <p className="mt-3">
                                 <strong>Response Time:</strong> We aim to respond to all queries within 24-48 hours.
@@ -131,7 +162,7 @@ export default function RefundPolicy() {
 
                     <section className="border-t pt-6 mt-6">
                         <p className="text-sm text-muted-foreground italic">
-                            This Refund Policy is subject to the laws of India and complies with the Consumer Protection Act, 2019.
+                            This Refund & Shipping Policy is subject to the laws of India and complies with the Consumer Protection Act, 2019.
                         </p>
                     </section>
                 </Card>
