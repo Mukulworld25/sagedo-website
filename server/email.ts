@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 
 // Gmail SMTP configuration
+// Required env vars: GMAIL_USER and GMAIL_APP_PASSWORD
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -9,35 +10,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Admin contact
+// Admin email for notifications
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'sagedoai00@gmail.com';
-const ADMIN_WHATSAPP = process.env.ADMIN_WHATSAPP || '917018709291';
-
-// ============================================
-// WhatsApp via CallMeBot (Free)
-// Setup: Send "I allow callmebot to send me messages" to +34 644 51 95 23
-// ============================================
-async function sendWhatsAppMessage(phone: string, message: string) {
-  try {
-    const apiKey = process.env.CALLMEBOT_API_KEY || ''; // Get from CallMeBot
-    if (!apiKey) {
-      console.log('⚠️ CALLMEBOT_API_KEY not set, skipping WhatsApp');
-      return;
-    }
-
-    const encodedMessage = encodeURIComponent(message);
-    const url = `https://api.callmebot.com/whatsapp.php?phone=${phone}&text=${encodedMessage}&apikey=${apiKey}`;
-
-    const response = await fetch(url);
-    if (response.ok) {
-      console.log('📱 WhatsApp sent to:', phone);
-    } else {
-      console.log('⚠️ WhatsApp failed:', await response.text());
-    }
-  } catch (error) {
-    console.error('❌ WhatsApp error:', error);
-  }
-}
 
 // ============================================
 // Interfaces
@@ -55,19 +29,15 @@ interface OrderEmailData {
 
 // ============================================
 // 1. ORDER + PAYMENT CONFIRMATION (Combined)
-// For paid orders AND free orders (Golden Ticket)
 // ============================================
 export async function sendOrderConfirmationEmail(data: OrderEmailData) {
   const shortId = data.orderId.slice(0, 8);
-  const isPaid = data.amount > 0 && !data.isFree;
   const amountText = data.isFree ? 'FREE (Golden Ticket Used)' : `₹${data.amount}`;
 
-  // Email subject (professional)
   const subject = data.isFree
     ? `Order Confirmed (Golden Ticket) #${shortId} - SAGE DO`
     : `Order & Payment Confirmed #${shortId} - SAGE DO`;
 
-  // Fun email body
   const customerHtml = `
     <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #1a1a2e; color: #ffffff; padding: 30px; border-radius: 16px;">
       <h1 style="color: #f43f5e; font-size: 28px; margin-bottom: 20px;">
@@ -115,13 +85,6 @@ export async function sendOrderConfirmationEmail(data: OrderEmailData) {
     });
     console.log('✉️ Order confirmation email sent to:', data.customerEmail);
 
-    // WhatsApp to admin
-    const whatsappMsg = data.isFree
-      ? `🎫 SAGE DO - FREE Order!\n\nOrder #${shortId} confirmed!\nService: ${data.serviceName}\nAmount: FREE (Golden Ticket)\nCustomer: ${data.customerEmail}\n\nTrack: sagedo.vercel.app/admin`
-      : `💸 SAGE DO - Cha-Ching!\n\nOrder #${shortId} confirmed!\nService: ${data.serviceName}\nAmount: ₹${data.amount} ✓\nCustomer: ${data.customerEmail}\n\nTrack: sagedo.vercel.app/admin`;
-
-    await sendWhatsAppMessage(ADMIN_WHATSAPP, whatsappMsg);
-
     // Admin email notification
     await transporter.sendMail({
       from: `"SAGE DO AI" <${process.env.GMAIL_USER || 'noreply@sagedo.com'}>`,
@@ -139,11 +102,9 @@ export async function sendOrderConfirmationEmail(data: OrderEmailData) {
         </div>
       `,
     });
+    console.log('✉️ Admin notification sent for order:', data.orderId);
   } catch (error) {
-    console.error('❌ Failed to send order confirmation:', error);
-    // Fallback: Try WhatsApp only
-    const fallbackMsg = `⚠️ EMAIL FAILED!\n\nOrder #${shortId}\nService: ${data.serviceName}\nCustomer: ${data.customerEmail}\n\nCheck admin panel!`;
-    await sendWhatsAppMessage(ADMIN_WHATSAPP, fallbackMsg);
+    console.error('❌ Failed to send order confirmation email:', error);
   }
 }
 
@@ -210,24 +171,15 @@ export async function sendOrderDeliveredEmail(data: OrderEmailData & { deliveryN
       html: customerHtml,
     });
     console.log('✉️ Order delivered email sent to:', data.customerEmail);
-
-    // WhatsApp to admin confirmation
-    const whatsappMsg = `🚀 SAGE DO - DELIVERED!\n\nOrder #${shortId}\nService: ${data.serviceName}\nCustomer: ${data.customerEmail}\n\nStatus: ✅ Delivered`;
-    await sendWhatsAppMessage(ADMIN_WHATSAPP, whatsappMsg);
-
   } catch (error) {
     console.error('❌ Failed to send delivery email:', error);
-    const fallbackMsg = `⚠️ DELIVERY EMAIL FAILED!\n\nOrder #${shortId}\nCustomer: ${data.customerEmail}\n\nPlease notify manually!`;
-    await sendWhatsAppMessage(ADMIN_WHATSAPP, fallbackMsg);
   }
 }
 
 // ============================================
 // Payment Success (redirects to combined function)
-// Kept for backward compatibility
 // ============================================
 export async function sendPaymentSuccessEmail(data: OrderEmailData & { paymentId: string; paymentMethod: string }) {
-  // Now combined with order confirmation
   await sendOrderConfirmationEmail({
     ...data,
     isFree: false,
