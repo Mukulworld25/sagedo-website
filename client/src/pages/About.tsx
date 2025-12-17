@@ -244,6 +244,56 @@ export default function About() {
           )}
         </section>
 
+        {/* Contact Us Section - Required for Razorpay */}
+        <section className="mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
+              Contact Us
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Get in touch with us for any queries or support.
+            </p>
+          </div>
+
+          <Card className="glass p-8 max-w-2xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-foreground">Get In Touch</h3>
+                <div className="space-y-3 text-muted-foreground">
+                  <p className="flex items-start gap-2">
+                    <span className="font-semibold text-foreground min-w-[80px]">📞 Phone:</span>
+                    <a href="tel:+917018709291" className="hover:text-primary">+91 7018709291</a>
+                  </p>
+                  <p className="flex items-start gap-2">
+                    <span className="font-semibold text-foreground min-w-[80px]">📧 Email:</span>
+                    <a href="mailto:sagedoai00@gmail.com" className="hover:text-primary">sagedoai00@gmail.com</a>
+                  </p>
+                  <p className="flex items-start gap-2">
+                    <span className="font-semibold text-foreground min-w-[80px]">💬 WhatsApp:</span>
+                    <a href="https://wa.me/917018709291" className="hover:text-primary">+91 7018709291</a>
+                  </p>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-foreground">Business Address</h3>
+                <div className="space-y-3 text-muted-foreground">
+                  <p className="flex items-start gap-2">
+                    <span className="font-semibold text-foreground">📍 Address:</span>
+                  </p>
+                  <p className="pl-8">
+                    SAGE DO AI<br />
+                    Chandigarh, India<br />
+                    PIN: 160014
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-4">
+                    Business Hours: Mon-Sat, 10:00 AM - 7:00 PM IST
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </section>
+
         {/* Contact CTA */}
         <section className="text-center">
           <Card className="glass p-12">

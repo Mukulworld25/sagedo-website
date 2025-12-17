@@ -50,6 +50,11 @@ export default function Footer() {
                 Refund Policy
               </button>
             </Link>
+            <Link href="/shipping-policy">
+              <button className="text-muted-foreground hover:text-foreground transition-colors">
+                Shipping & Delivery
+              </button>
+            </Link>
             <Link href="/grievance-officer">
               <button className="text-muted-foreground hover:text-foreground transition-colors">
                 Grievance Officer
