@@ -276,19 +276,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Services routes (public)
   app.get('/api/test-email', async (req, res) => {
     try {
-      console.log('Test email triggered manually');
+      const toEmail = (req.query.to as string) || "sagedoai00@gmail.com";
+      console.log('========================================');
+      console.log('TEST EMAIL TRIGGERED');
+      console.log('Sending to:', toEmail);
+      console.log('GMAIL_USER:', process.env.GMAIL_USER ? 'SET' : 'NOT SET');
+      console.log('GMAIL_APP_PASSWORD:', process.env.GMAIL_APP_PASSWORD ? 'SET' : 'NOT SET');
+      console.log('========================================');
+
       await sendOrderConfirmationEmail({
         customerName: "Test User",
-        customerEmail: "sagedoai00@gmail.com", // Sending to admin as test
-        orderId: "TEST-12345",
+        customerEmail: toEmail,
+        orderId: "TEST-" + Date.now(),
         serviceName: "Email System Test",
         amount: 0,
         orderDate: new Date().toLocaleDateString(),
         isFree: true
       });
-      res.json({ success: true, message: "Test email sent to sagedoai00@gmail.com" });
+      console.log('EMAIL SENT SUCCESSFULLY to:', toEmail);
+      res.json({ success: true, message: `Test email sent to ${toEmail}` });
     } catch (error: any) {
-      console.error("Test email failed:", error);
+      console.error("TEST EMAIL FAILED:", error);
       res.status(500).json({ success: false, error: error.message });
     }
   });
