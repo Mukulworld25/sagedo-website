@@ -26,6 +26,15 @@ export default function Tracking() {
     }
   }, []);
 
+  // Feedback state
+  const [rating, setRating] = useState(5);
+  const [message, setMessage] = useState("");
+
+  const { data: order, isLoading } = useQuery<Order>({
+    queryKey: ["/api/orders", searchedOrderId],
+    enabled: !!searchedOrderId,
+  });
+
   // Auto-scroll to order details when order is loaded from URL
   useEffect(() => {
     if (order && searchedOrderId) {
@@ -37,15 +46,6 @@ export default function Tracking() {
       }
     }
   }, [order, searchedOrderId]);
-
-  // Feedback state
-  const [rating, setRating] = useState(5);
-  const [message, setMessage] = useState("");
-
-  const { data: order, isLoading } = useQuery<Order>({
-    queryKey: ["/api/orders", searchedOrderId],
-    enabled: !!searchedOrderId,
-  });
 
   const feedbackMutation = useMutation({
     mutationFn: async () => {
