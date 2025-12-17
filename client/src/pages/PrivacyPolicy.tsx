@@ -114,7 +114,25 @@ export default function PrivacyPolicy() {
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-foreground mb-3">10. Contact Us</h2>
+                        <h2 className="text-2xl font-bold text-foreground mb-3">10. Grievance Officer (DPDP Act 2023)</h2>
+                        <div className="text-muted-foreground">
+                            <p className="mb-3">
+                                In compliance with the Digital Personal Data Protection Act, 2023, we have appointed a Grievance Officer to address data privacy concerns:
+                            </p>
+                            <div className="bg-accent/20 p-4 rounded-lg space-y-2 mb-3">
+                                <p><strong>Name:</strong> SAGE DO Support Team</p>
+                                <p><strong>Email:</strong> sagedoai00@gmail.com</p>
+                                <p><strong>Phone:</strong> +91 7018709291</p>
+                                <p><strong>Response Time:</strong> Within 24-48 hours</p>
+                            </div>
+                            <p>
+                                For detailed grievance filing process, visit our <a href="/grievance-officer" className="text-primary hover:underline">Grievance Officer page</a>.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-foreground mb-3">11. Contact Us</h2>
                         <div className="text-muted-foreground">
                             <p>For privacy-related questions or concerns:</p>
                             <ul className="list-none space-y-1 mt-2">
