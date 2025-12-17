@@ -56,6 +56,17 @@ export default function Orders() {
     const serviceName = params.get('service');
     const price = params.get('price');
     const serviceId = params.get('id');
+    const goldenTicketMode = params.get('useGoldenTicket');
+
+    // Golden Ticket mode - show info toast
+    if (goldenTicketMode === 'true') {
+      setTimeout(() => {
+        toast({
+          title: "🎫 Golden Ticket Mode!",
+          description: "Select any Bar 1 service below and it will be FREE!",
+        });
+      }, 500);
+    }
 
     if (serviceName) {
       setFormData(prev => ({ ...prev, service: serviceName }));

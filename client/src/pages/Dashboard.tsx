@@ -202,6 +202,10 @@ export default function Dashboard() {
               variant="default"
               data-testid="button-use-golden-ticket"
               className="bg-gradient-to-r from-yellow-500 to-amber-500 hover:opacity-90"
+              onClick={() => {
+                setLocation('/orders?useGoldenTicket=true');
+                toast({ title: "Golden Ticket Selected!", description: "Choose a Bar 1 service to redeem your free service." });
+              }}
             >
               Use Golden Ticket
             </Button>
