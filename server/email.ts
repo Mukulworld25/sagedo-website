@@ -8,6 +8,8 @@ const transporter = nodemailer.createTransport({
     user: process.env.GMAIL_USER || process.env.EMAIL_USER,
     pass: process.env.GMAIL_APP_PASSWORD || process.env.EMAIL_PASSWORD,
   },
+  debug: true, // show debug output
+  logger: true // log information in console
 });
 
 // Admin email for notifications
