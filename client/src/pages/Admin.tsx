@@ -9,7 +9,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { Order, Feedback } from "@shared/schema";
-import { RefreshCw, CheckCircle2, Clock, Package, Truck, MessageSquare, Star, Eye, Plus, ImageIcon, ThumbsUp } from "lucide-react";
+import { RefreshCw, CheckCircle2, Clock, Package, Truck, MessageSquare, Star, Eye, Plus, ImageIcon, ThumbsUp, ChevronDown, ChevronUp, Download } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
@@ -58,6 +58,41 @@ export default function Admin() {
   const [portfolioDescription, setPortfolioDescription] = useState("");
   const [portfolioImageUrl, setPortfolioImageUrl] = useState("");
   const API_URL = ''; // Use relative URL - Vercel proxy forwards to Render
+
+  // Collapsible section states
+  const [sectionsOpen, setSectionsOpen] = useState({
+    mostClicked: false,
+    visitors: false,
+    feedbacks: false,
+    portfolio: false,
+  });
+
+  const toggleSection = (section: keyof typeof sectionsOpen) => {
+    setSectionsOpen(prev => ({ ...prev, [section]: !prev[section] }));
+  };
+
+  // CSV Export helper
+  const exportToCSV = (data: any[], filename: string, headers: string[]) => {
+    if (!data || data.length === 0) {
+      toast({ title: "No data to export", variant: "destructive" });
+      return;
+    }
+    const csvContent = [
+      headers.join(','),
+      ...data.map(row => headers.map(h => {
+        const key = h.toLowerCase().replace(/ /g, '');
+        const value = row[key] ?? row[h] ?? '';
+        return `"${String(value).replace(/"/g, '""')}"`;
+      }).join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `${filename}_${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+    toast({ title: "Exported!", description: `${filename}.csv downloaded` });
+  };
 
   // Approve feedback as testimonial
   const approveFeedbackMutation = useMutation({
@@ -242,11 +277,133 @@ export default function Admin() {
             </Card>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            {/* Most Clicked Services */}
-            <Card className="glass p-6">
-              <h2 className="text-xl font-bold mb-4">Most Clicked Services</h2>
-              <div className="space-y-4">
+          {/* ============ ORDER MANAGEMENT (Moved to top) ============ */}
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl font-bold">📦 Order Management</h2>
+              <Button
+                size="sm"
+                variant="outline"
+                className="glass"
+                onClick={() => exportToCSV(
+                  orders.map(o => ({
+                    id: o.id,
+                    customerName: o.customerName,
+                    customerEmail: o.customerEmail,
+                    serviceName: o.serviceName,
+                    amount: o.amount,
+                    status: o.status,
+                    createdAt: o.createdAt
+                  })),
+                  'orders',
+                  ['id', 'customerName', 'customerEmail', 'serviceName', 'amount', 'status', 'createdAt']
+                )}
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Export CSV
+              </Button>
+            </div>
+            <Card className="glass overflow-hidden">
+              {isLoading ? (
+                <div className="p-12 text-center">
+                  <div className="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full mx-auto" />
+                </div>
+              ) : orders.length > 0 ? (
+                <div className="overflow-x-auto max-h-[500px] overflow-y-auto">
+                  <table className="w-full">
+                    <thead className="bg-card/50 border-b border-border/50 sticky top-0">
+                      <tr>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Order ID</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Customer</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Service</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Status</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {orders.map((order) => {
+                        const StatusIcon = statusIcons[order.status as keyof typeof statusIcons] || Clock;
+                        return (
+                          <tr key={order.id} className="border-b border-border/50 hover-elevate" data-testid={`row-order-${order.id}`}>
+                            <td className="px-6 py-4 text-sm font-mono">
+                              <Link href={`/admin/orders/${order.id}`} className="text-primary hover:underline cursor-pointer">
+                                {order.id.slice(0, 8)}...
+                              </Link>
+                            </td>
+                            <td className="px-6 py-4">
+                              <div>
+                                <p className="text-sm text-foreground font-medium">{order.customerName || "N/A"}</p>
+                                <p className="text-xs text-muted-foreground">{order.customerEmail}</p>
+                              </div>
+                            </td>
+                            <td className="px-6 py-4 text-sm text-foreground">{order.serviceName}</td>
+                            <td className="px-6 py-4">
+                              <Badge variant="default" className={`${statusColors[order.status as keyof typeof statusColors]} flex items-center gap-1 w-fit`}>
+                                <StatusIcon className="w-3 h-3" />
+                                {order.status}
+                              </Badge>
+                            </td>
+                            <td className="px-6 py-4">
+                              <div className="flex flex-wrap gap-2">
+                                {order.status !== "delivered" && (
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => handleUpdateStatus(order.id, order.status === "pending" ? "processing" : order.status === "processing" ? "finalizing" : "delivered")}
+                                    disabled={updateStatusMutation.isPending}
+                                    data-testid={`button-update-${order.id}`}
+                                    className="glass hover-elevate"
+                                  >
+                                    Next Stage
+                                  </Button>
+                                )}
+                                {order.status === "delivered" && (
+                                  <Badge variant="secondary" className="text-xs">Completed</Badge>
+                                )}
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <div className="p-12 text-center">
+                  <p className="text-xl text-muted-foreground">No orders yet.</p>
+                </div>
+              )}
+            </Card>
+          </div>
+
+          {/* ============ COLLAPSIBLE SECTIONS ============ */}
+
+          {/* Most Clicked Services - Collapsible */}
+          <Card className="glass mb-4">
+            <button
+              className="w-full p-4 flex items-center justify-between text-left"
+              onClick={() => toggleSection('mostClicked')}
+            >
+              <div className="flex items-center gap-2">
+                <h2 className="text-xl font-bold">📊 Most Clicked Services</h2>
+                <Badge variant="outline">{stats?.mostClickedServices?.length || 0}</Badge>
+              </div>
+              <div className="flex items-center gap-2">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    exportToCSV(stats?.mostClickedServices || [], 'most_clicked_services', ['name', 'clickCount']);
+                  }}
+                >
+                  <Download className="w-4 h-4" />
+                </Button>
+                {sectionsOpen.mostClicked ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+              </div>
+            </button>
+            {sectionsOpen.mostClicked && (
+              <div className="px-4 pb-4 space-y-2 max-h-[300px] overflow-y-auto">
                 {stats?.mostClickedServices?.map((service: any) => (
                   <div key={service.id} className="flex items-center justify-between border-b border-border/50 pb-2">
                     <span className="font-medium">{service.name}</span>
@@ -257,12 +414,35 @@ export default function Admin() {
                   <p className="text-muted-foreground">No data yet.</p>
                 )}
               </div>
-            </Card>
+            )}
+          </Card>
 
-            {/* Recent Visitors */}
-            <Card className="glass p-6">
-              <h2 className="text-xl font-bold mb-4">Recent Visitors</h2>
-              <div className="space-y-4">
+          {/* Recent Visitors - Collapsible */}
+          <Card className="glass mb-4">
+            <button
+              className="w-full p-4 flex items-center justify-between text-left"
+              onClick={() => toggleSection('visitors')}
+            >
+              <div className="flex items-center gap-2">
+                <h2 className="text-xl font-bold">👁️ Recent Visitors</h2>
+                <Badge variant="outline">{stats?.recentVisitors?.length || 0}</Badge>
+              </div>
+              <div className="flex items-center gap-2">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    exportToCSV(stats?.recentVisitors || [], 'visitors', ['path', 'userAgent', 'visitedAt']);
+                  }}
+                >
+                  <Download className="w-4 h-4" />
+                </Button>
+                {sectionsOpen.visitors ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+              </div>
+            </button>
+            {sectionsOpen.visitors && (
+              <div className="px-4 pb-4 space-y-2 max-h-[300px] overflow-y-auto">
                 {stats?.recentVisitors?.map((visitor: any) => (
                   <div key={visitor.id} className="flex items-center justify-between border-b border-border/50 pb-2">
                     <div className="flex flex-col">
@@ -278,34 +458,46 @@ export default function Admin() {
                   <p className="text-muted-foreground">No visitors yet.</p>
                 )}
               </div>
-            </Card>
-          </div>
+            )}
+          </Card>
 
-          {/* Feedback Section - With Approve Buttons */}
-          <Card className="glass p-6 mb-8">
-            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <MessageSquare className="w-6 h-6" />
-              User Feedback
-              <Badge variant="outline" className="ml-2">{feedbacks.length} total</Badge>
-            </h2>
-            {feedbacks.length > 0 ? (
-              <div className="space-y-4">
-                {feedbacks.map((feedback) => (
+          {/* User Feedback - Collapsible */}
+          <Card className="glass mb-4">
+            <button
+              className="w-full p-4 flex items-center justify-between text-left"
+              onClick={() => toggleSection('feedbacks')}
+            >
+              <div className="flex items-center gap-2">
+                <MessageSquare className="w-5 h-5" />
+                <h2 className="text-xl font-bold">User Feedback</h2>
+                <Badge variant="outline">{feedbacks.length} total</Badge>
+              </div>
+              <div className="flex items-center gap-2">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    exportToCSV(feedbacks.map(f => ({ id: f.id, rating: f.rating, message: f.message, createdAt: f.createdAt })), 'feedbacks', ['id', 'rating', 'message', 'createdAt']);
+                  }}
+                >
+                  <Download className="w-4 h-4" />
+                </Button>
+                {sectionsOpen.feedbacks ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+              </div>
+            </button>
+            {sectionsOpen.feedbacks && (
+              <div className="px-4 pb-4 space-y-4 max-h-[400px] overflow-y-auto">
+                {feedbacks.length > 0 ? feedbacks.map((feedback) => (
                   <div key={feedback.id} className="border-b border-border/50 pb-4 last:border-0 last:pb-0 flex items-start justify-between gap-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="flex">
                           {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className={`w-4 h-4 ${i < (feedback.rating || 0) ? "text-yellow-500 fill-current" : "text-muted-foreground"
-                                }`}
-                            />
+                            <Star key={i} className={`w-4 h-4 ${i < (feedback.rating || 0) ? "text-yellow-500 fill-current" : "text-muted-foreground"}`} />
                           ))}
                         </div>
-                        <span className="text-xs text-muted-foreground">
-                          {new Date(feedback.createdAt!).toLocaleDateString()}
-                        </span>
+                        <span className="text-xs text-muted-foreground">{new Date(feedback.createdAt!).toLocaleDateString()}</span>
                       </div>
                       <p className="text-foreground">{feedback.message}</p>
                     </div>
@@ -313,188 +505,51 @@ export default function Admin() {
                       size="sm"
                       variant="outline"
                       className="border-green-500/50 text-green-500 hover:bg-green-500/10 shrink-0"
-                      onClick={() => approveFeedbackMutation.mutate({
-                        feedbackId: feedback.id,
-                        clientName: 'Happy Customer'
-                      })}
+                      onClick={() => approveFeedbackMutation.mutate({ feedbackId: feedback.id, clientName: 'Happy Customer' })}
                       disabled={approveFeedbackMutation.isPending}
                     >
                       <ThumbsUp className="w-4 h-4 mr-1" />
                       Approve
                     </Button>
                   </div>
-                ))}
+                )) : <p className="text-muted-foreground">No feedback received yet.</p>}
               </div>
-            ) : (
-              <p className="text-muted-foreground">No feedback received yet.</p>
             )}
           </Card>
 
-          {/* Portfolio Posting Form */}
-          <Card className="glass p-6 mb-8 border-primary/20">
-            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <ImageIcon className="w-6 h-6 text-primary" />
-              Post Work Showcase
-            </h2>
-            <p className="text-muted-foreground mb-4">
-              Add delivered work to your portfolio. This will appear on the About page.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div className="space-y-2">
-                <Label htmlFor="portfolioTitle">Title</Label>
-                <Input
-                  id="portfolioTitle"
-                  placeholder="e.g., Logo Design for ABC Corp"
-                  value={portfolioTitle}
-                  onChange={(e) => setPortfolioTitle(e.target.value)}
-                  className="glass"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="portfolioImageUrl">Image URL (optional)</Label>
-                <Input
-                  id="portfolioImageUrl"
-                  placeholder="https://example.com/image.jpg"
-                  value={portfolioImageUrl}
-                  onChange={(e) => setPortfolioImageUrl(e.target.value)}
-                  className="glass"
-                />
-              </div>
-            </div>
-            <div className="space-y-2 mb-4">
-              <Label htmlFor="portfolioDescription">Description</Label>
-              <Textarea
-                id="portfolioDescription"
-                placeholder="Brief description of the work delivered..."
-                value={portfolioDescription}
-                onChange={(e) => setPortfolioDescription(e.target.value)}
-                className="glass min-h-[80px]"
-              />
-            </div>
-            <Button
-              onClick={() => postPortfolioMutation.mutate()}
-              disabled={!portfolioTitle.trim() || postPortfolioMutation.isPending}
-              className="bg-gradient-to-r from-primary to-destructive"
+          {/* Post Work Showcase - Collapsible (No CSV Export) */}
+          <Card className="glass mb-4 border-primary/20">
+            <button
+              className="w-full p-4 flex items-center justify-between text-left"
+              onClick={() => toggleSection('portfolio')}
             >
-              <Plus className="w-4 h-4 mr-2" />
-              {postPortfolioMutation.isPending ? "Posting..." : "Post to Portfolio"}
-            </Button>
-          </Card>
-
-          <h2 className="text-2xl font-bold mb-4">Order Management</h2>
-          {/* Orders Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            {/* Reusing existing cards but filtered */}
-            {/* Actually I replaced the top stats block, so I don't need to duplicate order stats here, 
-               but I should probably keep the detailed order status breakdown if useful. 
-               Let's just show the detailed breakdown below or keep it simple. 
-               The user wanted "useless information" removed. 
-               I'll stick to the top 4 cards I defined above which mix Analytics and Orders.
-           */}
-          </div>
-
-
-          {/* Orders Table */}
-          <Card className="glass overflow-hidden">
-            {isLoading ? (
-              <div className="p-12 text-center">
-                <div className="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full mx-auto" />
+              <div className="flex items-center gap-2">
+                <ImageIcon className="w-5 h-5 text-primary" />
+                <h2 className="text-xl font-bold">Post Work Showcase</h2>
               </div>
-            ) : orders.length > 0 ? (
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-card/50 border-b border-border/50">
-                    <tr>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">
-                        Order ID
-                      </th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">
-                        Customer
-                      </th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">
-                        Service
-                      </th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">
-                        Status
-                      </th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">
-                        Actions
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {orders.map((order) => {
-                      const StatusIcon = statusIcons[order.status as keyof typeof statusIcons] || Clock;
-                      return (
-                        <tr
-                          key={order.id}
-                          className="border-b border-border/50 hover-elevate"
-                          data-testid={`row-order-${order.id}`}
-                        >
-                          <td className="px-6 py-4 text-sm font-mono">
-                            <Link href={`/admin/orders/${order.id}`} className="text-primary hover:underline cursor-pointer">
-                              {order.id.slice(0, 8)}...
-                            </Link>
-                          </td>
-                          <td className="px-6 py-4">
-                            <div>
-                              <p className="text-sm text-foreground font-medium">
-                                {order.customerName || "N/A"}
-                              </p>
-                              <p className="text-xs text-muted-foreground">{order.customerEmail}</p>
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 text-sm text-foreground">{order.serviceName}</td>
-                          <td className="px-6 py-4">
-                            <Badge
-                              variant="default"
-                              className={`${statusColors[order.status as keyof typeof statusColors]} flex items-center gap-1 w-fit`}
-                            >
-                              <StatusIcon className="w-3 h-3" />
-                              {order.status}
-                            </Badge>
-                          </td>
-                          <td className="px-6 py-4">
-                            <div className="flex flex-wrap gap-2">
-                              {order.status !== "delivered" && (
-                                <>
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    onClick={() =>
-                                      handleUpdateStatus(
-                                        order.id,
-                                        order.status === "pending"
-                                          ? "processing"
-                                          : order.status === "processing"
-                                            ? "finalizing"
-                                            : "delivered"
-                                      )
-                                    }
-                                    disabled={updateStatusMutation.isPending}
-                                    data-testid={`button-update-${order.id}`}
-                                    className="glass hover-elevate"
-                                  >
-                                    Next Stage
-                                  </Button>
-                                </>
-                              )}
-                              {order.status === "delivered" && (
-                                <Badge variant="secondary" className="text-xs">
-                                  Completed
-                                </Badge>
-                              )}
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            ) : (
-              <div className="p-12 text-center">
-                <p className="text-xl text-muted-foreground">No orders yet.</p>
+              {sectionsOpen.portfolio ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+            </button>
+            {sectionsOpen.portfolio && (
+              <div className="px-4 pb-4">
+                <p className="text-muted-foreground mb-4">Add delivered work to your portfolio. This will appear on the About page.</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="portfolioTitle">Title</Label>
+                    <Input id="portfolioTitle" placeholder="e.g., Logo Design for ABC Corp" value={portfolioTitle} onChange={(e) => setPortfolioTitle(e.target.value)} className="glass" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="portfolioImageUrl">Image URL (optional)</Label>
+                    <Input id="portfolioImageUrl" placeholder="https://example.com/image.jpg" value={portfolioImageUrl} onChange={(e) => setPortfolioImageUrl(e.target.value)} className="glass" />
+                  </div>
+                </div>
+                <div className="space-y-2 mb-4">
+                  <Label htmlFor="portfolioDescription">Description</Label>
+                  <Textarea id="portfolioDescription" placeholder="Brief description of the work delivered..." value={portfolioDescription} onChange={(e) => setPortfolioDescription(e.target.value)} className="glass min-h-[80px]" />
+                </div>
+                <Button onClick={() => postPortfolioMutation.mutate()} disabled={!portfolioTitle.trim() || postPortfolioMutation.isPending} className="bg-gradient-to-r from-primary to-destructive">
+                  <Plus className="w-4 h-4 mr-2" />
+                  {postPortfolioMutation.isPending ? "Posting..." : "Post to Portfolio"}
+                </Button>
               </div>
             )}
           </Card>
