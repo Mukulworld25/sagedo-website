@@ -187,10 +187,13 @@ export class DatabaseStorage implements IStorage {
     return newOrder;
   }
 
-  async updateOrderStatus(id: string, status: string, deliveryNotes?: string): Promise<Order> {
+  async updateOrderStatus(id: string, status: string, deliveryNotes?: string, deliveryFileUrls?: string[]): Promise<Order> {
     const updateData: any = { status, updatedAt: new Date() };
     if (deliveryNotes) {
       updateData.deliveryNotes = deliveryNotes;
+    }
+    if (deliveryFileUrls && deliveryFileUrls.length > 0) {
+      updateData.deliveryFileUrls = deliveryFileUrls;
     }
     if (status === "delivered") {
       updateData.deliveredAt = new Date();

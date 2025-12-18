@@ -22,6 +22,7 @@ interface OrderEmailData {
 
 interface DeliveryEmailData extends OrderEmailData {
   deliveryNotes?: string;
+  deliveryFileUrls?: string[];
 }
 
 interface PaymentEmailData extends OrderEmailData {
@@ -171,6 +172,9 @@ export async function sendOrderDeliveredEmail(data: DeliveryEmailData) {
       subject: `🎉 Order Delivered #${shortId} - SAGE DO`,
       html: `
         <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #1a1a2e; color: #ffffff; padding: 30px; border-radius: 16px;">
+          <div style="text-align: center; margin-bottom: 20px;">
+            <img src="https://sagedo.in/sagedo_logo.png" alt="SAGE DO" style="width: 120px; height: auto;" />
+          </div>
           <h1 style="color: #10b981; font-size: 28px;">🎉 Your Order is Delivered!</h1>
           <p style="color: #e2e8f0;">Hey ${data.customerName}! Great news - your order is complete!</p>
           
@@ -180,12 +184,23 @@ export async function sendOrderDeliveredEmail(data: DeliveryEmailData) {
             ${data.deliveryNotes ? `<p style="color: #e2e8f0;"><strong>Notes:</strong> ${data.deliveryNotes}</p>` : ''}
           </div>
           
+          ${data.deliveryFileUrls && data.deliveryFileUrls.length > 0 ? `
+          <div style="background: #10b981; padding: 20px; border-radius: 12px; margin: 20px 0;">
+            <p style="color: #ffffff; font-weight: bold; margin-bottom: 10px;">📎 Your Delivered Files:</p>
+            ${data.deliveryFileUrls.map((url, i) => `
+              <a href="${url}" style="display: block; color: #ffffff; background: rgba(255,255,255,0.2); padding: 10px 16px; border-radius: 8px; margin: 5px 0; text-decoration: none;">
+                📄 Download File ${i + 1}
+              </a>
+            `).join('')}
+          </div>
+          ` : ''}
+          
           <p style="color: #e2e8f0;">
-            🔗 <a href="https://sagedo.vercel.app/track?orderId=${data.orderId}" style="color: #f43f5e;">View delivered files</a>
+            🔗 <a href="https://sagedo.in/dashboard" style="color: #f43f5e;">View in Dashboard</a>
           </p>
           
           <p style="color: #e2e8f0; margin-top: 20px;">
-            📝 <a href="https://sagedo.vercel.app/about" style="color: #f43f5e;">Leave us feedback!</a>
+            📝 <a href="https://sagedo.in/about" style="color: #f43f5e;">Leave us feedback!</a>
           </p>
           
           <p style="margin-top: 32px; color: #94a3b8; font-size: 14px;">

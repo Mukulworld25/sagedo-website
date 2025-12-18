@@ -18,7 +18,9 @@ import {
     Loader2,
     CreditCard,
     Calendar,
-    MessageSquare
+    MessageSquare,
+    Upload,
+    Inbox
 } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -36,6 +38,8 @@ interface OrderDetails {
     amountPaid: number;
     paymentId: string;
     paymentStatus: string;
+    deliveryPreference: 'platform' | 'email';
+    deliveryFileUrls: string[] | null;
     deliveryNotes: string | null;
     createdAt: string;
     updatedAt: string;
@@ -55,6 +59,8 @@ export default function OrderDetailsPage() {
     const [, navigate] = useLocation();
     const { toast } = useToast();
     const [deliveryNotes, setDeliveryNotes] = useState("");
+    const [deliveryFiles, setDeliveryFiles] = useState<File[]>([]);
+    const [isUploading, setIsUploading] = useState(false);
     const API_URL = ''; // Use relative URL - Vercel proxy forwards to Render
 
     // Fetch order details
@@ -252,6 +258,99 @@ export default function OrderDetailsPage() {
                                 </div>
                             ) : (
                                 <p className="text-muted-foreground italic">No files uploaded</p>
+                            )}
+                        </Card>
+
+                        {/* Customer's Delivery Preference */}
+                        <Card className="glass p-6 border-2 border-primary/30">
+                            <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
+                                <Inbox className="w-5 h-5 text-primary" />
+                                Customer's Delivery Preference
+                            </h2>
+                            <div className={`p-4 rounded-lg flex items-center gap-3 ${order.deliveryPreference === 'email'
+                                    ? 'bg-blue-500/10 border border-blue-500/30'
+                                    : 'bg-green-500/10 border border-green-500/30'
+                                }`}>
+                                {order.deliveryPreference === 'email' ? (
+                                    <>
+                                        <Mail className="w-5 h-5 text-blue-500" />
+                                        <div>
+                                            <p className="font-medium text-foreground">Email Delivery</p>
+                                            <p className="text-xs text-muted-foreground">Customer wants delivery via email</p>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Package className="w-5 h-5 text-green-500" />
+                                        <div>
+                                            <p className="font-medium text-foreground">Platform Delivery</p>
+                                            <p className="text-xs text-muted-foreground">Customer will download from dashboard</p>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        </Card>
+
+                        {/* Deliver Files - Admin Upload */}
+                        <Card className="glass p-6 border-2 border-amber-500/30 bg-gradient-to-br from-amber-500/5 to-orange-500/5">
+                            <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
+                                <Upload className="w-5 h-5 text-amber-500" />
+                                Deliver Files
+                            </h2>
+
+                            {/* Already delivered files */}
+                            {order.deliveryFileUrls && order.deliveryFileUrls.length > 0 && (
+                                <div className="mb-4 space-y-2">
+                                    <p className="text-sm text-green-500 font-medium">✓ Delivered Files:</p>
+                                    {order.deliveryFileUrls.map((url, index) => (
+                                        <a
+                                            key={index}
+                                            href={url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center gap-2 p-2 bg-green-500/10 rounded-lg text-sm"
+                                        >
+                                            <Download className="w-4 h-4 text-green-500" />
+                                            <span>Delivery File {index + 1}</span>
+                                        </a>
+                                    ))}
+                                </div>
+                            )}
+
+                            {/* Upload new files */}
+                            {order.status !== 'delivered' && (
+                                <div className="space-y-4">
+                                    <div className="border-2 border-dashed border-amber-500/30 rounded-lg p-6 text-center hover:border-amber-500/50 transition-colors">
+                                        <input
+                                            id="deliveryFiles"
+                                            type="file"
+                                            multiple
+                                            onChange={(e) => setDeliveryFiles(Array.from(e.target.files || []))}
+                                            className="hidden"
+                                        />
+                                        <label htmlFor="deliveryFiles" className="cursor-pointer flex flex-col items-center gap-2">
+                                            <Upload className="w-8 h-8 text-amber-500" />
+                                            <p className="text-foreground font-medium">Upload Delivery Files</p>
+                                            <p className="text-xs text-muted-foreground">PDF, DOC, ZIP, Images</p>
+                                        </label>
+                                    </div>
+
+                                    {deliveryFiles.length > 0 && (
+                                        <div className="space-y-2">
+                                            <p className="text-sm font-medium text-foreground">Selected: {deliveryFiles.length} file(s)</p>
+                                            {deliveryFiles.map((file, i) => (
+                                                <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
+                                                    <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                                    {file.name}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    <p className="text-xs text-muted-foreground">
+                                        Files will be {order.deliveryPreference === 'email' ? 'emailed to customer' : 'available in customer dashboard'}
+                                    </p>
+                                </div>
                             )}
                         </Card>
 

@@ -31,6 +31,7 @@ export default function Orders() {
     email: "",
     service: "",
     requirements: "",
+    deliveryPreference: "platform" as "platform" | "email",
   });
   const [createdOrderId, setCreatedOrderId] = useState<string | null>(null);
   const [orderAmount, setOrderAmount] = useState(500); // Default ₹500
@@ -286,6 +287,7 @@ export default function Orders() {
       serviceName: formData.service,
       requirements: formData.requirements,
       fileUrls,
+      deliveryPreference: formData.deliveryPreference,
     });
   };
 
@@ -600,6 +602,69 @@ export default function Orders() {
                       </ul>
                     </div>
                   )}
+                </div>
+
+                {/* Delivery Preference */}
+                <div className="space-y-3">
+                  <Label className="text-foreground">
+                    How would you like to receive your delivery? <span className="text-destructive">*</span>
+                  </Label>
+                  <div className="grid grid-cols-2 gap-4">
+                    <label
+                      className={`flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${formData.deliveryPreference === 'platform'
+                          ? 'border-primary bg-primary/10'
+                          : 'border-border/50 hover:border-primary/30'
+                        }`}
+                    >
+                      <input
+                        type="radio"
+                        name="deliveryPreference"
+                        value="platform"
+                        checked={formData.deliveryPreference === 'platform'}
+                        onChange={() => setFormData({ ...formData, deliveryPreference: 'platform' })}
+                        className="sr-only"
+                      />
+                      <div className={`w-4 h-4 rounded-full border-2 ${formData.deliveryPreference === 'platform'
+                          ? 'border-primary bg-primary'
+                          : 'border-muted-foreground'
+                        }`}>
+                        {formData.deliveryPreference === 'platform' && (
+                          <div className="w-full h-full rounded-full bg-white scale-50" />
+                        )}
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground">Dashboard</p>
+                        <p className="text-xs text-muted-foreground">Download from your dashboard</p>
+                      </div>
+                    </label>
+                    <label
+                      className={`flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${formData.deliveryPreference === 'email'
+                          ? 'border-primary bg-primary/10'
+                          : 'border-border/50 hover:border-primary/30'
+                        }`}
+                    >
+                      <input
+                        type="radio"
+                        name="deliveryPreference"
+                        value="email"
+                        checked={formData.deliveryPreference === 'email'}
+                        onChange={() => setFormData({ ...formData, deliveryPreference: 'email' })}
+                        className="sr-only"
+                      />
+                      <div className={`w-4 h-4 rounded-full border-2 ${formData.deliveryPreference === 'email'
+                          ? 'border-primary bg-primary'
+                          : 'border-muted-foreground'
+                        }`}>
+                        {formData.deliveryPreference === 'email' && (
+                          <div className="w-full h-full rounded-full bg-white scale-50" />
+                        )}
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground">Email</p>
+                        <p className="text-xs text-muted-foreground">Receive download link via email</p>
+                      </div>
+                    </label>
+                  </div>
                 </div>
 
                 {/* Order Amount - Hide for Golden Ticket services */}

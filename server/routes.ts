@@ -691,25 +691,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   app.patch('/api/admin/orders/:id', isAuthenticated, isAdmin, async (req, res) => {
     try {
-      const { status, deliveryNotes } = req.body;
+      const { status, deliveryNotes, deliveryFileUrls } = req.body;
 
       if (!status) {
         return res.status(400).json({ message: "Status is required" });
       }
 
-      const order = await storage.updateOrderStatus(req.params.id, status, deliveryNotes);
+      const order = await storage.updateOrderStatus(req.params.id, status, deliveryNotes, deliveryFileUrls);
 
       // Send delivery email when order is marked as delivered
       if (status === 'delivered') {
-        await sendOrderDeliveredEmail({
-          customerName: order.customerName || 'Customer',
-          customerEmail: order.customerEmail,
-          orderId: order.id,
-          serviceName: order.serviceName,
-          amount: order.amountPaid || 0,
-          orderDate: order.createdAt.toLocaleDateString(),
-          deliveryNotes: deliveryNotes
-        });
+        // Check customer's delivery preference
+        const fullOrder = await storage.getOrderById(req.params.id);
+        const shouldEmail = fullOrder?.deliveryPreference === 'email' || deliveryFileUrls?.length > 0;
+
+        if (shouldEmail) {
+          await sendOrderDeliveredEmail({
+            customerName: order.customerName || 'Customer',
+            customerEmail: order.customerEmail,
+            orderId: order.id,
+            serviceName: order.serviceName,
+            amount: order.amountPaid || 0,
+            orderDate: order.createdAt.toLocaleDateString(),
+            deliveryNotes: deliveryNotes,
+            deliveryFileUrls: deliveryFileUrls || []
+          });
+        }
       }
 
       res.json(order);

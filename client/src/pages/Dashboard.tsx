@@ -342,11 +342,24 @@ export default function Dashboard() {
                         </span>
                       </td>
                       <td className="py-3 px-4">
-                        <a href={`/track?orderId=${order.id}`}>
-                          <Button size="sm" variant="outline" className="text-xs">
-                            Track Order
-                          </Button>
-                        </a>
+                        <div className="flex items-center gap-2">
+                          <a href={`/track?orderId=${order.id}`}>
+                            <Button size="sm" variant="outline" className="text-xs">
+                              Track
+                            </Button>
+                          </a>
+                          {order.status === 'delivered' && order.deliveryFileUrls && order.deliveryFileUrls.length > 0 && (
+                            <div className="flex gap-1">
+                              {order.deliveryFileUrls.map((url: string, i: number) => (
+                                <a key={i} href={url} target="_blank" rel="noopener noreferrer">
+                                  <Button size="sm" className="text-xs bg-green-600 hover:bg-green-700">
+                                    📥 {order.deliveryFileUrls.length > 1 ? `File ${i + 1}` : 'Download'}
+                                  </Button>
+                                </a>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       </td>
                     </tr>
                   ))}

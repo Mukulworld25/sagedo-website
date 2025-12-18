@@ -75,6 +75,8 @@ export const orders = pgTable("orders", {
   amountPaid: integer("amount_paid").default(0),
   paymentId: varchar("payment_id"), // Razorpay payment ID
   paymentStatus: varchar("payment_status", { length: 50 }).default("pending"), // pending, paid, failed
+  deliveryPreference: varchar("delivery_preference", { length: 20 }).default("platform"), // platform, email
+  deliveryFileUrls: text("delivery_file_urls").array(), // Files uploaded by admin for delivery
   deliveryNotes: text("delivery_notes"),
   deliveredAt: timestamp("delivered_at"),
   createdAt: timestamp("created_at").defaultNow(),
