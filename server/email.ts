@@ -4,7 +4,7 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Admin email for notifications
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'sagedoai00@gmail.com';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'mukul@sagedo.in';
 
 // ============================================
 // Interfaces

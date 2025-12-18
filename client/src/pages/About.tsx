@@ -266,7 +266,7 @@ export default function About() {
                   </p>
                   <p className="flex items-start gap-2">
                     <span className="font-semibold text-foreground min-w-[80px]">📧 Email:</span>
-                    <a href="mailto:sagedoai00@gmail.com" className="hover:text-primary">sagedoai00@gmail.com</a>
+                    <a href="mailto:hello@sagedo.in" className="hover:text-primary">hello@sagedo.in</a>
                   </p>
                   <p className="flex items-start gap-2">
                     <span className="font-semibold text-foreground min-w-[80px]">💬 WhatsApp:</span>

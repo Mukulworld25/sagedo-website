@@ -22,7 +22,7 @@ export default function GrievanceOfficer() {
                             </div>
                             <div>
                                 <p className="text-sm text-muted-foreground">Email</p>
-                                <p className="text-lg font-semibold text-foreground">sagedoai00@gmail.com</p>
+                                <p className="text-lg font-semibold text-foreground">support@sagedo.in</p>
                             </div>
                             <div>
                                 <p className="text-sm text-muted-foreground">Phone</p>
@@ -46,7 +46,7 @@ export default function GrievanceOfficer() {
                     <section>
                         <h2 className="text-2xl font-bold text-foreground mb-3">How to File a Grievance</h2>
                         <ol className="list-decimal pl-6 space-y-2 text-muted-foreground">
-                            <li>Send a detailed email to <strong>sagedoai00@gmail.com</strong> with subject line "Grievance - [Your Issue]"</li>
+                            <li>Send a detailed email to <strong>support@sagedo.in</strong> with subject line "Grievance - [Your Issue]"</li>
                             <li>Include your registered email, phone number, and a clear description of the issue</li>
                             <li>Attach any relevant documents or screenshots</li>
                             <li>Our Grievance Officer will acknowledge your complaint within 24 hours</li>

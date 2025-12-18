@@ -275,7 +275,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Services routes (public)
   app.get('/api/test-email', async (req, res) => {
-    const toEmail = (req.query.to as string) || "sagedoai00@gmail.com";
+    const toEmail = (req.query.to as string) || "mukul@sagedo.in";
 
     // Resend config diagnostics
     const diagnostics: any = {

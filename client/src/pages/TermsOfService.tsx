@@ -181,7 +181,7 @@ export default function TermsOfService() {
                         <div className="text-muted-foreground">
                             <p>For questions about these Terms:</p>
                             <ul className="list-none space-y-1 mt-2">
-                                <li><strong>Email:</strong> sagedoai00@gmail.com</li>
+                                <li><strong>Email:</strong> contactus@sagedo.in</li>
                                 <li><strong>Phone:</strong> +91 7018709291</li>
                                 <li><strong>WhatsApp:</strong> https://wa.me/917018709291</li>
                             </ul>
