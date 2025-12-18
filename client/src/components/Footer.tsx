@@ -24,13 +24,13 @@ export default function Footer() {
           <p className="text-xs text-muted-foreground">
             We Do Your Daily Grind, You Do Grand Things.
           </p>
-          <div className="flex items-center justify-center gap-6 text-xs">
+          <div className="flex items-center justify-center gap-6 text-xs flex-wrap">
             <Link href="/about">
               <button className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-footer-about">
                 About
               </button>
             </Link>
-            <Link href="/orders">
+            <Link href="/contact">
               <button className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-footer-contact">
                 Contact
               </button>
@@ -48,16 +48,6 @@ export default function Footer() {
             <Link href="/refund-policy">
               <button className="text-muted-foreground hover:text-foreground transition-colors">
                 Refund & Shipping Policy
-              </button>
-            </Link>
-            <Link href="/grievance-officer">
-              <button className="text-muted-foreground hover:text-foreground transition-colors">
-                Grievance Officer
-              </button>
-            </Link>
-            <Link href="/admin">
-              <button className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-admin">
-                Admin
               </button>
             </Link>
             <FeedbackDialog />
