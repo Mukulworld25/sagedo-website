@@ -308,7 +308,6 @@ export default function Dashboard() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-border">
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Order ID</th>
                     <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Service</th>
                     <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Status</th>
                     <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Date</th>
@@ -318,21 +317,6 @@ export default function Dashboard() {
                 <tbody>
                   {orders.map((order: any) => (
                     <tr key={order.id} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
-                      <td className="py-3 px-4">
-                        <div className="flex items-center gap-2">
-                          <span className="font-mono text-sm text-primary">{order.id.slice(0, 8)}...</span>
-                          <button
-                            onClick={() => {
-                              navigator.clipboard.writeText(order.id);
-                              toast({ title: "Copied!", description: "Order ID copied to clipboard" });
-                            }}
-                            className="text-xs text-muted-foreground hover:text-primary transition-colors"
-                            title="Copy full Order ID"
-                          >
-                            📋
-                          </button>
-                        </div>
-                      </td>
                       <td className="py-3 px-4">
                         <span className="text-foreground font-medium">{order.serviceName}</span>
                       </td>

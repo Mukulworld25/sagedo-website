@@ -41,6 +41,10 @@ export async function sendOrderConfirmationEmail(data: OrderEmailData) {
 
   const customerHtml = `
     <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #1a1a2e; color: #ffffff; padding: 30px; border-radius: 16px;">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <img src="https://sagedo.in/sagedo_logo_pro_clean.png" alt="SAGE DO" style="width: 60px; height: 60px;" />
+        <p style="color: #f43f5e; font-weight: bold; margin: 8px 0 0 0; font-size: 18px;">SAGE DO</p>
+      </div>
       <h1 style="color: #f43f5e; font-size: 28px; margin-bottom: 20px;">
         ${data.isFree ? '🎫 You Just Used a GOLDEN TICKET!' : '💸 Money Gone, Magic Incoming!'}
       </h1>
