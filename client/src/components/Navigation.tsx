@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Sparkles, Gift, ExternalLink } from "lucide-react";
+import { Menu, X, Sparkles, Gift, ExternalLink, Settings } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -103,6 +103,16 @@ export default function Navigation() {
                           className="border-neutral-700 hover:border-neutral-600 hover:bg-neutral-800/50"
                         >
                           Dashboard
+                        </Button>
+                      </Link>
+                      <Link href="/settings">
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          data-testid="button-settings"
+                          className="hover:bg-neutral-800/50"
+                        >
+                          <Settings className="w-4 h-4" />
                         </Button>
                       </Link>
                       <Button
@@ -210,6 +220,18 @@ export default function Navigation() {
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Dashboard
+                      </Button>
+                    </Link>
+                    <Link href="/settings">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        data-testid="button-mobile-settings"
+                        className="w-full border-neutral-700"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <Settings className="w-4 h-4 mr-2" />
+                        Settings
                       </Button>
                     </Link>
                     <Button

@@ -4,6 +4,8 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { LanguageProvider } from "@/components/LanguageProvider";
 
 import Home from "@/pages/Home";
 import Services from "@/pages/Services";
@@ -19,6 +21,7 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
 import RefundPolicy from "@/pages/RefundPolicy";
 import GrievanceOfficer from "@/pages/GrievanceOfficer";
+import Settings from "@/pages/Settings";
 import NotFound from "@/pages/not-found";
 
 import Navigation from "@/components/Navigation";
@@ -57,6 +60,7 @@ function Router() {
         <Route path="/refund-policy" component={RefundPolicy} />
         <Route path="/shipping-policy" component={RefundPolicy} />
         <Route path="/grievance-officer" component={GrievanceOfficer} />
+        <Route path="/settings" component={Settings} />
         <Route component={NotFound} />
       </Switch>
       <Footer />
@@ -69,14 +73,18 @@ function Router() {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ErrorBoundary>
-        <AuthProvider>
-          <TooltipProvider>
-            <Router />
-            <Toaster />
-          </TooltipProvider>
-        </AuthProvider>
-      </ErrorBoundary>
+      <ThemeProvider>
+        <LanguageProvider>
+          <ErrorBoundary>
+            <AuthProvider>
+              <TooltipProvider>
+                <Router />
+                <Toaster />
+              </TooltipProvider>
+            </AuthProvider>
+          </ErrorBoundary>
+        </LanguageProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
