@@ -317,7 +317,6 @@ export default function Admin() {
                         <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Customer</th>
                         <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Service</th>
                         <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Status</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -342,25 +341,6 @@ export default function Admin() {
                                 <StatusIcon className="w-3 h-3" />
                                 {order.status}
                               </Badge>
-                            </td>
-                            <td className="px-6 py-4">
-                              <div className="flex flex-wrap gap-2">
-                                {order.status !== "delivered" && (
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    onClick={() => handleUpdateStatus(order.id, order.status === "pending" ? "processing" : order.status === "processing" ? "finalizing" : "delivered")}
-                                    disabled={updateStatusMutation.isPending}
-                                    data-testid={`button-update-${order.id}`}
-                                    className="glass hover-elevate"
-                                  >
-                                    Next Stage
-                                  </Button>
-                                )}
-                                {order.status === "delivered" && (
-                                  <Badge variant="secondary" className="text-xs">Completed</Badge>
-                                )}
-                              </div>
                             </td>
                           </tr>
                         );
