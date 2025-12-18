@@ -39,6 +39,8 @@ export const users = pgTable("users", {
   isAdmin: boolean("is_admin").default(false).notNull(),
   loginCount: integer("login_count").default(0).notNull(),
   lastLoginAt: timestamp("last_login_at"),
+  resetToken: varchar("reset_token"),
+  resetTokenExpiry: timestamp("reset_token_expiry"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });

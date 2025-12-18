@@ -231,3 +231,44 @@ export async function sendAccountDeletionEmail(email: string, name: string) {
     console.error('Failed to send account deletion email:', error);
   }
 }
+
+// ============================================
+// 5. PASSWORD RESET EMAIL
+// ============================================
+export async function sendPasswordResetEmail(email: string, name: string, resetToken: string) {
+  const resetLink = `https://sagedo.in/reset-password?token=${resetToken}`;
+
+  try {
+    const { error } = await resend.emails.send({
+      from: 'SAGE DO <noreply@sagedo.in>',
+      to: [email],
+      subject: 'Reset Your Password - SAGE DO',
+      html: `
+        <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #1a1a2e; color: #ffffff; padding: 30px; border-radius: 16px;">
+          <h1 style="color: #f43f5e; font-size: 28px;">Reset Your Password 🔐</h1>
+          <p style="color: #e2e8f0;">Hey ${name},</p>
+          <p style="color: #e2e8f0;">You requested to reset your password. Click the button below to create a new password:</p>
+          
+          <div style="text-align: center; margin: 32px 0;">
+            <a href="${resetLink}" style="display: inline-block; background: linear-gradient(to right, #f43f5e, #ef4444); color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: bold;">
+              Reset Password
+            </a>
+          </div>
+          
+          <p style="color: #94a3b8; font-size: 14px;">This link expires in 1 hour. If you didn't request this, you can safely ignore this email.</p>
+          
+          <p style="margin-top: 32px; color: #94a3b8; font-size: 14px;">— The SAGE DO AI Crew</p>
+        </div>
+      `,
+    });
+
+    if (error) {
+      console.error('Password reset email error:', error);
+      throw new Error(error.message);
+    }
+    console.log('✉️ Password reset email sent to:', email);
+  } catch (error) {
+    console.error('Failed to send password reset email:', error);
+    throw error;
+  }
+}

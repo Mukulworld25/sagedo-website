@@ -17,6 +17,7 @@ import Admin from "@/pages/Admin";
 import OrderDetails from "@/pages/OrderDetails";
 import Login from "@/pages/Login";
 import ForgotPassword from "@/pages/ForgotPassword";
+import ResetPassword from "@/pages/ResetPassword";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
 import RefundPolicy from "@/pages/RefundPolicy";
@@ -52,6 +53,7 @@ function Router() {
         <Route path="/track" component={Tracking} />
         <Route path="/login" component={Login} />
         <Route path="/forgot-password" component={ForgotPassword} />
+        <Route path="/reset-password" component={ResetPassword} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/admin" component={Admin} />
         <Route path="/admin/orders/:id" component={OrderDetails} />

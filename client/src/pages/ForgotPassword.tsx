@@ -3,22 +3,21 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { Link } from "wouter";
-import { MessageCircle } from "lucide-react";
+import { Link, useLocation } from "wouter";
+import { Mail, CheckCircle } from "lucide-react";
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
-    const [whatsappLink, setWhatsappLink] = useState("");
+    const [emailSent, setEmailSent] = useState(false);
     const { toast } = useToast();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        const API_URL = ''; // Use relative URL - Vercel proxy forwards to Render
 
         try {
-            const res = await fetch(`${API_URL}/api/auth/request-reset`, {
+            const res = await fetch('/api/auth/request-reset', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email }),
@@ -28,10 +27,10 @@ export default function ForgotPassword() {
             const data = await res.json();
 
             if (res.ok) {
-                setWhatsappLink(data.whatsappLink);
+                setEmailSent(true);
                 toast({
-                    title: "Request Received",
-                    description: "Please contact support on WhatsApp to complete your password reset.",
+                    title: "Email Sent!",
+                    description: data.message || "Check your inbox for the reset link.",
                 });
             } else {
                 toast({
@@ -56,10 +55,10 @@ export default function ForgotPassword() {
             <Card className="glass p-8 w-full max-w-md">
                 <h1 className="text-3xl font-black text-foreground mb-2">Forgot Password</h1>
                 <p className="text-muted-foreground mb-6">
-                    Enter your email address to request a password reset.
+                    Enter your email address and we'll send you a reset link.
                 </p>
 
-                {!whatsappLink ? (
+                {!emailSent ? (
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             <label className="text-sm font-medium text-foreground">Email</label>
@@ -74,37 +73,39 @@ export default function ForgotPassword() {
                         </div>
 
                         <Button type="submit" disabled={loading} className="w-full bg-gradient-to-r from-primary to-destructive">
-                            {loading ? "Checking..." : "Request Reset"}
+                            {loading ? "Sending..." : "Send Reset Link"}
                         </Button>
                     </form>
                 ) : (
                     <div className="text-center py-4">
-                        <div className="mb-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
+                        <div className="mb-6 p-6 bg-green-500/10 rounded-lg border border-green-500/20">
+                            <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-4" />
                             <p className="text-foreground font-medium mb-2">
-                                User Found!
+                                Check Your Email!
                             </p>
-                            <p className="text-sm text-muted-foreground mb-4">
-                                To reset your password securely, please contact our support team on WhatsApp.
+                            <p className="text-sm text-muted-foreground">
+                                We've sent a password reset link to <strong>{email}</strong>.
+                                Click the link in the email to reset your password.
                             </p>
-                            <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                                <Button className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white">
-                                    <MessageCircle className="w-4 h-4 mr-2" />
-                                    Chat on WhatsApp
-                                </Button>
-                            </a>
                         </div>
 
-                        <Link href="/login">
-                            <Button variant="outline" className="glass">
-                                Return to Login
-                            </Button>
-                        </Link>
+                        <p className="text-sm text-muted-foreground mb-4">
+                            Didn't receive the email? Check your spam folder or try again.
+                        </p>
+
+                        <Button
+                            variant="outline"
+                            className="glass"
+                            onClick={() => setEmailSent(false)}
+                        >
+                            Try Again
+                        </Button>
                     </div>
                 )}
 
                 <div className="mt-6 text-center">
                     <Link href="/login">
-                        <Button variant="link" className="text-primary">
+                        <Button variant="ghost" className="text-primary">
                             Back to Login
                         </Button>
                     </Link>

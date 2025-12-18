@@ -119,6 +119,36 @@ export class DatabaseStorage implements IStorage {
     await db.delete(users).where(eq(users.id, id));
   }
 
+  // Password reset operations
+  async setResetToken(userId: string, token: string, expiry: Date): Promise<void> {
+    await db
+      .update(users)
+      .set({ resetToken: token, resetTokenExpiry: expiry })
+      .where(eq(users.id, userId));
+  }
+
+  async getUserByResetToken(token: string): Promise<User | undefined> {
+    const [user] = await db
+      .select()
+      .from(users)
+      .where(eq(users.resetToken, token));
+    return user;
+  }
+
+  async updateUserPassword(userId: string, passwordHash: string): Promise<void> {
+    await db
+      .update(users)
+      .set({ passwordHash, updatedAt: new Date() })
+      .where(eq(users.id, userId));
+  }
+
+  async clearResetToken(userId: string): Promise<void> {
+    await db
+      .update(users)
+      .set({ resetToken: null, resetTokenExpiry: null })
+      .where(eq(users.id, userId));
+  }
+
   // Service operations
   async getAllServices(): Promise<Service[]> {
     return await db.select().from(services);
