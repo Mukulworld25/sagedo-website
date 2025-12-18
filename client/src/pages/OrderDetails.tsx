@@ -78,12 +78,12 @@ export default function OrderDetailsPage() {
 
     // Update order status mutation
     const updateStatusMutation = useMutation({
-        mutationFn: async ({ status, notes }: { status: string; notes?: string }) => {
+        mutationFn: async ({ status, notes, deliveryFileUrls }: { status: string; notes?: string; deliveryFileUrls?: string[] }) => {
             const res = await fetch(`${API_URL}/api/admin/orders/${id}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
-                body: JSON.stringify({ status, deliveryNotes: notes })
+                body: JSON.stringify({ status, deliveryNotes: notes, deliveryFileUrls })
             });
             if (!res.ok) throw new Error('Failed to update order');
             return res.json();
@@ -104,6 +104,65 @@ export default function OrderDetailsPage() {
             });
         }
     });
+
+    // Handle complete delivery - upload files and mark as delivered
+    const handleDeliver = async () => {
+        if (deliveryFiles.length === 0) {
+            toast({
+                title: "No Files Selected",
+                description: "Please select at least one file to deliver.",
+                variant: "destructive",
+            });
+            return;
+        }
+
+        setIsUploading(true);
+        try {
+            // Step 1: Upload files to Supabase
+            const formData = new FormData();
+            deliveryFiles.forEach(file => {
+                formData.append('files', file);
+            });
+
+            const uploadRes = await fetch(`${API_URL}/api/upload`, {
+                method: 'POST',
+                credentials: 'include',
+                body: formData
+            });
+
+            if (!uploadRes.ok) {
+                throw new Error('Failed to upload files');
+            }
+
+            const { urls } = await uploadRes.json();
+
+            // Step 2: Update order with files and mark as delivered
+            await updateStatusMutation.mutateAsync({
+                status: 'delivered',
+                notes: deliveryNotes,
+                deliveryFileUrls: urls
+            });
+
+            toast({
+                title: "🎉 Order Delivered!",
+                description: order?.deliveryPreference === 'email'
+                    ? "Customer will receive email with download links."
+                    : "Customer can now download from their dashboard.",
+            });
+
+            setDeliveryFiles([]);
+            setDeliveryNotes('');
+        } catch (error) {
+            console.error('Delivery error:', error);
+            toast({
+                title: "Delivery Failed",
+                description: "Failed to deliver order. Please try again.",
+                variant: "destructive",
+            });
+        } finally {
+            setIsUploading(false);
+        }
+    };
 
     // Check auth
     if (!isAuthenticated || !user?.isAdmin) {
@@ -268,8 +327,8 @@ export default function OrderDetailsPage() {
                                 Customer's Delivery Preference
                             </h2>
                             <div className={`p-4 rounded-lg flex items-center gap-3 ${order.deliveryPreference === 'email'
-                                    ? 'bg-blue-500/10 border border-blue-500/30'
-                                    : 'bg-green-500/10 border border-green-500/30'
+                                ? 'bg-blue-500/10 border border-blue-500/30'
+                                : 'bg-green-500/10 border border-green-500/30'
                                 }`}>
                                 {order.deliveryPreference === 'email' ? (
                                     <>
@@ -347,9 +406,41 @@ export default function OrderDetailsPage() {
                                         </div>
                                     )}
 
+                                    {/* Delivery Notes */}
+                                    <div className="space-y-2">
+                                        <Label htmlFor="adminDeliveryNotes">Delivery Notes (optional)</Label>
+                                        <Textarea
+                                            id="adminDeliveryNotes"
+                                            value={deliveryNotes}
+                                            onChange={(e) => setDeliveryNotes(e.target.value)}
+                                            placeholder="Add any notes for the customer..."
+                                            className="glass"
+                                            rows={2}
+                                        />
+                                    </div>
+
                                     <p className="text-xs text-muted-foreground">
                                         Files will be {order.deliveryPreference === 'email' ? 'emailed to customer' : 'available in customer dashboard'}
                                     </p>
+
+                                    {/* Deliver Now Button */}
+                                    <Button
+                                        onClick={handleDeliver}
+                                        disabled={deliveryFiles.length === 0 || isUploading}
+                                        className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white text-lg py-6"
+                                    >
+                                        {isUploading ? (
+                                            <>
+                                                <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                                                Uploading & Delivering...
+                                            </>
+                                        ) : (
+                                            <>
+                                                <CheckCircle2 className="w-5 h-5 mr-2" />
+                                                Deliver Now
+                                            </>
+                                        )}
+                                    </Button>
                                 </div>
                             )}
                         </Card>
