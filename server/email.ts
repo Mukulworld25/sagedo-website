@@ -79,7 +79,7 @@ export async function sendOrderConfirmationEmail(data: OrderEmailData) {
   try {
     // Send to customer
     const { data: result, error } = await resend.emails.send({
-      from: 'SAGE DO AI <onboarding@resend.dev>',
+      from: 'SAGE DO <noreply@sagedo.in>',
       to: [data.customerEmail],
       subject,
       html: customerHtml,
@@ -93,7 +93,7 @@ export async function sendOrderConfirmationEmail(data: OrderEmailData) {
 
     // Admin notification
     const { error: adminError } = await resend.emails.send({
-      from: 'SAGE DO AI <onboarding@resend.dev>',
+      from: 'SAGE DO <noreply@sagedo.in>',
       to: [ADMIN_EMAIL],
       subject: `🆕 New Order #${shortId} - ${data.serviceName} - ₹${data.amount}`,
       html: `
@@ -125,7 +125,7 @@ export async function sendPaymentSuccessEmail(data: PaymentEmailData) {
 
   try {
     const { error } = await resend.emails.send({
-      from: 'SAGE DO AI <onboarding@resend.dev>',
+      from: 'SAGE DO <noreply@sagedo.in>',
       to: [data.customerEmail],
       subject: `Payment Confirmed #${shortId} - SAGE DO`,
       html: `
@@ -162,7 +162,7 @@ export async function sendOrderDeliveredEmail(data: DeliveryEmailData) {
 
   try {
     const { error } = await resend.emails.send({
-      from: 'SAGE DO AI <onboarding@resend.dev>',
+      from: 'SAGE DO <noreply@sagedo.in>',
       to: [data.customerEmail],
       subject: `🎉 Order Delivered #${shortId} - SAGE DO`,
       html: `
@@ -209,7 +209,7 @@ export async function sendOrderDeliveredEmail(data: DeliveryEmailData) {
 export async function sendAccountDeletionEmail(email: string, name: string) {
   try {
     const { error } = await resend.emails.send({
-      from: 'SAGE DO AI <onboarding@resend.dev>',
+      from: 'SAGE DO <noreply@sagedo.in>',
       to: [email],
       subject: 'Account Deleted - SAGE DO',
       html: `
