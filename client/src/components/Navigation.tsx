@@ -3,22 +3,24 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Sparkles, Gift, ExternalLink, Settings } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function Navigation() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isAuthenticated, isLoading, user, logout } = useAuth();
+  const { t } = useLanguage();
   const API_URL = ''; // Use relative URL - Vercel proxy forwards to Render
 
   // GPT Prompts link - only shown to logged in users
   const GPT_PROMPTS_LINK = "https://chatgpt.com/g/g-690c95a9e7dc8191b0338671195897a2-prompt-generator";
 
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/services", label: "Services" },
-    { href: "/about", label: "About" },
-    { href: "/orders", label: "Orders" },
-    { href: "/track", label: "Track" },
+    { href: "/", label: t("nav.home") },
+    { href: "/services", label: t("nav.services") },
+    { href: "/about", label: t("nav.about") },
+    { href: "/orders", label: t("nav.orders") },
+    { href: "/track", label: t("nav.track") },
   ];
 
   return (

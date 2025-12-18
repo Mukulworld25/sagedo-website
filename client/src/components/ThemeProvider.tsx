@@ -13,12 +13,20 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export function ThemeProvider({ children }: { children: ReactNode }) {
     const [theme, setThemeState] = useState<Theme>(() => {
         if (typeof window !== "undefined") {
-            return (localStorage.getItem("theme") as Theme) || "system";
+            return (localStorage.getItem("theme") as Theme) || "dark";
         }
-        return "system";
+        return "dark";
     });
 
     const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("dark");
+
+    // Apply dark class immediately on mount to prevent flash
+    if (typeof window !== "undefined" && !document.documentElement.classList.contains("dark")) {
+        const savedTheme = localStorage.getItem("theme") as Theme;
+        if (!savedTheme || savedTheme === "dark" || savedTheme === "system") {
+            document.documentElement.classList.add("dark");
+        }
+    }
 
     useEffect(() => {
         const root = document.documentElement;
