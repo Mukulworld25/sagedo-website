@@ -277,14 +277,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get('/api/test-email', async (req, res) => {
     const toEmail = (req.query.to as string) || "sagedoai00@gmail.com";
 
-    // First, just return the config diagnostics
+    // Resend config diagnostics
     const diagnostics: any = {
       timestamp: new Date().toISOString(),
-      gmailUserSet: !!process.env.GMAIL_USER,
-      gmailUser: process.env.GMAIL_USER || 'NOT SET',
-      gmailPassSet: !!process.env.GMAIL_APP_PASSWORD,
-      gmailPassLength: process.env.GMAIL_APP_PASSWORD?.length || 0,
-      gmailPassHasSpaces: process.env.GMAIL_APP_PASSWORD?.includes(' ') || false,
+      emailProvider: 'Resend',
+      resendApiKeySet: !!process.env.RESEND_API_KEY,
+      resendApiKeyLength: process.env.RESEND_API_KEY?.length || 0,
       targetEmail: toEmail,
     };
 

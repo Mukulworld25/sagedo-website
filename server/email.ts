@@ -1,16 +1,7 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
-// Gmail SMTP configuration
-// Required env vars: GMAIL_USER and GMAIL_APP_PASSWORD
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.GMAIL_USER || process.env.EMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD || process.env.EMAIL_PASSWORD,
-  },
-  debug: true, // show debug output
-  logger: true // log information in console
-});
+// Initialize Resend with API key
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Admin email for notifications
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'sagedoai00@gmail.com';
@@ -29,8 +20,16 @@ interface OrderEmailData {
   paymentId?: string;
 }
 
+interface DeliveryEmailData extends OrderEmailData {
+  deliveryNotes?: string;
+}
+
+interface PaymentEmailData extends OrderEmailData {
+  paymentMethod: string;
+}
+
 // ============================================
-// 1. ORDER + PAYMENT CONFIRMATION (Combined)
+// 1. ORDER CONFIRMATION EMAIL
 // ============================================
 export async function sendOrderConfirmationEmail(data: OrderEmailData) {
   const shortId = data.orderId.slice(0, 8);
@@ -79,18 +78,23 @@ export async function sendOrderConfirmationEmail(data: OrderEmailData) {
 
   try {
     // Send to customer
-    await transporter.sendMail({
-      from: `"SAGE DO AI" <${process.env.GMAIL_USER || 'noreply@sagedo.com'}>`,
-      to: data.customerEmail,
+    const { data: result, error } = await resend.emails.send({
+      from: 'SAGE DO AI <onboarding@resend.dev>',
+      to: [data.customerEmail],
       subject,
       html: customerHtml,
     });
-    console.log('✉️ Order confirmation email sent to:', data.customerEmail);
 
-    // Admin email notification
-    await transporter.sendMail({
-      from: `"SAGE DO AI" <${process.env.GMAIL_USER || 'noreply@sagedo.com'}>`,
-      to: ADMIN_EMAIL,
+    if (error) {
+      console.error('Resend error (customer):', error);
+      throw new Error(error.message);
+    }
+    console.log('✉️ Order confirmation email sent to:', data.customerEmail, 'ID:', result?.id);
+
+    // Admin notification
+    const { error: adminError } = await resend.emails.send({
+      from: 'SAGE DO AI <onboarding@resend.dev>',
+      to: [ADMIN_EMAIL],
       subject: `🆕 New Order #${shortId} - ${data.serviceName} - ₹${data.amount}`,
       html: `
         <div style="font-family: Arial, sans-serif;">
@@ -99,116 +103,131 @@ export async function sendOrderConfirmationEmail(data: OrderEmailData) {
           <p><strong>Customer:</strong> ${data.customerName} (${data.customerEmail})</p>
           <p><strong>Service:</strong> ${data.serviceName}</p>
           <p><strong>Amount:</strong> ${amountText}</p>
-          ${data.paymentId ? `<p><strong>Payment ID:</strong> ${data.paymentId}</p>` : ''}
-          <p><a href="https://sagedo.vercel.app/admin">View in Admin Panel</a></p>
+          <p><strong>Date:</strong> ${data.orderDate}</p>
         </div>
       `,
     });
-    console.log('✉️ Admin notification sent for order:', data.orderId);
+
+    if (adminError) {
+      console.error('Resend error (admin):', adminError);
+    }
   } catch (error) {
-    console.error('❌ Failed to send order confirmation email:', error);
+    console.error('Failed to send order confirmation email:', error);
+    throw error;
   }
 }
 
 // ============================================
-// 2. ORDER DELIVERED
+// 2. PAYMENT SUCCESS EMAIL
 // ============================================
-export async function sendOrderDeliveredEmail(data: OrderEmailData & { deliveryNotes?: string }) {
+export async function sendPaymentSuccessEmail(data: PaymentEmailData) {
   const shortId = data.orderId.slice(0, 8);
 
-  const customerHtml = `
-    <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #1a1a2e; color: #ffffff; padding: 30px; border-radius: 16px;">
-      <h1 style="color: #22c55e; font-size: 28px; margin-bottom: 20px;">
-        🚀 BOOM! It's Done!
-      </h1>
-      
-      <p style="font-size: 16px; color: #e2e8f0;">Hey ${data.customerName}! 👋</p>
-      
-      <p style="font-size: 16px; color: #e2e8f0;">
-        Remember when you thought "this is too much work"?<br>
-        Well, <strong>WE DID IT FOR YOU!</strong> 🎤💥
-      </p>
-      
-      <div style="background: #2d2d44; padding: 24px; border-radius: 12px; margin: 24px 0; border-left: 4px solid #22c55e;">
-        <p style="margin: 8px 0; color: #e2e8f0;"><strong>✅ Order:</strong> #${shortId} - DELIVERED!</p>
-        <p style="margin: 8px 0; color: #e2e8f0;"><strong>✨ Service:</strong> ${data.serviceName}</p>
-        ${data.deliveryNotes ? `<p style="margin: 8px 0; color: #e2e8f0;"><strong>📝 Notes:</strong> ${data.deliveryNotes}</p>` : ''}
-      </div>
-      
-      <p style="font-size: 16px; color: #e2e8f0;">
-        📎 Check attachments for your files!
-      </p>
-      
-      <div style="background: #3d3d5c; padding: 20px; border-radius: 12px; margin: 24px 0; text-align: center;">
-        <p style="font-size: 18px; color: #fbbf24; margin-bottom: 12px;">🌟 LIKED OUR WORK? (or hated it?)</p>
-        <p style="font-size: 14px; color: #94a3b8; margin-bottom: 16px;">
-          We won't cry... okay maybe a little 😢<br>
-          But your feedback makes us better!
-        </p>
-        <a href="https://sagedo.vercel.app/about" style="display: inline-block; background: #f43f5e; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">
-          Leave Feedback 👉
-        </a>
-        <p style="font-size: 12px; color: #64748b; margin-top: 12px; font-style: italic;">
-          "Be honest. We can handle it."<br>
-          (Narrator: They could not handle it)
-        </p>
-      </div>
-      
-      <p style="font-size: 16px; color: #94a3b8;">
-        Come back soon! Your daily grind misses us already 😏
-      </p>
-      
-      <p style="margin-top: 32px; color: #94a3b8; font-size: 14px;">
-        — SAGE DO AI 🤖<br>
-        WhatsApp: +91 7018709291
-      </p>
-    </div>
-  `;
-
   try {
-    await transporter.sendMail({
-      from: `"SAGE DO AI" <${process.env.GMAIL_USER || 'noreply@sagedo.com'}>`,
-      to: data.customerEmail,
-      subject: `Order Delivered #${shortId} - SAGE DO`,
-      html: customerHtml,
+    const { error } = await resend.emails.send({
+      from: 'SAGE DO AI <onboarding@resend.dev>',
+      to: [data.customerEmail],
+      subject: `Payment Confirmed #${shortId} - SAGE DO`,
+      html: `
+        <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #1a1a2e; color: #ffffff; padding: 30px; border-radius: 16px;">
+          <h1 style="color: #10b981; font-size: 28px;">💳 Payment Successful!</h1>
+          <p style="color: #e2e8f0;">Hey ${data.customerName}! Your payment of ₹${data.amount} has been received.</p>
+          <div style="background: #2d2d44; padding: 20px; border-radius: 12px; margin: 20px 0;">
+            <p style="color: #e2e8f0;"><strong>Order ID:</strong> #${shortId}</p>
+            <p style="color: #e2e8f0;"><strong>Service:</strong> ${data.serviceName}</p>
+            <p style="color: #e2e8f0;"><strong>Amount:</strong> ₹${data.amount}</p>
+            <p style="color: #e2e8f0;"><strong>Payment Method:</strong> ${data.paymentMethod}</p>
+          </div>
+          <p style="color: #94a3b8;">We're now working on your order! 🚀</p>
+        </div>
+      `,
     });
-    console.log('✉️ Order delivered email sent to:', data.customerEmail);
+
+    if (error) {
+      console.error('Payment email error:', error);
+      throw new Error(error.message);
+    }
+    console.log('✉️ Payment success email sent to:', data.customerEmail);
   } catch (error) {
-    console.error('❌ Failed to send delivery email:', error);
+    console.error('Failed to send payment email:', error);
+    throw error;
   }
 }
 
 // ============================================
-// Payment Success (redirects to combined function)
+// 3. ORDER DELIVERED EMAIL
 // ============================================
-export async function sendPaymentSuccessEmail(data: OrderEmailData & { paymentId: string; paymentMethod: string }) {
-  await sendOrderConfirmationEmail({
-    ...data,
-    isFree: false,
-  });
+export async function sendOrderDeliveredEmail(data: DeliveryEmailData) {
+  const shortId = data.orderId.slice(0, 8);
+
+  try {
+    const { error } = await resend.emails.send({
+      from: 'SAGE DO AI <onboarding@resend.dev>',
+      to: [data.customerEmail],
+      subject: `🎉 Order Delivered #${shortId} - SAGE DO`,
+      html: `
+        <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #1a1a2e; color: #ffffff; padding: 30px; border-radius: 16px;">
+          <h1 style="color: #10b981; font-size: 28px;">🎉 Your Order is Delivered!</h1>
+          <p style="color: #e2e8f0;">Hey ${data.customerName}! Great news - your order is complete!</p>
+          
+          <div style="background: #2d2d44; padding: 20px; border-radius: 12px; margin: 20px 0;">
+            <p style="color: #e2e8f0;"><strong>Order ID:</strong> #${shortId}</p>
+            <p style="color: #e2e8f0;"><strong>Service:</strong> ${data.serviceName}</p>
+            ${data.deliveryNotes ? `<p style="color: #e2e8f0;"><strong>Notes:</strong> ${data.deliveryNotes}</p>` : ''}
+          </div>
+          
+          <p style="color: #e2e8f0;">
+            🔗 <a href="https://sagedo.vercel.app/track?orderId=${data.orderId}" style="color: #f43f5e;">View delivered files</a>
+          </p>
+          
+          <p style="color: #e2e8f0; margin-top: 20px;">
+            📝 <a href="https://sagedo.vercel.app/about" style="color: #f43f5e;">Leave us feedback!</a>
+          </p>
+          
+          <p style="margin-top: 32px; color: #94a3b8; font-size: 14px;">
+            Thanks for choosing SAGE DO! 🙏<br>
+            — The SAGE DO AI Crew
+          </p>
+        </div>
+      `,
+    });
+
+    if (error) {
+      console.error('Delivery email error:', error);
+      throw new Error(error.message);
+    }
+    console.log('✉️ Order delivered email sent to:', data.customerEmail);
+  } catch (error) {
+    console.error('Failed to send delivery email:', error);
+    throw error;
+  }
 }
 
 // ============================================
-// Account Deletion Email
+// 4. ACCOUNT DELETION EMAIL
 // ============================================
 export async function sendAccountDeletionEmail(email: string, name: string) {
   try {
-    await transporter.sendMail({
-      from: `"SAGE DO AI" <${process.env.GMAIL_USER || 'noreply@sagedo.com'}>`,
-      to: email,
+    const { error } = await resend.emails.send({
+      from: 'SAGE DO AI <onboarding@resend.dev>',
+      to: [email],
       subject: 'Account Deleted - SAGE DO',
       html: `
         <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #1a1a2e; color: #ffffff; padding: 30px; border-radius: 16px;">
-          <h1 style="color: #f43f5e;">Account Deleted 👋</h1>
-          <p style="color: #e2e8f0;">Hi ${name},</p>
-          <p style="color: #e2e8f0;">Your SAGE DO account has been successfully deleted as requested.</p>
-          <p style="color: #94a3b8;">We're sorry to see you go! If you ever want to come back, you're always welcome.</p>
-          <p style="margin-top: 32px; color: #94a3b8;">— SAGE DO AI Team 🤖</p>
+          <h1 style="color: #f43f5e; font-size: 28px;">Account Deleted</h1>
+          <p style="color: #e2e8f0;">Hey ${name},</p>
+          <p style="color: #e2e8f0;">Your SAGE DO account has been permanently deleted as requested.</p>
+          <p style="color: #94a3b8; margin-top: 20px;">We're sad to see you go! If you change your mind, you can always create a new account.</p>
+          <p style="margin-top: 32px; color: #94a3b8; font-size: 14px;">— The SAGE DO AI Crew</p>
         </div>
       `,
     });
+
+    if (error) {
+      console.error('Account deletion email error:', error);
+    }
     console.log('✉️ Account deletion email sent to:', email);
   } catch (error) {
-    console.error('❌ Failed to send account deletion email:', error);
+    console.error('Failed to send account deletion email:', error);
   }
 }
