@@ -1,7 +1,14 @@
+# SAGE DO Robots.txt
+# https://sagedo.in
+
 User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /dashboard
-Disallow: /api/
+Disallow: /settings
 
-Sitemap: https://sagedo-website.onrender.com/sitemap.xml
+# Sitemap location
+Sitemap: https://sagedo.in/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
