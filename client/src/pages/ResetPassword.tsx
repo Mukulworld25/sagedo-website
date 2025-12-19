@@ -180,7 +180,7 @@ export default function ResetPassword() {
 
                 <div className="mt-6 text-center">
                     <Link href="/login">
-                        <Button variant="link" className="text-primary">
+                        <Button variant="ghost" className="text-primary">
                             Back to Login
                         </Button>
                     </Link>

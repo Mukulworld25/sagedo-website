@@ -37,16 +37,16 @@ export default function NotFound() {
             <p className="text-sm text-muted-foreground mb-3">Popular Pages:</p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Link href="/services">
-                <Button variant="link" size="sm">Services</Button>
+                <Button variant="ghost" size="sm">Services</Button>
               </Link>
               <Link href="/about">
-                <Button variant="link" size="sm">About</Button>
+                <Button variant="ghost" size="sm">About</Button>
               </Link>
               <Link href="/orders">
-                <Button variant="link" size="sm">Order Now</Button>
+                <Button variant="ghost" size="sm">Order Now</Button>
               </Link>
               <Link href="/track">
-                <Button variant="link" size="sm">Track Order</Button>
+                <Button variant="ghost" size="sm">Track Order</Button>
               </Link>
             </div>
           </div>

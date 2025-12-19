@@ -24,6 +24,7 @@ import RefundPolicy from "@/pages/RefundPolicy";
 import GrievanceOfficer from "@/pages/GrievanceOfficer";
 import Contact from "@/pages/Contact";
 import FAQ from "@/pages/FAQ";
+import VerifyEmail from "@/pages/verify-email";
 import Settings from "@/pages/Settings";
 import NotFound from "@/pages/not-found";
 
@@ -65,6 +66,7 @@ function Router() {
         <Route path="/shipping-policy" component={RefundPolicy} />
         <Route path="/grievance-officer" component={GrievanceOfficer} />
         <Route path="/contact" component={Contact} />
+        <Route path="/verify-email" component={VerifyEmail} />
         <Route path="/settings" component={Settings} />
         <Route path="/faq" component={FAQ} />
         <Route component={NotFound} />

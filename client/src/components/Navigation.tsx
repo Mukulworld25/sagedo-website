@@ -12,8 +12,8 @@ export default function Navigation() {
   const { t } = useLanguage();
   const API_URL = ''; // Use relative URL - Vercel proxy forwards to Render
 
-  // GPT Prompts link - only shown to logged in users
-  const GPT_PROMPTS_LINK = "https://chatgpt.com/g/g-690c95a9e7dc8191b0338671195897a2-prompt-generator";
+  // AI Templates link - only shown to logged in users
+  const AI_TEMPLATES_LINK = "https://chatgpt.com/g/g-690c95a9e7dc8191b0338671195897a2-prompt-generator";
 
   const navLinks = [
     { href: "/", label: t("nav.home") },
@@ -83,15 +83,15 @@ export default function Navigation() {
                 <>
                   {isAuthenticated ? (
                     <>
-                      {/* GPT Prompts Access - Only for logged in users */}
+                      {/* AI Templates Access - Only for logged in users */}
                       <a
-                        href={GPT_PROMPTS_LINK}
+                        href={AI_TEMPLATES_LINK}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 transition-colors px-3 py-1.5 rounded-lg bg-primary/10 hover:bg-primary/20"
                       >
                         <Sparkles className="w-4 h-4" />
-                        <span className="font-medium">GPT Prompts</span>
+                        <span className="font-medium">AI Templates</span>
                         <ExternalLink className="w-3 h-3" />
                       </a>
                       <span className="text-sm text-muted-foreground">
@@ -157,7 +157,7 @@ export default function Navigation() {
                           {/* Golden ticket badge */}
                           <span className="absolute -top-1 -right-1 flex items-center gap-0.5 bg-gradient-to-r from-yellow-400 to-amber-500 text-black text-[9px] px-1.5 py-0.5 rounded-full font-bold shadow-lg animate-pulse">
                             <Sparkles className="w-2.5 h-2.5" />
-                            GPT
+                            AI
                           </span>
                         </Button>
                       </Link>
@@ -201,16 +201,16 @@ export default function Navigation() {
               <div className="pt-3 space-y-2 border-t border-neutral-800/50">
                 {isAuthenticated ? (
                   <>
-                    {/* GPT Prompts Access - Mobile */}
+                    {/* AI Templates Access - Mobile */}
                     <a
-                      href={GPT_PROMPTS_LINK}
+                      href={AI_TEMPLATES_LINK}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg bg-primary/10 text-primary font-medium text-sm"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       <Sparkles className="w-4 h-4" />
-                      Access GPT Prompts
+                      Access AI Templates
                       <ExternalLink className="w-3 h-3" />
                     </a>
                     <Link href="/dashboard">
@@ -275,7 +275,7 @@ export default function Navigation() {
                         <Gift className="w-4 h-4 mr-1.5" />
                         <span className="relative">Sign Up FREE</span>
                         <span className="ml-2 bg-gradient-to-r from-yellow-400 to-amber-500 text-black text-[9px] px-1.5 py-0.5 rounded-full font-bold">
-                          FREE GPT
+                          FREE AI
                         </span>
                       </Button>
                     </Link>

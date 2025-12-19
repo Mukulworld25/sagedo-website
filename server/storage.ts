@@ -20,6 +20,9 @@ import {
   type Feedback,
   type InsertFeedback,
   feedbacks,
+  type ContactMessage,
+  type InsertContactMessage,
+  contactMessages,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, sql, gte } from "drizzle-orm";
@@ -31,6 +34,8 @@ export interface IStorage {
   createUser(user: any): Promise<User>;
   upsertUser(user: UpsertUser): Promise<User>;
   deleteUser(id: string): Promise<void>;
+  getUserByVerificationToken(token: string): Promise<User | undefined>;
+  verifyUserEmail(userId: string): Promise<void>;
 
   // Service operations
   getAllServices(): Promise<Service[]>;
@@ -67,6 +72,7 @@ export interface IStorage {
   // Feedback operations
   createFeedback(feedback: InsertFeedback): Promise<Feedback>;
   getAllFeedbacks(): Promise<Feedback[]>;
+  createContactMessage(message: InsertContactMessage): Promise<ContactMessage>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -84,6 +90,16 @@ export class DatabaseStorage implements IStorage {
 
   async createUser(userData: any): Promise<User> {
     const [user] = await db.insert(users).values(userData).returning();
+    return user;
+  }
+
+  async getUserByGoogleId(googleId: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.googleId, googleId));
+    return user;
+  }
+
+  async getUserByGithubId(githubId: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.githubId, githubId));
     return user;
   }
 
@@ -117,6 +133,21 @@ export class DatabaseStorage implements IStorage {
     await db.delete(tokenTransactions).where(eq(tokenTransactions.userId, id));
     await db.delete(orders).where(eq(orders.userId, id));
     await db.delete(users).where(eq(users.id, id));
+  }
+
+  async getUserByVerificationToken(token: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.verificationToken, token));
+    return user;
+  }
+
+  async verifyUserEmail(userId: string): Promise<void> {
+    await db.update(users)
+      .set({
+        isEmailVerified: true,
+        verificationToken: null,
+        updatedAt: new Date()
+      })
+      .where(eq(users.id, userId));
   }
 
   // Password reset operations
@@ -334,6 +365,11 @@ export class DatabaseStorage implements IStorage {
 
   async getAllFeedbacks(): Promise<Feedback[]> {
     return await db.select().from(feedbacks).orderBy(desc(feedbacks.createdAt));
+  }
+
+  async createContactMessage(message: InsertContactMessage): Promise<ContactMessage> {
+    const [newMessage] = await db.insert(contactMessages).values(message).returning();
+    return newMessage;
   }
 
   // Email abuse prevention - track emails that have used welcome bonus

@@ -47,6 +47,65 @@ export default function Settings() {
     const [deleteConfirmText, setDeleteConfirmText] = useState("");
     const [isDeleting, setIsDeleting] = useState(false);
 
+    // 2FA States
+    const [show2FADialog, setShow2FADialog] = useState(false);
+    const [qrCodeUrl, setQrCodeUrl] = useState("");
+    const [twoFaToken, setTwoFaToken] = useState("");
+    const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(user?.isTwoFactorEnabled || false);
+
+    const handleSetup2FA = async () => {
+        try {
+            const response = await fetch("/api/auth/2fa/setup", {
+                method: "POST",
+                credentials: "include"
+            });
+            const data = await response.json();
+            setQrCodeUrl(data.qrCode);
+            setShow2FADialog(true);
+        } catch (error) {
+            toast({ title: "Error", description: "Failed to setup 2FA", variant: "destructive" });
+        }
+    };
+
+    const handleVerify2FA = async () => {
+        try {
+            const response = await fetch("/api/auth/2fa/enable", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ token: twoFaToken }),
+                credentials: "include"
+            });
+
+            if (response.ok) {
+                toast({ title: "Success", description: "2FA Enabled Successfully! 🔒" });
+                setIsTwoFactorEnabled(true);
+                setShow2FADialog(false);
+            } else {
+                toast({ title: "Error", description: "Invalid Token", variant: "destructive" });
+            }
+        } catch (error) {
+            toast({ title: "Error", description: "Verification failed", variant: "destructive" });
+        }
+    };
+
+    const handleDisable2FA = async () => {
+        try {
+            const response = await fetch("/api/auth/2fa/disable", {
+                method: "POST",
+                credentials: "include"
+            });
+
+            if (response.ok) {
+                toast({ title: "Success", description: "2FA Disabled Successfully" });
+                setIsTwoFactorEnabled(false);
+            } else {
+                toast({ title: "Error", description: "Failed to disable 2FA", variant: "destructive" });
+            }
+        } catch (error) {
+            toast({ title: "Error", description: "Failed to disable 2FA", variant: "destructive" });
+        }
+    };
+
     // Redirect if not logged in
     if (!isAuthenticated) {
         return (
@@ -234,6 +293,31 @@ export default function Settings() {
                     </div>
 
                     <div className="space-y-3">
+                        {/* 2FA Toggle */}
+                        <div className="flex items-center justify-between p-4 border rounded-lg bg-card mb-4">
+                            <div>
+                                <h3 className="font-medium">Two-Factor Authentication (2FA)</h3>
+                                <p className="text-sm text-muted-foreground">Secure your account with TOTP (Google Auth)</p>
+                            </div>
+                            {isTwoFactorEnabled ? (
+                                <Button
+                                    variant="destructive"
+                                    size="sm"
+                                    onClick={handleDisable2FA}
+                                >
+                                    Disable 2FA
+                                </Button>
+                            ) : (
+                                <Button
+                                    variant="default"
+                                    size="sm"
+                                    onClick={handleSetup2FA}
+                                >
+                                    Enable 2FA
+                                </Button>
+                            )}
+                        </div>
+
                         <Button
                             variant="outline"
                             className="w-full justify-between h-14"
@@ -318,6 +402,35 @@ export default function Settings() {
                             >
                                 {isDeleting ? t("common.loading") : t("common.delete")}
                             </Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
+
+
+                {/* 2FA Dialog */}
+                <Dialog open={show2FADialog} onOpenChange={setShow2FADialog}>
+                    <DialogContent className="sm:max-w-md">
+                        <DialogHeader>
+                            <DialogTitle>Setup 2FA</DialogTitle>
+                            <DialogDescription>
+                                Scan this QR code with Google Authenticator or Authy.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="flex flex-col items-center gap-4 py-4">
+                            {qrCodeUrl && <img src={qrCodeUrl} alt="2FA QR Code" className="w-48 h-48 rounded-lg border-2 border-primary" />}
+                            <div className="w-full">
+                                <Label>Enter 6-digit Code</Label>
+                                <Input
+                                    value={twoFaToken}
+                                    onChange={(e) => setTwoFaToken(e.target.value)}
+                                    placeholder="123456"
+                                    className="text-center text-2xl tracking-widest mt-2"
+                                    maxLength={6}
+                                />
+                            </div>
+                        </div>
+                        <DialogFooter>
+                            <Button onClick={handleVerify2FA} className="w-full">Verify & Enable</Button>
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>

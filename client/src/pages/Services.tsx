@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Link, useLocation } from "wouter";
-import { Search, ArrowRight, Star } from "lucide-react";
+import { Search, ArrowRight, Star, Gift } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
@@ -81,6 +81,61 @@ export default function Services() {
             <p className="text-lg md:text-xl text-muted-foreground">
               Click a category to see what we can solve for you.
             </p>
+          </div>
+
+          {/* Welcome Bonus Banner */}
+          <div className="mb-12 p-8 rounded-3xl bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-900 border border-amber-500/30 shadow-xl">
+            <div className="flex flex-col lg:flex-row items-center gap-8">
+              {/* Star Icon */}
+              <div className="flex-shrink-0">
+                <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-lg shadow-amber-500/30">
+                  <Star className="w-12 h-12 text-neutral-900 fill-neutral-900" />
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="flex-1 text-center lg:text-left">
+                <h2 className="text-2xl md:text-3xl font-black text-amber-400 mb-2">
+                  ★ Welcome Bonus ★
+                </h2>
+                <p className="text-xl md:text-2xl font-bold text-foreground mb-4">
+                  Get <span className="text-amber-500">FREE AI Templates</span> + 1 Free Service Credit on Signup!
+                </p>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li className="flex items-center gap-2 justify-center lg:justify-start">
+                    <span className="text-green-500">✓</span>
+                    <span><strong className="text-foreground">Earn Tokens:</strong> Complete tasks, refer friends, or top up anytime</span>
+                  </li>
+                  <li className="flex items-center gap-2 justify-center lg:justify-start">
+                    <span className="text-green-500">✓</span>
+                    <span><strong className="text-foreground">Service Credit:</strong> Use it for ANY service delivered within <strong className="text-amber-500">24-48 hours</strong></span>
+                  </li>
+                  <li className="flex items-center gap-2 justify-center lg:justify-start">
+                    <span className="text-green-500">✓</span>
+                    <span><strong className="text-foreground">Fast Services:</strong> All eligible services are marked with a ⭐ badge</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link href="/login?register=true">
+                  <Button size="lg" className="h-12 px-6 bg-gradient-to-r from-amber-500 to-amber-600 text-amber-950 font-bold hover:opacity-90 rounded-xl shadow-lg shadow-amber-500/25">
+                    <Gift className="mr-2 h-5 w-5" />
+                    Claim FREE AI Templates
+                  </Button>
+                </Link>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={() => setActiveCategory("Business")}
+                  className="h-12 px-6 border-amber-500/50 text-amber-400 hover:bg-amber-500/10 rounded-xl"
+                >
+                  <Star className="mr-2 h-5 w-5" />
+                  View Eligible Services
+                </Button>
+              </div>
+            </div>
           </div>
 
           {/* Search */}

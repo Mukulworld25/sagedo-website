@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import { Upload, CheckCircle2, CreditCard, Sparkles, Plus, X, Star, LogIn } from "lucide-react";
+import { Upload, CheckCircle2, CreditCard, Sparkles, Plus, X, Star, LogIn, Loader2 } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useSearch, Link, useLocation } from "wouter";
@@ -63,7 +63,7 @@ export default function Orders() {
     if (goldenTicketMode === 'true') {
       setTimeout(() => {
         toast({
-          title: "🎫 Golden Ticket Mode!",
+          title: "🎁 Starter Credit Mode!",
           description: "Select any Bar 1 service below and it will be FREE!",
         });
       }, 500);
@@ -136,7 +136,7 @@ export default function Orders() {
           description: "Your FREE service order has been received. We'll contact you soon!",
         });
         // Reset form
-        setFormData({ name: "", email: "", service: "", requirements: "" });
+        setFormData({ name: "", email: "", service: "", requirements: "", deliveryPreference: "platform" });
         setFiles([]);
         setCart([]);
         setCreatedOrderId(null);
@@ -191,7 +191,7 @@ export default function Orders() {
                   description: "Your order is being processed. We'll contact you soon!",
                 });
                 // Reset form
-                setFormData({ name: "", email: "", service: "", requirements: "" });
+                setFormData({ name: "", email: "", service: "", requirements: "", deliveryPreference: "platform" });
                 setFiles([]);
                 setCreatedOrderId(null);
               } else {
@@ -342,7 +342,7 @@ export default function Orders() {
               });
 
               // Reset form
-              setFormData({ name: "", email: "", service: "", requirements: "" });
+              setFormData({ name: "", email: "", service: "", requirements: "", deliveryPreference: "platform" });
               setFiles([]);
               setCreatedOrderId(null);
             } else {
@@ -441,7 +441,7 @@ export default function Orders() {
                       {isGoldenService || hasOnlyFreeServices ? (
                         <>
                           <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
-                          Golden Ticket Service - FREE!
+                          Starter Credit Service - FREE!
                         </>
                       ) : (
                         <>
@@ -702,11 +702,14 @@ export default function Orders() {
                       : 'bg-gradient-to-r from-primary to-destructive hover:opacity-90'
                       }`}
                   >
-                    {orderMutation.isPending || uploadMutation.isPending
-                      ? "Submitting..."
-                      : isGoldenService || hasOnlyFreeServices
-                        ? "✨ Submit FREE Order"
-                        : `Pay ₹${cartTotal > 0 ? cartTotal : orderAmount} & Submit`}
+                    {orderMutation.isPending || uploadMutation.isPending ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Submitting...
+                      </>
+                    ) : isGoldenService || hasOnlyFreeServices
+                      ? "✨ Submit FREE Order"
+                      : `Pay ₹${cartTotal > 0 ? cartTotal : orderAmount} & Submit`}
                   </Button>
                 ) : (
                   <div className="space-y-4">
@@ -731,7 +734,7 @@ export default function Orders() {
                       size="sm"
                       variant="ghost"
                       onClick={() => {
-                        setFormData({ name: "", email: "", service: "", requirements: "" });
+                        setFormData({ name: "", email: "", service: "", requirements: "", deliveryPreference: "platform" });
                         setFiles([]);
                         setCreatedOrderId(null);
                       }}

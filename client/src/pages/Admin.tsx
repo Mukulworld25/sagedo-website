@@ -23,7 +23,7 @@ export default function Admin() {
     enabled: isAuthenticated && user?.isAdmin === true,
   });
 
-  const { data: stats } = useQuery({
+  const { data: stats } = useQuery<any>({
     queryKey: ["/api/admin/stats"],
     enabled: isAuthenticated && user?.isAdmin === true,
   });
@@ -291,7 +291,7 @@ export default function Admin() {
                     customerName: o.customerName,
                     customerEmail: o.customerEmail,
                     serviceName: o.serviceName,
-                    amount: o.amount,
+                    amount: o.amountPaid,
                     status: o.status,
                     createdAt: o.createdAt
                   })),

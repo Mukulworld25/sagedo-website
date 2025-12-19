@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { apiRequest } from "@/lib/queryClient";
 import {
     Mail,
     Phone,
@@ -29,17 +30,26 @@ export default function Contact() {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Simulate form submission
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        try {
+            await apiRequest("POST", "/api/contact", formData);
 
-        setSubmitted(true);
-        toast({
-            title: "Message Sent!",
-            description: "We'll get back to you within 24 hours.",
-        });
+            setSubmitted(true);
+            toast({
+                title: "Message Sent!",
+                description: "We'll get back to you within 24 hours.",
+            });
 
-        setFormData({ name: "", email: "", subject: "", message: "" });
-        setIsSubmitting(false);
+            setFormData({ name: "", email: "", subject: "", message: "" });
+        } catch (error) {
+            console.error(error);
+            toast({
+                title: "Error",
+                description: "Failed to send message. Please try again or use WhatsApp.",
+                variant: "destructive"
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (

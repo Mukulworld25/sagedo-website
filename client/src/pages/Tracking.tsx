@@ -276,7 +276,7 @@ export default function Tracking() {
                   return 48;
                 };
 
-                const deliveryHours = getDeliveryHours(order.deliveryTime);
+                const deliveryHours = getDeliveryHours((order as any).deliveryTime);
                 const orderDate = new Date(order.createdAt!);
                 const deliveryDate = new Date(orderDate.getTime() + deliveryHours * 60 * 60 * 1000);
                 const now = new Date();

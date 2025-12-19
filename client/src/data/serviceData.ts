@@ -16,6 +16,7 @@ export interface ServiceDetail {
     category: string;
     imageUrl: string;
     isGoldenEligible: boolean;
+    deliveryTime?: string;
 }
 
 export const allServices: ServiceDetail[] = [
@@ -138,10 +139,10 @@ export const allServices: ServiceDetail[] = [
     },
     {
         id: "6",
-        name: "Ad Copy Bundle (5 Pieces)",
+        name: "Ad Copy Package (5 Pieces)",
         category: "Business",
-        description: "Bundle of 5 professional ad copies for various platforms",
-        fullDescription: "Running multiple campaigns? Get 5 different ad copies for various platforms or A/B testing. Perfect for businesses who want variety in their messaging. Each copy is tailored to convert.",
+        description: "Professional ad copy service for various platforms",
+        fullDescription: "Running multiple campaigns? Get professional ad copy service for 5 distinct ads. Perfect for businesses who want variety in their messaging. Each copy is tailored to convert.",
         whatYouGet: [
             "5 unique ad copies",
             "Mix of platforms (Facebook, Instagram, Google)",
@@ -352,9 +353,9 @@ export const allServices: ServiceDetail[] = [
     },
     {
         id: "15",
-        name: "Photo Editing Bundle (5 Photos)",
+        name: "Photo Editing Service (5 Photos)",
         category: "Student",
-        description: "Professional photo editing for projects and assignments",
+        description: "Professional photo editing service for projects",
         fullDescription: "Need polished photos for your project or presentation? We edit 5 photos with professional quality - color correction, background removal, touch-ups, and more. Make your visual content stand out.",
         whatYouGet: [
             "5 professionally edited photos",

@@ -1,9 +1,12 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { setupAuth, registerCustomer, loginUser, isAuthenticated, isAdmin } from "./auth";
+import { setupAuth, registerCustomer, loginUser, isAuthenticated, isAdmin, generate2FASecret, generate2FAQRCode, verify2FAToken } from "./auth";
 import { createPaymentOrder, verifyPaymentSignature } from "./payment";
-import { sendOrderConfirmationEmail, sendPaymentSuccessEmail, sendOrderDeliveredEmail, sendAccountDeletionEmail } from "./email";
+import { sendOrderConfirmationEmail, sendPaymentSuccessEmail, sendOrderDeliveredEmail, sendAccountDeletionEmail, sendContactEmail } from "./email";
+import { insertContactMessageSchema } from "@shared/schema";
+import passport from 'passport';
+import PDFDocument from 'pdfkit';
 import multer from "multer";
 
 // Configure multer for file uploads
@@ -47,6 +50,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+
+
+  // Verify Email
+  app.post('/api/auth/verify-email', async (req: any, res) => {
+    try {
+      const { token } = req.body;
+      if (!token) return res.status(400).json({ message: 'Token required' });
+
+      // Find user by token
+      const user = await storage.getUserByVerificationToken(token);
+      if (!user) {
+        return res.status(400).json({ message: 'Invalid or expired verification token' });
+      }
+
+      // Verify
+      await storage.verifyUserEmail(user.id);
+
+      res.json({ success: true, message: 'Email verified successfully!' });
+    } catch (error: any) {
+      res.status(400).json({ message: 'Verification failed' });
+    }
+  });
+
   // Request Password Reset (Email Flow)
   app.post('/api/auth/request-reset', async (req: any, res) => {
     try {
@@ -71,7 +97,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Send reset email
       const { sendPasswordResetEmail } = await import('./email');
-      await sendPasswordResetEmail(email, user.name, resetToken);
+      await sendPasswordResetEmail(email, user.name || 'User', resetToken);
 
       res.json({
         success: true,
@@ -137,14 +163,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Update login stats
       await storage.upsertUser({
         ...user,
-        loginCount: (user.loginCount || 0) + 1,
+        loginCount: ((user as any).loginCount || 0) + 1,
         lastLoginAt: new Date(),
       });
 
       req.session.user = {
         id: user.id,
         email: user.email,
-        name: user.name || user.firstName,
+        name: user.name || (user as any).firstName,
         isAdmin: user.isAdmin,
         tokenBalance: user.tokenBalance || 0,
         hasGoldenTicket: user.hasGoldenTicket || false,
@@ -635,7 +661,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             orderId: order.id,
             serviceName: order.serviceName,
             amount: order.amountPaid || 0,
-            orderDate: order.createdAt.toLocaleDateString(),
+            orderDate: (order.createdAt || new Date()).toLocaleDateString(),
             paymentId: razorpay_payment_id,
             paymentMethod: 'Razorpay'
           }).catch(err => console.error('Payment email failed (background):', err));
@@ -678,7 +704,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         ...order,
         customer: customer ? {
           id: customer.id,
-          name: customer.name || customer.firstName,
+          name: customer.name || (customer as any).firstName,
           email: customer.email,
           tokenBalance: customer.tokenBalance,
           hasGoldenTicket: customer.hasGoldenTicket,
@@ -712,7 +738,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             orderId: order.id,
             serviceName: order.serviceName,
             amount: order.amountPaid || 0,
-            orderDate: order.createdAt.toLocaleDateString(),
+            orderDate: (order.createdAt || new Date()).toLocaleDateString(),
             deliveryNotes: deliveryNotes,
             deliveryFileUrls: deliveryFileUrls || []
           });
@@ -826,7 +852,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const item = await storage.createGalleryItem({
         title,
-        description: description || null,
+        content: description || null,
         imageUrl,
         type, // 'work_showcase' or 'testimonial'
         clientName: clientName || null,
@@ -859,7 +885,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Create a testimonial gallery item from feedback
       const item = await storage.createGalleryItem({
         title: "Client Testimonial",
-        description: feedback.message,
+        content: feedback.message,
         imageUrl: null,
         type: 'testimonial',
         clientName: clientName || 'Anonymous User',
@@ -927,6 +953,135 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.error('Newsletter error:', error);
       res.status(500).json({ message: 'Failed to subscribe' });
     }
+  });
+
+  // Contact Form
+  app.post('/api/contact', async (req, res) => {
+    try {
+      const data = insertContactMessageSchema.parse(req.body);
+
+      // Save to DB
+      const message = await storage.createContactMessage(data);
+
+      // Send email to admin
+      await sendContactEmail(data.name, data.email, data.subject, data.message);
+
+      res.json(message);
+    } catch (error: any) {
+      console.error('Contact form error:', error);
+      res.status(400).json({ message: error.message || 'Failed to send message' });
+    }
+  });
+
+  // Social Login Routes
+  app.get('/api/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+  app.get('/api/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    (req, res) => {
+      res.redirect('/dashboard');
+    }
+  );
+
+  app.get('/api/auth/github', passport.authenticate('github', { scope: ['user:email'] }));
+
+  app.get('/api/auth/github/callback',
+    passport.authenticate('github', { failureRedirect: '/login' }),
+    (req, res) => {
+      res.redirect('/dashboard');
+    }
+  );
+
+  // 2FA Routes
+  app.post('/api/auth/2fa/setup', async (req: any, res) => {
+    if (!req.user) return res.status(401).send('Unauthorized');
+
+    const secret = generate2FASecret();
+    const qrCode = await generate2FAQRCode(req.user.email, secret);
+
+    // Ideally store secret temporarily in session until verified, but for simplicity saving to user pending verify or just handling in frontend
+    req.session.temp2faSecret = secret;
+
+    res.json({ secret, qrCode });
+  });
+
+  app.post('/api/auth/2fa/enable', async (req: any, res) => {
+    if (!req.user || !req.session.temp2faSecret) return res.status(401).send('Unauthorized');
+
+    const { token } = req.body;
+    const verified = verify2FAToken(token, req.session.temp2faSecret);
+
+    if (verified) {
+      await storage.upsertUser({
+        ...req.user,
+        isTwoFactorEnabled: true,
+        twoFactorSecret: req.session.temp2faSecret
+      } as any);
+      delete req.session.temp2faSecret;
+      res.json({ success: true });
+    } else {
+      res.status(400).json({ message: 'Invalid token' });
+    }
+  });
+
+  // 2FA Disable Route
+  app.post('/api/auth/2fa/disable', async (req: any, res) => {
+    if (!req.user) return res.status(401).send('Unauthorized');
+
+    try {
+      await storage.upsertUser({
+        ...req.user,
+        isTwoFactorEnabled: false,
+        twoFactorSecret: null
+      } as any);
+
+      // Update session user
+      req.user.isTwoFactorEnabled = false;
+      req.user.twoFactorSecret = null;
+
+      res.json({ success: true, message: '2FA disabled successfully' });
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to disable 2FA' });
+    }
+  });
+
+  // Invoice Route
+  app.get('/api/orders/:id/invoice', async (req: any, res) => {
+    if (!req.user) return res.status(401).send('Unauthorized');
+
+    const order = await storage.getOrderById(req.params.id);
+    if (!order) return res.status(404).send('Order not found');
+
+    // Check ownership
+    if (!req.user.isAdmin && order.userId !== req.user.id) {
+      return res.status(403).send('Forbidden');
+    }
+
+    const doc = new PDFDocument();
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename=invoice-${order.id}.pdf`);
+
+    doc.pipe(res);
+
+    doc.fontSize(25).text('Invoice', 50, 57);
+    doc.fontSize(10).text(`Invoice Number: ${order.id}`, 200, 65, { align: 'right' });
+    doc.text(`Date: ${new Date().toLocaleDateString()}`, 200, 80, { align: 'right' });
+    doc.moveDown();
+
+    doc.fontSize(12).text(`Customer: ${req.user.name}`, 50, 150);
+
+    // Table Header
+    doc.fontSize(10).text('Service', 50, 180).text('Price', 400, 180, { width: 100, align: 'right' });
+    doc.moveTo(50, 195).lineTo(500, 195).stroke();
+
+    // Table Row
+    doc.fontSize(10).text(order.serviceName, 50, 210).text((order.amountPaid || 0).toString(), 400, 210, { width: 100, align: 'right' });
+
+    doc.moveDown(4);
+    doc.fontSize(14).text('Thank you for your business!', { align: 'center' });
+
+    doc.end();
   });
 
   const httpServer = createServer(app);

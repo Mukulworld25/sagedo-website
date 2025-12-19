@@ -5,6 +5,14 @@ import connectPg from 'connect-pg-simple';
 import type { Express, RequestHandler } from 'express';
 import { storage } from './storage';
 import { pool } from './db';
+import { sendVerificationEmail } from './email';
+import { InsertUser } from '@shared/schema';
+
+import passport from 'passport';
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import { Strategy as GitHubStrategy } from 'passport-github2';
+import { authenticator } from 'otplib';
+import qrcode from 'qrcode';
 
 // Session setup
 export function setupAuth(app: Express) {
@@ -34,6 +42,109 @@ export function setupAuth(app: Express) {
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         },
     }));
+
+    // Passport Init
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+    passport.serializeUser((user: any, done) => {
+        done(null, user.id);
+    });
+
+    passport.deserializeUser(async (id: string, done) => {
+        try {
+            if (id === 'admin') {
+                return done(null, { id: 'admin', isAdmin: true, name: 'Admin', email: process.env.ADMIN_EMAIL });
+            }
+            const user = await storage.getUser(id);
+            done(null, user);
+        } catch (err) {
+            done(err);
+        }
+    });
+
+    // Google Strategy (Fail-safe: Only if keys exist)
+    if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
+        passport.use(new GoogleStrategy({
+            clientID: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            callbackURL: "/api/auth/google/callback",
+            passReqToCallback: true
+        }, async (req: any, accessToken: string, refreshToken: string, profile: any, done: any) => {
+            try {
+                // Check if user exists by Google ID
+                let user = await storage.getUserByGoogleId(profile.id);
+
+                // If not, check by email
+                if (!user && profile.emails && profile.emails[0]) {
+                    const email = profile.emails[0].value;
+                    const existingUser = await storage.getUserByEmail(email);
+
+                    if (existingUser) {
+                        // Link Google ID to existing user
+                        user = await storage.upsertUser({ ...existingUser, googleId: profile.id } as any);
+                    } else {
+                        // Create new user
+                        const userData: any = {
+                            email,
+                            name: profile.displayName,
+                            googleId: profile.id,
+                            passwordHash: '', // No password for social login
+                            tokenBalance: 0,
+                            hasGoldenTicket: true,
+                            hasWelcomeBonus: true,
+                            isEmailVerified: true, // Trusted provider
+                            verificationToken: uuidv4()
+                        };
+                        user = await storage.createUser(userData);
+                        await sendVerificationEmail(email, profile.displayName, userData.verificationToken).catch(console.error);
+                    }
+                }
+                return done(null, user);
+            } catch (err) {
+                return done(err as any);
+            }
+        }));
+    }
+
+    // GitHub Strategy (Fail-safe)
+    if (process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET) {
+        passport.use(new GitHubStrategy({
+            clientID: process.env.GITHUB_CLIENT_ID,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET,
+            callbackURL: "/api/auth/github/callback"
+        }, async (accessToken: any, refreshToken: any, profile: any, done: any) => {
+            try {
+                let user = await storage.getUserByGithubId(profile.id);
+
+                if (!user && profile.emails && profile.emails[0]) {
+                    const email = profile.emails[0].value;
+                    const existingUser = await storage.getUserByEmail(email);
+
+                    if (existingUser) {
+                        user = await storage.upsertUser({ ...existingUser, githubId: profile.id } as any);
+                    } else {
+                        const userData: any = {
+                            email,
+                            name: profile.displayName || profile.username,
+                            githubId: profile.id,
+                            passwordHash: '',
+                            tokenBalance: 0,
+                            hasGoldenTicket: true,
+                            hasWelcomeBonus: true,
+                            isEmailVerified: true,
+                            verificationToken: uuidv4()
+                        };
+                        user = await storage.createUser(userData);
+                        await sendVerificationEmail(email, userData.name, userData.verificationToken).catch(console.error);
+                    }
+                }
+                return done(null, user);
+            } catch (err) {
+                return done(err);
+            }
+        }));
+    }
 }
 
 // Customer Registration
@@ -51,16 +162,30 @@ export async function registerCustomer(email: string, password: string, name: st
     const passwordHash = await bcrypt.hash(password, 10);
 
     // Create user - Golden Ticket on first signup, tokens start at 0 (must be earned)
-    const user = await storage.createUser({
+    const verificationToken = uuidv4();
+
+    // Cast to any to bypass strict type checking for now, or use InsertUser
+    const userData: any = {
         id: uuidv4(),
         email,
         passwordHash,
         name,
         isAdmin: false,
-        tokenBalance: 0, // Tokens must be earned via referrals, surveys, daily login
+        tokenBalance: 0,
         hasGoldenTicket: emailPreviouslyUsed ? false : true,
         hasWelcomeBonus: emailPreviouslyUsed ? false : true,
-    });
+        isEmailVerified: false,
+        verificationToken,
+    };
+
+    const user = await storage.createUser(userData);
+
+    // Send verification email
+    try {
+        await sendVerificationEmail(email, name, verificationToken);
+    } catch (error) {
+        console.error("Failed to send verification email during registration:", error);
+    }
 
     // Mark email as used for future abuse prevention
     if (!emailPreviouslyUsed) {
@@ -92,7 +217,7 @@ export async function loginUser(email: string, password: string) {
     const user = await storage.getUserByEmail(email);
     if (!user) throw new Error('Invalid credentials');
 
-    const isValid = await bcrypt.compare(password, user.passwordHash);
+    const isValid = await bcrypt.compare(password, user.passwordHash || '');
     if (!isValid) throw new Error('Invalid credentials');
 
     return user;
@@ -103,6 +228,16 @@ export const isAuthenticated: RequestHandler = (req: any, res, next) => {
     if (req.session.user) return next();
     res.status(401).json({ message: 'Unauthorized' });
 };
+
+// 2FA Helpers
+export const generate2FASecret = () => authenticator.generateSecret();
+
+export const generate2FAQRCode = async (email: string, secret: string) => {
+    const otpauth = authenticator.keyuri(email, 'SAGEDO AI', secret);
+    return await qrcode.toDataURL(otpauth);
+};
+
+export const verify2FAToken = (token: string, secret: string) => authenticator.verify({ token, secret });
 
 export const isAdmin: RequestHandler = (req: any, res, next) => {
     if (req.session.user?.isAdmin) return next();

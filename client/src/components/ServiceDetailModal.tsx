@@ -40,7 +40,7 @@ export default function ServiceDetailModal({ service, isOpen, onClose }: Service
                     {service.isGoldenEligible && (
                         <Badge className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-amber-600 text-white border-0">
                             <Star className="w-3 h-3 mr-1 fill-current" />
-                            Golden Ticket
+                            Starter Credit
                         </Badge>
                     )}
                     <div className="absolute bottom-4 left-6 right-6">

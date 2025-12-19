@@ -81,7 +81,7 @@ export default function Dashboard() {
   });
 
   const handleEarnTokens = (amount: number, type: string, description: string, referralEmail?: string) => {
-    earnTokensMutation.mutate({ amount, type, description, referralEmail });
+    earnTokensMutation.mutate({ amount, type, description });
   };
 
   const handleReferralClick = () => {
@@ -206,7 +206,7 @@ export default function Dashboard() {
           <Card className="glass p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-muted-foreground mb-1">Golden Ticket</p>
+                <p className="text-sm text-muted-foreground mb-1">Starter Credit</p>
                 <p className="text-3xl font-black text-foreground" data-testid="text-golden-ticket">
                   {hasGoldenTicket ? "1" : "0"}
                 </p>
@@ -223,10 +223,10 @@ export default function Dashboard() {
           <Card className="glass p-6 mb-8 bg-gradient-to-r from-yellow-500/10 to-amber-500/10 border-yellow-500/50">
             <div className="flex items-center gap-3 mb-4">
               <Gift className="w-6 h-6 text-yellow-500" />
-              <h2 className="text-2xl font-bold text-foreground">🎫 Golden Ticket Ready!</h2>
+              <h2 className="text-2xl font-bold text-foreground">🎁 Starter Credit Ready!</h2>
             </div>
             <p className="text-muted-foreground mb-4">
-              You have 1 Golden Ticket! Use it to get any service from our Bar 1 category absolutely FREE.
+              You have 1 Starter Credit! Use it to get any service from our Bar 1 category absolutely FREE.
             </p>
             <Button
               variant="default"
@@ -234,10 +234,10 @@ export default function Dashboard() {
               className="bg-gradient-to-r from-yellow-500 to-amber-500 hover:opacity-90"
               onClick={() => {
                 setLocation('/orders?useGoldenTicket=true');
-                toast({ title: "Golden Ticket Selected!", description: "Choose a Bar 1 service to redeem your free service." });
+                toast({ title: "Starter Credit Selected!", description: "Choose a Bar 1 service to redeem your free service." });
               }}
             >
-              Use Golden Ticket
+              Use Starter Credit
             </Button>
           </Card>
         )}
@@ -346,6 +346,11 @@ export default function Dashboard() {
                           <a href={`/track?orderId=${order.id}`}>
                             <Button size="sm" variant="outline" className="text-xs">
                               Track
+                            </Button>
+                          </a>
+                          <a href={`/api/orders/${order.id}/invoice`} target="_blank" rel="noopener noreferrer">
+                            <Button size="sm" variant="ghost" className="text-xs" title="Download Invoice">
+                              📄
                             </Button>
                           </a>
                           {order.status === 'delivered' && order.deliveryFileUrls && order.deliveryFileUrls.length > 0 && (

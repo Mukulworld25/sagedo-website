@@ -107,7 +107,7 @@ export default function Home() {
 
           {/* Description */}
           <p className="text-base sm:text-lg text-muted-foreground/80 max-w-2xl mx-auto mb-10">
-            Stop wasting time on small problems. Let our AI handle the complex tasks while you focus on what matters most.
+            Stop wasting time on small problems. Get instant access to our AI-powered workflow automation platform.
           </p>
 
           {/* CTA Buttons */}
@@ -179,69 +179,80 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          GOLDEN TICKET SECTION - Premium Card
+          SAAS PRICING SECTION - Compliance & Conversion
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 bg-gradient-to-b from-amber-500/5 to-transparent">
+      <section className="py-24 px-6 bg-gradient-to-b from-primary/5 to-transparent">
         <div className="max-w-5xl mx-auto">
-          <div className="relative rounded-3xl border border-amber-500/30 bg-gradient-to-br from-amber-500/10 via-transparent to-amber-500/5 p-8 md:p-12 overflow-hidden">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4">
+              Simple, Transparent Pricing
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Choose the plan that fits your workflow needs. No hidden fees.
+            </p>
+          </div>
 
-            {/* Decorative glow */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/20 rounded-full blur-[100px] pointer-events-none" />
-
-            <div className="relative flex flex-col md:flex-row items-center gap-8 md:gap-12">
-              {/* Icon */}
-              <div className="flex-shrink-0">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-amber-500 rounded-full blur-xl opacity-40 scale-110" />
-                  <div className="relative w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center shadow-2xl">
-                    <Star className="w-12 h-12 md:w-16 md:h-16 text-amber-950 fill-amber-950" />
-                  </div>
-                </div>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Starter Plan */}
+            <div className="relative p-8 rounded-3xl border border-border/50 bg-background/50 backdrop-blur-sm hover:border-primary/30 transition-all">
+              <h3 className="text-2xl font-bold mb-2">Starter</h3>
+              <div className="flex items-baseline gap-1 mb-6">
+                <span className="text-4xl font-black">₹0</span>
+                <span className="text-muted-foreground">/month</span>
               </div>
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary" />
+                  <span>Access to Free AI Templates</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary" />
+                  <span>Basic Workflow Features</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary" />
+                  <span>Community Support</span>
+                </li>
+              </ul>
+              <Link href="/login?register=true">
+                <Button className="w-full h-12 rounded-xl text-lg" variant="outline">
+                  Get Started Free
+                </Button>
+              </Link>
+            </div>
 
-              {/* Content */}
-              <div className="flex-1 text-center md:text-left">
-                <div className="flex items-center justify-center md:justify-start gap-2 mb-4">
-                  <Star className="w-5 h-5 text-amber-500 fill-amber-500" />
-                  <h2 className="text-2xl md:text-3xl font-black text-amber-500">
-                    Welcome Bonus
-                  </h2>
-                  <Star className="w-5 h-5 text-amber-500 fill-amber-500" />
-                </div>
+            {/* Pro Plan */}
+            <div className="relative p-8 rounded-3xl border-2 border-primary bg-primary/5 backdrop-blur-sm shadow-xl shadow-primary/10">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-bold">
+                MOST POPULAR
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Pro</h3>
+              <div className="flex items-baseline gap-1 mb-6">
+                <span className="text-4xl font-black">₹499</span>
+                <span className="text-muted-foreground">/month</span>
+              </div>
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary" />
+                  <span><strong>Everything in Starter</strong></span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span><strong className="text-foreground">Service Credit:</strong> Use it for ANY service delivered within <strong className="text-amber-500">24-48 hours</strong></span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span><strong className="text-foreground">Fast Services:</strong> All eligible services are marked with a ⭐ badge</span>
+                </li>
+              </ul>
 
-                <p className="text-xl md:text-2xl text-foreground font-semibold mb-6">
-                  Get <span className="text-3xl text-amber-500 font-black">FREE GPT Prompts</span> + 1 Free Service Credit on Signup!
-                </p>
-
-                <div className="space-y-3 text-muted-foreground mb-8">
-                  <p className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span><strong className="text-foreground">Earn Tokens:</strong> Complete tasks, refer friends, or top up anytime</span>
-                  </p>
-                  <p className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span><strong className="text-foreground">Service Credit:</strong> Use it for ANY service delivered within <strong className="text-amber-500">24-48 hours</strong></span>
-                  </p>
-                  <p className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span><strong className="text-foreground">Fast Services:</strong> All Golden services are marked with a ⭐ badge</span>
-                  </p>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
-                  <Link href="/login?register=true">
-                    <Button size="lg" className="h-12 px-6 bg-gradient-to-r from-amber-500 to-amber-600 text-amber-950 font-bold hover:opacity-90 rounded-xl shadow-lg shadow-amber-500/25">
-                      <Gift className="mr-2 h-5 w-5" />
-                      Claim FREE GPT Now
-                    </Button>
-                  </Link>
-                  <Link href="/services">
-                    <Button size="lg" variant="outline" className="h-12 px-6 border-amber-500/50 hover:bg-amber-500/10 rounded-xl">
-                      <Star className="mr-2 h-5 w-5 text-amber-500 fill-amber-500" />
-                      View Eligible Services
-                    </Button>
-                  </Link>
-                </div>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+                <Link href="/login?register=true">
+                  <Button size="lg" className="w-full h-12 bg-gradient-to-r from-amber-500 to-amber-600 text-amber-950 font-bold hover:opacity-90 rounded-xl shadow-lg shadow-amber-500/25">
+                    <Gift className="mr-2 h-5 w-5" />
+                    Claim FREE AI Templates Now
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -428,7 +439,7 @@ export default function Home() {
           </h2>
           <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
             Trusted by 150+ Members for AI Automation.
-            Start with FREE GPT Prompts + Welcome Bonus today.
+            Start with FREE AI Workflow Templates + Welcome Bonus today.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/login?register=true">

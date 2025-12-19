@@ -22,8 +22,8 @@ export default function RefundPolicy() {
 
                         <div className="space-y-4 text-muted-foreground">
                             <div>
-                                <h3 className="font-semibold text-foreground mb-2">Service Delivery</h3>
-                                <p>SAGE DO is a Platform-as-a-Service (PaaS). <strong className="text-foreground">We do not ship physical products.</strong> All our services are delivered digitally.</p>
+                                <h3 className="font-semibold text-foreground mb-2">Platform Access & Delivery</h3>
+                                <p>SAGE DO is a SaaS (Software-as-a-Service) Platform. <strong className="text-foreground">We do not sell physical products or static digital bundles.</strong> Users purchase a subscription or credits to access our AI-powered workflow software.</p>
                             </div>
 
                             <div>

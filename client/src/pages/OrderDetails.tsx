@@ -536,7 +536,7 @@ export default function OrderDetailsPage() {
                                 </div>
                                 {order.customer?.hasGoldenTicket && (
                                     <Badge className="bg-yellow-500 text-white">
-                                        Golden Ticket Holder
+                                        Starter Credit Holder
                                     </Badge>
                                 )}
                             </div>

@@ -41,6 +41,13 @@ export const users = pgTable("users", {
   lastLoginAt: timestamp("last_login_at"),
   resetToken: varchar("reset_token"),
   resetTokenExpiry: timestamp("reset_token_expiry"),
+  isEmailVerified: boolean("is_email_verified").default(false).notNull(),
+  verificationToken: varchar("verification_token"),
+  googleId: varchar("google_id"),
+  githubId: varchar("github_id"),
+  isTwoFactorEnabled: boolean("is_two_factor_enabled").default(false).notNull(),
+  twoFactorSecret: varchar("two_factor_secret"),
+  subscriptionTier: varchar("subscription_tier", { length: 20 }).default("starter").notNull(), // 'starter' or 'pro'
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
@@ -133,6 +140,17 @@ export const usedEmails = pgTable("used_emails", {
   usedAt: timestamp("used_at").defaultNow(),
 });
 
+// Contact/Support messages
+export const contactMessages = pgTable("contact_messages", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  email: varchar("email").notNull(),
+  subject: text("subject").notNull(),
+  message: text("message").notNull(),
+  status: varchar("status", { length: 20 }).default("new"), // new, read, replied
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 // Relations
 export const usersRelations = relations(users, ({ many }) => ({
   orders: many(orders),
@@ -190,9 +208,16 @@ export const insertSiteVisitSchema = createInsertSchema(siteVisits).omit({
   visitedAt: true,
 });
 
+
 export const insertFeedbackSchema = createInsertSchema(feedbacks).omit({
   id: true,
   createdAt: true,
+});
+
+export const insertContactMessageSchema = createInsertSchema(contactMessages).omit({
+  id: true,
+  createdAt: true,
+  status: true,
 });
 
 // Types
@@ -217,3 +242,6 @@ export type InsertSiteVisit = z.infer<typeof insertSiteVisitSchema>;
 
 export type Feedback = typeof feedbacks.$inferSelect;
 export type InsertFeedback = z.infer<typeof insertFeedbackSchema>;
+
+export type ContactMessage = typeof contactMessages.$inferSelect;
+export type InsertContactMessage = z.infer<typeof insertContactMessageSchema>;
