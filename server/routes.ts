@@ -973,20 +973,44 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Social Login Routes
-  app.get('/api/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+  // Social Login Routes (with graceful error handling)
+  app.get('/api/auth/google', (req, res, next) => {
+    if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+      return res.status(503).json({
+        message: 'Google login is not configured. Please use email/password login or contact support.'
+      });
+    }
+    passport.authenticate('google', { scope: ['profile', 'email'] })(req, res, next);
+  });
 
   app.get('/api/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/login' }),
+    (req, res, next) => {
+      if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+        return res.redirect('/login?error=google_not_configured');
+      }
+      passport.authenticate('google', { failureRedirect: '/login?error=google_failed' })(req, res, next);
+    },
     (req, res) => {
       res.redirect('/dashboard');
     }
   );
 
-  app.get('/api/auth/github', passport.authenticate('github', { scope: ['user:email'] }));
+  app.get('/api/auth/github', (req, res, next) => {
+    if (!process.env.GITHUB_CLIENT_ID || !process.env.GITHUB_CLIENT_SECRET) {
+      return res.status(503).json({
+        message: 'GitHub login is not configured. Please use email/password login or contact support.'
+      });
+    }
+    passport.authenticate('github', { scope: ['user:email'] })(req, res, next);
+  });
 
   app.get('/api/auth/github/callback',
-    passport.authenticate('github', { failureRedirect: '/login' }),
+    (req, res, next) => {
+      if (!process.env.GITHUB_CLIENT_ID || !process.env.GITHUB_CLIENT_SECRET) {
+        return res.redirect('/login?error=github_not_configured');
+      }
+      passport.authenticate('github', { failureRedirect: '/login?error=github_failed' })(req, res, next);
+    },
     (req, res) => {
       res.redirect('/dashboard');
     }
