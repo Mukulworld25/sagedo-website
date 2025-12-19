@@ -489,15 +489,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Send response immediately (don't wait for email)
       res.json(order);
 
-      // Send order confirmation email in background (fire-and-forget)
-      sendOrderConfirmationEmail({
-        customerName: customerName || 'Customer',
-        customerEmail,
-        orderId: order.id,
-        serviceName,
-        amount: 0, // Amount will be set after payment
-        orderDate: new Date().toLocaleDateString('en-IN'),
-      }).catch(err => console.error('Email failed (background):', err));
+      // Only send order confirmation email for FREE orders
+      // Paid orders will receive email after payment verification (in /api/payment/verify)
+      const isFreeOrder = req.body.isFreeOrder === true;
+      if (isFreeOrder) {
+        sendOrderConfirmationEmail({
+          customerName: customerName || 'Customer',
+          customerEmail,
+          orderId: order.id,
+          serviceName,
+          amount: 0,
+          orderDate: new Date().toLocaleDateString('en-IN'),
+          isFree: true
+        }).catch(err => console.error('Email failed (background):', err));
+      }
     } catch (error: any) {
       console.error("Error creating order:", error);
       res.status(500).json({ message: "Failed to create order", error: error?.message || String(error) });

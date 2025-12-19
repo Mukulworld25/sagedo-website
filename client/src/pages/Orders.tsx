@@ -288,6 +288,7 @@ export default function Orders() {
       requirements: formData.requirements,
       fileUrls,
       deliveryPreference: formData.deliveryPreference,
+      isFreeOrder: isGoldenService || hasOnlyFreeServices || orderAmount === 0,
     });
   };
 
