@@ -23,7 +23,11 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <img src="/sagedo_logo_pro_clean.png" alt="SAGE DO" className="w-10 h-10" />
+              <img
+                src="/sagedo_logo_pro_clean.png"
+                alt="SAGE DO"
+                className="w-10 h-10 rounded-full object-cover border border-neutral-800 shadow-sm"
+              />
               <span className="text-xl font-bold text-foreground">SAGE DO</span>
             </div>
             <p className="text-sm text-muted-foreground">

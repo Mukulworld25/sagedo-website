@@ -95,7 +95,11 @@ export default function Login() {
                 {/* Logo */}
                 <Link href="/" className="mb-12">
                     <div className="flex items-center gap-2">
-                        <img src="/sagedo_logo_pro_clean.png" alt="SAGE DO" className="h-10 w-auto" />
+                        <img
+                            src="/sagedo_logo_pro_clean.png"
+                            alt="SAGE DO"
+                            className="h-10 w-10 rounded-full object-cover border border-neutral-800 shadow-sm"
+                        />
                         <span className="text-2xl font-black">
                             <span className="text-primary">SAGE</span>
                             <span className="text-foreground">DO</span>
