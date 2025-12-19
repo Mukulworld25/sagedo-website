@@ -909,6 +909,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Newsletter subscription (public)
+  app.post('/api/newsletter', async (req, res) => {
+    try {
+      const { email } = req.body;
+
+      if (!email || !email.includes('@')) {
+        return res.status(400).json({ message: 'Valid email required' });
+      }
+
+      // Log the subscription (you could also save to DB)
+      console.log('📧 Newsletter subscription:', email);
+
+      // For now, just log it. Could be extended to save to a newsletters table
+      res.json({ success: true, message: 'Subscribed successfully!' });
+    } catch (error) {
+      console.error('Newsletter error:', error);
+      res.status(500).json({ message: 'Failed to subscribe' });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

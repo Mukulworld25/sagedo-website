@@ -612,8 +612,8 @@ export default function Orders() {
                   <div className="grid grid-cols-2 gap-4">
                     <label
                       className={`flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${formData.deliveryPreference === 'platform'
-                          ? 'border-primary bg-primary/10'
-                          : 'border-border/50 hover:border-primary/30'
+                        ? 'border-primary bg-primary/10'
+                        : 'border-border/50 hover:border-primary/30'
                         }`}
                     >
                       <input
@@ -625,8 +625,8 @@ export default function Orders() {
                         className="sr-only"
                       />
                       <div className={`w-4 h-4 rounded-full border-2 ${formData.deliveryPreference === 'platform'
-                          ? 'border-primary bg-primary'
-                          : 'border-muted-foreground'
+                        ? 'border-primary bg-primary'
+                        : 'border-muted-foreground'
                         }`}>
                         {formData.deliveryPreference === 'platform' && (
                           <div className="w-full h-full rounded-full bg-white scale-50" />
@@ -639,8 +639,8 @@ export default function Orders() {
                     </label>
                     <label
                       className={`flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${formData.deliveryPreference === 'email'
-                          ? 'border-primary bg-primary/10'
-                          : 'border-border/50 hover:border-primary/30'
+                        ? 'border-primary bg-primary/10'
+                        : 'border-border/50 hover:border-primary/30'
                         }`}
                     >
                       <input
@@ -652,8 +652,8 @@ export default function Orders() {
                         className="sr-only"
                       />
                       <div className={`w-4 h-4 rounded-full border-2 ${formData.deliveryPreference === 'email'
-                          ? 'border-primary bg-primary'
-                          : 'border-muted-foreground'
+                        ? 'border-primary bg-primary'
+                        : 'border-muted-foreground'
                         }`}>
                         {formData.deliveryPreference === 'email' && (
                           <div className="w-full h-full rounded-full bg-white scale-50" />
@@ -742,6 +742,47 @@ export default function Orders() {
                   </div>
                 )}
               </form>
+
+              {/* Trust Badges */}
+              <div className="mt-6 pt-6 border-t border-border/30">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <div className="w-4 h-4 rounded-full bg-green-500 flex items-center justify-center">
+                    <CheckCircle2 className="w-3 h-3 text-white" />
+                  </div>
+                  <span className="text-sm text-muted-foreground">100% Secure Payment</span>
+                </div>
+                <div className="flex flex-wrap items-center justify-center gap-4">
+                  {/* Razorpay */}
+                  <div className="px-3 py-2 bg-card/50 rounded-lg border border-border/30 flex items-center gap-2">
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 18.5L4 16V8.5l8 4v8zM12 11L4.5 7 12 3l7.5 4L12 11zm8 5l-6.5 3.25V13l6.5-3.25V16z" />
+                    </svg>
+                    <span className="text-xs font-medium">Razorpay</span>
+                  </div>
+                  {/* Visa */}
+                  <div className="px-3 py-2 bg-card/50 rounded-lg border border-border/30">
+                    <span className="text-xs font-bold text-blue-500">VISA</span>
+                  </div>
+                  {/* Mastercard */}
+                  <div className="px-3 py-2 bg-card/50 rounded-lg border border-border/30">
+                    <div className="flex -space-x-1">
+                      <div className="w-4 h-4 rounded-full bg-red-500" />
+                      <div className="w-4 h-4 rounded-full bg-yellow-500" />
+                    </div>
+                  </div>
+                  {/* UPI */}
+                  <div className="px-3 py-2 bg-card/50 rounded-lg border border-border/30">
+                    <span className="text-xs font-bold text-green-600">UPI</span>
+                  </div>
+                  {/* SSL */}
+                  <div className="px-3 py-2 bg-card/50 rounded-lg border border-border/30 flex items-center gap-1">
+                    <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <span className="text-xs font-medium">SSL</span>
+                  </div>
+                </div>
+              </div>
             </Card>
           </div>
 

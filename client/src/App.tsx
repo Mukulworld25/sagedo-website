@@ -23,12 +23,13 @@ import TermsOfService from "@/pages/TermsOfService";
 import RefundPolicy from "@/pages/RefundPolicy";
 import GrievanceOfficer from "@/pages/GrievanceOfficer";
 import Contact from "@/pages/Contact";
+import FAQ from "@/pages/FAQ";
 import Settings from "@/pages/Settings";
 import NotFound from "@/pages/not-found";
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-// import WhatsAppFloat from "@/components/WhatsAppFloat";
+import WhatsAppWidget from "@/components/WhatsAppWidget";
 import CookieConsent from "@/components/CookieConsent";
 import { apiRequest } from "@/lib/queryClient";
 import { useEffect } from "react";
@@ -65,10 +66,11 @@ function Router() {
         <Route path="/grievance-officer" component={GrievanceOfficer} />
         <Route path="/contact" component={Contact} />
         <Route path="/settings" component={Settings} />
+        <Route path="/faq" component={FAQ} />
         <Route component={NotFound} />
       </Switch>
       <Footer />
-      {/* <WhatsAppFloat /> */}
+      <WhatsAppWidget />
       <CookieConsent />
     </>
   );
