@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
-import { Link, useLocation } from "wouter";
+import { Link, useLocation, useSearch } from "wouter";
 import { Eye, EyeOff, ArrowRight, Sparkles, Loader2, Github } from "lucide-react";
 
 export default function Login() {
@@ -20,13 +20,14 @@ export default function Login() {
     const { toast } = useToast();
     const { setUser } = useAuth();
     const [location] = useLocation();
+    const search = useSearch();
 
     // Check URL for register param
     useEffect(() => {
-        if (location.includes('register=true')) {
+        if (search.includes('register=true')) {
             setIsRegister(true);
         }
-    }, [location]);
+    }, [search]);
 
     // Password strength indicator
     const getPasswordStrength = (password: string) => {
