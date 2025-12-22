@@ -354,42 +354,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Services routes (public)
-  app.get('/api/test-email', async (req, res) => {
-    const toEmail = (req.query.to as string) || "mukul@sagedo.in";
 
-    // Resend config diagnostics
-    const diagnostics: any = {
-      timestamp: new Date().toISOString(),
-      emailProvider: 'Resend',
-      resendApiKeySet: !!process.env.RESEND_API_KEY,
-      resendApiKeyLength: process.env.RESEND_API_KEY?.length || 0,
-      targetEmail: toEmail,
-    };
-
-    // If ?send=true, actually try to send
-    if (req.query.send === 'true') {
-      try {
-        await sendOrderConfirmationEmail({
-          customerName: "Test User",
-          customerEmail: toEmail,
-          orderId: "TEST-" + Date.now(),
-          serviceName: "Email System Test",
-          amount: 0,
-          orderDate: new Date().toLocaleDateString(),
-          isFree: true
-        });
-        diagnostics.emailSent = true;
-        diagnostics.success = true;
-      } catch (error: any) {
-        diagnostics.emailSent = false;
-        diagnostics.success = false;
-        diagnostics.errorMessage = error.message;
-      }
-    }
-
-    res.json(diagnostics);
-  });
 
   app.get('/api/services', async (req, res) => {
     try {

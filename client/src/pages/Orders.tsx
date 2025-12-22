@@ -35,6 +35,7 @@ export default function Orders() {
   });
   const [createdOrderId, setCreatedOrderId] = useState<string | null>(null);
   const [orderAmount, setOrderAmount] = useState(500); // Default ₹500
+  const [isRazorpayLoaded, setIsRazorpayLoaded] = useState(false);
   const API_URL = ''; // Use relative URL - Vercel proxy forwards to Render
 
   // Multi-service cart (up to 3 services)
@@ -100,6 +101,12 @@ export default function Orders() {
     const script = document.createElement('script');
     script.src = 'https://checkout.razorpay.com/v1/checkout.js';
     script.async = true;
+    script.onload = () => setIsRazorpayLoaded(true);
+    script.onerror = () => toast({
+      title: "Connection Error",
+      description: "Failed to load payment system. Please refresh.",
+      variant: "destructive"
+    });
     document.body.appendChild(script);
 
     return () => {
@@ -294,6 +301,14 @@ export default function Orders() {
 
   const handlePayment = async () => {
     if (!createdOrderId) return;
+
+    if (!isRazorpayLoaded) {
+      toast({
+        title: "Payment System Loading...",
+        description: "Please wait a moment and try again.",
+      });
+      return;
+    }
 
     try {
       // Create Razorpay order
