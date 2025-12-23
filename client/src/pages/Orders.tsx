@@ -138,15 +138,7 @@ export default function Orders() {
 
       // If it's a FREE Golden Ticket service, skip payment and show success
       if (isGoldenService || hasOnlyFreeServices || orderAmount === 0) {
-        toast({
-          title: "Order Submitted Successfully! 🎉",
-          description: "Your FREE service order has been received. We'll contact you soon!",
-        });
-        // Reset form
-        setFormData({ name: "", email: "", service: "", requirements: "", deliveryPreference: "platform" });
-        setFiles([]);
-        setCart([]);
-        setCreatedOrderId(null);
+        navigate(`/order-success?orderId=${orderId}`);
         return; // Skip payment
       }
 
@@ -193,14 +185,8 @@ export default function Orders() {
               });
 
               if (verifyResponse.ok) {
-                toast({
-                  title: "Payment Successful! 🎉",
-                  description: "Your order is being processed. We'll contact you soon!",
-                });
-                // Reset form
-                setFormData({ name: "", email: "", service: "", requirements: "", deliveryPreference: "platform" });
-                setFiles([]);
-                setCreatedOrderId(null);
+                // Redirect to success page for conversion tracking
+                navigate(`/order-success?orderId=${orderId}`);
               } else {
                 throw new Error('Payment verification failed');
               }
@@ -352,15 +338,8 @@ export default function Orders() {
             });
 
             if (verifyResponse.ok) {
-              toast({
-                title: "Payment Successful! 🎉",
-                description: "Your order is being processed. We'll contact you soon!",
-              });
-
-              // Reset form
-              setFormData({ name: "", email: "", service: "", requirements: "", deliveryPreference: "platform" });
-              setFiles([]);
-              setCreatedOrderId(null);
+              // Redirect to success page
+              navigate(`/order-success?orderId=${createdOrderId}`);
             } else {
               throw new Error('Payment verification failed');
             }

@@ -15,6 +15,7 @@ import Tracking from "@/pages/Tracking";
 import Dashboard from "@/pages/Dashboard";
 import Admin from "@/pages/Admin";
 import OrderDetails from "@/pages/OrderDetails";
+import OrderSuccess from "@/pages/OrderSuccess";
 import Login from "@/pages/Login";
 import ForgotPassword from "@/pages/ForgotPassword";
 import ResetPassword from "@/pages/ResetPassword";
@@ -69,6 +70,7 @@ function Router() {
         <Route path="/verify-email" component={VerifyEmail} />
         <Route path="/settings" component={Settings} />
         <Route path="/faq" component={FAQ} />
+        <Route path="/order-success" component={OrderSuccess} />
         <Route component={NotFound} />
       </Switch>
       <Footer />
