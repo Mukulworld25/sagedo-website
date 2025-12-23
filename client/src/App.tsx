@@ -30,7 +30,7 @@ import NotFound from "@/pages/not-found";
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import WhatsAppWidget from "@/components/WhatsAppWidget";
+import ChatWidget from "@/components/ChatWidget";
 import CookieConsent from "@/components/CookieConsent";
 import { apiRequest } from "@/lib/queryClient";
 import { useEffect } from "react";
@@ -72,7 +72,8 @@ function Router() {
         <Route component={NotFound} />
       </Switch>
       <Footer />
-      <WhatsAppWidget />
+      <Footer />
+      <ChatWidget />
       <CookieConsent />
     </>
   );
