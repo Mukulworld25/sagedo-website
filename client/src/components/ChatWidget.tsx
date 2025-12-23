@@ -155,7 +155,55 @@ export default function ChatWidget() {
             };
         }
 
-        // 1. Keyword search in FAQs
+        // --- 1. STRICT ESCALATION TRIGGERS ---
+        // "User says 'custom', 'unique', 'urgent', 'confidential'"
+        const escalationKeywords = ['custom', 'unique', 'urgent', 'confidential'];
+        if (escalationKeywords.some(k => lowerQuery.includes(k))) {
+            return {
+                id: Date.now().toString(),
+                text: "This looks like something best handled by our human team 👌\n\nShare your email or WhatsApp, or click below, and I’ll make sure the right expert connects with you shortly.",
+                sender: 'bot',
+                options: [
+                    { label: "Connect on WhatsApp", action: "human" },
+                    { label: "View Services First", action: "services" }
+                ]
+            };
+        }
+
+        // --- 2. GOLDEN RULE (Service Requests) ---
+        // "Can you do...", "Can you help with...", "Do you offer...", "I need help with..."
+        const goldenRuleTriggers = ['can you', 'do you offer', 'need help', 'i need', 'help with'];
+        if (goldenRuleTriggers.some(trigger => lowerQuery.includes(trigger))) {
+            // Check if we have a specific FAQ match first (e.g., "resume")
+            const specificMatch = faqs.find(faq =>
+                faq.keywords.some(keyword => lowerQuery.includes(keyword))
+            );
+
+            if (specificMatch) {
+                return {
+                    id: Date.now().toString(),
+                    text: specificMatch.answer, // Use specific answer but add service Link option
+                    sender: 'bot',
+                    options: [
+                        { label: "View Services", action: "services" },
+                        { label: "Actually, I need custom help", action: "human" }
+                    ]
+                };
+            }
+
+            // Generic Golden Rule Response
+            return {
+                id: Date.now().toString(),
+                text: "Absolutely — that’s what we’re here for 😊\n\nPlease head over to our Services page to see how we usually handle this type of work.\n\nIf your task feels unique or slightly different, don’t worry — I’ll pass it directly to our team for a custom solution.",
+                sender: 'bot',
+                options: [
+                    { label: "Explore Services", action: "services" },
+                    { label: "Talk to Human", action: "human" }
+                ]
+            };
+        }
+
+        // --- 3. Keyword search in FAQs ---
         const match = faqs.find(faq =>
             faq.keywords.some(keyword => lowerQuery.includes(keyword)) ||
             faq.question.toLowerCase().includes(lowerQuery)
@@ -174,30 +222,30 @@ export default function ChatWidget() {
             };
         }
 
-        // 2. Fallback Logic with Escalation
+        // --- 4. Fallback Logic with Escalation ---
         const newCount = fallbackCount + 1;
         setFallbackCount(newCount);
 
         if (newCount >= 3) {
             return {
                 id: Date.now().toString(),
-                text: "I want to make sure you get the right answer, and I seem to be stuck. Let me connect you to a senior human team member who can help immediately.",
+                text: "This looks like something best handled by our human team 👌\n\nShare your email or WhatsApp, and I’ll make sure the right expert connects with you shortly.",
                 sender: 'bot',
                 options: [
                     { label: "Connect on WhatsApp", action: "human" },
-                    { label: "Send Email", action: "contact" } // Logic for contact could be added or just link to page
+                    { label: "Send Email", action: "contact" }
                 ]
             };
         }
 
+        // Light, Friendly Fallback
         return {
             id: Date.now().toString(),
-            text: "I didn’t catch that (I’m still learning specifics!). Could you rephrase slightly, or select a topic below?",
+            text: "Haha, fair question 😄\n\nYou can explore our Services page for most solutions, or simply message our team — real humans, real replies, zero awkward silences.",
             sender: 'bot',
             options: [
-                { label: "Trending Services", action: "trending" },
-                { label: "Pricing", action: "pricing" },
-                { label: "Talk to Human", action: "human" }
+                { label: "View Services", action: "services" },
+                { label: "Message Team", action: "human" }
             ]
         };
     };
