@@ -16,15 +16,16 @@ interface Message {
 export default function ChatWidget() {
     const [isOpen, setIsOpen] = useState(false);
     const [inputText, setInputText] = useState("");
+    const [fallbackCount, setFallbackCount] = useState(0);
     const [messages, setMessages] = useState<Message[]>([
         {
             id: 'welcome',
-            text: "Hi! 👋 I'm Sage, your AI assistant. How can I help you today?",
+            text: "Hi! I'm Sage, your personal assistant. 👋 I’ve worked side-by-side with the founder for 20+ years, so I know how we operate. How can I help you get great results today?",
             sender: 'bot',
             options: [
-                { label: "Pricing & Payments", action: "payment" },
+                { label: "🔥 Trending Services", action: "trending" },
+                { label: "Check Prices", action: "pricing" },
                 { label: "Track Order", action: "track" },
-                { label: "Services", action: "services" },
                 { label: "Talk to Human", action: "human" }
             ]
         }
@@ -57,11 +58,11 @@ export default function ChatWidget() {
         setMessages(prev => [...prev, userMsg]);
         setInputText("");
 
-        // Simulate thinking delay
+        // Simulate thinking delay - slightly faster for "confident" persona
         setTimeout(() => {
             const response = findAnswer(userMsg.text);
             setMessages(prev => [...prev, response]);
-        }, 600);
+        }, 550);
     };
 
     const handleOptionClick = (action: string) => {
@@ -81,30 +82,58 @@ export default function ChatWidget() {
                 window.open("https://wa.me/917018709291", "_blank");
                 response = {
                     id: Date.now().toString(),
-                    text: "I've opened WhatsApp for you! Our team usually replies within 2 hours.",
+                    text: "I've opened WhatsApp for you! Use it to chat directly with our human team. We usually reply within 2 hours.",
                     sender: 'bot'
                 };
+                setFallbackCount(0); // Reset on success
             } else {
-                // Search by ID/Category roughly matching the action
+                // Search by ID/Category matching the action
                 const faq = faqs.find(f => f.id === action || f.category === action);
+
                 if (faq) {
                     response = {
                         id: Date.now().toString(),
                         text: faq.answer,
                         sender: 'bot',
-                        options: [{ label: "Ask another question", action: "reset" }, { label: "Contact Support", action: "human" }]
+                        options: [
+                            { label: "Ask another question", action: "reset" },
+                            { label: "Place Order", action: "start_order" } // New CTA
+                        ]
                     };
+                    setFallbackCount(0); // Reset on success
+                } else if (action === 'start_order') {
+                    // Simple redirection for now, or instructions
+                    window.location.href = '/orders'; // Direct navigation
+                    response = {
+                        id: Date.now().toString(),
+                        text: "Great! Taking you to the order page now...",
+                        sender: 'bot'
+                    };
+                } else if (action === 'trending') {
+                    // Specific handling for trending to ensure it looks good
+                    const trendingFaq = faqs.find(f => f.id === 'trending');
+                    response = {
+                        id: Date.now().toString(),
+                        text: trendingFaq ? trendingFaq.answer : "Check out our top services on the Services page!",
+                        sender: 'bot',
+                        options: [
+                            { label: "Pricing?", action: "pricing" },
+                            { label: "Start an Order", action: "start_order" }
+                        ]
+                    };
+                    setFallbackCount(0);
                 } else {
+                    // Try to find by keyword from the action name itself
                     response = findAnswer(translateActionToKeyword(action));
                 }
             }
             setMessages(prev => [...prev, response]);
-        }, 600);
+        }, 550);
     };
 
     const translateActionToKeyword = (action: string) => {
         if (action === 'services') return 'services';
-        if (action === 'pricing') return 'payment';
+        if (action === 'pricing') return 'price';
         return action;
     }
 
@@ -113,13 +142,14 @@ export default function ChatWidget() {
 
         // Check for "reset" or "start over"
         if (lowerQuery.includes('reset') || lowerQuery.includes('start over')) {
+            setFallbackCount(0);
             return {
                 id: Date.now().toString(),
-                text: "Sure! What else can I help you with?",
+                text: "Sure thing! Ready when you are. What's on your mind?",
                 sender: 'bot',
                 options: [
-                    { label: "Pricing & Payments", action: "payment" },
-                    { label: "Track Order", action: "track" },
+                    { label: "Pricing", action: "pricing" },
+                    { label: "Trending Services", action: "trending" },
                     { label: "Talk to Human", action: "human" }
                 ]
             };
@@ -132,25 +162,42 @@ export default function ChatWidget() {
         );
 
         if (match) {
+            setFallbackCount(0); // Success reset
             return {
                 id: Date.now().toString(),
                 text: match.answer,
                 sender: 'bot',
                 options: [
-                    { label: "Helpful, thanks!", action: "reset" },
-                    { label: "Still need help", action: "human" }
+                    { label: "Thanks!", action: "reset" },
+                    { label: "Check Prices", action: "pricing" }
                 ]
             };
         }
 
-        // 2. Fallback
+        // 2. Fallback Logic with Escalation
+        const newCount = fallbackCount + 1;
+        setFallbackCount(newCount);
+
+        if (newCount >= 3) {
+            return {
+                id: Date.now().toString(),
+                text: "I want to make sure you get the right answer, and I seem to be stuck. Let me connect you to a senior human team member who can help immediately.",
+                sender: 'bot',
+                options: [
+                    { label: "Connect on WhatsApp", action: "human" },
+                    { label: "Send Email", action: "contact" } // Logic for contact could be added or just link to page
+                ]
+            };
+        }
+
         return {
             id: Date.now().toString(),
-            text: "I'm not sure about that. Would you like to chat with a human expert?",
+            text: "I didn’t catch that (I’m still learning specifics!). Could you rephrase slightly, or select a topic below?",
             sender: 'bot',
             options: [
-                { label: "Chat on WhatsApp", action: "human" },
-                { label: "Try searching services", action: "services" }
+                { label: "Trending Services", action: "trending" },
+                { label: "Pricing", action: "pricing" },
+                { label: "Talk to Human", action: "human" }
             ]
         };
     };
@@ -203,8 +250,8 @@ export default function ChatWidget() {
                             >
                                 <div
                                     className={`max-w-[85%] p-3 rounded-2xl text-sm leading-relaxed ${msg.sender === 'user'
-                                            ? 'bg-primary text-primary-foreground rounded-br-none'
-                                            : 'bg-muted/80 backdrop-blur-md border border-white/10 text-foreground rounded-bl-none shadow-sm'
+                                        ? 'bg-primary text-primary-foreground rounded-br-none'
+                                        : 'bg-muted/80 backdrop-blur-md border border-white/10 text-foreground rounded-bl-none shadow-sm'
                                         }`}
                                 >
                                     {msg.text}

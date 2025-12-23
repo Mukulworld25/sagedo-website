@@ -1,4 +1,4 @@
-import { HelpCircle, CreditCard, Clock, Shield, MessageCircle, RefreshCw, Star, Truck } from "lucide-react";
+import { HelpCircle, CreditCard, Clock, Shield, MessageCircle, RefreshCw, Star, Truck, Zap, Briefcase, FileText, PenTool } from "lucide-react";
 import React from 'react';
 
 export interface FAQItem {
@@ -6,64 +6,238 @@ export interface FAQItem {
     question: string;
     answer: string;
     keywords: string[];
-    category: 'general' | 'payment' | 'service' | 'support';
+    category: 'general' | 'payment' | 'service' | 'support' | 'trending';
 }
 
 export const faqs: FAQItem[] = [
+    // --- SPECIAL: Trending Services ---
     {
-        id: 'services',
-        question: "What services does SAGE DO offer?",
-        answer: "We offer 30+ AI-powered services including resume writing, assignment help, content creation, PPT design, business proposals, and more. All services are delivered by our expert team using AI assistance for quality and speed.",
-        keywords: ['service', 'offer', 'what', 'provide', 'writing', 'assignment', 'resume'],
-        category: 'service'
+        id: 'trending',
+        question: "Trending services",
+        answer: "🔥 **Trending Services (Top Pics):**\n\n**Assignments / Academic:**\n1) Fast Homework & Essays\n2) Research & Reports\n3) Code & Problem Solving\n\n**Career:**\n1) ATS-optimized Resumes\n2) Tailored Cover Letters\n3) LinkedIn Profiles\n\n**Content:**\n1) SEO Blog Posts\n2) Social Media Campaigns\n3) Pitch / Proposal Copy\n\n**Business:**\n1) Pitch Decks / PPT Design\n2) Business Proposals\n3) Infographics",
+        keywords: ['trending', 'popular', 'hot', 'best', 'top', 'recommend'],
+        category: 'trending'
     },
+
+    // --- General / About SageDo ---
     {
-        id: 'payment',
-        question: "How does payment work?",
-        answer: "We accept all major payment methods via Razorpay including Credit/Debit Cards, UPI, Net Banking, and Wallets. All payments are 100% secure with SSL encryption. You can also use your SAGE DO token balance for discounts.",
-        keywords: ['pay', 'payment', 'card', 'upi', 'wallet', 'secure', 'money', 'cost'],
-        category: 'payment'
-    },
-    {
-        id: 'delivery',
-        question: "What is the delivery time?",
-        answer: "Most services are delivered within 24-48 hours. Complex projects may take 3-5 days. You'll receive email updates at each stage: Order Received → Processing → Finalizing → Delivered.",
-        keywords: ['time', 'delivery', 'long', 'hours', 'days', 'when', 'receive'],
-        category: 'service'
-    },
-    {
-        id: 'privacy',
-        question: "Is my data safe and confidential?",
-        answer: "Absolutely! We take privacy seriously. All your files and requirements are securely stored in encrypted servers. We never share your data with third parties.",
-        keywords: ['safe', 'security', 'privacy', 'data', 'store', 'confidential'],
+        id: 'what_is_sagedo',
+        question: "What is SageDo?",
+        answer: "I’m glad you asked — SageDo is an AI + human hybrid service: fast AI work for speed, and experienced humans for precision. That combo gives you reliable, polished results every time.",
+        keywords: ['what is sagedo', 'about sagedo', 'what do you do', 'who are you'],
         category: 'general'
     },
     {
-        id: 'support',
-        question: "How can I contact support?",
-        answer: "You can reach us right here! Or use the 'Chat on WhatsApp' button below to talk to a human. We typically respond within 2-4 hours during business hours.",
-        keywords: ['contact', 'support', 'help', 'human', 'talk', 'chat'],
+        id: 'who_runs',
+        question: "Who runs SageDo?",
+        answer: "It’s run by the founder (that’s my boss), and I support operations and quality — I’ve been working with them for 20+ years. Want our social links? I’ll share them when you ask.",
+        keywords: ['who runs', 'founder', 'owner', 'ceo', 'team', 'boss'],
+        category: 'general'
+    },
+    {
+        id: 'meaning',
+        question: "What does “SageDo” mean?",
+        answer: "“Sage” = expert wisdom. “Do” = action by humans. Together it means smart work that actually gets done—accurate, checked, and ready for real life.",
+        keywords: ['meaning', 'name', 'sage', 'defination'],
+        category: 'general'
+    },
+    {
+        id: 'trust',
+        question: "Why should I trust SageDo?",
+        answer: "Because we don’t leave your work to a single bot. AI drafts + human verification + founder oversight = accuracy, accountability, and a satisfaction-first approach. We treat your work like our reputation depends on it — because it does.",
+        keywords: ['trust', 'reliable', 'safe', 'why use', 'scam'],
+        category: 'general'
+    },
+    {
+        id: 'who_can_use',
+        question: "Who can use SageDo?",
+        answer: "Students, professionals, business owners, job seekers — anyone who wants high quality work done quickly and correctly.",
+        keywords: ['who can use', 'for whom', 'target audience', 'student', 'professional'],
+        category: 'general'
+    },
+
+    // --- Services: Academic ---
+    {
+        id: 'assignment_help',
+        question: "Can you help with my assignment?",
+        answer: "Absolutely — send your brief and files. I’ll coordinate AI drafting and a human review so it’s accurate, referenced, and tailored to your professor’s needs.",
+        keywords: ['assignment', 'homework', 'essay', 'academic', 'college', 'school'],
+        category: 'service'
+    },
+    {
+        id: 'originality',
+        question: "Will the assignment be original?",
+        answer: "Yes — everything is created to your brief and checked. We deliver original work and take care to avoid plagiarism.",
+        keywords: ['original', 'plagiarism', 'copy', 'unique', 'turnitin'],
+        category: 'service'
+    },
+    {
+        id: 'upload_notes',
+        question: "Can I upload notes or specific references?",
+        answer: "Please do — the more you provide, the better the final result. I’ll make sure your requirements are followed to the letter.",
+        keywords: ['upload', 'notes', 'files', 'reference', 'attachment'],
+        category: 'service'
+    },
+    {
+        id: 'citation',
+        question: "Do you help with academic integrity or citation?",
+        answer: "Yes — we include references and proper citations when required and advise on best practices to maintain academic integrity.",
+        keywords: ['citation', 'reference', 'bibliography', 'integrity', 'academic'],
+        category: 'service'
+    },
+
+    // --- Services: Career (Resume/CV) ---
+    {
+        id: 'resume_writing',
+        question: "Do you write resumes and cover letters?",
+        answer: "Yes — ATS-friendly, industry-focused resumes and matched cover letters that highlight what hiring managers care about.",
+        keywords: ['resume', 'cv', 'curriculum vitae', 'cover letter', 'job application'],
+        category: 'service'
+    },
+    {
+        id: 'ats',
+        question: "Will my resume pass Applicant Tracking Systems (ATS)?",
+        answer: "We format and keyword-optimize to improve ATS compatibility so your resume reaches the recruiter’s desk.",
+        keywords: ['ats', 'tracking system', 'automated', 'parse', 'compatibility'],
+        category: 'service'
+    },
+    {
+        id: 'tailor_resume',
+        question: "Can you tailor my resume to a specific job?",
+        answer: "Definitely — share the job description and I’ll ensure your resume matches keywords and priorities for that role.",
+        keywords: ['tailor', 'customize', 'specific job', 'target role'],
+        category: 'service'
+    },
+    {
+        id: 'resume_info',
+        question: "What info do you need to start a resume?",
+        answer: "Job history, achievements, skills, target role/industry, and any preferences on tone or layout — send those and I’ll handle the rest.",
+        keywords: ['info needed', 'start resume', 'requirements'],
+        category: 'service'
+    },
+
+    // --- Services: Content & Business ---
+    {
+        id: 'content_services',
+        question: "What content services do you provide?",
+        answer: "Blogs, web copy, product descriptions, SEO articles, social posts, and long-form content — all optimized for clarity and impact.",
+        keywords: ['content', 'writing', 'blog', 'article', 'post', 'copy'],
+        category: 'service'
+    },
+    {
+        id: 'seo',
+        question: "Can you write SEO content?",
+        answer: "Yes — we craft content that reads well and helps with search visibility, using proven on-page practices and strong user intent focus.",
+        keywords: ['seo', 'search engine', 'ranking', 'keywords', 'google'],
+        category: 'service'
+    },
+    {
+        id: 'bulk_content',
+        question: "Can you produce bulk content on schedule?",
+        answer: "Yes — we handle volume work and can set up delivery timelines so you always have fresh content when needed.",
+        keywords: ['bulk', 'volume', 'schedule', 'calendar', 'lots'],
+        category: 'service'
+    },
+    {
+        id: 'ppt_design',
+        question: "Do you design PPTs and visuals?",
+        answer: "Yes — professional slide decks and visual assets designed to make your message clear and persuasive.",
+        keywords: ['ppt', 'powerpoint', 'presentation', 'deck', 'slides', 'visual'],
+        category: 'service'
+    },
+    {
+        id: 'business_proposal',
+        question: "Can you write business proposals?",
+        answer: "Absolutely — strategic, client-focused proposals that help you win meetings and close deals.",
+        keywords: ['proposal', 'business', 'pitch', 'deal'],
+        category: 'service'
+    },
+
+    // --- Pricing & Ordering ---
+    {
+        id: 'pricing',
+        question: "What are your prices?",
+        answer: "I’ll be direct: our services are pocket-friendly and built to give high ROI. For exact pricing I’ll need details — hit “Place Order” or tell me what you need and I’ll fetch a custom quote you’ll like.",
+        keywords: ['price', 'cost', 'charge', 'rate', 'expensive', 'cheap', 'quote', 'fee'],
+        category: 'payment'
+    },
+    {
+        id: 'place_order',
+        question: "How do I place an order?",
+        answer: "Use the Place Order form on the site, or tell me your requirements here and I’ll guide you step-by-step.",
+        keywords: ['order', 'buy', 'purchase', 'start', 'hire'],
+        category: 'service'
+    },
+    {
+        id: 'payment_methods',
+        question: "What payment methods do you accept?",
+        answer: "We accept standard online payments at checkout. Tell me your preferred mode and I’ll help you through it.",
+        keywords: ['payment method', 'card', 'upi', 'pay', 'checkout'],
+        category: 'payment'
+    },
+    {
+        id: 'discounts',
+        question: "Do you offer discounts or bundles?",
+        answer: "Occasionally — ask me for current offers and bundle options; I might have a surprise for you.",
+        keywords: ['discount', 'offer', 'coupon', 'bundle', 'deal', 'promo'],
+        category: 'payment'
+    },
+
+    // --- Support & Policies ---
+    {
+        id: 'revisions',
+        question: "Can I ask for revisions?",
+        answer: "Yes — we’ll refine until you’re satisfied. If things aren’t resolved after three interactions, I’ll escalate you to a senior human for priority handling.",
+        keywords: ['revision', 'change', 'edit', 'modify', 'fix'],
         category: 'support'
     },
     {
-        id: 'refund',
-        question: "What is your refund policy?",
-        answer: "We offer refunds if we fail to deliver as promised. If you're not satisfied, contact us within 7 days of delivery for revision or refund.",
-        keywords: ['refund', 'money back', 'return', 'cancel', 'policy'],
+        id: 'refunds',
+        question: "How are refunds handled?",
+        answer: "Refunds depend on the service and progress status. I’ll explain the policy clearly for each order and help find a fair solution if issues arise.",
+        keywords: ['refund', 'money back', 'return', 'cancel'],
         category: 'payment'
     },
     {
-        id: 'tokens',
-        question: "What are SAGE DO Tokens?",
-        answer: "Tokens are our reward currency. You get 150 tokens on signup (worth ₹150). Earn more by completing surveys, daily login, and referrals.",
-        keywords: ['token', 'reward', 'coin', 'earn', 'bonus', 'points'],
+        id: 'delivery_time',
+        question: "How fast do you deliver assignments?",
+        answer: "Delivery depends on complexity, but we prioritise quality. Small tasks can be hours; bigger projects are planned to meet your deadline without shortcuts.",
+        keywords: ['fast', 'speed', 'time', 'when', 'deadline', 'urgent', 'same day'],
+        category: 'service'
+    },
+    {
+        id: 'track_order',
+        question: "Can I track my order?",
+        answer: "Yes — use Track Order on the site for real-time updates. I can also ping you by email or WhatsApp if you prefer.",
+        keywords: ['track', 'status', 'where', 'progress'],
+        category: 'service'
+    },
+    {
+        id: 'contact_human',
+        question: "How do I contact human support?",
+        answer: "Ask me “I want human support” anytime, or use the contact form / email on the site. For complex orders I’ll request your email or WhatsApp to ensure a smooth handover.",
+        keywords: ['human', 'person', 'support', 'talk to agent', 'whatsapp'],
+        category: 'support'
+    },
+    {
+        id: 'privacy_policy',
+        question: "Is my data safe with you?",
+        answer: "Yes — we follow standard privacy practices. Your files and details are used only to complete your request and are protected.",
+        keywords: ['data', 'safe', 'privacy', 'confidential', 'security'],
         category: 'general'
     },
     {
-        id: 'track',
-        question: "Can I track my order?",
-        answer: "Yes! After placing an order, you can track its status from your Dashboard. You'll also receive email notifications at each stage.",
-        keywords: ['track', 'status', 'order', 'where', 'progress'],
-        category: 'service'
+        id: 'socials',
+        question: "Can you share social media links?",
+        answer: "Sure — I can provide our social handles and contact channels. Tell me which platform you prefer (Instagram, LinkedIn, WhatsApp) and I’ll share the link.",
+        keywords: ['social', 'instagram', 'linkedin', 'facebook', 'link'],
+        category: 'general'
+    },
+    {
+        id: 'scam',
+        question: "Is this a scam?",
+        answer: "Not at all — we’re a real team delivering real work. If it helps: try a small order first, see the quality, then level up. And yes, we promise not to disappear after delivery — we’re here for follow-ups.",
+        keywords: ['scam', 'fake', 'real', 'legit', 'fraud'],
+        category: 'general'
     }
 ];
