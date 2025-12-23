@@ -24,14 +24,14 @@ export const faqs: FAQItem[] = [
         id: 'what_is_sagedo',
         question: "What is SageDo?",
         answer: "I’m glad you asked — SageDo is an AI + human hybrid service: fast AI work for speed, and experienced humans for precision. That combo gives you reliable, polished results every time.",
-        keywords: ['what is sagedo', 'about sagedo', 'what do you do', 'who are you'],
+        keywords: ['what is sagedo', 'about sagedo', 'what do you do', 'who are you', 'how does it work'],
         category: 'general'
     },
     {
         id: 'who_runs',
         question: "Who runs SageDo?",
         answer: "It’s run by the founder (that’s my boss), and I support operations and quality — I’ve been working with them for 20+ years. Want our social links? I’ll share them when you ask.",
-        keywords: ['who runs', 'founder', 'owner', 'ceo', 'team', 'boss'],
+        keywords: ['who runs', 'founder', 'owner', 'ceo', 'team', 'boss', 'who made you', 'who created you', 'who built you', 'developer'],
         category: 'general'
     },
     {
