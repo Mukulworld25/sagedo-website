@@ -13,6 +13,11 @@ app.set('trust proxy', 1);
 
 // CORS configuration for Vercel frontend (including preview deployments)
 app.use((req, res, next) => {
+  // Force HTTPS in production to avoid "Not Secure" warnings
+  if (process.env.NODE_ENV === 'production' && req.headers['x-forwarded-proto'] !== 'https') {
+    return res.redirect(`https://${req.headers.host}${req.url}`);
+  }
+
   const origin = req.headers.origin;
 
   // Allow all Vercel preview URLs and production URLs

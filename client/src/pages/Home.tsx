@@ -222,8 +222,8 @@ export default function Home() {
             </div>
 
             {/* Pro Plan */}
-            <div className="relative p-8 rounded-3xl border-2 border-primary bg-primary/5 backdrop-blur-sm shadow-xl shadow-primary/10">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-bold">
+            <div className="relative p-5 sm:p-8 rounded-3xl border-2 border-primary bg-primary/5 backdrop-blur-sm shadow-xl shadow-primary/10">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-bold whitespace-nowrap">
                 MOST POPULAR
               </div>
               <h3 className="text-2xl font-bold mb-2">Pro</h3>
@@ -233,24 +233,24 @@ export default function Home() {
               </div>
               <ul className="space-y-4 mb-8">
                 <li className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary" />
+                  <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
                   <span><strong>Everything in Starter</strong></span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <span><strong className="text-foreground">Service Credit:</strong> Use it for ANY service delivered within <strong className="text-amber-500">24-48 hours</strong></span>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-1" />
+                  <span className="text-sm sm:text-base"><strong className="text-foreground">Service Credit:</strong> Use it for ANY service delivered within <strong className="text-amber-500">24-48 hours</strong></span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <span><strong className="text-foreground">Fast Services:</strong> All eligible services are marked with a ⭐ badge</span>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-1" />
+                  <span className="text-sm sm:text-base"><strong className="text-foreground">Fast Services:</strong> All eligible services are marked with a ⭐ badge</span>
                 </li>
               </ul>
 
               <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
                 <Link href="/login?register=true">
-                  <Button size="lg" className="w-full h-12 bg-gradient-to-r from-amber-500 to-amber-600 text-amber-950 font-bold hover:opacity-90 rounded-xl shadow-lg shadow-amber-500/25">
-                    <Gift className="mr-2 h-5 w-5" />
-                    Claim FREE AI Templates Now
+                  <Button size="lg" className="w-full h-12 bg-gradient-to-r from-amber-500 to-amber-600 text-amber-950 font-bold hover:opacity-90 rounded-xl shadow-lg shadow-amber-500/25 whitespace-normal h-auto py-3">
+                    <Gift className="mr-2 h-5 w-5 flex-shrink-0" />
+                    <span>Claim FREE AI Templates</span>
                   </Button>
                 </Link>
               </div>
