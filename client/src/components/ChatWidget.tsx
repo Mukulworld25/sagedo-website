@@ -109,6 +109,13 @@ export default function ChatWidget() {
                         text: "Great! Taking you to the order page now...",
                         sender: 'bot'
                     };
+                } else if (action === 'services') {
+                    window.location.href = '/services';
+                    response = {
+                        id: Date.now().toString(),
+                        text: "Opening our Services page for you...",
+                        sender: 'bot'
+                    };
                 } else if (action === 'trending') {
                     // Specific handling for trending to ensure it looks good
                     const trendingFaq = faqs.find(f => f.id === 'trending');
