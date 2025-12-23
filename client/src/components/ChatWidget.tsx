@@ -281,7 +281,7 @@ export default function ChatWidget() {
 
             {/* Chat Window */}
             {isOpen && (
-                <Card className="fixed bottom-24 right-6 z-50 w-[350px] sm:w-[380px] h-[500px] flex flex-col glass border-primary/20 shadow-2xl animate-in slide-in-from-bottom-10 fade-in duration-300 overflow-hidden rounded-2xl">
+                <Card className="fixed bottom-24 right-6 z-50 w-[calc(100vw-3rem)] sm:w-[380px] h-[500px] flex flex-col glass border-primary/20 shadow-2xl animate-in slide-in-from-bottom-10 fade-in duration-300 overflow-hidden rounded-2xl">
                     {/* Header */}
                     <div className="p-4 bg-gradient-to-r from-primary to-orange-600 flex items-center gap-3 text-white shadow-md">
                         <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
