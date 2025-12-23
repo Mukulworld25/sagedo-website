@@ -28,24 +28,24 @@ export const faqs: FAQItem[] = [
         category: 'general'
     },
     {
-        id: 'who_runs',
+        id: 'founder_identity',
         question: "Who runs SageDo?",
-        answer: "It’s run by the founder (that’s my boss), and I support operations and quality — I’ve been working with them for 20+ years. Want our social links? I’ll share them when you ask.",
-        keywords: ['who runs', 'founder', 'owner', 'ceo', 'team', 'boss', 'who made you', 'who created you', 'who built you', 'developer'],
+        answer: "SageDo is founder-led and human-driven.\n\nI’ve worked closely with the founder for over 20 years, helping ensure every service combines AI speed with human precision.\n\nIf you’d like, I can also share our official social media links.",
+        keywords: ['who made you', 'who created you', 'who built you', 'who runs sagedo', 'who is behind sagedo', 'founder of sagedo', 'developer', 'boss', 'team'],
         category: 'general'
     },
     {
-        id: 'meaning',
-        question: "What does “SageDo” mean?",
-        answer: "“Sage” = expert wisdom. “Do” = action by humans. Together it means smart work that actually gets done—accurate, checked, and ready for real life.",
-        keywords: ['meaning', 'name', 'sage', 'defination'],
+        id: 'meaning_of_sagedo',
+        question: "What does SageDo mean?",
+        answer: "**Sage** means expert wisdom.\n**Do** means human action.\n\nTogether, **SageDo** stands for expert intelligence backed by real human verification — so nothing goes wrong.",
+        keywords: ['what does sagedo mean', 'meaning of sagedo', 'why is it called sagedo', 'name', 'definition'],
         category: 'general'
     },
     {
-        id: 'trust',
-        question: "Why should I trust SageDo?",
-        answer: "Because we don’t leave your work to a single bot. AI drafts + human verification + founder oversight = accuracy, accountability, and a satisfaction-first approach. We treat your work like our reputation depends on it — because it does.",
-        keywords: ['trust', 'reliable', 'safe', 'why use', 'scam'],
+        id: 'trust_legitimacy',
+        question: "Why should I trust you?",
+        answer: "Because we don’t rely only on AI.\n\nEvery output is checked by experienced humans, guided by the founder’s standards.\n\nWe focus on quality, accountability, and long-term trust — not shortcuts.",
+        keywords: ['why should i trust you', 'is sagedo legit', 'is this real', 'can i trust this website', 'scam', 'fake', 'fraud', 'reliable'],
         category: 'general'
     },
     {
@@ -242,10 +242,10 @@ export const faqs: FAQItem[] = [
     },
     // --- Core Action Rules: Smart Responses ---
     {
-        id: 'can_you_do_task',
+        id: 'task_request_router',
         question: "Can you do this task?",
-        answer: "Absolutely — that’s what we’re here for 😊\n\nPlease head over to our **Services** page to see how we usually handle this type of work.\n\nIf your task feels unique or slightly different, don’t worry — I’ll pass it directly to our team for a custom solution.",
-        keywords: ['can you do', 'can you help', 'do you offer', 'i need help', 'do this task'],
+        answer: "Absolutely.\n\nPlease visit our **Services** page to choose the closest match.\n\nIf your requirement isn’t listed, I’ll connect you with our team for a custom solution.",
+        keywords: ['can you do this', 'can you help me', 'i need help with', 'do you offer', 'do this task', 'help'],
         category: 'service'
     },
     {

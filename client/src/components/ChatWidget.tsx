@@ -20,7 +20,7 @@ export default function ChatWidget() {
     const [messages, setMessages] = useState<Message[]>([
         {
             id: 'welcome',
-            text: "Hi! I'm Sage, your personal assistant. 👋 I’ve worked side-by-side with the founder for 20+ years, so I know how we operate. How can I help you get great results today?",
+            text: "Hi! I'm Sage, SageDo’s personal assistant. I’ve worked closely with the founder for over 20 years. How can I support you today?",
             sender: 'bot',
             options: [
                 { label: "🔥 Trending Services", action: "trending" },
@@ -245,10 +245,10 @@ export default function ChatWidget() {
             };
         }
 
-        // Light, Friendly Fallback
+        // Professional, Safe Fallback
         return {
             id: Date.now().toString(),
-            text: "Haha, fair question 😄\n\nYou can explore our Services page for most solutions, or simply message our team — real humans, real replies, zero awkward silences.",
+            text: "I want to make sure you get the right answer.\n\nPlease explore our Services page for most solutions, or message our team and I’ll connect you with the right expert.",
             sender: 'bot',
             options: [
                 { label: "View Services", action: "services" },
