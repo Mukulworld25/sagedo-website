@@ -239,5 +239,48 @@ export const faqs: FAQItem[] = [
         answer: "Not at all — we’re a real team delivering real work. If it helps: try a small order first, see the quality, then level up. And yes, we promise not to disappear after delivery — we’re here for follow-ups.",
         keywords: ['scam', 'fake', 'real', 'legit', 'fraud'],
         category: 'general'
+    },
+    // --- Core Action Rules: Smart Responses ---
+    {
+        id: 'can_you_do_task',
+        question: "Can you do this task?",
+        answer: "Absolutely — that’s what we’re here for 😊\n\nPlease head over to our **Services** page to see how we usually handle this type of work.\n\nIf your task feels unique or slightly different, don’t worry — I’ll pass it directly to our team for a custom solution.",
+        keywords: ['can you do', 'can you help', 'do you offer', 'i need help', 'do this task'],
+        category: 'service'
+    },
+    {
+        id: 'urgent_help',
+        question: "I need help with something urgent.",
+        answer: "Got it — let’s move fast and smart.\n\nFirst, check the **Services** section to choose the closest match.\n\nIf it’s not clearly listed, I’ll connect you with our human team so nothing gets delayed.",
+        keywords: ['urgent', 'emergency', 'asap', 'fast', 'quick'],
+        category: 'service'
+    },
+    {
+        id: 'not_listed',
+        question: "I don’t see my requirement listed in your services.",
+        answer: "That’s totally okay — some of our best work starts exactly like this 😉\n\nWhile most solutions are covered on the **Services** page, special or custom requests are handled directly by our team.\n\nShare a few details via email/WhatsApp and I’ll make sure the right humans look into it.",
+        keywords: ['not listed', 'missing', 'requirement', 'cant find', 'different'],
+        category: 'service'
+    },
+    {
+        id: 'custom_work',
+        question: "Can you do something that’s not on the website?",
+        answer: "Short answer: very often, yes.\n\nOur website lists our most popular services, but not all custom work.\n\nPlease explore the **Services** page first — if it still feels different, I’ll escalate it to the team for a tailored solution.",
+        keywords: ['not on website', 'custom', 'unique', 'special'],
+        category: 'service'
+    },
+    {
+        id: 'explain_task',
+        question: "Should I explain my task here or somewhere else?",
+        answer: "You can start right here 👍\n\nOnce I understand your requirement, I’ll guide you to the right Service or connect you with our team if it needs a custom approach.",
+        keywords: ['explain', 'describe', 'tell you', 'here'],
+        category: 'general'
+    },
+    {
+        id: 'complex_task',
+        question: "What if my task is complex or business-critical?",
+        answer: "Perfect — those are our favorite kinds of problems to solve.\n\nFor complex tasks, I’ll ask for your email or WhatsApp and bring in a human expert so nothing is lost in translation.",
+        keywords: ['complex', 'critical', 'complicated', 'hard', 'big project'],
+        category: 'service'
     }
 ];
