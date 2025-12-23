@@ -74,7 +74,6 @@ function Router() {
         <Route component={NotFound} />
       </Switch>
       <Footer />
-      <Footer />
       <ChatWidget />
       <CookieConsent />
     </>
