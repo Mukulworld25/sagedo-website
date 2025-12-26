@@ -21,8 +21,8 @@ export default function About() {
   const socialMedia = [
     { name: "Instagram", icon: Instagram, handle: "@sagedoai00", status: "Connect", color: "from-pink-600 to-purple-600", url: "https://www.instagram.com/sagedoai00/", isActive: true },
     { name: "LinkedIn", icon: Linkedin, handle: "Mukul Dhiman", status: "Connect", color: "from-blue-600 to-blue-700", url: "https://www.linkedin.com/in/mukul-dhiman25", isActive: true },
-    { name: "Email", icon: Mail, handle: "mukul@sagedo.in", status: "Connect", color: "from-orange-600 to-red-600", url: "mailto:mukul@sagedo.in", isActive: true },
-    { name: "WhatsApp", icon: MessageCircle, handle: "+91 7018709291", status: "Connect", color: "from-green-600 to-emerald-600", url: "https://wa.me/917018709291", isActive: true },
+    { name: "Email", icon: Mail, handle: "hello@sagedo.in", status: "Connect", color: "from-orange-600 to-red-600", url: "mailto:hello@sagedo.in", isActive: true },
+    { name: "WhatsApp", icon: MessageCircle, handle: "+91 6284925684", status: "Connect", color: "from-green-600 to-emerald-600", url: "https://wa.me/916284925684", isActive: true },
   ];
 
   return (
@@ -261,7 +261,7 @@ export default function About() {
                 <div className="space-y-3 text-muted-foreground">
                   <p className="flex items-start gap-2">
                     <span className="font-semibold text-foreground min-w-[80px]">📞 Phone:</span>
-                    <a href="tel:+917018709291" className="hover:text-primary">+91 7018709291</a>
+                    <a href="tel:+916284925684" className="hover:text-primary">+91 6284925684</a>
                   </p>
                   <p className="flex items-start gap-2">
                     <span className="font-semibold text-foreground min-w-[80px]">📧 Email:</span>
@@ -269,7 +269,7 @@ export default function About() {
                   </p>
                   <p className="flex items-start gap-2">
                     <span className="font-semibold text-foreground min-w-[80px]">💬 WhatsApp:</span>
-                    <a href="https://wa.me/917018709291" className="hover:text-primary">+91 7018709291</a>
+                    <a href="https://wa.me/916284925684" className="hover:text-primary">+91 6284925684</a>
                   </p>
                 </div>
               </div>
@@ -303,7 +303,7 @@ export default function About() {
               Join thousands of satisfied clients who've freed up their time with SAGEDO AI.
             </p>
             <a
-              href="https://wa.me/917018709291?text=Hi!%20I%20want%20to%20learn%20more%20about%20SAGEDO%20AI"
+              href="https://wa.me/916284925684?text=Hi!%20I%20want%20to%20learn%20more%20about%20SAGEDO%20AI"
               target="_blank"
               rel="noopener noreferrer"
             >

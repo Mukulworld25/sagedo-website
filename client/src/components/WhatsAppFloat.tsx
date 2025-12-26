@@ -1,7 +1,7 @@
 import { MessageCircle } from "lucide-react";
 
 export default function WhatsAppFloat() {
-  const whatsappNumber = "917018709291";
+  const whatsappNumber = "916284925684";
   const message = "Hi! I need help with SAGEDO AI services.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 

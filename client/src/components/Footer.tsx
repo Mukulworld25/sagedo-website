@@ -36,21 +36,21 @@ export default function Footer() {
             {/* Social/Contact Icons */}
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="mailto:support@sagedo.in"
+                href="mailto:hello@sagedo.in"
                 className="p-2 rounded-lg bg-neutral-800 hover:bg-primary/20 transition-colors"
                 title="Email"
               >
                 <Mail className="w-4 h-4 text-muted-foreground" />
               </a>
               <a
-                href="tel:+917018709291"
+                href="tel:+916284925684"
                 className="p-2 rounded-lg bg-neutral-800 hover:bg-primary/20 transition-colors"
                 title="Phone"
               >
                 <Phone className="w-4 h-4 text-muted-foreground" />
               </a>
               <a
-                href="https://wa.me/917018709291"
+                href="https://wa.me/916284925684"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-neutral-800 hover:bg-[#25D366]/20 transition-colors"

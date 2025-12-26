@@ -94,7 +94,7 @@ export default function RefundPolicy() {
                             <ol className="list-decimal pl-6 space-y-2">
                                 <li>Contact us within <strong>7 days</strong> of order placement or service delivery</li>
                                 <li>Provide your order ID and reason for refund request</li>
-                                <li>Send your request to <strong>support@sagedo.in</strong> or WhatsApp <strong>+91 7018709291</strong></li>
+                                <li>Send your request to <strong>hello@sagedo.in</strong> or WhatsApp <strong>+91 6284925684</strong></li>
                                 <li>Include any supporting evidence (screenshots, documents, etc.)</li>
                             </ol>
                         </div>
@@ -150,9 +150,9 @@ export default function RefundPolicy() {
                         <div className="text-muted-foreground">
                             <p>For refund, cancellation, or delivery queries:</p>
                             <ul className="list-none space-y-1 mt-2">
-                                <li><strong>Email:</strong> contactus@sagedo.in</li>
-                                <li><strong>Phone:</strong> +91 7018709291</li>
-                                <li><strong>WhatsApp:</strong> <a href="https://wa.me/917018709291" className="text-primary hover:underline">+91 7018709291</a></li>
+                                <li><strong>Email:</strong> hello@sagedo.in</li>
+                                <li><strong>Phone:</strong> +91 6284925684</li>
+                                <li><strong>WhatsApp:</strong> <a href="https://wa.me/916284925684" className="text-primary hover:underline">+91 6284925684</a></li>
                             </ul>
                             <p className="mt-3">
                                 <strong>Response Time:</strong> We aim to respond to all queries within 24-48 hours.

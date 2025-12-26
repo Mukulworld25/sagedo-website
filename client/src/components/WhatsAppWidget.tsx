@@ -1,7 +1,7 @@
 import { MessageCircle } from "lucide-react";
 
 export default function WhatsAppWidget() {
-    const phoneNumber = "917018709291"; // Your WhatsApp number
+    const phoneNumber = "916284925684"; // Your WhatsApp number
     const message = encodeURIComponent("Hi! I have a question about SAGE DO services.");
 
     return (

@@ -80,7 +80,7 @@ export default function PrivacyPolicy() {
                                 <li><strong>Grievance:</strong> File a complaint with the Data Protection Board of India</li>
                             </ul>
                             <p className="mt-3">
-                                To exercise these rights, contact us at: <strong>contactus@sagedo.in</strong>
+                                To exercise these rights, contact us at: <strong>hello@sagedo.in</strong>
                             </p>
                         </div>
                     </section>
@@ -121,8 +121,8 @@ export default function PrivacyPolicy() {
                             </p>
                             <div className="bg-accent/20 p-4 rounded-lg space-y-2 mb-3">
                                 <p><strong>Name:</strong> SAGE DO Support Team</p>
-                                <p><strong>Email:</strong> support@sagedo.in</p>
-                                <p><strong>Phone:</strong> +91 7018709291</p>
+                                <p><strong>Email:</strong> hello@sagedo.in</p>
+                                <p><strong>Phone:</strong> +91 6284925684</p>
                                 <p><strong>Response Time:</strong> Within 24-48 hours</p>
                             </div>
                             <p>
@@ -136,9 +136,9 @@ export default function PrivacyPolicy() {
                         <div className="text-muted-foreground">
                             <p>For privacy-related questions or concerns:</p>
                             <ul className="list-none space-y-1 mt-2">
-                                <li><strong>Email:</strong> contactus@sagedo.in</li>
-                                <li><strong>Phone:</strong> +91 7018709291</li>
-                                <li><strong>WhatsApp:</strong> https://wa.me/917018709291</li>
+                                <li><strong>Email:</strong> hello@sagedo.in</li>
+                                <li><strong>Phone:</strong> +91 6284925684</li>
+                                <li><strong>WhatsApp:</strong> https://wa.me/916284925684</li>
                             </ul>
                         </div>
                     </section>

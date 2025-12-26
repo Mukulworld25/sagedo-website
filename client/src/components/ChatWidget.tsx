@@ -79,7 +79,7 @@ export default function ChatWidget() {
             let response: Message;
 
             if (action === 'human') {
-                window.open("https://wa.me/917018709291", "_blank");
+                window.open("https://wa.me/916284925684", "_blank");
                 response = {
                     id: Date.now().toString(),
                     text: "I've opened WhatsApp for you! Use it to chat directly with our human team. We usually reply within 2 hours.",

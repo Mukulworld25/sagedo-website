@@ -160,8 +160,8 @@ export default function Contact() {
                                     </div>
                                     <div>
                                         <h3 className="font-semibold">Email</h3>
-                                        <a href="mailto:support@sagedo.in" className="text-primary hover:underline">
-                                            support@sagedo.in
+                                        <a href="mailto:hello@sagedo.in" className="text-primary hover:underline">
+                                            hello@sagedo.in
                                         </a>
                                         <p className="text-sm text-muted-foreground mt-1">
                                             For general inquiries and support
@@ -175,8 +175,8 @@ export default function Contact() {
                                     </div>
                                     <div>
                                         <h3 className="font-semibold">Phone</h3>
-                                        <a href="tel:+917018709291" className="text-primary hover:underline">
-                                            +91 7018709291
+                                        <a href="tel:+916284925684" className="text-primary hover:underline">
+                                            +91 6284925684
                                         </a>
                                         <p className="text-sm text-muted-foreground mt-1">
                                             Mon-Sat, 10:00 AM - 7:00 PM IST
@@ -191,12 +191,12 @@ export default function Contact() {
                                     <div>
                                         <h3 className="font-semibold">WhatsApp</h3>
                                         <a
-                                            href="https://wa.me/917018709291"
+                                            href="https://wa.me/916284925684"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="text-[#25D366] hover:underline"
                                         >
-                                            +91 7018709291
+                                            +91 6284925684
                                         </a>
                                         <p className="text-sm text-muted-foreground mt-1">
                                             Quick responses, available 24/7
@@ -240,7 +240,7 @@ export default function Contact() {
                                 Chat with us directly on WhatsApp for instant support.
                             </p>
                             <a
-                                href="https://wa.me/917018709291?text=Hi,%20I%20need%20help%20with%20SAGE%20DO"
+                                href="https://wa.me/916284925684?text=Hi,%20I%20need%20help%20with%20SAGE%20DO"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >

@@ -22,17 +22,17 @@ export default function GrievanceOfficer() {
                             </div>
                             <div>
                                 <p className="text-sm text-muted-foreground">Email</p>
-                                <p className="text-lg font-semibold text-foreground">support@sagedo.in</p>
+                                <p className="text-lg font-semibold text-foreground">hello@sagedo.in</p>
                             </div>
                             <div>
                                 <p className="text-sm text-muted-foreground">Phone</p>
-                                <p className="text-lg font-semibold text-foreground">+91 7018709291</p>
+                                <p className="text-lg font-semibold text-foreground">+91 6284925684</p>
                             </div>
                             <div>
                                 <p className="text-sm text-muted-foreground">WhatsApp</p>
                                 <p className="text-lg font-semibold text-foreground">
-                                    <a href="https://wa.me/917018709291" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
-                                        +91 7018709291
+                                    <a href="https://wa.me/916284925684" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+                                        +91 6284925684
                                     </a>
                                 </p>
                             </div>
@@ -46,7 +46,7 @@ export default function GrievanceOfficer() {
                     <section>
                         <h2 className="text-2xl font-bold text-foreground mb-3">How to File a Grievance</h2>
                         <ol className="list-decimal pl-6 space-y-2 text-muted-foreground">
-                            <li>Send a detailed email to <strong>support@sagedo.in</strong> with subject line "Grievance - [Your Issue]"</li>
+                            <li>Send a detailed email to <strong>hello@sagedo.in</strong> with subject line "Grievance - [Your Issue]"</li>
                             <li>Include your registered email, phone number, and a clear description of the issue</li>
                             <li>Attach any relevant documents or screenshots</li>
                             <li>Our Grievance Officer will acknowledge your complaint within 24 hours</li>
