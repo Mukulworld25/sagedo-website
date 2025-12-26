@@ -30,8 +30,8 @@ export const faqs: FAQItem[] = [
     {
         id: 'founder_identity',
         question: "Who runs SageDo?",
-        answer: "SageDo is founder-led and human-driven.\n\nI’ve worked closely with the founder for over 20 years, helping ensure every service combines AI speed with human precision.\n\nIf you’d like, I can also share our official social media links.",
-        keywords: ['who made you', 'who created you', 'who built you', 'who runs sagedo', 'who is behind sagedo', 'founder of sagedo', 'developer', 'boss', 'team'],
+        answer: "SAGE DO was founded by Mukul Dhiman, a passionate entrepreneur from Chandigarh, India.\\n\\nHe built SAGE DO to help students and professionals get quality work done without the usual hassle.\\n\\nWant to connect? Here are our official handles:\\n- LinkedIn: SAGE DO\\n- Email: hello@sagedo.in\\n- WhatsApp: +91 6284925684.\n\nI’ve worked closely with the founder for over 20 years, helping ensure every service combines AI speed with human precision.\n\nIf you’d like, I can also share our official social media links.",
+        keywords: ['who made you', 'who created you', 'who built you', 'who is your founder', 'who runs sagedo', 'who is behind sagedo', 'founder', 'your founder', 'mukul', 'developer', 'ceo', 'owner', 'boss', 'team'],
         category: 'general'
     },
     {
