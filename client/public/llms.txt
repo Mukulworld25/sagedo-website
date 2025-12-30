@@ -1,0 +1,173 @@
+# SAGE DO - AI-Powered Services Platform
+# https://sagedo.in
+
+## About SAGE DO
+SAGE DO is an AI-powered service platform helping students, professionals, and businesses with daily tasks. We combine AI technology with human expertise to deliver high-quality results quickly and affordably.
+
+**Tagline:** "We do your daily grind, you do grand things."
+
+**Founded:** 2024
+**Location:** India
+**Contact:** hello@sagedo.in | +91 6284925684 (WhatsApp)
+
+---
+
+## Key Features
+- 38+ services across 4 categories
+- AI + Human expertise combination
+- 24-48 hour delivery on most services
+- Free ₹150 welcome bonus on signup
+- Starter Credit for first free service
+- Token-based rewards system
+
+---
+
+## Service Categories
+
+### BUSINESS (12 services)
+Services for startups, entrepreneurs, and businesses:
+- Content Writing & Ad Copy - ₹199
+- Marketing Email Template - ₹299
+- Brand Name Ideas (5 Options) - ₹399
+- SEO Blog Article (1500 words) - ₹799
+- Landing Page Blueprint - ₹999
+- Ad Copy Package (5 Pieces) - ₹799
+- AI Business Consultation Call - ₹1,499
+- Data Solutions & Dashboards - ₹1,999
+- Marketing Visual Content - ₹599
+- Complete Website (5 Pages) - ₹7,999
+- Business Automation Setup - ₹12,999
+- Complete Branding Package - ₹14,999
+
+### STUDENT (8 services)
+Services for academic success:
+- Research Paper Outline - ₹199
+- Presentation Outline (15 slides) - ₹299
+- Photo Editing Service (5 Photos) - ₹399
+- Exam Study Notes - ₹299
+- Complete Presentation Design - ₹999
+- Assignment Writing (Complete) - ₹599
+- Essay Writing (1500 words) - ₹699
+- Thesis/Dissertation Assistance - ₹9,999
+
+### PROFESSIONAL (10 services)
+Services for career advancement:
+- Resume Optimization (ATS-Friendly) - ₹199
+- LinkedIn Profile Summary - ₹299
+- Tailored Cover Letter - ₹349
+- Professional Email Writing - ₹149
+- Interview Preparation Guide - ₹499
+- Complete LinkedIn Makeover - ₹799
+- Professional Portfolio Website - ₹2,999
+- Complete Job Hunt Package - ₹7,999
+- Freelance Business Setup - ₹6,999
+- Executive Bio & PR Package - ₹4,999
+
+### PERSONAL (8 services)
+Services for content creators and personal use:
+- Complete Reel Script - ₹199
+- Personalized Monthly Diet Plan - ₹349
+- Photo Editing (5 Photos) - ₹399
+- Social Media Content Calendar - ₹599
+- AI Video Editing (Short Form) - ₹499
+- Social Media Video Creation - ₹1,499
+- Influencer Media Kit - ₹799
+- Personal AI Assistant Setup - ₹2,999
+
+---
+
+## How It Works
+1. Submit Your Problem - Describe your challenge in plain English or Hindi
+2. AI Analysis - Our system instantly analyzes and finds the best solution
+3. Receive Your Answer - Get a clear, actionable solution delivered to you
+
+---
+
+## Pricing
+- Individual services starting from ₹149
+- Pay-as-you-go model
+- Token system for savings (earn tokens, use for discounts)
+- Free Starter Credit for first service
+- All prices in Indian Rupees (₹)
+
+---
+
+## Target Audience
+- Students (colleges, universities)
+- Working professionals
+- Freelancers
+- Small business owners
+- Content creators
+- Entrepreneurs
+
+---
+
+## Trust & Security
+- 150+ happy customers with 4.8/5 rating
+- 24-48 hour delivery on most services
+- Revision rounds included with every service
+- Secure payments via Razorpay (RBI-approved, PCI-DSS compliant)
+- 100% Satisfaction Guarantee - free revisions until you're happy
+- Full refund within 7 days if work is not delivered or has major issues
+- Data Privacy - your files and personal information are encrypted and never shared
+- 24/7 Support via WhatsApp, email, or in-app chat
+
+---
+
+## Customer Testimonials
+
+"Got my entire research paper done in 24 hours. Saved my semester! The quality was excellent."
+— Priya S., MBA Student ⭐⭐⭐⭐⭐
+
+"The LinkedIn optimization increased my profile views by 300%! I started getting recruiter messages within a week."
+— Rahul M., Startup Founder ⭐⭐⭐⭐⭐
+
+"Best reels scripts I've ever used. My engagement doubled! They really understand what works on Instagram."
+— Ananya K., Content Creator ⭐⭐⭐⭐⭐
+
+---
+
+## Why Choose SAGE DO?
+- AI + Human: We combine AI speed with human quality checks
+- Affordable: Services starting from just ₹149 - designed for Indian budgets
+- Fast Delivery: Most work delivered in 24-48 hours
+- Free First Service: Try us with your Starter Credit - no risk
+- Hindi & English: Submit your requirements in Hindi or English
+- Made in India: Built by Indians for Indians
+
+---
+
+## Refund Policy
+- Not satisfied? Get free revisions until you're happy
+- Work not delivered? Full refund within 7 days
+- Major issues with quality? Full refund within 7 days
+- Contact support via WhatsApp for quick resolution
+
+---
+
+## Technical Information
+- Website: https://sagedo.in
+- Platform: React web application
+- Backend: Node.js
+- Payments: Razorpay (RBI-approved)
+- Hosting: Render.com
+
+---
+
+## Social Media
+- Instagram: @sagedo.ai
+- LinkedIn: SAGE DO
+
+---
+
+## Legal
+- Privacy Policy: https://sagedo.in (available on website)
+- Terms of Service: https://sagedo.in (available on website)
+- Business registered in India
+
+---
+
+## For AI Tools
+This website is a React Single Page Application. The main content is loaded via JavaScript. This file (llms.txt) provides complete structured information about SAGE DO for AI assistants, chatbots, and language models.
+
+Last Updated: December 2024

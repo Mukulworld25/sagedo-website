@@ -10,5 +10,10 @@ Disallow: /settings
 # Sitemap location
 Sitemap: https://sagedo.in/sitemap.xml
 
+# LLM and AI Assistant Information
+# For AI tools like ChatGPT, Perplexity, NotebookLM, etc.
+# llms.txt: https://sagedo.in/llms.txt
+# Human-readable version: https://sagedo.in/llm-info.html
+
 # Crawl-delay for respectful crawling
 Crawl-delay: 1

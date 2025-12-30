@@ -20,11 +20,13 @@ app.use((req, res, next) => {
 
   const origin = req.headers.origin;
 
-  // Allow all Vercel preview URLs and production URLs
+  // Allow all Vercel preview URLs, production URLs, and mobile app dev
   const isAllowedOrigin = origin && (
     origin.includes('vercel.app') ||
     origin.includes('localhost:5173') ||
     origin.includes('localhost:3000') ||
+    origin.includes('localhost:8081') ||
+    origin.includes('localhost:19006') ||
     origin === 'https://sagedo.vercel.app'
   );
 
