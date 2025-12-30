@@ -10,6 +10,7 @@ import { CheckCircle2, Circle, Clock, Package, Truck, Home, Star, MessageSquare,
 import { Order } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
 import MiniGame from "@/components/MiniGame";
+import OrderActivityFeed from "@/components/OrderActivityFeed";
 
 export default function Tracking() {
   const { toast } = useToast();
@@ -238,6 +239,13 @@ export default function Tracking() {
                 </div>
               )}
             </div>
+          </Card>
+        )}
+
+        {/* Order Activity Timeline */}
+        {order && (
+          <Card className="glass p-6 mb-8">
+            <OrderActivityFeed orderId={order.id} />
           </Card>
         )}
 
