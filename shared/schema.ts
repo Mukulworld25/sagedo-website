@@ -151,6 +151,18 @@ export const contactMessages = pgTable("contact_messages", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+// Order Activity/Updates for transparent tracking
+export const orderActivities = pgTable("order_activities", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  orderId: varchar("order_id").references(() => orders.id).notNull(),
+  type: varchar("type", { length: 50 }).notNull(), // status_change, admin_message, customer_reply, info_needed
+  title: varchar("title", { length: 255 }), // e.g., "Work Started", "Need Information"
+  message: text("message"), // Optional detailed message
+  isRead: boolean("is_read").default(false), // Has customer seen this?
+  createdBy: varchar("created_by", { length: 50 }).default("system"), // system, admin, customer
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 // Relations
 export const usersRelations = relations(users, ({ many }) => ({
   orders: many(orders),
@@ -220,6 +232,12 @@ export const insertContactMessageSchema = createInsertSchema(contactMessages).om
   status: true,
 });
 
+export const insertOrderActivitySchema = createInsertSchema(orderActivities).omit({
+  id: true,
+  createdAt: true,
+  isRead: true,
+});
+
 // Types
 export type UpsertUser = typeof users.$inferInsert;
 export type User = typeof users.$inferSelect;
@@ -245,3 +263,6 @@ export type InsertFeedback = z.infer<typeof insertFeedbackSchema>;
 
 export type ContactMessage = typeof contactMessages.$inferSelect;
 export type InsertContactMessage = z.infer<typeof insertContactMessageSchema>;
+
+export type OrderActivity = typeof orderActivities.$inferSelect;
+export type InsertOrderActivity = z.infer<typeof insertOrderActivitySchema>;

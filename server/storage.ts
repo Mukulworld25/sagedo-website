@@ -23,6 +23,9 @@ import {
   type ContactMessage,
   type InsertContactMessage,
   contactMessages,
+  type OrderActivity,
+  type InsertOrderActivity,
+  orderActivities,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, sql, gte } from "drizzle-orm";
@@ -370,6 +373,36 @@ export class DatabaseStorage implements IStorage {
   async createContactMessage(message: InsertContactMessage): Promise<ContactMessage> {
     const [newMessage] = await db.insert(contactMessages).values(message).returning();
     return newMessage;
+  }
+
+  // Order Activity operations
+  async createOrderActivity(activity: InsertOrderActivity): Promise<OrderActivity> {
+    const [newActivity] = await db.insert(orderActivities).values(activity).returning();
+    return newActivity;
+  }
+
+  async getOrderActivities(orderId: string): Promise<OrderActivity[]> {
+    return await db
+      .select()
+      .from(orderActivities)
+      .where(eq(orderActivities.orderId, orderId))
+      .orderBy(desc(orderActivities.createdAt));
+  }
+
+  async markActivitiesAsRead(orderId: string): Promise<void> {
+    await db
+      .update(orderActivities)
+      .set({ isRead: true })
+      .where(eq(orderActivities.orderId, orderId));
+  }
+
+  async getUnreadActivityCount(orderId: string): Promise<number> {
+    const [result] = await db
+      .select({ count: sql<number>`count(*)` })
+      .from(orderActivities)
+      .where(eq(orderActivities.orderId, orderId))
+      .where(eq(orderActivities.isRead, false));
+    return Number(result?.count || 0);
   }
 
   // Email abuse prevention - track emails that have used welcome bonus

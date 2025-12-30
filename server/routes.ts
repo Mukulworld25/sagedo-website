@@ -525,6 +525,106 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Order Activities routes - for transparent order tracking
+  app.get('/api/orders/:id/activities', async (req: any, res) => {
+    try {
+      const orderId = req.params.id;
+
+      // Verify order exists
+      const order = await storage.getOrderById(orderId);
+      if (!order) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+
+      // Check if user owns this order (unless admin)
+      const userId = req.session?.user?.id;
+      const isAdmin = req.session?.user?.isAdmin;
+
+      if (!isAdmin && order.userId !== userId) {
+        return res.status(403).json({ message: "Access denied" });
+      }
+
+      const activities = await storage.getOrderActivities(orderId);
+
+      // Mark as read if customer is viewing
+      if (!isAdmin && userId) {
+        await storage.markActivitiesAsRead(orderId);
+      }
+
+      res.json(activities);
+    } catch (error) {
+      console.error("Error fetching order activities:", error);
+      res.status(500).json({ message: "Failed to fetch activities" });
+    }
+  });
+
+  // Admin: Add activity/update to an order
+  app.post('/api/admin/orders/:id/activities', isAuthenticated, isAdmin, async (req: any, res) => {
+    try {
+      const orderId = req.params.id;
+      const { type, title, message } = req.body;
+
+      if (!type || !title) {
+        return res.status(400).json({ message: "Type and title are required" });
+      }
+
+      // Verify order exists
+      const order = await storage.getOrderById(orderId);
+      if (!order) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+
+      const activity = await storage.createOrderActivity({
+        orderId,
+        type, // status_change, admin_message, info_needed
+        title,
+        message: message || null,
+        createdBy: 'admin',
+      });
+
+      res.json(activity);
+    } catch (error) {
+      console.error("Error creating order activity:", error);
+      res.status(500).json({ message: "Failed to create activity" });
+    }
+  });
+
+  // Customer: Reply to an activity (future feature, basic implementation)
+  app.post('/api/orders/:id/reply', isAuthenticated, async (req: any, res) => {
+    try {
+      const orderId = req.params.id;
+      const { message } = req.body;
+      const userId = req.session?.user?.id;
+
+      if (!message) {
+        return res.status(400).json({ message: "Message is required" });
+      }
+
+      // Verify order exists and belongs to user
+      const order = await storage.getOrderById(orderId);
+      if (!order) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+
+      if (order.userId !== userId) {
+        return res.status(403).json({ message: "Access denied" });
+      }
+
+      const activity = await storage.createOrderActivity({
+        orderId,
+        type: 'customer_reply',
+        title: 'Customer Reply',
+        message,
+        createdBy: 'customer',
+      });
+
+      res.json(activity);
+    } catch (error) {
+      console.error("Error creating customer reply:", error);
+      res.status(500).json({ message: "Failed to send reply" });
+    }
+  });
+
   // Gallery routes (public)
   app.get('/api/gallery', async (req, res) => {
     try {
@@ -694,6 +794,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const order = await storage.updateOrderStatus(req.params.id, status, deliveryNotes, deliveryFileUrls);
+
+      // Auto-create activity for status change (transparent tracking)
+      const statusTitles: Record<string, string> = {
+        'pending': 'Order Received',
+        'processing': 'Work Started',
+        'finalizing': 'In Final Review',
+        'delivered': 'Order Delivered! 🎉',
+      };
+
+      await storage.createOrderActivity({
+        orderId: req.params.id,
+        type: 'status_change',
+        title: statusTitles[status] || `Status: ${status}`,
+        message: deliveryNotes || null,
+        createdBy: 'system',
+      });
 
       // Send delivery email when order is marked as delivered
       if (status === 'delivered') {
