@@ -3,6 +3,8 @@
 
 User-agent: *
 Allow: /
+Allow: /llms.txt
+Allow: /llm-info.html
 Disallow: /admin
 Disallow: /dashboard
 Disallow: /settings
@@ -10,10 +12,29 @@ Disallow: /settings
 # Sitemap location
 Sitemap: https://sagedo.in/sitemap.xml
 
-# LLM and AI Assistant Information
-# For AI tools like ChatGPT, Perplexity, NotebookLM, etc.
-# llms.txt: https://sagedo.in/llms.txt
-# Human-readable version: https://sagedo.in/llm-info.html
+# LLM-TXT Directive - For AI assistants (Perplexity, ChatGPT, Claude, etc.)
+LLM-TXT: https://sagedo.in/llms.txt
+
+# Specific AI crawler permissions
+User-agent: PerplexityBot
+Allow: /
+Allow: /llms.txt
+Allow: /llm-info.html
+
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+Allow: /llm-info.html
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /llms.txt
+Allow: /llm-info.html
+
+User-agent: Anthropic-AI
+Allow: /
+Allow: /llms.txt
+Allow: /llm-info.html
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
