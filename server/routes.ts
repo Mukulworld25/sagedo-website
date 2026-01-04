@@ -756,7 +756,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Onboarding Survey Submission
   app.post('/api/user/onboarding', async (req, res) => {
-    if (!req.isAuthenticated()) return res.sendStatus(401);
+    // Debug logging for 401 issues
+    console.log(`[Onboarding] Request received. SessionId: ${req.sessionID}, IsAuth: ${req.isAuthenticated()}, User: ${req.user?.id}`);
+
+    if (!req.isAuthenticated()) {
+      console.error("[Onboarding] 401 Error - Debug Dump:", {
+        headers: req.headers,
+        session: req.session,
+        user: req.user
+      });
+      return res.status(401).json({
+        message: "Authentication Failed",
+        debug: {
+          hasSession: !!req.session,
+          hasUser: !!req.user,
+          sessionID: req.sessionID
+        }
+      });
+    }
 
     try {
       // SECURITY: Prevent token farming (multiple submissions)
