@@ -787,7 +787,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         await storage.addTokenTransaction({
           userId: req.user!.id,
           amount: reward,
-          type: 'survey_reward',
+          type: 'survey',
           description: `Reward for completing onboarding survey (${reward / 50} fields)`
         });
       }
