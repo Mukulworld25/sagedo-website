@@ -27,7 +27,9 @@ app.use((req, res, next) => {
     origin.includes('localhost:3000') ||
     origin.includes('localhost:8081') ||
     origin.includes('localhost:19006') ||
-    origin === 'https://sagedo.vercel.app'
+    origin === 'https://sagedo.vercel.app' ||
+    origin === 'https://sagedo.in' ||
+    origin === 'https://www.sagedo.in'
   );
 
   if (isAllowedOrigin) {
