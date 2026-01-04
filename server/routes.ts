@@ -770,7 +770,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const updatedUser = await storage.submitOnboarding(req.user!.id, {
         profession,
         age: parseInt(age),
-        age: parseInt(age),
         gender,
         aiProficiency,
         mobileNumber
