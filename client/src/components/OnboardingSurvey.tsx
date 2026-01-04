@@ -94,7 +94,13 @@ export default function OnboardingSurvey() {
         }
     };
 
-    if (!open) return null;
+    // TEMPORARILY DISABLED: Onboarding survey was causing "Failed to submit" errors.
+    // Re-enable after proper debugging and testing.
+    // If you need to re-enable, uncomment the lines below and remove this return.
+    return null;
+
+    // Original logic (disabled):
+    // if (!open) return null;
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
