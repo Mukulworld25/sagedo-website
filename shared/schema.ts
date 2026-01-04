@@ -48,6 +48,15 @@ export const users = pgTable("users", {
   isTwoFactorEnabled: boolean("is_two_factor_enabled").default(false).notNull(),
   twoFactorSecret: varchar("two_factor_secret"),
   subscriptionTier: varchar("subscription_tier", { length: 20 }).default("starter").notNull(), // 'starter' or 'pro'
+
+  // Onboarding / Survey Fields
+  profession: varchar("profession"),
+  age: integer("age"),
+  gender: varchar("gender"),
+  aiProficiency: varchar("ai_proficiency"),
+  mobileNumber: varchar("mobile_number"),
+  isOnboardingCompleted: boolean("is_onboarding_completed").default(false).notNull(),
+
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });

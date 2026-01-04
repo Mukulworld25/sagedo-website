@@ -38,6 +38,9 @@ import { useEffect } from "react";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import ScrollToTop from "@/components/ScrollToTop";
 
+import OnboardingSurvey from "@/components/OnboardingSurvey";
+import AdminNotification from "@/components/AdminNotification";
+
 function Router() {
   useEffect(() => {
     // Track visit
@@ -48,6 +51,8 @@ function Router() {
   return (
     <>
       <ScrollToTop />
+      <AdminNotification />
+      <OnboardingSurvey />
       <Navigation />
       <Switch>
         <Route path="/" component={Home} />

@@ -150,13 +150,34 @@ export function setupAuth(app: Express) {
 // Customer Registration
 export async function registerCustomer(email: string, password: string, name: string) {
     // Check if user exists
+    // SECURITY: Normalize email to prevent alias abuse (e.g. gmail+1)
+    // Remove dots before @, remove everything after + before @
+    const normalizeEmail = (e: string) => {
+        const [local, domain] = e.split('@');
+        if (!domain) return e;
+        if (domain.toLowerCase() === 'gmail.com' || domain.toLowerCase() === 'googlemail.com') {
+            // Gmail specific: dots ignored, + ignored
+            let cleanLocal = local.split('+')[0].replace(/\./g, '');
+            return `${cleanLocal}@${domain}`;
+        }
+        return e;
+    };
+
+    const normalizedEmail = normalizeEmail(email);
+
+    // Check if user exists (using normalized email lookup would be ideal, but for now strict check)
+    // Actually, we should check if THIS email (normalized) matches any existing usage.
+    // Since we store raw emails, checking 'normalized' against 'raw' is hard without scanning.
+    // BETTER FIX: Check if 'isEmailUsed' (used_emails table) has this normalized email?
+
     const existingUser = await storage.getUserByEmail(email);
     if (existingUser) {
         throw new Error('Email already registered');
     }
 
-    // Check if this email has previously used welcome bonus (abuse prevention)
-    const emailPreviouslyUsed = await storage.isEmailUsed(email);
+    // Check if this email (NORMALIZED) has previously used welcome bonus
+    // We update 'isEmailUsed' to use normalized emails? Or just normalize here.
+    const emailPreviouslyUsed = await storage.isEmailUsed(normalizedEmail);
 
     // Hash password
     const passwordHash = await bcrypt.hash(password, 10);
@@ -189,7 +210,7 @@ export async function registerCustomer(email: string, password: string, name: st
 
     // Mark email as used for future abuse prevention
     if (!emailPreviouslyUsed) {
-        await storage.markEmailUsed(email, 'welcome_bonus');
+        await storage.markEmailUsed(normalizedEmail, 'welcome_bonus');
     }
 
     return user;

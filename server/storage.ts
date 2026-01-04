@@ -39,6 +39,7 @@ export interface IStorage {
   deleteUser(id: string): Promise<void>;
   getUserByVerificationToken(token: string): Promise<User | undefined>;
   verifyUserEmail(userId: string): Promise<void>;
+  submitOnboarding(userId: string, data: Partial<User>): Promise<User>; // New Onboarding Method
 
   // Service operations
   getAllServices(): Promise<Service[]>;
@@ -151,6 +152,19 @@ export class DatabaseStorage implements IStorage {
         updatedAt: new Date()
       })
       .where(eq(users.id, userId));
+  }
+
+  async submitOnboarding(userId: string, data: any): Promise<User> {
+    const [updatedUser] = await db
+      .update(users)
+      .set({
+        ...data,
+        isOnboardingCompleted: true,
+        updatedAt: new Date()
+      })
+      .where(eq(users.id, userId))
+      .returning();
+    return updatedUser;
   }
 
   // Password reset operations

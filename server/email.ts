@@ -1,7 +1,18 @@
 import { Resend } from 'resend';
 
 // Initialize Resend with API key
-const resend = new Resend(process.env.RESEND_API_KEY);
+// MOCK: If no key, create a dummy object to safely log emails without crashing
+const resendApiKey = process.env.RESEND_API_KEY;
+const resend = resendApiKey
+  ? new Resend(resendApiKey)
+  : {
+    emails: {
+      send: async (params: any) => {
+        console.log('[MOCK EMAIL] Would send to:', params.to, 'Subject:', params.subject);
+        return { data: { id: 'mock-id' }, error: null };
+      }
+    }
+  } as any;
 
 // Admin email for notifications
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'mukul@sagedo.in';
@@ -9,6 +20,17 @@ const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'mukul@sagedo.in';
 // ============================================
 // Interfaces
 // ============================================
+// Utility to sanitize input for HTML emails
+const sanitize = (text: string | undefined | null) => {
+  if (!text) return '';
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+};
+
 interface OrderEmailData {
   customerName: string;
   customerEmail: string;
@@ -50,7 +72,7 @@ export async function sendOrderConfirmationEmail(data: OrderEmailData) {
         ${data.isFree ? '🎫 You Just Used a GOLDEN TICKET!' : '💸 Money Gone, Magic Incoming!'}
       </h1>
       
-      <p style="font-size: 16px; color: #e2e8f0;">Hey ${data.customerName}! 👋</p>
+      <p style="font-size: 16px; color: #e2e8f0;">Hey ${sanitize(data.customerName)}! 👋</p>
       
       <p style="font-size: 16px; color: #e2e8f0;">
         ${data.isFree
@@ -60,8 +82,8 @@ export async function sendOrderConfirmationEmail(data: OrderEmailData) {
       
       <div style="background: #2d2d44; padding: 24px; border-radius: 12px; margin: 24px 0; border-left: 4px solid #f43f5e;">
         <p style="margin: 8px 0; color: #e2e8f0;"><strong>🎯 Order ID:</strong> #${shortId}</p>
-        <p style="margin: 8px 0; color: #e2e8f0;"><strong>✨ Service:</strong> ${data.serviceName}</p>
-        <p style="margin: 8px 0; color: #e2e8f0;"><strong>💰 Amount:</strong> ${amountText}</p>
+        <p style="margin: 8px 0; color: #e2e8f0;"><strong>✨ Service:</strong> ${sanitize(data.serviceName)}</p>
+        <p style="margin: 8px 0; color: #e2e8f0;"><strong>💰 Amount:</strong> ${sanitize(amountText)}</p>
         ${data.paymentId ? `<p style="margin: 8px 0; color: #e2e8f0;"><strong>💳 Payment:</strong> Via Razorpay ✓</p>` : ''}
         <p style="margin: 8px 0; color: #e2e8f0;"><strong>📅 Date:</strong> ${data.orderDate}</p>
       </div>
@@ -105,9 +127,9 @@ export async function sendOrderConfirmationEmail(data: OrderEmailData) {
         <div style="font-family: Arial, sans-serif;">
           <h2>New Order Received!</h2>
           <p><strong>Order ID:</strong> ${data.orderId}</p>
-          <p><strong>Customer:</strong> ${data.customerName} (${data.customerEmail})</p>
-          <p><strong>Service:</strong> ${data.serviceName}</p>
-          <p><strong>Amount:</strong> ${amountText}</p>
+          <p><strong>Customer:</strong> ${sanitize(data.customerName)} (${sanitize(data.customerEmail)})</p>
+          <p><strong>Service:</strong> ${sanitize(data.serviceName)}</p>
+          <p><strong>Amount:</strong> ${sanitize(amountText)}</p>
           <p><strong>Date:</strong> ${data.orderDate}</p>
         </div>
       `,
@@ -136,12 +158,12 @@ export async function sendPaymentSuccessEmail(data: PaymentEmailData) {
       html: `
         <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #1a1a2e; color: #ffffff; padding: 30px; border-radius: 16px;">
           <h1 style="color: #10b981; font-size: 28px;">💳 Payment Successful!</h1>
-          <p style="color: #e2e8f0;">Hey ${data.customerName}! Your payment of ₹${data.amount} has been received.</p>
+          <p style="color: #e2e8f0;">Hey ${sanitize(data.customerName)}! Your payment of ₹${data.amount} has been received.</p>
           <div style="background: #2d2d44; padding: 20px; border-radius: 12px; margin: 20px 0;">
             <p style="color: #e2e8f0;"><strong>Order ID:</strong> #${shortId}</p>
-            <p style="color: #e2e8f0;"><strong>Service:</strong> ${data.serviceName}</p>
+            <p style="color: #e2e8f0;"><strong>Service:</strong> ${sanitize(data.serviceName)}</p>
             <p style="color: #e2e8f0;"><strong>Amount:</strong> ₹${data.amount}</p>
-            <p style="color: #e2e8f0;"><strong>Payment Method:</strong> ${data.paymentMethod}</p>
+            <p style="color: #e2e8f0;"><strong>Payment Method:</strong> ${sanitize(data.paymentMethod)}</p>
           </div>
           <p style="color: #94a3b8;">We're now working on your order! 🚀</p>
         </div>
