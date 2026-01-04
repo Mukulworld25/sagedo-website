@@ -57,8 +57,15 @@ export default function OnboardingSurvey() {
                 description: "You've earned your rewards!",
             });
             setOpen(false);
-        } catch (error) {
-            toast({ title: "Failed to submit", variant: "destructive" });
+        } catch (error: any) {
+            console.error("Survey submission error:", error);
+            const message = error.message || "Failed to submit survey";
+            toast({
+                title: "Submission Error",
+                description: message,
+                variant: "destructive"
+            });
+            setOpen(false);
         } finally {
             setLoading(false);
         }
