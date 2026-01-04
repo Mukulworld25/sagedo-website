@@ -44,6 +44,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = () => {
     setUserState(null);
     localStorage.removeItem(AUTH_STORAGE_KEY);
+    sessionStorage.removeItem("sagedo_onboarding_skipped");
   };
 
   const value: AuthContextType = {
