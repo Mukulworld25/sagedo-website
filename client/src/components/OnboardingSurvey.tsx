@@ -23,9 +23,10 @@ export default function OnboardingSurvey() {
     const [mobile, setMobile] = useState("");
     const [aiProficiency, setAiProficiency] = useState("Beginner");
 
-    // Show survey if user exists but hasn't completed onboarding
+    // Show survey if user exists but hasn't completed onboarding and hasn't skipped it in this session
     useEffect(() => {
-        if (user && !user.isOnboardingCompleted) {
+        const hasSkipped = sessionStorage.getItem("sagedo_onboarding_skipped");
+        if (user && !user.isOnboardingCompleted && !hasSkipped) {
             // Small delay for better UX
             const timer = setTimeout(() => setOpen(true), 1000);
             return () => clearTimeout(timer);
@@ -63,44 +64,14 @@ export default function OnboardingSurvey() {
         }
     };
 
-    const handleSkip = async () => {
-        try {
-            setLoading(true);
-            // We still submit but with minimal data to mark as completed
-            // Or we could have a specific 'skip' flag. 
-            // For now, let's just mark it as completed via the same API but with empty values if backend allows,
-            // OR safer: just close it for this session? The user asked for "Skip button".
-            // If we skip, we should probably NOT show it again?
-            // Let's call the API with a "skipped" flag or just valid data but no reward? 
-            // User requested: "Skip button". imply they can use the site without it.
-            // Let's just set the 'isOnboardingCompleted' to true without reward.
-
-            // Actually, to keep it simple and persistent:
-            // We'll submit with "Skipped" values so it doesn't pop up again.
-            await apiRequest("POST", "/api/user/onboarding", {
-                profession: "Skipped",
-                age: 0,
-                gender: "Prefer not to say",
-                aiProficiency: "Skipped",
-                mobileNumber: ""
-            });
-
-            await queryClient.invalidateQueries({ queryKey: ["/api/user"] });
-            setOpen(false);
-        } catch (error) {
-            setOpen(false);
-        } finally {
-            setLoading(false);
-        }
+    const handleSkip = () => {
+        // Mark as skipped for this session only
+        sessionStorage.setItem("sagedo_onboarding_skipped", "true");
+        setOpen(false);
     };
 
-    // TEMPORARILY DISABLED: Onboarding survey was causing "Failed to submit" errors.
-    // Re-enable after proper debugging and testing.
-    // If you need to re-enable, uncomment the lines below and remove this return.
-    return null;
-
-    // Original logic (disabled):
-    // if (!open) return null;
+    // Original logic restored
+    if (!open) return null;
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
