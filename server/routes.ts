@@ -759,32 +759,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     // Debug logging for 401 issues
     console.log(`[Onboarding] Request received. SessionId: ${req.sessionID}, IsAuth: ${req.isAuthenticated()}, User: ${req.user?.id}`);
 
-    if (!req.isAuthenticated()) {
-      console.error("[Onboarding] 401 Error - Debug Dump:", {
-        headers: req.headers,
-        session: req.session,
-        user: req.user
-      });
-      return res.status(401).json({
-        message: "Authentication Failed",
-        debug: {
-          hasSession: !!req.session,
-          hasUser: !!req.user,
-          sessionID: req.sessionID
-        }
-      });
+    // Unified Auth Check
+    if (!req.session.user) {
+      console.log("[Onboarding] 401 Error - No Session User");
+      return res.status(401).json({ message: "Not authenticated" });
     }
 
-    try {
-      // SECURITY: Prevent token farming (multiple submissions)
-      if (req.user.isOnboardingCompleted) {
-        return res.status(400).json({ success: false, message: "Onboarding already completed" });
-      }
+    const user = req.session.user;
 
+    try {
       const { profession, age, gender, aiProficiency, mobileNumber } = req.body;
 
       // 1. Update User Profile
-      const updatedUser = await storage.submitOnboarding(req.user!.id, {
+      // Use local 'user' variable from session, not req.user
+      const updatedUser = await storage.submitOnboarding(user.id, {
         profession,
         age: parseInt(age),
         gender,
@@ -802,7 +790,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       if (reward > 0) {
         await storage.addTokenTransaction({
-          userId: req.user!.id,
+          userId: user.id,
           amount: reward,
           type: 'survey',
           description: `Reward for completing onboarding survey (${reward / 50} fields)`
@@ -814,7 +802,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Notify Admins
       if (profession && profession !== "Skipped") {
         broadcastToAdmins('survey_completed', {
-          name: req.session.user!.name,
+          name: user.name,
           profession,
           age,
           reward,
