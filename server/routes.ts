@@ -767,7 +767,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
     const user = req.session.user;
 
+    // Special handling for Virtual Admin User or Admin Role
+    if (user.isAdmin || user.id === 'admin') {
+      return res.json({ success: true, message: "Admin onboarding bypassed (Virtual User)" });
+    }
+
     try {
+      // SECURITY: Ensure user exists in DB before proceeding
+      const dbUser = await storage.getUser(user.id);
+      if (!dbUser) return res.status(401).json({ message: "User record not found in database" });
+
+      if (dbUser.isOnboardingCompleted) {
+        return res.status(400).json({ success: false, message: "Onboarding already completed" });
+      }
+
       const { profession, age, gender, aiProficiency, mobileNumber } = req.body;
 
       // 1. Update User Profile
