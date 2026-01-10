@@ -832,6 +832,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       res.json({ success: true, user: updatedUser, reward });
 
+      // UPDATE SESSION so frontend sees the new value
+      req.session.user = { ...req.session.user, ...updatedUser, isOnboardingCompleted: true };
+
       // Notify Admins
       if (profession && profession !== "Skipped") {
         broadcastToAdmins('survey_completed', {
@@ -1262,6 +1265,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error resetting database:", error);
       res.status(500).json({ message: "Failed to reset database" });
+    }
+  });
+
+  // Admin: Reset analytics only (visitors, service clicks) - safer than full reset
+  app.post('/api/admin/reset-analytics', isAuthenticated, isAdmin, async (req: any, res) => {
+    try {
+      const { db } = await import('./db');
+      const { sql } = await import('drizzle-orm');
+
+      // Clear site visits table
+      await db.execute(sql`TRUNCATE TABLE site_visits`);
+
+      // Reset service click counts to 0
+      await db.execute(sql`UPDATE services SET click_count = 0`);
+
+      // Reset user login counts to 0
+      await db.execute(sql`UPDATE users SET login_count = 0`);
+
+      console.log('📊 ANALYTICS RESET: Visitors and click counts cleared by admin');
+
+      res.json({
+        success: true,
+        message: 'Analytics data cleared. Visitors: 0, Service clicks: 0, Login counts: 0'
+      });
+    } catch (error) {
+      console.error("Error resetting analytics:", error);
+      res.status(500).json({ message: "Failed to reset analytics" });
     }
   });
 
