@@ -62,6 +62,15 @@ export default function OnboardingSurvey() {
         } catch (error: any) {
             console.error("Survey submission error:", error);
             const message = error.message || "Failed to submit survey";
+
+            // If backend says we already did it, treat as success (sync issue)
+            if (message.includes("Onboarding already completed")) {
+                setOpen(false);
+                toast({ title: "Welcome back!", description: "Profile already verified." });
+                queryClient.invalidateQueries({ queryKey: ["/api/user"] });
+                return;
+            }
+
             toast({
                 title: "Submission Error",
                 description: message,
