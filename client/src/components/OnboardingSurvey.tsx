@@ -24,9 +24,13 @@ export default function OnboardingSurvey() {
     const [aiProficiency, setAiProficiency] = useState("Beginner");
 
     // Show survey if user exists but hasn't completed onboarding and hasn't skipped it in this session
+    // SKIP for admin users entirely
     useEffect(() => {
+        if (!user) return;
+        if (user.isAdmin) return; // Admin never sees this
+
         const hasSkipped = sessionStorage.getItem("sagedo_onboarding_skipped");
-        if (user && !user.isOnboardingCompleted && !hasSkipped) {
+        if (!user.isOnboardingCompleted && !hasSkipped) {
             // Small delay for better UX
             const timer = setTimeout(() => setOpen(true), 1000);
             return () => clearTimeout(timer);
