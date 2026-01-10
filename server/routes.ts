@@ -787,10 +787,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
     const user = req.session.user;
 
+
     // Special handling for Virtual Admin User or Admin Role
-    if (user.isAdmin || user.id === 'admin') {
+    // REMOVED BYPASS: Admin is now a real DB user so state persists
+    /* if (user.isAdmin || user.id === 'admin') {
       return res.json({ success: true, message: "Admin onboarding bypassed (Virtual User)" });
-    }
+    } */
+
 
     try {
       // SECURITY: Ensure user exists in DB before proceeding

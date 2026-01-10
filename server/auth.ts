@@ -60,9 +60,8 @@ export function setupAuth(app: Express) {
 
     passport.deserializeUser(async (id: string, done) => {
         try {
-            if (id === 'admin') {
-                return done(null, { id: 'admin', isAdmin: true, name: 'Admin', email: process.env.ADMIN_EMAIL });
-            }
+            // Removed hardcoded admin check - admin should act as real user in DB
+            // if (id === 'admin') { ... }
             const user = await storage.getUser(id);
             done(null, user);
         } catch (err) {
@@ -230,15 +229,24 @@ export async function loginUser(email: string, password: string) {
         const isValid = await bcrypt.compare(password, process.env.ADMIN_PASSWORD_HASH!);
         if (!isValid) throw new Error('Invalid credentials');
 
-        return {
-            id: 'admin',
-            email: process.env.ADMIN_EMAIL!,
-            name: 'Admin',
-            isAdmin: true,
-            tokenBalance: 0,
-            hasGoldenTicket: false,
-            hasWelcomeBonus: false,
-        };
+        // Check if admin user exists in DB, if not create one
+        let adminUser = await storage.getUser('admin');
+        if (!adminUser) {
+            console.log('Creating initial Admin user in DB...');
+            adminUser = await storage.createUser({
+                id: 'admin',
+                email: process.env.ADMIN_EMAIL!,
+                passwordHash: process.env.ADMIN_PASSWORD_HASH!, // Store hash for consistency
+                name: 'Admin',
+                isAdmin: true,
+                tokenBalance: 0,
+                hasGoldenTicket: true,
+                hasWelcomeBonus: true,
+                isEmailVerified: true,
+                isOnboardingCompleted: false // Allow admin to do onboarding once
+            });
+        }
+        return adminUser;
     }
 
     // Check customer
