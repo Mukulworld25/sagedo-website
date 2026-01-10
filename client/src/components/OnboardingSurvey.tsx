@@ -32,6 +32,9 @@ export default function OnboardingSurvey() {
             // Small delay for better UX
             const timer = setTimeout(() => setOpen(true), 1000);
             return () => clearTimeout(timer);
+        } else {
+            // REACTIVE FIX: Force close if user is completed
+            setOpen(false);
         }
     }, [user]);
 
