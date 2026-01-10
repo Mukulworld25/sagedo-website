@@ -742,6 +742,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // BRUNO CHAT API (The Central Brain)
+  app.post('/api/chat', async (req, res) => {
+    const { message } = req.body;
+    const userId = req.session?.user?.id; // Can be undefined (Guest)
+
+    if (!message) return res.status(400).json({ message: "Message required" });
+
+    try {
+      const { BrunoBrain } = await import('./bruno');
+      const response = await BrunoBrain.processMessage(userId, message);
+      res.json(response);
+    } catch (error) {
+      console.error("Bruno Brain Error:", error);
+      res.status(500).json({
+        text: "My brain is freezing... 🥶 Can you try again?",
+        options: ['Contact Support']
+      });
+    }
+  });
+
   // Mobile App Version Check (Forced Update)
   app.get('/api/mobile-version', (req, res) => {
     res.json({

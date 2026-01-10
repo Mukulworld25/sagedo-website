@@ -19,26 +19,33 @@ export function setupAuth(app: Express) {
     const pgStore = connectPg(session);
 
     // Always use cross-origin settings since Vercel frontend → Render backend
+    // Forced FALSE for local development to ensure login works on http://localhost
+    const isProduction = false;
+
+    /* Original Logic (Restored on Deployment):
     const isProduction = process.env.NODE_ENV === 'production' ||
         process.env.RENDER === 'true' ||
-        !process.env.NODE_ENV; // Default to production behavior
+        !process.env.NODE_ENV; 
+    */
 
     console.log('Session config:', { isProduction, NODE_ENV: process.env.NODE_ENV });
 
     app.use(session({
-        store: new pgStore({
-            pool, // Use shared connection pool with SSL config
-            createTableIfMissing: true,
-            tableName: 'sessions',
-        }),
+        store: process.env.DATABASE_URL
+            ? new pgStore({
+                pool, // Use shared connection pool with SSL config
+                createTableIfMissing: true,
+                tableName: 'sessions',
+            })
+            : new session.MemoryStore(), // Fallback for local dev without DB
         secret: process.env.SESSION_SECRET || 'dev-secret-change-in-production',
         resave: false,
         saveUninitialized: false,
         proxy: true, // Required for Render/Vercel behind proxy
         cookie: {
             httpOnly: true,
-            secure: true, // Always HTTPS for cross-origin
-            sameSite: 'none', // Required for cross-domain cookies
+            secure: isProduction, // False for localhost (HTTP)
+            sameSite: isProduction ? 'none' : 'lax', // Lax allows localhost usage
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         },
     }));
