@@ -1286,11 +1286,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Reset user login counts to 0
       await db.execute(sql`UPDATE users SET login_count = 0`);
 
-      console.log('📊 ANALYTICS RESET: Visitors and click counts cleared by admin');
+      // Reset Admin Onboarding (so survey appears again)
+      await db.execute(sql`UPDATE users SET is_onboarding_completed = false WHERE id = 'admin'`);
+
+      console.log('📊 ANALYTICS RESET: Visitors, click counts, and admin onboarding reset');
 
       res.json({
         success: true,
-        message: 'Analytics data cleared. Visitors: 0, Service clicks: 0, Login counts: 0'
+        message: 'Analytics cleared. Admin survey reset. Refresh page to see survey.'
       });
     } catch (error) {
       console.error("Error resetting analytics:", error);
