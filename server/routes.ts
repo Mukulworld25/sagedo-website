@@ -245,9 +245,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   });
 
-  // Get Current User
-  app.get('/api/auth/user', (req: any, res) => {
-    res.json(req.session.user || null);
+  // Get Current User - ALWAYS fetch fresh from DB to ensure sync
+  app.get('/api/auth/user', async (req: any, res) => {
+    if (!req.session.user) return res.json(null);
+
+    try {
+      const user = await storage.getUser(req.session.user.id);
+      if (user) {
+        // Sync session with fresh DB data
+        req.session.user = {
+          ...req.session.user,
+          ...user,
+          // Explicitly ensure booleans are correct
+          isOnboardingCompleted: user.isOnboardingCompleted,
+          isAdmin: user.isAdmin
+        };
+        // Explicitly sort JSON keys or just return user? Return session user to match type structure
+        return res.json(req.session.user);
+      }
+      // If user not found in DB (rare), return session or null? Return null to force logout
+      res.json(null);
+    } catch (e) {
+      console.error("Error fetching user:", e);
+      res.json(req.session.user); // Fallback to session if DB fails
+    }
   });
 
   // Delete Account
