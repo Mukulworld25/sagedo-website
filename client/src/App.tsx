@@ -42,13 +42,10 @@ import ScrollToTop from "@/components/ScrollToTop";
 import OnboardingSurvey from "@/components/OnboardingSurvey";
 import AdminNotification from "@/components/AdminNotification";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 function Router() {
-  useEffect(() => {
-    // Track visit
-    apiRequest("POST", "/api/track-visit", { path: window.location.pathname })
-      .catch(err => console.error("Failed to track visit", err));
-  }, []);
+  useAnalytics(); // Auto-tracks every route change
 
   return (
     <>

@@ -1067,7 +1067,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Admin routes (protected with admin role check)
   app.get('/api/admin/orders', isAuthenticated, isAdmin, async (req, res) => {
     try {
-      const orders = await storage.getAllOrders();
+      const orders = await storage.getAllOrdersWithDetails();
       res.json(orders);
     } catch (error) {
       console.error("Error fetching admin orders:", error);
@@ -1164,6 +1164,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching admin stats:", error);
       res.status(500).json({ message: "Failed to fetch stats" });
+    }
+  });
+
+  app.post('/api/admin/optimize-prices', isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const result = await storage.optimizeServicePrices();
+      res.json({ message: result });
+    } catch (error) {
+      console.error("Error optimizing prices:", error);
+      res.status(500).json({ message: "Failed to optimize prices" });
     }
   });
 

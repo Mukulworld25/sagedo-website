@@ -3,7 +3,7 @@ import { useLocation, useSearch } from "wouter";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, ShieldCheck, CreditCard, AlertCircle } from "lucide-react";
+import { Loader2, ShieldCheck, CreditCard, AlertCircle, Lock } from "lucide-react";
 
 // Declare Razorpay on window
 declare global {
@@ -174,9 +174,13 @@ export default function Pay() {
                         )}
                     </Button>
 
-                    <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
-                        <ShieldCheck className="w-3 h-3 text-green-500" />
-                        <span>100% Secure Transaction via Razorpay</span>
+                    <div className="flex justify-center items-center gap-4 text-xs text-muted-foreground opacity-80 pt-2">
+                        <div className="flex items-center gap-1">
+                            <Lock className="w-3 h-3 text-green-600" /> SSL Secure
+                        </div>
+                        <div className="flex items-center gap-1">
+                            <ShieldCheck className="w-3 h-3 text-blue-600" /> Verified Business
+                        </div>
                     </div>
                 </div>
             </Card>

@@ -46,9 +46,11 @@ export interface IStorage {
   getAllServices(): Promise<Service[]>;
   getServiceById(id: string): Promise<Service | undefined>;
   createService(service: InsertService): Promise<Service>;
+  optimizeServicePrices(): Promise<string>;
 
   // Order operations
   getAllOrders(): Promise<Order[]>;
+  getAllOrdersWithDetails(): Promise<any[]>;
   getOrderById(id: string): Promise<Order | undefined>;
   getOrdersByUserId(userId: string): Promise<Order[]>;
   createOrder(order: InsertOrder): Promise<Order>;
@@ -222,9 +224,65 @@ export class DatabaseStorage implements IStorage {
     return newService;
   }
 
+  async optimizeServicePrices(): Promise<string> {
+    // 1. Get all services
+    const allServices = await this.getAllServices();
+    let updatedCount = 0;
+
+    for (const service of allServices) {
+      let price = service.price;
+      let newPrice = price;
+
+      // Strategy: Round to nearest 99 or 49
+      // If price is 100 -> 99
+      // If price is 300 -> 299
+      // If price is 500 -> 499
+      // If price is 1000 -> 999
+
+      // Algorithm:
+      // If price ends in 00, subtract 1.
+      if (price % 100 === 0 && price > 0) {
+        newPrice = price - 1;
+      }
+      // If price ends in 50, subtract 1 (49)
+      else if (price % 50 === 0 && price % 100 !== 0) {
+        newPrice = price - 1;
+      }
+
+      if (newPrice !== price) {
+        await db.update(services).set({ price: newPrice }).where(eq(services.id, service.id));
+        updatedCount++;
+      }
+    }
+    return `Optimized ${updatedCount} service prices to Charm Pricing (ends in 9).`;
+  }
+
   // Order operations
   async getAllOrders(): Promise<Order[]> {
     return await db.select().from(orders).orderBy(desc(orders.createdAt));
+  }
+
+  async getAllOrdersWithDetails(): Promise<any[]> {
+    return await db
+      .select({
+        id: orders.id,
+        userId: orders.userId,
+        serviceId: orders.serviceId,
+        serviceName: orders.serviceName,
+        customerEmail: orders.customerEmail,
+        customerName: orders.customerName,
+        customerMobile: users.mobileNumber, // Joined field
+        requirements: orders.requirements,
+        fileUrls: orders.fileUrls,
+        status: orders.status,
+        amountPaid: orders.amountPaid,
+        createdAt: orders.createdAt,
+        deliveryFileUrls: orders.deliveryFileUrls,
+        deliveryNotes: orders.deliveryNotes,
+      })
+      .from(orders)
+      .leftJoin(users, eq(orders.userId, users.id))
+      .orderBy(desc(orders.createdAt));
   }
 
   async getOrderById(id: string): Promise<Order | undefined> {
