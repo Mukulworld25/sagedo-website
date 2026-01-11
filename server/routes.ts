@@ -1563,6 +1563,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // =======================
+  // FEEDBACK COLLECTION
+  // =======================
+  app.post('/api/feedback', async (req: any, res) => {
+    try {
+      const { rating, feedback, type } = req.body;
+      const userId = req.session?.user?.id;
+      const userEmail = req.session?.user?.email;
+
+      console.log('📝 Feedback received:', { rating, feedback, type, userId, userEmail });
+
+      // Store in database (using contact_messages table or create a feedback system)
+      // For now, log it and notify admin
+      broadcastToAdmins('new_feedback', {
+        rating,
+        feedback,
+        type,
+        userId,
+        userEmail,
+        timestamp: new Date().toISOString()
+      });
+
+      res.json({ success: true, message: 'Feedback received! Thank you!' });
+    } catch (error) {
+      console.error('Feedback error:', error);
+      res.status(500).json({ error: 'Failed to submit feedback' });
+    }
+  });
+
   const httpServer = createServer(app);
 
   // Initialize WebSocket Server

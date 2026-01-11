@@ -40,6 +40,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 import OnboardingSurvey from "@/components/OnboardingSurvey";
 import AdminNotification from "@/components/AdminNotification";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
 
 function Router() {
   useEffect(() => {
@@ -81,6 +82,7 @@ function Router() {
       <Footer />
       <ChatWidget />
       <CookieConsent />
+      <ExitIntentPopup />
     </>
   );
 }
