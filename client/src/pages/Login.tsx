@@ -283,71 +283,70 @@ export default function Login() {
                 </p>
             </div>
 
-            {/* Right Side - Hero */}
-            <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
-                {/* Decorative elements */}
-                <div className="absolute inset-0 opacity-20">
-                    <div className="absolute top-20 left-10 w-72 h-72 bg-primary/30 rounded-full blur-3xl" />
-                    <div className="absolute bottom-20 right-10 w-96 h-96 bg-destructive/20 rounded-full blur-3xl" />
+            {/* Right Side - Premium Hero */}
+            <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-slate-950 via-slate-900 to-black relative overflow-hidden">
+                {/* Animated Background Effects */}
+                <div className="absolute inset-0">
+                    {/* Large pulsing glow behind logo */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] animate-pulse" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-destructive/15 rounded-full blur-[80px] animate-pulse" style={{ animationDelay: '0.5s' }} />
                 </div>
 
-                {/* Grid pattern */}
-                <div className="absolute inset-0 opacity-5" style={{
-                    backgroundImage: 'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)',
-                    backgroundSize: '50px 50px'
+                {/* Subtle grid pattern */}
+                <div className="absolute inset-0 opacity-[0.03]" style={{
+                    backgroundImage: 'linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)',
+                    backgroundSize: '60px 60px'
                 }} />
 
+                {/* Radial gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/50" />
+
                 {/* Content */}
-                <div className="relative z-10 flex flex-col justify-center items-center p-16 text-center">
-                    {/* Brand Logo */}
-                    <div className="mb-8 relative">
-                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-destructive rounded-3xl blur-2xl opacity-30 scale-110" />
+                <div className="relative z-10 flex flex-col justify-center items-center w-full h-full p-12">
+                    {/* Massive Logo with Ring Effects */}
+                    <div className="relative mb-10">
+                        {/* Outer ring */}
+                        <div className="absolute inset-0 w-80 h-80 rounded-full border border-primary/20 animate-spin" style={{ animationDuration: '20s' }} />
+                        {/* Middle ring */}
+                        <div className="absolute inset-4 w-72 h-72 rounded-full border border-destructive/20 animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }} />
+                        {/* Inner glow */}
+                        <div className="absolute inset-8 w-64 h-64 rounded-full bg-gradient-to-br from-primary/20 to-destructive/20 blur-xl" />
+                        {/* Logo */}
                         <img
                             src="/sagedo_logo_pro_clean.png"
                             alt="SAGE DO"
-                            className="relative w-64 h-64 object-contain drop-shadow-2xl"
+                            className="relative w-80 h-80 object-contain drop-shadow-[0_0_40px_rgba(244,63,94,0.4)]"
                         />
                     </div>
 
-                    {/* Headline */}
-                    <h2 className="text-4xl font-black text-white mb-4 leading-tight">
+                    {/* Premium Headline */}
+                    <h2 className="text-5xl font-black text-white mb-3 leading-tight tracking-tight">
                         Stop Managing Tasks
-                        <br />
-                        <span className="text-transparent bg-gradient-to-r from-primary to-destructive bg-clip-text">
+                    </h2>
+                    <h2 className="text-5xl font-black mb-6 leading-tight tracking-tight">
+                        <span className="text-transparent bg-gradient-to-r from-primary via-pink-500 to-destructive bg-clip-text">
                             Start Delegating Them
                         </span>
                     </h2>
 
-                    {/* Subtext */}
-                    <p className="text-lg text-slate-300 max-w-md">
+                    {/* Tagline */}
+                    <p className="text-xl text-slate-400 font-medium max-w-md text-center">
                         We Do Your Daily Grind, You Do Grand Things.
                     </p>
 
-                    {/* Features */}
-                    <div className="mt-10 grid grid-cols-2 gap-6 text-left">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                                <span className="text-xl">🎯</span>
-                            </div>
-                            <span className="text-sm text-slate-300">30+ Services</span>
+                    {/* Features Row */}
+                    <div className="mt-12 flex gap-8">
+                        <div className="flex items-center gap-2 text-slate-400">
+                            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-sm">🎯</div>
+                            <span className="text-sm font-medium">30+ Services</span>
                         </div>
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                                <span className="text-xl">⚡</span>
-                            </div>
-                            <span className="text-sm text-slate-300">Fast Delivery</span>
+                        <div className="flex items-center gap-2 text-slate-400">
+                            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-sm">⚡</div>
+                            <span className="text-sm font-medium">Fast Delivery</span>
                         </div>
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                                <span className="text-xl">🤖</span>
-                            </div>
-                            <span className="text-sm text-slate-300">AI-Powered</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                                <span className="text-xl">👩‍💼</span>
-                            </div>
-                            <span className="text-sm text-slate-300">Human Review</span>
+                        <div className="flex items-center gap-2 text-slate-400">
+                            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-sm">🤖</div>
+                            <span className="text-sm font-medium">AI + Human</span>
                         </div>
                     </div>
                 </div>
