@@ -7,7 +7,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { User, Order } from "@shared/schema";
-import { Coins, Gift, TrendingUp, FileText, Download, Trash2, AlertTriangle, Camera, User as UserIcon } from "lucide-react";
+import { Coins, Gift, TrendingUp, FileText, Download, Trash2, AlertTriangle, Camera, User as UserIcon, Settings } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import {
   Dialog,
@@ -213,10 +213,11 @@ export default function Dashboard() {
                 </div>
               </label>
 
-              {/* Delete Profile Picture Button */}
+              {/* Settings Button - Delete Profile Picture */}
               {userDetails?.profileImageUrl && (
                 <button
                   onClick={async () => {
+                    if (!confirm('Remove your profile picture?')) return;
                     try {
                       const res = await fetch('/api/user/profile-picture', {
                         method: 'DELETE',
@@ -229,10 +230,10 @@ export default function Dashboard() {
                       toast({ title: 'Delete failed', variant: 'destructive' });
                     }
                   }}
-                  className="absolute -top-1 -right-1 w-6 h-6 bg-destructive rounded-full flex items-center justify-center text-white text-xs hover:bg-destructive/80 transition-colors shadow-lg"
+                  className="absolute -bottom-1 -right-1 w-6 h-6 bg-neutral-800 border border-neutral-600 rounded-full flex items-center justify-center text-muted-foreground hover:text-white hover:bg-neutral-700 transition-colors shadow-lg"
                   title="Remove profile picture"
                 >
-                  ✕
+                  <Settings className="w-3.5 h-3.5" />
                 </button>
               )}
             </div>
