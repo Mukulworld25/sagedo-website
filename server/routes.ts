@@ -284,9 +284,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: 'Profile image URL required' });
       }
 
-      const updatedUser = await storage.upsertUser({
-        id: req.session.user.id,
-        email: req.session.user.email,
+      const updatedUser = await storage.updateUser(req.session.user.id, {
         profileImageUrl
       });
 
@@ -307,9 +305,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
 
     try {
-      const updatedUser = await storage.upsertUser({
-        id: req.session.user.id,
-        email: req.session.user.email,
+      const updatedUser = await storage.updateUser(req.session.user.id, {
         profileImageUrl: null
       });
 

@@ -40,6 +40,7 @@ export interface IStorage {
   getUserByVerificationToken(token: string): Promise<User | undefined>;
   verifyUserEmail(userId: string): Promise<void>;
   submitOnboarding(userId: string, data: Partial<User>): Promise<User>; // New Onboarding Method
+  updateUser(id: string, data: Partial<User>): Promise<User>;
 
   // Service operations
   getAllServices(): Promise<Service[]>;
@@ -121,15 +122,24 @@ export class DatabaseStorage implements IStorage {
         target: users.id,
         set: {
           ...userData,
-          // On update, preserve passed values including tokenBalance
-          tokenBalance: userData.tokenBalance,
-          hasGoldenTicket: userData.hasGoldenTicket,
-          hasWelcomeBonus: userData.hasWelcomeBonus,
+          // Only update these if they are explicitly provided in userData (not undefined)
+          tokenBalance: userData.tokenBalance !== undefined ? userData.tokenBalance : sql`token_balance`,
+          hasGoldenTicket: userData.hasGoldenTicket !== undefined ? userData.hasGoldenTicket : sql`has_golden_ticket`,
+          hasWelcomeBonus: userData.hasWelcomeBonus !== undefined ? userData.hasWelcomeBonus : sql`has_welcome_bonus`,
           updatedAt: new Date(),
         },
       })
       .returning();
     return user;
+  }
+
+  async updateUser(id: string, data: Partial<User>): Promise<User> {
+    const [updatedUser] = await db
+      .update(users)
+      .set({ ...data, updatedAt: new Date() })
+      .where(eq(users.id, id))
+      .returning();
+    return updatedUser;
   }
 
   async deleteUser(id: string): Promise<void> {
