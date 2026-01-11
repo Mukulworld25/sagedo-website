@@ -21,6 +21,35 @@ export interface ServiceDetail {
 
 export const allServices: ServiceDetail[] = [
     // =====================
+    // 🆓 FREE CONSULTATION - CATCH-ALL FOR CONFUSED CUSTOMERS
+    // =====================
+    {
+        id: "0",
+        name: "🤔 Confused? Tell Us Your Problem!",
+        category: "Free",
+        description: "Don't know what you need? Just tell us your problem - we'll recommend the perfect solution, FREE!",
+        fullDescription: "Feeling overwhelmed? Not sure which service fits your needs? No worries! 🎯\n\nJust describe your problem or requirement - whether it's for business, studies, career, or personal life - and our expert team will analyze your situation and send you a personalized recommendation via email. Completely FREE!\n\nNo commitment, no strings attached. We genuinely want to help you find the right solution. Think of us as your friendly problem-solving partner! 💡",
+        whatYouGet: [
+            "📧 Personalized solution recommendation via email",
+            "💡 Expert analysis of your problem",
+            "🎯 Best-fit service recommendation",
+            "💰 Custom quote if needed",
+            "🤝 No obligation - just helpful advice!",
+            "⚡ Response within 24 hours"
+        ],
+        process: [
+            "Describe your problem or requirement in detail",
+            "Share your email for us to respond",
+            "Our experts analyze your situation",
+            "Receive personalized recommendation via email - FREE!"
+        ],
+        price: 0,
+        imageUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop&q=80",
+        isGoldenEligible: false,
+        deliveryTime: "24 hours"
+    },
+
+    // =====================
     // BUSINESS CATEGORY (12 services)
     // =====================
     {
