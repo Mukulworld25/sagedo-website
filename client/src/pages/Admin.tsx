@@ -208,11 +208,100 @@ export default function Admin() {
           </Card>
         </div>
 
+        {/* CHARTS & INSIGHTS ROW */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+          {/* 1. REVENUE TRENDS (Last 7 Days) */}
+          <Card className="col-span-1 lg:col-span-2">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <TrendingUp className="w-5 h-5 text-green-500" /> Revenue Trends (Last 7 Days)
+              </CardTitle>
+              <CardDescription>Daily income from orders.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="h-48 flex items-end justify-between gap-2 pt-4">
+                {(() => {
+                  const last7Days = [...Array(7)].map((_, i) => {
+                    const d = new Date();
+                    d.setDate(d.getDate() - (6 - i));
+                    const dateStr = d.toLocaleDateString();
+                    const dayName = d.toLocaleDateString('en-US', { weekday: 'short' });
+                    return { dateStr, dayName, amount: 0 };
+                  });
+
+                  orders.forEach(o => {
+                    if (o.createdAt && o.amountPaid) {
+                      const oDate = new Date(o.createdAt).toLocaleDateString();
+                      const day = last7Days.find(d => d.dateStr === oDate);
+                      if (day) day.amount += o.amountPaid;
+                    }
+                  });
+
+                  const maxVal = Math.max(...last7Days.map(d => d.amount), 100);
+
+                  return last7Days.map((d, i) => (
+                    <div key={i} className="flex flex-col items-center gap-2 flex-1 group">
+                      <div
+                        className="w-full bg-primary/20 hover:bg-primary/40 rounded-t-md transition-all relative group"
+                        style={{ height: `${(d.amount / maxVal) * 100}%` }}
+                      >
+                        <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity shadow-sm whitespace-nowrap">
+                          ₹{d.amount}
+                        </div>
+                      </div>
+                      <span className="text-[10px] text-muted-foreground uppercase">{d.dayName}</span>
+                    </div>
+                  ));
+                })()}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* 2. TOP SERVICES */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Star className="w-5 h-5 text-yellow-500" /> Top Services
+              </CardTitle>
+              <CardDescription>Best selling services by order count.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {(() => {
+                  const serviceCounts: Record<string, number> = {};
+                  orders.forEach(o => {
+                    serviceCounts[o.serviceName] = (serviceCounts[o.serviceName] || 0) + 1;
+                  });
+                  const sorted = Object.entries(serviceCounts)
+                    .sort(([, a], [, b]) => b - a)
+                    .slice(0, 5);
+
+                  if (sorted.length === 0) return <p className="text-sm text-muted-foreground">No sales yet.</p>;
+
+                  return sorted.map(([name, count], i) => (
+                    <div key={i} className="flex items-center justify-between">
+                      <div className="flex items-center gap-2 truncate">
+                        <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${i === 0 ? 'bg-yellow-100 text-yellow-700' : 'bg-muted text-muted-foreground'}`}>
+                          {i + 1}
+                        </div>
+                        <span className="text-sm truncate max-w-[150px]" title={name}>{name}</span>
+                      </div>
+                      <Badge variant="secondary" className="text-xs">
+                        {count} sold
+                      </Badge>
+                    </div>
+                  ));
+                })()}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
         {/* MAIN INTERFACE */}
         <Tabs defaultValue="orders" className="space-y-4">
           <TabsList>
             <TabsTrigger value="orders">Orders</TabsTrigger>
             <TabsTrigger value="users">Users</TabsTrigger>
+            <TabsTrigger value="visitors">Live Traffic</TabsTrigger>
             <TabsTrigger value="feedback">Feedback</TabsTrigger>
             <TabsTrigger value="portfolio">Portfolio</TabsTrigger>
           </TabsList>
@@ -331,6 +420,44 @@ export default function Admin() {
             </Card>
           </TabsContent>
 
+
+
+          <TabsContent value="visitors">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Eye className="w-5 h-5 text-blue-500" /> Live Traffic Log
+                </CardTitle>
+                <CardDescription>Real-time visitor tracking (Last 20).</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-0">
+                  <div className="grid grid-cols-12 gap-4 text-xs font-bold text-muted-foreground border-b pb-2 mb-2 px-2">
+                    <div className="col-span-3">Time</div>
+                    <div className="col-span-6">Page / Path</div>
+                    <div className="col-span-3">Device</div>
+                  </div>
+                  {stats?.recentVisitors?.map((v: any, i: number) => (
+                    <div key={i} className="grid grid-cols-12 gap-4 text-sm items-center py-2 px-2 hover:bg-muted/50 rounded transition-colors border-b border-border/40">
+                      <div className="col-span-3 text-muted-foreground">
+                        {new Date(v.visitedAt).toLocaleTimeString()}
+                      </div>
+                      <div className="col-span-6 font-mono text-xs truncate text-blue-600 dark:text-blue-400">
+                        {v.path}
+                      </div>
+                      <div className="col-span-3 text-xs text-muted-foreground truncate" title={v.userAgent}>
+                        {v.userAgent.includes('Mobile') ? '📱 Mobile' : '💻 Desktop'}
+                      </div>
+                    </div>
+                  ))}
+                  {(!stats?.recentVisitors || stats.recentVisitors.length === 0) && (
+                    <div className="text-center py-8 text-muted-foreground">No traffic recorded yet.</div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
           <TabsContent value="feedback">
             <Card>
               <CardHeader>
@@ -384,6 +511,6 @@ export default function Admin() {
           </TabsContent>
         </Tabs>
       </div>
-    </div>
+    </div >
   );
 }

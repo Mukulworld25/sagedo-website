@@ -973,6 +973,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Payment routes (no auth required - order creation validates user)
   app.post('/api/payment/create-order', async (req, res) => {
     try {
+      const { orderId } = req.body;
       if (!orderId) {
         return res.status(400).json({ message: 'Order ID required' });
       }
