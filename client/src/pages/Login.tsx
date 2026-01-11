@@ -299,18 +299,14 @@ export default function Login() {
 
                 {/* Content */}
                 <div className="relative z-10 flex flex-col justify-center items-center p-16 text-center">
-                    {/* Sales Manager Image */}
+                    {/* Brand Logo */}
                     <div className="mb-8 relative">
-                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-destructive rounded-full blur-xl opacity-40 scale-110" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-destructive rounded-3xl blur-2xl opacity-30 scale-110" />
                         <img
-                            src="/sales_manager.png"
-                            alt="SAGE DO Team"
-                            className="relative w-48 h-48 rounded-full object-cover border-4 border-white/20 shadow-2xl"
+                            src="/sagedo_logo_pro_clean.png"
+                            alt="SAGE DO"
+                            className="relative w-64 h-64 object-contain drop-shadow-2xl"
                         />
-                        <div className="absolute -bottom-2 -right-2 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg flex items-center gap-1">
-                            <Sparkles className="w-3 h-3" />
-                            AI + Human
-                        </div>
                     </div>
 
                     {/* Headline */}

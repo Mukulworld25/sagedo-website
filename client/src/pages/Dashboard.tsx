@@ -7,7 +7,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { User, Order } from "@shared/schema";
-import { Coins, Gift, TrendingUp, FileText, Download, Trash2, AlertTriangle } from "lucide-react";
+import { Coins, Gift, TrendingUp, FileText, Download, Trash2, AlertTriangle, Camera, User as UserIcon } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import {
   Dialog,
@@ -27,6 +27,7 @@ export default function Dashboard() {
 
   const [, setLocation] = useLocation();
   const [isSurveyOpen, setIsSurveyOpen] = useState(false);
+  const [isUploadingProfilePic, setIsUploadingProfilePic] = useState(false);
   const [surveyData, setSurveyData] = useState({
     experience: "",
     feedback: ""
@@ -149,13 +150,76 @@ export default function Dashboard() {
     <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-black text-foreground mb-2">
-              Dashboard
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              Welcome back, {userDetails?.firstName || user?.email}!
-            </p>
+          <div className="flex items-center gap-4">
+            {/* Profile Picture with Upload */}
+            <label className="relative cursor-pointer group">
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+
+                  setIsUploadingProfilePic(true);
+                  try {
+                    const formData = new FormData();
+                    formData.append('files', file);
+
+                    const uploadRes = await fetch('/api/upload', {
+                      method: 'POST',
+                      body: formData,
+                      credentials: 'include'
+                    });
+
+                    if (!uploadRes.ok) throw new Error('Upload failed');
+                    const { urls } = await uploadRes.json();
+
+                    // Update profile picture
+                    const updateRes = await fetch('/api/user/profile-picture', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ profileImageUrl: urls[0] }),
+                      credentials: 'include'
+                    });
+
+                    if (!updateRes.ok) throw new Error('Failed to update profile');
+
+                    queryClient.invalidateQueries({ queryKey: ['/api/dashboard/user'] });
+                    toast({ title: '✅ Profile picture updated!' });
+                  } catch (err) {
+                    toast({ title: 'Upload failed', description: 'Please try again', variant: 'destructive' });
+                  } finally {
+                    setIsUploadingProfilePic(false);
+                  }
+                }}
+              />
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-primary to-destructive p-0.5">
+                <div className="w-full h-full rounded-full bg-background flex items-center justify-center overflow-hidden">
+                  {userDetails?.profileImageUrl ? (
+                    <img src={userDetails.profileImageUrl} alt="Profile" className="w-full h-full object-cover" />
+                  ) : (
+                    <UserIcon className="w-8 h-8 text-muted-foreground" />
+                  )}
+                </div>
+              </div>
+              <div className="absolute inset-0 bg-black/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                {isUploadingProfilePic ? (
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  <Camera className="w-5 h-5 text-white" />
+                )}
+              </div>
+            </label>
+
+            <div>
+              <h1 className="text-3xl md:text-4xl font-black text-foreground">
+                Dashboard
+              </h1>
+              <p className="text-muted-foreground">
+                Welcome back, {userDetails?.name || userDetails?.firstName || user?.email}!
+              </p>
+            </div>
           </div>
           <div className="flex gap-4">
             {userDetails?.isAdmin && (

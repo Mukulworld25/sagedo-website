@@ -271,6 +271,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Update Profile Picture
+  app.post('/api/user/profile-picture', async (req: any, res) => {
+    if (!req.session.user) {
+      return res.status(401).json({ message: 'Not authenticated' });
+    }
+
+    try {
+      const { profileImageUrl } = req.body;
+
+      if (!profileImageUrl) {
+        return res.status(400).json({ message: 'Profile image URL required' });
+      }
+
+      const updatedUser = await storage.upsertUser({
+        id: req.session.user.id,
+        email: req.session.user.email,
+        profileImageUrl
+      });
+
+      // Update session
+      req.session.user = { ...req.session.user, profileImageUrl };
+
+      res.json({ success: true, user: updatedUser });
+    } catch (error) {
+      console.error('Error updating profile picture:', error);
+      res.status(500).json({ message: 'Failed to update profile picture' });
+    }
+  });
+
   // Delete Account
   app.delete('/api/auth/account', isAuthenticated, async (req: any, res) => {
     try {
