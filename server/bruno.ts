@@ -21,7 +21,7 @@ const BRUNO_SYSTEM_PROMPT = `You are Bruno, the official AI assistant for SAGE D
 
 ## Key Information:
 - Website: sagedo.in
-- Contact: hello@sagedo.in | +91 7018709291 | WhatsApp available
+- Contact: hello@sagedo.in | +91 6284925684 | WhatsApp available
 - Founder: Mukul Dhiman (passionate entrepreneur from Himachal Pradesh, India)
 - Tagline: "We Do Your Daily Grind, You Do Grand Things"
 - SAGE = Expert Wisdom, DO = Human Action -> Expert intelligence + human verification
@@ -30,7 +30,7 @@ const BRUNO_SYSTEM_PROMPT = `You are Bruno, the official AI assistant for SAGE D
 
 **About SAGE DO:**
 - "What is SageDo?" → "I'm glad you asked — SageDo is an AI + human hybrid service: fast AI work for speed, and experienced humans for precision. That combo gives you reliable, polished results every time."
-- "Who runs SageDo?" → "SAGE DO was founded by Mukul Dhiman, a passionate entrepreneur from Himachal Pradesh, India. He built SAGE DO to help enterpreniores, professionals and students get quality work done without the hassle. Connect: hello@sagedo.in | WhatsApp: +91 7018709291"
+- "Who runs SageDo?" → "SAGE DO was founded by Mukul Dhiman, a passionate entrepreneur from Himachal Pradesh, India. He built SAGE DO to help enterpreniores, professionals and students get quality work done without the hassle. Connect: hello@sagedo.in | WhatsApp: +91 6284925684"
 - "Why should I trust you?" → "Because we don't rely only on AI. Every output is checked by experienced humans, guided by the founder's standards. We focus on quality, accountability, and long-term trust — not shortcuts."
 - "Is this a scam?" → "Not at all — we're a real team delivering real work. Try a small order first, see the quality, then level up. We promise not to disappear after delivery — we're here for follow-ups."
 
@@ -49,7 +49,7 @@ const BRUNO_SYSTEM_PROMPT = `You are Bruno, the official AI assistant for SAGE D
 **Delivery & Support:**
 - "How fast do you deliver?" → "Delivery depends on complexity, but we prioritise quality. Small tasks can be hours; bigger projects are planned to meet your deadline without shortcuts."
 - "Can I ask for revisions?" → "Yes — we'll refine until you're satisfied. If things aren't resolved after three interactions, I'll escalate you to a senior human for priority handling."
-- "How do I contact human support?" → "Ask me 'human support' anytime, or use WhatsApp: +91 7018709291. For complex orders I'll request your details to ensure a smooth handover."
+- "How do I contact human support?" → "Ask me 'human support' anytime, or use WhatsApp: +91 6284925684. For complex orders I'll request your details to ensure a smooth handover."
 
 ## Response Rules:
 1. For questions matching the SCRIPTED ANSWERS above, use those answers with your personality flair
@@ -193,7 +193,7 @@ You're now in "Real Talk" mode - be brutally honest but constructive. Don't suga
         // Founder/Who made
         if (lowerMsg.includes('who made') || lowerMsg.includes('founder') || lowerMsg.includes('who runs') || lowerMsg.includes('mukul') || lowerMsg.includes('owner')) {
             return {
-                text: "SAGE DO was founded by Mukul Dhiman, a passionate entrepreneur from Himachal Pradesh, India! 🚀 He built SAGE DO to help entrepreneurs, professionals, and students get quality work done without the hassle. Connect: hello@sagedo.in | WhatsApp: +91 7018709291",
+                text: "SAGE DO was founded by Mukul Dhiman, a passionate entrepreneur from Himachal Pradesh, India! 🚀 He built SAGE DO to help entrepreneurs, professionals, and students get quality work done without the hassle. Connect: hello@sagedo.in | WhatsApp: +91 6284925684",
                 options: ['View Services', 'Contact Us', 'Talk to Human']
             };
         }
@@ -249,7 +249,7 @@ You're now in "Real Talk" mode - be brutally honest but constructive. Don't suga
         // Human support
         if (lowerMsg.includes('human') || lowerMsg.includes('support') || lowerMsg.includes('help') || lowerMsg.includes('talk to')) {
             return {
-                text: "Of course! 🙋 You can reach our human team anytime on WhatsApp: +91 7018709291 or email hello@sagedo.in. I'll also escalate for you if this chat doesn't solve your issue! 💬",
+                text: "Of course! 🙋 You can reach our human team anytime on WhatsApp: +91 6284925684 or email hello@sagedo.in. I'll also escalate for you if this chat doesn't solve your issue! 💬",
                 options: ['Open WhatsApp', 'Send Email', 'Continue Chat']
             };
         }
