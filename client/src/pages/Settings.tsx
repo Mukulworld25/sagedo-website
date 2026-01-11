@@ -20,8 +20,11 @@ import {
     Download,
     Trash2,
     Lock,
-    ChevronRight
+    ChevronRight,
+    Camera,
+    Loader2
 } from "lucide-react";
+import { queryClient } from "@/lib/queryClient";
 import {
     Dialog,
     DialogContent,
@@ -46,6 +49,60 @@ export default function Settings() {
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
     const [deleteConfirmText, setDeleteConfirmText] = useState("");
     const [isDeleting, setIsDeleting] = useState(false);
+    const [isUploadingProfilePic, setIsUploadingProfilePic] = useState(false);
+
+    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setIsUploadingProfilePic(true);
+        try {
+            const formData = new FormData();
+            formData.append('files', file);
+
+            const uploadRes = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData,
+                credentials: 'include'
+            });
+
+            if (!uploadRes.ok) throw new Error('Upload failed');
+            const { urls } = await uploadRes.json();
+
+            const updateRes = await fetch('/api/user/profile-picture', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ profileImageUrl: urls[0] }),
+                credentials: 'include'
+            });
+
+            if (!updateRes.ok) throw new Error('Failed to update profile');
+
+            queryClient.invalidateQueries({ queryKey: ['/api/auth/user'] });
+            queryClient.invalidateQueries({ queryKey: ['/api/dashboard/user'] });
+            toast({ title: '✅ Profile picture updated!' });
+        } catch (err) {
+            toast({ title: 'Upload failed', description: 'Please try again', variant: 'destructive' });
+        } finally {
+            setIsUploadingProfilePic(false);
+        }
+    };
+
+    const handleDeleteProfilePic = async () => {
+        if (!confirm('Remove your profile picture?')) return;
+        try {
+            const res = await fetch('/api/user/profile-picture', {
+                method: 'DELETE',
+                credentials: 'include'
+            });
+            if (!res.ok) throw new Error('Failed to delete');
+            queryClient.invalidateQueries({ queryKey: ['/api/auth/user'] });
+            queryClient.invalidateQueries({ queryKey: ['/api/dashboard/user'] });
+            toast({ title: '✅ Profile picture removed!' });
+        } catch (err) {
+            toast({ title: 'Delete failed', variant: 'destructive' });
+        }
+    };
 
     // 2FA States
     const [show2FADialog, setShow2FADialog] = useState(false);
@@ -363,6 +420,49 @@ export default function Settings() {
                             <User className="w-5 h-5 text-primary" />
                         </div>
                         <h2 className="text-xl font-semibold">{t("settings.account")}</h2>
+                    </div>
+
+                    <div className="flex items-center gap-6 mb-8 pb-8 border-b border-border">
+                        <div className="relative w-24 h-24 flex-shrink-0">
+                            <div className="w-full h-full rounded-full overflow-hidden border-2 border-primary/20 bg-muted flex items-center justify-center">
+                                {user?.profileImageUrl ? (
+                                    <img src={user.profileImageUrl} alt="Profile" className="w-full h-full object-cover" />
+                                ) : (
+                                    <User className="w-10 h-10 text-muted-foreground" />
+                                )}
+                            </div>
+                            {isUploadingProfilePic && (
+                                <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-full">
+                                    <Loader2 className="w-6 h-6 text-white animate-spin" />
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="space-y-3">
+                            <div>
+                                <h3 className="font-medium text-lg">Profile Picture</h3>
+                                <p className="text-sm text-muted-foreground">Upload a new picture or remove the current one.</p>
+                            </div>
+                            <div className="flex gap-3 flex-wrap">
+                                <Button variant="outline" className="relative overflow-hidden cursor-pointer" disabled={isUploadingProfilePic}>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+                                        onChange={handleFileChange}
+                                        disabled={isUploadingProfilePic}
+                                    />
+                                    <Camera className="w-4 h-4 mr-2" />
+                                    Change Picture
+                                </Button>
+                                {user?.profileImageUrl && (
+                                    <Button variant="ghost" className="text-destructive hover:text-destructive hover:bg-destructive/10" onClick={handleDeleteProfilePic}>
+                                        <Trash2 className="w-4 h-4 mr-2" />
+                                        Remove
+                                    </Button>
+                                )}
+                            </div>
+                        </div>
                     </div>
 
                     <div className="space-y-4">
