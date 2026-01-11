@@ -26,7 +26,7 @@ export const allServices: ServiceDetail[] = [
     {
         id: "0",
         name: "🤔 Confused? Tell Us Your Problem!",
-        category: "Free",
+        category: "All",
         description: "Don't know what you need? Just tell us your problem - we'll recommend the perfect solution, FREE!",
         fullDescription: "Feeling overwhelmed? Not sure which service fits your needs? No worries! 🎯\n\nJust describe your problem or requirement - whether it's for business, studies, career, or personal life - and our expert team will analyze your situation and send you a personalized recommendation via email. Completely FREE!\n\nNo commitment, no strings attached. We genuinely want to help you find the right solution. Think of us as your friendly problem-solving partner! 💡",
         whatYouGet: [

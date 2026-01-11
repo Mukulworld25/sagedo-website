@@ -35,8 +35,9 @@ export default function Services() {
 
   // Search across ALL categories when there's a search query
   // Otherwise, filter by active category
+  // Services with category "All" appear in every tab
   const filteredServices = allServices.filter((service) => {
-    const matchesCategory = service.category === activeCategory;
+    const matchesCategory = service.category === activeCategory || service.category === "All";
     const matchesSearch = service.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       service.description.toLowerCase().includes(searchQuery.toLowerCase());
 
@@ -45,7 +46,7 @@ export default function Services() {
       return matchesSearch;
     }
 
-    // If no search query, filter by category
+    // If no search query, filter by category (including "All" services)
     return matchesCategory;
   });
 

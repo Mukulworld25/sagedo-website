@@ -300,6 +300,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Delete Profile Picture
+  app.delete('/api/user/profile-picture', async (req: any, res) => {
+    if (!req.session.user) {
+      return res.status(401).json({ message: 'Not authenticated' });
+    }
+
+    try {
+      const updatedUser = await storage.upsertUser({
+        id: req.session.user.id,
+        email: req.session.user.email,
+        profileImageUrl: null
+      });
+
+      // Update session
+      req.session.user = { ...req.session.user, profileImageUrl: null };
+
+      res.json({ success: true, user: updatedUser });
+    } catch (error) {
+      console.error('Error deleting profile picture:', error);
+      res.status(500).json({ message: 'Failed to delete profile picture' });
+    }
+  });
+
   // Delete Account
   app.delete('/api/auth/account', isAuthenticated, async (req: any, res) => {
     try {
