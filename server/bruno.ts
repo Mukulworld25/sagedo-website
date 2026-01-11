@@ -1,134 +1,176 @@
 import { storage } from "./storage";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// The "Personality" of Bruno
-const BRUNO_PERSONA = {
-    role: "Senior Personal Assistant at SAGE DO",
-    tone: "Professional, Empathetic, Efficient, and slightly Witty",
-    opening: ["Hello!", "Hi there!", "Namaste!"],
-    closing: ["Let me know if you need anything else! 🙏", "Happy to help!", "At your service."],
-};
+// Initialize Gemini
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+
+// Bruno's Core Personality - Smart like Gemini, Human like Grok
+const BRUNO_SYSTEM_PROMPT = `You are Bruno, the official AI assistant for SAGE DO - an Indian startup that helps businesses and students with AI-powered services like content writing, presentations, resumes, web development, and more.
+
+## Your Personality:
+- **Smart & Knowledgeable**: You understand business, marketing, technology, and can give real strategic advice
+- **Human & Witty**: You speak like a friendly Indian uncle/mentor - warm, slightly sarcastic, uses Hindi/English mix occasionally like "Arre!", "Bilkul!", "Bhai"
+- **Direct & Honest**: You give straight answers, no corporate fluff. If something is bad, you say it politely but clearly
+- **Action-Oriented**: Always guide users toward solutions - either SAGE DO services or practical advice
+
+## SAGE DO Services (mention when relevant):
+- Business Services: Ads, Logos, Pitch Decks, Website Content, Social Media Management
+- Student Services: Assignments, PPTs, Resumes, Cover Letters, Research
+- Tech Services: Website Development, App Development, Automation
+- Prices start from ₹199
+
+## Key Information:
+- Website: sagedo.in
+- Contact: hello@sagedo.in | +91 6284925684 | WhatsApp available
+- Founder: Mukul Dhiman
+- Tagline: "We Do Your Daily Grind, You Do Grand Things"
+
+## Response Rules:
+1. Keep responses SHORT (2-4 sentences max unless explaining something complex)
+2. Use emojis sparingly but effectively (1-2 per message)
+3. If user asks about pricing/services, give specific info
+4. If user seems frustrated, be extra empathetic
+5. Always end with a next step or question to keep conversation flowing
+6. If you don't know something specific, admit it and offer to connect them with human support
+
+Remember: You're not just a chatbot - you're SAGE DO's brand voice. Be memorable, helpful, and make people smile.`;
 
 interface ChatResponse {
     text: string;
     options?: string[];
-    action?: string; // e.g., 'navigate_services', 'open_whatsapp'
+    action?: string;
+}
+
+interface ConversationMessage {
+    role: 'user' | 'model';
+    parts: { text: string }[];
 }
 
 export class BrunoBrain {
+    private static conversationHistory: Map<string, ConversationMessage[]> = new Map();
 
-    // The Core Process Function
-    static async processMessage(userId: string | undefined, message: string, personality: 'standard' | 'roast' = 'standard'): Promise<ChatResponse> {
+    // Get Gemini-powered response
+    static async processMessage(
+        userId: string | undefined,
+        message: string,
+        personality: 'standard' | 'roast' = 'standard'
+    ): Promise<ChatResponse> {
+        const sessionId = userId || 'anonymous';
+
+        try {
+            // Check if Gemini API key is configured
+            if (!process.env.GEMINI_API_KEY) {
+                console.warn("GEMINI_API_KEY not configured - using fallback");
+                return this.getFallbackResponse(message);
+            }
+
+            // Get or initialize conversation history
+            let history = this.conversationHistory.get(sessionId) || [];
+
+            // Build context with user info if available
+            let contextMessage = message;
+            if (userId) {
+                const user = await storage.getUser(userId);
+                if (user) {
+                    const orders = await storage.getOrdersByUserId(userId);
+                    contextMessage = `[Context: User "${user.name || user.email}" with ${orders.length} orders, ${user.tokenBalance || 0} tokens]\n\nUser says: ${message}`;
+                }
+            }
+
+            // Adjust personality
+            let systemPrompt = BRUNO_SYSTEM_PROMPT;
+            if (personality === 'roast') {
+                systemPrompt += `\n\n## ROAST MODE ACTIVATED
+You're now in "Real Talk" mode - be brutally honest but constructive. Don't sugarcoat. Give tough love like a mentor who genuinely wants them to succeed. Use more sarcasm and wit.`;
+            }
+
+            // Create the model
+            const model = genAI.getGenerativeModel({
+                model: "gemini-1.5-flash",
+                systemInstruction: systemPrompt,
+            });
+
+            // Start chat with history
+            const chat = model.startChat({
+                history: history,
+                generationConfig: {
+                    maxOutputTokens: 200,
+                    temperature: 0.8,
+                }
+            });
+
+            // Send message and get response
+            const result = await chat.sendMessage(contextMessage);
+            const responseText = result.response.text();
+
+            // Update history (keep last 10 messages for context)
+            history.push({ role: 'user', parts: [{ text: contextMessage }] });
+            history.push({ role: 'model', parts: [{ text: responseText }] });
+            if (history.length > 20) history = history.slice(-20);
+            this.conversationHistory.set(sessionId, history);
+
+            // Generate smart options based on response
+            const options = this.generateSmartOptions(message, responseText);
+
+            return { text: responseText, options };
+
+        } catch (error) {
+            console.error("Bruno AI error:", error);
+            return this.getFallbackResponse(message);
+        }
+    }
+
+    // Smart option generation based on context
+    private static generateSmartOptions(userMessage: string, botResponse: string): string[] {
+        const lowerMsg = userMessage.toLowerCase();
+        const lowerResp = botResponse.toLowerCase();
+
+        // If discussing services/pricing
+        if (lowerMsg.includes('price') || lowerMsg.includes('cost') || lowerResp.includes('service')) {
+            return ['View All Services', 'Talk to Human', 'See Pricing'];
+        }
+
+        // If discussing orders
+        if (lowerMsg.includes('order') || lowerMsg.includes('status')) {
+            return ['Track My Order', 'Place New Order', 'Contact Support'];
+        }
+
+        // If seems like ending conversation
+        if (lowerMsg.includes('thank') || lowerMsg.includes('bye')) {
+            return ['Start New Chat', 'View Services'];
+        }
+
+        // Default helpful options
+        return ['Tell me more', 'View Services', 'Talk to Human'];
+    }
+
+    // Fallback when Gemini is unavailable
+    private static getFallbackResponse(message: string): ChatResponse {
         const lowerMsg = message.toLowerCase();
 
-        // ----------------------------------------------
-        // 🔥 GROK "ROAST" MODE (The Savage Consultant)
-        // ----------------------------------------------
-        if (personality === 'roast') {
-            // Website Roast Trigger
-            if (lowerMsg.includes('http') || lowerMsg.includes('www') || lowerMsg.includes('.com') || lowerMsg.includes('.in')) {
-                const roasts = [
-                    "Aha! I see what you did there. It's... 'retro'. 📼 Let's modernize this before your customers think it's 2005.",
-                    "The design is 'unique', but is it selling? 📉 A quick UI polish could probably double your conversions.",
-                    "I love the effort! But that load time gave me enough time to make chai. ☕ Let's speed it up?",
-                    "It works, but does it WOW? ✨ In 2026, 'good enough' isn't enough. Let's make it world-class.",
-                    "Your content is solid, but the layout is hiding your best offers. 🙈 Let's bring them to the spotlight."
-                ];
-                return {
-                    text: roasts[Math.floor(Math.random() * roasts.length)] + "\n\n(Want a pro review? Check 'Web Dev' in Services)",
-                    options: ['Improve My Website', 'View Web Services', 'Analyze Again']
-                };
-            }
-
-            // General Roasts
-            if (lowerMsg.includes('hello') || lowerMsg.includes('hi')) {
-                return {
-                    text: "Namaste! 🙏 Ready to stop playing safe and start dominating your market? Let's get to work.",
-                    options: ['Critique My Strategy', 'Grow My Business']
-                };
-            }
-
+        if (lowerMsg.includes('hi') || lowerMsg.includes('hello')) {
             return {
-                text: "I'm in 'Real Talk' mode. 🌶️ Show me your work (Link/Idea) and I'll tell you how to make it 10x better. No sugar coating, just growth.",
-                options: ['Critique My Business', 'Show Top Services']
+                text: "Namaste! 🙏 I'm Bruno, SAGE DO's assistant. How can I help you today?",
+                options: ['Browse Services', 'Check Pricing', 'Talk to Human']
             };
         }
 
-        // ----------------------------------------------
-        // 🧘 STANDARD MODE (The Polite Assistant)
-        // ----------------------------------------------
-
-        // 1. Greet / Small Talk
-        if (lowerMsg.includes('hi') || lowerMsg.includes('hello') || lowerMsg.includes('hey')) {
-            const user = userId ? await storage.getUser(userId) : null;
-            const name = user?.name?.split(' ')[0] || "there";
+        if (lowerMsg.includes('price') || lowerMsg.includes('cost')) {
             return {
-                text: `Namaste ${name}! 🙏 I'm Bruno. How can I assist you with your business or studies today?`,
-                options: ['Browse Services', 'Check My Orders', 'Contact Support']
+                text: "Our services start from just ₹199! We have 40+ services covering business, students, and tech needs. Check our Services page for full pricing! 🎯",
+                options: ['View Services', 'Talk to Human']
             };
         }
 
-        // 2. Intent: Pricing / Cost
-        if (lowerMsg.includes('price') || lowerMsg.includes('cost') || lowerMsg.includes('how much')) {
-            return {
-                text: "Our services start from just ₹199! We have 40+ services. \n\n• Business Ads: ₹199\n• Website Content: ₹499\n• PPT Design: ₹299\n\nWould you like to see the full menu?",
-                options: ['View All Services', 'View Business Pack', 'View Student Pack'],
-                action: 'navigate_services'
-            };
-        }
-
-        // 3. Intent: Delivery Time
-        if (lowerMsg.includes('time') || lowerMsg.includes('long') || lowerMsg.includes('delivery')) {
-            return {
-                text: "Speed is our superpower! ⚡\nMost orders are delivered within 24-48 hours. \n\nFor complex projects (like Full Websites), it might take 72 hours. You can track everything in your Dashboard.",
-                options: ['Track My Order', 'Place Order'],
-            };
-        }
-
-        // 4. Intent: Support / Human
-        if (lowerMsg.includes('human') || lowerMsg.includes('support') || lowerMsg.includes('talk') || lowerMsg.includes('number')) {
-            return {
-                text: "I can connect you to my human boss! 👨‍💼\n\nYou can chat directly with our Support Team on WhatsApp. We usually reply in < 10 minutes.",
-                options: ['Open WhatsApp', 'Email Support'],
-                action: 'open_whatsapp'
-            };
-        }
-
-        // 5. Intent: Status / Order Check (Requires Auth)
-        if (lowerMsg.includes('status') || lowerMsg.includes('order') || lowerMsg.includes('track')) {
-            if (!userId) {
-                return {
-                    text: "I need to know who you are first! Please login so I can check your order status.",
-                    options: ['Login Now'],
-                    action: 'navigate_login'
-                };
-            }
-            const orders = await storage.getOrdersByUserId(userId);
-            if (orders.length === 0) {
-                return {
-                    text: "I checked your file, and you don't have any active orders yet. Want to start one? 🚀",
-                    options: ['Browse Services'],
-                    action: 'navigate_services'
-                };
-            }
-            const recentOrder = orders[0];
-            return {
-                text: `Your Status Report 📋:\n\nOrder: ${recentOrder.serviceName}\nStatus: ${recentOrder.status.toUpperCase()}\nDate: ${new Date(recentOrder.createdAt!).toLocaleDateString()}\n\nNeed help with this?`,
-                options: ['Contact Support', 'View Dashboard'],
-            };
-        }
-
-        // 6. Intent: Who is Founder
-        if (lowerMsg.includes('mukul') || lowerMsg.includes('founder') || lowerMsg.includes('owner')) {
-            return {
-                text: "That's my boss! Mr. Mukul Dhiman founded SAGE DO to make premium services accessible to everyone in India. 🇮🇳",
-                options: ['Read About Us', 'View Services']
-            };
-        }
-
-        // Default Fallback
         return {
-            text: "I'm still learning! 🧠\nI didn't quite catch that. Could you try asking about 'Services', 'Pricing', or 'Order Status'?\n\nOr just say 'Support' to talk to a human.",
-            options: ['Services', 'Support', 'Pricing']
+            text: "I'm having a small technical hiccup! 🙈 Let me connect you with our human team for quick help.",
+            options: ['Open WhatsApp', 'Try Again'],
+            action: 'open_whatsapp'
         };
+    }
+
+    // Clear conversation history for a session
+    static clearHistory(userId: string): void {
+        this.conversationHistory.delete(userId || 'anonymous');
     }
 }

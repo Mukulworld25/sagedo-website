@@ -45,8 +45,10 @@ export default function ChatWidget() {
         }
     }, [isOpen]);
 
-    const handleSendMessage = () => {
-        if (!inputText.trim()) return;
+    const [isTyping, setIsTyping] = useState(false);
+
+    const handleSendMessage = async () => {
+        if (!inputText.trim() || isTyping) return;
 
         // Add user message
         const userMsg: Message = {
@@ -57,12 +59,35 @@ export default function ChatWidget() {
 
         setMessages(prev => [...prev, userMsg]);
         setInputText("");
+        setIsTyping(true);
 
-        // Simulate thinking delay - slightly faster for "confident" persona
-        setTimeout(() => {
-            const response = findAnswer(userMsg.text);
-            setMessages(prev => [...prev, response]);
-        }, 550);
+        try {
+            // Call Bruno AI API
+            const response = await fetch('/api/bruno/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userMsg.text }),
+                credentials: 'include'
+            });
+
+            const data = await response.json();
+
+            const botResponse: Message = {
+                id: (Date.now() + 1).toString(),
+                text: data.text || "I'm having trouble thinking right now! 🙈",
+                sender: 'bot',
+                options: data.options?.map((opt: string) => ({ label: opt, action: opt.toLowerCase().replace(/\s+/g, '_') }))
+            };
+
+            setMessages(prev => [...prev, botResponse]);
+        } catch (error) {
+            console.error('Bruno API error:', error);
+            // Fallback to local logic if API fails
+            const fallbackResponse = findAnswer(userMsg.text);
+            setMessages(prev => [...prev, fallbackResponse]);
+        } finally {
+            setIsTyping(false);
+        }
     };
 
     const handleOptionClick = (action: string) => {
@@ -328,6 +353,18 @@ export default function ChatWidget() {
                                 )}
                             </div>
                         ))}
+                        {/* Typing Indicator */}
+                        {isTyping && (
+                            <div className="flex items-start">
+                                <div className="max-w-[85%] p-3 rounded-2xl text-sm bg-muted/80 backdrop-blur-md border border-white/10 rounded-bl-none">
+                                    <div className="flex gap-1">
+                                        <span className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                                        <span className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                                        <span className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                         <div ref={messagesEndRef} />
                     </div>
 
