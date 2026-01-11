@@ -43,14 +43,14 @@ export default function Footer() {
                 <Mail className="w-4 h-4 text-muted-foreground" />
               </a>
               <a
-                href="tel:+916284925684"
+                href="tel:+917018709291"
                 className="p-2 rounded-lg bg-neutral-800 hover:bg-primary/20 transition-colors"
                 title="Phone"
               >
                 <Phone className="w-4 h-4 text-muted-foreground" />
               </a>
               <a
-                href="https://wa.me/916284925684"
+                href="https://wa.me/917018709291"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-neutral-800 hover:bg-[#25D366]/20 transition-colors"
