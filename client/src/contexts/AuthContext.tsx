@@ -29,7 +29,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
 
         // 2. Fetch fresh user data from server to sync isOnboardingCompleted etc.
-        const response = await fetch('/api/user', { credentials: 'include' });
+        const response = await fetch('/api/auth/user', { credentials: 'include' });
         if (response.ok) {
           const freshUser = await response.json();
           if (freshUser) {
