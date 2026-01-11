@@ -170,28 +170,110 @@ You're now in "Real Talk" mode - be brutally honest but constructive. Don't suga
         return ['Tell me more', 'View Services', 'Talk to Human'];
     }
 
-    // Fallback when Gemini is unavailable
+    // Fallback when Gemini is unavailable - uses FAQ database
     private static getFallbackResponse(message: string): ChatResponse {
         const lowerMsg = message.toLowerCase();
 
-        if (lowerMsg.includes('hi') || lowerMsg.includes('hello')) {
+        // Greetings
+        if (lowerMsg.includes('hi') || lowerMsg.includes('hello') || lowerMsg.includes('namaste')) {
             return {
                 text: "Namaste! 🙏 I'm Bruno, SAGE DO's assistant. How can I help you today?",
                 options: ['Browse Services', 'Check Pricing', 'Talk to Human']
             };
         }
 
-        if (lowerMsg.includes('price') || lowerMsg.includes('cost')) {
+        // About SAGE DO
+        if (lowerMsg.includes('what is sage') || lowerMsg.includes('sagedo mean') || lowerMsg.includes('what does sage')) {
             return {
-                text: "Our services start from just ₹199! We have 40+ services covering business, students, and tech needs. Check our Services page for full pricing! 🎯",
-                options: ['View Services', 'Talk to Human']
+                text: "I'm glad you asked! 🎯 SageDo is an AI + human hybrid service: fast AI work for speed, and experienced humans for precision. **SAGE** = Expert Wisdom, **DO** = Human Action. That combo gives you reliable, polished results every time! 💡",
+                options: ['View Services', 'Check Pricing', 'Talk to Human']
             };
         }
 
+        // Founder/Who made
+        if (lowerMsg.includes('who made') || lowerMsg.includes('founder') || lowerMsg.includes('who runs') || lowerMsg.includes('mukul') || lowerMsg.includes('owner')) {
+            return {
+                text: "SAGE DO was founded by Mukul Dhiman, a passionate entrepreneur from Chandigarh, India! 🚀 He built SAGE DO to help students and professionals get quality work done without the hassle. Connect: hello@sagedo.in | WhatsApp: +91 6284925684",
+                options: ['View Services', 'Contact Us', 'Talk to Human']
+            };
+        }
+
+        // Price/Cost
+        if (lowerMsg.includes('price') || lowerMsg.includes('cost') || lowerMsg.includes('expensive') || lowerMsg.includes('cheap')) {
+            return {
+                text: "I'll be direct: our services are pocket-friendly and built to give high ROI! 💰 Prices start from just ₹199. Tell me what you need and I'll fetch a custom quote you'll like! 🎯",
+                options: ['View Services', 'Get Quote', 'Talk to Human']
+            };
+        }
+
+        // Services/Trending
+        if (lowerMsg.includes('service') || lowerMsg.includes('trending') || lowerMsg.includes('popular') || lowerMsg.includes('what do you')) {
+            return {
+                text: "🔥 **Trending Services:**\n\n📚 **Academic:** Assignments, Research, Essays\n💼 **Career:** ATS Resumes, Cover Letters, LinkedIn\n✍️ **Content:** SEO Blogs, Social Media\n💡 **Business:** Pitch Decks, Proposals, Websites\n\nAll starting from ₹199! Which interests you?",
+                options: ['View All Services', 'Get Quote', 'Talk to Human']
+            };
+        }
+
+        // Assignment help
+        if (lowerMsg.includes('assignment') || lowerMsg.includes('homework') || lowerMsg.includes('essay') || lowerMsg.includes('academic')) {
+            return {
+                text: "Absolutely! 📚 Send your brief and files. I'll coordinate AI drafting and a human review so it's accurate, referenced, and tailored to your needs. We take care of plagiarism too! ✅",
+                options: ['Place Order', 'Check Pricing', 'Talk to Human']
+            };
+        }
+
+        // Resume/CV
+        if (lowerMsg.includes('resume') || lowerMsg.includes('cv') || lowerMsg.includes('job') || lowerMsg.includes('ats')) {
+            return {
+                text: "Yes! 💼 I create ATS-friendly, industry-focused resumes and matched cover letters that highlight what hiring managers care about. Your resume will pass the bots AND impress humans! 🎯",
+                options: ['Order Resume', 'View Career Services', 'Talk to Human']
+            };
+        }
+
+        // Trust/Scam
+        if (lowerMsg.includes('trust') || lowerMsg.includes('scam') || lowerMsg.includes('legit') || lowerMsg.includes('real') || lowerMsg.includes('fake')) {
+            return {
+                text: "Not a scam at all! 🛡️ We're a real team delivering real work. Every output is checked by experienced humans. Try a small order first, see the quality, then level up. We promise not to disappear after delivery! 🤝",
+                options: ['View Reviews', 'Start Small Order', 'Talk to Human']
+            };
+        }
+
+        // Delivery/Fast
+        if (lowerMsg.includes('fast') || lowerMsg.includes('delivery') || lowerMsg.includes('time') || lowerMsg.includes('urgent') || lowerMsg.includes('deadline')) {
+            return {
+                text: "Speed is our thing! ⚡ Small tasks can be done in hours, bigger projects are planned to meet your deadline without shortcuts. Most services deliver within 24-48 hours! 🚀",
+                options: ['Place Urgent Order', 'View Services', 'Talk to Human']
+            };
+        }
+
+        // Human support
+        if (lowerMsg.includes('human') || lowerMsg.includes('support') || lowerMsg.includes('help') || lowerMsg.includes('talk to')) {
+            return {
+                text: "Of course! 🙋 You can reach our human team anytime on WhatsApp: +91 6284925684 or email hello@sagedo.in. I'll also escalate for you if this chat doesn't solve your issue! 💬",
+                options: ['Open WhatsApp', 'Send Email', 'Continue Chat']
+            };
+        }
+
+        // Confused/don't know
+        if (lowerMsg.includes('confused') || lowerMsg.includes("don't know") || lowerMsg.includes('problem') || lowerMsg.includes('not sure')) {
+            return {
+                text: "No worries! 🤔 Just describe your problem - whether it's for business, studies, career, or personal life - and our team will analyze your situation and send you a FREE personalized recommendation via email! 📧",
+                options: ['Describe My Problem', 'View Services', 'Talk to Human']
+            };
+        }
+
+        // Thank you/bye
+        if (lowerMsg.includes('thank') || lowerMsg.includes('bye') || lowerMsg.includes('great') || lowerMsg.includes('awesome')) {
+            return {
+                text: "You're most welcome! 😊 It was my pleasure helping you. Feel free to come back anytime - I'm always here! Do share your feedback, it means a lot to us! 🙏",
+                options: ['Give Feedback', 'View Services', 'Start New Chat']
+            };
+        }
+
+        // Default - invite them to explore
         return {
-            text: "I'm having a small technical hiccup! 🙈 Let me connect you with our human team for quick help.",
-            options: ['Open WhatsApp', 'Try Again'],
-            action: 'open_whatsapp'
+            text: "Interesting question! 🤔 I want to give you the best answer - let me connect you with our team for quick, personalized help. Or check out our Services page for everything we offer! 💡",
+            options: ['View Services', 'Open WhatsApp', 'Try Again']
         };
     }
 
