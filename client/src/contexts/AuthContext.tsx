@@ -17,19 +17,39 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUserState] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load user from localStorage on mount
+  // Load user from localStorage first, then sync with server on mount
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem(AUTH_STORAGE_KEY);
-      if (stored) {
-        const parsedUser = JSON.parse(stored);
-        setUserState(parsedUser);
+    const initAuth = async () => {
+      try {
+        // 1. Quick load from localStorage for instant UI
+        const stored = localStorage.getItem(AUTH_STORAGE_KEY);
+        if (stored) {
+          const parsedUser = JSON.parse(stored);
+          setUserState(parsedUser);
+        }
+
+        // 2. Fetch fresh user data from server to sync isOnboardingCompleted etc.
+        const response = await fetch('/api/user', { credentials: 'include' });
+        if (response.ok) {
+          const freshUser = await response.json();
+          if (freshUser) {
+            setUserState(freshUser);
+            localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(freshUser));
+          } else {
+            // Server says no user - clear localStorage
+            setUserState(null);
+            localStorage.removeItem(AUTH_STORAGE_KEY);
+          }
+        }
+      } catch (e) {
+        console.warn('Auth sync error:', e);
+        // Keep localStorage data as fallback
+      } finally {
+        setIsLoading(false);
       }
-    } catch (e) {
-      console.warn('Failed to parse stored user:', e);
-      localStorage.removeItem(AUTH_STORAGE_KEY);
-    }
-    setIsLoading(false);
+    };
+
+    initAuth();
   }, []);
 
   const setUser = (newUser: User | null) => {
