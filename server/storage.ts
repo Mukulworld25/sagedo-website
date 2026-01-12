@@ -426,10 +426,16 @@ export class DatabaseStorage implements IStorage {
 
     // Recent signups (for click-to-view)
     const recentSignups = await db
-      .select({ id: users.id, email: users.email, name: users.name, createdAt: users.createdAt })
+      .select({
+        id: users.id,
+        email: users.email,
+        name: users.name,
+        mobileNumber: users.mobileNumber, // Added for Admin CRM
+        createdAt: users.createdAt
+      })
       .from(users)
       .orderBy(desc(users.createdAt))
-      .limit(10);
+      .limit(20); // Increased limit as per user request for "list"
 
     return {
       totalUsers: Number(userStats?.count || 0),

@@ -99,6 +99,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         email: user.email,
         time: new Date().toLocaleTimeString()
       });
+
+      // Send Welcome Email (Async)
+      const { sendWelcomeEmail } = await import('./email');
+      sendWelcomeEmail(user.email, user.name || 'Friend').catch(e => console.error("Welcome mail failed:", e));
+
     } catch (error: any) {
       res.status(400).json({ message: error.message });
     }

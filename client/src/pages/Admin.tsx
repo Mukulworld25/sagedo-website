@@ -302,6 +302,7 @@ export default function Admin() {
             <TabsTrigger value="orders">Orders</TabsTrigger>
             <TabsTrigger value="users">Users</TabsTrigger>
             <TabsTrigger value="visitors">Live Traffic</TabsTrigger>
+            <TabsTrigger value="marketing">Marketing Ops</TabsTrigger>
             <TabsTrigger value="feedback">Feedback</TabsTrigger>
             <TabsTrigger value="portfolio">Portfolio</TabsTrigger>
           </TabsList>
@@ -402,13 +403,52 @@ export default function Admin() {
               <CardContent>
                 <div className="space-y-4">
                   {stats?.recentSignups?.map((u: any) => (
-                    <div key={u.id} className="flex items-center justify-between border-b pb-2">
-                      <div>
-                        <p className="font-medium">{u.name || "No Name"}</p>
-                        <p className="text-sm text-muted-foreground">{u.email}</p>
+                    <div key={u.id} className="flex items-center justify-between border-b pb-2 last:border-0 hover:bg-muted/30 p-2 rounded transition-colors group">
+                      <div className="flex-1 min-w-0 mr-4">
+                        <div className="flex items-center gap-2">
+                          <p className="font-medium truncate">{u.name || "No Name"}</p>
+                          <Badge variant="outline" className="text-[10px] h-4 px-1">{new Date(u.createdAt).toLocaleDateString()}</Badge>
+                        </div>
+                        <p className="text-sm text-muted-foreground truncate">{u.email}</p>
+                        {u.mobileNumber && (
+                          <p className="text-xs text-green-600 flex items-center mt-0.5">
+                            <Phone className="w-3 h-3 mr-1" /> {u.mobileNumber}
+                          </p>
+                        )}
                       </div>
-                      <div className="text-sm text-muted-foreground">
-                        {new Date(u.createdAt).toLocaleDateString()}
+
+                      {/* ACTION BUTTONS */}
+                      <div className="flex items-center gap-1 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-8 w-8 p-0 border-green-200 hover:bg-green-50 hover:text-green-600"
+                          title="WhatsApp Follow-up"
+                          onClick={() => {
+                            if (!u.mobileNumber) {
+                              toast({ title: "No Number", description: "User hasn't added a phone number.", variant: "destructive" });
+                              return;
+                            }
+                            const phone = u.mobileNumber.replace(/\s+/g, '').replace(/^(\d{10})$/, '+91$1');
+                            const text = `Hey ${u.name.split(' ')[0]}! Welcome to SageDo. 👋 Just wanted to personally thank you for joining. Have you tried our Resume Scorer yet?`;
+                            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+                          }}
+                        >
+                          <MessageSquare className="w-4 h-4" />
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-8 w-8 p-0"
+                          title="Send Email"
+                          onClick={() => {
+                            const subject = "Quick question about your resume";
+                            const body = `Hi ${u.name},\n\nSaw you just joined SageDo. Welcome!\n\nI wanted to personally reach out and see if you need any help with your resume or job search strategy?\n\nBest,\nThe SageDo Team`;
+                            window.open(`mailto:${u.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');
+                          }}
+                        >
+                          <Users className="w-4 h-4" />
+                        </Button>
                       </div>
                     </div>
                   ))}
@@ -482,6 +522,72 @@ export default function Admin() {
                 </div>
               </CardContent>
             </Card>
+          </TabsContent>
+
+          <TabsContent value="marketing">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+              {/* 1. SCRIPT FACTORY */}
+              <Card className="col-span-4">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <MessageSquare className="w-5 h-5 text-purple-500" /> Viral Script Factory
+                  </CardTitle>
+                  <CardDescription>Generate scripts for IG Reels & Shorts.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-2 gap-2">
+                    <Button variant="outline" className="justify-start" onClick={() => navigator.clipboard.writeText(`Hook: "Stop sending this trash to recruiters!"\n\nShow: Cross out old resume.\n\nVoice: "This Objective is from 2005. Nobody cares. Replace it with a Power Summary. Numbers. Logic. Impact."\n\nShow: Glowing New Resume.\n\nCTA: "Link in bio to fix yours for ₹99."`)}>
+                      🔥 The Resume Roast
+                    </Button>
+                    <Button variant="outline" className="justify-start" onClick={() => navigator.clipboard.writeText(`Hook: "I lied to you. Use this AI tool instead."\n\nBody: "Everyone says use ChatGPT for resumes. Wrong. It makes you sound like a bot. Use SageDo. It scanning the job description first."\n\nCTA: "Try it free. Link in bio."`)}>
+                      🎭 The "Sisinty" Hook
+                    </Button>
+                    <Button variant="outline" className="justify-start" onClick={() => navigator.clipboard.writeText(`Hook: "How to double your salary in 2026?"\n\nBody: "It's not hard work. It's Perceived Value. If your resume looks cheap, you are cheap. We fix the look and the logic."\n\nCTA: "Fix it for ₹99. DM me 'FIX'."`)}>
+                      💰 The Salary Hack
+                    </Button>
+                    <Button variant="outline" className="justify-start" onClick={() => navigator.clipboard.writeText(`Hook: "Stop applying on LinkedIn Easy Apply."\n\nBody: "You are competing with 500 people. Instead, fix your resume with SageDo, find the hiring manager, and DM them this script..."\n\nCTA: "Read caption for script."`)}>
+                      🛑 The "Don't Do This"
+                    </Button>
+                  </div>
+                  <div className="bg-muted p-4 rounded-md text-xs font-mono text-muted-foreground">
+                    Target: Students & Job Seekers. Format: 9:16 Vertical Video.
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* 2. AUTOMATION & TEMPLATES */}
+              <Card className="col-span-3">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <TrendingUp className="w-5 h-5 text-blue-500" /> Outreach Automation
+                  </CardTitle>
+                  <CardDescription>One-click copy for cold outreach.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="space-y-2">
+                    <Label>LinkedIn Cold DM</Label>
+                    <div className="flex gap-2">
+                      <Input value="Hi [Name], I noticed you're looking for [Role]. We reviewed your profile and found 2 quick fixes to double visibility. Mind if I send them? (No cost)." readOnly className="bg-muted/50" />
+                      <Button size="icon" variant="outline" onClick={() => navigator.clipboard.writeText("Hi [Name], I noticed you're looking for [Role]. We reviewed your profile and found 2 quick fixes to double visibility. Mind if I send them? (No cost).")}><Download className="w-4 h-4" /></Button>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label>WhatsApp Follow-up</Label>
+                    <div className="flex gap-2">
+                      <Input value="Hey! Just checking if you tried the Resume Scorer? It's free and takes 30 seconds: sagedo.in/tool" readOnly className="bg-muted/50" />
+                      <Button size="icon" variant="outline" onClick={() => navigator.clipboard.writeText("Hey! Just checking if you tried the Resume Scorer? It's free and takes 30 seconds: sagedo.in/tool")}><Download className="w-4 h-4" /></Button>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Closing (Urgency)</Label>
+                    <div className="flex gap-2">
+                      <Input value="Flash Sale ends in 2 hours! Get the full review for ₹99. Link: sagedo.in/pay" readOnly className="bg-muted/50" />
+                      <Button size="icon" variant="outline" onClick={() => navigator.clipboard.writeText("Flash Sale ends in 2 hours! Get the full review for ₹99. Link: sagedo.in/pay")}><Download className="w-4 h-4" /></Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </TabsContent>
 
           <TabsContent value="portfolio">

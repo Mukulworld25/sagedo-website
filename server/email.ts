@@ -396,3 +396,57 @@ export async function sendVerificationEmail(email: string, name: string, token: 
     throw error;
   }
 }
+
+// ============================================
+// 8. WELCOME EMAIL (NEW USER)
+// ============================================
+export async function sendWelcomeEmail(email: string, name: string) {
+  try {
+    const { error } = await resend.emails.send({
+      from: 'SAGE DO <noreply@sagedo.in>',
+      to: [email],
+      subject: 'Welcome to the Future of Work! 🚀 - SAGE DO',
+      html: `
+        <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #1a1a2e; color: #ffffff; padding: 30px; border-radius: 16px;">
+          <h1 style="color: #f43f5e; font-size: 28px;">Welcome to SAGE DO! 🌟</h1>
+          <p style="color: #e2e8f0;">Hey ${name},</p>
+          <p style="color: #e2e8f0;">Thanks for joining the revolution. You just took the first step towards a smarter career.</p>
+          
+          <div style="background: #2d2d44; padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #10b981;">
+            <p style="color: #ffffff; font-weight: bold; margin: 0 0 10px 0;">🚀 Quick Start Guide:</p>
+            <ul style="color: #e2e8f0; padding-left: 20px; margin: 0;">
+              <li style="margin-bottom: 8px;">Check your <strong>Dashboard</strong> for free AI tools.</li>
+              <li style="margin-bottom: 8px;">Upload your resume for a <strong>Free ATS Score</strong>.</li>
+              <li style="margin-bottom: 8px;">Need help? Reply to this email!</li>
+            </ul>
+          </div>
+
+          <p style="color: #94a3b8;">
+            <strong>Pro Tip:</strong> We have a secret "Resume Fixer" service that is currently 50% off for new members. 
+            <a href="https://sagedo.in/services" style="color: #f43f5e; text-decoration: none;">Check it out here.</a>
+          </p>
+          
+          <div style="text-align: center; margin: 32px 0;">
+            <a href="https://sagedo.in/dashboard" style="display: inline-block; background: linear-gradient(to right, #f43f5e, #db2777); color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: bold;">
+              Go to Dashboard
+            </a>
+          </div>
+          
+          <p style="margin-top: 32px; color: #94a3b8; font-size: 14px;">
+            Questions? WhatsApp us: <strong>+91 7018709291</strong>
+            <br>— The SAGE DO AI Crew
+          </p>
+        </div>
+      `,
+    });
+
+    if (error) {
+      console.error('Welcome email error:', error);
+      throw new Error(error.message);
+    }
+    console.log('✉️ Welcome email sent to:', email);
+  } catch (error) {
+    console.error('Failed to send welcome email:', error);
+    // Don't throw, just log
+  }
+}
