@@ -443,8 +443,8 @@ export default function Admin() {
                           title="Send Email"
                           onClick={() => {
                             const subject = "Quick question about your resume";
-                            const body = `Hi ${u.name},\n\nSaw you just joined SageDo. Welcome!\n\nI wanted to personally reach out and see if you need any help with your resume or job search strategy?\n\nBest,\nThe SageDo Team`;
-                            window.open(`mailto:${u.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');
+                            const body = `Hi ${u.name.split(' ')[0]},\n\nSaw you just joined SageDo. Welcome!\n\nI wanted to personally reach out and see if you need any help with your resume or job search strategy?\n\nBest,\nThe SageDo Team`;
+                            window.location.href = `mailto:${u.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                           }}
                         >
                           <Users className="w-4 h-4" />
