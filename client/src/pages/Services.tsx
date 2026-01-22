@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { ExperienceScore } from "@/components/ExperienceScore";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,7 +17,7 @@ export default function Services() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedService, setSelectedService] = useState<ServiceDetail | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const { toast } = useToast();
   const [, navigate] = useLocation();
 
@@ -35,20 +36,61 @@ export default function Services() {
 
   // Search across ALL categories when there's a search query
   // Otherwise, filter by active category
-  // Services with category "All" appear in every tab
-  const filteredServices = allServices.filter((service) => {
-    const matchesCategory = service.category === activeCategory || service.category === "All";
-    const matchesSearch = service.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      service.description.toLowerCase().includes(searchQuery.toLowerCase());
+  // --- PERSONALIZATION LOGIC ---
 
-    // If there's a search query, search ALL services (ignore category)
-    if (searchQuery.trim().length > 0) {
-      return matchesSearch;
+  // 1. Auto-Select Category based on Profession
+  useEffect(() => {
+    if (user?.profession) {
+      const prof = user.profession.toLowerCase();
+      if (prof.includes("business") || prof.includes("owner") || prof.includes("founder")) {
+        setActiveCategory("Business");
+      } else if (prof.includes("student") || prof.includes("study")) {
+        setActiveCategory("Student");
+      } else if (prof.includes("freelance") || prof.includes("developer") || prof.includes("designer")) {
+        setActiveCategory("Professional");
+      }
+    }
+  }, [user]);
+
+  // 2. Smart Sorting (Addictive Re-ordering)
+  const sortedServices = useMemo(() => {
+    let services = [...allServices];
+
+    // Sort based on "Smart Priority" if user has a profession
+    if (user?.profession) {
+      services.sort((a, b) => {
+        const prof = user.profession?.toLowerCase() || "";
+        let scoreA = 0;
+        let scoreB = 0;
+
+        // Business Priorities
+        if (prof.includes("business")) {
+          if (a.name.includes("Setup") || a.name.includes("Review") || a.name.includes("WhatsApp")) scoreA += 10;
+          if (b.name.includes("Setup") || b.name.includes("Review") || b.name.includes("WhatsApp")) scoreB += 10;
+        }
+        // Student Priorities
+        if (prof.includes("student")) {
+          if (a.name.includes("Resume") || a.name.includes("Career") || a.name.includes("Interview")) scoreA += 10;
+          if (b.name.includes("Resume") || b.name.includes("Career") || b.name.includes("Interview")) scoreB += 10;
+        }
+
+        return scoreB - scoreA;
+      });
     }
 
-    // If no search query, filter by category (including "All" services)
-    return matchesCategory;
-  });
+    // Then filter by category and search
+    return services.filter((service) => {
+      // Services with category "All" appear in every tab
+      const matchesCategory = service.category === activeCategory || service.category === "All";
+      const matchesSearch = service.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        service.description.toLowerCase().includes(searchQuery.toLowerCase());
+
+      if (searchQuery.trim().length > 0) return matchesSearch;
+      return matchesCategory;
+    });
+  }, [activeCategory, searchQuery, user]);
+
+  const filteredServices = sortedServices;
 
   return (
     <>
@@ -77,12 +119,67 @@ export default function Services() {
             </div>
             <p className="text-sm text-primary font-medium mb-2">Hi! I'm here to help you 👋</p>
             <h1 className="text-4xl md:text-5xl font-black text-foreground mb-4">
-              An AI Assistant for Every Part of Your Life
+              {user?.profession
+                ? `Command Center for ${user.profession}s`
+                : "An AI Assistant for Every Part of Your Life"}
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground">
               Click a category to see what we can solve for you.
             </p>
           </div>
+
+          {/* Experience Score (Gamification) */}
+          <ExperienceScore user={user} />
+
+          {/* Flagship Banner (Business Only) */}
+          {user?.profession?.toLowerCase().includes("business") && (
+            <div className="mb-12 p-1 rounded-3xl bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 shadow-2xl">
+              <div className="bg-neutral-950 rounded-[22px] p-8 relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-4 opacity-20 transform translate-x-10 -translate-y-10">
+                  <div className="w-64 h-64 bg-amber-500 rounded-full blur-3xl"></div>
+                </div>
+
+                <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
+                  <div className="text-center md:text-left flex-1">
+                    <Badge className="mb-4 bg-amber-500/20 text-amber-500 border-amber-500/50">✨ RECOMMENDED FOR BUSINESS OWNERS</Badge>
+                    <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+                      Get Your "AI Power Setup"
+                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">Done in 72 Hours.</span>
+                    </h2>
+                    <p className="text-lg text-neutral-400 mb-6 max-w-xl">
+                      We'll manually install a <strong>WhatsApp Auto-Responder</strong>, <strong>Google Review Booster</strong>, and <strong>Social Content System</strong> for you. No tech skills needed.
+                    </p>
+                    <div className="flex items-center gap-4 justify-center md:justify-start">
+                      <div className="text-left">
+                        <p className="text-sm text-neutral-500 line-through">₹4,999</p>
+                        <p className="text-3xl font-bold text-white">₹1,999</p>
+                      </div>
+                      <Button size="lg" className="bg-amber-600 hover:bg-amber-700 text-white font-bold px-8 h-14 rounded-xl shadow-lg shadow-amber-900/20">
+                        Get It Now
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="hidden md:block w-1/3">
+                    {/* Placeholder for a cool visual or just keep it clean */}
+                    <div className="grid grid-cols-2 gap-3 opacity-80">
+                      <div className="p-4 bg-neutral-900 rounded-xl border border-white/5 text-center">
+                        <div className="text-2xl mb-1">💬</div>
+                        <div className="text-xs font-bold text-neutral-400">Auto-Reply</div>
+                      </div>
+                      <div className="p-4 bg-neutral-900 rounded-xl border border-white/5 text-center">
+                        <div className="text-2xl mb-1">⭐</div>
+                        <div className="text-xs font-bold text-neutral-400">5-Star Reviews</div>
+                      </div>
+                      <div className="p-4 bg-neutral-900 rounded-xl border border-white/5 text-center col-span-2">
+                        <div className="text-2xl mb-1">📈</div>
+                        <div className="text-xs font-bold text-neutral-400">More Leads</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Welcome Bonus Banner */}
           <div className="mb-12 p-8 rounded-3xl bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-900 border border-amber-500/30 shadow-xl">
