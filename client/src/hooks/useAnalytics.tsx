@@ -25,4 +25,12 @@ export function useAnalytics() {
         }
 
     }, [location]);
+
+    const trackEvent = (action: string, params: Record<string, any> = {}) => {
+        if (typeof window.gtag === 'function') {
+            window.gtag('event', action, params);
+        }
+    };
+
+    return { trackEvent };
 }

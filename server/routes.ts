@@ -318,9 +318,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
       req.session.user = { ...req.session.user, profileImageUrl: null };
 
       res.json({ success: true, user: updatedUser });
+      res.json({ success: true, user: updatedUser });
     } catch (error) {
       console.error('Error deleting profile picture:', error);
       res.status(500).json({ message: 'Failed to delete profile picture' });
+    }
+  });
+
+  // Update Push Token
+  app.post('/api/user/push-token', async (req: any, res) => {
+    if (!req.session.user) {
+      return res.status(401).json({ message: 'Not authenticated' });
+    }
+
+    try {
+      const { pushToken } = req.body;
+      if (!pushToken) {
+        return res.status(400).json({ message: 'Push token required' });
+      }
+
+      // Update user in DB
+      const updatedUser = await storage.updateUser(req.session.user.id, {
+        pushToken
+      });
+
+      console.log(`[Push] Token updated for user ${req.session.user.email}`);
+      res.json({ success: true });
+    } catch (error) {
+      console.error('Error updating push token:', error);
+      res.status(500).json({ message: 'Failed to update push token' });
     }
   });
 

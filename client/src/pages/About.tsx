@@ -22,8 +22,8 @@ export default function About() {
     { name: "Instagram", icon: Instagram, handle: "@sagedoai00", status: "Connect", color: "from-pink-600 to-purple-600", url: "https://www.instagram.com/sagedoai00/", isActive: true },
     { name: "LinkedIn", icon: Linkedin, handle: "SAGE DO", status: "Connect", color: "from-blue-600 to-blue-700", url: "https://www.linkedin.com/in/sage-do-1760483a3/", isActive: true },
     { name: "Email", icon: Mail, handle: "hello@sagedo.in", status: "Connect", color: "from-orange-600 to-red-600", url: "mailto:hello@sagedo.in", isActive: true },
-    { name: "WhatsApp", icon: MessageCircle, handle: "+91 6284925684", status: "Connect", color: "from-green-600 to-emerald-600", url: "https://wa.me/916284925684", isActive: true },
-    { name: "YouTube", icon: Youtube, handle: "@sagedo", status: "Coming Soon", color: "from-red-600 to-red-700", url: "#", isActive: false },
+    { name: "WhatsApp", icon: MessageCircle, handle: "+91 6284925684", status: "Connect", color: "from-green-600 to-emerald-600", url: "https://wa.me/916284925684?text=Hi%20SAGE%20DO,%20I%20am%20interested%20in%20your%20services", isActive: true },
+    { name: "YouTube", icon: Youtube, handle: "@SageDo-Muk", status: "Active", color: "from-red-600 to-red-700", url: "https://youtube.com/@SageDo-Muk", isActive: true },
   ];
 
   return (

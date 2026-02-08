@@ -4,10 +4,20 @@ import { CheckCircle2, Home, LayoutDashboard } from "lucide-react";
 import { useEffect } from "react";
 import confetti from "canvas-confetti";
 
+import { useQuery } from "@tanstack/react-query";
+import { useAnalytics } from "@/hooks/useAnalytics";
+import { Order } from "@shared/schema";
+
 export default function OrderSuccess() {
     const search = useSearch();
     const params = new URLSearchParams(search);
     const orderId = params.get("orderId");
+    const { trackEvent } = useAnalytics();
+
+    const { data: order } = useQuery<Order>({
+        queryKey: [`/api/orders/${orderId}`],
+        enabled: !!orderId
+    });
 
     useEffect(() => {
         // Fire confetti on load
@@ -42,6 +52,20 @@ export default function OrderSuccess() {
 
         return () => clearInterval(interval);
     }, []);
+
+    useEffect(() => {
+        if (order) {
+            trackEvent('purchase', {
+                transaction_id: order.id,
+                value: Number(order.amount),
+                currency: "INR",
+                items: [{
+                    item_name: order.serviceType,
+                    price: Number(order.amount)
+                }]
+            });
+        }
+    }, [order]);
 
     return (
         <div className="min-h-screen pt-24 pb-16 px-4 flex items-center justify-center bg-background">
