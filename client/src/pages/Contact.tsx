@@ -191,7 +191,7 @@ export default function Contact() {
                                     <div>
                                         <h3 className="font-semibold">WhatsApp</h3>
                                         <a
-                                            href="https://wa.me/916284925684?text=Hi%20SAGE%20DO,%20I%20have%20a%20query"
+                                            href="https://wa.me/916284925684"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="text-[#25D366] hover:underline"
@@ -240,7 +240,7 @@ export default function Contact() {
                                 Chat with us directly on WhatsApp for instant support.
                             </p>
                             <a
-                                href="https://wa.me/916284925684?text=Hi%20SAGE%20DO,%20I%20need%20urgent%20support"
+                                href="https://wa.me/916284925684?text=Hi,%20I%20need%20help%20with%20SAGE%20DO"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >

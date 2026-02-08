@@ -126,18 +126,12 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Newsletter Section - High Value */}
-        <div className="py-10 border-t border-border/20 mb-8 relative overflow-hidden rounded-2xl bg-neutral-800/30 px-6 sm:px-10">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[50px] pointer-events-none" />
-
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
-            <div className="max-w-md">
-              <h4 className="text-xl font-bold text-foreground mb-2 flex items-center gap-2">
-                <span className="animate-pulse">🚀</span> Join the Top 1%
-              </h4>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Get the exact AI workflows, prompt templates, and growth hacks that are making people rich in 2026. No spam, only leverage.
-              </p>
+        {/* Newsletter Section */}
+        <div className="py-8 border-t border-border/20 mb-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h4 className="font-semibold text-foreground mb-1">Stay Updated</h4>
+              <p className="text-sm text-muted-foreground">Get tips, updates, and exclusive offers.</p>
             </div>
             <form
               onSubmit={(e) => {
@@ -149,24 +143,24 @@ export default function Footer() {
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({ email })
                 }).then(() => {
-                  alert('Welcome to the inner circle. 🥂');
+                  alert('Thanks for subscribing! 🎉');
                   form.reset();
-                }).catch(() => alert('System busy. Try again.'));
+                }).catch(() => alert('Something went wrong. Try again.'));
               }}
-              className="flex flex-col sm:flex-row gap-3 w-full md:w-auto"
+              className="flex gap-2 w-full md:w-auto"
             >
               <input
                 type="email"
                 name="email"
                 required
-                placeholder="vip@example.com"
-                className="px-5 py-3 rounded-xl bg-neutral-900 border border-neutral-700 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 w-full sm:w-64 transition-all"
+                placeholder="Enter your email"
+                className="px-4 py-2 rounded-lg bg-neutral-800 border border-neutral-700 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 w-full md:w-64"
               />
               <button
                 type="submit"
-                className="px-6 py-3 bg-gradient-to-r from-primary to-orange-600 text-white rounded-xl font-bold hover:opacity-90 transition-all hover:scale-105 whitespace-nowrap shadow-lg shadow-primary/20"
+                className="px-4 py-2 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors whitespace-nowrap"
               >
-                Get Access
+                Subscribe
               </button>
             </form>
           </div>
