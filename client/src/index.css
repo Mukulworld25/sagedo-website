@@ -43,6 +43,11 @@
   --chart-3: 0 0% 50%;
   --chart-4: 280 85% 55%;
   --chart-5: 160 75% 45%;
+  
+  /* CLASSY ROYAL THEME VARIABLES */
+  --royal-gold: 45 93% 47%;      /* #eab308 / #d97706 hybrid */
+  --royal-black: 0 0% 4%;        /* #0a0a0a */
+  --royal-platinum: 210 40% 96%; /* #f1f5f9 */
   --font-sans: 'Inter', sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
@@ -372,5 +377,26 @@
 
   .glass:hover {
     border-color: #6ba8ff;
+  }
+
+  /* CLASSY ROYAL UTILITIES */
+  .royal-glow {
+    box-shadow: 0 0 20px -5px hsl(var(--royal-gold) / 0.3);
+  }
+  
+  .royal-border {
+    border: 1px solid hsl(var(--royal-gold) / 0.5);
+  }
+
+  .text-gold {
+    color: hsl(var(--royal-gold));
+  }
+
+  .bg-gold {
+    background-color: hsl(var(--royal-gold));
+  }
+  
+  .bg-royal-black {
+    background-color: hsl(var(--royal-black));
   }
 }
