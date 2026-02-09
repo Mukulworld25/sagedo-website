@@ -213,7 +213,7 @@ export default function Services() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {/* CARD 1: LAUNCHPAD */}
+                  {/* CARD 1: AI LAUNCHPAD */}
                   <div className="group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-amber-500/50 transition-all hover:-translate-y-1 duration-300">
                     <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                       <Rocket className="w-24 h-24 text-amber-500" />
@@ -221,23 +221,23 @@ export default function Services() {
                     <div className="mb-4 p-2 bg-amber-500/10 w-fit rounded-lg text-amber-500">
                       <Zap className="w-6 h-6" />
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-1">Bootstrapper's Launchpad</h3>
-                    <p className="text-gray-400 text-sm mb-6">Execution velocity for solo founders.</p>
+                    <h3 className="text-xl font-bold text-white mb-1">AI Launchpad</h3>
+                    <p className="text-gray-400 text-sm mb-6">Validation velocity for solo founders.</p>
                     <div className="flex items-baseline gap-1 mb-6">
                       <span className="text-3xl font-black text-white">₹15,000</span>
                       <span className="text-xs text-gray-500">/ one-time</span>
                     </div>
                     <ul className="space-y-3 mb-8">
-                      <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Website (5 Pages)</li>
-                      <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Brand Identity</li>
-                      <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Social Setup</li>
+                      <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> AI Landing Page</li>
+                      <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Automated Lead Capture</li>
+                      <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Basic Brand Identity</li>
                     </ul>
                     <Button className="w-full bg-white/10 hover:bg-white/20 text-white border-none font-semibold">
                       Deploy Now
                     </Button>
                   </div>
 
-                  {/* CARD 2: CO-FOUNDER (HERO) */}
+                  {/* CARD 2: AI CO-FOUNDER (HERO) */}
                   <div className="relative bg-[#0F0F0F] border border-amber-500/50 rounded-2xl p-8 shadow-[0_0_40px_-10px_rgba(234,179,8,0.2)] scale-105 z-10">
                     <div className="absolute top-0 center -translate-y-1/2 left-0 right-0 flex justify-center">
                       <span className="bg-amber-500 text-black text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">Most Popular</span>
@@ -245,7 +245,7 @@ export default function Services() {
                     <div className="mb-6 p-3 bg-amber-500 text-black w-fit rounded-xl">
                       <Crown className="w-8 h-8" />
                     </div>
-                    <h3 className="text-2xl font-black text-white mb-2">The Co-Founder Replacement</h3>
+                    <h3 className="text-2xl font-black text-white mb-2">AI Co-Founder System</h3>
                     <p className="text-gray-400 text-sm mb-8">Complete technical & creative execution. You sell, we build.</p>
                     <div className="flex items-baseline gap-1 mb-8">
                       <span className="text-5xl font-black text-white">₹35,000</span>
@@ -258,9 +258,9 @@ export default function Services() {
                       </div>
                       <ul className="space-y-3">
                         <li className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500" /> Custom Website & App Layout</li>
+                        <li className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500" /> 24/7 Sales Chatbot</li>
                         <li className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500" /> Automated CRM & Leads</li>
-                        <li className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500" /> Payment Gateway Integration</li>
-                        <li className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500" /> 30 Days Content Library</li>
+                        <li className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500" /> 30 Days AI Content</li>
                       </ul>
                     </div>
                     <a href="https://calendly.com/sagedo-ai/30min" target="_blank" rel="noopener noreferrer">
@@ -270,7 +270,7 @@ export default function Services() {
                     </a>
                   </div>
 
-                  {/* CARD 3: UNICORN */}
+                  {/* CARD 3: SINGULARITY SCALE */}
                   <div className="group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-amber-500/50 transition-all hover:-translate-y-1 duration-300">
                     <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                       <TrendingUp className="w-24 h-24 text-amber-500" />
@@ -278,16 +278,16 @@ export default function Services() {
                     <div className="mb-4 p-2 bg-amber-500/10 w-fit rounded-lg text-amber-500">
                       <TrendingUp className="w-6 h-6" />
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-1">Unicorn Trajectory</h3>
+                    <h3 className="text-xl font-bold text-white mb-1">The Singularity Scale</h3>
                     <p className="text-gray-400 text-sm mb-6">Scale-ready infrastructure.</p>
                     <div className="flex items-baseline gap-1 mb-6">
                       <span className="text-3xl font-black text-white">₹50,000</span>
                       <span className="text-xs text-gray-500">/ one-time</span>
                     </div>
                     <ul className="space-y-3 mb-8">
-                      <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Full Stack Web App</li>
-                      <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Mobile App (iOS/Android)</li>
-                      <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> 3 Months Support</li>
+                      <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Full Stack Web + Mobile App</li>
+                      <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Admin "God Mode" Dashboard</li>
+                      <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Zero-Touch Automation</li>
                     </ul>
                     <Button className="w-full bg-white/10 hover:bg-white/20 text-white border-none font-semibold">
                       Start Scaling
