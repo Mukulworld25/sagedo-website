@@ -58,16 +58,16 @@ export default function About() {
                 </div>
               </div>
               <h1 className="text-4xl md:text-5xl font-black text-foreground">
-                About SAGEDO AI
+                Who We Are
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                We're on a mission to free you from daily grunt work so you can focus on what truly matters.
+                SAGE DO was founded by <strong className="text-foreground">Mukul Dhiman</strong>, an Aerospace Engineer who previously built aircraft structures for <strong className="text-primary">Lockheed Martin (C130J Super Hercules, F16 Fighter Jets)</strong>.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">SAGEDO AI</strong> is your intelligent assistant for business, education, career, and personal growth. We leverage cutting-edge AI to handle your repetitive tasks—from creating ad copies and presentations to designing resumes and editing photos.
+                We bring that same <strong>military-grade precision</strong> and speed to startup execution. In the aerospace world, efficiency isn't a luxury—it's a requirement. We apply the same principles to launching your business.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Founded in India 🇮🇳, we believe in empowering individuals and businesses to achieve more by doing less grunt work. Our tagline says it all: <em className="text-primary font-semibold">"We Do Your Daily Grind, You Do Grand Things."</em>
+                <em className="text-primary font-semibold">"No delays. No excuses. Just delivery."</em> — That's our promise to bootstrapped founders.
               </p>
             </div>
             <div className="relative">

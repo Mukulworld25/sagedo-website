@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Link, useLocation } from "wouter";
-import { Search, ArrowRight, Star, Gift } from "lucide-react";
+import { Search, ArrowRight, Star, Gift, Zap } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
@@ -180,6 +180,112 @@ export default function Services() {
               </div>
             </div>
           )}
+
+          {/* NEW: Launch Packages Section */}
+          <div className="mb-16" id="packages">
+            <div className="text-center mb-10">
+              <Badge className="mb-4 bg-primary/20 text-primary border-primary/50">For Founders & Startups</Badge>
+              <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
+                Launch Your Startup in &lt; 2 Weeks
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Complete technical & creative execution. You focus on sales, we build the rest.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Package 1: Starter */}
+              <Card className="glass p-8 hover:border-primary/50 transition-all duration-300 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <div className="w-32 h-32 bg-blue-500 rounded-full blur-3xl"></div>
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-2">Starter Launch</h3>
+                <div className="flex items-baseline gap-1 mb-6">
+                  <span className="text-3xl font-black text-foreground">₹15,000</span>
+                  <span className="text-sm text-muted-foreground">/ one-time</span>
+                </div>
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center gap-3">
+                    <div className="p-1 rounded-full bg-blue-500/20 text-blue-500"><Zap className="w-4 h-4" /></div>
+                    <span className="text-sm font-medium">7 Days Delivery</span>
+                  </div>
+                  <ul className="space-y-3 text-muted-foreground text-sm">
+                    <li className="flex gap-2"><span className="text-green-500">✓</span> Website (5 Core Pages)</li>
+                    <li className="flex gap-2"><span className="text-green-500">✓</span> Brand Essentials (Logo, Colors)</li>
+                    <li className="flex gap-2"><span className="text-green-500">✓</span> Social Media Setup</li>
+                    <li className="flex gap-2"><span className="text-green-500">✓</span> Basic SEO</li>
+                  </ul>
+                </div>
+                <a href="https://calendly.com/sagedo-ai/30min" target="_blank" rel="noopener noreferrer">
+                  <Button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold">
+                    Get Started
+                  </Button>
+                </a>
+              </Card>
+
+              {/* Package 2: Full Launch (Highlighted) */}
+              <Card className="glass p-8 border-primary shadow-lg shadow-primary/10 relative overflow-hidden transform md:-translate-y-4">
+                <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-bl-lg">
+                  MOST POPULAR
+                </div>
+                <div className="absolute top-0 right-0 p-4 opacity-20">
+                  <div className="w-40 h-40 bg-primary rounded-full blur-3xl"></div>
+                </div>
+                <h3 className="text-2xl font-bold text-primary mb-2">Full Launch</h3>
+                <div className="flex items-baseline gap-1 mb-6">
+                  <span className="text-4xl font-black text-foreground">₹35,000</span>
+                  <span className="text-sm text-muted-foreground">/ one-time</span>
+                </div>
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center gap-3">
+                    <div className="p-1 rounded-full bg-primary/20 text-primary"><Zap className="w-4 h-4" /></div>
+                    <span className="text-sm font-medium">10-12 Days Delivery</span>
+                  </div>
+                  <ul className="space-y-3 text-foreground text-sm font-medium">
+                    <li className="flex gap-2"><span className="text-primary">✓</span> Complete Custom Website</li>
+                    <li className="flex gap-2"><span className="text-primary">✓</span> Full Branding Suite</li>
+                    <li className="flex gap-2"><span className="text-primary">✓</span> Content Library (30 days)</li>
+                    <li className="flex gap-2"><span className="text-primary">✓</span> CRM & Lead Auto-Responder</li>
+                    <li className="flex gap-2"><span className="text-primary">✓</span> Payment Gateway Setup</li>
+                  </ul>
+                </div>
+                <a href="https://calendly.com/sagedo-ai/30min" target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold h-12 shadow-lg shadow-primary/25">
+                    Select Full Launch
+                  </Button>
+                </a>
+              </Card>
+
+              {/* Package 3: Premium */}
+              <Card className="glass p-8 hover:border-amber-500/50 transition-all duration-300 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <div className="w-32 h-32 bg-amber-500 rounded-full blur-3xl"></div>
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-2">Premium</h3>
+                <div className="flex items-baseline gap-1 mb-6">
+                  <span className="text-3xl font-black text-foreground">₹50,000</span>
+                  <span className="text-sm text-muted-foreground">/ one-time</span>
+                </div>
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center gap-3">
+                    <div className="p-1 rounded-full bg-amber-500/20 text-amber-500"><Zap className="w-4 h-4" /></div>
+                    <span className="text-sm font-medium">15 Days Delivery</span>
+                  </div>
+                  <ul className="space-y-3 text-muted-foreground text-sm">
+                    <li className="flex gap-2"><span className="text-green-500">✓</span> Mobile App (Android/iOS Key)</li>
+                    <li className="flex gap-2"><span className="text-green-500">✓</span> Web App Functionality</li>
+                    <li className="flex gap-2"><span className="text-green-500">✓</span> Custom Process Automation</li>
+                    <li className="flex gap-2"><span className="text-green-500">✓</span> 3 Months AI Support</li>
+                  </ul>
+                </div>
+                <a href="https://calendly.com/sagedo-ai/30min" target="_blank" rel="noopener noreferrer">
+                  <Button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold">
+                    Go Premium
+                  </Button>
+                </a>
+              </Card>
+            </div>
+          </div>
 
           {/* Welcome Bonus Banner */}
           <div className="mb-12 p-8 rounded-3xl bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-900 border border-amber-500/30 shadow-xl">

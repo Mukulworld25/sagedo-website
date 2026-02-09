@@ -29,9 +29,9 @@ export default function Home() {
   ];
 
   const testimonials = [
-    { name: "Priya S.", role: "MBA Student", text: "Got my entire research paper done in 24 hours. Saved my semester!", rating: 5 },
-    { name: "Rahul M.", role: "Startup Founder", text: "The LinkedIn optimization increased my profile views by 300%!", rating: 5 },
-    { name: "Ananya K.", role: "Content Creator", text: "Best reels scripts I've ever used. My engagement doubled!", rating: 5 }
+    { name: "Gurpreet S.", role: "Startup Founder, Punjab", text: "Most agencies quoted ₹3-5L and 3 months. SAGE DO delivered in 10 days for ₹35K. The quality exceeded expectations.", rating: 5 },
+    { name: "Anjali M.", role: "Healthcare Entrepreneur", text: "I was doing everything myself and burning out. SAGE DO took over execution completely. Now I focus on customers while they handle the tech.", rating: 5 },
+    { name: "Vikram R.", role: "Serial Entrepreneur", text: "As someone who's worked with 5+ agencies before, SAGE DO is different. No bullshit. Just execution.", rating: 5 }
   ];
 
   return (
@@ -102,7 +102,7 @@ export default function Home() {
 
           {/* Subheadline */}
           <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground font-medium mb-4 max-w-3xl mx-auto">
-            We Do Your Daily Grind, You Do Grand Things.
+            We help bootstrapped Indian founders go from idea to launched—without the agency prices or agency timelines.
           </p>
 
           {/* Description */}
@@ -112,32 +112,50 @@ export default function Home() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <Link href="/services">
+            <Link href="/services#packages">
               <Button size="lg" className="h-14 px-8 text-lg font-semibold bg-primary hover:bg-primary/90 rounded-xl shadow-lg shadow-primary/25 transition-all hover:scale-105">
-                Help Me! <ArrowRight className="ml-2 h-5 w-5" />
+                See Launch Packages <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Link href="/about">
+            <a href="https://calendly.com/sagedo-ai/30min" target="_blank" rel="noopener noreferrer">
               <Button size="lg" variant="outline" className="h-14 px-8 text-lg font-semibold rounded-xl border-border/50 hover:bg-muted/50 transition-all">
-                <Play className="mr-2 h-5 w-5" /> See How It Works
+                <Play className="mr-2 h-5 w-5" /> Book Strategy Call
               </Button>
-            </Link>
+            </a>
           </div>
 
           {/* Trust Signals - Minimal Pills */}
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-green-500" />
-              <span>150+ Happy Customers</span>
+              <span>67+ Founders Helped</span>
             </div>
             <div className="flex items-center gap-2">
               <Zap className="w-4 h-4 text-yellow-500" />
-              <span>24-48 Hour Delivery</span>
+              <span>7-15 Day Delivery</span>
             </div>
             <div className="flex items-center gap-2">
               <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
-              <span>4.8 Average Rating</span>
+              <span>₹10-50K Packages</span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NEW: The Execution Gap Section */}
+      <section className="py-20 bg-neutral-900 border-y border-neutral-800">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-black text-foreground mb-6">
+            The Execution Gap
+          </h2>
+          <p className="text-xl text-neutral-400 mb-8 leading-relaxed">
+            You know exactly what your startup needs. But traditional agencies want <strong className="text-destructive">₹2-5 Lakhs</strong> and <strong className="text-destructive">90 days</strong> to build it.
+          </p>
+          <div className="p-6 rounded-2xl bg-neutral-950 border border-neutral-800 inline-block">
+            <p className="text-lg font-medium text-primary">
+              We built SAGE DO to fix this. <br />
+              <span className="text-foreground"> Military-grade execution for founders who need to launch NOW.</span>
+            </p>
           </div>
         </div>
 

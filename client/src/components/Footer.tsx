@@ -31,7 +31,7 @@ export default function Footer() {
               <span className="text-xl font-bold text-foreground">SAGE DO</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              We do your daily grind, so you can do grand things. AI-powered services for students and professionals.
+              The 2-Week Execution Partner for Bootstrapped Founders. We build, you sell.
             </p>
             {/* Social/Contact Icons */}
             <div className="flex items-center gap-3 pt-2">
@@ -68,6 +68,11 @@ export default function Footer() {
               <li>
                 <Link href="/services">
                   <span className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Services</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/services#packages">
+                  <span className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Launch Packages</span>
                 </Link>
               </li>
               <li>
