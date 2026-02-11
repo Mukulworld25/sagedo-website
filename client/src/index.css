@@ -43,11 +43,14 @@
   --chart-3: 0 0% 50%;
   --chart-4: 280 85% 55%;
   --chart-5: 160 75% 45%;
-  
+
   /* CLASSY ROYAL THEME VARIABLES */
-  --royal-gold: 45 93% 47%;      /* #eab308 / #d97706 hybrid */
-  --royal-black: 0 0% 4%;        /* #0a0a0a */
-  --royal-platinum: 210 40% 96%; /* #f1f5f9 */
+  --royal-gold: 45 93% 47%;
+  /* #eab308 / #d97706 hybrid */
+  --royal-black: 0 0% 4%;
+  /* #0a0a0a */
+  --royal-platinum: 210 40% 96%;
+  /* #f1f5f9 */
   --font-sans: 'Inter', sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
@@ -172,7 +175,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
 
   html {
@@ -383,7 +386,7 @@
   .royal-glow {
     box-shadow: 0 0 20px -5px hsl(var(--royal-gold) / 0.3);
   }
-  
+
   .royal-border {
     border: 1px solid hsl(var(--royal-gold) / 0.5);
   }
@@ -395,8 +398,90 @@
   .bg-gold {
     background-color: hsl(var(--royal-gold));
   }
-  
+
   .bg-royal-black {
     background-color: hsl(var(--royal-black));
   }
+}
+
+/* ═══════════════════════════════════════════════
+   HERO SECTION 10/10 ANIMATIONS
+═══════════════════════════════════════════════ */
+
+/* Badge Pulse Glow */
+@keyframes badge-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+  }
+}
+
+.animate-badge-pulse {
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+/* Headline Stagger - Each line fades up with delay */
+@keyframes hero-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-line-1 {
+  animation: hero-fade-in-up 0.6s ease-out 0.2s both;
+}
+
+.animate-hero-line-2 {
+  animation: hero-fade-in-up 0.6s ease-out 0.4s both;
+}
+
+.animate-hero-line-3 {
+  animation: hero-fade-in-up 0.6s ease-out 0.6s both;
+}
+
+/* Grid Background Movement */
+@keyframes grid-move {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+.animate-grid-move {
+  animation: grid-move 20s linear infinite;
+}
+
+/* Floating Orbs */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 8s ease-in-out 2s infinite;
 }

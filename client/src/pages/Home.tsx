@@ -3,17 +3,11 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle2, Zap, Sparkles, Star, Gift, Play, ChevronRight } from "lucide-react";
+import { ArrowRight, CheckCircle2, Zap, Star, Gift, ChevronRight } from "lucide-react";
 import { useState } from "react";
 
 export default function Home() {
-  const [namasteClicked, setNamasteClicked] = useState(false);
   const [activeStep, setActiveStep] = useState(1);
-
-  const handleNamaste = () => {
-    setNamasteClicked(true);
-    setTimeout(() => setNamasteClicked(false), 2000);
-  };
 
   const categories = [
     { name: "Business", count: "10", description: "Landing pages, ads, automation & more", icon: "💼" },
@@ -38,109 +32,120 @@ export default function Home() {
     <div className="min-h-screen bg-background">
 
       {/* ═══════════════════════════════════════════════════════════════════
-          HERO SECTION - Clean, Impactful, Minimal
+          HERO SECTION - 10/10 Redesign: Badge → Headline → Stats → CTA
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
 
-        {/* Subtle Grid Pattern Background */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)',
-          backgroundSize: '60px 60px'
+        {/* Animated Grid Pattern Background */}
+        <div className="absolute inset-0 opacity-[0.03] animate-grid-move" style={{
+          backgroundImage: 'linear-gradient(rgba(255,0,0,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,0,0,.15) 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
         }} />
 
-        {/* ═══════════════════════════════════════════════════════════════
-            LAYER 1: Large AI Brain Logo Background - Enhanced visibility with red glow
-        ═══════════════════════════════════════════════════════════════ */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          {/* Red glow effect in center */}
-          <div className="absolute w-64 h-64 bg-primary/30 rounded-full blur-[100px]" />
-          <img
-            src="/sagedo_logo_pro_clean.png"
-            alt=""
-            className="relative w-[600px] h-[600px] md:w-[800px] md:h-[800px] object-contain opacity-[0.15]"
-            style={{ filter: 'contrast(1.2)' }}
-          />
-        </div>
+        {/* Radial Red Gradient Glow */}
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: 'radial-gradient(circle at top center, rgba(255,0,0,0.08) 0%, rgba(0,0,0,0) 70%)'
+        }} />
 
-        {/* Subtle Gradient Orbs - Grey and red tones */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neutral-600/15 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+        {/* Floating Orbs */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none animate-float" />
+        <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none animate-float-delayed" />
 
         {/* Hero Content */}
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24">
+        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24 pb-12">
 
-          {/* Small Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">AI + Human Excellence</span>
+          {/* 🏆 Pulsing Badge */}
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full mb-10 animate-badge-pulse"
+            style={{
+              background: 'rgba(255, 0, 0, 0.1)',
+              border: '1px solid rgba(255, 0, 0, 0.6)',
+              boxShadow: '0 0 20px rgba(255, 0, 0, 0.2)'
+            }}
+          >
+            <span className="text-sm">🏆</span>
+            <span className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider">
+              India's First AI + Human Hybrid Execution Team
+            </span>
           </div>
 
-          {/* Namaste Button - Subtle */}
-          <div className="mb-8">
-            <button
-              onClick={handleNamaste}
-              className={`
-                px-8 py-3 rounded-full font-bold text-lg transition-all duration-500
-                ${namasteClicked
-                  ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white scale-110 shadow-lg shadow-orange-500/30'
-                  : 'bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground'
-                }
-              `}
+          {/* 🔥 3-Line Stagger Headline */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-8">
+            <span className="block mb-2 text-foreground animate-hero-line-1">
+              Speed of AI.
+            </span>
+            <span className="block mb-2 animate-hero-line-2"
+              style={{
+                background: 'linear-gradient(180deg, rgba(255,255,255,0.7) 0%, #FFFFFF 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}
             >
-              {namasteClicked ? '🙏' : 'Namaste'}
-            </button>
-          </div>
-
-          {/* Main Headline */}
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tight mb-6">
-            <span className="text-foreground">SAGE DO</span>
-            <br />
-            <span className="bg-gradient-to-r from-primary via-destructive to-primary bg-clip-text text-transparent">
-              AI + Human Excellence
+              Precision of Humans.
+            </span>
+            <span className="block relative inline-block text-foreground animate-hero-line-3">
+              Excellence Guaranteed.
+              <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-[3px] rounded-full"
+                style={{ background: 'linear-gradient(90deg, #FF0000, #FF4444)' }}
+              />
             </span>
           </h1>
 
-          {/* Subheadline */}
-          <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground font-medium mb-4 max-w-4xl mx-auto">
-            India's first hybrid execution team combining AI speed with human precision for unmatched quality and reliability.
+          {/* Supporting Subheadline */}
+          <p className="text-lg sm:text-xl text-neutral-400 font-normal leading-relaxed max-w-[680px] mx-auto mb-10">
+            We combine AI automation with human expertise to deliver what agencies can't:{' '}
+            <span className="text-primary font-semibold">99.9% accuracy</span> in{' '}
+            <span className="text-primary font-semibold">24-48 hours</span>{' '}
+            at prices that make sense.
           </p>
 
-          {/* Description */}
-          <div className="flex flex-col gap-2 text-base sm:text-lg text-muted-foreground/80 max-w-2xl mx-auto mb-10">
-            <p>✅ AI handles volume | Humans ensure quality</p>
-            <p>✅ 24-48 hour delivery | 99.9% accuracy</p>
-            <p>✅ ₹0-₹50K packages | No hidden costs</p>
+          {/* 📊 Glassmorphism Stats Grid */}
+          <div className="max-w-xl mx-auto mb-10 p-6 sm:p-8 rounded-2xl grid grid-cols-2 gap-4 sm:gap-5"
+            style={{
+              background: 'rgba(255, 255, 255, 0.03)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              boxShadow: '0 4px 24px rgba(0, 0, 0, 0.3)'
+            }}
+          >
+            {[
+              { number: '67+', label: 'Projects Delivered' },
+              { number: '24-48h', label: 'Delivery' },
+              { number: '99.9%', label: 'Accuracy' },
+              { number: '₹10-50K', label: 'Packages' },
+            ].map((stat) => (
+              <div key={stat.label} className="flex items-center gap-2 sm:gap-3 text-left">
+                <span className="text-primary font-bold text-lg">✓</span>
+                <span className="text-white text-sm sm:text-base">
+                  <strong className="text-primary font-bold">{stat.number}</strong>{' '}
+                  {stat.label}
+                </span>
+              </div>
+            ))}
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <Link href="/services#packages">
-              <Button size="lg" className="h-14 px-8 text-lg font-semibold bg-primary hover:bg-primary/90 rounded-xl shadow-lg shadow-primary/25 transition-all hover:scale-105">
-                See Launch Packages <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
+          {/* 🔴 CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
             <a href="https://calendly.com/sagedo-ai/30min" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="outline" className="h-14 px-8 text-lg font-semibold rounded-xl border-border/50 hover:bg-muted/50 transition-all">
-                <Play className="mr-2 h-5 w-5" /> Book Free Consultation
+              <Button size="lg" className="h-14 px-8 text-lg font-semibold bg-primary hover:bg-primary/90 rounded-xl transition-all hover:scale-[1.02] hover:-translate-y-0.5 group"
+                style={{
+                  boxShadow: '0 4px 16px rgba(255, 0, 0, 0.4)'
+                }}
+              >
+                Book Free Consultation <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </a>
+            <Link href="/services">
+              <Button size="lg" variant="outline" className="h-14 px-8 text-lg font-semibold rounded-xl border-white/20 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all">
+                See How It Works
+              </Button>
+            </Link>
           </div>
 
-          {/* Trust Signals - Copy Updated */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-green-500" />
-              <span>67+ Clients Helped</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-yellow-500" />
-              <span>200+ Projects Delivered</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
-              <span>99.9% Accuracy</span>
-            </div>
-          </div>
+          {/* Trust Line */}
+          <p className="text-sm text-neutral-500 italic">
+            Trusted by founders, students, and professionals across India
+          </p>
         </div>
       </section>
 

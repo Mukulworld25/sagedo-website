@@ -4,62 +4,120 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 // Initialize Gemini
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
-// Bruno's Core Personality - Smart like Gemini, Human like Grok
-const BRUNO_SYSTEM_PROMPT = `You are Bruno, the official AI assistant for SAGE DO - an Indian startup that helps businesses and students with AI-powered services like content writing, presentations, resumes, web development, and more.
+// Bruno's Core Personality - The Ultimate Brand Voice
+const BRUNO_SYSTEM_PROMPT = `You are Bruno, the official AI assistant for SAGE DO (sagedo.in) — India's First AI + Human Hybrid Execution Team.
 
-## Your Personality:
-- **Smart & Knowledgeable**: You understand business, marketing, technology, and can give real strategic advice
-- **Human & Witty**: You speak like a friendly Indian uncle/mentor - warm, slightly sarcastic, uses Hindi/English mix occasionally like "Arre!", "Bilkul!", "Bhai"
-- **Direct & Honest**: You give straight answers, no corporate fluff. If something is bad, you say it politely but clearly
-- **Action-Oriented**: Always guide users toward solutions - either SAGE DO services or practical advice
+## YOUR IDENTITY:
+- You are Bruno — smart, warm, direct, and slightly witty
+- You sound like a knowledgeable Indian mentor — friendly but professional
+- You occasionally use Hindi-English mix: "Arre!", "Bilkul!", "Bhai", "Chalo"
+- You give REAL answers, not corporate fluff
+- You are the brand voice of SAGE DO — every interaction should make people want to work with us
 
-## SAGE DO Services (mention when relevant):
-- Business Services: Ads, Logos, Pitch Decks, Website Content, Social Media Management
-- Student Services: Assignments, PPTs, Resumes, Cover Letters, Research
-- Tech Services: Website Development, App Development, Automation
-- Prices start from ₹199
+## ABOUT SAGE DO (YOU MUST KNOW THIS PERFECTLY):
+SAGE DO is India's First AI + Human Hybrid Execution Team. We combine the speed of AI automation with the precision of human expertise to deliver work that agencies can't match.
 
-## Key Information:
-- Website: sagedo.in
-- Contact: hello@sagedo.in | +91 6284925684 | WhatsApp available
-- Founder: Mukul Dhiman (passionate entrepreneur from Himachal Pradesh, India)
-- Tagline: "We Do Your Daily Grind, You Do Grand Things"
-- SAGE = Expert Wisdom, DO = Human Action -> Expert intelligence + human verification
+**What the name means:**
+- SAGE = Expert Wisdom (AI intelligence)
+- DO = Human Action (real human verification)
+- Together: Expert intelligence backed by human verification — so nothing goes wrong
 
-## IMPORTANT - SCRIPTED ANSWERS (Use these EXACTLY for matching questions):
+**The Hybrid Model:**
+- AI handles the heavy lifting: research, drafting, data processing, automation
+- Humans handle the precision: quality checks, creative direction, client communication
+- Result: 99.9% accuracy, 24-48h delivery, at prices that make sense (₹199–₹50,000)
 
-**About SAGE DO:**
-- "What is SageDo?" → "I'm glad you asked — SageDo is an AI + human hybrid service: fast AI work for speed, and experienced humans for precision. That combo gives you reliable, polished results every time."
-- "Who runs SageDo?" → "SAGE DO was founded by Mukul Dhiman, a passionate entrepreneur from Himachal Pradesh, India. He built SAGE DO to help enterpreniores, professionals and students get quality work done without the hassle. Connect: hello@sagedo.in | WhatsApp: +91 6284925684"
-- "Why should I trust you?" → "Because we don't rely only on AI. Every output is checked by experienced humans, guided by the founder's standards. We focus on quality, accountability, and long-term trust — not shortcuts."
-- "Is this a scam?" → "Not at all — we're a real team delivering real work. Try a small order first, see the quality, then level up. We promise not to disappear after delivery — we're here for follow-ups."
+**The Founder — Mukul Dhiman:**
+- Passionate entrepreneur from Chandigarh / Himachal Pradesh, India
+- Ex-Aerospace background (brings engineering precision to business)
+- Built SAGE DO to bridge the gap between expensive agencies and unreliable freelancers
+- Philosophy: "We Do Your Daily Grind, You Do Grand Things"
+- Contact: hello@sagedo.in | +91 6284925684 | LinkedIn: SAGE DO
 
-**Trending Services:**
-- "What are your trending/popular services?" → "🔥 Trending: Academic - Fast Homework, Research, Code Solutions | Career - ATS Resumes, Cover Letters, LinkedIn | Content - SEO Blogs, Social Media | Business - Pitch Decks, Proposals, Infographics"
+**Why SAGE DO exists (The Execution Gap):**
+Most businesses face 3 bad choices:
+1. Agencies → ₹5L+ budgets, 4-6 week timelines, corporate BS
+2. Freelancers → Unreliable, ghost after payment, inconsistent quality
+3. DIY → Founder does everything, burns out, business stalls
+SAGE DO is the 4th option: Hybrid AI + Human team. Agency quality at freelancer prices.
+
+## COMPLETE SERVICE CATALOG (19+ Services):
+
+**📚 Academic & Research:**
+- Assignment & Homework Help (AI-drafted, human-reviewed, plagiarism-free)
+- Research Papers & Reports
+- Code & Problem Solving
+- Academic Writing & Essays
+
+**💼 Career & Professional:**
+- ATS-Optimized Resume Writing (passes bots AND impresses humans)
+- Cover Letter Writing (tailored per job description)
+- LinkedIn Profile Optimization
+- Job Application Agent (AI applies to 50+ jobs/day with human oversight)
+
+**✍️ Content & Marketing:**
+- SEO Blog Posts & Articles
+- Social Media Content & Campaigns
+- Website Copywriting
+- Email Marketing Campaigns
+- Digital Marketing Strategy
+
+**💡 Business & Strategy:**
+- Pitch Deck / PPT Design (investor-ready)
+- Business Proposal Writing
+- Brand Identity & Logo Design
+- Infographic Design
+
+**🔧 Technology:**
+- Website Development (React, Node.js, modern stacks)
+- Mobile App Development (React Native, Expo)
+- SaaS MVP Development
+- Cloud Infrastructure Setup
+- AI Automation & Custom Agents
 
 **Pricing:**
-- "What are your prices?" → "I'll be direct: our services are pocket-friendly and built to give high ROI. For exact pricing I'll need details — tell me what you need and I'll fetch a custom quote you'll like."
+- Starts from ₹199 for basic tasks
+- Most services: ₹10K–₹50K packages
+- Enterprise/Custom: Quote-based
+- No hidden costs, transparent pricing
 
-**Services:**
-- "Can you help with assignments?" → "Absolutely — send your brief and files. I'll coordinate AI drafting and a human review so it's accurate, referenced, and tailored to your professor's needs."
-- "Do you write resumes?" → "Yes — ATS-friendly, industry-focused resumes and matched cover letters that highlight what hiring managers care about."
-- "Can you design PPTs?" → "Yes — professional slide decks and visual assets designed to make your message clear and persuasive."
-- "Can you write business proposals?" → "Absolutely — strategic, client-focused proposals that help you win meetings and close deals."
+**Delivery:**
+- Standard: 24-48 hours
+- Rush: Same day (for urgent requests)
+- Complex projects: Timeline agreed upfront
 
-**Delivery & Support:**
-- "How fast do you deliver?" → "Delivery depends on complexity, but we prioritise quality. Small tasks can be hours; bigger projects are planned to meet your deadline without shortcuts."
-- "Can I ask for revisions?" → "Yes — we'll refine until you're satisfied. If things aren't resolved after three interactions, I'll escalate you to a senior human for priority handling."
-- "How do I contact human support?" → "Ask me 'human support' anytime, or use WhatsApp: +91 6284925684. For complex orders I'll request your details to ensure a smooth handover."
+## CONTACT & LINKS:
+- Website: https://sagedo.in
+- Email: hello@sagedo.in
+- WhatsApp: +91 6284925684
+- Phone: +91 6284925684
+- Located: Chandigarh, India (serve clients globally)
 
-## Response Rules:
-1. For questions matching the SCRIPTED ANSWERS above, use those answers with your personality flair
-2. For other questions, use your AI knowledge but stay in character
-3. Keep responses SHORT (2-4 sentences max)
-4. Use emojis LIBERALLY - 2-4 per message is great! 🎯🚀✨ Be expressive and fun!
-5. Always end with a next step or question
-6. If you don't know, offer to connect with human support
+## KEY STATS:
+- 67+ Projects Delivered
+- 99.9% Accuracy Rate
+- 24-48 Hour Standard Delivery
+- 150+ Members / Users on platform
+- Prices from ₹199
 
-Remember: You're not just a chatbot - you're SAGE DO's brand voice. Be memorable, helpful, and make people smile! 😊`;
+## RESPONSE RULES:
+1. Keep responses SHORT — 2-4 sentences max, punchy and direct
+2. Use emojis naturally — 2-3 per message 🎯🚀✨
+3. ALWAYS end with a next step or question to keep the conversation going
+4. If someone asks about a service, give a concrete answer + offer to start
+5. If you don't know something specific, offer WhatsApp/email connection
+6. Never say "I don't know" — instead say "Let me connect you with our team for the best answer"
+7. Be confident about SAGE DO's capabilities — we CAN do pretty much anything in the digital services space
+8. For general questions about "what is this website" or similar, explain what SAGE DO is enthusiastically
+9. When recommending services, mention specific service names from the catalog above
+10. If someone sounds like a potential customer, guide them toward placing an order or booking a consultation
+
+## PERSONALITY EXAMPLES:
+- User: "Hi" → "Namaste! 🙏 Welcome to SAGE DO! I'm Bruno, your go-to for getting things done. What can I help you with today? 🚀"
+- User: "What is this?" → "Great question! 🎯 SAGE DO is India's first AI + Human hybrid team. We combine AI speed with human precision to deliver everything from resumes to websites — faster and better than agencies, at prices that make sense! What do you need done? 😊"
+- User: "Too expensive" → "Arre bhai, we start from just ₹199! 💰 Most of our services are 10x cheaper than agencies. Tell me what you need and I'll find the best-value option for you! 🎯"
+
+Remember: You're not just answering questions — you're representing India's most innovative service company. Make every interaction count! 🔥`;
 
 interface ChatResponse {
     text: string;
@@ -120,7 +178,7 @@ You're now in "Real Talk" mode - be brutally honest but constructive. Don't suga
             const chat = model.startChat({
                 history: history,
                 generationConfig: {
-                    maxOutputTokens: 200,
+                    maxOutputTokens: 300,
                     temperature: 0.8,
                 }
             });
@@ -166,114 +224,227 @@ You're now in "Real Talk" mode - be brutally honest but constructive. Don't suga
             return ['Start New Chat', 'View Services'];
         }
 
+        // If asking about founder/team
+        if (lowerMsg.includes('founder') || lowerMsg.includes('who') || lowerMsg.includes('mukul')) {
+            return ['View About Page', 'Contact Founder', 'View Services'];
+        }
+
         // Default helpful options
-        return ['Tell me more', 'View Services', 'Talk to Human'];
+        return ['Browse Services', 'Check Pricing', 'Talk to Human'];
     }
 
-    // Fallback when Gemini is unavailable - uses FAQ database
+    // Comprehensive Fallback when Gemini is unavailable
     private static getFallbackResponse(message: string): ChatResponse {
         const lowerMsg = message.toLowerCase();
 
-        // Greetings
-        if (lowerMsg.includes('hi') || lowerMsg.includes('hello') || lowerMsg.includes('namaste')) {
+        // --- Greetings ---
+        if (/^(hi|hello|hey|namaste|hola|good morning|good evening|yo|sup)\b/.test(lowerMsg) || lowerMsg.length < 4) {
             return {
-                text: "Namaste! 🙏 I'm Bruno, SAGE DO's assistant. How can I help you today?",
+                text: "Namaste! 🙏 I'm Bruno, SAGE DO's AI assistant. We're India's first AI + Human hybrid execution team. How can I help you today? 🚀",
                 options: ['Browse Services', 'Check Pricing', 'Talk to Human']
             };
         }
 
-        // About SAGE DO
-        if (lowerMsg.includes('what is sage') || lowerMsg.includes('sagedo mean') || lowerMsg.includes('what does sage')) {
+        // --- What is this website / What does SAGE DO do ---
+        if (lowerMsg.includes('what is this') || lowerMsg.includes('what does this') || lowerMsg.includes('what is sage') ||
+            lowerMsg.includes('what do you do') || lowerMsg.includes('who are you') || lowerMsg.includes('website') ||
+            lowerMsg.includes('about this') || lowerMsg.includes('sagedo mean') || lowerMsg.includes('tell me about') ||
+            lowerMsg.includes('what does sage') || lowerMsg.includes('explain') || lowerMsg.includes('what is your')) {
             return {
-                text: "I'm glad you asked! 🎯 SageDo is an AI + human hybrid service: fast AI work for speed, and experienced humans for precision. **SAGE** = Expert Wisdom, **DO** = Human Action. That combo gives you reliable, polished results every time! 💡",
+                text: "Great question! 🎯 SAGE DO is India's First AI + Human Hybrid Execution Team. We combine AI speed with human precision to deliver everything from resumes to websites, pitch decks to marketing campaigns — faster than agencies, at prices starting from just ₹199! What do you need done? 😊",
                 options: ['View Services', 'Check Pricing', 'Talk to Human']
             };
         }
 
-        // Founder/Who made
-        if (lowerMsg.includes('who made') || lowerMsg.includes('founder') || lowerMsg.includes('who runs') || lowerMsg.includes('mukul') || lowerMsg.includes('owner')) {
+        // --- Founder / Team / Who made ---
+        if (lowerMsg.includes('who made') || lowerMsg.includes('founder') || lowerMsg.includes('who runs') ||
+            lowerMsg.includes('mukul') || lowerMsg.includes('owner') || lowerMsg.includes('who created') ||
+            lowerMsg.includes('who built') || lowerMsg.includes('ceo') || lowerMsg.includes('team') ||
+            lowerMsg.includes('behind')) {
             return {
-                text: "SAGE DO was founded by Mukul Dhiman, a passionate entrepreneur from Himachal Pradesh, India! 🚀 He built SAGE DO to help entrepreneurs, professionals, and students get quality work done without the hassle. Connect: hello@sagedo.in | WhatsApp: +91 6284925684",
-                options: ['View Services', 'Contact Us', 'Talk to Human']
+                text: "SAGE DO was founded by Mukul Dhiman 🚀 — an ex-aerospace entrepreneur from Chandigarh, India. He built SAGE DO to bridge the gap between expensive agencies and unreliable freelancers. Connect: hello@sagedo.in | WhatsApp: +91 6284925684 💪",
+                options: ['View About Page', 'View Services', 'Talk to Human']
             };
         }
 
-        // Price/Cost
-        if (lowerMsg.includes('price') || lowerMsg.includes('cost') || lowerMsg.includes('expensive') || lowerMsg.includes('cheap')) {
+        // --- Price / Cost / Expensive ---
+        if (lowerMsg.includes('price') || lowerMsg.includes('cost') || lowerMsg.includes('expensive') ||
+            lowerMsg.includes('cheap') || lowerMsg.includes('rate') || lowerMsg.includes('quote') ||
+            lowerMsg.includes('budget') || lowerMsg.includes('afford') || lowerMsg.includes('fee') ||
+            lowerMsg.includes('how much')) {
             return {
-                text: "I'll be direct: our services are pocket-friendly and built to give high ROI! 💰 Prices start from just ₹199. Tell me what you need and I'll fetch a custom quote you'll like! 🎯",
+                text: "Our services start from just ₹199! 💰 Most packages are ₹10K-₹50K — that's 10x cheaper than agencies with the same quality. Tell me what you need and I'll get you a custom quote! 🎯",
                 options: ['View Services', 'Get Quote', 'Talk to Human']
             };
         }
 
-        // Services/Trending
-        if (lowerMsg.includes('service') || lowerMsg.includes('trending') || lowerMsg.includes('popular') || lowerMsg.includes('what do you')) {
+        // --- Services / What can you do / Trending ---
+        if (lowerMsg.includes('service') || lowerMsg.includes('trending') || lowerMsg.includes('popular') ||
+            lowerMsg.includes('what can') || lowerMsg.includes('offer') || lowerMsg.includes('available') ||
+            lowerMsg.includes('list') || lowerMsg.includes('catalog')) {
             return {
-                text: "🔥 **Trending Services:**\n\n📚 **Academic:** Assignments, Research, Essays\n💼 **Career:** ATS Resumes, Cover Letters, LinkedIn\n✍️ **Content:** SEO Blogs, Social Media\n💡 **Business:** Pitch Decks, Proposals, Websites\n\nAll starting from ₹199! Which interests you?",
+                text: "🔥 **Our Services:**\n\n📚 Academic: Assignments, Research, Essays\n💼 Career: ATS Resumes, Cover Letters, LinkedIn\n✍️ Content: SEO Blogs, Social Media, Marketing\n💡 Business: Pitch Decks, Proposals, Logos\n🔧 Tech: Websites, Apps, SaaS MVPs, AI Agents\n\nAll powered by AI + Human precision! Which interests you? 🎯",
                 options: ['View All Services', 'Get Quote', 'Talk to Human']
             };
         }
 
-        // Assignment help
-        if (lowerMsg.includes('assignment') || lowerMsg.includes('homework') || lowerMsg.includes('essay') || lowerMsg.includes('academic')) {
+        // --- Assignment / Academic ---
+        if (lowerMsg.includes('assignment') || lowerMsg.includes('homework') || lowerMsg.includes('essay') ||
+            lowerMsg.includes('academic') || lowerMsg.includes('college') || lowerMsg.includes('school') ||
+            lowerMsg.includes('study') || lowerMsg.includes('exam') || lowerMsg.includes('project') ||
+            lowerMsg.includes('research') || lowerMsg.includes('thesis') || lowerMsg.includes('dissertation')) {
             return {
-                text: "Absolutely! 📚 Send your brief and files. I'll coordinate AI drafting and a human review so it's accurate, referenced, and tailored to your needs. We take care of plagiarism too! ✅",
+                text: "Absolutely! 📚 We handle assignments, research papers, essays, code solutions — all AI-drafted and human-reviewed for accuracy and originality. Send your brief and we'll deliver polished work! ✅",
                 options: ['Place Order', 'Check Pricing', 'Talk to Human']
             };
         }
 
-        // Resume/CV
-        if (lowerMsg.includes('resume') || lowerMsg.includes('cv') || lowerMsg.includes('job') || lowerMsg.includes('ats')) {
+        // --- Resume / Job / Career ---
+        if (lowerMsg.includes('resume') || lowerMsg.includes('cv') || lowerMsg.includes('job') ||
+            lowerMsg.includes('ats') || lowerMsg.includes('career') || lowerMsg.includes('cover letter') ||
+            lowerMsg.includes('linkedin') || lowerMsg.includes('interview') || lowerMsg.includes('hire') ||
+            lowerMsg.includes('application')) {
             return {
-                text: "Yes! 💼 I create ATS-friendly, industry-focused resumes and matched cover letters that highlight what hiring managers care about. Your resume will pass the bots AND impress humans! 🎯",
+                text: "We create ATS-optimized resumes that pass the bots AND impress humans! 💼 Plus cover letters tailored to specific jobs and LinkedIn profile optimization. Your career upgrade starts here! 🚀",
                 options: ['Order Resume', 'View Career Services', 'Talk to Human']
             };
         }
 
-        // Trust/Scam
-        if (lowerMsg.includes('trust') || lowerMsg.includes('scam') || lowerMsg.includes('legit') || lowerMsg.includes('real') || lowerMsg.includes('fake')) {
+        // --- Content / Blog / Social Media ---
+        if (lowerMsg.includes('content') || lowerMsg.includes('blog') || lowerMsg.includes('article') ||
+            lowerMsg.includes('social media') || lowerMsg.includes('seo') || lowerMsg.includes('writing') ||
+            lowerMsg.includes('copy') || lowerMsg.includes('post') || lowerMsg.includes('marketing') ||
+            lowerMsg.includes('email') || lowerMsg.includes('newsletter')) {
             return {
-                text: "Not a scam at all! 🛡️ We're a real team delivering real work. Every output is checked by experienced humans. Try a small order first, see the quality, then level up. We promise not to disappear after delivery! 🤝",
+                text: "We create high-impact content! ✍️ SEO blogs, social media campaigns, email marketing, website copy — all AI-drafted for speed and human-refined for quality. What type of content do you need? 🎯",
+                options: ['View Content Services', 'Get Quote', 'Talk to Human']
+            };
+        }
+
+        // --- PPT / Presentation / Design ---
+        if (lowerMsg.includes('ppt') || lowerMsg.includes('presentation') || lowerMsg.includes('slide') ||
+            lowerMsg.includes('deck') || lowerMsg.includes('pitch') || lowerMsg.includes('proposal') ||
+            lowerMsg.includes('design') || lowerMsg.includes('logo') || lowerMsg.includes('infographic') ||
+            lowerMsg.includes('brand')) {
+            return {
+                text: "Yes! 🎨 We design professional pitch decks, business proposals, logos, infographics, and brand identities. Investor-ready quality that makes your ideas shine! What do you need? ✨",
+                options: ['Place Order', 'View Design Services', 'Talk to Human']
+            };
+        }
+
+        // --- Website / App / Tech ---
+        if (lowerMsg.includes('website') || lowerMsg.includes('app') || lowerMsg.includes('develop') ||
+            lowerMsg.includes('software') || lowerMsg.includes('saas') || lowerMsg.includes('code') ||
+            lowerMsg.includes('tech') || lowerMsg.includes('build') || lowerMsg.includes('automat') ||
+            lowerMsg.includes('ai agent') || lowerMsg.includes('cloud') || lowerMsg.includes('mvp')) {
+            return {
+                text: "We build modern websites, mobile apps, SaaS MVPs, and AI automation systems! 🔧 React, Node.js, React Native — full-stack with clean code. From landing pages to complete platforms. What's your vision? 🚀",
+                options: ['View Tech Services', 'Get Quote', 'Talk to Human']
+            };
+        }
+
+        // --- Trust / Scam / Legit ---
+        if (lowerMsg.includes('trust') || lowerMsg.includes('scam') || lowerMsg.includes('legit') ||
+            lowerMsg.includes('real') || lowerMsg.includes('fake') || lowerMsg.includes('fraud') ||
+            lowerMsg.includes('reliable') || lowerMsg.includes('safe')) {
+            return {
+                text: "100% legit! 🛡️ We're a registered team with 67+ projects delivered, 99.9% accuracy. Every output is human-verified. Try a small order first, see the quality, then scale up! We don't disappear after delivery 🤝",
                 options: ['View Reviews', 'Start Small Order', 'Talk to Human']
             };
         }
 
-        // Delivery/Fast
-        if (lowerMsg.includes('fast') || lowerMsg.includes('delivery') || lowerMsg.includes('time') || lowerMsg.includes('urgent') || lowerMsg.includes('deadline')) {
+        // --- Delivery / Speed / Urgent ---
+        if (lowerMsg.includes('fast') || lowerMsg.includes('delivery') || lowerMsg.includes('urgent') ||
+            lowerMsg.includes('deadline') || lowerMsg.includes('when') || lowerMsg.includes('how long') ||
+            lowerMsg.includes('same day') || lowerMsg.includes('quick') || lowerMsg.includes('rush')) {
             return {
-                text: "Speed is our thing! ⚡ Small tasks can be done in hours, bigger projects are planned to meet your deadline without shortcuts. Most services deliver within 24-48 hours! 🚀",
+                text: "Speed is our superpower! ⚡ Standard delivery: 24-48 hours. Rush orders: same day for urgent needs. Complex projects get a clear timeline upfront. We never sacrifice quality for speed! 🚀",
                 options: ['Place Urgent Order', 'View Services', 'Talk to Human']
             };
         }
 
-        // Human support
-        if (lowerMsg.includes('human') || lowerMsg.includes('support') || lowerMsg.includes('help') || lowerMsg.includes('talk to')) {
+        // --- Order / Buy / Start ---
+        if (lowerMsg.includes('order') || lowerMsg.includes('buy') || lowerMsg.includes('purchase') ||
+            lowerMsg.includes('start') || lowerMsg.includes('begin') || lowerMsg.includes('get started')) {
             return {
-                text: "Of course! 🙋 You can reach our human team anytime on WhatsApp: +91 6284925684 or email hello@sagedo.in. I'll also escalate for you if this chat doesn't solve your issue! 💬",
+                text: "Let's get started! 🎯 Head to our Services page, pick what you need, and place your order. Or tell me what you need right here and I'll guide you step-by-step! 😊",
+                options: ['View Services', 'Place Order', 'Talk to Human']
+            };
+        }
+
+        // --- Track / Status ---
+        if (lowerMsg.includes('track') || lowerMsg.includes('status') || lowerMsg.includes('progress') ||
+            lowerMsg.includes('where is') || lowerMsg.includes('my order') || lowerMsg.includes('update')) {
+            return {
+                text: "You can track your order in real-time on the Orders page! 📋 Log in to see the latest status. Need help? I can connect you with our team on WhatsApp for a quick update 💬",
+                options: ['Track Order', 'Contact Support', 'Talk to Human']
+            };
+        }
+
+        // --- Payment / Refund ---
+        if (lowerMsg.includes('payment') || lowerMsg.includes('pay') || lowerMsg.includes('upi') ||
+            lowerMsg.includes('refund') || lowerMsg.includes('money back') || lowerMsg.includes('card') ||
+            lowerMsg.includes('cancel') || lowerMsg.includes('checkout')) {
+            return {
+                text: "We accept all standard payment methods at checkout! 💳 Refunds are handled fairly based on work progress. For payment issues, I'll connect you with our team immediately 🤝",
+                options: ['Place Order', 'Contact Support', 'Talk to Human']
+            };
+        }
+
+        // --- Human support / Contact ---
+        if (lowerMsg.includes('human') || lowerMsg.includes('support') || lowerMsg.includes('contact') ||
+            lowerMsg.includes('talk to') || lowerMsg.includes('whatsapp') || lowerMsg.includes('call') ||
+            lowerMsg.includes('phone') || lowerMsg.includes('email') || lowerMsg.includes('reach')) {
+            return {
+                text: "Of course! 🙋 Reach our human team anytime:\n📱 WhatsApp: +91 6284925684\n📧 Email: hello@sagedo.in\nWe usually respond within 2 hours! 💬",
                 options: ['Open WhatsApp', 'Send Email', 'Continue Chat']
             };
         }
 
-        // Confused/don't know
-        if (lowerMsg.includes('confused') || lowerMsg.includes("don't know") || lowerMsg.includes('problem') || lowerMsg.includes('not sure')) {
+        // --- Revision / Change ---
+        if (lowerMsg.includes('revision') || lowerMsg.includes('change') || lowerMsg.includes('edit') ||
+            lowerMsg.includes('modify') || lowerMsg.includes('fix') || lowerMsg.includes('redo') ||
+            lowerMsg.includes('not happy') || lowerMsg.includes('problem') || lowerMsg.includes('issue')) {
             return {
-                text: "No worries! 🤔 Just describe your problem - whether it's for business, studies, career, or personal life - and our team will analyze your situation and send you a FREE personalized recommendation via email! 📧",
-                options: ['Describe My Problem', 'View Services', 'Talk to Human']
+                text: "No worries! ✅ We offer revisions until you're 100% satisfied. If it takes more than 3 rounds, I'll escalate to a senior team member for priority handling. Your satisfaction is guaranteed! 🤝",
+                options: ['Request Revision', 'Contact Support', 'Talk to Human']
             };
         }
 
-        // Thank you/bye
-        if (lowerMsg.includes('thank') || lowerMsg.includes('bye') || lowerMsg.includes('great') || lowerMsg.includes('awesome')) {
+        // --- Discount / Offer ---
+        if (lowerMsg.includes('discount') || lowerMsg.includes('offer') || lowerMsg.includes('coupon') ||
+            lowerMsg.includes('deal') || lowerMsg.includes('promo') || lowerMsg.includes('free') ||
+            lowerMsg.includes('bonus') || lowerMsg.includes('trial')) {
             return {
-                text: "You're most welcome! 😊 It was my pleasure helping you. Feel free to come back anytime - I'm always here! Do share your feedback, it means a lot to us! 🙏",
-                options: ['Give Feedback', 'View Services', 'Start New Chat']
+                text: "We run special offers from time to time! 🎁 New users get a Welcome Bonus. For current promotions, check the Services page or ask our team on WhatsApp for exclusive deals! 💰",
+                options: ['View Services', 'Check Offers', 'Talk to Human']
             };
         }
 
-        // Default - invite them to explore
+        // --- Thank you / Bye ---
+        if (lowerMsg.includes('thank') || lowerMsg.includes('bye') || lowerMsg.includes('great') ||
+            lowerMsg.includes('awesome') || lowerMsg.includes('good') || lowerMsg.includes('nice') ||
+            lowerMsg.includes('cool') || lowerMsg.includes('ok') || lowerMsg.includes('sure')) {
+            return {
+                text: "You're welcome! 😊 It was great chatting with you. Come back anytime — I'm always here to help! Do share your experience with us 🙏",
+                options: ['View Services', 'Give Feedback', 'Start New Chat']
+            };
+        }
+
+        // --- Confused / Not sure ---
+        if (lowerMsg.includes('confused') || lowerMsg.includes("don't know") || lowerMsg.includes('not sure') ||
+            lowerMsg.includes('which') || lowerMsg.includes('suggest') || lowerMsg.includes('recommend') ||
+            lowerMsg.includes('what should')) {
+            return {
+                text: "No worries! 🤔 Just describe what you're trying to accomplish — whether it's for business, studies, career, or a personal project. I'll recommend the perfect service for you! Or I can connect you with our team for a free consultation 📧",
+                options: ['Describe My Need', 'View Services', 'Talk to Human']
+            };
+        }
+
+        // --- CATCH-ALL: Smart default (instead of "I don't know") ---
         return {
-            text: "Interesting question! 🤔 I want to give you the best answer - let me connect you with our team for quick, personalized help. Or check out our Services page for everything we offer! 💡",
-            options: ['View Services', 'Open WhatsApp', 'Try Again']
+            text: "Great question! 🎯 SAGE DO offers 19+ services powered by AI + Human precision — from resumes to websites, assignments to marketing. Tell me more about what you need, or check out our Services page! I'm here to help 😊",
+            options: ['Browse Services', 'Check Pricing', 'Talk to Human']
         };
     }
 
