@@ -16,213 +16,249 @@ export interface ServiceDetail {
 
 export const allServices: ServiceDetail[] = [
     // ==========================================
-    // 👑 THE EMPIRE BUILDER (Business & High Ticket)
+    // 💼 BUSINESS & STARTUP (High Ticket)
     // ==========================================
     {
         id: "1",
         name: "24/7 AI Voice & Chat Bots",
         category: "Business",
-        description: "Your business never sleeps. Stop losing customers to missed calls.",
-        fullDescription: "Stop losing customers purely because you couldn't pick up the phone. Our AI bots handle calls, answer queries, and book orders 24/7. It's like having a support team that runs on electricity, not coffee. They handle thousands of customers simultaneously without a single error.",
+        description: "AI handles 1000s of calls. Humans handle complex issues.",
+        fullDescription: "The ultimate hybrid support system. Our AI agents handle 90% of your customer queries, bookings, and support tickets instantly, 24/7. For the 10% of complex issues that require empathy or judgment, the system seamlessly hands over to a human expert. You save costs while improving quality.",
         whatYouGet: [
-            "Custom-trained Voice & Chat AI",
+            "Custom-trained AI Voice/Chat Bot",
+            "Human Handoff Protocol",
             "WhatsApp & Website Integration",
             "Instant Lead Qualification",
-            "24/7 Appointment Booking",
-            "Zero Human Intervention Required"
+            "Zero Missed Calls Promise"
         ],
         process: [
             "We analyze your support logs",
-            "Train the AI on your specific data",
-            "Integrate with your phone/site",
+            "Train AI on 90% common queries",
+            "Define Human Handoff triggers",
             "Go live with 24/7 monitoring"
         ],
         price: 19999,
-        imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop", // Abstract Tech / Neural Voice
+        imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true
     },
     {
         id: "2",
-        name: "Workflow Automation",
+        name: "Intelligent Workflow Automation",
         category: "Business",
-        description: "Escape the daily grind. Stop copying and past data manually.",
-        fullDescription: "You didn't start a business to become a data-entry clerk. We connect your apps (CRM, Email, WhatsApp) so leads move automatically. Imagine a new lead arriving and instantly getting a welcome email and a WhatsApp message without you lifting a finger. You save hours every single day.",
+        description: "AI moves data. Humans verify the results.",
+        fullDescription: "Stop being a data-entry clerk. We connect your CRM, Email, and WhatsApp so leads flow automatically. Our hybrid approach means we set up the AI automations to do the heavy lifting, and we include a human quality-check step for critical actions (like big invoices) so you never send a wrong email.",
         whatYouGet: [
             "Complete Process Audit",
-            "Custom API Connections (Zapier/Make)",
+            "Zapier/Make/n8n Automation",
+            "Human-in-the-loop Verification",
             "Auto-Email & SMS Setup",
-            "Error-Free Data Transfer",
-            "Training on how to manage it"
+            "Error-Free Data Transfer"
         ],
         process: [
             "Map your manual tasks",
             "Design the automation flow",
-            "Build and stress-test",
-            "Handover the keys"
+            "Build & Human-Verify",
+            "Handover the system"
         ],
         price: 4999,
-        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop", // Digital Pipeline / Data Flow
+        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true
     },
     {
         id: "3",
-        name: "AI Data Science Solution",
+        name: "AI Business Intelligence Dashboard",
         category: "Business",
-        description: "Turn messy data into profit. Know exactly what to sell.",
-        fullDescription: "You have data everywhere—Excel sheets, bills, CRM logs—but what does it actually mean? We clean your messy data and build a live dashboard that tells you the truth about your business: 'Sell more of this, stop selling that.' No more guessing.",
+        description: "AI crunches millions of rows. Humans find the strategy.",
+        fullDescription: "You have data everywhere—Excel, CRM, Billing. Our AI models clean and process this massive data instantly. Then, our Data Analysts build a custom dashboard that tells you the truth: 'Sell more of X, stop selling Y'. AI provides the data; we provide the insight.",
         whatYouGet: [
             "Data Cleaning & Organization",
             "Predictive Sales Analysis",
-            "Custom Live Dashboard",
+            "Custom PowerBI/Tableau Dashboard",
             "Inventory Forecasting",
-            "Customer Behavior Insights"
+            "Strategic Insight Report"
         ],
         process: [
-            "Connect your data sources",
-            "Clean and structure the data",
-            "Build the visual models",
-            "Deploy your command center"
+            "Connect data sources",
+            "AI Cleans & Structures",
+            "Analyst builds dashboard",
+            "Strategy Review Call"
         ],
         price: 24999,
-        imageUrl: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=1000&auto=format&fit=crop", // Complex Data Vis
+        imageUrl: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: false
     },
     {
         id: "4",
-        name: "Social Media Marketing Suite",
+        name: "Hybrid Social Media Engine",
         category: "Business",
-        description: "Be everywhere, effortlessly. 30 days of content done for you.",
-        fullDescription: "Consistency is hard when you're running a business. We solve the burnout. We give you a 30-day content calendar, write your viral scripts, and even schedule the posts for you. You just show up and be the face of the brand.",
+        description: "AI generates ideas. Humans add the soul.",
+        fullDescription: "Consistency is hard. Our AI engine analyzes viral trends and generates 50+ content ideas/scripts in minutes. Then, our creative team polishes them, adds your unique brand voice, and designs the visuals. You get viral-optimized content that still feels authentic.",
         whatYouGet: [
             "30-Day Content Calendar",
-            "Viral Hook Scripting",
-            "Hashtag & Trend Strategy",
+            "AI-Trend Analysis + Human Scripting",
+            "Graphic Design (Canva/Photoshop)",
             "Auto-Posting Schedule",
-            "Engagement Analytics"
+            "Engagement Monitoring"
         ],
         process: [
-            "Analyze your niche trends",
-            "Plan the content pillars",
-            "Script and schedule",
-            "Launch and monitor"
+            "Analyze niche trends",
+            "AI Drafts -> Human Polish",
+            "Design & Schedule",
+            "Monitor & Iterate"
         ],
         price: 14999,
-        imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop", // Abstract Social Graph
-        isGoldenEligible: true
-    },
-    {
-        id: "5",
-        name: "AI Professional Songs",
-        category: "Business",
-        description: "Give your brand a voice. Turn lyrics into studio-quality audio.",
-        fullDescription: "Music sticks in the brain longer than text. We use advanced generative audio to turn your lyrics or brand message into a professional, studio-quality song. Perfect for ads, podcasts, or just making your brand absolutely unforgettable.",
-        whatYouGet: [
-            "Full Custom Composition",
-            "Professional Vocals (AI Generated)",
-            "Commercial Usage Rights",
-            "High-Quality WAV Export",
-            "Lyrics Assistance"
-        ],
-        process: [
-            "Analyze brand vibe/genre",
-            "Generate 3 melodic concepts",
-            "Refine and master the winner",
-            "Deliver final audio"
-        ],
-        price: 7999,
-        imageUrl: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1000&auto=format&fit=crop", // Audio Waves
+        imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true
     },
     {
         id: "6",
         name: "Ads & Sales Roadmap",
         category: "Business",
-        description: "Stop burning money on bad ads. Learn how to scale deeply.",
-        fullDescription: "Most businesses waste thousands on ads that don't convert. We don't just make the creative; we give you the 'War Map'. A detailed roadmap on who to target, how to spend, and how to scale your sales without blowing your budget.",
+        description: "AI targets the audience. Humans craft the offer.",
+        fullDescription: "Don't guess with your ad budget. We use AI tools to spy on competitors and identify the perfect audience segments. Then, our marketing experts craft the 'Killer Offer' and creative that converts them. It's data-backed creativity.",
         whatYouGet: [
-            "High-Converting Ad Creatives",
+            "Competitor Spy Report",
             "Audience Targeting Strategy",
+            "High-Converting Ad Creatives",
             "Budget Scaling Roadmap",
-            "A/B Testing Plan",
             "ROI Calculator"
         ],
         process: [
-            "Audit past ad performance",
-            "Design the new campaign",
-            "Build the scaling roadmap",
-            "Handover for execution"
+            "Audit past performance",
+            "AI Competitor Analysis",
+            "Human Creative Strategy",
+            "Launch Plan"
         ],
         price: 9999,
-        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop", // Strategic Map
+        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: false
     },
     {
         id: "7",
         name: "Startup Pitch Deck Design",
         category: "Business",
-        description: "Tell a story that investors can't ignore.",
-        fullDescription: "Investors see hundreds of decks. Yours needs to stand out. We take your raw numbers and transform them into a visually stunning, narrative-driven presentation that secures funding. Clear, impactful, and persuasive.",
+        description: "AI structures the data. Humans tell the story.",
+        fullDescription: "Investors buy stories, not just numbers. We use AI to structure your financial models and market data perfectly. Then, our designers and copywriters turn it into a compelling narrative deck that secures funding.",
         whatYouGet: [
             "10-15 Professional Slides",
             "Financial Data Visualization",
             "Compelling Narrative Arc",
             "Investor-Ready PDF/PPT",
-            "Custom Graphics"
+            "Pitch Practice Guide"
+        ],
+        process: [
+            "Raw Data Collection",
+            "AI Structure & Flow",
+            "Human Design & Copy",
+            "Final Polish"
         ],
         price: 2999,
-        imageUrl: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=1000&auto=format&fit=crop", // Presentation / Growth
+        imageUrl: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true
+    },
+    // NEW SERVICES (Cloud & Tech)
+    {
+        id: "18",
+        name: "SaaS MVP Development",
+        category: "Business",
+        description: "Launch your app in weeks, not months.",
+        fullDescription: "Got an idea? We build it fast. Using a hybrid of AI code generation (for speed) and senior developer oversight (for security and architecture), we deliver a fully functional MVP in record time. Perfect for testing the market.",
+        whatYouGet: [
+            "Web/Mobile App MVP",
+            "Database Setup",
+            "User Authentication",
+            "Payment Gateway Integration",
+            "Deployment to Cloud"
+        ],
+        process: [
+            "Requirement Analysis",
+            "AI-Assisted Coding",
+            "Senior Dev Code Review",
+            "Launch"
+        ],
+        price: 49999,
+        imageUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: false
+    },
+    {
+        id: "19",
+        name: "Cloud Infrastructure Setup",
+        category: "Business",
+        description: "Scale your business on AWS/Azure.",
+        fullDescription: "Stop worrying about servers crashing. We set up a robust, auto-scaling cloud infrastructure for your business. Secure, fast, and cheaper than effective manual management.",
+        whatYouGet: [
+            "AWS/Azure/GCP Setup",
+            "Auto-scaling Configuration",
+            "Security Firewall",
+            "Cost Optimization",
+            "Backup Systems"
+        ],
+        process: [
+            "Audit current hosting",
+            "Architect cloud solution",
+            "Migrate & Secure",
+            "Handover credentials"
+        ],
+        price: 9999,
+        imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: false
     },
 
     // ==========================================
-    // 🚀 CAREER ASCENSION (Professional)
+    // 🚀 PROFESSIONAL & CAREER
     // ==========================================
     {
         id: "8",
         name: "ATS Resume Optimization",
         category: "Professional",
-        description: "Beat the screening robot that rejects you.",
-        fullDescription: "Did you know 75% of resumes are rejected by software before a human ever sees them? We rewrite and format your resume to pass these ATS filters, ensuring your hard work actually gets seen by a hiring manager.",
+        description: "AI beats the bot. Humans impress the manager.",
+        fullDescription: "75% of resumes are rejected by ATS bots. We use AI to keyword-optimize your resume to pass the bot. Then, our human recruiters refine the formatting and language to impress the hiring manager who actually reads it.",
         whatYouGet: [
             "ATS-Beat Formatting",
             "Keyword Injection Strategy",
-            "Role-Specific Optimization",
+            "Human Readability Polish",
             "Cover Letter Template",
             "LinkedIn Sync Guide"
         ],
         process: [
-            "Scan your current resume",
-            "Map skills to job descriptions",
-            "Rebuild for ATS compliance",
-            "Deliver final documents"
+            "Scan current resume",
+            "AI Keyword Optimization",
+            "Human Editorial Review",
+            "Final Delivery"
         ],
         price: 999,
-        imageUrl: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=1000&auto=format&fit=crop", // Digital Document
+        imageUrl: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true
     },
     {
         id: "9",
-        name: "LinkedIn Profile Alpha",
+        name: "LinkedIn Profile Brand",
         category: "Professional",
-        description: "Attract recruiters, don't chase them.",
-        fullDescription: "Stop applying to black holes. We overhaul your LinkedIn profile—headline, bio, and featured section—to scream 'Expert'. When recruiters search for your skills, you show up first.",
+        description: "Attract opportunities while you sleep.",
+        fullDescription: "We ignore the fluff. We optimize your LinkedIn profile (Headline, Bio, Featured) using SEO principles so you show up in recruiter searches. Then we write a 'Human' bio that builds authority and trust instantly.",
         whatYouGet: [
             "SEO-Optimized Headline",
             "Authority-Building Bio",
             "Featured Section Design",
-            "Network Growth Script",
+            "Network Growth Strategy",
             "Profile Banner"
         ],
+        process: [
+            "Profile Audit",
+            "SEO Keyword Strategy",
+            "Content Rewriting",
+            "Banner Design"
+        ],
         price: 1499,
-        imageUrl: "https://images.unsplash.com/photo-1611944212129-29977ae1398c?q=80&w=1000&auto=format&fit=crop", // Networking Nodes
+        imageUrl: "https://images.unsplash.com/photo-1611944212129-29977ae1398c?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true
     },
     {
         id: "10",
         name: "Personal Portfolio Website",
         category: "Professional",
-        description: "Showcase your work professionally. Be a brand.",
-        fullDescription: "Sending a PDF portfolio is outdated. We build you a sleek, high-speed personal website that showcases your best work. It's your digital homebase that builds instant trust with clients and employers.",
+        description: "Your digital homebase. Built in 48 hours.",
+        fullDescription: "PDF portfolios are dead. We build you a sleek, mobile-responsive personal website. AI writes the copy to sell your skills, and our designers ensure it looks world-class. Establish your personal brand instantly.",
         whatYouGet: [
             "Modern One-Page Site",
             "Project Gallery Showcase",
@@ -230,33 +266,45 @@ export const allServices: ServiceDetail[] = [
             "Mobile Responsive Design",
             "Domain Setup Support"
         ],
+        process: [
+            "Content Collection",
+            "Design & Build",
+            "Review & Polish",
+            "Launch"
+        ],
         price: 2999,
-        imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop", // Web Design / Code
+        imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true
     },
     {
         id: "11",
-        name: "Job Application Auto-Fill",
+        name: "Job Application Agent",
         category: "Professional",
-        description: "Apply to 50 jobs while you sleep.",
-        fullDescription: "Filling out job applications is soul-crushing repetitive work. Our AI agent applies to jobs for you, customizing the answers for each specific form so you can focus on preparing for the interview, not typing your address 50 times.",
+        description: "Apply to 50 jobs with 1 click.",
+        fullDescription: "Job hunting is a numbers game. Our AI agent applies to relevant jobs for you, customizing the answers for each specific form. You focus on the interview; we focus on getting you there.",
         whatYouGet: [
             "Automated Application Agent",
             "Custom Answer Generation",
-            "Platform optimization (LinkedIn/Indeed)",
+            "Platform optimization",
             "Daily Application Report",
             "Cover Letter Auto-Gen"
         ],
+        process: [
+            "Define Job Criteria",
+            "AI Agent Applies",
+            "Daily Report Sent",
+            "Interview Prep"
+        ],
         price: 1999,
-        imageUrl: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=1000&auto=format&fit=crop", // Keyboard / Typing
+        imageUrl: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: false
     },
     {
         id: "12",
         name: "AI Mock Interview Pro",
         category: "Professional",
-        description: "Practice until you are perfect. Fail here to win there.",
-        fullDescription: "Nervous about the big interview? Get grilled by our AI interviewer first. It gives you harsh, honest feedback on your tone, confidence, and answer quality so you make your mistakes here, not in front of the hiring manager.",
+        description: "Fail here. Win there.",
+        fullDescription: "Don't practice in the real interview. Our AI interviewer grills you with role-specific questions and gives instant feedback on your tone, confidence, and answer quality. Sharpen your skills before the stakes are high.",
         whatYouGet: [
             "Role-Specific Mock Session",
             "Speech & Tone Analysis",
@@ -264,20 +312,26 @@ export const allServices: ServiceDetail[] = [
             "Answer Improvement Tips",
             "Recording of Session"
         ],
+        process: [
+            "Select Role/Industry",
+            "AI Mock Interview",
+            "Performance Report",
+            "Repeat until perfect"
+        ],
         price: 999,
-        imageUrl: "https://images.unsplash.com/photo-1549923746-c502d488b3ea?q=80&w=1000&auto=format&fit=crop", // Microphone / Interview
+        imageUrl: "https://images.unsplash.com/photo-1549923746-c502d488b3ea?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true
     },
 
     // ==========================================
-    // ❤️ LIFE ARCHITECT (Personal & Student)
+    // ❤️ PERSONAL & STUDENT
     // ==========================================
     {
         id: "13",
         name: "Academic Research Assistant",
         category: "Student",
-        description: "Write better papers, faster. Sources included.",
-        fullDescription: "Writing is easy when the research is done. We find credible sources, summarize the key arguments, and generate proper citations for you. You just have to put it together. Save days of reading time.",
+        description: "AI reads the papers. You write the insight.",
+        fullDescription: "Researching takes days. Our AI scans thousands of journals and sources to find the exact data you need, summarizes key arguments, and generates citations. You get a structured research brief so you can write a brilliant paper in half the time.",
         whatYouGet: [
             "Deep Topic Research",
             "Credible Source List",
@@ -286,21 +340,21 @@ export const allServices: ServiceDetail[] = [
             "Outline Structure"
         ],
         process: [
-            "Define your topic",
-            "AI scans journals/web",
-            "Compile structured report",
-            "Deliver for writing"
+            "Define Topic",
+            "AI Research Sweep",
+            "Human Fact-Check",
+            "Delivery"
         ],
         price: 1499,
-        imageUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1000&auto=format&fit=crop", // Books / Research
+        imageUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true
     },
     {
         id: "14",
         name: "Personal Finance Tracker",
         category: "Personal",
-        description: "Control your money. Stop wondering where it went.",
-        fullDescription: "A simple, automated system to track every rupee you earn and spend. visualizes your financial health so you can see exactly where your salary is going and how much you can save for that trip or bike.",
+        description: "Know where every rupee goes.",
+        fullDescription: "A simple, automated system to track every rupee you earn and spend. We set it up so it's easy to maintain. Visualize your financial health and start saving for what matters.",
         whatYouGet: [
             "Automated Expense Sheet",
             "Category Breakdown",
@@ -309,65 +363,48 @@ export const allServices: ServiceDetail[] = [
             "Mobile Access"
         ],
         price: 999,
-        imageUrl: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=1000&auto=format&fit=crop", // Coin Stack / Growth
+        imageUrl: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true
     },
     {
         id: "15",
-        name: "Reel Combo Set (10 Pack)",
+        name: "Social Media Combo (10 Pack)",
         category: "Personal",
-        description: "Instant content library. 10 viral edits done for you.",
-        fullDescription: "Growing a page takes consistency, but editing is boring. We give you 10 professionally edited Reels complete with captions, trending music, and cuts. You just have to hit 'Post'.",
+        description: "Instant content library. 10 viral edits.",
+        fullDescription: "Growing a personal brand? We give you 10 professionally edited Reels/Shorts complete with captions, trending music, and cuts. You provide the raw video (or we use stock), we make it viral.",
         whatYouGet: [
-            "10 Edited Reel Videos",
+            "10 Edited Reel/Short Videos",
             "Trending Audio Selection",
             "Dynamic Captions",
             "Viral Hook Editing",
             "Thumbnail Suggestions"
         ],
         price: 2499,
-        imageUrl: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1000&auto=format&fit=crop", // Mobile Video
+        imageUrl: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true
     },
     {
-        id: "16",
-        name: "Viral Shorts Pack (10 Pack)",
+        id: "5",
+        name: "AI Professional Songs",
         category: "Personal",
-        description: "Dominate YouTube Shorts. Explosive reach.",
-        fullDescription: "YouTube Shorts is the biggest organic opportunity right now. We create 10 high-retention shorts optimized specifically for the YouTube algorithm to help your channel blow up.",
+        description: "Your lyrics. Studio quality audio.",
+        fullDescription: "Turn your poem, lyrics, or brand message into a professional song. We use generative audio AI to compose the track, then master it for professional release. Perfect for gifts, ads, or content.",
         whatYouGet: [
-            "10 High-Retention Shorts",
-            "YouTube-Specific SEO",
-            "Looping Visuals",
-            "Engagement Call-to-Actions",
-            "Posting Guide"
+            "Full Custom Composition",
+            "Professional Vocals (AI Generated)",
+            "Commercial Usage Rights",
+            "High-Quality WAV Export",
+            "Lyrics Assistance"
         ],
-        price: 2499,
-        imageUrl: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=1000&auto=format&fit=crop", // Play Button
-        isGoldenEligible: false
-    },
-    {
-        id: "17",
-        name: "AI Avatar Clone",
-        category: "Personal",
-        description: "Create video content without being on camera.",
-        fullDescription: "Camera shy? Or just busy? We create a realistic AI avatar of you (or a brand character) that speaks your script perfectly. Produce endless video content without ever setting up a ring light.",
-        whatYouGet: [
-            "Custom AI Face Model",
-            "Voice Cloning Setup",
-            "Lip-Sync Technology",
-            "First 5 Minutes of Video",
-            "Background Customization"
-        ],
-        price: 1999,
-        imageUrl: "https://images.unsplash.com/photo-1633412802994-5c058f151b66?q=80&w=1000&auto=format&fit=crop", // 3D Face Mesh
+        price: 7999,
+        imageUrl: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true
     },
     {
         id: "0",
-        name: "Free AI Consultation",
+        name: "Free Consultation",
         category: "All",
-        description: "Confused? Let's chat. We solve your problem for free.",
+        description: "Confused? Let's chat. Free advice.",
         fullDescription: "Don't know what you need? Tell us your problem in detail, and our experts will recommend the exact AI tools or services to fix it. No obligation. Just solutions.",
         whatYouGet: [
             "Problem Diagnosis",
@@ -383,7 +420,7 @@ export const allServices: ServiceDetail[] = [
             "Take action"
         ],
         price: 0,
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?q=80&w=1000&auto=format&fit=crop", // Question / Support
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: false
     }
 ];

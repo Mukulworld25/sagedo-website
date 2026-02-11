@@ -60,30 +60,40 @@ export default function About() {
               <h1 className="text-4xl md:text-5xl font-black text-foreground">
                 Who We Are
               </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                SAGE DO was founded by <strong className="text-foreground">Mukul Dhiman</strong>, an Aerospace Engineer who previously built aircraft structures for <strong className="text-primary">Lockheed Martin (C130J Super Hercules, F16 Fighter Jets)</strong>.
+              <p className="text-xl text-foreground font-medium leading-relaxed">
+                SAGE DO is India's first <span className="text-primary">AI + Human hybrid execution team</span>.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                We bring that same <strong>military-grade precision</strong> and speed to startup execution. In the aerospace world, efficiency isn't a luxury—it's a requirement. We apply the same principles to launching your business.
+                We're not a pure AI tool that makes mistakes. We're not a traditional agency that's slow and expensive. We're something new: A hybrid model where AI handles the volume and humans ensure the quality—giving you the best of both worlds.
               </p>
+              <div className="p-6 bg-muted/20 rounded-xl border border-border/50">
+                <p className="font-semibold text-foreground mb-2">Our Founder's Background:</p>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li>🚀 Ex-Aerospace Engineer (Tata Lockheed Martin - C130J/F16 programs)</li>
+                  <li>⚙️ Operations Manager (25-person teams, 40% efficiency improvement)</li>
+                  <li>💻 Full-stack Developer (SaaS, mobile apps, AI automation)</li>
+                </ul>
+              </div>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                <em className="text-primary font-semibold">"No delays. No excuses. Just delivery."</em> — That's our promise to bootstrapped founders.
+                We built SAGE DO because we saw the gap: Pure AI is fast but flawed. Pure human is quality but slow. Nobody was combining both optimally. Now we are.
               </p>
             </div>
-            <div className="relative">
+            <div className="relative space-y-6">
               <Card className="glass p-8 space-y-4">
-                <div className="space-y-3">
-                  <h3 className="text-2xl font-bold text-foreground">Our Vision</h3>
-                  <p className="text-muted-foreground">
-                    To become the most trusted AI partner for millions, automating the mundane so humans can innovate, create, and thrive.
-                  </p>
-                </div>
-                <div className="space-y-3">
-                  <h3 className="text-2xl font-bold text-foreground">Our Promise</h3>
-                  <p className="text-muted-foreground">
-                    Fast, affordable, and high-quality AI solutions tailored to your needs. From ₹100 tasks to complete business automation.
-                  </p>
-                </div>
+                <h3 className="text-2xl font-bold text-foreground">Our Philosophy</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  AI is incredibly powerful. But it needs human oversight to be reliable. Humans are incredibly creative. But they need AI to work at scale. <br /><br />
+                  <strong className="text-foreground">Together? Unbeatable.</strong>
+                </p>
+              </Card>
+
+              <Card className="glass p-8 space-y-4 border-primary/20">
+                <h3 className="text-2xl font-bold text-foreground">Why Hybrid Beats Everything</h3>
+                <ul className="space-y-3 text-sm text-muted-foreground">
+                  <li className="flex gap-2"><span className="text-green-500">✅</span> <strong>VS Pure AI:</strong> Human oversight catches errors AI misses.</li>
+                  <li className="flex gap-2"><span className="text-green-500">✅</span> <strong>VS Agencies:</strong> 10x faster processing & lower costs.</li>
+                  <li className="flex gap-2"><span className="text-green-500">✅</span> <strong>VS Freelancers:</strong> Consistent reliability (no ghosting).</li>
+                </ul>
               </Card>
             </div>
           </div>
@@ -146,10 +156,10 @@ export default function About() {
         <section className="mb-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
-              Gallery & Testimonials
+              Our Work
             </h2>
             <p className="text-lg text-muted-foreground">
-              See what our clients say and explore our recent work.
+              We've delivered <strong>200+ projects</strong> across Startups, Students, Professionals, and Businesses.
             </p>
           </div>
 

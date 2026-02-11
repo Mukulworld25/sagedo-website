@@ -93,22 +93,24 @@ export default function Home() {
 
           {/* Main Headline */}
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tight mb-6">
-            <span className="text-foreground">Problem? Need Help?</span>
+            <span className="text-foreground">SAGE DO</span>
             <br />
             <span className="bg-gradient-to-r from-primary via-destructive to-primary bg-clip-text text-transparent">
-              Afcoz!
+              AI + Human Excellence
             </span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground font-medium mb-4 max-w-3xl mx-auto">
-            We help bootstrapped Indian founders go from idea to launched—without the agency prices or agency timelines.
+          <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground font-medium mb-4 max-w-4xl mx-auto">
+            India's first hybrid execution team combining AI speed with human precision for unmatched quality and reliability.
           </p>
 
           {/* Description */}
-          <p className="text-base sm:text-lg text-muted-foreground/80 max-w-2xl mx-auto mb-10">
-            Stop wasting time on small problems. Get instant access to our AI-powered workflow automation platform.
-          </p>
+          <div className="flex flex-col gap-2 text-base sm:text-lg text-muted-foreground/80 max-w-2xl mx-auto mb-10">
+            <p>✅ AI handles volume | Humans ensure quality</p>
+            <p>✅ 24-48 hour delivery | 99.9% accuracy</p>
+            <p>✅ ₹0-₹50K packages | No hidden costs</p>
+          </div>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
@@ -119,24 +121,24 @@ export default function Home() {
             </Link>
             <a href="https://calendly.com/sagedo-ai/30min" target="_blank" rel="noopener noreferrer">
               <Button size="lg" variant="outline" className="h-14 px-8 text-lg font-semibold rounded-xl border-border/50 hover:bg-muted/50 transition-all">
-                <Play className="mr-2 h-5 w-5" /> Book Strategy Call
+                <Play className="mr-2 h-5 w-5" /> Book Free Consultation
               </Button>
             </a>
           </div>
 
-          {/* Trust Signals - Minimal Pills */}
+          {/* Trust Signals - Copy Updated */}
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-green-500" />
-              <span>67+ Founders Helped</span>
+              <span>67+ Clients Helped</span>
             </div>
             <div className="flex items-center gap-2">
               <Zap className="w-4 h-4 text-yellow-500" />
-              <span>7-15 Day Delivery</span>
+              <span>200+ Projects Delivered</span>
             </div>
             <div className="flex items-center gap-2">
               <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
-              <span>₹10-50K Packages</span>
+              <span>99.9% Accuracy</span>
             </div>
           </div>
         </div>
@@ -148,13 +150,17 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-black text-foreground mb-6">
             The Execution Gap
           </h2>
-          <p className="text-xl text-neutral-400 mb-8 leading-relaxed">
-            You know exactly what your startup needs. But traditional agencies want <strong className="text-destructive">₹2-5 Lakhs</strong> and <strong className="text-destructive">90 days</strong> to build it.
-          </p>
+          <div className="text-xl text-neutral-400 mb-8 leading-relaxed max-w-3xl mx-auto text-left space-y-4">
+            <p className="text-center mb-6">Everyone faces the same problem:</p>
+            <p>❌ <strong>Agencies:</strong> ₹2-5L, 60-90 days, slow communication</p>
+            <p>❌ <strong>Freelancers:</strong> Unreliable, inconsistent, ghost mid-project</p>
+            <p>❌ <strong>Pure AI tools:</strong> Fast but error-prone, no oversight</p>
+            <p>❌ <strong>DIY:</strong> Time-consuming, steep learning curve</p>
+          </div>
           <div className="p-6 rounded-2xl bg-neutral-950 border border-neutral-800 inline-block">
             <p className="text-lg font-medium text-primary">
-              We built SAGE DO to fix this. <br />
-              <span className="text-foreground"> Military-grade execution for founders who need to launch NOW.</span>
+              ✅ SAGE DO: Hybrid model = Speed + Quality + Affordability <br />
+              <span className="text-foreground"> We combine AI automation with human oversight to deliver agency-quality work in days (not months).</span>
             </p>
           </div>
         </div>
