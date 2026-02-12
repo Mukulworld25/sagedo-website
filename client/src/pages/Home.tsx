@@ -3,17 +3,11 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle2, Zap, Sparkles, Star, Gift, Play, ChevronRight } from "lucide-react";
+import { ArrowRight, CheckCircle2, Zap, Star, Gift, ChevronRight } from "lucide-react";
 import { useState } from "react";
 
 export default function Home() {
-  const [namasteClicked, setNamasteClicked] = useState(false);
   const [activeStep, setActiveStep] = useState(1);
-
-  const handleNamaste = () => {
-    setNamasteClicked(true);
-    setTimeout(() => setNamasteClicked(false), 2000);
-  };
 
   const categories = [
     { name: "Business", count: "10", description: "Landing pages, ads, automation & more", icon: "💼" },
@@ -29,115 +23,150 @@ export default function Home() {
   ];
 
   const testimonials = [
-    { name: "Priya S.", role: "MBA Student", text: "Got my entire research paper done in 24 hours. Saved my semester!", rating: 5 },
-    { name: "Rahul M.", role: "Startup Founder", text: "The LinkedIn optimization increased my profile views by 300%!", rating: 5 },
-    { name: "Ananya K.", role: "Content Creator", text: "Best reels scripts I've ever used. My engagement doubled!", rating: 5 }
+    { name: "Gurpreet S.", role: "Startup Founder, Punjab", text: "Most agencies quoted ₹3-5L and 3 months. SAGE DO delivered in 10 days for ₹35K. The quality exceeded expectations.", rating: 5 },
+    { name: "Anjali M.", role: "Healthcare Entrepreneur", text: "I was doing everything myself and burning out. SAGE DO took over execution completely. Now I focus on customers while they handle the tech.", rating: 5 },
+    { name: "Vikram R.", role: "Serial Entrepreneur", text: "As someone who's worked with 5+ agencies before, SAGE DO is different. No bullshit. Just execution.", rating: 5 }
   ];
 
   return (
     <div className="min-h-screen bg-background">
 
       {/* ═══════════════════════════════════════════════════════════════════
-          HERO SECTION - Clean, Impactful, Minimal
+          HERO SECTION - 10/10 Redesign: Badge → Headline → Stats → CTA
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
 
-        {/* Subtle Grid Pattern Background */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)',
-          backgroundSize: '60px 60px'
+        {/* Animated Grid Pattern Background */}
+        <div className="absolute inset-0 opacity-[0.03] animate-grid-move" style={{
+          backgroundImage: 'linear-gradient(rgba(255,0,0,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,0,0,.15) 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
         }} />
 
-        {/* ═══════════════════════════════════════════════════════════════
-            LAYER 1: Large AI Brain Logo Background - Enhanced visibility with red glow
-        ═══════════════════════════════════════════════════════════════ */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          {/* Red glow effect in center */}
-          <div className="absolute w-64 h-64 bg-primary/30 rounded-full blur-[100px]" />
-          <img
-            src="/sagedo_logo_pro_clean.png"
-            alt=""
-            className="relative w-[600px] h-[600px] md:w-[800px] md:h-[800px] object-contain opacity-[0.15]"
-            style={{ filter: 'contrast(1.2)' }}
-          />
-        </div>
+        {/* Radial Red Gradient Glow */}
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: 'radial-gradient(circle at top center, rgba(255,0,0,0.08) 0%, rgba(0,0,0,0) 70%)'
+        }} />
 
-        {/* Subtle Gradient Orbs - Grey and red tones */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neutral-600/15 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+        {/* Floating Orbs */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none animate-float" />
+        <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none animate-float-delayed" />
 
         {/* Hero Content */}
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24">
+        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24 pb-12">
 
-          {/* Small Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">AI + Human Excellence</span>
+          {/* 🏆 Pulsing Badge */}
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full mb-10 animate-badge-pulse"
+            style={{
+              background: 'rgba(255, 0, 0, 0.1)',
+              border: '1px solid rgba(255, 0, 0, 0.6)',
+              boxShadow: '0 0 20px rgba(255, 0, 0, 0.2)'
+            }}
+          >
+            <span className="text-sm">🏆</span>
+            <span className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider">
+              India's First AI + Human Hybrid Execution Team
+            </span>
           </div>
 
-          {/* Namaste Button - Subtle */}
-          <div className="mb-8">
-            <button
-              onClick={handleNamaste}
-              className={`
-                px-8 py-3 rounded-full font-bold text-lg transition-all duration-500
-                ${namasteClicked
-                  ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white scale-110 shadow-lg shadow-orange-500/30'
-                  : 'bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground'
-                }
-              `}
+          {/* 🔥 3-Line Stagger Headline */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-8">
+            <span className="block mb-2 text-foreground animate-hero-line-1">
+              Speed of AI.
+            </span>
+            <span className="block mb-2 animate-hero-line-2"
+              style={{
+                background: 'linear-gradient(180deg, rgba(255,255,255,0.7) 0%, #FFFFFF 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}
             >
-              {namasteClicked ? '🙏' : 'Namaste'}
-            </button>
-          </div>
-
-          {/* Main Headline */}
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tight mb-6">
-            <span className="text-foreground">Problem? Need Help?</span>
-            <br />
-            <span className="bg-gradient-to-r from-primary via-destructive to-primary bg-clip-text text-transparent">
-              Afcoz!
+              Precision of Humans.
+            </span>
+            <span className="block relative inline-block text-foreground animate-hero-line-3">
+              Excellence Guaranteed.
+              <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-[3px] rounded-full"
+                style={{ background: 'linear-gradient(90deg, #FF0000, #FF4444)' }}
+              />
             </span>
           </h1>
 
-          {/* Subheadline */}
-          <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground font-medium mb-4 max-w-3xl mx-auto">
-            We Do Your Daily Grind, You Do Grand Things.
+          {/* Supporting Subheadline */}
+          <p className="text-lg sm:text-xl text-neutral-400 font-normal leading-relaxed max-w-[680px] mx-auto mb-10">
+            We combine AI automation with human expertise to deliver what agencies can't:{' '}
+            <span className="text-primary font-semibold">99.9% accuracy</span> in{' '}
+            <span className="text-primary font-semibold">24-48 hours</span>{' '}
+            at prices that make sense.
           </p>
 
-          {/* Description */}
-          <p className="text-base sm:text-lg text-muted-foreground/80 max-w-2xl mx-auto mb-10">
-            Stop wasting time on small problems. Get instant access to our AI-powered workflow automation platform.
-          </p>
+          {/* 📊 Glassmorphism Stats Grid */}
+          <div className="max-w-xl mx-auto mb-10 p-6 sm:p-8 rounded-2xl grid grid-cols-2 gap-4 sm:gap-5"
+            style={{
+              background: 'rgba(255, 255, 255, 0.03)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              boxShadow: '0 4px 24px rgba(0, 0, 0, 0.3)'
+            }}
+          >
+            {[
+              { number: '67+', label: 'Projects Delivered' },
+              { number: '24-48h', label: 'Delivery' },
+              { number: '99.9%', label: 'Accuracy' },
+              { number: '₹10-50K', label: 'Packages' },
+            ].map((stat) => (
+              <div key={stat.label} className="flex items-center gap-2 sm:gap-3 text-left">
+                <span className="text-primary font-bold text-lg">✓</span>
+                <span className="text-white text-sm sm:text-base">
+                  <strong className="text-primary font-bold">{stat.number}</strong>{' '}
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <Link href="/services">
-              <Button size="lg" className="h-14 px-8 text-lg font-semibold bg-primary hover:bg-primary/90 rounded-xl shadow-lg shadow-primary/25 transition-all hover:scale-105">
-                Help Me! <ArrowRight className="ml-2 h-5 w-5" />
+          {/* 🔴 CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+            <a href="https://calendly.com/sagedo-ai/30min" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="h-14 px-8 text-lg font-semibold bg-primary hover:bg-primary/90 rounded-xl transition-all hover:scale-[1.02] hover:-translate-y-0.5 group"
+                style={{
+                  boxShadow: '0 4px 16px rgba(255, 0, 0, 0.4)'
+                }}
+              >
+                Book Free Consultation <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
-            </Link>
-            <Link href="/about">
-              <Button size="lg" variant="outline" className="h-14 px-8 text-lg font-semibold rounded-xl border-border/50 hover:bg-muted/50 transition-all">
-                <Play className="mr-2 h-5 w-5" /> See How It Works
+            </a>
+            <Link href="/services">
+              <Button size="lg" variant="outline" className="h-14 px-8 text-lg font-semibold rounded-xl border-white/20 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all">
+                See How It Works
               </Button>
             </Link>
           </div>
 
-          {/* Trust Signals - Minimal Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-green-500" />
-              <span>150+ Happy Customers</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-yellow-500" />
-              <span>24-48 Hour Delivery</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
-              <span>4.8 Average Rating</span>
-            </div>
+          {/* Trust Line */}
+          <p className="text-sm text-neutral-500 italic">
+            Trusted by founders, students, and professionals across India
+          </p>
+        </div>
+      </section>
+
+      {/* NEW: The Execution Gap Section */}
+      <section className="py-20 bg-neutral-900 border-y border-neutral-800">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-black text-foreground mb-6">
+            The Execution Gap
+          </h2>
+          <div className="text-xl text-neutral-400 mb-8 leading-relaxed max-w-3xl mx-auto text-left space-y-4">
+            <p className="text-center mb-6">Everyone faces the same problem:</p>
+            <p>❌ <strong>Agencies:</strong> ₹2-5L, 60-90 days, slow communication</p>
+            <p>❌ <strong>Freelancers:</strong> Unreliable, inconsistent, ghost mid-project</p>
+            <p>❌ <strong>Pure AI tools:</strong> Fast but error-prone, no oversight</p>
+            <p>❌ <strong>DIY:</strong> Time-consuming, steep learning curve</p>
+          </div>
+          <div className="p-6 rounded-2xl bg-neutral-950 border border-neutral-800 inline-block">
+            <p className="text-lg font-medium text-primary">
+              ✅ SAGE DO: Hybrid model = Speed + Quality + Affordability <br />
+              <span className="text-foreground"> We combine AI automation with human oversight to deliver agency-quality work in days (not months).</span>
+            </p>
           </div>
         </div>
 

@@ -20,12 +20,11 @@ export default function ChatWidget() {
     const [messages, setMessages] = useState<Message[]>([
         {
             id: 'welcome',
-            text: "Hi! I'm Bruno, SAGE DO's official voice! Contact: hello@sagedo.in | +91 6284925684 | LinkedIn: SAGE DO. How can I help?",
+            text: "Namaste! 🙏 I'm Bruno, SAGE DO's assistant. How can I help you today?",
             sender: 'bot',
             options: [
-                { label: "🔥 Trending Services", action: "trending" },
-                { label: "Check Prices", action: "pricing" },
-                { label: "Track Order", action: "track" },
+                { label: "Browse Services", action: "services" },
+                { label: "Check Pricing", action: "pricing" },
                 { label: "Talk to Human", action: "human" }
             ]
         }
