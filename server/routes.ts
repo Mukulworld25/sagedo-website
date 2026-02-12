@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { setupAuth, registerCustomer, loginUser, isAuthenticated, isAdmin, generate2FASecret, generate2FAQRCode, verify2FAToken } from "./auth";
 import { createPaymentOrder, verifyPaymentSignature } from "./payment";
 import { sendOrderConfirmationEmail, sendPaymentSuccessEmail, sendOrderDeliveredEmail, sendAccountDeletionEmail, sendContactEmail } from "./email";
+import { BrunoBrain } from "./bruno";
 import { insertContactMessageSchema } from "@shared/schema";
 import passport from 'passport';
 import PDFDocument from 'pdfkit';
@@ -1624,6 +1625,40 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Feedback error:', error);
       res.status(500).json({ error: 'Failed to submit feedback' });
+    }
+  });
+
+  // =======================
+  // BRUNO AI CHAT
+  // =======================
+  const brunoChatLimiter = rateLimit({
+    windowMs: 60 * 1000, // 1 minute
+    max: 15, // 15 messages per minute per IP
+    message: "Too many messages, please slow down."
+  });
+
+  app.post('/api/bruno/chat', brunoChatLimiter, async (req: any, res) => {
+    try {
+      const { message, personality } = req.body;
+
+      if (!message || typeof message !== 'string') {
+        return res.status(400).json({ text: "Please send a message!", options: [] });
+      }
+
+      const userId = req.session?.user?.id;
+      const response = await BrunoBrain.processMessage(
+        userId,
+        message.trim(),
+        personality || 'standard'
+      );
+
+      res.json(response);
+    } catch (error) {
+      console.error('Bruno chat error:', error);
+      res.status(500).json({
+        text: "I'm having trouble thinking right now! 🙈 Try again or reach us on WhatsApp.",
+        options: ['Contact WhatsApp', 'Try Again']
+      });
     }
   });
 
