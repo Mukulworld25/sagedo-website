@@ -66,6 +66,20 @@ export default function About() {
               <p className="text-lg text-muted-foreground leading-relaxed">
                 We're not a pure AI tool that makes mistakes. We're not a traditional agency that's slow and expensive. We're something new: A hybrid model where AI handles the volume and humans ensure the quality—giving you the best of both worlds.
               </p>
+
+              {/* FOUNDER STORY VIDEO SLOT */}
+              <div className="relative aspect-video rounded-xl overflow-hidden border border-white/10 bg-black/50 group cursor-pointer hover:border-primary/50 transition-all">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[18px] border-l-primary border-b-[10px] border-b-transparent ml-1"></div>
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
+                  <p className="text-white font-bold">Watch: The SAGE DO Story</p>
+                  <p className="text-xs text-gray-400">From Aerospace Engineer to AI Founder</p>
+                </div>
+              </div>
+
               <div className="p-6 bg-muted/20 rounded-xl border border-border/50">
                 <p className="font-semibold text-foreground mb-2">Our Founder's Background:</p>
                 <ul className="space-y-2 text-muted-foreground">
@@ -252,6 +266,44 @@ export default function About() {
               </p>
             </Card>
           )}
+        </section>
+
+        {/* VIDEO TESTIMONIALS SECTION - NEW */}
+        <section className="mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
+              Featured Client Wins
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Real stories from founders who scaled with us.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Video 1 Placeholder */}
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-white/10 bg-black/50 group cursor-pointer hover:border-primary/50 transition-all">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[18px] border-l-primary border-b-[10px] border-b-transparent ml-1"></div>
+                </div>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
+                <p className="text-white font-bold">"Saved me 40 hours/week"</p>
+                <p className="text-xs text-gray-400">Rajesh M, Startup Founder</p>
+              </div>
+            </div>
+            {/* Video 2 Placeholder */}
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-white/10 bg-black/50 group cursor-pointer hover:border-primary/50 transition-all">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[18px] border-l-primary border-b-[10px] border-b-transparent ml-1"></div>
+                </div>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
+                <p className="text-white font-bold">"The hybrid model is genius"</p>
+                <p className="text-xs text-gray-400">Anjali S, Healthcare CEO</p>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Contact Us Section - Required for Razorpay */}

@@ -1,21 +1,9 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
-import { Star, ArrowRight, CheckCircle2, Zap, Users } from "lucide-react";
-
-interface ServiceDetail {
-    id: string;
-    name: string;
-    description: string;
-    fullDescription: string;
-    whatYouGet: string[];
-    process: string[];
-    price: number;
-    category: string;
-    imageUrl: string;
-    isGoldenEligible: boolean;
-}
+import { Star, ArrowRight, CheckCircle2, Zap, Trophy, Crown, Shield } from "lucide-react";
+import { ServiceDetail } from "@/data/serviceData";
 
 interface ServiceDetailModalProps {
     service: ServiceDetail | null;
@@ -28,99 +16,107 @@ export default function ServiceDetailModal({ service, isOpen, onClose }: Service
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto glass border-border/50">
-                {/* Header with Image */}
-                <div className="relative h-48 -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-lg">
+            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto glass border-border/50 p-0 gap-0">
+                {/* Header Image Area */}
+                <div className="relative h-56 w-full overflow-hidden">
                     <img
                         src={service.imageUrl}
                         alt={service.name}
                         className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+
                     {service.isGoldenEligible && (
-                        <Badge className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-amber-600 text-white border-0">
-                            <Star className="w-3 h-3 mr-1 fill-current" />
-                            Starter Credit
+                        <Badge className="absolute top-4 right-4 bg-amber-500 text-black border-0 font-bold">
+                            <Star className="w-3 h-3 mr-1 fill-black" />
+                            Starter Friendly
                         </Badge>
                     )}
-                    <div className="absolute bottom-4 left-6 right-6">
-                        <Badge variant="secondary" className="mb-2">{service.category}</Badge>
-                        <DialogTitle className="text-2xl md:text-3xl font-black text-foreground">
+
+                    <div className="absolute bottom-6 left-6 right-6">
+                        <Badge variant="secondary" className="mb-3 bg-white/20 text-white backdrop-blur-md border-white/10 hover:bg-white/30">
+                            {service.category}
+                        </Badge>
+                        <DialogTitle className="text-3xl md:text-4xl font-black text-white mb-2 leading-tight">
                             {service.name}
                         </DialogTitle>
+                        <p className="text-gray-300 text-lg max-w-2xl text-shadow-sm">
+                            {service.fullDescription}
+                        </p>
                     </div>
                 </div>
 
-                {/* Price */}
-                <div className="flex items-center justify-between mb-6 p-4 rounded-lg bg-card/50 border border-border/30">
-                    <div>
-                        <p className="text-sm text-muted-foreground">Price</p>
-                        <p className="text-3xl font-black text-primary">₹{service.price}</p>
-                    </div>
-                </div>
-
-                {/* Full Description */}
-                <DialogDescription className="text-base text-muted-foreground mb-6">
-                    {service.fullDescription}
-                </DialogDescription>
-
-                {/* What You'll Get */}
-                <div className="mb-6">
-                    <h3 className="text-lg font-bold text-foreground mb-3 flex items-center gap-2">
-                        <CheckCircle2 className="w-5 h-5 text-green-500" />
-                        What You'll Get
-                    </h3>
-                    <ul className="space-y-2">
-                        {service.whatYouGet.map((item, index) => (
-                            <li key={index} className="flex items-start gap-3 text-muted-foreground">
-                                <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                                <span>{item}</span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
-                {/* How It Works */}
-                <div className="mb-6">
-                    <h3 className="text-lg font-bold text-foreground mb-3 flex items-center gap-2">
-                        <Zap className="w-5 h-5 text-yellow-500" />
-                        How It Works
-                    </h3>
-                    <ol className="space-y-3">
-                        {service.process.map((step, index) => (
-                            <li key={index} className="flex items-start gap-3">
-                                <span className="w-6 h-6 rounded-full bg-gradient-to-r from-primary to-destructive flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
-                                    {index + 1}
-                                </span>
-                                <span className="text-muted-foreground">{step}</span>
-                            </li>
-                        ))}
-                    </ol>
-                </div>
-
-                {/* Human Touch Note */}
-                <div className="p-4 rounded-lg bg-gradient-to-r from-primary/10 to-destructive/10 border border-primary/20 mb-6">
-                    <div className="flex items-start gap-3">
-                        <Users className="w-5 h-5 text-primary mt-0.5" />
+                <div className="p-6 md:p-8 bg-[#0a0a0a]">
+                    {/* Price Range Banner */}
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 to-transparent border border-amber-500/20">
                         <div>
-                            <p className="text-sm font-medium text-foreground">AI + Human Excellence</p>
-                            <p className="text-xs text-muted-foreground">
-                                Every deliverable is crafted by AI and reviewed by our expert team to ensure quality.
-                            </p>
+                            <p className="text-sm text-amber-500 font-bold uppercase tracking-wider mb-1">Estimated Investment</p>
+                            <p className="text-4xl font-black text-white">{service.priceRange}</p>
+                        </div>
+                        <div className="flex gap-2">
+                            <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}`}>
+                                <Button className="bg-amber-500 hover:bg-amber-600 text-black font-bold h-12 px-8 rounded-xl shadow-lg shadow-amber-500/20">
+                                    Start Configuration <ArrowRight className="ml-2 w-5 h-5" />
+                                </Button>
+                            </Link>
                         </div>
                     </div>
-                </div>
 
-                {/* CTA Button */}
-                <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}`}>
-                    <Button
-                        className="w-full bg-gradient-to-r from-primary to-destructive hover:opacity-90 text-lg py-6"
-                        onClick={onClose}
-                    >
-                        Order Now - ₹{service.price}
-                        <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                </Link>
+                    {/* Features Grid: Standard vs Premium */}
+                    <div className="grid md:grid-cols-2 gap-8">
+                        {/* STANDARD COLUMN */}
+                        <div className="space-y-6 p-6 rounded-2xl bg-white/5 border border-white/5">
+                            <div className="flex items-center gap-3 mb-4 border-b border-white/10 pb-4">
+                                <Shield className="w-8 h-8 text-gray-400" />
+                                <div>
+                                    <h3 className="text-xl font-bold text-white">Standard</h3>
+                                    <p className="text-sm text-gray-400">Essential features to get started.</p>
+                                </div>
+                            </div>
+                            <ul className="space-y-4">
+                                {service.standardFeatures.map((feat, idx) => (
+                                    <li key={idx} className="flex items-start gap-3">
+                                        <CheckCircle2 className="w-5 h-5 text-gray-500 mt-0.5 shrink-0" />
+                                        <span className="text-gray-300">{feat}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* PREMIUM COLUMN */}
+                        <div className="relative space-y-6 p-6 rounded-2xl bg-gradient-to-b from-amber-900/20 to-transparent border border-amber-500/30">
+                            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-500 text-black text-xs font-bold px-3 py-1 rounded-full uppercase">
+                                Recommended
+                            </div>
+                            <div className="flex items-center gap-3 mb-4 border-b border-white/10 pb-4">
+                                <Crown className="w-8 h-8 text-amber-500" />
+                                <div>
+                                    <h3 className="text-xl font-bold text-amber-500">Premium Upgrade</h3>
+                                    <p className="text-sm text-amber-500/80">For professional scaling.</p>
+                                </div>
+                            </div>
+                            <ul className="space-y-4">
+                                {service.premiumFeatures.map((feat, idx) => (
+                                    <li key={idx} className="flex items-start gap-3">
+                                        <Zap className="w-5 h-5 text-amber-500 mt-0.5 shrink-0" />
+                                        <span className="text-white font-medium">{feat}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className="mt-6 pt-6 border-t border-white/10 text-center">
+                                <p className="text-xs text-gray-400 italic">
+                                    *You can select Premium add-ons during checkout.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-8 text-center">
+                        <p className="text-sm text-gray-500">
+                            Need a custom enterprise solution? <a href="/contact" className="text-amber-500 hover:underline">Contact Sales</a>
+                        </p>
+                    </div>
+                </div>
             </DialogContent>
         </Dialog>
     );

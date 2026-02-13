@@ -31,7 +31,7 @@ const TABS = [
   },
   {
     id: "career",
-    label: "Career Ascension",
+    label: "The Growth Accelerator",
     icon: Rocket,
     color: "from-blue-400 to-cyan-600",
     description: "For Professionals",
@@ -39,7 +39,7 @@ const TABS = [
   },
   {
     id: "life",
-    label: "Life Architect",
+    label: "The Universal Toolkit",
     icon: Heart,
     color: "from-rose-400 to-pink-600",
     description: "For Everyone",
@@ -221,7 +221,7 @@ export default function Services() {
                     <div className="mb-4 p-2 bg-amber-500/10 w-fit rounded-lg text-amber-500">
                       <Zap className="w-6 h-6" />
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-1">AI Launchpad</h3>
+                    <h3 className="text-xl font-bold text-white mb-1">Starter Launch</h3>
                     <p className="text-gray-400 text-sm mb-6">Validation velocity for solo founders.</p>
                     <div className="flex items-baseline gap-1 mb-6">
                       <span className="text-3xl font-black text-white">₹15,000</span>
@@ -245,7 +245,7 @@ export default function Services() {
                     <div className="mb-6 p-3 bg-amber-500 text-black w-fit rounded-xl">
                       <Crown className="w-8 h-8" />
                     </div>
-                    <h3 className="text-2xl font-black text-white mb-2">AI Co-Founder System</h3>
+                    <h3 className="text-2xl font-black text-white mb-2">Full Launch</h3>
                     <p className="text-gray-400 text-sm mb-8">Complete technical & creative execution. You sell, we build.</p>
                     <div className="flex items-baseline gap-1 mb-8">
                       <span className="text-5xl font-black text-white">₹35,000</span>
@@ -278,7 +278,7 @@ export default function Services() {
                     <div className="mb-4 p-2 bg-amber-500/10 w-fit rounded-lg text-amber-500">
                       <TrendingUp className="w-6 h-6" />
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-1">The Singularity Scale</h3>
+                    <h3 className="text-xl font-bold text-white mb-1">Premium Launch</h3>
                     <p className="text-gray-400 text-sm mb-6">Scale-ready infrastructure.</p>
                     <div className="flex items-baseline gap-1 mb-6">
                       <span className="text-3xl font-black text-white">₹50,000</span>
@@ -317,10 +317,15 @@ export default function Services() {
                     <img src={service.imageUrl} alt={service.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                     <div className="absolute bottom-4 left-4 z-20">
                       <h3 className="font-bold text-white text-lg leading-tight mb-1">{service.name}</h3>
-                      <p className="text-amber-500 font-bold">₹{service.price}</p>
+                      <p className="text-amber-500 font-bold text-sm bg-black/50 px-2 py-1 rounded-md inline-block backdrop-blur-sm border border-amber-500/20">{service.priceRange}</p>
                     </div>
                   </div>
                   <div className="p-4">
+                    <div className="mb-3">
+                      <Badge variant="outline" className="bg-amber-500/10 text-amber-500 border-amber-500/20 text-[10px] sm:text-xs">
+                        🤖 AI Speed + 🧠 Human Quality
+                      </Badge>
+                    </div>
                     <p className="text-sm text-gray-400 line-clamp-2 mb-4">{service.description}</p>
                     <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}`}>
                       <Button size="sm" className="w-full bg-white/10 hover:bg-white/20 text-white border-none justify-between group-hover:bg-amber-500 group-hover:text-black transition-colors">
