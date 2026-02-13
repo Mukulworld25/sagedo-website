@@ -1,7 +1,7 @@
 // Premium Homepage - Bhindi-style clean design
 // Like a jeweler engraving a diamond ✨
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, CheckCircle2, Zap, Star, Gift, ChevronRight } from "lucide-react";
 import { useState } from "react";
@@ -124,21 +124,20 @@ export default function Home() {
             ))}
           </div>
 
-          {/* 🔴 CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-            <a href="https://calendly.com/sagedo-ai/30min" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="h-14 px-8 text-lg font-semibold bg-primary hover:bg-primary/90 rounded-xl transition-all hover:scale-[1.02] hover:-translate-y-0.5 group"
+            <Link href="/orders">
+              <div className={buttonVariants({ size: "lg", className: "h-14 px-8 text-lg font-semibold bg-primary hover:bg-primary/90 rounded-xl transition-all hover:scale-[1.02] hover:-translate-y-0.5 group cursor-pointer" })}
                 style={{
                   boxShadow: '0 4px 16px rgba(255, 0, 0, 0.4)'
                 }}
               >
                 Book Free Consultation <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </a>
+              </div>
+            </Link>
             <Link href="/services">
-              <Button size="lg" variant="outline" className="h-14 px-8 text-lg font-semibold rounded-xl border-white/20 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all">
+              <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-14 px-8 text-lg font-semibold rounded-xl border-white/20 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all cursor-pointer" })}>
                 See How It Works
-              </Button>
+              </div>
             </Link>
           </div>
 
@@ -244,9 +243,9 @@ export default function Home() {
                 </li>
               </ul>
               <Link href="/login?register=true">
-                <Button className="w-full h-12 rounded-xl text-lg" variant="outline">
+                <div className={buttonVariants({ variant: "outline", className: "w-full h-12 rounded-xl text-lg cursor-pointer" })}>
                   Get Started Free
-                </Button>
+                </div>
               </Link>
             </div>
 
@@ -277,10 +276,10 @@ export default function Home() {
 
               <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
                 <Link href="/login?register=true">
-                  <Button size="lg" className="w-full h-12 bg-gradient-to-r from-amber-500 to-amber-600 text-amber-950 font-bold hover:opacity-90 rounded-xl shadow-lg shadow-amber-500/25 whitespace-normal h-auto py-3">
+                  <div className={buttonVariants({ size: "lg", className: "w-full h-12 bg-gradient-to-r from-amber-500 to-amber-600 text-amber-950 font-bold hover:opacity-90 rounded-xl shadow-lg shadow-amber-500/25 whitespace-normal h-auto py-3 cursor-pointer" })}>
                     <Gift className="mr-2 h-5 w-5 flex-shrink-0" />
                     <span>Claim FREE AI Templates</span>
-                  </Button>
+                  </div>
                 </Link>
               </div>
             </div>
@@ -409,9 +408,9 @@ export default function Home() {
 
           <div className="text-center mt-12">
             <Link href="/services">
-              <Button size="lg" variant="outline" className="h-12 px-8 rounded-xl border-border/50 hover:bg-muted/50">
+              <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-12 px-8 rounded-xl border-border/50 hover:bg-muted/50 cursor-pointer" })}>
                 Explore All 30+ Services <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+              </div>
             </Link>
           </div>
         </div>
@@ -472,14 +471,14 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/login?register=true">
-              <Button size="lg" className="h-14 px-10 text-lg font-semibold bg-primary hover:bg-primary/90 rounded-xl shadow-lg shadow-primary/25 transition-all hover:scale-105">
+              <div className={buttonVariants({ size: "lg", className: "h-14 px-10 text-lg font-semibold bg-primary hover:bg-primary/90 rounded-xl shadow-lg shadow-primary/25 transition-all hover:scale-105 cursor-pointer" })}>
                 Get Started Free <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+              </div>
             </Link>
             <Link href="/services">
-              <Button size="lg" variant="outline" className="h-14 px-10 text-lg font-semibold rounded-xl border-border/50 hover:bg-muted/50">
+              <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-14 px-10 text-lg font-semibold rounded-xl border-border/50 hover:bg-muted/50 cursor-pointer" })}>
                 Browse Services
-              </Button>
+              </div>
             </Link>
           </div>
         </div>

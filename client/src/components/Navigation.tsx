@@ -64,15 +64,15 @@ export default function Navigation() {
             <div className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => (
                 <Link key={link.href} href={link.href}>
-                  <button
+                  <div
                     data-testid={`nav-${link.label.toLowerCase()}`}
-                    className={`text-sm font-medium px-4 py-2 rounded-lg transition-all duration-200 ${location === link.href
+                    className={`text-sm font-medium px-4 py-2 rounded-lg transition-all duration-200 cursor-pointer ${location === link.href
                       ? "text-foreground bg-neutral-800/50 shadow-inner"
                       : "text-muted-foreground hover:text-foreground hover:bg-neutral-800/30"
                       }`}
                   >
                     {link.label}
-                  </button>
+                  </div>
                 </Link>
               ))}
             </div>
@@ -185,16 +185,16 @@ export default function Navigation() {
           <div className="px-4 pt-2 pb-4 space-y-1">
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href}>
-                <button
+                <div
                   data-testid={`nav-mobile-${link.label.toLowerCase()}`}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors ${location === link.href
+                  className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors cursor-pointer ${location === link.href
                     ? "text-foreground bg-neutral-800/50"
                     : "text-muted-foreground hover:text-foreground hover:bg-neutral-800/30"
                     }`}
                 >
                   {link.label}
-                </button>
+                </div>
               </Link>
             ))}
             {!isLoading && (
