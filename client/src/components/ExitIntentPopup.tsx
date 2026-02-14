@@ -10,9 +10,11 @@ export default function ExitIntentPopup() {
     const [submitted, setSubmitted] = useState(false);
 
     useEffect(() => {
-        // Check if already shown this session
-        const shown = sessionStorage.getItem('exit_popup_shown');
-        if (shown) {
+        // Check if already shown forever (or for a long time)
+        const shown = localStorage.getItem('sagedo_exit_popup_shown');
+        const feedbackSubmitted = localStorage.getItem('sagedo_feedback_submitted');
+
+        if (shown || feedbackSubmitted) {
             setHasShown(true);
             return;
         }
@@ -22,7 +24,7 @@ export default function ExitIntentPopup() {
             if (e.clientY < 10 && !hasShown) {
                 setIsVisible(true);
                 setHasShown(true);
-                sessionStorage.setItem('exit_popup_shown', 'true');
+                localStorage.setItem('sagedo_exit_popup_shown', 'true');
             }
         };
 
@@ -50,6 +52,7 @@ export default function ExitIntentPopup() {
                 body: JSON.stringify({ rating, feedback, type: 'exit_intent' })
             });
             setSubmitted(true);
+            localStorage.setItem('sagedo_feedback_submitted', 'true');
             setTimeout(() => setIsVisible(false), 2000);
         } catch (error) {
             console.error('Feedback error:', error);

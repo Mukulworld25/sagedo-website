@@ -34,8 +34,9 @@ export default function Orders() {
     deliveryPreference: "platform" as "platform" | "email",
   });
   const [createdOrderId, setCreatedOrderId] = useState<string | null>(null);
-  const [orderAmount, setOrderAmount] = useState(500); // Default ₹500
+  const [orderAmount, setOrderAmount] = useState(0); // Default 0
   const [isRazorpayLoaded, setIsRazorpayLoaded] = useState(false);
+  const [isServiceLocked, setIsServiceLocked] = useState(false);
   const API_URL = ''; // Use relative URL - Vercel proxy forwards to Render
 
   // Multi-service cart (up to 3 services)
@@ -72,6 +73,7 @@ export default function Orders() {
 
     if (serviceName) {
       setFormData(prev => ({ ...prev, service: serviceName }));
+      setIsServiceLocked(true);
 
       // Lookup service to check if Golden Ticket eligible
       const service = allServices.find(s => s.name === serviceName || s.id === serviceId);
@@ -93,6 +95,13 @@ export default function Orders() {
       } else if (price) {
         setOrderAmount(parseInt(price, 10));
       }
+    } else {
+      // Direct visit - Clean slate
+      setFormData(prev => ({ ...prev, service: "" }));
+      setOrderAmount(0);
+      setCart([]);
+      setIsServiceLocked(false);
+      setIsGoldenService(false);
     }
   }, [searchString]);
 
@@ -445,7 +454,7 @@ export default function Orders() {
                         </>
                       )}
                     </h3>
-                    {cart.length < 3 && !hasOnlyFreeServices && (
+                    {cart.length < 3 && !hasOnlyFreeServices && !isServiceLocked && (
                       <Link href="/services">
                         <Button variant="outline" size="sm" className="gap-1">
                           <Plus className="w-4 h-4" /> Add More
@@ -515,8 +524,9 @@ export default function Orders() {
                   <p className="text-xs text-muted-foreground">We'll send order updates to this email</p>
                 </div>
 
-                {/* Service - Only show if not pre-filled from URL */}
-                {!formData.service && (
+                {/* Service - Show if not locked OR if locked but we want to show it as read-only text (which we do via the cart card above) */}
+                {/* Actually, per requirements: Hide service input if pre-filled/locked. Only show if manually adding. */}
+                {!isServiceLocked && (
                   <div className="space-y-2">
                     <Label htmlFor="service" className="text-foreground">
                       Service Needed <span className="text-destructive">*</span>
@@ -662,8 +672,8 @@ export default function Orders() {
                   </div>
                 </div>
 
-                {/* Order Amount - Hide for Golden Ticket services */}
-                {!isGoldenService && !hasOnlyFreeServices && (
+                {/* Order Amount - Hide for Golden Ticket OR if Service is Locked (Pre-filled) */}
+                {!isGoldenService && !hasOnlyFreeServices && !isServiceLocked && cart.length === 0 && (
                   <div className="space-y-2">
                     <Label htmlFor="amount" className="text-foreground">
                       Order Amount (₹) <span className="text-destructive">*</span>
@@ -671,16 +681,15 @@ export default function Orders() {
                     <Input
                       id="amount"
                       type="number"
-                      value={cartTotal > 0 ? cartTotal : orderAmount}
+                      value={orderAmount}
                       onChange={(e) => setOrderAmount(parseInt(e.target.value) || 0)}
-                      placeholder="500"
+                      placeholder="Enter amount"
                       min="1"
                       required
                       className="glass border-border/50"
-                      disabled={cart.length > 0}
                     />
                     <p className="text-xs text-muted-foreground">
-                      {cart.length > 0 ? 'Amount calculated from selected services' : 'Enter the agreed amount for your order'}
+                      Enter the agreed amount for your order
                     </p>
                   </div>
                 )}

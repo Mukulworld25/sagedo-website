@@ -148,31 +148,95 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NEW: The Execution Gap Section */}
-      <section className="py-20 bg-neutral-900 border-y border-neutral-800">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-black text-foreground mb-6">
-            The Execution Gap
-          </h2>
-          <div className="text-xl text-neutral-400 mb-8 leading-relaxed max-w-3xl mx-auto text-left space-y-4">
-            <p className="text-center mb-6">Everyone faces the same problem:</p>
-            <p>❌ <strong>Agencies:</strong> ₹2-5L, 60-90 days, slow communication</p>
-            <p>❌ <strong>Freelancers:</strong> Unreliable, inconsistent, ghost mid-project</p>
-            <p>❌ <strong>Pure AI tools:</strong> Fast but error-prone, no oversight</p>
-            <p>❌ <strong>DIY:</strong> Time-consuming, steep learning curve</p>
-          </div>
-          <div className="p-6 rounded-2xl bg-neutral-950 border border-neutral-800 inline-block">
-            <p className="text-lg font-medium text-primary">
-              ✅ SAGE DO: Hybrid model = Speed + Quality + Affordability <br />
-              <span className="text-foreground"> We combine AI automation with human oversight to deliver agency-quality work in days (not months).</span>
+      {/* NEW: The Execution Gap Section - Redesigned Center Comparison */}
+      <section className="py-24 bg-neutral-900 border-y border-neutral-800 relative overflow-hidden">
+        {/* Ambient background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-6xl mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
+              The Execution Gap
+            </h2>
+            <p className="text-xl text-neutral-400 max-w-3xl mx-auto">
+              Why most projects fail before they launch.
             </p>
           </div>
-        </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2">
-            <div className="w-1.5 h-3 bg-muted-foreground/50 rounded-full" />
+          <div className="grid md:grid-cols-2 gap-8 items-stretch">
+            {/* The Old Way (Problem) */}
+            <div className="p-8 rounded-3xl bg-neutral-950/50 border border-neutral-800/80 backdrop-blur-sm relative group overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-red-500/5 to-transparent opacity-50" />
+              <h3 className="text-2xl font-bold text-red-400 mb-8 flex items-center gap-3">
+                <span className="text-3xl">❌</span> The Old Way
+              </h3>
+              <div className="space-y-6">
+                <div className="flex gap-4 items-start">
+                  <div className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 font-bold shrink-0">1</div>
+                  <div>
+                    <h4 className="font-bold text-neutral-200">Agencies</h4>
+                    <p className="text-neutral-400">Expensive (₹2-5L), slow (60-90 days), and endless meetings.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start">
+                  <div className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 font-bold shrink-0">2</div>
+                  <div>
+                    <h4 className="font-bold text-neutral-200">Freelancers</h4>
+                    <p className="text-neutral-400">Unreliable, ghost mid-project, inconsistent quality.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start">
+                  <div className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 font-bold shrink-0">3</div>
+                  <div>
+                    <h4 className="font-bold text-neutral-200">DIY & AI Tools</h4>
+                    <p className="text-neutral-400">Steep learning curve, spent hours prompting, mediocre results.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* The SAGE DO Way (Solution) */}
+            <div className="p-8 rounded-3xl bg-neutral-900 border border-primary/30 relative group shadow-2xl shadow-primary/10 overflow-hidden transform md:-translate-y-4">
+              {/* Glowing border effect */}
+              <div className="absolute inset-0 border-2 border-primary/20 rounded-3xl" />
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
+
+              <h3 className="text-2xl font-bold text-primary mb-8 flex items-center gap-3 relative z-10">
+                <span className="text-3xl">✅</span> The SAGE DO Way
+              </h3>
+              <div className="space-y-6 relative z-10">
+                <div className="flex gap-4 items-start">
+                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">1</div>
+                  <div>
+                    <h4 className="font-bold text-white">Hybrid Speed</h4>
+                    <p className="text-neutral-300">AI speed + Human oversight = Agency quality in <span className="text-primary font-bold">24-48 hours</span>.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start">
+                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">2</div>
+                  <div>
+                    <h4 className="font-bold text-white">Reliability</h4>
+                    <p className="text-neutral-300">Dedicated project manager, daily updates, guaranteed delivery.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start">
+                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">3</div>
+                  <div>
+                    <h4 className="font-bold text-white">Affordability</h4>
+                    <p className="text-neutral-300">Prices that make sense (starting ₹0), pay only for results.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Button inside card */}
+              <div className="mt-8 pt-6 border-t border-primary/10 relative z-10">
+                <Link href="/services">
+                  <div className={buttonVariants({ className: "w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold" })}>
+                    Bridge the Gap Now <ArrowRight className="ml-2 w-4 h-4" />
+                  </div>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -388,18 +452,69 @@ export default function Home() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {categories.map((category) => (
+            {[
+              {
+                name: "Scale Business",
+                sub: "Ads, Landing Pages, Funnels",
+                desc: "Stop burning cash. Get high-converting assets.",
+                icon: "📈",
+                color: "from-blue-500/10 to-blue-600/5",
+                border: "group-hover:border-blue-500/50",
+                text: "group-hover:text-blue-500"
+              },
+              {
+                name: "Ace Academics",
+                sub: "Research, PPTs, Theses",
+                desc: "Top grades, zero stress. We do the heavy lifting.",
+                icon: "🎓",
+                color: "from-emerald-500/10 to-emerald-600/5",
+                border: "group-hover:border-emerald-500/50",
+                text: "group-hover:text-emerald-500"
+              },
+              {
+                name: "Career Boost",
+                sub: "Resumes, LinkedIn, Portfolios",
+                desc: "Land your dream job with top-1% personal branding.",
+                icon: "🚀",
+                color: "from-purple-500/10 to-purple-600/5",
+                border: "group-hover:border-purple-500/50",
+                text: "group-hover:text-purple-500"
+              },
+              {
+                name: "Viral Content",
+                sub: "Reels, Edits, Scripts",
+                desc: "Grow your audience with thumb-stopping content.",
+                icon: "🔥",
+                color: "from-orange-500/10 to-orange-600/5",
+                border: "group-hover:border-orange-500/50",
+                text: "group-hover:text-orange-500"
+              }
+            ].map((category) => (
               <Link key={category.name} href="/services">
-                <div className="group h-full p-6 rounded-2xl border border-border/30 bg-muted/20 hover:bg-muted/40 hover:border-primary/30 transition-all duration-300 cursor-pointer">
-                  <div className="text-4xl mb-4">{category.icon}</div>
-                  <h3 className="text-xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
-                    {category.name}
-                  </h3>
-                  <p className="text-sm text-primary font-semibold mb-2">{category.count} Services</p>
-                  <p className="text-sm text-muted-foreground">{category.description}</p>
-                  <div className="mt-4 flex items-center text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span>Explore</span>
-                    <ArrowRight className="w-4 h-4 ml-1" />
+                <div className={`group h-full relative overflow-hidden rounded-3xl border border-border/40 bg-background/50 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${category.border} cursor-pointer`}>
+                  {/* Hover Gradient Background */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+
+                  <div className="relative p-8 z-10 flex flex-col h-full">
+                    <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-500">{category.icon}</div>
+
+                    <h3 className="text-2xl font-black text-foreground mb-2 leading-tight">
+                      {category.name}
+                    </h3>
+
+                    <p className={`text-sm font-bold uppercase tracking-wider mb-4 text-muted-foreground ${category.text} transition-colors`}>
+                      {category.sub}
+                    </p>
+
+                    <p className="text-muted-foreground mb-8 text-sm leading-relaxed">
+                      {category.desc}
+                    </p>
+
+                    <div className="mt-auto">
+                      <div className={`inline-flex items-center text-sm font-bold text-foreground border-b-2 border-transparent ${category.border} pb-1 transition-all group-hover:pl-2`}>
+                        View Solutions <ArrowRight className="w-4 h-4 ml-2" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </Link>
