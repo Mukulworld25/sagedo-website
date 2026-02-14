@@ -37,19 +37,20 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
 
         {/* Animated Grid Pattern Background */}
-        <div className="absolute inset-0 opacity-[0.03] animate-grid-move" style={{
+        {/* Static Grid Pattern Background - Optimized */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
           backgroundImage: 'linear-gradient(rgba(255,0,0,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,0,0,.15) 1px, transparent 1px)',
           backgroundSize: '50px 50px'
         }} />
 
-        {/* Radial Red Gradient Glow */}
+        {/* Static Radial Red Gradient Glow */}
         <div className="absolute inset-0 pointer-events-none" style={{
           background: 'radial-gradient(circle at top center, rgba(255,0,0,0.08) 0%, rgba(0,0,0,0) 70%)'
         }} />
 
-        {/* Floating Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none animate-float" />
-        <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none animate-float-delayed" />
+        {/* Static Orbs (Removed Animation & Reduced Blur cost) */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[80px] pointer-events-none" />
+        <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-[60px] pointer-events-none" />
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24 pb-12">
@@ -150,8 +151,8 @@ export default function Home() {
 
       {/* NEW: The Execution Gap Section - Redesigned Center Comparison */}
       <section className="py-24 bg-neutral-900 border-y border-neutral-800 relative overflow-hidden">
-        {/* Ambient background glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+        {/* Static Ambient background glow (Reduced Blur) */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/5 rounded-full blur-[80px] pointer-events-none" />
 
         <div className="max-w-6xl mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
@@ -491,9 +492,9 @@ export default function Home() {
               }
             ].map((category) => (
               <Link key={category.name} href="/services">
-                <div className={`group h-full relative overflow-hidden rounded-3xl border border-border/40 bg-background/50 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${category.border} cursor-pointer`}>
+                <div className={`group h-full relative overflow-hidden rounded-3xl border border-border/40 bg-background/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${category.border} cursor-pointer`}>
                   {/* Hover Gradient Background */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
                   <div className="relative p-8 z-10 flex flex-col h-full">
                     <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-500">{category.icon}</div>
