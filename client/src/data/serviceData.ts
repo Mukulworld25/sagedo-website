@@ -27,7 +27,7 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "Stop posting boring videos. We turn your raw footage into high-retention viral clips with dynamic captions, sound effects, and transitions. Perfect for IG Reels, YouTube Shorts, and TikTok.",
         price: 499,
         priceRange: "₹499 - ₹1,499",
-        imageUrl: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1000&auto=format&fit=crop",
+        imageUrl: "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
         standardFeatures: [
             "Up to 60 Seconds",
@@ -298,7 +298,7 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "We scan thousands of sources to find the exact data, citations, and arguments you need for your paper.",
         price: 499,
         priceRange: "₹499 - ₹1,499",
-        imageUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1000&auto=format&fit=crop",
+        imageUrl: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
         standardFeatures: [
             "Topic Research Summary",

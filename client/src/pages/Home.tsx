@@ -3,17 +3,17 @@
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle2, Zap, Star, Gift, ChevronRight } from "lucide-react";
+import { ArrowRight, CheckCircle2, Zap, Star, Gift, ChevronRight, Briefcase, GraduationCap, User, Sparkles } from "lucide-react";
 import { useState } from "react";
 
 export default function Home() {
   const [activeStep, setActiveStep] = useState(1);
 
   const categories = [
-    { name: "Business", count: "10", description: "Landing pages, ads, automation & more", icon: "💼" },
-    { name: "Student", count: "7", description: "Research, PPTs, photo editing & more", icon: "📚" },
-    { name: "Professional", count: "8", description: "Resumes, LinkedIn, cover letters & more", icon: "👔" },
-    { name: "Personal", count: "5", description: "Reels, diet plans, photo edits & more", icon: "✨" }
+    { name: "Business", count: "10", description: "Landing pages, ads, automation & more", icon: <Briefcase className="w-6 h-6 text-primary" /> },
+    { name: "Student", count: "7", description: "Research, PPTs, photo editing & more", icon: <GraduationCap className="w-6 h-6 text-primary" /> },
+    { name: "Professional", count: "8", description: "Resumes, LinkedIn, cover letters & more", icon: <User className="w-6 h-6 text-primary" /> },
+    { name: "Personal", count: "5", description: "Reels, diet plans, photo edits & more", icon: <Sparkles className="w-6 h-6 text-primary" /> }
   ];
 
   const steps = [

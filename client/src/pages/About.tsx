@@ -48,7 +48,7 @@ export default function About() {
               {/* Team Member Image */}
               <div className="flex items-center gap-4 mb-4">
                 <img
-                  src="/human_about.png"
+                  src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=200&h=200&fit=crop&q=80"
                   alt="SAGE DO Team"
                   className="w-16 h-16 rounded-full object-cover border-2 border-primary/30 shadow-lg"
                 />
