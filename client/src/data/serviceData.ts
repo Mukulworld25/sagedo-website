@@ -321,72 +321,39 @@ export const allServices: ServiceDetail[] = [
         name: "24/7 AI Sales Chatbot",
         category: "Business",
         description: "Intelligent WhatsApp/Web bot that sells while you sleep.",
-        fullDescription: "Stop losing customers to slow replies. Our AI Chatbots live on your website or WhatsApp, answering queries, qualifying leads, and even booking appointments 24/7. It's like having a best-performing sales agent who never sleeps.",
+        fullDescription: "Stop losing customers to slow replies. Our AI Chatbots live on your website or WhatsApp, answering queries, qualifying leads, and even booking appointments 24/7. It",
         price: 24999,
         priceRange: "₹24999 - ₹37498",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1531746797190-fe5c1a9ac876?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["Custom-trained AI on your data", "WhatsApp & Website integration", "Lead qualification & capture", "Appointment booking capability", "Monthly performance report"],
+        premiumFeatures: ["We scrape your website/docs", "Train the conversation flow", "Integrate with your platforms", "Go live with monitoring"]
     },
     {
         id: "31",
         name: "Zero-Touch Workflow Automation",
         category: "Business",
         description: "Connect your apps. Automate leads, invoices, and emails.",
-        fullDescription: "Eliminate manual data entry. We build 'Invisible Pipelines' that move data between your apps automatically. Example: New Lead -> CRM -> Welcome Email -> Slack Notification. All instant, all automated.",
+        fullDescription: "Eliminate manual data entry. We build ",
         price: 14999,
         priceRange: "₹14999 - ₹22498",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["Map of current manual processes", "3-step complex automation setup (Zapier/Make)", "Error handling & alerts", "Connection to CRM/Email/Sheets", "Training session"],
+        premiumFeatures: ["Map of current manual processes", "3-step complex automation setup (Zapier/Make)", "Error handling & alerts"]
     },
     {
         id: "32",
         name: "Business Intelligence Dashboard",
         category: "Business",
-        description: "Live 'God Mode' view of your sales, leads, and money.",
+        description: "Live ",
         fullDescription: "Stop flying blind. We turn your messy Excel sheets and database rows into a stunning, real-time command center. See your daily sales, profit margins, and active users at a glance.",
         price: 34999,
         priceRange: "₹34999 - ₹52498",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["Custom PowerBI/Looker Studio Dashboard", "Real-time data connections", "Sales & Revenue tracking", "Customer behavior visualization", "Mobile-friendly view"],
+        premiumFeatures: ["Custom PowerBI/Looker Studio Dashboard", "Real-time data connections", "Sales & Revenue tracking"]
     },
     {
         id: "33",
@@ -396,69 +363,36 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "Hiring engineers is hard. We automate the filter. Our system sets up coding challenges, automated screenings, and AI-ranked application forms so you only talk to the qualified candidates.",
         price: 9999,
         priceRange: "₹9999 - ₹14998",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["Custom application portal setup", "Automated skill assessment tests", "AI-ranking system for resumes", "Email rejection automation", "Interview question bank"],
+        premiumFeatures: ["Custom application portal setup", "Automated skill assessment tests", "AI-ranking system for resumes"]
     },
     {
         id: "34",
         name: "AI Brand Anthem & Audio",
         category: "Business",
         description: "Viral-worthy custom songs and jingles for your brand.",
-        fullDescription: "Sound is the new logo. We use advanced generative audio AI to compose a unique, catchy brand anthem, jingle, or background score that sticks in your customer's head. Royalty-free and uniquely yours.",
+        fullDescription: "Sound is the new logo. We use advanced generative audio AI to compose a unique, catchy brand anthem, jingle, or background score that sticks in your customer",
         price: 7999,
         priceRange: "₹7999 - ₹11998",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["1 Main Brand Anthem (60s)", "3 Short Jingles/Stings (10s)", "Commercial Usage Rights", "High-Quality WAV/MP3", "Lyrics/Vocals included"],
+        premiumFeatures: ["Analyze your brand vibe", "Generate 3 audio concepts", "Refine the winner", "Master and deliver"]
     },
     {
         id: "35",
         name: "Social Media Marketing Suite",
         category: "Business",
         description: "AI-driven content calendar + Viral Hooks + Posting.",
-        fullDescription: "Consistency builds empires. We use AI to analyze trends in your niche, generate a month's worth of high-engagement content ideas, write the scripts/captions, and schedule them.",
+        fullDescription: "Consistency builds empires. We use AI to analyze trends in your niche, generate a month",
         price: 14999,
         priceRange: "₹14999 - ₹22498",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["30-Day Content Calendar", "Viral Hooks & Scripting", "Hashtag & SEO Strategy", "Caption writing", "Trend analysis report"],
+        premiumFeatures: ["30-Day Content Calendar", "Viral Hooks & Scripting", "Hashtag & SEO Strategy"]
     },
     {
         id: "36",
@@ -468,21 +402,10 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "Stop burning money on bad ads. We create data-backed ad creatives (images/videos) designed to stop the scroll. Then we help you set up the campaign structure for maximum ROAS.",
         price: 19999,
         priceRange: "₹19999 - ₹29998",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1533750516457-a7f992034fec?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["5 AI-Generated Ad Creatives", "Copywriting for High Conversion", "Audience targeting strategy", "A/B Testing plan", "Setup guide"],
+        premiumFeatures: ["5 AI-Generated Ad Creatives", "Copywriting for High Conversion", "Audience targeting strategy"]
     },
     {
         id: "37",
@@ -492,21 +415,10 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "Most resumes never get read by humans. We engineer your resume with the exact keywords and formatting that ATS (Applicant Tracking Systems) love.",
         price: 2499,
         priceRange: "₹2499 - ₹3748",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["ATS-Compliant Format", "Keyword Optimization", "GitHub Highlight", "Cover Letter Template", "LinkedIn Sync Guide"],
+        premiumFeatures: ["ATS-Compliant Format", "Keyword Optimization", "GitHub Highlight"]
     },
     {
         id: "38",
@@ -516,21 +428,10 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "Your LinkedIn profile is your new landing page. We overhaul your headline, about section, and featured items to position you as an industry authority.",
         price: 4999,
         priceRange: "₹4999 - ₹7498",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1611944212129-29977ae1398c?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["Profile SEO Optimization", "Authority-building Headline", "About Section Storytelling", "Connection outreach scripts", "Banner Design"],
+        premiumFeatures: ["Profile SEO Optimization", "Authority-building Headline", "About Section Storytelling"]
     },
     {
         id: "39",
@@ -540,45 +441,23 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "Stop sending PDF portfolios. We build you a sleek, modern personal website that showcases your projects, experience, and contact info. Essential for freelancers and creatives.",
         price: 5999,
         priceRange: "₹5999 - ₹8998",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["One-Page Modern Site", "Project Gallery", "Contact Form", "Domain Connection", "Mobile Responsive"],
+        premiumFeatures: ["One-Page Modern Site", "Project Gallery", "Contact Form"]
     },
     {
         id: "40",
         name: "Professional Headshot AI Enhancement",
         category: "Professional",
         description: "Turn selfies into studio-quality headshots.",
-        fullDescription: "Don't have time for a photoshoot? Send us your best selfies, and we use advanced AI to transform them into professional, studio-grade LinkedIn headshots.",
+        fullDescription: "Don",
         price: 999,
         priceRange: "₹999 - ₹1498",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["3 Professional Headshot Variations", "Suit/Attire Change", "Background Replacement", "High-Res Export"],
+        premiumFeatures: ["3 Professional Headshot Variations", "Suit/Attire Change", "Background Replacement"]
     },
     {
         id: "41",
@@ -588,21 +467,10 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "Nervous about the big interview? We set up a rigorous mock interview specifically for your role, record your answers, and provide AI-generated feedback on your tone, clarity, and content.",
         price: 1499,
         priceRange: "₹1499 - ₹2248",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1549923746-c502d488b3ea?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["30-Minute Mock Session", "Role-Specific Questions", "Performance Analytics Report", "Improvement Tips"],
+        premiumFeatures: ["30-Minute Mock Session", "Role-Specific Questions", "Performance Analytics Report"]
     },
     {
         id: "42",
@@ -612,21 +480,10 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "Imagine a tutor who knows every page of your textbook. We build a private knowledge base from your study materials and configure a Custom GPT that can quiz you, summarize chapters, and explain complex concepts 24/7.",
         price: 4999,
         priceRange: "₹4999 - ₹7498",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["Custom Knowledge Base Setup", "OCR Document Processing", "Exam-Prep GPT Config", "Summary & Quiz Capabilities"],
+        premiumFeatures: ["Custom Knowledge Base Setup", "OCR Document Processing", "Exam-Prep GPT Config"]
     },
     {
         id: "43",
@@ -636,21 +493,10 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "Stop fearing your bank account. We set up an automated personal finance dashboard that tracks your spending, categorizes expenses, andvisualizes your savings goals.",
         price: 2999,
         priceRange: "₹2999 - ₹4498",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["Expense Tracker Setup", "Visual Spending Report", "Budget vs Actual Analysis", "Savings Goal Calculator"],
+        premiumFeatures: ["Expense Tracker Setup", "Visual Spending Report", "Budget vs Actual Analysis"]
     },
     {
         id: "44",
@@ -660,21 +506,10 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "Transform raw footage into viral gold. We add dynamic captions, transitions, sound effects, and color grading to make your short-form content pop.",
         price: 499,
         priceRange: "₹499 - ₹748",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["1 Short Video Edit (60s)", "Dynamic Captions", "Trending Audio Sync", "Color Grading", "Thumbnail"],
+        premiumFeatures: ["1 Short Video Edit (60s)", "Dynamic Captions", "Trending Audio Sync"]
     },
     {
         id: "45",
@@ -684,21 +519,10 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "Look like a pro to sponsors. We design a stunning PDF media kit showcasing your stats, demographics, and rates.",
         price: 799,
         priceRange: "₹799 - ₹1198",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["Professional PDF Design", "Audience Analytics Visualization", "Rate Card Layout", "Clickable Links"],
+        premiumFeatures: ["Professional PDF Design", "Audience Analytics Visualization", "Rate Card Layout"]
     },
     {
         id: "46",
@@ -708,21 +532,10 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "Based on your unique body type and goals. We use AI analysis of your preferences to generate a realistic, diverse, and healthy 30-day meal plan.",
         price: 349,
         priceRange: "₹349 - ₹523",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["30-Day Meal Plan", "Grocery Shopping Lists", "Macro Breakdown", "Recipe Quick-Links"],
+        premiumFeatures: ["30-Day Meal Plan", "Grocery Shopping Lists", "Macro Breakdown"]
     },
     {
         id: "47",
@@ -732,21 +545,10 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "Stop wasting hours on Tripadvisor. We create a day-by-day itinerary for your trip, including hidden gems, logistics, and budget optimization.",
         price: 499,
         priceRange: "₹499 - ₹748",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["Day-by-Day Schedule", "Hotel & Transport Picks", "Budget Breakdown", "Local ", " Tips"],
+        premiumFeatures: ["Day-by-Day Schedule", "Hotel & Transport Picks", "Budget Breakdown"]
     },
     {
         id: "48",
@@ -756,21 +558,10 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "Get a one-of-a-kind digital illustration. Perfect for profile pictures, gifts, or merchandise. Created with a blend of AI and manual touchup.",
         price: 899,
         priceRange: "₹899 - ₹1348",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1561214115-f2f134cc4912?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["High-Res Digital File", "Commercial Usage Rights", "2 Style Variations", "3 Revisions"],
+        premiumFeatures: ["High-Res Digital File", "Commercial Usage Rights", "2 Style Variations"]
     },
     {
         id: "49",
@@ -780,21 +571,10 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "Fix lighting, remove blemishes, and color grade your photos. Perfect for social media or personal albums.",
         price: 299,
         priceRange: "₹299 - ₹448",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["5 Photo Edits", "Color Correction", "Object Removal", "High-Res Export"],
+        premiumFeatures: ["5 Photo Edits", "Color Correction", "Object Removal"]
     },
     {
         id: "50",
@@ -804,20 +584,9 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "Confused by AI? We analyze your workflow and recommend tools to save time.",
         price: 0,
         priceRange: "₹0 - ₹0",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Core Strategy",
-            "Basic Implementation",
-            "Standard Support",
-            "7 Day Delivery"
-        ],
-        premiumFeatures: [
-            "Advanced Optimization",
-            "Priority Support",
-            "Source Files",
-            "Extended Revisions",
-            "1-on-1 Consultation"
-        ]
+        standardFeatures: ["Workflow Analysis", "Tool Recommendations", "ROI Report", "No Obligation"],
+        premiumFeatures: ["Workflow Analysis", "Tool Recommendations", "ROI Report"]
     }
 ];
