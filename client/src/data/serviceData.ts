@@ -313,5 +313,511 @@ export const allServices: ServiceDetail[] = [
             "Presentation Slides Draft",
             "1-Hour Explainer Call"
         ]
+    },
+
+    // === RESTORED SERVICES ===
+    {
+        id: "30",
+        name: "24/7 AI Sales Chatbot",
+        category: "Business",
+        description: "Intelligent WhatsApp/Web bot that sells while you sleep.",
+        fullDescription: "Stop losing customers to slow replies. Our AI Chatbots live on your website or WhatsApp, answering queries, qualifying leads, and even booking appointments 24/7. It's like having a best-performing sales agent who never sleeps.",
+        price: 24999,
+        priceRange: "₹24999 - ₹37498",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "31",
+        name: "Zero-Touch Workflow Automation",
+        category: "Business",
+        description: "Connect your apps. Automate leads, invoices, and emails.",
+        fullDescription: "Eliminate manual data entry. We build 'Invisible Pipelines' that move data between your apps automatically. Example: New Lead -> CRM -> Welcome Email -> Slack Notification. All instant, all automated.",
+        price: 14999,
+        priceRange: "₹14999 - ₹22498",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "32",
+        name: "Business Intelligence Dashboard",
+        category: "Business",
+        description: "Live 'God Mode' view of your sales, leads, and money.",
+        fullDescription: "Stop flying blind. We turn your messy Excel sheets and database rows into a stunning, real-time command center. See your daily sales, profit margins, and active users at a glance.",
+        price: 34999,
+        priceRange: "₹34999 - ₹52498",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "33",
+        name: "AI-Powered Technical Hiring",
+        category: "Business",
+        description: "Automated candidate screening to find top 1% engineers.",
+        fullDescription: "Hiring engineers is hard. We automate the filter. Our system sets up coding challenges, automated screenings, and AI-ranked application forms so you only talk to the qualified candidates.",
+        price: 9999,
+        priceRange: "₹9999 - ₹14998",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "34",
+        name: "AI Brand Anthem & Audio",
+        category: "Business",
+        description: "Viral-worthy custom songs and jingles for your brand.",
+        fullDescription: "Sound is the new logo. We use advanced generative audio AI to compose a unique, catchy brand anthem, jingle, or background score that sticks in your customer's head. Royalty-free and uniquely yours.",
+        price: 7999,
+        priceRange: "₹7999 - ₹11998",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "35",
+        name: "Social Media Marketing Suite",
+        category: "Business",
+        description: "AI-driven content calendar + Viral Hooks + Posting.",
+        fullDescription: "Consistency builds empires. We use AI to analyze trends in your niche, generate a month's worth of high-engagement content ideas, write the scripts/captions, and schedule them.",
+        price: 14999,
+        priceRange: "₹14999 - ₹22498",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "36",
+        name: "Ads Making & Scaling",
+        category: "Business",
+        description: "High-ROI ad creatives generated and tested by AI.",
+        fullDescription: "Stop burning money on bad ads. We create data-backed ad creatives (images/videos) designed to stop the scroll. Then we help you set up the campaign structure for maximum ROAS.",
+        price: 19999,
+        priceRange: "₹19999 - ₹29998",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "37",
+        name: "AI-Optimized Tech Resume",
+        category: "Professional",
+        description: "Beat the ATS bots. Designed for high-paying tech roles.",
+        fullDescription: "Most resumes never get read by humans. We engineer your resume with the exact keywords and formatting that ATS (Applicant Tracking Systems) love.",
+        price: 2499,
+        priceRange: "₹2499 - ₹3748",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "38",
+        name: "LinkedIn Personal Branding",
+        category: "Professional",
+        description: "Turn your profile into a lead magnet.",
+        fullDescription: "Your LinkedIn profile is your new landing page. We overhaul your headline, about section, and featured items to position you as an industry authority.",
+        price: 4999,
+        priceRange: "₹4999 - ₹7498",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "39",
+        name: "Personal Portfolio Website",
+        category: "Professional",
+        description: "A stunning showcase of your work and skills.",
+        fullDescription: "Stop sending PDF portfolios. We build you a sleek, modern personal website that showcases your projects, experience, and contact info. Essential for freelancers and creatives.",
+        price: 5999,
+        priceRange: "₹5999 - ₹8998",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "40",
+        name: "Professional Headshot AI Enhancement",
+        category: "Professional",
+        description: "Turn selfies into studio-quality headshots.",
+        fullDescription: "Don't have time for a photoshoot? Send us your best selfies, and we use advanced AI to transform them into professional, studio-grade LinkedIn headshots.",
+        price: 999,
+        priceRange: "₹999 - ₹1498",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "41",
+        name: "Mock Interview Practice",
+        category: "Professional",
+        description: "Realistic AI-driven interview simulation.",
+        fullDescription: "Nervous about the big interview? We set up a rigorous mock interview specifically for your role, record your answers, and provide AI-generated feedback on your tone, clarity, and content.",
+        price: 1499,
+        priceRange: "₹1499 - ₹2248",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "42",
+        name: "AI Study Companion Setup",
+        category: "Student",
+        description: "Custom GPT trained on your syllabus.",
+        fullDescription: "Imagine a tutor who knows every page of your textbook. We build a private knowledge base from your study materials and configure a Custom GPT that can quiz you, summarize chapters, and explain complex concepts 24/7.",
+        price: 4999,
+        priceRange: "₹4999 - ₹7498",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "43",
+        name: "Personal Finance Dashboard",
+        category: "Personal",
+        description: "Automate your budget tracking and expense analysis.",
+        fullDescription: "Stop fearing your bank account. We set up an automated personal finance dashboard that tracks your spending, categorizes expenses, andvisualizes your savings goals.",
+        price: 2999,
+        priceRange: "₹2999 - ₹4498",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "44",
+        name: "Viral Reels Video Editing",
+        category: "Personal",
+        description: "Professional editing for Shorts/Reels/TikTok.",
+        fullDescription: "Transform raw footage into viral gold. We add dynamic captions, transitions, sound effects, and color grading to make your short-form content pop.",
+        price: 499,
+        priceRange: "₹499 - ₹748",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "45",
+        name: "Influencer Media Kit",
+        category: "Personal",
+        description: "Professional kit to get brand deals.",
+        fullDescription: "Look like a pro to sponsors. We design a stunning PDF media kit showcasing your stats, demographics, and rates.",
+        price: 799,
+        priceRange: "₹799 - ₹1198",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "46",
+        name: "AI Health & Nutrition Plan",
+        category: "Personal",
+        description: "Hyper-personalized 30-day meal plan.",
+        fullDescription: "Based on your unique body type and goals. We use AI analysis of your preferences to generate a realistic, diverse, and healthy 30-day meal plan.",
+        price: 349,
+        priceRange: "₹349 - ₹523",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "47",
+        name: "Smart Travel Itinerary",
+        category: "Personal",
+        description: "The perfect trip, planned to the minute.",
+        fullDescription: "Stop wasting hours on Tripadvisor. We create a day-by-day itinerary for your trip, including hidden gems, logistics, and budget optimization.",
+        price: 499,
+        priceRange: "₹499 - ₹748",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "48",
+        name: "Custom Illustration / Art",
+        category: "Personal",
+        description: "Unique digital art for gifts or profile pics.",
+        fullDescription: "Get a one-of-a-kind digital illustration. Perfect for profile pictures, gifts, or merchandise. Created with a blend of AI and manual touchup.",
+        price: 899,
+        priceRange: "₹899 - ₹1348",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "49",
+        name: "Photo Retouching (5 Pack)",
+        category: "Personal",
+        description: "Make your photos look professional.",
+        fullDescription: "Fix lighting, remove blemishes, and color grade your photos. Perfect for social media or personal albums.",
+        price: 299,
+        priceRange: "₹299 - ₹448",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
+    },
+    {
+        id: "50",
+        name: "AI Strategy Audit (Free)",
+        category: "All",
+        description: "We analyze your business gaps for free.",
+        fullDescription: "Confused by AI? We analyze your workflow and recommend tools to save time.",
+        price: 0,
+        priceRange: "₹0 - ₹0",
+        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?w=500&auto=format&fit=crop&q=60",
+        isGoldenEligible: true,
+        standardFeatures: [
+            "Core Strategy",
+            "Basic Implementation",
+            "Standard Support",
+            "7 Day Delivery"
+        ],
+        premiumFeatures: [
+            "Advanced Optimization",
+            "Priority Support",
+            "Source Files",
+            "Extended Revisions",
+            "1-on-1 Consultation"
+        ]
     }
 ];
