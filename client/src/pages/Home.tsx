@@ -52,6 +52,15 @@ export default function Home() {
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[80px] pointer-events-none" />
         <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-[60px] pointer-events-none" />
 
+        {/* Background Logo Watermark */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] select-none">
+          <img
+            src="/sagedo_logo_transparent.png"
+            alt=""
+            className="w-[800px] h-[800px] object-contain grayscale"
+          />
+        </div>
+
         {/* Hero Content */}
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24 pb-12">
 

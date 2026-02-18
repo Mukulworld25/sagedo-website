@@ -232,9 +232,11 @@ export default function Services() {
                       <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Automated Lead Capture</li>
                       <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Basic Brand Identity</li>
                     </ul>
-                    <Button className="w-full bg-white/10 hover:bg-white/20 text-white border-none font-semibold">
-                      Deploy Now
-                    </Button>
+                    <Link href="/orders?service=Starter%20Launch&price=15000">
+                      <Button className="w-full bg-white/10 hover:bg-white/20 text-white border-none font-semibold">
+                        Deploy Now
+                      </Button>
+                    </Link>
                   </div>
 
                   {/* CARD 2: AI CO-FOUNDER (HERO) */}
@@ -263,11 +265,11 @@ export default function Services() {
                         <li className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500" /> 30 Days AI Content</li>
                       </ul>
                     </div>
-                    <a href="https://calendly.com/sagedo-ai/30min" target="_blank" rel="noopener noreferrer">
+                    <Link href="/orders?service=Full%20Launch&price=35000">
                       <Button className="w-full h-12 bg-gradient-to-r from-amber-500 to-yellow-600 hover:to-amber-500 text-black font-black text-lg shadow-lg shadow-amber-500/20">
                         Hire Your Team
                       </Button>
-                    </a>
+                    </Link>
                   </div>
 
                   {/* CARD 3: SINGULARITY SCALE */}
@@ -289,9 +291,11 @@ export default function Services() {
                       <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Admin "God Mode" Dashboard</li>
                       <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Zero-Touch Automation</li>
                     </ul>
-                    <Button className="w-full bg-white/10 hover:bg-white/20 text-white border-none font-semibold">
-                      Start Scaling
-                    </Button>
+                    <Link href="/orders?service=Premium%20Launch&price=50000">
+                      <Button className="w-full bg-white/10 hover:bg-white/20 text-white border-none font-semibold">
+                        Start Scaling
+                      </Button>
+                    </Link>
                   </div>
                 </div>
 
