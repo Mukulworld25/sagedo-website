@@ -220,7 +220,7 @@ export default function Services() {
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-2">Starter Launch</h3>
                     <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-                      Perfect for validation. You get a high-converting AI Landing Page designed to capture leads instantly.
+                      Perfect for validation. You get a high-converting **AI Landing Page** designed to capture leads instantly.
                       Includes basic brand identity (Logo + Color Palette) and an automated email setup to nurture early signups.
                       We set up your domain, hosting, and basic analytics so you can prove your concept in under 48 hours without writing a line of code.
                     </p>
@@ -234,9 +234,9 @@ export default function Services() {
                         <span className="text-xs font-bold text-gray-500 group-hover:text-amber-500/80">ESSENTIALS</span>
                       </div>
                       <ul className="space-y-3">
-                        <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> AI Landing Page</li>
-                        <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Automated Lead Capture</li>
-                        <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Basic Brand Identity</li>
+                        <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> High-Converting AI Landing Page</li>
+                        <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Automated Lead Capture System</li>
+                        <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Basic Brand Identity (Logo/Colors)</li>
                       </ul>
                     </div>
                     <Link href="/orders?service=Starter%20Launch&price=15000">
@@ -256,7 +256,7 @@ export default function Services() {
                     </div>
                     <h3 className="text-2xl font-black text-white mb-2">Full Launch</h3>
                     <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-                      The "Business-in-a-Box" for serious founders. We build your Custom Website & Mobile App layout,
+                      The "Business-in-a-Box" for serious founders. We build your **Full Custom Website** (Multi-page) & Mobile App UI,
                       integrated with a 24/7 AI Sales Chatbot to handle customer queries while you sleep.
                       Includes a full CRM setup to track leads and 30 days of AI-generated social media content
                       to kickstart your marketing engine. You strictly focus on sales; we handle the entire tech stack.
@@ -271,10 +271,10 @@ export default function Services() {
                         <span className="text-xs font-bold text-amber-500">FULL PACKAGE</span>
                       </div>
                       <ul className="space-y-3">
-                        <li className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500" /> Custom Website & App Layout</li>
-                        <li className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500" /> 24/7 Sales Chatbot</li>
-                        <li className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500" /> Automated CRM & Leads</li>
-                        <li className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500" /> 30 Days AI Content</li>
+                        <li className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500" /> Full Custom Website + Mobile App UI</li>
+                        <li className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500" /> 24/7 AI Sales Chatbot Integration</li>
+                        <li className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500" /> Automated CRM & Lead Tracking</li>
+                        <li className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500" /> 30 Days Social Media Content Kit</li>
                       </ul>
                     </div>
                     <Link href="/orders?service=Full%20Launch&price=35000">
