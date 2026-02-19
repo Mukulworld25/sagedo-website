@@ -173,7 +173,7 @@ export default function Services() {
                     )}>
                       {tab.label}
                     </p>
-                    <p className="text-[10px] text-gray-600 font-medium uppercase tracking-wider">{tab.description}</p>
+                    <p className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">{tab.description}</p>
                   </div>
 
                   {isActive && (
