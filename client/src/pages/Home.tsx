@@ -32,130 +32,100 @@ export default function Home() {
     <div className="min-h-screen bg-background">
 
       {/* ═══════════════════════════════════════════════════════════════════
-          HERO SECTION - 10/10 Redesign: Badge → Headline → Stats → CTA
+          HERO SECTION - V13 Arc Reactor / AI Tech Design
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: '#030303' }}>
 
-        {/* Animated Grid Pattern Background */}
-        {/* Static Grid Pattern Background - Optimized */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: 'linear-gradient(rgba(255,0,0,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,0,0,.15) 1px, transparent 1px)',
-          backgroundSize: '50px 50px'
-        }} />
+        {/* Background radial glow */}
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 60% 60% at 50% 50%, #1a0505 0%, #030303 70%)' }} />
 
-        {/* Static Radial Red Gradient Glow */}
-        <div className="absolute inset-0 pointer-events-none" style={{
-          background: 'radial-gradient(circle at top center, rgba(255,0,0,0.08) 0%, rgba(0,0,0,0) 70%)'
-        }} />
+        {/* Center Logo (background, visible, 110vmin) */}
+        <img
+          src="/sagedo_logo_final_circle.png"
+          alt=""
+          className="hero-logo-bg"
+        />
 
-        {/* Static Orbs (Removed Animation & Reduced Blur cost) */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[80px] pointer-events-none" />
-        <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-[60px] pointer-events-none" />
-
-        {/* Background Logo Watermark */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] select-none">
-          <img
-            src="/sagedo_logo_transparent.png"
-            alt=""
-            className="w-[800px] h-[800px] object-contain grayscale"
-          />
+        {/* HUD Rings */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ zIndex: 2 }}>
+          <div className="hero-ring hero-ring-outer" />
+          <div className="hero-ring hero-ring-target" />
+          <div className="hero-ring hero-ring-data" />
         </div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24 pb-12">
+        {/* Corner Brackets */}
+        <div className="hero-corner" style={{ top: 25, left: 25, borderWidth: '2px 0 0 2px' }} />
+        <div className="hero-corner" style={{ top: 25, right: 25, borderWidth: '2px 2px 0 0' }} />
+        <div className="hero-corner" style={{ bottom: 25, left: 25, borderWidth: '0 0 2px 2px' }} />
+        <div className="hero-corner" style={{ bottom: 25, right: 25, borderWidth: '0 2px 2px 0' }} />
 
-          {/* 🏆 Pulsing Badge */}
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full mb-10 animate-badge-pulse"
+        {/* Foreground Content */}
+        <div className="relative z-10 text-center flex flex-col items-center px-4">
+
+          {/* LINE 1: SPEED OF AI */}
+          <h1
+            className="font-black uppercase leading-none"
             style={{
-              background: 'rgba(255, 0, 0, 0.1)',
-              border: '1px solid rgba(255, 0, 0, 0.6)',
-              boxShadow: '0 0 20px rgba(255, 0, 0, 0.2)'
+              fontFamily: "'Orbitron', sans-serif",
+              fontSize: 'clamp(3rem, 9vw, 11rem)',
+              letterSpacing: '0.05em',
+              lineHeight: 0.85,
+              background: 'linear-gradient(180deg, #fff 10%, #ccc 50%, #666 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              filter: 'drop-shadow(0 2px 12px rgba(0,0,0,0.9))',
             }}
           >
-            <span className="text-sm">🏆</span>
-            <span className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider">
-              India's First AI + Human Hybrid Execution Team
-            </span>
-          </div>
-
-          {/* 🔥 3-Line Stagger Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-8">
-            <span className="block mb-2 text-foreground animate-hero-line-1">
-              Speed of AI.
-            </span>
-            <span className="block mb-2 animate-hero-line-2"
-              style={{
-                background: 'linear-gradient(180deg, rgba(255,255,255,0.7) 0%, #FFFFFF 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}
-            >
-              Precision of Humans.
-            </span>
-            <span className="block relative inline-block text-foreground animate-hero-line-3">
-              Excellence Guaranteed.
-              <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-[3px] rounded-full"
-                style={{ background: 'linear-gradient(90deg, #FF0000, #FF4444)' }}
-              />
+            SPEED OF{' '}
+            <span style={{ color: '#ef4444', WebkitTextFillColor: '#ef4444', textShadow: '0 0 40px #ef4444' }}>
+              AI
             </span>
           </h1>
 
-          {/* Supporting Subheadline */}
-          <p className="text-lg sm:text-xl text-neutral-400 font-normal leading-relaxed max-w-[680px] mx-auto mb-10">
-            We combine AI automation with human expertise to deliver what agencies can't:{' '}
-            <span className="text-primary font-semibold">99.9% accuracy</span> in{' '}
-            <span className="text-primary font-semibold">24-48 hours</span>{' '}
-            at prices that make sense.
-          </p>
+          {/* Animated Loading Bar Separator */}
+          <div className="hero-sep" />
 
-          {/* 📊 Glassmorphism Stats Grid */}
-          <div className="max-w-xl mx-auto mb-10 p-6 sm:p-8 rounded-2xl grid grid-cols-2 gap-4 sm:gap-5"
+          {/* LINE 2: PRECISION OF HUMANS */}
+          <p
+            className="font-bold uppercase leading-none"
             style={{
-              background: 'rgba(255, 255, 255, 0.03)',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              boxShadow: '0 4px 24px rgba(0, 0, 0, 0.3)'
+              fontFamily: "'Orbitron', sans-serif",
+              fontSize: 'clamp(1.8rem, 5.25vw, 6.4rem)',
+              letterSpacing: '0.08em',
+              lineHeight: 0.85,
+              background: 'linear-gradient(180deg, #aaa 0%, #555 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              filter: 'drop-shadow(0 2px 12px rgba(0,0,0,0.9))',
             }}
           >
-            {[
-              { number: '67+', label: 'Projects Delivered' },
-              { number: '24-48h', label: 'Delivery' },
-              { number: '99.9%', label: 'Accuracy' },
-              { number: '₹10-50K', label: 'Packages' },
-            ].map((stat) => (
-              <div key={stat.label} className="flex items-center gap-2 sm:gap-3 text-left">
-                <span className="text-primary font-bold text-lg">✓</span>
-                <span className="text-white text-sm sm:text-base">
-                  <strong className="text-primary font-bold">{stat.number}</strong>{' '}
-                  {stat.label}
-                </span>
-              </div>
-            ))}
-          </div>
+            PRECISION OF HUMANS
+          </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+          {/* Supporting text */}
+          <p className="mt-6 text-sm sm:text-base text-neutral-500 max-w-xl mx-auto" style={{ fontFamily: "'Share Tech Mono', monospace", letterSpacing: '2px' }}>
+            AI-Powered · Human-Crafted · India
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
             <Link href="/orders">
               <div className={buttonVariants({ size: "lg", className: "h-14 px-8 text-lg font-semibold bg-primary hover:bg-primary/90 rounded-xl transition-all hover:scale-[1.02] hover:-translate-y-0.5 group cursor-pointer" })}
-                style={{
-                  boxShadow: '0 4px 16px rgba(255, 0, 0, 0.4)'
-                }}
+                style={{ boxShadow: '0 4px 16px rgba(255, 0, 0, 0.4)', fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
               >
-                Book Free Consultation <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                GET STARTED <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </div>
             </Link>
             <Link href="/services">
-              <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-14 px-8 text-lg font-semibold rounded-xl border-white/20 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all cursor-pointer" })}>
-                See How It Works
+              <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-14 px-8 text-lg font-semibold rounded-xl border-white/20 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all cursor-pointer" })}
+                style={{ fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
+              >
+                EXPLORE
               </div>
             </Link>
           </div>
-
-          {/* Trust Line */}
-          <p className="text-sm text-neutral-500 italic">
-            Trusted by founders, students, and professionals across India
-          </p>
         </div>
+
       </section>
 
       {/* NEW: The Execution Gap Section - Redesigned Center Comparison */}

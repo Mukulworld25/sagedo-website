@@ -1,6 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ═══════════════════════════════════════════════
+   HERO SECTION V13 - Arc Reactor / AI Tech
+═══════════════════════════════════════════════ */
+
+/* Logo breathing animation */
+@keyframes hero-breathe {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+}
+
+/* HUD ring rotations */
+@keyframes hero-spin-cw {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hero-spin-ccw {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Loading bar separator */
+@keyframes hero-loading-bar {
+  0% {
+    left: -60px;
+  }
+
+  100% {
+    left: 200px;
+  }
+}
+
+.hero-logo-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 110vmin;
+  height: 110vmin;
+  object-fit: contain;
+  opacity: 0.35;
+  z-index: 1;
+  pointer-events: none;
+  animation: hero-breathe 8s ease-in-out infinite;
+}
+
+.hero-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-ring-target {
+  width: 110vmin;
+  height: 110vmin;
+  border: 2px solid rgba(220, 38, 38, 0.12);
+  border-left: 2px solid rgba(220, 38, 38, 0.4);
+  border-right: 2px solid rgba(220, 38, 38, 0.4);
+  animation: hero-spin-ccw 30s linear infinite;
+}
+
+.hero-ring-outer {
+  width: 121vmin;
+  height: 121vmin;
+  border: 1px dashed rgba(255, 255, 255, 0.06);
+  animation: hero-spin-cw 60s linear infinite;
+}
+
+.hero-ring-data {
+  width: 88vmin;
+  height: 88vmin;
+  border: 6px solid transparent;
+  border-top: 6px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 6px solid rgba(255, 255, 255, 0.04);
+  animation: hero-spin-cw 12s linear infinite;
+}
+
+.hero-sep {
+  width: 200px;
+  height: 2px;
+  background: rgba(220, 38, 38, 0.2);
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.hero-sep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 100%;
+  background: #ef4444;
+  box-shadow: 0 0 12px #ef4444;
+  border-radius: 2px;
+  animation: hero-loading-bar 2.5s ease-in-out infinite;
+}
+
+/* Corner brackets */
+.hero-corner {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-color: rgba(255, 255, 255, 0.08);
+  border-style: solid;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Mobile responsiveness for hero */
+@media (max-width: 768px) {
+  .hero-logo-bg {
+    width: 130vmin;
+    height: 130vmin;
+  }
+
+  .hero-ring-target {
+    width: 130vmin;
+    height: 130vmin;
+  }
+
+  .hero-ring-outer {
+    width: 143vmin;
+    height: 143vmin;
+  }
+
+  .hero-ring-data {
+    width: 104vmin;
+    height: 104vmin;
+  }
+}
 
 /* LIGHT MODE - SAGEDO AI Theme */
 :root {

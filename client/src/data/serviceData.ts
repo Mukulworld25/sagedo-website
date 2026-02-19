@@ -1,4 +1,3 @@
-import { ServiceDetail } from "./serviceData";
 
 export interface ServiceDetail {
     id: string;
@@ -409,16 +408,16 @@ export const allServices: ServiceDetail[] = [
     },
     {
         id: "37",
-        name: "AI-Optimized Tech Resume",
-        category: "Professional",
-        description: "Beat the ATS bots. Designed for high-paying tech roles.",
-        fullDescription: "Most resumes never get read by humans. We engineer your resume with the exact keywords and formatting that ATS (Applicant Tracking Systems) love.",
-        price: 2499,
-        priceRange: "₹2499 - ₹3748",
-        imageUrl: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=1000&auto=format&fit=crop",
+        name: "Startup Pitch Deck Design",
+        category: "Business",
+        description: "Investment-ready slides that tell a compelling story.",
+        fullDescription: "Secure that funding. We take your raw notes and transform them into a visually stunning, narrative-driven pitch deck that investors can't ignore. Designed for clarity, impact, and persuasion.",
+        price: 4999,
+        priceRange: "₹4999 - ₹7498",
+        imageUrl: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: ["ATS-Compliant Format", "Keyword Optimization", "GitHub Highlight", "Cover Letter Template", "LinkedIn Sync Guide"],
-        premiumFeatures: ["ATS-Compliant Format", "Keyword Optimization", "GitHub Highlight"]
+        standardFeatures: ["10-15 Slide Professional Deck", "Financial Data Visualization", "Custom Graphics & Icons", "Narrative Arc Consulting", "PPT/PDF Source Files"],
+        premiumFeatures: ["10-15 Slide Professional Deck", "Financial Data Visualization", "Custom Graphics & Icons"]
     },
     {
         id: "38",
@@ -447,20 +446,20 @@ export const allServices: ServiceDetail[] = [
         premiumFeatures: ["One-Page Modern Site", "Project Gallery", "Contact Form"]
     },
     {
-        id: "40",
-        name: "Professional Headshot AI Enhancement",
-        category: "Professional",
-        description: "Turn selfies into studio-quality headshots.",
-        fullDescription: "Don",
-        price: 999,
-        priceRange: "₹999 - ₹1498",
-        imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop",
+        id: "41",
+        name: "Academic Research Assistant",
+        category: "Student",
+        description: "Deep-dive research and citation for any topic.",
+        fullDescription: "Writing is easy when the research is done. We use advanced research agents to gather credible sources, summarize key arguments, and generate proper citations for your assignment topics.",
+        price: 1999,
+        priceRange: "₹1999 - ₹2998",
+        imageUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: ["3 Professional Headshot Variations", "Suit/Attire Change", "Background Replacement", "High-Res Export"],
-        premiumFeatures: ["3 Professional Headshot Variations", "Suit/Attire Change", "Background Replacement"]
+        standardFeatures: ["Comprehensive Topic Report", "List of Credible Sources", "Key Arguments Summary", "Citation Generation (APA/MLA)"],
+        premiumFeatures: ["Comprehensive Topic Report", "List of Credible Sources", "Key Arguments Summary"]
     },
     {
-        id: "41",
+        id: "51",
         name: "Mock Interview Practice",
         category: "Professional",
         description: "Realistic AI-driven interview simulation.",
