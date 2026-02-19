@@ -275,10 +275,19 @@ export default function Services() {
                     </Link>
                   </div>
 
-                  {/* CARD 3: SINGULARITY SCALE */}
-                  <div className="group relative bg-[#0F0F0F] border border-white/10 rounded-2xl p-8 hover:border-amber-500/50 transition-all hover:-translate-y-1 duration-300 flex flex-col">
-                    <div className="mb-6 p-3 bg-white/5 w-fit rounded-xl group-hover:bg-amber-500/10 transition-colors">
-                      <TrendingUp className="w-8 h-8 text-gray-400 group-hover:text-amber-500 transition-colors" />
+                  {/* CARD 3: SINGULARITY SCALE (THE ULTIMATE) */}
+                  <div className="group relative bg-[#0F0F0F] border border-white/20 rounded-2xl p-8 hover:border-white/40 transition-all hover:-translate-y-1 duration-300 flex flex-col shadow-[0_0_30px_-10px_rgba(255,255,255,0.1)]">
+                    <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                      <TrendingUp className="w-24 h-24 text-white" />
+                    </div>
+
+                    {/* Badge for Premium */}
+                    <div className="absolute top-0 center -translate-y-1/2 left-0 right-0 flex justify-center">
+                      <span className="bg-white text-black text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider border border-gray-200">Scale Mode</span>
+                    </div>
+
+                    <div className="mb-6 p-3 bg-white/10 w-fit rounded-xl group-hover:bg-white/20 transition-colors">
+                      <TrendingUp className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-2">Premium Launch</h3>
                     <p className="text-gray-400 text-sm mb-8 h-10">Scale-ready infrastructure for rapid growth.</p>
@@ -288,17 +297,17 @@ export default function Services() {
                     </div>
                     <div className="space-y-4 mb-8 flex-1">
                       <div className="flex gap-3 items-center">
-                        <div className="h-1 flex-1 bg-gray-800 rounded-full overflow-hidden"><div className="h-full w-2/3 bg-gray-600 group-hover:bg-amber-500/50 transition-colors"></div></div>
-                        <span className="text-xs font-bold text-gray-500 group-hover:text-amber-500/80">SCALE MODE</span>
+                        <div className="h-1 flex-1 bg-gray-800 rounded-full overflow-hidden"><div className="h-full w-full bg-white"></div></div>
+                        <span className="text-xs font-bold text-white">MAXIMUM</span>
                       </div>
                       <ul className="space-y-3">
-                        <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Full Stack Web + Mobile App</li>
-                        <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Admin "God Mode" Dashboard</li>
-                        <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Zero-Touch Automation</li>
+                        <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-white" /> Full Stack Web + Mobile App</li>
+                        <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-white" /> Admin "God Mode" Dashboard</li>
+                        <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-white" /> Zero-Touch Automation</li>
                       </ul>
                     </div>
                     <Link href="/orders?service=Premium%20Launch&price=50000">
-                      <Button className="w-full h-12 bg-white/10 hover:bg-white/20 text-white border-none font-semibold">
+                      <Button className="w-full h-12 bg-white hover:bg-gray-200 text-black border-none font-bold text-lg shadow-lg shadow-white/10">
                         Start Scaling
                       </Button>
                     </Link>
