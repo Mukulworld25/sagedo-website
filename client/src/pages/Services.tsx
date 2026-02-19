@@ -219,7 +219,11 @@ export default function Services() {
                       <Rocket className="w-8 h-8 text-gray-400 group-hover:text-amber-500 transition-colors" />
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-2">Starter Launch</h3>
-                    <p className="text-gray-400 text-sm mb-8 h-10">Validation velocity for solo founders testing new ideas.</p>
+                    <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+                      Perfect for validation. You get a high-converting AI Landing Page designed to capture leads instantly.
+                      Includes basic brand identity (Logo + Color Palette) and an automated email setup to nurture early signups.
+                      We set up your domain, hosting, and basic analytics so you can prove your concept in under 48 hours without writing a line of code.
+                    </p>
                     <div className="flex items-baseline gap-1 mb-8">
                       <span className="text-4xl font-black text-white">₹15,000</span>
                       <span className="text-xs text-gray-500">/ one-time</span>
@@ -251,7 +255,12 @@ export default function Services() {
                       <Crown className="w-8 h-8" />
                     </div>
                     <h3 className="text-2xl font-black text-white mb-2">Full Launch</h3>
-                    <p className="text-gray-400 text-sm mb-8 h-10">Complete technical & creative execution. You sell, we build.</p>
+                    <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+                      The "Business-in-a-Box" for serious founders. We build your Custom Website & Mobile App layout,
+                      integrated with a 24/7 AI Sales Chatbot to handle customer queries while you sleep.
+                      Includes a full CRM setup to track leads and 30 days of AI-generated social media content
+                      to kickstart your marketing engine. You strictly focus on sales; we handle the entire tech stack.
+                    </p>
                     <div className="flex items-baseline gap-1 mb-8">
                       <span className="text-5xl font-black text-white">₹35,000</span>
                       <span className="text-sm text-gray-500">/ one-time</span>
@@ -290,7 +299,12 @@ export default function Services() {
                       <TrendingUp className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-2">Premium Launch</h3>
-                    <p className="text-gray-400 text-sm mb-8 h-10">Scale-ready infrastructure for rapid growth.</p>
+                    <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+                      For businesses ready to dominate. You get a fully functional Full Stack Web Application + React Native Mobile App.
+                      Access our "God Mode" Admin Dashboard to control every aspect of your business real-time.
+                      We implement Zero-Touch Automation workflows (Zapier/Make) to automate fulfillment, invoicing, and support.
+                      This is enterprise-grade infrastructure built for massive scale.
+                    </p>
                     <div className="flex items-baseline gap-1 mb-8">
                       <span className="text-4xl font-black text-white">₹50,000</span>
                       <span className="text-xs text-gray-500">/ one-time</span>
