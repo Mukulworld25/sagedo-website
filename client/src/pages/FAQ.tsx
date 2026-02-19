@@ -3,7 +3,6 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, HelpCircle, CreditCard, Clock, Shield, MessageCircle, RefreshCw } from "lucide-react";
 
 import { faqs } from "@/data/faqs";
-import { HelpCircle, CreditCard, Clock, Shield, MessageCircle, RefreshCw } from "lucide-react";
 
 // Helper to get icon based on ID/Category
 const getIcon = (id: string) => {

@@ -163,7 +163,7 @@ export default function Dashboard() {
                   )}
                 </div>
               </div>
-              <Button variant="link" className="h-auto p-0 text-xs text-muted-foreground hover:text-primary" onClick={() => setLocation('/settings')}>
+              <Button variant="ghost" className="h-auto p-0 text-xs text-muted-foreground hover:text-primary" onClick={() => setLocation('/settings')}>
                 Edit
               </Button>
             </div>

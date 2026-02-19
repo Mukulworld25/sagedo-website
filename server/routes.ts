@@ -9,9 +9,6 @@ import { insertContactMessageSchema } from "@shared/schema";
 import passport from 'passport';
 import PDFDocument from 'pdfkit';
 import multer from "multer";
-
-// Configure multer for file uploads
-import multer from "multer";
 import { WebSocket, WebSocketServer } from "ws";
 import rateLimit from "express-rate-limit";
 

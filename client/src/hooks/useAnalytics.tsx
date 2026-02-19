@@ -2,6 +2,12 @@ import { useEffect } from "react";
 import { useLocation } from "wouter";
 import { apiRequest } from "@/lib/queryClient";
 
+declare global {
+    interface Window {
+        gtag?: (...args: any[]) => void;
+    }
+}
+
 export function useAnalytics() {
     const [location] = useLocation();
 

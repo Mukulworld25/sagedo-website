@@ -30,7 +30,6 @@ import { format } from "date-fns";
 // Extended Order type to include joined fields from backend
 interface AdminOrder extends Order {
   customerMobile?: string;
-  customerName?: string;
 }
 
 export default function Admin() {

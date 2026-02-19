@@ -47,6 +47,9 @@ export class MemStorage implements IStorage {
             id: adminId,
             email: 'admin@sagedo.in',
             name: 'Admin User',
+            firstName: null,
+            lastName: null,
+            profileImageUrl: null,
             passwordHash: hash,
             isAdmin: true,
             tokenBalance: 1000,
@@ -59,6 +62,16 @@ export class MemStorage implements IStorage {
             googleId: null,
             githubId: null,
             isOnboardingCompleted: true,
+            isTwoFactorEnabled: false,
+            twoFactorSecret: null,
+            mobileNumber: null,
+            college: null,
+            course: null,
+            yearOfStudy: null,
+            skills: null,
+            interests: null,
+            referralCode: null,
+            referredBy: null,
             createdAt: new Date(),
             updatedAt: new Date(),
             loginCount: 5,
@@ -124,6 +137,13 @@ export class MemStorage implements IStorage {
         const newUser = { ...existing, ...user, id } as User;
         this.users.set(id, newUser);
         return newUser;
+    }
+    async updateUser(id: string, data: Partial<User>): Promise<User> {
+        const u = this.users.get(id);
+        if (!u) throw new Error('User not found');
+        const updated = { ...u, ...data, updatedAt: new Date() };
+        this.users.set(id, updated);
+        return updated;
     }
     async deleteUser(id: string): Promise<void> { this.users.delete(id); }
     async getUserByVerificationToken(token: string): Promise<User | undefined> { return undefined; }
@@ -220,6 +240,10 @@ export class MemStorage implements IStorage {
     async getOrderActivities(orderId: string): Promise<OrderActivity[]> { return this.orderActivities.get(orderId) || []; }
     async markActivitiesAsRead(orderId: string): Promise<void> { }
     async getUnreadActivityCount(orderId: string): Promise<number> { return 0; }
+
+    // Missing interface methods
+    async optimizeServicePrices(): Promise<string> { return 'No optimization available in memory storage'; }
+    async getAllOrdersWithDetails(): Promise<any[]> { return Array.from(this.orders.values()); }
 
     // Abuse
     async isEmailUsed(email: string): Promise<boolean> { return this.usedEmails.has(email); }
