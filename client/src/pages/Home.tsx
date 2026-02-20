@@ -128,6 +128,25 @@ export default function Home() {
 
       </section>
 
+      {/* ═══════════════════════════════════════════════════════════════════
+          ELITE TRUST STRIP - Safe Positioning (Built For, Not Used By)
+      ═══════════════════════════════════════════════════════════════════ */}
+      <div className="border-y border-white/5 bg-black py-4 overflow-hidden relative z-20">
+        <div className="absolute inset-0 bg-primary/5 blur-3xl opacity-20" />
+        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-8 text-center">
+          <p className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-neutral-500">
+            Engineered for the Top 1% of
+          </p>
+          <div className="flex items-center gap-4 md:gap-12 flex-wrap justify-center">
+            <span className="text-sm md:text-base font-black text-white uppercase tracking-widest opacity-80">Visionary Founders</span>
+            <span className="hidden md:block w-1 h-1 rounded-full bg-neutral-700" />
+            <span className="text-sm md:text-base font-black text-white uppercase tracking-widest opacity-80">High-Growth Startups</span>
+            <span className="hidden md:block w-1 h-1 rounded-full bg-neutral-700" />
+            <span className="text-sm md:text-base font-black text-white uppercase tracking-widest opacity-80">Elite Creators</span>
+          </div>
+        </div>
+      </div>
+
       {/* NEW: The Execution Gap Section - Redesigned Center Comparison */}
       <section className="py-24 bg-neutral-900 border-y border-neutral-800 relative overflow-hidden">
         {/* Static Ambient background glow (Reduced Blur) */}
