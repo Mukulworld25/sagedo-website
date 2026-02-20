@@ -3,7 +3,7 @@
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle2, Zap, Star, Gift, ChevronRight, Briefcase, GraduationCap, User, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2, Zap, Star, Gift, ChevronRight, Briefcase, GraduationCap, User, Sparkles, MessageCircle, Phone, ExternalLink } from "lucide-react";
 import { useState } from "react";
 
 export default function Home() {
@@ -23,9 +23,9 @@ export default function Home() {
   ];
 
   const testimonials = [
-    { name: "Gurpreet S.", role: "Startup Founder, Punjab", text: "Most agencies quoted ₹3-5L and 3 months. SAGE DO delivered in 10 days for ₹35K. The quality exceeded expectations.", rating: 5 },
-    { name: "Anjali M.", role: "Healthcare Entrepreneur", text: "I was doing everything myself and burning out. SAGE DO took over execution completely. Now I focus on customers while they handle the tech.", rating: 5 },
-    { name: "Vikram R.", role: "Serial Entrepreneur", text: "As someone who's worked with 5+ agencies before, SAGE DO is different. No bullshit. Just execution.", rating: 5 }
+    { name: "Ravi K.", role: "Restaurant Owner, Chandigarh", text: "I was paying a freelancer ₹30K for a basic website that took 2 months. SAGE DO built something 10x better in days. My online orders have actually started.", rating: 5 },
+    { name: "Priya S.", role: "Coaching Institute, Punjab", text: "I was doing everything myself — website, social media, ads. SAGE DO took over the tech completely. Now I just teach and they handle everything else.", rating: 5 },
+    { name: "Arjun T.", role: "E-commerce Startup", text: "The speed is insane. I messaged on WhatsApp, explained what I needed, and had a working prototype the next day. No other agency works like this.", rating: 5 }
   ];
 
   return (
@@ -109,20 +109,20 @@ export default function Home() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
-            <Link href="/orders">
-              <div className={buttonVariants({ size: "lg", className: "h-14 px-8 text-lg font-semibold bg-primary hover:bg-primary/90 rounded-xl transition-all hover:scale-[1.02] hover:-translate-y-0.5 group cursor-pointer" })}
-                style={{ boxShadow: '0 4px 16px rgba(255, 0, 0, 0.4)', fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
+            <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20visited%20SAGE%20DO%20and%20I'm%20interested%20in%20your%20services.%20Can%20we%20talk%3F" target="_blank" rel="noopener noreferrer">
+              <div className={buttonVariants({ size: "lg", className: "h-14 px-8 text-lg font-semibold bg-green-600 hover:bg-green-500 rounded-xl transition-all hover:scale-[1.02] hover:-translate-y-0.5 group cursor-pointer" })}
+                style={{ boxShadow: '0 4px 16px rgba(34, 197, 94, 0.4)', fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
               >
-                GET STARTED <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                <MessageCircle className="mr-2 h-5 w-5" /> BOOK FREE CALL
               </div>
-            </Link>
-            <Link href="/services">
+            </a>
+            <a href="#portfolio">
               <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-14 px-8 text-lg font-semibold rounded-xl border-white/20 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all cursor-pointer" })}
                 style={{ fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
               >
-                EXPLORE
+                SEE OUR WORK
               </div>
-            </Link>
+            </a>
           </div>
         </div>
 
@@ -270,6 +270,89 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
+          SELECTED WORK / PORTFOLIO - Trust Builder
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section id="portfolio" className="py-24 px-6 border-t border-border/30 bg-gradient-to-b from-neutral-900/50 to-transparent">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
+              Our Work
+            </p>
+            <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4">
+              Built by Us. Trusted by Founders.
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Real projects. Real results. See what we ship.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Project 1 - SAGE DO Website */}
+            <div className="group relative rounded-2xl border border-border/30 bg-background/50 overflow-hidden hover:border-primary/30 transition-all hover:-translate-y-1">
+              <div className="aspect-video bg-gradient-to-br from-red-500/20 to-orange-500/10 flex items-center justify-center">
+                <div className="text-center">
+                  <span className="text-4xl mb-2 block">🌐</span>
+                  <span className="text-sm font-bold text-white/70">sagedo.in</span>
+                </div>
+              </div>
+              <div className="p-6">
+                <span className="text-xs font-bold uppercase tracking-wider text-primary">SaaS Platform</span>
+                <h3 className="text-lg font-bold text-foreground mt-2">SAGE DO — AI Service Platform</h3>
+                <p className="text-sm text-muted-foreground mt-2">Full-stack AI + Human hybrid platform with 30+ services, payment integration, and real-time tracking.</p>
+                <a href="https://sagedo.in" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-bold text-primary mt-4 hover:underline">
+                  View Live <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+
+            {/* Project 2 - Mobile App */}
+            <div className="group relative rounded-2xl border border-border/30 bg-background/50 overflow-hidden hover:border-primary/30 transition-all hover:-translate-y-1">
+              <div className="aspect-video bg-gradient-to-br from-blue-500/20 to-cyan-500/10 flex items-center justify-center">
+                <div className="text-center">
+                  <span className="text-4xl mb-2 block">📱</span>
+                  <span className="text-sm font-bold text-white/70">Android App</span>
+                </div>
+              </div>
+              <div className="p-6">
+                <span className="text-xs font-bold uppercase tracking-wider text-blue-400">Mobile App</span>
+                <h3 className="text-lg font-bold text-foreground mt-2">SAGE DO Mobile — Android</h3>
+                <p className="text-sm text-muted-foreground mt-2">Native Android app with push notifications, AI chat, order tracking, and admin dashboard.</p>
+                <span className="inline-flex items-center gap-1 text-sm font-bold text-blue-400 mt-4">
+                  Available on Android
+                </span>
+              </div>
+            </div>
+
+            {/* Project 3 - Client Work */}
+            <div className="group relative rounded-2xl border border-border/30 bg-background/50 overflow-hidden hover:border-primary/30 transition-all hover:-translate-y-1">
+              <div className="aspect-video bg-gradient-to-br from-emerald-500/20 to-green-500/10 flex items-center justify-center">
+                <div className="text-center">
+                  <span className="text-4xl mb-2 block">🏪</span>
+                  <span className="text-sm font-bold text-white/70">Local Business</span>
+                </div>
+              </div>
+              <div className="p-6">
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">Business Website</span>
+                <h3 className="text-lg font-bold text-foreground mt-2">Local Business Starter Pack</h3>
+                <p className="text-sm text-muted-foreground mt-2">Complete digital presence: website, Google Maps listing, WhatsApp integration, and social media setup.</p>
+                <a href="https://wa.me/916284925684?text=Hi!%20I%20want%20to%20see%20more%20of%20your%20work." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-bold text-emerald-400 mt-4 hover:underline">
+                  Ask for Demo <MessageCircle className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-10">
+            <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20want%20to%20discuss%20a%20project%20similar%20to%20what%20I%20saw%20on%20your%20portfolio." target="_blank" rel="noopener noreferrer">
+              <div className={buttonVariants({ className: "bg-green-600 hover:bg-green-500 text-white font-bold px-8 h-12 rounded-xl cursor-pointer" })}>
+                <MessageCircle className="mr-2 h-5 w-5" /> Discuss Your Project on WhatsApp
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
           VALUE COMPARISON MATRIX - The "No-Brainer" Table
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="py-24 px-6 border-t border-border/30 bg-neutral-900/30">
@@ -333,136 +416,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          VALUE COMPARISON MATRIX - The "No-Brainer" Table
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 border-t border-border/30 bg-neutral-900/30">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-red-500 mb-4">
-              Stop Overpaying
-            </p>
-            <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4">
-              The "Sovereign AI" Advantage
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              See why we are 10x faster and cheaper than the competition.
-            </p>
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="border-b border-white/10">
-                  <th className="p-4 text-sm font-bold text-muted-foreground uppercase tracking-wider">Feature</th>
-                  <th className="p-4 text-sm font-bold text-red-400 uppercase tracking-wider bg-red-500/5 rounded-t-xl">Freelancer (₹15k)</th>
-                  <th className="p-4 text-sm font-bold text-orange-400 uppercase tracking-wider">Agency (₹2 Lakhs+)</th>
-                  <th className="p-4 text-xl font-black text-primary uppercase tracking-wider bg-primary/10 rounded-t-xl border-t-2 border-primary">SAGE DO (₹35k)</th>
-                </tr>
-              </thead>
-              <tbody className="text-sm md:text-base">
-                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="p-4 font-semibold text-white">Speed to Launch</td>
-                  <td className="p-4 text-muted-foreground">30 Days (If lucky)</td>
-                  <td className="p-4 text-muted-foreground">60-90 Days</td>
-                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">⚡ 48 Hours</td>
-                </tr>
-                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="p-4 font-semibold text-white">Tech Stack</td>
-                  <td className="p-4 text-muted-foreground">Basic Templates</td>
-                  <td className="p-4 text-muted-foreground">Custom Code</td>
-                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">💎 Enterprise AI Stack</td>
-                </tr>
-                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="p-4 font-semibold text-white">Strategy</td>
-                  <td className="p-4 text-muted-foreground">None (Just Code)</td>
-                  <td className="p-4 text-muted-foreground">Extra Fee (₹50k+)</td>
-                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">🚀 Viral Launch Kit Included</td>
-                </tr>
-                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="p-4 font-semibold text-white">Risk</td>
-                  <td className="p-4 text-red-400">High (Ghosting)</td>
-                  <td className="p-4 text-orange-400">Medium (Scope Creep)</td>
-                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">🛡️ Zero (Guaranteed)</td>
-                </tr>
-                <tr>
-                  <td className="p-4 font-semibold text-white">Support</td>
-                  <td className="p-4 text-muted-foreground">Email Only</td>
-                  <td className="p-4 text-muted-foreground">Dedicated PM</td>
-                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20 rounded-b-xl border-b-2">🤝 AI + Founder Access</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════════
-          SAAS PRICING SECTION - Compliance & Conversion
-      ═══════════════════════════════════════════════════════════════════ */}
-      {/* ═══════════════════════════════════════════════════════════════════
-          VALUE COMPARISON MATRIX - The "No-Brainer" Table
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 border-t border-border/30 bg-neutral-900/30">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-red-500 mb-4">
-              Stop Overpaying
-            </p>
-            <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4">
-              The "Sovereign AI" Advantage
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              See why we are 10x faster and cheaper than the competition.
-            </p>
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="border-b border-white/10">
-                  <th className="p-4 text-sm font-bold text-muted-foreground uppercase tracking-wider">Feature</th>
-                  <th className="p-4 text-sm font-bold text-red-400 uppercase tracking-wider bg-red-500/5 rounded-t-xl">Freelancer (₹15k)</th>
-                  <th className="p-4 text-sm font-bold text-orange-400 uppercase tracking-wider">Agency (₹2 Lakhs+)</th>
-                  <th className="p-4 text-xl font-black text-primary uppercase tracking-wider bg-primary/10 rounded-t-xl border-t-2 border-primary">SAGE DO (₹35k)</th>
-                </tr>
-              </thead>
-              <tbody className="text-sm md:text-base">
-                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="p-4 font-semibold text-white">Speed to Launch</td>
-                  <td className="p-4 text-muted-foreground">30 Days (If lucky)</td>
-                  <td className="p-4 text-muted-foreground">60-90 Days</td>
-                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">⚡ 48 Hours</td>
-                </tr>
-                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="p-4 font-semibold text-white">Tech Stack</td>
-                  <td className="p-4 text-muted-foreground">Basic Templates</td>
-                  <td className="p-4 text-muted-foreground">Custom Code</td>
-                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">💎 Enterprise AI Stack</td>
-                </tr>
-                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="p-4 font-semibold text-white">Strategy</td>
-                  <td className="p-4 text-muted-foreground">None (Just Code)</td>
-                  <td className="p-4 text-muted-foreground">Extra Fee (₹50k+)</td>
-                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">🚀 Viral Launch Kit Included</td>
-                </tr>
-                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="p-4 font-semibold text-white">Risk</td>
-                  <td className="p-4 text-red-400">High (Ghosting)</td>
-                  <td className="p-4 text-orange-400">Medium (Scope Creep)</td>
-                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">🛡️ Zero (Guaranteed)</td>
-                </tr>
-                <tr>
-                  <td className="p-4 font-semibold text-white">Support</td>
-                  <td className="p-4 text-muted-foreground">Email Only</td>
-                  <td className="p-4 text-muted-foreground">Dedicated PM</td>
-                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20 rounded-b-xl border-b-2">🤝 AI + Founder Access</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+      {/* Duplicate tables removed — keeping only the first one above */}
 
       <section className="py-24 px-6 bg-gradient-to-b from-primary/5 to-transparent">
         <div className="max-w-5xl mx-auto">
@@ -723,16 +677,52 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
+          MEET THE FOUNDER - Human Connection
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 border-t border-border/30">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center gap-10">
+            {/* Founder Avatar */}
+            <div className="shrink-0">
+              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-primary via-red-500 to-orange-500 p-1">
+                <div className="w-full h-full rounded-full bg-neutral-900 flex items-center justify-center">
+                  <span className="text-5xl md:text-6xl font-black text-white">M</span>
+                </div>
+              </div>
+            </div>
+            {/* Founder Info */}
+            <div className="text-center md:text-left">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-2">Meet the Founder</p>
+              <h2 className="text-3xl md:text-4xl font-black text-foreground mb-3">Mukul Dhiman</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+                Ex-Aerospace engineer turned AI builder. I started SAGE DO because I saw Indian businesses getting ripped off by agencies charging ₹5 Lakhs for what AI can do in 48 hours. I personally oversee every project.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center gap-3">
+                <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20saw%20your%20profile%20on%20SAGE%20DO.%20Can%20we%20discuss%20my%20project%3F" target="_blank" rel="noopener noreferrer">
+                  <div className={buttonVariants({ className: "bg-green-600 hover:bg-green-500 text-white font-bold px-6 h-11 rounded-xl cursor-pointer" })}>
+                    <MessageCircle className="mr-2 h-4 w-4" /> Message Me Directly
+                  </div>
+                </a>
+                <a href="https://www.linkedin.com/in/mukul-dhiman" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                  View LinkedIn →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
           TESTIMONIALS - Clean Cards (Bhindi Style)
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="py-24 px-6 border-t border-border/30 bg-gradient-to-b from-muted/30 to-transparent">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
-              Testimonials
+              Early Feedback
             </p>
             <h2 className="text-3xl md:text-5xl font-black text-foreground">
-              Voices Across India
+              What Founders Are Saying
             </h2>
           </div>
 
@@ -766,26 +756,28 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════════
           FINAL CTA - Clean Banner
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 border-t border-border/30">
+      <section className="py-24 px-6 border-t border-border/30 bg-gradient-to-t from-green-500/5 to-transparent">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
-            Ready to Get Things Done?
+            Let's Talk About Your Business
           </h2>
-          <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
-            Trusted by 150+ Members for AI Automation.
-            Start with FREE AI Workflow Templates + Welcome Bonus today.
+          <p className="text-lg text-muted-foreground mb-4 max-w-2xl mx-auto">
+            No sales pitch. No pressure. Just a real conversation about what you need and how we can help.
+          </p>
+          <p className="text-sm text-green-400 font-bold mb-10">
+            ⚡ Average response time: Under 5 minutes
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/login?register=true">
-              <div className={buttonVariants({ size: "lg", className: "h-14 px-10 text-lg font-semibold bg-primary hover:bg-primary/90 rounded-xl shadow-lg shadow-primary/25 transition-all hover:scale-105 cursor-pointer" })}>
-                Get Started Free <ArrowRight className="ml-2 h-5 w-5" />
+            <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20want%20to%20discuss%20my%20business%20needs.%20What's%20the%20best%20way%20to%20get%20started%3F" target="_blank" rel="noopener noreferrer">
+              <div className={buttonVariants({ size: "lg", className: "h-14 px-10 text-lg font-semibold bg-green-600 hover:bg-green-500 rounded-xl shadow-lg shadow-green-500/25 transition-all hover:scale-105 cursor-pointer" })}>
+                <MessageCircle className="mr-2 h-5 w-5" /> WhatsApp Us Now
               </div>
-            </Link>
-            <Link href="/services">
+            </a>
+            <a href="tel:+916284925684">
               <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-14 px-10 text-lg font-semibold rounded-xl border-border/50 hover:bg-muted/50 cursor-pointer" })}>
-                Browse Services
+                <Phone className="mr-2 h-5 w-5" /> Call Directly
               </div>
-            </Link>
+            </a>
           </div>
         </div>
       </section>

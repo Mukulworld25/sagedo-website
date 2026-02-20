@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Sparkles, Gift, ExternalLink, Settings } from "lucide-react";
+import { Menu, X, Sparkles, Gift, ExternalLink, Settings, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { useLanguage } from "@/components/LanguageProvider";
@@ -143,24 +143,17 @@ export default function Navigation() {
                           Login
                         </Button>
                       </Link>
-                      <Link href="/login?register=true">
+                      <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20visited%20SAGE%20DO%20and%20I'm%20interested%20in%20your%20services." target="_blank" rel="noopener noreferrer">
                         <Button
                           size="sm"
                           variant="default"
                           data-testid="button-signup"
-                          className="relative group overflow-hidden bg-gradient-to-r from-primary to-red-600 hover:from-primary/90 hover:to-red-500 shadow-lg shadow-primary/25"
+                          className="relative group overflow-hidden bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 shadow-lg shadow-green-500/25"
                         >
-                          {/* Golden shimmer effect */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                          <Gift className="w-4 h-4 mr-1.5" />
-                          <span className="relative">Sign Up FREE</span>
-                          {/* Golden ticket badge */}
-                          <span className="absolute -top-1 -right-1 flex items-center gap-0.5 bg-gradient-to-r from-yellow-400 to-amber-500 text-black text-[9px] px-1.5 py-0.5 rounded-full font-bold shadow-lg animate-pulse">
-                            <Sparkles className="w-2.5 h-2.5" />
-                            AI
-                          </span>
+                          <MessageCircle className="w-4 h-4 mr-1.5" />
+                          <span className="relative">WhatsApp Us</span>
                         </Button>
-                      </Link>
+                      </a>
                     </>
                   )}
                 </>
@@ -263,22 +256,18 @@ export default function Navigation() {
                         Login
                       </Button>
                     </Link>
-                    <Link href="/login?register=true">
+                    <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20visited%20SAGE%20DO%20and%20I'm%20interested%20in%20your%20services." target="_blank" rel="noopener noreferrer">
                       <Button
                         size="sm"
                         variant="default"
                         data-testid="button-mobile-signup"
-                        className="w-full bg-gradient-to-r from-primary to-red-600 relative overflow-hidden group"
+                        className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                        <Gift className="w-4 h-4 mr-1.5" />
-                        <span className="relative">Sign Up FREE</span>
-                        <span className="ml-2 bg-gradient-to-r from-yellow-400 to-amber-500 text-black text-[9px] px-1.5 py-0.5 rounded-full font-bold">
-                          FREE AI
-                        </span>
+                        <MessageCircle className="w-4 h-4 mr-1.5" />
+                        <span className="relative">WhatsApp Us</span>
                       </Button>
-                    </Link>
+                    </a>
                   </div>
                 )}
               </div>
