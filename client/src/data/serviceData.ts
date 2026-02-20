@@ -50,7 +50,7 @@ export const allServices: ServiceDetail[] = [
         fullDescription: "Your logo is your first impression. We combine AI creativity with professional design principles to create a unique, memorable logo that works across all mediums - from websites to billboards.",
         price: 999,
         priceRange: "₹999 - ₹2,999",
-        imageUrl: "https://images.unsplash.com/photo-1626785774573-4b799314346d?q=80&w=1000&auto=format&fit=crop",
+        imageUrl: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
         standardFeatures: [
             "2 Unique AI Concepts",
