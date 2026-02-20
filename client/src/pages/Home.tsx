@@ -251,8 +251,200 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
+          VALUE COMPARISON MATRIX - The "No-Brainer" Table
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 border-t border-border/30 bg-neutral-900/30">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-red-500 mb-4">
+              Stop Overpaying
+            </p>
+            <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4">
+              The "Sovereign AI" Advantage
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              See why we are 10x faster and cheaper than the competition.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="border-b border-white/10">
+                  <th className="p-4 text-sm font-bold text-muted-foreground uppercase tracking-wider">Feature</th>
+                  <th className="p-4 text-sm font-bold text-red-400 uppercase tracking-wider bg-red-500/5 rounded-t-xl">Freelancer (₹15k)</th>
+                  <th className="p-4 text-sm font-bold text-orange-400 uppercase tracking-wider">Agency (₹5 Lakhs+)</th>
+                  <th className="p-4 text-xl font-black text-primary uppercase tracking-wider bg-primary/10 rounded-t-xl border-t-2 border-primary">SAGE DO (₹35k)</th>
+                </tr>
+              </thead>
+              <tbody className="text-sm md:text-base">
+                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                  <td className="p-4 font-semibold text-white">Speed to Launch</td>
+                  <td className="p-4 text-muted-foreground">30 Days (If lucky)</td>
+                  <td className="p-4 text-muted-foreground">3-6 Months</td>
+                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">⚡ 48 Hours</td>
+                </tr>
+                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                  <td className="p-4 font-semibold text-white">Tech Stack</td>
+                  <td className="p-4 text-muted-foreground">Basic Templates</td>
+                  <td className="p-4 text-muted-foreground">Custom Code</td>
+                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">💎 Enterprise AI Stack</td>
+                </tr>
+                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                  <td className="p-4 font-semibold text-white">Strategy</td>
+                  <td className="p-4 text-muted-foreground">None (Just Code)</td>
+                  <td className="p-4 text-muted-foreground">₹1 Lakh+ Retainer</td>
+                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">🚀 Viral Launch Kit Included</td>
+                </tr>
+                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                  <td className="p-4 font-semibold text-white">Risk</td>
+                  <td className="p-4 text-red-400">High (Ghosting)</td>
+                  <td className="p-4 text-orange-400">Low (Slow)</td>
+                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">🛡️ Zero (Guaranteed)</td>
+                </tr>
+                <tr>
+                  <td className="p-4 font-semibold text-white">Support</td>
+                  <td className="p-4 text-muted-foreground">Email Only</td>
+                  <td className="p-4 text-muted-foreground">Account Manager</td>
+                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20 rounded-b-xl border-b-2">🤝 AI + Founder Access</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          VALUE COMPARISON MATRIX - The "No-Brainer" Table
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 border-t border-border/30 bg-neutral-900/30">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-red-500 mb-4">
+              Stop Overpaying
+            </p>
+            <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4">
+              The "Sovereign AI" Advantage
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              See why we are 10x faster and cheaper than the competition.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="border-b border-white/10">
+                  <th className="p-4 text-sm font-bold text-muted-foreground uppercase tracking-wider">Feature</th>
+                  <th className="p-4 text-sm font-bold text-red-400 uppercase tracking-wider bg-red-500/5 rounded-t-xl">Freelancer (₹15k)</th>
+                  <th className="p-4 text-sm font-bold text-orange-400 uppercase tracking-wider">Agency (₹2 Lakhs+)</th>
+                  <th className="p-4 text-xl font-black text-primary uppercase tracking-wider bg-primary/10 rounded-t-xl border-t-2 border-primary">SAGE DO (₹35k)</th>
+                </tr>
+              </thead>
+              <tbody className="text-sm md:text-base">
+                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                  <td className="p-4 font-semibold text-white">Speed to Launch</td>
+                  <td className="p-4 text-muted-foreground">30 Days (If lucky)</td>
+                  <td className="p-4 text-muted-foreground">60-90 Days</td>
+                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">⚡ 48 Hours</td>
+                </tr>
+                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                  <td className="p-4 font-semibold text-white">Tech Stack</td>
+                  <td className="p-4 text-muted-foreground">Basic Templates</td>
+                  <td className="p-4 text-muted-foreground">Custom Code</td>
+                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">💎 Enterprise AI Stack</td>
+                </tr>
+                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                  <td className="p-4 font-semibold text-white">Strategy</td>
+                  <td className="p-4 text-muted-foreground">None (Just Code)</td>
+                  <td className="p-4 text-muted-foreground">Extra Fee (₹50k+)</td>
+                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">🚀 Viral Launch Kit Included</td>
+                </tr>
+                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                  <td className="p-4 font-semibold text-white">Risk</td>
+                  <td className="p-4 text-red-400">High (Ghosting)</td>
+                  <td className="p-4 text-orange-400">Medium (Scope Creep)</td>
+                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">🛡️ Zero (Guaranteed)</td>
+                </tr>
+                <tr>
+                  <td className="p-4 font-semibold text-white">Support</td>
+                  <td className="p-4 text-muted-foreground">Email Only</td>
+                  <td className="p-4 text-muted-foreground">Dedicated PM</td>
+                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20 rounded-b-xl border-b-2">🤝 AI + Founder Access</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
           SAAS PRICING SECTION - Compliance & Conversion
       ═══════════════════════════════════════════════════════════════════ */}
+      {/* ═══════════════════════════════════════════════════════════════════
+          VALUE COMPARISON MATRIX - The "No-Brainer" Table
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 border-t border-border/30 bg-neutral-900/30">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-red-500 mb-4">
+              Stop Overpaying
+            </p>
+            <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4">
+              The "Sovereign AI" Advantage
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              See why we are 10x faster and cheaper than the competition.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="border-b border-white/10">
+                  <th className="p-4 text-sm font-bold text-muted-foreground uppercase tracking-wider">Feature</th>
+                  <th className="p-4 text-sm font-bold text-red-400 uppercase tracking-wider bg-red-500/5 rounded-t-xl">Freelancer (₹15k)</th>
+                  <th className="p-4 text-sm font-bold text-orange-400 uppercase tracking-wider">Agency (₹2 Lakhs+)</th>
+                  <th className="p-4 text-xl font-black text-primary uppercase tracking-wider bg-primary/10 rounded-t-xl border-t-2 border-primary">SAGE DO (₹35k)</th>
+                </tr>
+              </thead>
+              <tbody className="text-sm md:text-base">
+                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                  <td className="p-4 font-semibold text-white">Speed to Launch</td>
+                  <td className="p-4 text-muted-foreground">30 Days (If lucky)</td>
+                  <td className="p-4 text-muted-foreground">60-90 Days</td>
+                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">⚡ 48 Hours</td>
+                </tr>
+                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                  <td className="p-4 font-semibold text-white">Tech Stack</td>
+                  <td className="p-4 text-muted-foreground">Basic Templates</td>
+                  <td className="p-4 text-muted-foreground">Custom Code</td>
+                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">💎 Enterprise AI Stack</td>
+                </tr>
+                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                  <td className="p-4 font-semibold text-white">Strategy</td>
+                  <td className="p-4 text-muted-foreground">None (Just Code)</td>
+                  <td className="p-4 text-muted-foreground">Extra Fee (₹50k+)</td>
+                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">🚀 Viral Launch Kit Included</td>
+                </tr>
+                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                  <td className="p-4 font-semibold text-white">Risk</td>
+                  <td className="p-4 text-red-400">High (Ghosting)</td>
+                  <td className="p-4 text-orange-400">Medium (Scope Creep)</td>
+                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">🛡️ Zero (Guaranteed)</td>
+                </tr>
+                <tr>
+                  <td className="p-4 font-semibold text-white">Support</td>
+                  <td className="p-4 text-muted-foreground">Email Only</td>
+                  <td className="p-4 text-muted-foreground">Dedicated PM</td>
+                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20 rounded-b-xl border-b-2">🤝 AI + Founder Access</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       <section className="py-24 px-6 bg-gradient-to-b from-primary/5 to-transparent">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">

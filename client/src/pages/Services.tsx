@@ -272,28 +272,32 @@ export default function Services() {
                     </Link>
                   </div>
 
-                  {/* CARD 3: SINGULARITY SCALE */}
-                  <div className="group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-amber-500/50 transition-all hover:-translate-y-1 duration-300">
-                    <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                      <TrendingUp className="w-24 h-24 text-amber-500" />
+                  {/* CARD 3: ROYAL PLATINUM (Premium Launch) */}
+                  <div className="group relative bg-gradient-to-br from-slate-100 via-white to-slate-200 border-2 border-white/50 rounded-2xl p-6 hover:shadow-[0_0_50px_-10px_rgba(255,255,255,0.4)] transition-all hover:-translate-y-2 duration-300 scale-105 z-20">
+                    <div className="absolute top-0 center -translate-y-1/2 left-0 right-0 flex justify-center">
+                      <span className="bg-black text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-lg border border-white/20">Royal Tier</span>
                     </div>
-                    <div className="mb-4 p-2 bg-amber-500/10 w-fit rounded-lg text-amber-500">
-                      <TrendingUp className="w-6 h-6" />
+                    <div className="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                      <Crown className="w-24 h-24 text-slate-300 rotate-12" />
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-1">Premium Launch</h3>
-                    <p className="text-gray-400 text-sm mb-6">Scale-ready infrastructure.</p>
+                    <div className="mb-4 p-2 bg-black w-fit rounded-lg text-white shadow-xl">
+                      <Crown className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-2xl font-black text-slate-900 mb-1 tracking-tight">VIP Launch</h3>
+                    <p className="text-slate-600 text-sm mb-6 font-medium">Enterprise infrastructure. No compromises.</p>
                     <div className="flex items-baseline gap-1 mb-6">
-                      <span className="text-3xl font-black text-white">₹50,000</span>
-                      <span className="text-xs text-gray-500">/ one-time</span>
+                      <span className="text-4xl font-black text-slate-900">₹95,000</span>
+                      <span className="text-xs text-slate-500 font-bold">/ one-time</span>
                     </div>
                     <ul className="space-y-3 mb-8">
-                      <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Full Stack Web + Mobile App</li>
-                      <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Admin "God Mode" Dashboard</li>
-                      <li className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500" /> Zero-Touch Automation</li>
+                      <li className="flex gap-3 text-sm font-bold text-slate-800"><ShieldCheck className="w-4 h-4 text-black" /> Enterprise Web + Native App</li>
+                      <li className="flex gap-3 text-sm font-bold text-slate-800"><ShieldCheck className="w-4 h-4 text-black" /> Admin "God Mode" Dashboard</li>
+                      <li className="flex gap-3 text-sm font-bold text-slate-800"><ShieldCheck className="w-4 h-4 text-black" /> Dedicated Growth Engineer</li>
+                      <li className="flex gap-3 text-sm font-bold text-slate-800"><ShieldCheck className="w-4 h-4 text-black" /> Legal & IP Contracts Included</li>
                     </ul>
-                    <Link href="/orders?service=Premium%20Launch&price=50000">
-                      <Button className="w-full bg-white/10 hover:bg-white/20 text-white border-none font-semibold">
-                        Start Scaling
+                    <Link href="/orders?service=VIP%20Launch&price=95000">
+                      <Button className="w-full h-12 bg-black hover:bg-slate-900 text-white font-black text-lg shadow-2xl shadow-black/20 border border-slate-800">
+                        Become a Titan
                       </Button>
                     </Link>
                   </div>

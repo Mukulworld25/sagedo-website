@@ -588,4 +588,59 @@ export const allServices: ServiceDetail[] = [
         standardFeatures: ["Workflow Analysis", "Tool Recommendations", "ROI Report", "No Obligation"],
         premiumFeatures: ["Workflow Analysis", "Tool Recommendations", "ROI Report"]
     }
+    // ==========================================
+    // 🇮🇳 THE "VYAPARI & HUSTLER" ESSENTIALS (New Additions)
+    // ==========================================
+    {
+        id: "60",
+        name: "Google Maps (GMB) Dominator",
+        category: "Business",
+        description: "Rank #1 on 'Near Me' searches.",
+        fullDescription: "If you aren't on Maps, you don't exist. We optimize your Google Business Profile with keywords, photos, and review strategies to ensure customers find you first.",
+        price: 4999,
+        priceRange: "₹4,999 - ₹9,999",
+        imageUrl: "https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: true,
+        standardFeatures: ["Profile Verification", "Keyword Optimization", "Photo Upload Strategy", "Review QR Code"],
+        premiumFeatures: ["Profile Verification", "Keyword Optimization", "Photo Upload Strategy"]
+    },
+    {
+        id: "61",
+        name: "WhatsApp Green Tick Setup",
+        category: "Business",
+        description: "The ultimate trust signal.",
+        fullDescription: "Get the verified Green Tick next to your name. We handle the complex Meta verification process and set up your official WhatsApp Business API account.",
+        price: 9999,
+        priceRange: "₹9,999 - ₹14,999",
+        imageUrl: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: false,
+        standardFeatures: ["Business Manager Verification", "Green Tick Application", "API Setup", "Welcome Message Config"],
+        premiumFeatures: ["Business Manager Verification", "Green Tick Application", "API Setup"]
+    },
+    {
+        id: "62",
+        name: "AI Product Studio",
+        category: "Business",
+        description: "Studio-quality shots without the studio.",
+        fullDescription: "Stop using phone photos. We use generative AI to place your product in luxury, professional settings that drive clicks and sales on Amazon/Flipkart.",
+        price: 499,
+        priceRange: "₹499 - ₹999/photo",
+        imageUrl: "https://images.unsplash.com/photo-1664539665551-7b0b6d2a4c16?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: true,
+        standardFeatures: ["Background Removal", "AI Scene Generation", "Lighting Correction", "High-Res Export"],
+        premiumFeatures: ["Background Removal", "AI Scene Generation", "Lighting Correction"]
+    },
+    {
+        id: "63",
+        name: "Podcast -> Viral Shorts Engine",
+        category: "Personal",
+        description: "Turn 1 hour into 30 days of content.",
+        fullDescription: "We take your long-form video (Podcast/Zoom) and use AI to extract the most viral moments, caption them, and format them for Reels/Shorts.",
+        price: 14999,
+        priceRange: "₹14,999/mo",
+        imageUrl: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: true,
+        standardFeatures: ["1 Long Video Processed", "10 High-Retention Shorts", "Dynamic Captions", "Viral Hook Selection"],
+        premiumFeatures: ["1 Long Video Processed", "10 High-Retention Shorts", "Dynamic Captions"]
+    }
 ];
