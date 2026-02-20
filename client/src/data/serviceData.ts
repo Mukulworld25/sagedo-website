@@ -587,7 +587,7 @@ export const allServices: ServiceDetail[] = [
         isGoldenEligible: true,
         standardFeatures: ["Workflow Analysis", "Tool Recommendations", "ROI Report", "No Obligation"],
         premiumFeatures: ["Workflow Analysis", "Tool Recommendations", "ROI Report"]
-    }
+    },
     // ==========================================
     // 🇮🇳 THE "VYAPARI & HUSTLER" ESSENTIALS (New Additions)
     // ==========================================

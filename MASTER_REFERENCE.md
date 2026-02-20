@@ -37,6 +37,7 @@
 *   **The Instagram Bible (2026):** [INSTAGRAM_BIBLE.md](file:///C:/Users/admin/.gemini/antigravity/brain/724ac961-c232-44fd-97af-8ceaaa359713/INSTAGRAM_BIBLE.md)
 *   **Master Tools Stack:** [MASTER_TOOLS_STACK.md](file:///C:/Users/admin/.gemini/antigravity/brain/724ac961-c232-44fd-97af-8ceaaa359713/MASTER_TOOLS_STACK.md)
 *   **Social Media Kit:** [SOCIAL_MEDIA_KIT.md](file:///C:/Users/admin/.gemini/antigravity/brain/8ebab65a-5642-4652-8720-74de3e702000/SOCIAL_MEDIA_KIT.md)
+*   **The Reddit Growth Bible (2026):** [REDDIT_GROWTH_BIBLE.md](file:///C:/Users/admin/.gemini/antigravity/brain/3d424e5a-289e-46e7-919d-547f71e9c485/REDDIT_GROWTH_BIBLE.md)
 
 ---
 
