@@ -876,7 +876,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ success: false, message: "Onboarding already completed" });
       }
 
-      const { profession, age, gender, aiProficiency, mobileNumber } = req.body;
+      const { profession, age, gender, aiProficiency, mobileNumber, referralSource } = req.body;
 
       // 1. Update User Profile
       // Use local 'user' variable from session, not req.user
@@ -885,7 +885,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         age: parseInt(age),
         gender,
         aiProficiency,
-        mobileNumber
+        mobileNumber,
+        referralSource
       });
 
       // 2. Calculate Reward (50 per field)
@@ -895,6 +896,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (gender && gender !== "Prefer not to say") reward += 50;
       if (aiProficiency && aiProficiency !== "Skipped") reward += 50;
       if (mobileNumber) reward += 50;
+      if (referralSource && referralSource !== "Skipped") reward += 50;
 
       if (reward > 0) {
         await storage.addTokenTransaction({
@@ -916,6 +918,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           name: user.name,
           profession,
           age,
+          referralSource,
           reward,
           time: new Date().toLocaleTimeString()
         });

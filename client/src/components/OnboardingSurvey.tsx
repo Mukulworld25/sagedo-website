@@ -22,6 +22,7 @@ export default function OnboardingSurvey() {
     const [gender, setGender] = useState("");
     const [mobile, setMobile] = useState("");
     const [aiProficiency, setAiProficiency] = useState("Beginner");
+    const [referralSource, setReferralSource] = useState("");
 
     // Show survey if user exists but hasn't completed onboarding and hasn't skipped it in this session
     useEffect(() => {
@@ -51,7 +52,8 @@ export default function OnboardingSurvey() {
                 age,
                 gender,
                 mobileNumber: mobile,
-                aiProficiency
+                aiProficiency,
+                referralSource
             });
 
             // Refetch user to updated token balance and status
@@ -106,7 +108,7 @@ export default function OnboardingSurvey() {
                         Tell us a bit about yourself to personalize your experience.
                         <div className="flex items-center justify-center gap-2 mt-2 text-primary font-bold">
                             <Coins className="w-4 h-4" />
-                            <span>Earn 50 Tokens per answer! (Max 250)</span>
+                            <span>Earn 50 Tokens per answer! (Max 300)</span>
                         </div>
                     </DialogDescription>
                 </DialogHeader>
@@ -170,6 +172,23 @@ export default function OnboardingSurvey() {
                             <span>Beginner</span>
                             <span>Expert</span>
                         </div>
+                    </div>
+
+                    <div className="space-y-2 pt-2">
+                        <Label>How did you find us? 🔍</Label>
+                        <Select onValueChange={setReferralSource}>
+                            <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="AI/ChatGPT">AI / ChatGPT / Gemini</SelectItem>
+                                <SelectItem value="Google Search">Google Search</SelectItem>
+                                <SelectItem value="Instagram">Instagram</SelectItem>
+                                <SelectItem value="YouTube">YouTube</SelectItem>
+                                <SelectItem value="LinkedIn">LinkedIn</SelectItem>
+                                <SelectItem value="WhatsApp">WhatsApp</SelectItem>
+                                <SelectItem value="Friend/Referral">Friend / Referral</SelectItem>
+                                <SelectItem value="Other">Other</SelectItem>
+                            </SelectContent>
+                        </Select>
                     </div>
                 </div>
 

@@ -55,6 +55,7 @@ export const users = pgTable("users", {
   gender: varchar("gender"),
   aiProficiency: varchar("ai_proficiency"),
   mobileNumber: varchar("mobile_number"),
+  referralSource: varchar("referral_source"),  // How did you find us?
   pushToken: varchar("push_token"), // Store Expo Push Token
   isOnboardingCompleted: boolean("is_onboarding_completed").default(false).notNull(),
 
