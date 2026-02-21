@@ -685,9 +685,16 @@ export default function Home() {
             {/* Founder Avatar */}
             <div className="shrink-0">
               <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-primary via-red-500 to-orange-500 p-1">
-                <div className="w-full h-full rounded-full bg-neutral-900 flex items-center justify-center">
-                  <span className="text-5xl md:text-6xl font-black text-white">M</span>
-                </div>
+                <img
+                  src="/founder-mukul.jpg"
+                  alt="Mukul Dhiman — Founder, SAGE DO"
+                  className="w-full h-full rounded-full object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    target.parentElement!.innerHTML = '<div class="w-full h-full rounded-full bg-neutral-900 flex items-center justify-center"><span class="text-5xl md:text-6xl font-black text-white">M</span></div>';
+                  }}
+                />
               </div>
             </div>
             {/* Founder Info */}
