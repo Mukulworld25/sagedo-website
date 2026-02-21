@@ -1560,34 +1560,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     doc.end();
   });
 
-  // =======================
-  // BRUNO AI CHAT ENDPOINT
-  // =======================
-  app.post('/api/bruno/chat', async (req: any, res) => {
-    try {
-      const { message, personality = 'standard' } = req.body;
-
-      if (!message) {
-        return res.status(400).json({ error: 'Message is required' });
-      }
-
-      const { BrunoBrain } = await import('./bruno');
-      const userId = req.session?.user?.id;
-
-      const response = await BrunoBrain.processMessage(userId, message, personality);
-
-      res.json(response);
-    } catch (error) {
-      console.error('Bruno chat error:', error);
-      res.status(500).json({
-        text: "I'm having a small hiccup! Let me connect you with our human team. 🙏",
-        options: ['Open WhatsApp', 'Try Again'],
-        action: 'open_whatsapp'
-      });
-    }
-  });
-
-  // Clear Bruno conversation history
+  // Bruno /clear endpoint
   app.post('/api/bruno/clear', (req: any, res) => {
     try {
       const { BrunoBrain } = require('./bruno');
@@ -1669,8 +1642,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   globalWss.on('connection', (ws) => {
     console.log('New WebSocket Client Connected');
   });
-
-  return httpServer;
 
   return httpServer;
 }
