@@ -105,9 +105,105 @@ export default function About() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════════
-            WHAT IS SAGE DO
+            WHAT IS SAGE DO — Full Company Description
         ═══════════════════════════════════════════════════════════════════ */}
         <section className="mb-24">
+          <div className="text-center mb-12">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
+              About Us
+            </p>
+            <h2 className="text-3xl md:text-4xl font-black text-foreground">
+              What is SAGE DO?
+            </h2>
+          </div>
+
+          <div className="p-8 md:p-12 rounded-2xl bg-background/50 border border-border/20 mb-8">
+            <p className="text-xl text-muted-foreground leading-relaxed mb-6">
+              <strong className="text-foreground">SAGE DO is India's first AI + Human hybrid service platform.</strong> We combine the speed and scale of artificial intelligence with the precision and creativity of human experts to deliver professional-grade digital services — from websites and apps to content creation, marketing, and business automation.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+              With <strong className="text-foreground">30+ services</strong> across Business, Student, Professional, and Personal categories, we serve visionary founders, high-growth startups, and elite creators who refuse to settle for mediocre results. Every task is analyzed by AI, verified by humans, and delivered within <strong className="text-primary">24-48 hours</strong>.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Founded in Chandigarh, India, SAGE DO was built on a simple truth: <span className="text-primary font-semibold">Indian businesses deserve agency-quality work at startup-friendly prices</span>. No more paying ₹5 Lakhs to agencies. No more chasing freelancers. No more spending hours fighting with AI tools. Just tell us what you need — we handle the rest.
+            </p>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            VISION & MISSION
+        ═══════════════════════════════════════════════════════════════════ */}
+        <section className="mb-24">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent border border-primary/20">
+              <div className="text-3xl mb-4">🎯</div>
+              <h2 className="text-2xl font-black text-foreground mb-4">Our Vision</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                To democratize access to world-class digital services for every Indian business, student, and professional — making enterprise-quality work available at startup-friendly prices, delivered at AI speed. We envision a future where <strong className="text-foreground">no brilliant idea dies because of execution bottlenecks</strong>.
+              </p>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-green-500/5 to-transparent border border-green-500/20">
+              <div className="text-3xl mb-4">🚀</div>
+              <h2 className="text-2xl font-black text-foreground mb-4">Our Mission</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                To bridge the execution gap between ideas and reality. We help businesses, students, and professionals <strong className="text-foreground">get their most difficult tasks done</strong> — faster, cheaper, and better than any alternative — by combining the best of artificial intelligence with irreplaceable human expertise.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            WHAT WE DO — Service Categories
+        ═══════════════════════════════════════════════════════════════════ */}
+        <section className="mb-24">
+          <div className="text-center mb-12">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
+              What We Do
+            </p>
+            <h2 className="text-3xl md:text-4xl font-black text-foreground">
+              An AI Assistant for Every Part of Your Life
+            </h2>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: "📈", name: "Scale Business", sub: "Ads, Landing Pages, Funnels", desc: "Stop burning cash on agencies. Get high-converting websites, ad campaigns, and automation — at a fraction of the cost.", color: "from-blue-500/10 to-transparent", border: "border-blue-500/20" },
+              { icon: "🎓", name: "Ace Academics", sub: "Research, PPTs, Theses", desc: "Top grades, zero stress. Research papers, presentations, thesis formatting, and data analysis done right.", color: "from-green-500/10 to-transparent", border: "border-green-500/20" },
+              { icon: "🚀", name: "Career Boost", sub: "Resumes, LinkedIn, Portfolios", desc: "Land your dream job with ATS-optimized resumes, LinkedIn makeovers, and top-1% personal branding.", color: "from-purple-500/10 to-transparent", border: "border-purple-500/20" },
+              { icon: "🔥", name: "Viral Content", sub: "Reels, Edits, Scripts", desc: "Grow your audience with thumb-stopping content. Video editing, scriptwriting, and social media management.", color: "from-orange-500/10 to-transparent", border: "border-orange-500/20" },
+            ].map((cat, i) => (
+              <div key={i} className={`p-6 rounded-2xl bg-gradient-to-br ${cat.color} border ${cat.border} hover:scale-[1.02] transition-transform`}>
+                <div className="text-4xl mb-4">{cat.icon}</div>
+                <h3 className="text-lg font-black text-foreground mb-1">{cat.name}</h3>
+                <p className="text-xs font-bold text-primary uppercase tracking-wider mb-3">{cat.sub}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{cat.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <a href="/services">
+              <div className={buttonVariants({ variant: "outline", className: "font-bold px-8 h-12 rounded-xl cursor-pointer border-border/50 hover:bg-muted/50" })}>
+                Explore All 30+ Services <ArrowRight className="ml-2 h-4 w-4" />
+              </div>
+            </a>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            PHILOSOPHY & WHY HYBRID
+        ═══════════════════════════════════════════════════════════════════ */}
+        <section className="mb-24">
+          <div className="text-center mb-12">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
+              Our Approach
+            </p>
+            <h2 className="text-3xl md:text-4xl font-black text-foreground">
+              The AI + Human Advantage
+            </h2>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-8">
             <div className="p-8 rounded-2xl bg-background/50 border border-border/20">
               <h2 className="text-2xl font-black text-foreground mb-4">Our Philosophy</h2>
