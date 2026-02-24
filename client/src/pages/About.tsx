@@ -44,6 +44,56 @@ export default function About() {
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
 
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            WHAT IS SAGE DO — Full Company Description
+        ═══════════════════════════════════════════════════════════════════ */}
+        <section className="mb-24">
+          <div className="text-center mb-12">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
+              About Us
+            </p>
+            <h2 className="text-3xl md:text-4xl font-black text-foreground">
+              What is SAGE DO?
+            </h2>
+          </div>
+
+          <div className="p-8 md:p-12 rounded-2xl bg-background/50 border border-border/20 mb-8">
+            <p className="text-xl text-muted-foreground leading-relaxed mb-6">
+              <strong className="text-foreground">SAGE DO is India's first AI + Human hybrid service platform.</strong> We combine the speed and scale of artificial intelligence with the precision and creativity of human experts to deliver professional-grade digital services — from websites and apps to content creation, marketing, and business automation.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+              With <strong className="text-foreground">30+ services</strong> across Business, Student, Professional, and Personal categories, we serve visionary founders, high-growth startups, and elite creators who refuse to settle for mediocre results. Every task is analyzed by AI, verified by humans, and delivered within <strong className="text-primary">24-48 hours</strong>.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Founded in Chandigarh, India, SAGE DO was built on a simple truth: <span className="text-primary font-semibold">Indian businesses deserve agency-quality work at startup-friendly prices</span>. No more paying ₹5 Lakhs to agencies. No more chasing freelancers. No more spending hours fighting with AI tools. Just tell us what you need — we handle the rest.
+            </p>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            VISION & MISSION
+        ═══════════════════════════════════════════════════════════════════ */}
+        <section className="mb-24">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent border border-primary/20">
+              <div className="text-3xl mb-4">🎯</div>
+              <h2 className="text-2xl font-black text-foreground mb-4">Our Vision</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                To democratize access to world-class digital services for every Indian business, student, and professional — making enterprise-quality work available at startup-friendly prices, delivered at AI speed. We envision a future where <strong className="text-foreground">no brilliant idea dies because of execution bottlenecks</strong>.
+              </p>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-green-500/5 to-transparent border border-green-500/20">
+              <div className="text-3xl mb-4">🚀</div>
+              <h2 className="text-2xl font-black text-foreground mb-4">Our Mission</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                To bridge the execution gap between ideas and reality. We help businesses, students, and professionals <strong className="text-foreground">get their most difficult tasks done</strong> — faster, cheaper, and better than any alternative — by combining the best of artificial intelligence with irreplaceable human expertise.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* ═══════════════════════════════════════════════════════════════════
             FOUNDER SECTION - The Hero
         ═══════════════════════════════════════════════════════════════════ */}
@@ -101,55 +151,6 @@ export default function About() {
                 <p className="text-sm text-muted-foreground">{c.text}</p>
               </div>
             ))}
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════════════════
-            WHAT IS SAGE DO — Full Company Description
-        ═══════════════════════════════════════════════════════════════════ */}
-        <section className="mb-24">
-          <div className="text-center mb-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
-              About Us
-            </p>
-            <h2 className="text-3xl md:text-4xl font-black text-foreground">
-              What is SAGE DO?
-            </h2>
-          </div>
-
-          <div className="p-8 md:p-12 rounded-2xl bg-background/50 border border-border/20 mb-8">
-            <p className="text-xl text-muted-foreground leading-relaxed mb-6">
-              <strong className="text-foreground">SAGE DO is India's first AI + Human hybrid service platform.</strong> We combine the speed and scale of artificial intelligence with the precision and creativity of human experts to deliver professional-grade digital services — from websites and apps to content creation, marketing, and business automation.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              With <strong className="text-foreground">30+ services</strong> across Business, Student, Professional, and Personal categories, we serve visionary founders, high-growth startups, and elite creators who refuse to settle for mediocre results. Every task is analyzed by AI, verified by humans, and delivered within <strong className="text-primary">24-48 hours</strong>.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Founded in Chandigarh, India, SAGE DO was built on a simple truth: <span className="text-primary font-semibold">Indian businesses deserve agency-quality work at startup-friendly prices</span>. No more paying ₹5 Lakhs to agencies. No more chasing freelancers. No more spending hours fighting with AI tools. Just tell us what you need — we handle the rest.
-            </p>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════════════════
-            VISION & MISSION
-        ═══════════════════════════════════════════════════════════════════ */}
-        <section className="mb-24">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent border border-primary/20">
-              <div className="text-3xl mb-4">🎯</div>
-              <h2 className="text-2xl font-black text-foreground mb-4">Our Vision</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                To democratize access to world-class digital services for every Indian business, student, and professional — making enterprise-quality work available at startup-friendly prices, delivered at AI speed. We envision a future where <strong className="text-foreground">no brilliant idea dies because of execution bottlenecks</strong>.
-              </p>
-            </div>
-
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-green-500/5 to-transparent border border-green-500/20">
-              <div className="text-3xl mb-4">🚀</div>
-              <h2 className="text-2xl font-black text-foreground mb-4">Our Mission</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                To bridge the execution gap between ideas and reality. We help businesses, students, and professionals <strong className="text-foreground">get their most difficult tasks done</strong> — faster, cheaper, and better than any alternative — by combining the best of artificial intelligence with irreplaceable human expertise.
-              </p>
-            </div>
           </div>
         </section>
 
