@@ -263,22 +263,22 @@ export const allServices: ServiceDetail[] = [
     },
 
     // ==========================================
-    // ❤️ PERSONAL & STUDENT (Updated)
+    // ❤️ EXECUTIVE & STARTUP LAUNCH
     // ==========================================
     {
         id: "8",
-        name: "ATS Resume Optimization",
+        name: "C-Suite ATS Precision Formatting",
         category: "Professional",
-        description: "Beat the bot. Get hired.",
-        fullDescription: "75% of resumes are rejected by bots. We optimize yours to pass the ATS scan and impress human recruiters.",
-        price: 499,
-        priceRange: "₹499 - ₹1,499",
+        description: "Beat the algorithm. Command higher salaries.",
+        fullDescription: "75% of executive portfolios are rejected by bots before human eyes see them. We optimize your resume with precision-engineered keywords to pass the ATS scan and position you as a high-status leader.",
+        price: 999,
+        priceRange: "₹999 - ₹2,999",
         imageUrl: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
         standardFeatures: [
-            "ATS-Friendly Formatting",
+            "Executive ATS Formatting",
             "Keyword Optimization",
-            "Grammar Check",
+            "Power-Action Verbs",
             "PDF Delivery"
         ],
         premiumFeatures: [
@@ -291,19 +291,19 @@ export const allServices: ServiceDetail[] = [
     },
     {
         id: "13",
-        name: "Academic Research Assistant",
-        category: "Student",
-        description: "Save days of research.",
-        fullDescription: "We scan thousands of sources to find the exact data, citations, and arguments you need for your paper.",
-        price: 499,
-        priceRange: "₹499 - ₹1,499",
+        name: "Deep Market & Competitor Analysis",
+        category: "Startup Launch",
+        description: "Know exactly what your rivals are doing.",
+        fullDescription: "We use advanced research agents to scrape the internet, summarize key market gaps, and generate actionable insights on your top competitors so you can dominate the niche.",
+        price: 4999,
+        priceRange: "₹4,999 - ₹9,999",
         imageUrl: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
         standardFeatures: [
-            "Topic Research Summary",
-            "Source List (5-10 sources)",
-            "Key Arguments Outline",
-            "Citation Generator"
+            "Competitor Feature Matrices",
+            "Pricing Model Breakdown",
+            "Market Gap Identification",
+            "Strategic Report"
         ],
         premiumFeatures: [
             "Deep Dive Analysis",
@@ -447,41 +447,46 @@ export const allServices: ServiceDetail[] = [
     },
     {
         id: "41",
-        name: "Academic Research Assistant",
-        category: "Student",
-        description: "Deep-dive research and citation for any topic.",
-        fullDescription: "Writing is easy when the research is done. We use advanced research agents to gather credible sources, summarize key arguments, and generate proper citations for your assignment topics.",
-        price: 1999,
-        priceRange: "₹1999 - ₹2998",
+        name: "B2B Outreach System Architecture",
+        category: "Startup Launch",
+        description: "Cold email systems that actually convert.",
+        fullDescription: "Growth is easy when the pipeline is full. We use advanced research agents to build targeted lead lists, verify emails, and set up automated outreach infrastructure that books meetings for you.",
+        price: 12999,
+        priceRange: "₹12,999 - ₹19,999",
         imageUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: ["Comprehensive Topic Report", "List of Credible Sources", "Key Arguments Summary", "Citation Generation (APA/MLA)"],
+        standardFeatures: [
+            "Domain Setup & Warming",
+            "Targeted Lead List (1000 contacts)",
+            "Sequence Copywriting",
+            "DNS/DMARC Configuration"
+        ],
         premiumFeatures: ["Comprehensive Topic Report", "List of Credible Sources", "Key Arguments Summary"]
     },
     {
         id: "51",
-        name: "Mock Interview Practice",
+        name: "Executive Pitch Practice",
         category: "Professional",
-        description: "Realistic AI-driven interview simulation.",
-        fullDescription: "Nervous about the big interview? We set up a rigorous mock interview specifically for your role, record your answers, and provide AI-generated feedback on your tone, clarity, and content.",
-        price: 1499,
-        priceRange: "₹1499 - ₹2248",
+        description: "Realistic AI-driven investor simulation.",
+        fullDescription: "Nervous about the big investor meeting? We set up a rigorous mock pitch session specifically for your deck, record your answers, and provide AI-generated feedback on your tone, clarity, and metrics.",
+        price: 2499,
+        priceRange: "₹2,499 - ₹4,499",
         imageUrl: "https://images.unsplash.com/photo-1549923746-c502d488b3ea?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: ["30-Minute Mock Session", "Role-Specific Questions", "Performance Analytics Report", "Improvement Tips"],
+        standardFeatures: ["30-Minute Mock Session", "VC-Specific Questions", "Performance Analytics Report", "Improvement Tips"],
         premiumFeatures: ["30-Minute Mock Session", "Role-Specific Questions", "Performance Analytics Report"]
     },
     {
         id: "42",
-        name: "AI Study Companion Setup",
-        category: "Student",
-        description: "Custom GPT trained on your syllabus.",
-        fullDescription: "Imagine a tutor who knows every page of your textbook. We build a private knowledge base from your study materials and configure a Custom GPT that can quiz you, summarize chapters, and explain complex concepts 24/7.",
-        price: 4999,
-        priceRange: "₹4999 - ₹7498",
+        name: "AI Employee Training System",
+        category: "Startup Launch",
+        description: "Custom GPT trained on your internal SOPs.",
+        fullDescription: "Imagine an onboarding executive who knows every page of your company wiki. We build a private knowledge base from your internal documents and configure a Custom GPT that can answer employee questions and explain workflows 24/7.",
+        price: 14999,
+        priceRange: "₹14,999 - ₹24,999",
         imageUrl: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: ["Custom Knowledge Base Setup", "OCR Document Processing", "Exam-Prep GPT Config", "Summary & Quiz Capabilities"],
+        standardFeatures: ["Custom Knowledge Base Setup", "OCR Document Processing", "Internal SOP GPT Config", "Workflow Search Capabilities"],
         premiumFeatures: ["Custom Knowledge Base Setup", "OCR Document Processing", "Exam-Prep GPT Config"]
     },
     {

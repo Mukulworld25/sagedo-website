@@ -120,9 +120,9 @@ export default function OnboardingSurvey() {
                             <Select onValueChange={setProfession}>
                                 <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Student">Student</SelectItem>
-                                    <SelectItem value="Professional">Professional</SelectItem>
+                                    <SelectItem value="Startup Founder">Startup Founder</SelectItem>
                                     <SelectItem value="Business Owner">Business Owner</SelectItem>
+                                    <SelectItem value="Professional">Professional</SelectItem>
                                     <SelectItem value="Freelancer">Freelancer</SelectItem>
                                     <SelectItem value="Other">Other</SelectItem>
                                 </SelectContent>

@@ -11,7 +11,7 @@ export default function Home() {
 
   const categories = [
     { name: "Business", count: "10", description: "Landing pages, ads, automation & more", icon: <Briefcase className="w-6 h-6 text-primary" /> },
-    { name: "Student", count: "7", description: "Research, PPTs, photo editing & more", icon: <GraduationCap className="w-6 h-6 text-primary" /> },
+    { name: "Startup Launch", count: "4", description: "B2B Outreach, Competitor Analysis, AI Training", icon: <Zap className="w-6 h-6 text-primary" /> },
     { name: "Professional", count: "8", description: "Resumes, LinkedIn, cover letters & more", icon: <User className="w-6 h-6 text-primary" /> },
     { name: "Personal", count: "5", description: "Reels, diet plans, photo edits & more", icon: <Sparkles className="w-6 h-6 text-primary" /> }
   ];
@@ -608,10 +608,10 @@ export default function Home() {
                 text: "group-hover:text-blue-500"
               },
               {
-                name: "Ace Academics",
-                sub: "Research, PPTs, Theses",
-                desc: "Top grades, zero stress. We do the heavy lifting.",
-                icon: "🎓",
+                name: "Startup Launch",
+                sub: "B2B Outreach & Market Analysis",
+                desc: "Launch faster and dominate your niche.",
+                icon: "🚀",
                 color: "from-emerald-500/10 to-emerald-600/5",
                 border: "group-hover:border-emerald-500/50",
                 text: "group-hover:text-emerald-500"

@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
-import { Instagram, Linkedin, Mail, Youtube, MessageCircle, Phone, ArrowRight, Star, CheckCircle2, ExternalLink } from "lucide-react";
+import { Instagram, Linkedin, Mail, Youtube, MessageCircle, Phone, ArrowRight, Star, CheckCircle2, ExternalLink, Zap, ShieldCheck, Activity, BrainCircuit } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { Gallery as GalleryType } from "@shared/schema";
 import { samplePortfolio, sampleTestimonials } from "@/data/sampleData";
@@ -62,9 +62,7 @@ export default function About() {
             <p className="text-xl text-muted-foreground leading-relaxed mb-6">
               <strong className="text-foreground">SAGE DO is India's first AI + Human hybrid service platform.</strong> We combine the speed and scale of artificial intelligence with the precision and creativity of human experts to deliver professional-grade digital services — from websites and apps to content creation, marketing, and business automation.
             </p>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              With <strong className="text-foreground">30+ services</strong> across Business, Student, Professional, and Personal categories, we serve visionary founders, high-growth startups, and elite creators who refuse to settle for mediocre results. Every task is analyzed by AI, verified by humans, and delivered within <strong className="text-primary">24-48 hours</strong>.
-            </p>
+            With <strong className="text-foreground">30+ services</strong> across Startup Launch, Marketing, Design, and Engineering categories, we serve visionary founders, high-growth startups, and elite enterprises who refuse to settle for mediocre results. Every task is analyzed by AI, verified by humans, and delivered within <strong className="text-primary">24-48 hours</strong>.
             <p className="text-lg text-muted-foreground leading-relaxed">
               Founded in Chandigarh, India, SAGE DO was built on a simple truth: <span className="text-primary font-semibold">Indian businesses deserve agency-quality work at startup-friendly prices</span>. No more paying ₹5 Lakhs to agencies. No more chasing freelancers. No more spending hours fighting with AI tools. Just tell us what you need — we handle the rest.
             </p>
@@ -79,17 +77,13 @@ export default function About() {
             <div className="p-8 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent border border-primary/20">
               <div className="text-3xl mb-4">🎯</div>
               <h2 className="text-2xl font-black text-foreground mb-4">Our Vision</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                To democratize access to world-class digital services for every Indian business, student, and professional — making enterprise-quality work available at startup-friendly prices, delivered at AI speed. We envision a future where <strong className="text-foreground">no brilliant idea dies because of execution bottlenecks</strong>.
-              </p>
+              To democratize access to world-class digital services for every Indian founder, executive, and forward-thinking business — making enterprise-quality work available at startup-friendly prices, delivered at AI speed. We envision a future where <strong className="text-foreground">no brilliant idea dies because of execution bottlenecks</strong>.
             </div>
 
             <div className="p-8 rounded-2xl bg-gradient-to-br from-green-500/5 to-transparent border border-green-500/20">
               <div className="text-3xl mb-4">🚀</div>
               <h2 className="text-2xl font-black text-foreground mb-4">Our Mission</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                To bridge the execution gap between ideas and reality. We help businesses, students, and professionals <strong className="text-foreground">get their most difficult tasks done</strong> — faster, cheaper, and better than any alternative — by combining the best of artificial intelligence with irreplaceable human expertise.
-              </p>
+              To bridge the execution gap between ideas and reality. We help fast-growth startups and seasoned executives <strong className="text-foreground">get their most difficult tasks done</strong> — faster, cheaper, and better than any alternative — by combining the best of artificial intelligence with irreplaceable human expertise.
             </div>
           </div>
         </section>
@@ -170,9 +164,9 @@ export default function About() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { icon: "📈", name: "Scale Business", sub: "Ads, Landing Pages, Funnels", desc: "Stop burning cash on agencies. Get high-converting websites, ad campaigns, and automation — at a fraction of the cost.", color: "from-blue-500/10 to-transparent", border: "border-blue-500/20" },
-              { icon: "🎓", name: "Ace Academics", sub: "Research, PPTs, Theses", desc: "Top grades, zero stress. Research papers, presentations, thesis formatting, and data analysis done right.", color: "from-green-500/10 to-transparent", border: "border-green-500/20" },
-              { icon: "🚀", name: "Career Boost", sub: "Resumes, LinkedIn, Portfolios", desc: "Land your dream job with ATS-optimized resumes, LinkedIn makeovers, and top-1% personal branding.", color: "from-purple-500/10 to-transparent", border: "border-purple-500/20" },
-              { icon: "🔥", name: "Viral Content", sub: "Reels, Edits, Scripts", desc: "Grow your audience with thumb-stopping content. Video editing, scriptwriting, and social media management.", color: "from-orange-500/10 to-transparent", border: "border-orange-500/20" },
+              { icon: "🚀", name: "Startup Launch", sub: "Go-to-Market, MVPs, Pitches", desc: "Launch faster and dominate your niche. From prototype to pitch deck, we provide the execution infrastructure for day one.", color: "from-green-500/10 to-transparent", border: "border-green-500/20" },
+              { icon: "💼", name: "Executive Branding", sub: "LinkedIn & Thought Leadership", desc: "Establish undeniable authority. We build C-suite optimized profiles, executive thought leadership, and high-impact digital resumes.", color: "from-purple-500/10 to-transparent", border: "border-purple-500/20" },
+              { icon: "⚡", name: "AI Automation", sub: "Agents, Workflows, Scraping", desc: "Replace expensive grunt work with intelligent systems. Custom GPTs, CRM integrations, and massive lead scraping pipelines.", color: "from-orange-500/10 to-transparent", border: "border-orange-500/20" },
             ].map((cat, i) => (
               <div key={i} className={`p-6 rounded-2xl bg-gradient-to-br ${cat.color} border ${cat.border} hover:scale-[1.02] transition-transform`}>
                 <div className="text-4xl mb-4">{cat.icon}</div>
@@ -230,6 +224,98 @@ export default function About() {
                   <span><strong className="text-foreground">VS Freelancers:</strong> Consistent reliability (no ghosting)</span>
                 </li>
               </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            EXECUTION VAULT — The Elite Case Studies
+        ═══════════════════════════════════════════════════════════════════ */}
+        <section className="mb-24">
+          <div className="text-center mb-12">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
+              Real Impact
+            </p>
+            <h2 className="text-3xl md:text-4xl font-black text-foreground">
+              Case Studies: The Execution Vault
+            </h2>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Project Genesis */}
+            <div className="group relative rounded-2xl bg-background/40 border border-primary/20 overflow-hidden hover:border-primary/50 transition-all duration-500">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none" />
+              <div className="p-8">
+                <div className="flex items-center justify-between mb-8">
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 rounded-xl bg-primary/10 mb-2">
+                      <Zap className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-black text-foreground flex items-center gap-2">Project Genesis</h3>
+                      <p className="text-sm font-semibold text-primary/80 uppercase tracking-widest">B2C Specialized Startup Launch</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-sm font-bold text-foreground mb-2 flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-muted-foreground" /> The Challenge</h4>
+                    <p className="text-muted-foreground leading-relaxed text-sm">
+                      A fast-moving founder needed to launch a digital platform within 3 weeks but lacked technical resources for the MVP app, landing page, and social media presence. Agencies quoted 4 months and ₹8 Lakhs.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-foreground mb-2 flex items-center gap-2"><BrainCircuit className="w-4 h-4 text-primary" /> The Execution</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      SAGE DO built a reactive web app with integrated payment flows, designed the full brand identity, and generated a 30-day viral content runway (scripts and edited short-form videos). Everything was orchestrated in parallel over 18 days.
+                    </p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-primary/10 border border-primary/20 mt-4">
+                    <h4 className="text-xs font-black uppercase text-primary mb-1 tracking-wider">The Outcome</h4>
+                    <p className="text-foreground font-semibold">1,400+ waitlist signups in week one.</p>
+                    <p className="text-sm text-foreground/80">Secured local angel funding based purely on the polished MVP demo & traction.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Project Elevate */}
+            <div className="group relative rounded-2xl bg-background/40 border border-green-500/20 overflow-hidden hover:border-green-500/50 transition-all duration-500">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent pointer-events-none" />
+              <div className="p-8">
+                <div className="flex items-center justify-between mb-8">
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 rounded-xl bg-green-500/10 mb-2">
+                      <Activity className="w-6 h-6 text-green-500" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-black text-foreground flex items-center gap-2">Project Elevate</h3>
+                      <p className="text-sm font-semibold text-green-500/80 uppercase tracking-widest">Premium Healthcare Digital Ecosystem</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-sm font-bold text-foreground mb-2 flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-muted-foreground" /> The Challenge</h4>
+                    <p className="text-muted-foreground leading-relaxed text-sm">
+                      An established regional specialist clinic chain was losing organic market share to national aggregators and desperately needed to re-establish premium authority online.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-foreground mb-2 flex items-center gap-2"><BrainCircuit className="w-4 h-4 text-green-500" /> The Execution</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      SAGE DO deployed a dual-action takeover strategy. We rebuilt a high-performance, conversion-optimized website with smart online booking. Simultaneously, we launched hyper-targeted local SEO and aggressive Google Ads focusing exclusively on high-ticket, premium services.
+                    </p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-green-500/10 border border-green-500/20 mt-4">
+                    <h4 className="text-xs font-black uppercase text-green-500 mb-1 tracking-wider">The Outcome</h4>
+                    <p className="text-foreground font-semibold">400% increase in organic premium booking volume within 60 days.</p>
+                    <p className="text-sm text-foreground/80">Generated ₹35 Lakhs+ ROI from high-ticket patient acquisition at a sub-₹50k execution cost.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
