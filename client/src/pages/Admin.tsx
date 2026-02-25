@@ -549,7 +549,7 @@ export default function Admin() {
                     </Button>
                   </div>
                   <div className="bg-muted p-4 rounded-md text-xs font-mono text-muted-foreground">
-                    Target: Students & Job Seekers. Format: 9:16 Vertical Video.
+                    Target: Founders & Professionals. Format: 9:16 Vertical Video.
                   </div>
                 </CardContent>
               </Card>

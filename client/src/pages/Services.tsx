@@ -27,7 +27,7 @@ const TABS = [
     icon: Crown,
     color: "from-amber-400 to-yellow-600",
     description: "For Founders & Visionaries",
-    categories: ["Business"], // Maps to internal data
+    categories: ["Business", "Startup Launch"], // Maps to internal data
   },
   {
     id: "career",
@@ -43,7 +43,7 @@ const TABS = [
     icon: Heart,
     color: "from-rose-400 to-pink-600",
     description: "For Everyone",
-    categories: ["Student", "Personal", "All"],
+    categories: ["Personal", "All"],
   },
 ];
 
@@ -60,12 +60,12 @@ export default function Services() {
   useEffect(() => {
     if (user?.profession) {
       const prof = user.profession.toLowerCase();
-      if (prof.includes("student") || prof.includes("study")) {
-        setActiveTab("life");
-      } else if (prof.includes("freelance") || prof.includes("developer") || prof.includes("manager")) {
+      if (prof.includes("founder") || prof.includes("startup") || prof.includes("business")) {
+        setActiveTab("empire");
+      } else if (prof.includes("freelance") || prof.includes("professional") || prof.includes("manager") || prof.includes("executive")) {
         setActiveTab("career");
       } else {
-        setActiveTab("empire"); // Default for business/others
+        setActiveTab("life"); // Default for personal/others
       }
     }
   }, [user]);

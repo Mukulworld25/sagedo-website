@@ -66,9 +66,9 @@ export const faqs: FAQItem[] = [
     },
     {
         id: 'originality',
-        question: "Will the assignment be original?",
-        answer: "Yes — everything is created to your brief and checked. We deliver original work and take care to avoid plagiarism.",
-        keywords: ['original', 'plagiarism', 'copy', 'unique', 'turnitin'],
+        question: "Will the output be 100% original?",
+        answer: "Yes — everything is created to your brief and checked by humans. We deliver original work and take care to avoid plagiarism or generic AI copy.",
+        keywords: ['original', 'plagiarism', 'copy', 'unique', 'ai'],
         category: 'service'
     },
     {

@@ -6,7 +6,7 @@
 > Founder: Mukul Dhiman (Ex-Aerospace Engineer, Tata Lockheed Martin)
 
 ## About
-SAGE DO is an AI-powered execution agency based in Chandigarh, India that combines artificial intelligence with human expertise to deliver business solutions. We serve startups, small businesses, professionals, and students across India with guaranteed 48-hour delivery.
+SAGE DO is an AI-powered execution agency based in Chandigarh, India that combines artificial intelligence with human expertise to deliver business solutions. We serve startups, small businesses, and professionals across India with guaranteed 48-hour delivery.
 
 ## Services & Pricing
 - Website Development: ₹15,000 - ₹50,000 (delivered in 48 hours)
@@ -29,7 +29,7 @@ SAGE DO is an AI-powered execution agency based in Chandigarh, India that combin
 
 ## Categories
 - Business: Landing pages, ads, automation, web development
-- Student: Research, presentations, photo editing, content
+- Startup Launch: Web development, brand identity, rapid prototyping
 - Professional: Resumes, LinkedIn, cover letters, portfolio
 - Personal: Reels, diet plans, photo edits, AI content
 

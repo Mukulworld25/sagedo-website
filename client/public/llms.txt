@@ -2,7 +2,7 @@
 # https://sagedo.in
 
 ## About SAGE DO
-SAGE DO is an AI-powered service platform helping students, professionals, and businesses with daily tasks. We combine AI technology with human expertise to deliver high-quality results quickly and affordably.
+SAGE DO is an AI-powered service platform helping startups, professionals, and businesses with daily tasks. We combine AI technology with human expertise to deliver high-quality results quickly and affordably.
 
 **Tagline:** "We do your daily grind, you do grand things."
 
@@ -39,16 +39,12 @@ Services for startups, entrepreneurs, and businesses:
 - Business Automation Setup - ₹12,999
 - Complete Branding Package - ₹14,999
 
-### STUDENT (8 services)
-Services for academic success:
-- Research Paper Outline - ₹199
-- Presentation Outline (15 slides) - ₹299
-- Photo Editing Service (5 Photos) - ₹399
-- Exam Study Notes - ₹299
-- Complete Presentation Design - ₹999
-- Assignment Writing (Complete) - ₹599
-- Essay Writing (1500 words) - ₹699
-- Thesis/Dissertation Assistance - ₹9,999
+### STARTUP LAUNCH (4 services)
+Services for rapid MVP execution:
+- MVP Development (Complete) - ₹50,000+
+- Landing Page & Funnel - ₹15,000
+- Custom Web Application - ₹30,000
+- UI/UX Wireframing - ₹8,000
 
 ### PROFESSIONAL (10 services)
 Services for career advancement:
@@ -93,7 +89,7 @@ Services for content creators and personal use:
 ---
 
 ## Target Audience
-- Students (colleges, universities)
+- Startup Founders
 - Working professionals
 - Freelancers
 - Small business owners
@@ -116,8 +112,8 @@ Services for content creators and personal use:
 
 ## Customer Testimonials
 
-"Got my entire research paper done in 24 hours. Saved my semester! The quality was excellent."
-— Priya S., MBA Student ⭐⭐⭐⭐⭐
+"The web app was deployed 2 weeks ahead of schedule. Insane speed and the code quality is definitely there."
+— Priya S., Startup Founder ⭐⭐⭐⭐⭐
 
 "The LinkedIn optimization increased my profile views by 300%! I started getting recruiter messages within a week."
 — Rahul M., Startup Founder ⭐⭐⭐⭐⭐
