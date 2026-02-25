@@ -43,7 +43,6 @@ SAGE DO is the 4th option: Hybrid AI + Human team. Agency quality at freelancer 
 
 ## SAGE DO Services (mention when relevant):
 - Business Services (12): Landing Pages, Google Ads, SEO Blog, Social Media Kit, Logo Design, Pitch Deck, Business Plan, Ad Creative, Email Campaign, Product Photos, Company Profile, Automation Bot
-- Student Services (8): Homework Help, Research Paper, PPT Design, Photo Editing, Essay Writing, Project Report, Case Study, Lab Report
 - Professional Services (10): ATS Resume, Cover Letter, LinkedIn Makeover, Mock Interview, Portfolio, Email Templates, Bio Writer, Salary Negotiation, Career Roadmap, Video Resume
 - Personal Services (8): Short-form Video, Diet Plan, Photo Edit, Personal Finance, Wedding Invite, Travel Itinerary, AI Avatar, Gift Ideas
 - 39 services total, prices from ₹49 to ₹9,999
@@ -250,19 +249,19 @@ You're now in "Real Talk" mode - be brutally honest but constructive. Don't suga
             lowerMsg.includes('what can') || lowerMsg.includes('offer') || lowerMsg.includes('available') ||
             lowerMsg.includes('list') || lowerMsg.includes('catalog')) {
             return {
-                text: "🔥 **Our Services:**\n\n📚 Academic: Assignments, Research, Essays\n💼 Career: ATS Resumes, Cover Letters, LinkedIn\n✍️ Content: SEO Blogs, Social Media, Marketing\n💡 Business: Pitch Decks, Proposals, Logos\n🔧 Tech: Websites, Apps, SaaS MVPs, AI Agents\n\nAll powered by AI + Human precision! Which interests you? 🎯",
+                text: "🔥 **Our Services:**\n\n💼 Career: ATS Resumes, Cover Letters, LinkedIn\n✍️ Content: SEO Blogs, Social Media, Marketing\n💡 Business: Pitch Decks, Proposals, Logos\n🔧 Tech: Websites, Apps, SaaS MVPs, AI Agents\n\nAll powered by AI + Human precision! Which interests you? 🎯",
                 options: ['View All Services', 'Get Quote', 'Talk to Human']
             };
         }
 
-        // --- Assignment / Academic ---
+        // --- Custom Systems / Automations ---
         if (lowerMsg.includes('assignment') || lowerMsg.includes('homework') || lowerMsg.includes('essay') ||
             lowerMsg.includes('academic') || lowerMsg.includes('college') || lowerMsg.includes('school') ||
             lowerMsg.includes('study') || lowerMsg.includes('exam') || lowerMsg.includes('project') ||
             lowerMsg.includes('research') || lowerMsg.includes('thesis') || lowerMsg.includes('dissertation')) {
             return {
-                text: "Absolutely! 📚 We handle assignments, research papers, essays, code solutions — all AI-drafted and human-reviewed for accuracy and originality. Send your brief and we'll deliver polished work! ✅",
-                options: ['Place Order', 'Check Pricing', 'Talk to Human']
+                text: "We specialize exclusively in high-end B2B and professional services like tech development, marketing, and C-Suite career optimization. We do not provide academic or student homework services. Let me know if you need help with a business project! 🚀",
+                options: ['View Business Services', 'Check Pricing', 'Talk to Human']
             };
         }
 
@@ -410,7 +409,7 @@ You're now in "Real Talk" mode - be brutally honest but constructive. Don't suga
 
         // --- CATCH-ALL: Smart default (instead of "I don't know") ---
         return {
-            text: "Great question! 🎯 SAGE DO offers 39+ services powered by AI + Human precision — from resumes to websites, assignments to marketing. Tell me more about what you need, or check out our Services page! I'm here to help 😊",
+            text: "Great question! 🎯 SAGE DO offers 30+ services powered by AI + Human precision — from resumes to websites to marketing. Tell me more about what you need, or check out our Services page! I'm here to help 😊",
             options: ['Browse Services', 'Check Pricing', 'Talk to Human']
         };
     }
