@@ -44,8 +44,16 @@ import AdminNotification from "@/components/AdminNotification";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
+import MobileAppEntry from "./MobileAppEntry";
+import { useLocation } from "wouter";
+
 function Router() {
   useAnalytics(); // Auto-tracks every route change
+  const [location] = useLocation();
+
+  if (location.startsWith('/app')) {
+    return <MobileAppEntry />;
+  }
 
   return (
     <>
