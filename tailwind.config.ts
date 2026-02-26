@@ -81,6 +81,14 @@ export default {
           busy: "rgb(239 68 68)",
           offline: "rgb(156 163 175)",
         },
+        // SAGE DO Mobile App Brand Colors
+        "brand-primary": "#FF4D4D",
+        "brand-secondary": "#FF6B6B",
+        "brand-dark": "#0A0A0A",
+        "brand-surface": "#111111",
+        "brand-border-dark": "rgba(255,255,255,0.05)",
+        "brand-accent": "#00F2FF",
+        "brand-error": "#FF3B30",
       },
       fontFamily: {
         sans: ["var(--font-sans)"],

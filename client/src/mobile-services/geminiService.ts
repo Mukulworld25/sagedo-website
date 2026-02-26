@@ -1,9 +1,9 @@
 
 import { GoogleGenAI } from "@google/genai";
-import { AssignmentParams, ChatMode } from "../types";
+import { AssignmentParams, ChatMode } from "../mobile-types";
 
-// Initialize Gemini Client
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Initialize Gemini Client — use Vite's env variable format
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || '' });
 
 export const generateChatResponse = async (
   message: string,

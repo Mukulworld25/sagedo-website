@@ -17,16 +17,16 @@ export const Profile: React.FC = () => {
             <div className="flex items-center gap-5">
                 <div className="relative">
                     <div className="w-20 h-20 rounded-3xl border-2 border-brand-primary p-0.5 shadow-xl shadow-brand-primary/20 bg-brand-surface overflow-hidden">
-                        <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${user?.fullName || 'Guest'}`} alt="Profile" className="w-full h-full" />
+                        <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${user?.name || 'Guest'}`} alt="Profile" className="w-full h-full" />
                     </div>
                     <div className="absolute -bottom-2 -right-2 bg-brand-primary text-white p-1.5 rounded-xl border-4 border-black">
                         <Star className="w-3 h-3 fill-white" />
                     </div>
                 </div>
                 <div className="flex-1">
-                    <h2 className="text-2xl font-black text-white tracking-tight">{user?.fullName || 'Guest'}</h2>
+                    <h2 className="text-2xl font-black text-white tracking-tight">{user?.name || 'Guest'}</h2>
                     <div className="flex items-center gap-2 mt-1">
-                        <Badge color={user?.isPro ? "red" : "gray"}>{user?.isPro ? "Pro Member" : "Free Tier"}</Badge>
+                        <Badge color={user?.subscriptionTier === 'pro' ? "red" : "gray"}>{user?.subscriptionTier === 'pro' ? "Pro Member" : "Free Tier"}</Badge>
                         <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{user?.email || 'No email link'}</span>
                     </div>
                 </div>
@@ -66,11 +66,11 @@ export const Profile: React.FC = () => {
             <div className="grid grid-cols-2 gap-4">
                 <div className="glass-card rounded-3xl p-6 border-white/5">
                     <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1">{t('profile.wallet')}</p>
-                    <p className="text-xl font-black text-white">₹740.00</p>
+                    <p className="text-xl font-black text-white">{user?.tokenBalance || 0} Tokens</p>
                 </div>
                 <div className="glass-card rounded-3xl p-6 border-white/5">
                     <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1">{t('profile.credits')}</p>
-                    <p className="text-xl font-black text-brand-primary">4 {t('profile.available')}</p>
+                    <p className="text-xl font-black text-brand-primary">{user?.hasGoldenTicket ? '1' : '0'} {t('profile.available')}</p>
                 </div>
             </div>
 

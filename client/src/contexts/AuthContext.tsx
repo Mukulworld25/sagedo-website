@@ -61,7 +61,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+    } catch (e) {
+      console.warn('Logout API call failed:', e);
+    }
     setUserState(null);
     localStorage.removeItem(AUTH_STORAGE_KEY);
     sessionStorage.removeItem("sagedo_onboarding_skipped");
