@@ -1635,6 +1635,96 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ═══════════════════════════════════════════════
+  // MOBILE APP - Server-Side Gemini Proxy
+  // Keeps GEMINI_API_KEY secure on server
+  // ═══════════════════════════════════════════════
+
+  app.post('/api/mobile/chat', async (req: any, res) => {
+    try {
+      const { message, history, image, mode, location, userPrefs } = req.body;
+      if (!message && !image) return res.status(400).json({ message: "Message or image required" });
+
+      if (!process.env.GEMINI_API_KEY) {
+        return res.status(503).json({ text: "AI service is not configured. Please contact support." });
+      }
+
+      const { GoogleGenerativeAI } = await import('@google/generative-ai');
+      const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+      const personaMap: Record<string, string> = {
+        student: "an expert academic tutor focused on deep research, step-by-step logic, and structural excellence",
+        pro: "a sharp productivity consultant focused on efficiency, career growth, and executive communication",
+        business: "a growth strategist specialized in marketing psychology, conversion, and business scaling",
+        creative: "an imaginative partner for boundary-pushing content, scripting, and visual storytelling"
+      };
+
+      const baseInstruction = `You are Sage, the core intelligence of SAGE DO. You are not a bot; you are an AI Operating System.`;
+      const namePart = userPrefs?.name ? ` User: ${userPrefs.name}.` : "";
+      const personaText = userPrefs?.persona ? ` Persona: ${personaMap[userPrefs.persona] || personaMap.student}.` : "";
+      const toneText = userPrefs?.tone ? ` Tone: ${userPrefs.tone}.` : "";
+      const systemInstruction = `${baseInstruction}${namePart}${personaText}${toneText} Use professional Markdown. Be brilliant, concise, and helpful. Always provide actionable next steps.`;
+
+      let modelName = 'gemini-1.5-flash';
+      const chatMode = mode || 'standard';
+
+      if (chatMode === 'thinking') modelName = 'gemini-1.5-pro';
+
+      const model = genAI.getGenerativeModel({
+        model: modelName,
+        systemInstruction,
+      });
+
+      // Build conversation history
+      const contents: any[] = (history || []).map((msg: any) => ({
+        role: msg.role,
+        parts: [
+          ...(msg.image ? [{ inlineData: { mimeType: 'image/jpeg', data: msg.image.split(',')[1] || msg.image } }] : []),
+          { text: msg.text }
+        ]
+      }));
+
+      // Add current message
+      const currentParts: any[] = [];
+      if (image) {
+        currentParts.push({ inlineData: { mimeType: 'image/jpeg', data: image.split(',')[1] || image } });
+      }
+      currentParts.push({ text: message || "Analyze this image." });
+      contents.push({ role: 'user', parts: currentParts });
+
+      const result = await model.generateContent({ contents });
+      const responseText = result.response.text();
+
+      res.json({ text: responseText, groundingMetadata: null });
+    } catch (error: any) {
+      console.error("Mobile chat proxy error:", error);
+      res.status(500).json({ text: "Sorry, something went wrong. Please try again." });
+    }
+  });
+
+  app.post('/api/mobile/assignment', async (req: any, res) => {
+    try {
+      const { topic, subject, level, words, tone, instructions } = req.body;
+      if (!topic) return res.status(400).json({ message: "Topic is required" });
+
+      if (!process.env.GEMINI_API_KEY) {
+        return res.status(503).json({ message: "AI service is not configured." });
+      }
+
+      const { GoogleGenerativeAI } = await import('@google/generative-ai');
+      const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
+
+      const prompt = `Write a world-class academic assignment on "${topic}" for ${level} level. Word count: ${words}. Style: ${tone}. Instructions: ${instructions}. Use deep research and professional structure.`;
+      const result = await model.generateContent(prompt);
+
+      res.json({ text: result.response.text() });
+    } catch (error: any) {
+      console.error("Assignment proxy error:", error);
+      res.status(500).json({ message: "Failed to generate assignment." });
+    }
+  });
+
   const httpServer = createServer(app);
 
   // Initialize WebSocket Server

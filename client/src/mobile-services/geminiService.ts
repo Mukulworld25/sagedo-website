@@ -1,9 +1,7 @@
+// Mobile App Gemini Service — Server-Side Proxy
+// All Gemini calls go through our secure server API (no client-side API key needed)
 
-import { GoogleGenAI } from "@google/genai";
 import { AssignmentParams, ChatMode } from "../mobile-types";
-
-// Initialize Gemini Client — use Vite's env variable format
-const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || '' });
 
 export const generateChatResponse = async (
   message: string,
@@ -14,104 +12,60 @@ export const generateChatResponse = async (
   userPrefs?: { name: string; persona: string; language: string; tone: string }
 ) => {
   try {
-    let model = 'gemini-3-pro-preview';
-    let tools: any[] | undefined = undefined;
-    let toolConfig: any | undefined = undefined;
-    let thinkingConfig: any | undefined = undefined;
-
-    const personaMap: Record<string, string> = {
-      student: "an expert academic tutor focused on deep research, step-by-step logic, and structural excellence",
-      pro: "a sharp productivity consultant focused on efficiency, career growth, and executive communication",
-      business: "a growth strategist specialized in marketing psychology, conversion, and business scaling",
-      creative: "an imaginative partner for boundary-pushing content, scripting, and visual storytelling"
-    };
-
-    const baseInstruction = `You are Sage, the core intelligence of SAGE DO. You are not a bot; you are an AI Operating System.`;
-    const namePart = userPrefs?.name ? ` User: ${userPrefs.name}.` : "";
-    const personaText = userPrefs ? ` Persona: ${personaMap[userPrefs.persona]}.` : "";
-    const toneText = userPrefs ? ` Tone: ${userPrefs.tone}.` : "";
-
-    const systemInstruction = `${baseInstruction}${namePart}${personaText}${toneText} Use professional Markdown. Be brilliant, concise, and helpful. Always provide actionable next steps.`;
-
-    switch (mode) {
-      case 'thinking':
-        thinkingConfig = { thinkingBudget: 32768 };
-        break;
-      case 'search':
-        model = 'gemini-3-flash-preview';
-        tools = [{ googleSearch: {} }];
-        break;
-      case 'maps':
-        model = 'gemini-2.5-flash';
-        tools = [{ googleMaps: {} }];
-        if (location) {
-          toolConfig = { retrievalConfig: { latLng: { latitude: location.latitude, longitude: location.longitude } } };
-        }
-        break;
-    }
-
-    const contents = history.map(msg => ({
-      role: msg.role,
-      parts: [
-        ...(msg.image ? [{ inlineData: { mimeType: 'image/jpeg', data: msg.image.split(',')[1] || msg.image } }] : []),
-        { text: msg.text }
-      ]
-    }));
-
-    const currentParts: any[] = [];
-    if (image) {
-      currentParts.push({ inlineData: { mimeType: 'image/jpeg', data: image.split(',')[1] || image } });
-    }
-    currentParts.push({ text: message });
-    contents.push({ role: 'user', parts: currentParts });
-
-    const response = await ai.models.generateContent({
-      model: model,
-      contents: contents,
-      config: {
-        systemInstruction,
-        tools,
-        toolConfig,
-        thinkingConfig
-      },
+    const response = await fetch('/api/mobile/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ message, history, image, mode, location, userPrefs }),
     });
 
-    return {
-      text: response.text,
-      groundingMetadata: response.candidates?.[0]?.groundingMetadata
-    };
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({ text: 'Server error' }));
+      throw new Error(err.text || 'Chat request failed');
+    }
+
+    return await response.json();
   } catch (error) {
-    console.error("Gemini Error:", error);
+    console.error("Chat Service Error:", error);
     throw error;
   }
 };
 
 export const editImage = async (imageBase64: string, prompt: string): Promise<string> => {
+  // Image editing via server proxy
   try {
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash-image',
-      contents: {
-        parts: [
-          { inlineData: { mimeType: 'image/jpeg', data: imageBase64.split(',')[1] || imageBase64 } },
-          { text: prompt },
-        ],
-      },
+    const response = await fetch('/api/mobile/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({
+        message: prompt,
+        image: imageBase64,
+        mode: 'standard',
+      }),
     });
 
-    for (const part of response.candidates?.[0]?.content?.parts || []) {
-      if (part.inlineData) return `data:image/png;base64,${part.inlineData.data}`;
-    }
-    throw new Error("Generation failed");
+    if (!response.ok) throw new Error("Image edit failed");
+    const result = await response.json();
+    return result.text || "Image editing complete.";
   } catch (error) {
     throw error;
   }
 };
 
 export const generateAssignment = async (params: AssignmentParams): Promise<string> => {
-  const response = await ai.models.generateContent({
-    model: 'gemini-3-pro-preview',
-    contents: `Write a world-class academic assignment on "${params.topic}" for ${params.level} level. Word count: ${params.words}. Style: ${params.tone}. Instructions: ${params.instructions}. Use deep research and professional structure.`,
-    config: { thinkingConfig: { thinkingBudget: 16000 } }
-  });
-  return response.text || "Error generating content.";
+  try {
+    const response = await fetch('/api/mobile/assignment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(params),
+    });
+
+    if (!response.ok) throw new Error("Assignment generation failed");
+    const result = await response.json();
+    return result.text || "Error generating content.";
+  } catch (error) {
+    throw error;
+  }
 };
