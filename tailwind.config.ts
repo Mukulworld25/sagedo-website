@@ -89,6 +89,9 @@ export default {
         "brand-border-dark": "rgba(255,255,255,0.05)",
         "brand-accent": "#00F2FF",
         "brand-error": "#FF3B30",
+        "brand-sage": "#6366F1",
+        "brand-success": "#22C55E",
+        "brand-warning": "#F59E0B",
       },
       fontFamily: {
         sans: ["var(--font-sans)"],
