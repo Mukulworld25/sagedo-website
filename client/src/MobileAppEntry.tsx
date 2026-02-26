@@ -16,6 +16,7 @@ import { PullToRefresh } from './mobile-components/UIComponents';
 import { AppRoute, Notification } from './mobile-types';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLocation } from 'wouter';
+import { LanguageProvider } from './mobile-components/LanguageProvider';
 
 const App: React.FC = () => {
   const [currentRoute, setCurrentRoute] = useState<AppRoute>(AppRoute.HOME);
@@ -134,41 +135,43 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-transparent flex justify-center selection:bg-brand-primary/30">
-      <div className="w-full max-w-md min-h-screen relative overflow-x-hidden">
-        {!showOnboarding && (
-          <Header
-            title={getPageTitle(currentRoute)}
-            showBack={currentRoute !== AppRoute.HOME}
-            onBack={() => setCurrentRoute(AppRoute.HOME)}
-            unreadCount={unreadCount}
-            onNotifyClick={() => setCurrentRoute(AppRoute.NOTIFICATIONS)}
-            rightAction={
-              <button
-                onClick={() => setIsDarkMode(!isDarkMode)}
-                className="p-2.5 bg-white/5 backdrop-blur-xl rounded-full text-gray-600 dark:text-amber-400 active:scale-90 transition-all border border-white/5"
-              >
-                {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-              </button>
-            }
-          />
-        )}
+    <LanguageProvider>
+      <div className="min-h-screen bg-transparent flex justify-center selection:bg-brand-primary/30">
+        <div className="w-full max-w-md min-h-screen relative overflow-x-hidden">
+          {!showOnboarding && (
+            <Header
+              title={getPageTitle(currentRoute)}
+              showBack={currentRoute !== AppRoute.HOME}
+              onBack={() => setCurrentRoute(AppRoute.HOME)}
+              unreadCount={unreadCount}
+              onNotifyClick={() => setCurrentRoute(AppRoute.NOTIFICATIONS)}
+              rightAction={
+                <button
+                  onClick={() => setIsDarkMode(!isDarkMode)}
+                  className="p-2.5 bg-white/5 backdrop-blur-xl rounded-full text-gray-600 dark:text-amber-400 active:scale-90 transition-all border border-white/5"
+                >
+                  {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                </button>
+              }
+            />
+          )}
 
-        <main className={`${showOnboarding ? '' : 'pt-2'} pb-24`}>
-          {renderContent()}
-        </main>
+          <main className={`${showOnboarding ? '' : 'pt-2'} pb-24`}>
+            {renderContent()}
+          </main>
 
-        {!showOnboarding && (
-          <BottomNav
-            currentRoute={currentRoute}
-            onNavigate={setCurrentRoute}
-          />
-        )}
+          {!showOnboarding && (
+            <BottomNav
+              currentRoute={currentRoute}
+              onNavigate={setCurrentRoute}
+            />
+          )}
 
-        {showVision && <SageVision onClose={() => setShowVision(false)} />}
-        {showVoice && <SageVoice onClose={() => setShowVoice(false)} />}
+          {showVision && <SageVision onClose={() => setShowVision(false)} />}
+          {showVoice && <SageVoice onClose={() => setShowVoice(false)} />}
+        </div>
       </div>
-    </div>
+    </LanguageProvider>
   );
 };
 
