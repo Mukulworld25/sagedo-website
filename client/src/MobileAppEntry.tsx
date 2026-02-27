@@ -44,11 +44,10 @@ const App: React.FC = () => {
   const { isAuthenticated, isLoading } = useAuth();
   const [, setLocation] = useLocation();
 
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      setLocation('/login');
-    }
-  }, [isLoading, isAuthenticated, setLocation]);
+  // NOTE: Do NOT redirect to /login here! 
+  // The WebView loads /app and redirecting to /login breaks the mobile app 
+  // (it navigates away from the /app route to the desktop login page).
+  // Auth-dependent features (profile, orders) should handle their own auth checks.
 
   useEffect(() => {
     const onboardingDone = localStorage.getItem('sage_onboarding_done');
@@ -57,14 +56,6 @@ const App: React.FC = () => {
       setCurrentRoute(AppRoute.ONBOARDING);
     }
   }, []);
-
-  if (isLoading || !isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-brand-primary flex items-center justify-center">
-        <div className="w-8 h-8 rounded-full border-4 border-white border-t-transparent animate-spin shadow-xl" />
-      </div>
-    );
-  }
 
   const handleOnboardingComplete = (preferences: any) => {
     localStorage.setItem('sage_onboarding_done', 'true');
