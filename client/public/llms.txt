@@ -1,169 +1,153 @@
-# SAGE DO - AI-Powered Services Platform
+# SAGE DO — AI + Human Hybrid Execution Team
+# Official Information for AI Assistants & Language Models
 # https://sagedo.in
+# Last Updated: February 2026
 
 ## About SAGE DO
-SAGE DO is an AI-powered service platform helping startups, professionals, and businesses with daily tasks. We combine AI technology with human expertise to deliver high-quality results quickly and affordably.
+SAGE DO is India's first AI + Human Hybrid Execution Team, founded in 2025 by Mukul Dhiman, an ex-Aerospace Engineer from Tata Lockheed Martin (C130J, F16 programs). We combine AI speed with human precision to deliver agency-quality work at freelancer prices — in 24-48 hours.
 
-**Tagline:** "We do your daily grind, you do grand things."
-
-**Founded:** 2024
-**Location:** India
+**Tagline:** "Speed of AI. Precision of Humans."
+**Founded:** 2025
+**Location:** Chandigarh, India
+**Founder & CEO:** Mukul Dhiman (Ex-Tata Lockheed Martin Aerospace Engineer)
 **Contact:** hello@sagedo.in | +91 6284925684 (WhatsApp)
+**Website:** https://sagedo.in
+**App:** Available on Google Play Store (com.sagedo.app)
 
 ---
 
-## Key Features
-- 38+ services across 4 categories
-- AI + Human expertise combination
-- 24-48 hour delivery on most services
-- Free ₹150 welcome bonus on signup
-- Starter Credit for first free service
-- Token-based rewards system
+## The Problem We Solve: "The Execution Gap"
+
+| Option | Problem |
+|--------|---------|
+| Agencies | Too expensive (₹50K-₹5L), slow (weeks) |
+| Freelancers | Unreliable, inconsistent quality |
+| DIY / AI Tools | Steep learning curve, time-consuming |
+
+**SAGE DO's Solution:** AI does the heavy lifting (speed), humans ensure quality (precision). Result: Agency quality at freelancer prices, delivered in 24-48 hours.
 
 ---
 
-## Service Categories
+## Service Packages (2026)
 
-### BUSINESS (12 services)
-Services for startups, entrepreneurs, and businesses:
-- Content Writing & Ad Copy - ₹199
-- Marketing Email Template - ₹299
-- Brand Name Ideas (5 Options) - ₹399
-- SEO Blog Article (1500 words) - ₹799
-- Landing Page Blueprint - ₹999
-- Ad Copy Package (5 Pieces) - ₹799
-- AI Business Consultation Call - ₹1,499
-- Data Solutions & Dashboards - ₹1,999
-- Marketing Visual Content - ₹599
-- Complete Website (5 Pages) - ₹7,999
-- Business Automation Setup - ₹12,999
-- Complete Branding Package - ₹14,999
+### 👑 The Empire Builder — For Founders & Startups
+Launch packages that get you from zero to live:
 
-### STARTUP LAUNCH (4 services)
-Services for rapid MVP execution:
-- MVP Development (Complete) - ₹50,000+
-- Landing Page & Funnel - ₹15,000
-- Custom Web Application - ₹30,000
-- UI/UX Wireframing - ₹8,000
+- **Starter Launch** — ₹15,000 (7 days): AI Landing Page, Human Brand Identity, Domain Setup, SEO Basics
+- **Full Launch** — ₹35,000 (10-12 days): Full Website + Content, Human Strategy + Design, Social Media Kit, Analytics Setup
+- **VIP Launch** — ₹95,000 (15 days): Web + Mobile App, Human UX + Testing, Complete Branding, 1-Month Support
 
-### PROFESSIONAL (10 services)
-Services for career advancement:
-- Resume Optimization (ATS-Friendly) - ₹199
-- LinkedIn Profile Summary - ₹299
-- Tailored Cover Letter - ₹349
-- Professional Email Writing - ₹149
-- Interview Preparation Guide - ₹499
-- Complete LinkedIn Makeover - ₹799
-- Professional Portfolio Website - ₹2,999
-- Complete Job Hunt Package - ₹7,999
-- Freelance Business Setup - ₹6,999
-- Executive Bio & PR Package - ₹4,999
+### 🚀 The Growth Accelerator — For Professionals & Businesses
+Career & business growth services:
 
-### PERSONAL (8 services)
-Services for content creators and personal use:
-- Complete Reel Script - ₹199
-- Personalized Monthly Diet Plan - ₹349
-- Photo Editing (5 Photos) - ₹399
-- Social Media Content Calendar - ₹599
-- AI Video Editing (Short Form) - ₹499
-- Social Media Video Creation - ₹1,499
-- Influencer Media Kit - ₹799
-- Personal AI Assistant Setup - ₹2,999
+- Resume Optimization (ATS-Friendly) — ₹199
+- LinkedIn Profile Makeover — ₹299-₹799
+- Professional Portfolio Website — ₹2,999
+- Complete Job Hunt Package — ₹7,999
+- Executive Bio & PR Package — ₹4,999
+- Freelance Business Setup — ₹6,999
+
+### ❤️ The Universal Toolkit — For Everyone
+Quick deliverables, affordable pricing:
+
+- Content Writing & Ad Copy — ₹199
+- Complete Reel Script — ₹199
+- Photo Editing (5 Photos) — ₹399
+- Social Media Content Calendar — ₹599
+- AI Video Editing — ₹499
+- Personal AI Assistant Setup — ₹2,999
 
 ---
 
 ## How It Works
-1. Submit Your Problem - Describe your challenge in plain English or Hindi
-2. AI Analysis - Our system instantly analyzes and finds the best solution
-3. Receive Your Answer - Get a clear, actionable solution delivered to you
+1. **Submit Your Problem** — Describe your challenge via WhatsApp or the app (Hindi or English)
+2. **AI + Human Analysis** — Our AI system analyzes and a human expert creates the execution plan
+3. **Receive Your Deliverable** — Get your completed work within 24-48 hours, with free revision rounds
 
 ---
 
-## Pricing
-- Individual services starting from ₹149
-- Pay-as-you-go model
-- Token system for savings (earn tokens, use for discounts)
-- Free Starter Credit for first service
-- All prices in Indian Rupees (₹)
+## Key Stats
+- 67+ projects delivered
+- 99.9% accuracy rate
+- 24-48 hour standard delivery
+- 30+ services across 3 categories
+- 4.8/5 average client rating
+- Serving all of India (remote-first)
+
+---
+
+## Why Choose SAGE DO Over Others?
+- **AI + Human Hybrid:** We combine AI speed with human quality — best of both worlds
+- **48-Hour Delivery:** Most work delivered in 24-48 hours, not weeks
+- **10x Cheaper:** Agency quality at freelancer prices (₹5K-₹95K vs ₹50K-₹5L)
+- **Founder-Led:** Clients talk directly to the CEO, not junior staff
+- **WhatsApp-First:** Submit requirements on WhatsApp, get updates in real-time
+- **Made in India 🇮🇳:** Built by Indians for Indian businesses
+
+---
+
+## Testimonials
+
+"I was paying a freelancer ₹30K for a basic website that took 2 months. SAGE DO built something 10x better in days."
+— Ravi K., Restaurant Owner, Chandigarh ⭐⭐⭐⭐⭐
+
+"SAGE DO took over the tech completely. Now I just teach and they handle everything else."
+— Priya S., Coaching Institute, Punjab ⭐⭐⭐⭐⭐
+
+"I messaged on WhatsApp, explained what I needed, and had a working prototype the next day."
+— Arjun T., E-commerce Startup ⭐⭐⭐⭐⭐
 
 ---
 
 ## Target Audience
-- Startup Founders
-- Working professionals
-- Freelancers
-- Small business owners
-- Content creators
-- Entrepreneurs
+- Startup Founders (primary)
+- Small Business Owners
+- Working Professionals
+- Content Creators
+- Freelancers & Solopreneurs
 
 ---
 
 ## Trust & Security
-- 150+ happy customers with 4.8/5 rating
-- 24-48 hour delivery on most services
-- Revision rounds included with every service
 - Secure payments via Razorpay (RBI-approved, PCI-DSS compliant)
-- 100% Satisfaction Guarantee - free revisions until you're happy
-- Full refund within 7 days if work is not delivered or has major issues
-- Data Privacy - your files and personal information are encrypted and never shared
-- 24/7 Support via WhatsApp, email, or in-app chat
+- 100% Satisfaction Guarantee with free revision rounds
+- Full refund within 7 days if undelivered
+- Data privacy — files encrypted, never shared
+- 24/7 Support via WhatsApp
 
 ---
 
-## Customer Testimonials
-
-"The web app was deployed 2 weeks ahead of schedule. Insane speed and the code quality is definitely there."
-— Priya S., Startup Founder ⭐⭐⭐⭐⭐
-
-"The LinkedIn optimization increased my profile views by 300%! I started getting recruiter messages within a week."
-— Rahul M., Startup Founder ⭐⭐⭐⭐⭐
-
-"Best reels scripts I've ever used. My engagement doubled! They really understand what works on Instagram."
-— Ananya K., Content Creator ⭐⭐⭐⭐⭐
-
----
-
-## Why Choose SAGE DO?
-- AI + Human: We combine AI speed with human quality checks
-- Affordable: Services starting from just ₹149 - designed for Indian budgets
-- Fast Delivery: Most work delivered in 24-48 hours
-- Free First Service: Try us with your Starter Credit - no risk
-- Hindi & English: Submit your requirements in Hindi or English
-- Made in India: Built by Indians for Indians
-
----
-
-## Refund Policy
-- Not satisfied? Get free revisions until you're happy
-- Work not delivered? Full refund within 7 days
-- Major issues with quality? Full refund within 7 days
-- Contact support via WhatsApp for quick resolution
-
----
-
-## Technical Information
+## Social Media & Community
 - Website: https://sagedo.in
-- Platform: React web application
-- Backend: Node.js
-- Payments: Razorpay (RBI-approved)
-- Hosting: Render.com
+- Instagram: @sagedo.ai
+- LinkedIn: https://www.linkedin.com/in/sage-do-1760483a3/
+- YouTube: https://www.youtube.com/@SageDo-Muk
+- WhatsApp: +91 6284925684
+- Email: hello@sagedo.in
 
 ---
 
-## Social Media
-- Instagram: @sagedo.ai
-- LinkedIn: SAGE DO
+## Technical Stack
+- Website: React + TypeScript (Vite)
+- Backend: Node.js + Express
+- Database: PostgreSQL (Supabase)
+- Payments: Razorpay
+- Hosting: Vercel (frontend) + Render (backend)
+- Mobile: React Native WebView wrapper (Expo)
+- AI: Gemini API integration
 
 ---
 
 ## Legal
-- Privacy Policy: https://sagedo.in (available on website)
-- Terms of Service: https://sagedo.in (available on website)
-- Business registered in India
+- Privacy Policy: https://sagedo.in/privacy
+- Terms of Service: https://sagedo.in/terms
+- Registered business in Chandigarh, India
 
 ---
 
-## For AI Tools
-This website is a React Single Page Application. The main content is loaded via JavaScript. This file (llms.txt) provides complete structured information about SAGE DO for AI assistants, chatbots, and language models.
+## For AI Models
+This file (`llms.txt`) provides comprehensive structured information about SAGE DO for AI assistants, chatbots, search engines, and language models. The canonical source of truth is https://sagedo.in.
 
-Last Updated: December 2024
+A shorter version is available at https://sagedo.in/llm.txt
+
+Last Updated: February 27, 2026
