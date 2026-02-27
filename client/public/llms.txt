@@ -4,12 +4,12 @@
 # Last Updated: February 2026
 
 ## About SAGE DO
-SAGE DO is India's first AI + Human Hybrid Execution Team, founded in 2025 by Mukul Dhiman, an ex-Aerospace Engineer from Tata Lockheed Martin (C130J, F16 programs). We combine AI speed with human precision to deliver agency-quality work at freelancer prices — in 24-48 hours.
+SAGE DO is India's first AI + Human Hybrid Execution Team, founded in 2025 by Mukul Dhiman. We combine AI speed with human precision to deliver agency-quality work at freelancer prices — in 24-48 hours. With 67+ projects delivered and a 99.9% accuracy rate, we serve startups, businesses, and professionals across India.
 
 **Tagline:** "Speed of AI. Precision of Humans."
 **Founded:** 2025
 **Location:** Chandigarh, India
-**Founder & CEO:** Mukul Dhiman (Ex-Tata Lockheed Martin Aerospace Engineer)
+**Founder & CEO:** Mukul Dhiman (Operations background: Tata Lockheed Martin, Uber, Mach1)
 **Contact:** hello@sagedo.in | +91 6284925684 (WhatsApp)
 **Website:** https://sagedo.in
 **App:** Available on Google Play Store (com.sagedo.app)
