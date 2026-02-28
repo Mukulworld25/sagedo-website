@@ -16,6 +16,7 @@ import { PullToRefresh } from './mobile-components/UIComponents';
 import { AppRoute, Notification } from './mobile-types';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLocation } from 'wouter';
+import MobileLoginWall from './mobile-pages/MobileLoginWall';
 import { LanguageProvider } from './mobile-components/LanguageProvider';
 
 const App: React.FC = () => {
@@ -167,3 +168,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
