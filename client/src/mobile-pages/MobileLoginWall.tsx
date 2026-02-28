@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 const MobileLoginWall: React.FC = () => {
   const handleGoogleLogin = () => {
+    localStorage.setItem('sage_wall_login', 'true');
     window.location.href = '/api/auth/google?redirect=/app';
   };
   return (
@@ -20,3 +21,4 @@ const MobileLoginWall: React.FC = () => {
 };
 
 export default MobileLoginWall;
+
