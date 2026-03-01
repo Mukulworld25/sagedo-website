@@ -28,6 +28,7 @@ import FAQ from "@/pages/FAQ";
 import VerifyEmail from "@/pages/verify-email";
 import Settings from "@/pages/Settings";
 import Pay from "@/pages/Pay";
+import FreeAudit from "@/pages/FreeAudit";
 import NotFound from "@/pages/not-found";
 
 import Navigation from "@/components/Navigation";
@@ -84,6 +85,7 @@ function Router() {
         <Route path="/faq" component={FAQ} />
         <Route path="/order-success" component={OrderSuccess} />
         <Route path="/pay" component={Pay} />
+        <Route path="/free-audit" component={FreeAudit} />
         <Route component={NotFound} />
       </Switch>
       <Footer />
