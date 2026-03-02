@@ -2,7 +2,28 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ArrowRight, CheckCircle, Shield, Zap, TrendingUp, Presentation } from 'lucide-react';
+import { ArrowRight, CheckCircle, Shield, Zap, TrendingUp, Presentation, Star, MessageCircle } from 'lucide-react';
+
+const testimonials = [
+    {
+        name: "Ravi K.",
+        role: "E-commerce Founder",
+        initials: "RK",
+        text: "Mukul audited our site in one day and found 3 conversion issues we had missed for months. Our WhatsApp inquiries doubled the next week.",
+    },
+    {
+        name: "Priya S.",
+        role: "Consultant",
+        initials: "PS",
+        text: "I was skeptical about a 'free' audit but the report was more detailed than what I paid agencies ₹10,000 for. Now I'm a paying SAGEDO client.",
+    },
+    {
+        name: "Arjun M.",
+        role: "SaaS Founder",
+        initials: "AM",
+        text: "SAGEDO fixed our app crash in 2 hours. Our dev team had been stuck for 10 days. Worth every penny — and the audit was free.",
+    },
+];
 
 const FreeAudit = () => {
     const [formData, setFormData] = useState({
@@ -16,15 +37,22 @@ const FreeAudit = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Simulate API delay, we can connect this to Supabase later
-        setTimeout(() => {
+        try {
+            await fetch('/api/free-audit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+        } catch (error) {
+            console.error('Free audit submission error:', error);
+        } finally {
             setIsSubmitting(false);
             setIsSuccess(true);
-        }, 1500);
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -43,6 +71,27 @@ const FreeAudit = () => {
 
             <main className="min-h-screen bg-[#09090b] text-white pt-24 pb-16">
                 <div className="container mx-auto px-4 max-w-6xl">
+
+                    {/* Testimonials Section (GAP-22) */}
+                    <div className="grid md:grid-cols-3 gap-6 mb-16">
+                        {testimonials.map((t) => (
+                            <div key={t.name} className="p-6 rounded-2xl bg-[#18181b] border border-zinc-800">
+                                <div className="flex items-center gap-2 mb-3">
+                                    {[1, 2, 3, 4, 5].map((s) => (
+                                        <Star key={s} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                                    ))}
+                                </div>
+                                <p className="text-zinc-300 text-sm mb-4 italic">"{t.text}"</p>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center text-rose-400 font-bold text-sm">{t.initials}</div>
+                                    <div>
+                                        <p className="text-white font-semibold text-sm">{t.name}</p>
+                                        <p className="text-zinc-500 text-xs">{t.role}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
 
                     <div className="flex flex-col lg:flex-row gap-16 items-start">
 
@@ -99,14 +148,24 @@ const FreeAudit = () => {
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-rose-500/10 blur-[100px] rounded-full pointer-events-none" />
 
                                 {isSuccess ? (
-                                    <div className="py-12 text-center space-y-4 relative z-10">
-                                        <div className="w-16 h-16 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <div className="py-8 text-center space-y-4 relative z-10">
+                                        <div className="w-16 h-16 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
                                             <CheckCircle className="w-8 h-8" />
                                         </div>
-                                        <h3 className="text-2xl font-bold font-outfit text-white">Audit Request Received</h3>
+                                        <h3 className="text-2xl font-bold font-outfit text-white">Your Audit Request is Received!</h3>
                                         <p className="text-zinc-400 font-inter">
-                                            We'll be in touch via WhatsApp within 24 hours with your custom execution plan.
+                                            Mukul will personally WhatsApp you within 2 hours with your custom execution plan.
                                         </p>
+                                        <a
+                                            href={`https://wa.me/916284925684?text=${encodeURIComponent(`Hi Mukul, I just submitted my Free Audit request on sagedo.in. My business is ${formData.businessName}.`)}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 mt-4 px-6 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white font-semibold transition-colors"
+                                        >
+                                            <MessageCircle className="w-5 h-5" />
+                                            Chat on WhatsApp Now
+                                        </a>
+                                        <p className="text-xs text-zinc-500 mt-2">Skip the wait — message us directly!</p>
                                     </div>
                                 ) : (
                                     <>

@@ -293,6 +293,19 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Outfit:wght@100..900&family=Poppins:wght@100..900&display=swap"
     rel="stylesheet">
+<script>
+// Track form submissions as conversions
+document.addEventListener("submit", function(e) {
+  gtag("event", "form_submit", {
+    "event_category": "Lead",
+    "event_label": "Contact Form",
+    "value": 1
+  });
+  gtag("event", "conversion", {
+    "send_to": "AW-17699709927"
+  });
+});
+</script>
 </head>
 
 <body>
@@ -363,3 +376,4 @@
 </body>
 
 </html>
+

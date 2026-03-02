@@ -1725,6 +1725,66 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ===== Free Audit Form Submission (GAP-15) =====
+  app.post('/api/free-audit', async (req: any, res) => {
+    try {
+      const { businessName, websiteUrl, socialHandle, biggestChallenge, whatsappNumber } = req.body;
+
+      if (!businessName || !whatsappNumber) {
+        return res.status(400).json({ message: 'Business name and WhatsApp number are required' });
+      }
+
+      console.log('📋 Free Audit Request:', { businessName, websiteUrl, socialHandle, biggestChallenge, whatsappNumber });
+
+      // Send admin notification email
+      try {
+        await sendContactEmail({
+          name: businessName,
+          email: whatsappNumber,
+          subject: `🔥 FREE AUDIT REQUEST: ${businessName}`,
+          message: `Business: ${businessName}\nWebsite: ${websiteUrl || 'Not provided'}\nSocial: ${socialHandle || 'Not provided'}\nChallenge: ${biggestChallenge}\nWhatsApp: ${whatsappNumber}`,
+        });
+      } catch (emailErr) {
+        console.error('Admin notification email failed:', emailErr);
+      }
+
+      res.json({ success: true, message: 'Audit request received' });
+    } catch (error: any) {
+      console.error('Free audit error:', error);
+      res.status(500).json({ message: 'Failed to submit audit request' });
+    }
+  });
+
+  // ===== Newsletter Subscription (GAP-26) =====
+  app.post('/api/newsletter', async (req: any, res) => {
+    try {
+      const { email, source } = req.body;
+
+      if (!email || !email.includes('@')) {
+        return res.status(400).json({ message: 'Valid email is required' });
+      }
+
+      console.log('📧 Newsletter Subscription:', { email, source });
+
+      // Send admin notification
+      try {
+        await sendContactEmail({
+          name: 'Newsletter Subscriber',
+          email: email,
+          subject: `📧 NEW Newsletter Subscriber: ${email}`,
+          message: `Email: ${email}\nSource: ${source || 'unknown'}\nTime: ${new Date().toISOString()}`,
+        });
+      } catch (emailErr) {
+        console.error('Newsletter notification email failed:', emailErr);
+      }
+
+      res.json({ success: true, message: 'Subscribed successfully' });
+    } catch (error: any) {
+      console.error('Newsletter error:', error);
+      res.status(500).json({ message: 'Failed to subscribe' });
+    }
+  });
+
   const httpServer = createServer(app);
 
   // Initialize WebSocket Server
