@@ -4,6 +4,22 @@ import { ArrowRight, Clock, User } from 'lucide-react';
 
 const blogPosts = [
     {
+        slug: 'why-indian-startup-websites-get-zero-google-traffic',
+        title: 'Why 96% of Indian Startup Websites Get Zero Traffic from Google',
+        excerpt: 'I have reviewed over 50 Indian startup websites in the last 6 months. 96% of them have the same 3 problems that guarantee zero Google traffic.',
+        date: 'March 12, 2026',
+        readTime: '4 min read',
+        category: 'SEO',
+    },
+    {
+        slug: 'how-i-fixed-sagedo-visibility-google-chatgpt',
+        title: "How I Fixed My Indian Startup's Invisibility on Google and ChatGPT in 24 Hours",
+        excerpt: 'Over 90% of Indian startups are completely invisible to AI search engines. Here is exactly what was wrong with SAGEDO and how I fixed every single issue in 24 hours.',
+        date: 'March 11, 2026',
+        readTime: '5 min read',
+        category: 'Case Study',
+    },
+    {
         slug: 'fixed-1000-user-app-crash-2-hours',
         title: 'How I Fixed a 1000-User App Crash in 2 Hours Using AI',
         excerpt: 'A startup\'s mobile app was showing a blank grey screen to every single user. The dev team had been debugging for 10 days. I fixed it in 2 hours.',
