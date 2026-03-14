@@ -51,7 +51,7 @@ export default function Pay() {
 
         try {
             const options = {
-                key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+                key: pageRzpKeyId,
                 amount: Number(pageAmount) * 100,
                 currency: 'INR',
                 name: 'SAGE DO',
@@ -120,6 +120,7 @@ export default function Pay() {
     const [lookupId, setLookupId] = useState("");
     const [pageAmount, setPageAmount] = useState(amount);
     const [pageRzpOrderId, setPageRzpOrderId] = useState(razorpayOrderId);
+    const [pageRzpKeyId, setPageRzpKeyId] = useState("");
     const [pageOrderId, setPageOrderId] = useState(orderId);
 
     const handleLookup = async () => {
@@ -142,6 +143,7 @@ export default function Pay() {
                 setPageOrderId(lookupId);
                 setPageAmount((data.amount / 100).toString()); // Convert paise to rupees
                 setPageRzpOrderId(data.id);
+                setPageRzpKeyId(data.key_id);
                 // Clean URL
                 setLocation(`/pay?orderId=${lookupId}&amount=${data.amount / 100}&razorpayOrderId=${data.id}`);
             } else {
