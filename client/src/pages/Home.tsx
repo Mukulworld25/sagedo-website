@@ -109,18 +109,18 @@ export default function Home() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
-            <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20visited%20SAGE%20DO%20and%20I'm%20interested%20in%20your%20services.%20Can%20we%20talk%3F" target="_blank" rel="noopener noreferrer">
-              <div className={buttonVariants({ size: "lg", className: "h-14 px-8 text-lg font-semibold bg-green-600 hover:bg-green-500 rounded-xl transition-all hover:scale-[1.02] hover:-translate-y-0.5 group cursor-pointer" })}
-                style={{ boxShadow: '0 4px 16px rgba(34, 197, 94, 0.4)', fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
+            <Link href="/free-audit">
+              <div className={buttonVariants({ size: "lg", className: "h-14 px-8 text-lg font-semibold bg-red-600 hover:bg-red-500 rounded-xl transition-all hover:scale-[1.02] hover:-translate-y-0.5 group cursor-pointer" })}
+                style={{ boxShadow: '0 4px 16px rgba(239, 68, 68, 0.4)', fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
               >
-                <MessageCircle className="mr-2 h-5 w-5" /> BOOK FREE CALL
+                <Zap className="mr-2 h-5 w-5" /> GET FREE AI AUDIT
               </div>
-            </a>
-            <a href="#portfolio">
-              <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-14 px-8 text-lg font-semibold rounded-xl border-white/20 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all cursor-pointer" })}
+            </Link>
+            <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20visited%20SAGE%20DO%20and%20I'm%20interested%20in%20your%20services.%20Can%20we%20talk%3F" target="_blank" rel="noopener noreferrer">
+              <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-14 px-8 text-lg font-semibold rounded-xl border-green-500/40 hover:border-green-400 hover:bg-green-500/10 text-green-400 hover:text-green-300 transition-all cursor-pointer" })}
                 style={{ fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
               >
-                SEE OUR WORK
+                <MessageCircle className="mr-2 h-5 w-5" /> WHATSAPP US
               </div>
             </a>
           </div>

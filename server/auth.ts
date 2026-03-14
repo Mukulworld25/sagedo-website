@@ -189,8 +189,6 @@ export async function registerCustomer(email: string, password: string, name: st
     const passwordHash = await bcrypt.hash(password, 10);
 
     // Create user - Golden Ticket on first signup, tokens start at 0 (must be earned)
-    const verificationToken = uuidv4();
-
     // Cast to any to bypass strict type checking for now, or use InsertUser
     const userData: any = {
         id: uuidv4(),
@@ -201,18 +199,11 @@ export async function registerCustomer(email: string, password: string, name: st
         tokenBalance: 0,
         hasGoldenTicket: emailPreviouslyUsed ? false : true,
         hasWelcomeBonus: emailPreviouslyUsed ? false : true,
-        isEmailVerified: false,
-        verificationToken,
+        isEmailVerified: true, // No email verification gate — let users in immediately
+        verificationToken: uuidv4(),
     };
 
     const user = await storage.createUser(userData);
-
-    // Send verification email
-    try {
-        await sendVerificationEmail(email, name, verificationToken);
-    } catch (error) {
-        console.error("Failed to send verification email during registration:", error);
-    }
 
     // Mark email as used for future abuse prevention
     if (!emailPreviouslyUsed) {

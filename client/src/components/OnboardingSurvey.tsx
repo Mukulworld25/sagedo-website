@@ -3,11 +3,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Slider } from "@/components/ui/slider";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Sparkles, Coins } from "lucide-react";
+import { Loader2, Sparkles } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 
 export default function OnboardingSurvey() {
@@ -15,69 +13,59 @@ export default function OnboardingSurvey() {
     const { toast } = useToast();
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [name, setName] = useState("");
 
-    // Form State
-    const [profession, setProfession] = useState("");
-    const [age, setAge] = useState("");
-    const [gender, setGender] = useState("");
-    const [mobile, setMobile] = useState("");
-    const [aiProficiency, setAiProficiency] = useState("Beginner");
-    const [referralSource, setReferralSource] = useState("");
-
-    // Show survey if user exists but hasn't completed onboarding and hasn't skipped it in this session
+    // Show onboarding if user exists but hasn't completed it
     useEffect(() => {
         if (!user) return;
 
         const hasSkipped = sessionStorage.getItem("sagedo_onboarding_skipped");
         if (!user.isOnboardingCompleted && !hasSkipped) {
-            // Small delay for better UX
-            const timer = setTimeout(() => setOpen(true), 1000);
+            const timer = setTimeout(() => setOpen(true), 800);
             return () => clearTimeout(timer);
         } else {
-            // REACTIVE FIX: Force close if user is completed
             setOpen(false);
         }
     }, [user]);
 
     const handleSubmit = async () => {
-        if (!profession || !age || !gender) {
-            toast({ title: "Please fill in required fields", variant: "destructive" });
+        if (!name.trim()) {
+            toast({ title: "Please enter your name", variant: "destructive" });
             return;
         }
 
         try {
             setLoading(true);
             await apiRequest("POST", "/api/user/onboarding", {
-                profession,
-                age,
-                gender,
-                mobileNumber: mobile,
-                aiProficiency,
-                referralSource
+                profession: "Skipped",
+                age: "0",
+                gender: "Prefer not to say",
+                mobileNumber: "",
+                aiProficiency: "Beginner",
+                referralSource: "Skipped",
+                name: name.trim(),
             });
 
-            // Refetch user to updated token balance and status
             await queryClient.invalidateQueries({ queryKey: ["/api/user"] });
 
             toast({
-                title: "Survey Completed! 🎉",
-                description: "You've earned your rewards!",
+                title: "Welcome to SAGE DO! 🎉",
+                description: "Let's get you started.",
             });
             setOpen(false);
         } catch (error: any) {
-            console.error("Survey submission error:", error);
-            const message = error.message || "Failed to submit survey";
+            console.error("Onboarding error:", error);
+            const message = error.message || "Failed to submit";
 
-            // If backend says we already did it, treat as success (sync issue)
             if (message.includes("Onboarding already completed")) {
                 setOpen(false);
-                toast({ title: "Welcome back!", description: "Profile already verified." });
+                toast({ title: "Welcome back!", description: "Profile already set up." });
                 queryClient.invalidateQueries({ queryKey: ["/api/user"] });
                 return;
             }
 
             toast({
-                title: "Submission Error",
+                title: "Error",
                 description: message,
                 variant: "destructive"
             });
@@ -88,114 +76,42 @@ export default function OnboardingSurvey() {
     };
 
     const handleSkip = () => {
-        // Mark as skipped for this session only
         sessionStorage.setItem("sagedo_onboarding_skipped", "true");
         setOpen(false);
     };
 
-    // Original logic restored
     if (!open) return null;
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
-            <DialogContent className="sm:max-w-[425px] bg-background border-primary/20">
+            <DialogContent className="sm:max-w-[380px] bg-background border-primary/20">
                 <DialogHeader>
                     <div className="mx-auto bg-primary/10 p-3 rounded-full mb-2">
                         <Sparkles className="w-8 h-8 text-primary" />
                     </div>
                     <DialogTitle className="text-center text-2xl">Welcome to SAGE DO!</DialogTitle>
                     <DialogDescription className="text-center pt-2">
-                        Tell us a bit about yourself to personalize your experience.
-                        <div className="flex items-center justify-center gap-2 mt-2 text-primary font-bold">
-                            <Coins className="w-4 h-4" />
-                            <span>Earn 50 Tokens per answer! (Max 300)</span>
-                        </div>
+                        What should we call you?
                     </DialogDescription>
                 </DialogHeader>
 
-                <div className="grid gap-4 py-4">
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                            <Label>Profession</Label>
-                            <Select onValueChange={setProfession}>
-                                <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="Startup Founder">Startup Founder</SelectItem>
-                                    <SelectItem value="Business Owner">Business Owner</SelectItem>
-                                    <SelectItem value="Professional">Professional</SelectItem>
-                                    <SelectItem value="Freelancer">Freelancer</SelectItem>
-                                    <SelectItem value="Other">Other</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
-
-                        <div className="space-y-2">
-                            <Label>Gender</Label>
-                            <Select onValueChange={setGender}>
-                                <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="Male">Male</SelectItem>
-                                    <SelectItem value="Female">Female</SelectItem>
-                                    <SelectItem value="Other">Other</SelectItem>
-                                    <SelectItem value="Prefer not to say">Prefer not to say</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                            <Label>Age</Label>
-                            <Input type="number" placeholder="25" value={age} onChange={(e) => setAge(e.target.value)} />
-                        </div>
-                        <div className="space-y-2">
-                            <Label>Mobile (Optional)</Label>
-                            <Input placeholder="+91..." value={mobile} onChange={(e) => setMobile(e.target.value)} />
-                        </div>
-                    </div>
-
-                    <div className="space-y-4 pt-2">
-                        <Label>AI Proficiency: {aiProficiency}</Label>
-                        <Slider
-                            defaultValue={[33]}
-                            max={100}
-                            step={33}
-                            className="w-full"
-                            onValueChange={(vals) => {
-                                const v = vals[0];
-                                if (v < 30) setAiProficiency("Beginner");
-                                else if (v < 70) setAiProficiency("Intermediate");
-                                else setAiProficiency("Expert");
-                            }}
+                <div className="py-4">
+                    <div className="space-y-2">
+                        <Label>Your Name</Label>
+                        <Input
+                            placeholder="e.g. Mukul"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
+                            autoFocus
                         />
-                        <div className="flex justify-between text-xs text-muted-foreground">
-                            <span>Beginner</span>
-                            <span>Expert</span>
-                        </div>
-                    </div>
-
-                    <div className="space-y-2 pt-2">
-                        <Label>How did you find us? 🔍</Label>
-                        <Select onValueChange={setReferralSource}>
-                            <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="AI/ChatGPT">AI / ChatGPT / Gemini</SelectItem>
-                                <SelectItem value="Google Search">Google Search</SelectItem>
-                                <SelectItem value="Instagram">Instagram</SelectItem>
-                                <SelectItem value="YouTube">YouTube</SelectItem>
-                                <SelectItem value="LinkedIn">LinkedIn</SelectItem>
-                                <SelectItem value="WhatsApp">WhatsApp</SelectItem>
-                                <SelectItem value="Friend/Referral">Friend / Referral</SelectItem>
-                                <SelectItem value="Other">Other</SelectItem>
-                            </SelectContent>
-                        </Select>
                     </div>
                 </div>
 
                 <div className="flex flex-col gap-3">
                     <Button onClick={handleSubmit} disabled={loading} className="w-full gap-2">
-                        {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Coins className="w-4 h-4" />}
-                        Submit & Claim Rewards
+                        {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
+                        Let's Go!
                     </Button>
 
                     <Button variant="ghost" onClick={handleSkip} disabled={loading} className="w-full text-muted-foreground">

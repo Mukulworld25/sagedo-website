@@ -814,6 +814,63 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Contact Form Submission
+  app.post('/api/contact', async (req: any, res) => {
+    try {
+      const { name, email, subject, message } = req.body;
+
+      if (!name || !email || !subject || !message) {
+        return res.status(400).json({ message: "All fields are required" });
+      }
+
+      // Log the contact message
+      console.log(`[CONTACT] New message from ${name} (${email}): ${subject}`);
+
+      // Send notification email to admin
+      try {
+        await sendContactEmail({
+          name,
+          email,
+          subject,
+          message,
+        });
+      } catch (emailError) {
+        console.error("Failed to send contact notification email:", emailError);
+        // Don't fail the request if email fails
+      }
+
+      // Notify admins via WebSocket
+      broadcastToAdmins('new_contact', {
+        name,
+        email,
+        subject,
+        time: new Date().toLocaleTimeString()
+      });
+
+      res.json({ success: true, message: "Message received! We'll get back to you within 24 hours." });
+    } catch (error) {
+      console.error("Error processing contact form:", error);
+      res.status(500).json({ message: "Failed to send message" });
+    }
+  });
+
+  // Visit Tracking (Session/Analytics)
+  app.post('/api/track-visit', async (req: any, res) => {
+    try {
+      const { path } = req.body;
+      const userId = req.session?.user?.id || 'anonymous';
+      const timestamp = new Date().toISOString();
+
+      // Log the visit
+      console.log(`[VISIT] ${userId} → ${path} at ${timestamp}`);
+
+      res.json({ success: true });
+    } catch (error) {
+      // Silent fail — analytics should never break the app
+      res.json({ success: true });
+    }
+  });
+
   // BRUNO CHAT API (The Central Brain)
   app.post('/api/chat', async (req, res) => {
     const { message } = req.body;
@@ -876,13 +933,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ success: false, message: "Onboarding already completed" });
       }
 
-      const { profession, age, gender, aiProficiency, mobileNumber, referralSource } = req.body;
+      const { profession, age, gender, aiProficiency, mobileNumber, referralSource, name } = req.body;
+
+      // Update user's name if provided (simplified onboarding)
+      if (name && name.trim()) {
+        await storage.upsertUser({ ...dbUser, name: name.trim() });
+        req.session.user.name = name.trim();
+      }
 
       // 1. Update User Profile
       // Use local 'user' variable from session, not req.user
       const updatedUser = await storage.submitOnboarding(user.id, {
         profession,
-        age: parseInt(age),
+        age: parseInt(age) || 0,
         gender,
         aiProficiency,
         mobileNumber,
