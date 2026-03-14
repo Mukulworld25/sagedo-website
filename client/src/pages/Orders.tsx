@@ -154,14 +154,16 @@ export default function Orders() {
       // For paid services, trigger Razorpay payment
       try {
         // Create Razorpay order
-        const response = await fetch(`${API_URL}/api/payment/create-order`, {
+        // Call Supabase Edge Function directly
+        const response = await fetch('https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/create-razorpay-order', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
           body: JSON.stringify({
             amount: cartTotal > 0 ? cartTotal : orderAmount,
-            orderId: orderId
-          }),
+            service_name: 'SAGE DO Service',
+            order_id: orderId
+          })
         });
 
         if (!response.ok) {
@@ -181,7 +183,8 @@ export default function Orders() {
           handler: async function (response: any) {
             try {
               // Verify payment on backend
-              const verifyResponse = await fetch(`${API_URL}/api/payment/verify`, {
+              // Call Supabase verification edge function
+              const verifyResponse = await fetch('https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/verify-razorpay', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
@@ -189,7 +192,7 @@ export default function Orders() {
                   razorpay_order_id: response.razorpay_order_id,
                   razorpay_payment_id: response.razorpay_payment_id,
                   razorpay_signature: response.razorpay_signature,
-                  orderId: orderId,
+                  order_id: orderId
                 }),
               });
 
@@ -307,14 +310,16 @@ export default function Orders() {
 
     try {
       // Create Razorpay order
-      const response = await fetch(`${API_URL}/api/payment/create-order`, {
+      // Call Supabase Edge Function
+      const response = await fetch('https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/create-razorpay-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify({
           amount: orderAmount,
-          orderId: createdOrderId
-        }),
+          service_name: 'SAGE DO Service Final Payment',
+          order_id: createdOrderId
+        })
       });
 
       if (!response.ok) {
@@ -334,7 +339,8 @@ export default function Orders() {
         handler: async function (response: any) {
           try {
             // Verify payment on backend
-            const verifyResponse = await fetch(`${API_URL}/api/payment/verify`, {
+            // Call Supabase verification edge function
+            const verifyResponse = await fetch('https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/verify-razorpay', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               credentials: 'include',
@@ -342,7 +348,7 @@ export default function Orders() {
                 razorpay_order_id: response.razorpay_order_id,
                 razorpay_payment_id: response.razorpay_payment_id,
                 razorpay_signature: response.razorpay_signature,
-                orderId: createdOrderId,
+                order_id: createdOrderId,
               }),
             });
 

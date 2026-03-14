@@ -59,14 +59,15 @@ export default function Pay() {
                 order_id: pageRzpOrderId,
                 handler: async function (response: any) {
                     try {
-                        const verifyResponse = await fetch(`${API_URL}/api/payment/verify`, {
+                        // Call Supabase Edge Function directly
+                        const verifyResponse = await fetch('https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/verify-razorpay', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
                                 razorpay_order_id: response.razorpay_order_id,
                                 razorpay_payment_id: response.razorpay_payment_id,
                                 razorpay_signature: response.razorpay_signature,
-                                orderId: pageOrderId,
+                                order_id: lookupId
                             }),
                         });
 
@@ -125,10 +126,15 @@ export default function Pay() {
         if (!lookupId) return;
         setIsProcessing(true);
         try {
-            const res = await fetch('/api/payment/create-order', {
+            // Call Supabase Edge Function for order creation
+            const res = await fetch('https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/create-razorpay-order', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ orderId: lookupId })
+                body: JSON.stringify({ 
+                    amount: orderDetails.amountPaid || orderDetails.finalPrice || orderDetails.price || 0,
+                    service_name: orderDetails.serviceName || 'SAGE DO Service',
+                    order_id: lookupId 
+                })
             });
             const data = await res.json();
 

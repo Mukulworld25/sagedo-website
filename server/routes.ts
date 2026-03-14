@@ -814,43 +814,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Contact Form Submission
-  app.post('/api/contact', async (req: any, res) => {
-    try {
-      const { name, email, subject, message } = req.body;
-
-      if (!name || !email || !subject || !message) {
-        return res.status(400).json({ message: "All fields are required" });
-      }
-
-      // Log the contact message
-      console.log(`[CONTACT] New message from ${name} (${email}): ${subject}`);
-
-      // Send notification email to admin
-      try {
-        await sendContactEmail({
-          name,
-          email,
-          subject,
-          message,
-        });
-      } catch (emailError) {
-        console.error("Failed to send contact notification email:", emailError);
-        // Don't fail the request if email fails
-      }
-
-      // Notify admins via WebSocket
-      broadcastToAdmins('new_contact', {
-        name,
-        email,
-        subject,
-        time: new Date().toLocaleTimeString()
-      });
-
-      res.json({ success: true, message: "Message received! We'll get back to you within 24 hours." });
-    } catch (error) {
-      console.error("Error processing contact form:", error);
-      res.status(500).json({ message: "Failed to send message" });
+  // Contact Form Submission (Migrated to Supabase Edge Function)
+  // Check implementation_plan.md and supabase/functions/contact/index.ts
+  
+  // Gallery routes (public)
     }
   });
 
@@ -1039,100 +1006,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Payment routes (no auth required - order creation validates user)
-  app.post('/api/payment/create-order', async (req, res) => {
-    try {
-      const { orderId } = req.body;
-      if (!orderId) {
-        return res.status(400).json({ message: 'Order ID required' });
-      }
 
-      // SECURITY: Ignore client 'amount'. Fetch real price from DB.
-      const order = await storage.getOrder(orderId);
-      if (!order) {
-        return res.status(404).json({ message: 'Order not found' });
-      }
-
-      // If order has an amountPaid set (e.g. from service price), use it.
-      // Otherwise we might need to lookup service. But typically order creation sets this.
-      // Assuming 'amountPaid' is the price to charge.
-      // Or if amountPaid is 0/null, we should check the service price.
-      // Let's check service price to be safe if amountPaid is missing.
-      let finalAmount = order.amountPaid || 0;
-
-      if (!finalAmount && order.serviceId) {
-        const service = await storage.getService(order.serviceId);
-        if (service) finalAmount = service.price;
-      }
-
-      if (!finalAmount || finalAmount <= 0) {
-        // If still 0, maybe it's custom. But we shouldn't trust client blindly unless strict logic.
-        // For now, if DB says 0, we assume it's an error or free.
-        // Let's default to failing if we can't find a trusted price. 
-        // However, if the user really wants to pay 1 rupee, they can't unless code allows.
-        // Let's trust DB only.
-        return res.status(400).json({ message: 'Invalid order amount' });
-      }
-
-      console.log(`Creating Razorpay order: amount=${finalAmount}, orderId=${orderId}`);
-      const paymentOrder = await createPaymentOrder(finalAmount, orderId);
-      console.log('Razorpay order created:', paymentOrder.id);
-      res.json(paymentOrder);
-    } catch (error: any) {
-      console.error("Error creating payment order:", error);
-      console.error("Razorpay error details:", error?.error || error?.message || error);
-      res.status(500).json({
-        message: "Failed to create payment order",
-        error: error?.error?.description || error?.message || 'Unknown error'
-      });
-    }
-  });
-
-  app.post('/api/payment/verify', async (req, res) => {
-    try {
-      const { razorpay_order_id, razorpay_payment_id, razorpay_signature, orderId } = req.body;
-
-      if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature || !orderId) {
-        return res.status(400).json({ message: 'Missing payment verification data' });
-      }
-
-      const isValid = verifyPaymentSignature(
-        razorpay_order_id,
-        razorpay_payment_id,
-        razorpay_signature
-      );
-
-      if (isValid) {
-        // Update order as paid
-        const order = await storage.getOrderById(orderId);
-        if (order) {
-          await storage.updateOrderStatus(orderId, 'processing');
-        }
-
-        // Send response immediately (don't wait for email)
-        res.json({ success: true, message: 'Payment verified successfully' });
-
-        // Send payment success email in background (fire-and-forget)
-        if (order) {
-          sendPaymentSuccessEmail({
-            customerName: order.customerName || 'Customer',
-            customerEmail: order.customerEmail,
-            orderId: order.id,
-            serviceName: order.serviceName,
-            amount: order.amountPaid || 0,
-            orderDate: (order.createdAt || new Date()).toLocaleDateString(),
-            paymentId: razorpay_payment_id,
-            paymentMethod: 'Razorpay'
-          }).catch(err => console.error('Payment email failed (background):', err));
-        }
-      } else {
-        res.status(400).json({ success: false, message: 'Invalid payment signature' });
-      }
-    } catch (error) {
-      console.error("Error verifying payment:", error);
-      res.status(500).json({ message: "Payment verification failed" });
-    }
-  });
 
   // Admin routes (protected with admin role check)
   app.get('/api/admin/orders', isAuthenticated, isAdmin, async (req, res) => {
