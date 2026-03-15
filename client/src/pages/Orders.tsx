@@ -65,7 +65,7 @@ export default function Orders() {
     if (goldenTicketMode === 'true') {
       setTimeout(() => {
         toast({
-          title: "ð Starter Credit Mode!",
+          title: "ð Starter Credit Mode!",
           description: "Select any Bar 1 service below and it will be FREE!",
         });
       }, 500);
@@ -476,15 +476,15 @@ export default function Orders() {
                         <span className="font-medium text-foreground">{item.name}</span>
                         {item.isGoldenEligible && (
                           <Badge className="bg-gradient-to-r from-yellow-400 to-amber-600 text-black text-xs">
-                            â FREE
+                            â¨ FREE
                           </Badge>
                         )}
                       </div>
                       <div className="flex items-center gap-3">
                         {item.isGoldenEligible ? (
-                          <span className="text-green-500 font-bold">â
+                          <span className="text-green-500 font-bold">â¹0</span>
                         ) : (
-                          <span className="text-primary font-bold">â
+                          <span className="text-primary font-bold">â¹{item.price}</span>
                         )}
                         <button
                           type="button"
@@ -501,9 +501,9 @@ export default function Orders() {
                   <div className="flex items-center justify-between pt-3 border-t border-border/30">
                     <span className="text-muted-foreground">Total</span>
                     {hasOnlyFreeServices ? (
-                      <span className="text-2xl font-black text-green-500">FREE â
+                      <span className="text-2xl font-black text-green-500">FREE â¨</span>
                     ) : (
-                      <span className="text-2xl font-black text-primary">â
+                      <span className="text-2xl font-black text-primary">â¹{cartTotal}</span>
                     )}
                   </div>
                 </div>
@@ -682,7 +682,7 @@ export default function Orders() {
                 {!isGoldenService && !hasOnlyFreeServices && !isServiceLocked && cart.length === 0 && (
                   <div className="space-y-2">
                     <Label htmlFor="amount" className="text-foreground">
-                      Order Amount (â <span className="text-destructive">*</span>
+                      Order Amount (â¹) <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="amount"
@@ -718,13 +718,13 @@ export default function Orders() {
                         Submitting...
                       </>
                     ) : isGoldenService || hasOnlyFreeServices
-                      ? "â Submit FREE Order"
-                      : `Pay â > 0 ? cartTotal : orderAmount} & Submit`}
+                      ? "â¨ Submit FREE Order"
+                      : `Pay â¹${cartTotal > 0 ? cartTotal : orderAmount} & Submit`}
                   </Button>
                 ) : (
                   <div className="space-y-4">
                     <div className="p-4 rounded-lg border border-green-500/50 bg-green-500/10">
-                      <p className="text-sm text-green-400 font-semibold">â Order Created Successfully!</p>
+                      <p className="text-sm text-green-400 font-semibold">â Order Created Successfully!</p>
                       <p className="text-xs text-muted-foreground mt-1">Order ID: {createdOrderId.slice(0, 8)}...</p>
                     </div>
 
@@ -736,7 +736,7 @@ export default function Orders() {
                       className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:opacity-90 text-lg py-6 flex items-center justify-center gap-2"
                     >
                       <CreditCard className="w-5 h-5" />
-                      Pay â Now
+                      Pay â¹{orderAmount} Now
                     </Button>
 
                     <Button
@@ -822,7 +822,7 @@ export default function Orders() {
                   </div>
                   <div>
                     <p className="font-bold text-foreground">AI + Human Excellence</p>
-                    <p className="text-sm text-muted-foreground">We'll handle it for you â
+                    <p className="text-sm text-muted-foreground">We'll handle it for you â¨</p>
                   </div>
                 </div>
 
