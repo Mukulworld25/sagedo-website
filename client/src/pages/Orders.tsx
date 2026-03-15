@@ -157,7 +157,7 @@ export default function Orders() {
         // Call Supabase Edge Function directly
         const response = await fetch('https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/create-razorpay-order', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' }
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             amount: cartTotal > 0 ? cartTotal : orderAmount,
             service_name: 'SAGE DO Service',
@@ -185,7 +185,7 @@ export default function Orders() {
               // Call Supabase verification edge function
               const verifyResponse = await fetch('https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/verify-razorpay', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                   razorpay_order_id: response.razorpay_order_id,
                   razorpay_payment_id: response.razorpay_payment_id,
