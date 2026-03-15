@@ -100,15 +100,15 @@ export default function Services() {
       <ServiceDetailModal service={selectedService} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
       {/* HERO + PACKAGES — ONE SECTION */}
-      <div className="relative pt-24 pb-16 px-4 overflow-hidden">
+      <div className="relative pt-20 pb-4 px-4 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-amber-500/5 blur-[120px] pointer-events-none" />
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <Badge className="mb-4 bg-amber-500/10 text-amber-500 border-amber-500/20 px-4 py-1.5 text-sm uppercase tracking-widest font-bold">SAGE DO • EXCLUSIVE</Badge>
-            <h1 className="text-5xl md:text-7xl font-black mb-4 tracking-tight text-white">
+            <h1 className="text-4xl md:text-5xl font-black mb-3 tracking-tight text-white">
               Build Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-600">Legacy</span>.
             </h1>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">Precision-engineered services for founders, leaders, and visionaries who refuse to settle for average.</p>
+            <p className="text-base text-gray-400 max-w-2xl mx-auto mb-5 leading-relaxed">Precision-engineered services for founders, leaders, and visionaries who refuse to settle for average.</p>
             <div className="max-w-xl mx-auto relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 to-blue-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="relative flex items-center bg-white/5 border border-white/10 rounded-2xl p-2 backdrop-blur-xl focus-within:border-amber-500/50">
@@ -120,7 +120,7 @@ export default function Services() {
 
           {/* 3 PACKAGES */}
           <div className="mb-4">
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center justify-between mb-5">
               <div>
                 <h2 className="text-3xl font-bold text-white flex items-center gap-3"><Crown className="w-8 h-8 text-amber-500" />The Founder&#39;s Stack</h2>
                 <p className="text-gray-400 mt-1">High-leverage infrastructure for rapid scaling. Pick one and we execute everything.</p>
@@ -257,11 +257,16 @@ export default function Services() {
                         <div className="p-4">
                           <p className="text-xs text-amber-400/80 font-semibold mb-2 italic">{(service as any).whyBuy || ""}</p>
                           <p className="text-sm text-gray-400 line-clamp-2 mb-4">{service.description}</p>
-                          <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}`} onClick={(e) => e.stopPropagation()}>
-                            <Button size="sm" className="w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none justify-between transition-colors font-semibold">
-                              Order Now → {service.priceRange}
-                            </Button>
-                          </Link>
+                          <div className="flex gap-2">
+                            <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}`} onClick={(e) => e.stopPropagation()} className="flex-1">
+                              <Button size="sm" className="w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none transition-colors font-semibold text-xs">
+                                Order → {service.priceRange}
+                              </Button>
+                            </Link>
+                            <a href={`https://wa.me/916284925684?text=${encodeURIComponent('Hi Mukul, I want to know more about: ' + service.name + ' (' + service.priceRange + ')')}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="flex-shrink-0 bg-green-600 hover:bg-green-500 text-white px-2 py-1.5 rounded-md text-xs font-semibold flex items-center transition-colors">
+                              Ask
+                            </a>
+                          </div>
                         </div>
                       </div>
                     ))}
