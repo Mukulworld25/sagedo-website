@@ -1,4 +1,4 @@
-import { Card } from "@/components/ui/card";
+﻿import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -476,15 +476,15 @@ export default function Orders() {
                         <span className="font-medium text-foreground">{item.name}</span>
                         {item.isGoldenEligible && (
                           <Badge className="bg-gradient-to-r from-yellow-400 to-amber-600 text-black text-xs">
-                            â¨ FREE
+                            ¨ FREE
                           </Badge>
                         )}
                       </div>
                       <div className="flex items-center gap-3">
                         {item.isGoldenEligible ? (
-                          <span className="text-green-500 font-bold">â¹0</span>
+                          <span className="text-green-500 font-bold">¹0</span>
                         ) : (
-                          <span className="text-primary font-bold">â¹{item.price}</span>
+                          <span className="text-primary font-bold">¹{item.price}</span>
                         )}
                         <button
                           type="button"
@@ -501,9 +501,9 @@ export default function Orders() {
                   <div className="flex items-center justify-between pt-3 border-t border-border/30">
                     <span className="text-muted-foreground">Total</span>
                     {hasOnlyFreeServices ? (
-                      <span className="text-2xl font-black text-green-500">FREE â¨</span>
+                      <span className="text-2xl font-black text-green-500">FREE ¨</span>
                     ) : (
-                      <span className="text-2xl font-black text-primary">â¹{cartTotal}</span>
+                      <span className="text-2xl font-black text-primary">¹{cartTotal}</span>
                     )}
                   </div>
                 </div>
@@ -682,7 +682,7 @@ export default function Orders() {
                 {!isGoldenService && !hasOnlyFreeServices && !isServiceLocked && cart.length === 0 && (
                   <div className="space-y-2">
                     <Label htmlFor="amount" className="text-foreground">
-                      Order Amount (â¹) <span className="text-destructive">*</span>
+                      Order Amount (¹) <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="amount"
@@ -718,13 +718,13 @@ export default function Orders() {
                         Submitting...
                       </>
                     ) : isGoldenService || hasOnlyFreeServices
-                      ? "â¨ Submit FREE Order"
-                      : `Pay â¹${cartTotal > 0 ? cartTotal : orderAmount} & Submit`}
+                      ? "¨ Submit FREE Order"
+                      : `Pay ¹${cartTotal > 0 ? cartTotal : orderAmount} & Submit`}
                   </Button>
                 ) : (
                   <div className="space-y-4">
                     <div className="p-4 rounded-lg border border-green-500/50 bg-green-500/10">
-                      <p className="text-sm text-green-400 font-semibold">â Order Created Successfully!</p>
+                      <p className="text-sm text-green-400 font-semibold"> Order Created Successfully!</p>
                       <p className="text-xs text-muted-foreground mt-1">Order ID: {createdOrderId.slice(0, 8)}...</p>
                     </div>
 
@@ -736,7 +736,7 @@ export default function Orders() {
                       className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:opacity-90 text-lg py-6 flex items-center justify-center gap-2"
                     >
                       <CreditCard className="w-5 h-5" />
-                      Pay â¹{orderAmount} Now
+                      Pay ¹{orderAmount} Now
                     </Button>
 
                     <Button
@@ -822,7 +822,7 @@ export default function Orders() {
                   </div>
                   <div>
                     <p className="font-bold text-foreground">AI + Human Excellence</p>
-                    <p className="text-sm text-muted-foreground">We'll handle it for you â¨</p>
+                    <p className="text-sm text-muted-foreground">We'll handle it for you ¨</p>
                   </div>
                 </div>
 
@@ -850,5 +850,6 @@ export default function Orders() {
     </div>
   );
 }
+
 
 
