@@ -133,8 +133,54 @@ export default function Pay() {
         }
     };
 
-    // Show lookup form if no order info available
-    if (!pageOrderId || !pageAmount) {
+    const [lookupId, setLookupId] = useState("");
+    const [pageAmount, setPageAmount] = useState(amount);
+    const [pageRzpOrderId, setPageRzpOrderId] = useState(razorpayOrderId);
+    const [pageRzpKeyId, setPageRzpKeyId] = useState("");
+    const [pageOrderId, setPageOrderId] = useState(orderId);
+
+    const handleLookup = async () => {
+        if (!lookupId) return;
+        setIsProcessing(true);
+        try {
+            // Call Supabase Edge Function for order creation
+            const res = await fetch('https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/create-razorpay-order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    amount: orderDetails.amountPaid || orderDetails.finalPrice || orderDetails.price || 0,
+                    service_name: orderDetails.serviceName || 'SAGE DO Service',
+                    order_id: lookupId 
+                })
+            });
+            const data = await res.json();
+
+            if (res.ok) {
+                setPageOrderId(lookupId);
+                setPageAmount((data.amount / 100).toString()); // Convert paise to rupees
+                setPageRzpOrderId(data.razorpay_order_id);
+                setPageRzpKeyId(data.key_id);
+                // Clean URL
+                setLocation(`/pay?orderId=${lookupId}&amount=${data.amount / 100}&razorpayOrderId=${data.razorpay_order_id}`);
+            } else {
+                toast({
+                    title: "Order Not Found",
+                    description: data.message || "Please check your Order ID",
+                    variant: "destructive"
+                });
+            }
+        } catch (error) {
+            toast({
+                title: "Error",
+                description: "Failed to fetch order details",
+                variant: "destructive"
+            });
+        } finally {
+            setIsProcessing(false);
+        }
+    };
+
+    if (!pageOrderId || !pageAmount || !pageRzpOrderId) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-background p-4">
                 <Card className="max-w-md w-full p-8 border-primary/20 bg-card/50 backdrop-blur">
