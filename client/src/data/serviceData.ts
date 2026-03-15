@@ -4,648 +4,361 @@ export interface ServiceDetail {
     name: string;
     description: string;
     fullDescription: string;
-    price: number; // For sorting/logic
-    priceRange: string; // Display range
+    price: number;
+    priceRange: string;
     category: string;
     imageUrl: string;
     isGoldenEligible: boolean;
     deliveryTime?: string;
     standardFeatures: string[];
     premiumFeatures: string[];
+    maintenancePrice?: string;
+    maintenanceDesc?: string;
+    whyBuy?: string;
 }
 
 export const allServices: ServiceDetail[] = [
     // ==========================================
-    // 🚀 THE "FREELANCER KILLER" SUITE (Lead Magnets)
+    // LAUNCHPAD SERVICES (Business category)
     // ==========================================
     {
-        id: "20",
-        name: "Viral Reel/Short Editing",
-        category: "Personal",
-        description: "Get the Alex Hormozi style edits.",
-        fullDescription: "Stop posting boring videos. We turn your raw footage into high-retention viral clips with dynamic captions, sound effects, and transitions. Perfect for IG Reels, YouTube Shorts, and TikTok.",
-        price: 499,
-        priceRange: "₹499 - ₹1,499",
-        imageUrl: "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: [
-            "Up to 60 Seconds",
-            "Dynamic Captions",
-            "Stock Music",
-            "Clean Cuts & Transitions"
-        ],
-        premiumFeatures: [
-            "Visual Effects (VFX)",
-            "Sound Design & SFX",
-            "Motion Graphics",
-            "Viral Hook Optimization",
-            "Unlimited Revisions"
-        ]
-    },
-    {
-        id: "21",
+        id: "b-01",
         name: "Professional Logo Design",
         category: "Business",
         description: "A brand identity, not just a logo.",
-        fullDescription: "Your logo is your first impression. We combine AI creativity with professional design principles to create a unique, memorable logo that works across all mediums - from websites to billboards.",
-        price: 999,
-        priceRange: "₹999 - ₹2,999",
+        fullDescription: "Your logo is your first impression on every client, investor, and partner. We combine AI creativity with professional design to create a unique, memorable logo that works across all mediums.",
+        price: 1999,
+        priceRange: "₹1,999 - ₹2,499",
         imageUrl: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "2 Unique AI Concepts",
-            "Human Designer Polish",
-            "High-Res PNG/JPG",
-            "Transparent Background"
-        ],
-        premiumFeatures: [
-            "Source Files (AI/EPS)",
-            "Brand Style Guide",
-            "Social Media Kit",
-            "3D Mockups",
-            "Favicon Variations"
-        ]
+        deliveryTime: "3-5 days",
+        whyBuy: "First impressions are permanent. A weak logo costs you clients before you even speak.",
+        standardFeatures: ["3 unique concepts", "2 revision rounds", "PNG + SVG source files", "Color + B&W versions"],
+        premiumFeatures: ["5 concepts", "Unlimited revisions", "Full brand style guide", "Social media kit", "Business card design"],
+        maintenancePrice: "One-time",
+        maintenanceDesc: "Delivered once. Yours forever."
     },
     {
-        id: "22",
-        name: "High-CTR YouTube Thumbnail",
-        category: "Personal",
-        description: "Stop the scroll. Get the click.",
-        fullDescription: "A great video dies with a bad thumbnail. We design click-optimized thumbnails using psychological triggers, bold typography, and color theory to maximize your Views Per Impression (CTR).",
-        price: 199,
-        priceRange: "₹199 - ₹599",
-        imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: [
-            "1 Custom Design",
-            "Text Overlay & Color Grading",
-            "High-Res Export",
-            "24hr Turnaround"
-        ],
-        premiumFeatures: [
-            "A/B Testing Variations (2 Styles)",
-            "Editable PSD Source File",
-            "Custom Illustration/Montage",
-            "Expression Retouching"
-        ]
-    },
-    {
-        id: "23",
-        name: "SEO Blog Writing",
-        category: "Business",
-        description: "Rank on Google page 1.",
-        fullDescription: "Content is currency. We write deep, authoritative, and SEO-optimized blog posts that Google loves. We keyword-optimize every header, meta tag, and paragraph to drive organic traffic to your site.",
-        price: 799,
-        priceRange: "₹799 - ₹1,999",
-        imageUrl: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: [
-            "1000 Words Content",
-            "Keyword Optimization",
-            "AI Draft + Human Edit",
-            "Plagiarism Free"
-        ],
-        premiumFeatures: [
-            "SurferSEO Score 90+",
-            "Custom Infographics",
-            "Competitor Content Gap Analysis",
-            "Backlink Outreach Strategy",
-            "CMS Upload & Formatting"
-        ]
-    },
-    {
-        id: "24",
+        id: "b-02",
         name: "WordPress Website Design",
         category: "Business",
         description: "Your digital office, open 24/7.",
-        fullDescription: "Get a professional business website without the agency price tag. We build fast, secure, and mobile-responsive WordPress sites that convert visitors into customers. Perfect for service businesses, blogs, and startups.",
-        price: 4999,
-        priceRange: "₹4,999 - ₹29,999",
-        imageUrl: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=1000&auto=format&fit=crop",
+        fullDescription: "A professional 5-page website built on WordPress. Fast, mobile-optimized, and SEO-ready from day one. Your business needs a home on the internet that works while you sleep.",
+        price: 12999,
+        priceRange: "₹12,999 - ₹17,999",
+        imageUrl: "https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: false,
-        standardFeatures: [
-            "5-Page Business Site",
-            "Mobile Responsive",
-            "Contact Form Integration",
-            "Basic SEO Setup"
-        ],
-        premiumFeatures: [
-            "E-commerce (WooCommerce)",
-            "Payment Gateway Setup",
-            "Speed Optimization (90+ Score)",
-            "Custom Animations",
-            "1 Year Maintenance"
-        ]
-    },
-
-    // ==========================================
-    // 💼 BUSINESS & STARTUP (High Ticket - Revamped)
-    // ==========================================
-    {
-        id: "1",
-        name: "24/7 AI Voice & Chat Bots",
-        category: "Business",
-        description: "AI handles 1000s of calls.",
-        fullDescription: "The ultimate hybrid support system. Our AI agents handle 90% of your customer queries, bookings, and support tickets instantly, 24/7. Humans handle the complex 10%.",
-        price: 9999,
-        priceRange: "₹9,999 - ₹29,999",
-        imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: false,
-        standardFeatures: [
-            "Basic Chat/Voice Bot",
-            "Scripted Responses",
-            "WhatsApp Integration",
-            "Lead Capture"
-        ],
-        premiumFeatures: [
-            "Custom LLM Training",
-            "Sentiment Analysis",
-            "CRM Integration (Salesforce/HubSpot)",
-            "Multilingual Support",
-            "Dedicated Human Monitor"
-        ]
+        deliveryTime: "7-10 days",
+        whyBuy: "Without a website, you don't exist to 80% of your potential clients.",
+        standardFeatures: ["5 pages", "Mobile responsive", "Contact form", "Basic SEO setup", "1 month support"],
+        premiumFeatures: ["10+ pages", "E-commerce ready", "Custom animations", "Speed optimization", "3 months support"],
+        maintenancePrice: "₹1,499/mo",
+        maintenanceDesc: "Speed optimization + security updates + bug fixes + uptime monitoring every month."
     },
     {
-        id: "2",
-        name: "Intelligent Workflow Automation",
+        id: "b-03",
+        name: "SEO Setup",
         category: "Business",
-        description: "Automate your busy work.",
-        fullDescription: "Stop being a data-entry clerk. We connect your apps (CRM, Email, Sheets) so data flows automatically. Save 20+ hours a week.",
+        description: "Get found on Google from day 1.",
+        fullDescription: "Complete technical SEO setup: robots.txt, sitemap, Google Search Console, meta tags, schema markup, and Crunchbase profile. We make your business visible to Google and AI search engines.",
+        price: 3999,
+        priceRange: "₹3,999 - ₹5,999",
+        imageUrl: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: true,
+        deliveryTime: "48 hours",
+        whyBuy: "96% of Indian startup websites get zero traffic. This is why.",
+        standardFeatures: ["robots.txt + sitemap", "Google Search Console", "Meta tags on all pages", "Schema markup", "Crunchbase profile"],
+        premiumFeatures: ["Competitor analysis", "Keyword strategy", "Google Business Profile", "2 SEO blog posts", "Monthly rank report"],
+        maintenancePrice: "₹2,999/mo",
+        maintenanceDesc: "1 SEO blog post/month + rank monitoring + competitor check. Without this, competitors overtake you in 60-90 days."
+    },
+    {
+        id: "b-04",
+        name: "GST Registration",
+        category: "Business",
+        description: "Start legally in 48 hours.",
+        fullDescription: "GST registration is mandatory for most businesses in India. We handle the entire process end-to-end and deliver your GSTIN in 48 hours.",
+        price: 799,
+        priceRange: "₹799 - ₹1,299",
+        imageUrl: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: true,
+        deliveryTime: "48 hours",
+        whyBuy: "Without GST, you can't invoice clients professionally or access government contracts.",
+        standardFeatures: ["GSTIN in 48 hours", "Full documentation", "Govt portal filing", "Certificate delivery"],
+        premiumFeatures: ["GST return filing setup", "1 year filing support", "Compliance calendar", "Dedicated CA review"],
+        maintenancePrice: "One-time",
+        maintenanceDesc: "One-time registration. Optional monthly GST filing support available at ₹499/mo."
+    },
+    {
+        id: "b-05",
+        name: "MSME Registration",
+        category: "Business",
+        description: "Unlock government benefits today.",
+        fullDescription: "MSME registration gives you access to government subsidies, lower bank interest rates, priority loans, and protection against delayed payments from large clients.",
+        price: 499,
+        priceRange: "₹499 - ₹799",
+        imageUrl: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: true,
+        deliveryTime: "24 hours",
+        whyBuy: "Free government benefits worth lakhs. Registration takes 24 hours. No reason not to.",
+        standardFeatures: ["Udyam certificate", "MSME number", "Digital certificate delivery"],
+        premiumFeatures: ["Priority processing", "Bank subsidy guidance", "Govt scheme eligibility check"],
+        maintenancePrice: "One-time",
+        maintenanceDesc: "One-time registration. Certificate valid indefinitely."
+    },
+    {
+        id: "b-06",
+        name: "Trademark Filing",
+        category: "Business",
+        description: "Protect your brand name legally.",
+        fullDescription: "Once someone else trademarks your brand name, you lose it forever. We file your trademark application with the Indian IP Office and track it to approval.",
         price: 2499,
-        priceRange: "₹2,499 - ₹19,999",
-        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: [
-            "2-Step Automation (Zapier)",
-            "Form to Email/Sheet",
-            "Basic Error Handling",
-            "Setup Guide"
-        ],
-        premiumFeatures: [
-            "Multi-Agent Workflows (n8n)",
-            "Custom API Integrations",
-            "Complex Logic & Filtering",
-            "Dashboard Creation",
-            "Monthly Maintenance"
-        ]
+        priceRange: "₹2,499 - ₹3,999",
+        imageUrl: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: false,
+        deliveryTime: "3-5 days (filing)",
+        whyBuy: "1 competitor + your unprotected brand name = years of legal battle. File now.",
+        standardFeatures: ["1 class filing", "IP Office submission", "Filing receipt", "Status tracking"],
+        premiumFeatures: ["Multiple classes", "Priority processing", "Opposition monitoring", "Legal consultation"],
+        maintenancePrice: "One-time",
+        maintenanceDesc: "One-time filing. Trademark valid for 10 years."
     },
     {
-        id: "4",
-        name: "Hybrid Social Media Engine",
+        id: "b-07",
+        name: "WhatsApp Sales Bot",
         category: "Business",
-        description: "Consistency on autopilot.",
-        fullDescription: "We combine AI trend analysis with human creativity to keep your socials active and engaging. You get a full month of content done for you.",
+        description: "Never miss a lead at 3 AM.",
+        fullDescription: "An intelligent WhatsApp bot that qualifies leads, answers FAQs, sends catalogues, and books appointments automatically. Runs 24/7 without you lifting a finger.",
+        price: 6999,
+        priceRange: "₹6,999 - ₹9,999",
+        imageUrl: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: false,
+        deliveryTime: "5-7 days",
+        whyBuy: "80% of Indian buyers contact on WhatsApp. A bot closes leads while you sleep.",
+        standardFeatures: ["Automated FAQ responses", "Lead capture", "Catalogue sending", "Basic appointment booking"],
+        premiumFeatures: ["AI-powered conversations", "CRM integration", "Payment collection", "Multi-agent handoff", "Analytics dashboard"],
+        maintenancePrice: "₹999/mo",
+        maintenanceDesc: "Bot updates + new FAQ additions + performance monitoring + WhatsApp API renewal."
+    },
+    {
+        id: "b-08",
+        name: "CRM Setup",
+        category: "Business",
+        description: "Manage every lead from day 1.",
+        fullDescription: "A fully configured CRM system that tracks your leads, follows up automatically, and never lets a potential client fall through the cracks. Built on tools that scale with you.",
         price: 7999,
-        priceRange: "₹7,999 - ₹24,999/mo",
-        imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop",
+        priceRange: "₹7,999 - ₹11,999",
+        imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: false,
-        standardFeatures: [
-            "12 Posts/Month",
-            "Basic Captions & Hashtags",
-            "Scheduling",
-            "Monthly Report"
-        ],
-        premiumFeatures: [
-            "4 Reels/Shorts Editing",
-            "Community Management (Reply to comments)",
-            "Paid Ad Campaign Management",
-            "Competitor Analysis",
-            "Strategy Call"
-        ]
+        deliveryTime: "5-7 days",
+        whyBuy: "Founders who track leads close 3x more deals. Memory is not a CRM.",
+        standardFeatures: ["Lead pipeline setup", "Contact management", "Email integration", "Basic automation"],
+        premiumFeatures: ["Advanced automation", "WhatsApp integration", "Sales forecasting", "Team access setup", "Custom reports"],
+        maintenancePrice: "₹1,499/mo",
+        maintenanceDesc: "Data cleanup + new automation rules + team training + monthly performance report."
     },
     {
-        id: "7",
-        name: "Startup Pitch Deck Design",
+        id: "b-09",
+        name: "Google Business Profile",
         category: "Business",
-        description: "Secure your funding.",
-        fullDescription: "Investors buy stories. We structure your data and design a compelling deck that gets you the meeting.",
-        price: 1999,
-        priceRange: "₹1,999 - ₹7,999",
-        imageUrl: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: [
-            "10-Slide Template Design",
-            "Data Visualization",
-            "Copy Cleanup",
-            "PDF Export"
-        ],
-        premiumFeatures: [
-            "Custom Branded Design",
-            "Financial Modeling Assistance",
-            "Narrative Storytelling Workshop",
-            "Investor Outreach List",
-            "PPT Source File"
-        ]
-    },
-    {
-        id: "19",
-        name: "SaaS MVP Development",
-        category: "Business",
-        description: "Launch in weeks, not months.",
-        fullDescription: "The fastest way to test your idea. We build a functional Minimum Viable Product using modern tech stacks so you can get user feedback fast.",
-        price: 24999,
-        priceRange: "₹24,999 - ₹89,999",
-        imageUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: false,
-        standardFeatures: [
-            "Core Features Implementation",
-            "User Authentication",
-            "Database Setup",
-            "Standard UI Template"
-        ],
-        premiumFeatures: [
-            "Custom UI/UX Design",
-            "Payment Gateway Integration",
-            "Admin Dashboard",
-            "Scalable Cloud Architecture",
-            "Mobile App Wrapper"
-        ]
-    },
-
-    // ==========================================
-    // ❤️ EXECUTIVE & STARTUP LAUNCH
-    // ==========================================
-    {
-        id: "8",
-        name: "C-Suite ATS Precision Formatting",
-        category: "Professional",
-        description: "Beat the algorithm. Command higher salaries.",
-        fullDescription: "75% of executive portfolios are rejected by bots before human eyes see them. We optimize your resume with precision-engineered keywords to pass the ATS scan and position you as a high-status leader.",
+        description: "Rank #1 in local searches.",
+        fullDescription: "We create and optimize your Google Business Profile so you appear in 'near me' searches. This is the fastest way to get local clients finding you on Google Maps.",
         price: 999,
-        priceRange: "₹999 - ₹2,999",
-        imageUrl: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=1000&auto=format&fit=crop",
+        priceRange: "₹999 - ₹1,499",
+        imageUrl: "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: true,
-        standardFeatures: [
-            "Executive ATS Formatting",
-            "Keyword Optimization",
-            "Power-Action Verbs",
-            "PDF Delivery"
-        ],
-        premiumFeatures: [
-            "Cover Letter Writing",
-            "LinkedIn Profile Optimization",
-            "Recruiter Outreach Template",
-            "Interview Prep Guide",
-            "Editable Source File"
-        ]
+        deliveryTime: "48 hours",
+        whyBuy: ""Near me" searches convert at 80%. Without GBP you are invisible to local buyers.",
+        standardFeatures: ["Profile creation + verification", "Category optimization", "Photo upload", "Business hours setup"],
+        premiumFeatures: ["Review strategy", "Post calendar", "Q&A optimization", "Competitor analysis", "Monthly insights"],
+        maintenancePrice: "₹799/mo",
+        maintenanceDesc: "Monthly posts + review responses + photo updates + ranking monitoring."
     },
     {
-        id: "13",
-        name: "Deep Market & Competitor Analysis",
-        category: "Startup Launch",
-        description: "Know exactly what your rivals are doing.",
-        fullDescription: "We use advanced research agents to scrape the internet, summarize key market gaps, and generate actionable insights on your top competitors so you can dominate the niche.",
+        id: "b-10",
+        name: "Business Email Setup",
+        category: "Business",
+        description: "Look professional from day 1.",
+        fullDescription: "Stop using Gmail for business. We set up your professional @yourcompany.com email with Google Workspace or Zoho Mail, configure SPF/DKIM, and ensure your emails don't land in spam.",
+        price: 499,
+        priceRange: "₹499 - ₹799",
+        imageUrl: "https://images.unsplash.com/photo-1596526131083-e8c633064ddc?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: true,
+        deliveryTime: "24 hours",
+        whyBuy: "Clients trust @company.com. Nobody signs contracts with @gmail.com.",
+        standardFeatures: ["1 professional email", "DNS configuration", "SPF + DKIM setup", "Mobile setup"],
+        premiumFeatures: ["5 team emails", "Google Workspace full setup", "Email templates", "Signature design"],
+        maintenancePrice: "One-time",
+        maintenanceDesc: "One-time setup. Annual domain renewal handled by you."
+    },
+    {
+        id: "b-11",
+        name: "Social Media Setup",
+        category: "Business",
+        description: "Build presence on 3 platforms.",
+        fullDescription: "Complete social media setup across Instagram, LinkedIn, and Facebook. We create branded profiles, write bios, design profile pictures and covers, and create your first 5 posts.",
+        price: 1999,
+        priceRange: "₹1,999 - ₹2,999",
+        imageUrl: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: true,
+        deliveryTime: "3-5 days",
+        whyBuy: "Your clients are on social media. If you're not there, your competitor is.",
+        standardFeatures: ["3 platform setup", "Branded profiles", "5 starter posts", "Bio writing"],
+        premiumFeatures: ["Content calendar", "Hashtag strategy", "Story templates", "Reels template pack"],
+        maintenancePrice: "₹4,999/mo",
+        maintenanceDesc: "8 posts/month + stories + engagement + monthly analytics report."
+    },
+    {
+        id: "b-12",
+        name: "Pitch Deck Design",
+        category: "Business",
+        description: "Raise funding with confidence.",
+        fullDescription: "A professionally designed pitch deck that tells your startup story compellingly. Investors see 100 decks a week. Yours needs to stand out in 30 seconds.",
+        price: 2499,
+        priceRange: "₹2,499 - ₹3,499",
+        imageUrl: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: false,
+        deliveryTime: "3-5 days",
+        whyBuy: "Investors fund stories, not spreadsheets. Your deck is your first impression.",
+        standardFeatures: ["10-12 slides", "Brand-consistent design", "2 revision rounds", "PDF + PPT delivery"],
+        premiumFeatures: ["15+ slides", "Custom illustrations", "Animated version", "Investor narrative writing", "Financial slide design"],
+        maintenancePrice: "One-time",
+        maintenanceDesc: "One-time delivery. Updates available at ₹999 per revision round."
+    },
+    {
+        id: "b-13",
+        name: "AI Website Chatbot",
+        category: "Business",
+        description: "Capture leads 24/7 on autopilot.",
+        fullDescription: "An AI-powered chat widget on your website that answers visitor questions, qualifies leads, and books appointments automatically. Converts visitors who would otherwise just leave.",
         price: 4999,
-        priceRange: "₹4,999 - ₹9,999",
-        imageUrl: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: [
-            "Competitor Feature Matrices",
-            "Pricing Model Breakdown",
-            "Market Gap Identification",
-            "Strategic Report"
-        ],
-        premiumFeatures: [
-            "Deep Dive Analysis",
-            "Unlimited Sources",
-            "Critical Review Points",
-            "Presentation Slides Draft",
-            "1-Hour Explainer Call"
-        ]
+        priceRange: "₹4,999 - ₹7,999",
+        imageUrl: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: false,
+        deliveryTime: "5-7 days",
+        whyBuy: "70% of website visitors leave without contacting you. A chatbot captures them.",
+        standardFeatures: ["Custom AI training", "Lead capture", "FAQ automation", "Email notification"],
+        premiumFeatures: ["CRM integration", "Appointment booking", "Multi-language", "Analytics dashboard", "A/B testing"],
+        maintenancePrice: "₹999/mo",
+        maintenanceDesc: "AI retraining + new FAQ updates + performance optimization + monthly lead report."
     },
-
-    // === RESTORED SERVICES ===
     {
-        id: "30",
+        id: "b-14",
+        name: "SEO Blog Writing",
+        category: "Business",
+        description: "Rank on Google with content.",
+        fullDescription: "Professionally written, SEO-optimized blog posts that rank on Google and establish your expertise. Each post targets specific keywords your customers are searching for.",
+        price: 699,
+        priceRange: "₹699 - ₹999 per post",
+        imageUrl: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: true,
+        deliveryTime: "48 hours per post",
+        whyBuy: "Every blog post is a permanent Google ad that works for years without paying.",
+        standardFeatures: ["1000-1500 words", "Keyword optimized", "Meta title + description", "Internal linking"],
+        premiumFeatures: ["2000+ words", "Custom images", "Schema markup", "Social media caption", "Distribution plan"],
+        maintenancePrice: "₹2,999/mo",
+        maintenanceDesc: "1 blog post/month + keyword tracking + performance report. Google rewards consistency."
+    },
+    {
+        id: "b-15",
+        name: "Sales Automation",
+        category: "Business",
+        description: "Follow up without lifting a finger.",
+        fullDescription: "We build automated workflows that capture leads from your website, WhatsApp, and social media, then follow up via email and WhatsApp until they convert.",
+        price: 8999,
+        priceRange: "₹8,999 - ₹12,999",
+        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: false,
+        deliveryTime: "5-7 days",
+        whyBuy: "Manual follow-up misses 80% of leads. Automation closes them while you sleep.",
+        standardFeatures: ["Lead capture workflow", "Email sequence", "WhatsApp follow-up", "CRM sync"],
+        premiumFeatures: ["Multi-channel automation", "AI lead scoring", "Custom triggers", "A/B testing", "Full analytics"],
+        maintenancePrice: "₹1,999/mo",
+        maintenanceDesc: "Workflow optimization + new sequence additions + performance monitoring."
+    },
+    {
+        id: "b-16",
+        name: "Analytics Dashboard",
+        category: "Business",
+        description: "See your numbers in one place.",
+        fullDescription: "A custom business intelligence dashboard that pulls data from your website, social media, CRM, and payments into one clean view. Stop running your business blind.",
+        price: 6999,
+        priceRange: "₹6,999 - ₹9,999",
+        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: false,
+        deliveryTime: "7-10 days",
+        whyBuy: "You can't grow what you can't measure. Guessing is not a strategy.",
+        standardFeatures: ["3 data sources", "Weekly report", "Mobile-friendly", "Basic KPI tracking"],
+        premiumFeatures: ["Unlimited sources", "Real-time data", "Custom alerts", "Team access", "Predictive insights"],
+        maintenancePrice: "₹1,499/mo",
+        maintenanceDesc: "Monthly data refresh + new metric additions + insight report."
+    },
+    {
+        id: "b-17",
+        name: "Google Visibility Audit",
+        category: "Business",
+        description: "Know exactly why you're invisible.",
+        fullDescription: "A detailed 1-page PDF report covering 10 points: robots.txt, Search Console, sitemap, meta tags, Crunchbase, Wikidata, speed score, mobile score, backlinks, and AI search visibility.",
+        price: 499,
+        priceRange: "₹499 - ₹999",
+        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: true,
+        deliveryTime: "24 hours",
+        whyBuy: "Before fixing, you must diagnose. Most businesses fix the wrong things first.",
+        standardFeatures: ["10-point audit", "PDF report", "Priority fix list", "Competitor comparison"],
+        premiumFeatures: ["Video walkthrough", "30-min consultation", "Action plan", "90-day roadmap"],
+        maintenancePrice: "One-time",
+        maintenanceDesc: "One-time audit. Monthly monitoring available under ScaleOps maintenance plans."
+    },
+    {
+        id: "b-18",
+        name: "HR System Setup",
+        category: "Business",
+        description: "Hire and manage your team right.",
+        fullDescription: "Complete HR infrastructure: attendance system, leave management, payroll setup, offer letter templates, and onboarding workflow. Built for teams of 2-50 people.",
+        price: 5999,
+        priceRange: "₹5,999 - ₹9,999",
+        imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: false,
+        deliveryTime: "7-10 days",
+        whyBuy: "Bad HR processes cause your best employees to quit. Get this right from day 1.",
+        standardFeatures: ["Attendance system", "Leave management", "Offer letter templates", "Onboarding checklist"],
+        premiumFeatures: ["Payroll automation", "Performance review system", "Employee portal", "Custom policies"],
+        maintenancePrice: "₹1,499/mo",
+        maintenanceDesc: "Policy updates + payroll support + new employee onboarding assistance."
+    },
+    {
+        id: "b-19",
+        name: "Mobile App Development",
+        category: "Business",
+        description: "Launch your app in weeks, not months.",
+        fullDescription: "Cross-platform mobile app built with React Native. Works on both Android and iOS. We build, test, and deploy to Play Store and App Store.",
+        price: 29999,
+        priceRange: "₹29,999 - ₹59,999",
+        imageUrl: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1000&auto=format&fit=crop",
+        isGoldenEligible: false,
+        deliveryTime: "21-45 days",
+        whyBuy: "Apps convert 3x better than websites. Your competitors without apps are losing.",
+        standardFeatures: ["5 screens", "Android + iOS", "Play Store submission", "Basic backend"],
+        premiumFeatures: ["Unlimited screens", "Payment integration", "Push notifications", "Admin panel", "6 months support"],
+        maintenancePrice: "₹2,999/mo",
+        maintenanceDesc: "Bug fixes + OS updates + new features + Play Store compliance."
+    },
+    {
+        id: "b-20",
         name: "24/7 AI Sales Chatbot",
         category: "Business",
-        description: "Intelligent WhatsApp/Web bot that sells while you sleep.",
-        fullDescription: "Stop losing customers to slow replies. Our AI Chatbots live on your website or WhatsApp, answering queries, qualifying leads, and even booking appointments 24/7. It",
-        price: 24999,
-        priceRange: "₹24999 - ₹37498",
-        imageUrl: "https://images.unsplash.com/photo-1531746797190-fe5c1a9ac876?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["Custom-trained AI on your data", "WhatsApp & Website integration", "Lead qualification & capture", "Appointment booking capability", "Monthly performance report"],
-        premiumFeatures: ["We scrape your website/docs", "Train the conversation flow", "Integrate with your platforms", "Go live with monitoring"]
-    },
-    {
-        id: "31",
-        name: "Zero-Touch Workflow Automation",
-        category: "Business",
-        description: "Connect your apps. Automate leads, invoices, and emails.",
-        fullDescription: "Eliminate manual data entry. We build ",
-        price: 14999,
-        priceRange: "₹14999 - ₹22498",
-        imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["Map of current manual processes", "3-step complex automation setup (Zapier/Make)", "Error handling & alerts", "Connection to CRM/Email/Sheets", "Training session"],
-        premiumFeatures: ["Map of current manual processes", "3-step complex automation setup (Zapier/Make)", "Error handling & alerts"]
-    },
-    {
-        id: "32",
-        name: "Business Intelligence Dashboard",
-        category: "Business",
-        description: "Live ",
-        fullDescription: "Stop flying blind. We turn your messy Excel sheets and database rows into a stunning, real-time command center. See your daily sales, profit margins, and active users at a glance.",
-        price: 34999,
-        priceRange: "₹34999 - ₹52498",
-        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["Custom PowerBI/Looker Studio Dashboard", "Real-time data connections", "Sales & Revenue tracking", "Customer behavior visualization", "Mobile-friendly view"],
-        premiumFeatures: ["Custom PowerBI/Looker Studio Dashboard", "Real-time data connections", "Sales & Revenue tracking"]
-    },
-    {
-        id: "33",
-        name: "AI-Powered Technical Hiring",
-        category: "Business",
-        description: "Automated candidate screening to find top 1% engineers.",
-        fullDescription: "Hiring engineers is hard. We automate the filter. Our system sets up coding challenges, automated screenings, and AI-ranked application forms so you only talk to the qualified candidates.",
-        price: 9999,
-        priceRange: "₹9999 - ₹14998",
-        imageUrl: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["Custom application portal setup", "Automated skill assessment tests", "AI-ranking system for resumes", "Email rejection automation", "Interview question bank"],
-        premiumFeatures: ["Custom application portal setup", "Automated skill assessment tests", "AI-ranking system for resumes"]
-    },
-    {
-        id: "34",
-        name: "AI Brand Anthem & Audio",
-        category: "Business",
-        description: "Viral-worthy custom songs and jingles for your brand.",
-        fullDescription: "Sound is the new logo. We use advanced generative audio AI to compose a unique, catchy brand anthem, jingle, or background score that sticks in your customer",
-        price: 7999,
-        priceRange: "₹7999 - ₹11998",
-        imageUrl: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["1 Main Brand Anthem (60s)", "3 Short Jingles/Stings (10s)", "Commercial Usage Rights", "High-Quality WAV/MP3", "Lyrics/Vocals included"],
-        premiumFeatures: ["Analyze your brand vibe", "Generate 3 audio concepts", "Refine the winner", "Master and deliver"]
-    },
-    {
-        id: "35",
-        name: "Social Media Marketing Suite",
-        category: "Business",
-        description: "AI-driven content calendar + Viral Hooks + Posting.",
-        fullDescription: "Consistency builds empires. We use AI to analyze trends in your niche, generate a month",
-        price: 14999,
-        priceRange: "₹14999 - ₹22498",
-        imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["30-Day Content Calendar", "Viral Hooks & Scripting", "Hashtag & SEO Strategy", "Caption writing", "Trend analysis report"],
-        premiumFeatures: ["30-Day Content Calendar", "Viral Hooks & Scripting", "Hashtag & SEO Strategy"]
-    },
-    {
-        id: "36",
-        name: "Ads Making & Scaling",
-        category: "Business",
-        description: "High-ROI ad creatives generated and tested by AI.",
-        fullDescription: "Stop burning money on bad ads. We create data-backed ad creatives (images/videos) designed to stop the scroll. Then we help you set up the campaign structure for maximum ROAS.",
-        price: 19999,
-        priceRange: "₹19999 - ₹29998",
-        imageUrl: "https://images.unsplash.com/photo-1533750516457-a7f992034fec?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["5 AI-Generated Ad Creatives", "Copywriting for High Conversion", "Audience targeting strategy", "A/B Testing plan", "Setup guide"],
-        premiumFeatures: ["5 AI-Generated Ad Creatives", "Copywriting for High Conversion", "Audience targeting strategy"]
-    },
-    {
-        id: "37",
-        name: "Startup Pitch Deck Design",
-        category: "Business",
-        description: "Investment-ready slides that tell a compelling story.",
-        fullDescription: "Secure that funding. We take your raw notes and transform them into a visually stunning, narrative-driven pitch deck that investors can't ignore. Designed for clarity, impact, and persuasion.",
-        price: 4999,
-        priceRange: "₹4999 - ₹7498",
-        imageUrl: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["10-15 Slide Professional Deck", "Financial Data Visualization", "Custom Graphics & Icons", "Narrative Arc Consulting", "PPT/PDF Source Files"],
-        premiumFeatures: ["10-15 Slide Professional Deck", "Financial Data Visualization", "Custom Graphics & Icons"]
-    },
-    {
-        id: "38",
-        name: "LinkedIn Personal Branding",
-        category: "Professional",
-        description: "Turn your profile into a lead magnet.",
-        fullDescription: "Your LinkedIn profile is your new landing page. We overhaul your headline, about section, and featured items to position you as an industry authority.",
-        price: 4999,
-        priceRange: "₹4999 - ₹7498",
-        imageUrl: "https://images.unsplash.com/photo-1611944212129-29977ae1398c?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["Profile SEO Optimization", "Authority-building Headline", "About Section Storytelling", "Connection outreach scripts", "Banner Design"],
-        premiumFeatures: ["Profile SEO Optimization", "Authority-building Headline", "About Section Storytelling"]
-    },
-    {
-        id: "39",
-        name: "Personal Portfolio Website",
-        category: "Professional",
-        description: "A stunning showcase of your work and skills.",
-        fullDescription: "Stop sending PDF portfolios. We build you a sleek, modern personal website that showcases your projects, experience, and contact info. Essential for freelancers and creatives.",
-        price: 5999,
-        priceRange: "₹5999 - ₹8998",
-        imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["One-Page Modern Site", "Project Gallery", "Contact Form", "Domain Connection", "Mobile Responsive"],
-        premiumFeatures: ["One-Page Modern Site", "Project Gallery", "Contact Form"]
-    },
-    {
-        id: "41",
-        name: "B2B Outreach System Architecture",
-        category: "Startup Launch",
-        description: "Cold email systems that actually convert.",
-        fullDescription: "Growth is easy when the pipeline is full. We use advanced research agents to build targeted lead lists, verify emails, and set up automated outreach infrastructure that books meetings for you.",
-        price: 12999,
-        priceRange: "₹12,999 - ₹19,999",
-        imageUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: [
-            "Domain Setup & Warming",
-            "Targeted Lead List (1000 contacts)",
-            "Sequence Copywriting",
-            "DNS/DMARC Configuration"
-        ],
-        premiumFeatures: ["Comprehensive Topic Report", "List of Credible Sources", "Key Arguments Summary"]
-    },
-    {
-        id: "51",
-        name: "Executive Pitch Practice",
-        category: "Professional",
-        description: "Realistic AI-driven investor simulation.",
-        fullDescription: "Nervous about the big investor meeting? We set up a rigorous mock pitch session specifically for your deck, record your answers, and provide AI-generated feedback on your tone, clarity, and metrics.",
-        price: 2499,
-        priceRange: "₹2,499 - ₹4,499",
-        imageUrl: "https://images.unsplash.com/photo-1549923746-c502d488b3ea?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["30-Minute Mock Session", "VC-Specific Questions", "Performance Analytics Report", "Improvement Tips"],
-        premiumFeatures: ["30-Minute Mock Session", "Role-Specific Questions", "Performance Analytics Report"]
-    },
-    {
-        id: "42",
-        name: "AI Employee Training System",
-        category: "Startup Launch",
-        description: "Custom GPT trained on your internal SOPs.",
-        fullDescription: "Imagine an onboarding executive who knows every page of your company wiki. We build a private knowledge base from your internal documents and configure a Custom GPT that can answer employee questions and explain workflows 24/7.",
+        description: "Your best salesperson never sleeps.",
+        fullDescription: "Advanced AI chatbot trained on your product catalogue, pricing, and FAQs. Qualifies leads, handles objections, and books demo calls automatically. Deployed on website and WhatsApp.",
         price: 14999,
         priceRange: "₹14,999 - ₹24,999",
-        imageUrl: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["Custom Knowledge Base Setup", "OCR Document Processing", "Internal SOP GPT Config", "Workflow Search Capabilities"],
-        premiumFeatures: ["Custom Knowledge Base Setup", "OCR Document Processing", "Exam-Prep GPT Config"]
-    },
-    {
-        id: "43",
-        name: "Personal Finance Dashboard",
-        category: "Personal",
-        description: "Automate your budget tracking and expense analysis.",
-        fullDescription: "Stop fearing your bank account. We set up an automated personal finance dashboard that tracks your spending, categorizes expenses, andvisualizes your savings goals.",
-        price: 2999,
-        priceRange: "₹2999 - ₹4498",
-        imageUrl: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["Expense Tracker Setup", "Visual Spending Report", "Budget vs Actual Analysis", "Savings Goal Calculator"],
-        premiumFeatures: ["Expense Tracker Setup", "Visual Spending Report", "Budget vs Actual Analysis"]
-    },
-    {
-        id: "44",
-        name: "Viral Reels Video Editing",
-        category: "Personal",
-        description: "Professional editing for Shorts/Reels/TikTok.",
-        fullDescription: "Transform raw footage into viral gold. We add dynamic captions, transitions, sound effects, and color grading to make your short-form content pop.",
-        price: 499,
-        priceRange: "₹499 - ₹748",
-        imageUrl: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["1 Short Video Edit (60s)", "Dynamic Captions", "Trending Audio Sync", "Color Grading", "Thumbnail"],
-        premiumFeatures: ["1 Short Video Edit (60s)", "Dynamic Captions", "Trending Audio Sync"]
-    },
-    {
-        id: "45",
-        name: "Influencer Media Kit",
-        category: "Personal",
-        description: "Professional kit to get brand deals.",
-        fullDescription: "Look like a pro to sponsors. We design a stunning PDF media kit showcasing your stats, demographics, and rates.",
-        price: 799,
-        priceRange: "₹799 - ₹1198",
-        imageUrl: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["Professional PDF Design", "Audience Analytics Visualization", "Rate Card Layout", "Clickable Links"],
-        premiumFeatures: ["Professional PDF Design", "Audience Analytics Visualization", "Rate Card Layout"]
-    },
-    {
-        id: "46",
-        name: "AI Health & Nutrition Plan",
-        category: "Personal",
-        description: "Hyper-personalized 30-day meal plan.",
-        fullDescription: "Based on your unique body type and goals. We use AI analysis of your preferences to generate a realistic, diverse, and healthy 30-day meal plan.",
-        price: 349,
-        priceRange: "₹349 - ₹523",
-        imageUrl: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["30-Day Meal Plan", "Grocery Shopping Lists", "Macro Breakdown", "Recipe Quick-Links"],
-        premiumFeatures: ["30-Day Meal Plan", "Grocery Shopping Lists", "Macro Breakdown"]
-    },
-    {
-        id: "47",
-        name: "Smart Travel Itinerary",
-        category: "Personal",
-        description: "The perfect trip, planned to the minute.",
-        fullDescription: "Stop wasting hours on Tripadvisor. We create a day-by-day itinerary for your trip, including hidden gems, logistics, and budget optimization.",
-        price: 499,
-        priceRange: "₹499 - ₹748",
-        imageUrl: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["Day-by-Day Schedule", "Hotel & Transport Picks", "Budget Breakdown", "Local ", " Tips"],
-        premiumFeatures: ["Day-by-Day Schedule", "Hotel & Transport Picks", "Budget Breakdown"]
-    },
-    {
-        id: "48",
-        name: "Custom Illustration / Art",
-        category: "Personal",
-        description: "Unique digital art for gifts or profile pics.",
-        fullDescription: "Get a one-of-a-kind digital illustration. Perfect for profile pictures, gifts, or merchandise. Created with a blend of AI and manual touchup.",
-        price: 899,
-        priceRange: "₹899 - ₹1348",
-        imageUrl: "https://images.unsplash.com/photo-1561214115-f2f134cc4912?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["High-Res Digital File", "Commercial Usage Rights", "2 Style Variations", "3 Revisions"],
-        premiumFeatures: ["High-Res Digital File", "Commercial Usage Rights", "2 Style Variations"]
-    },
-    {
-        id: "49",
-        name: "Photo Retouching (5 Pack)",
-        category: "Personal",
-        description: "Make your photos look professional.",
-        fullDescription: "Fix lighting, remove blemishes, and color grade your photos. Perfect for social media or personal albums.",
-        price: 299,
-        priceRange: "₹299 - ₹448",
-        imageUrl: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["5 Photo Edits", "Color Correction", "Object Removal", "High-Res Export"],
-        premiumFeatures: ["5 Photo Edits", "Color Correction", "Object Removal"]
-    },
-    {
-        id: "50",
-        name: "AI Strategy Audit (Free)",
-        category: "All",
-        description: "We analyze your business gaps for free.",
-        fullDescription: "Confused by AI? We analyze your workflow and recommend tools to save time.",
-        price: 0,
-        priceRange: "₹0 - ₹0",
-        imageUrl: "https://images.unsplash.com/photo-1639322537228-ad7117a394eb?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["Workflow Analysis", "Tool Recommendations", "ROI Report", "No Obligation"],
-        premiumFeatures: ["Workflow Analysis", "Tool Recommendations", "ROI Report"]
-    },
-    // ==========================================
-    // 🇮🇳 THE "VYAPARI & HUSTLER" ESSENTIALS (New Additions)
-    // ==========================================
-    {
-        id: "60",
-        name: "Google Maps (GMB) Dominator",
-        category: "Business",
-        description: "Rank #1 on 'Near Me' searches.",
-        fullDescription: "If you aren't on Maps, you don't exist. We optimize your Google Business Profile with keywords, photos, and review strategies to ensure customers find you first.",
-        price: 4999,
-        priceRange: "₹4,999 - ₹9,999",
-        imageUrl: "https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["Profile Verification", "Keyword Optimization", "Photo Upload Strategy", "Review QR Code"],
-        premiumFeatures: ["Profile Verification", "Keyword Optimization", "Photo Upload Strategy"]
-    },
-    {
-        id: "61",
-        name: "WhatsApp Green Tick Setup",
-        category: "Business",
-        description: "The ultimate trust signal.",
-        fullDescription: "Get the verified Green Tick next to your name. We handle the complex Meta verification process and set up your official WhatsApp Business API account.",
-        price: 9999,
-        priceRange: "₹9,999 - ₹14,999",
-        imageUrl: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?q=80&w=1000&auto=format&fit=crop",
+        imageUrl: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?q=80&w=1000&auto=format&fit=crop",
         isGoldenEligible: false,
-        standardFeatures: ["Business Manager Verification", "Green Tick Application", "API Setup", "Welcome Message Config"],
-        premiumFeatures: ["Business Manager Verification", "Green Tick Application", "API Setup"]
+        deliveryTime: "7-10 days",
+        whyBuy: "The best salesperson works 24/7, never asks for salary, and never has a bad day.",
+        standardFeatures: ["AI training on your data", "Lead qualification", "Demo booking", "Email notifications"],
+        premiumFeatures: ["Voice capabilities", "Multi-channel (Web + WA)", "CRM sync", "Custom personality", "Analytics"],
+        maintenancePrice: "₹1,999/mo",
+        maintenanceDesc: "AI retraining + new product additions + performance optimization + monthly lead report."
     },
-    {
-        id: "62",
-        name: "AI Product Studio",
-        category: "Business",
-        description: "Studio-quality shots without the studio.",
-        fullDescription: "Stop using phone photos. We use generative AI to place your product in luxury, professional settings that drive clicks and sales on Amazon/Flipkart.",
-        price: 499,
-        priceRange: "₹499 - ₹999/photo",
-        imageUrl: "https://images.unsplash.com/photo-1664539665551-7b0b6d2a4c16?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["Background Removal", "AI Scene Generation", "Lighting Correction", "High-Res Export"],
-        premiumFeatures: ["Background Removal", "AI Scene Generation", "Lighting Correction"]
-    },
-    {
-        id: "63",
-        name: "Podcast -> Viral Shorts Engine",
-        category: "Personal",
-        description: "Turn 1 hour into 30 days of content.",
-        fullDescription: "We take your long-form video (Podcast/Zoom) and use AI to extract the most viral moments, caption them, and format them for Reels/Shorts.",
-        price: 14999,
-        priceRange: "₹14,999/mo",
-        imageUrl: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1000&auto=format&fit=crop",
-        isGoldenEligible: true,
-        standardFeatures: ["1 Long Video Processed", "10 High-Retention Shorts", "Dynamic Captions", "Viral Hook Selection"],
-        premiumFeatures: ["1 Long Video Processed", "10 High-Retention Shorts", "Dynamic Captions"]
-    }
 ];
