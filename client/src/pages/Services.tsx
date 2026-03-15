@@ -39,6 +39,7 @@ const AUTO_REPLIES: Record<string, string> = {
 
 const CONSULT_OPTIONS = [
   { type: "Chat Session", duration: "30 min", price: "₹499", desc: "Text-based strategic session", tag: "", price_val: 499 },
+  { type: "First Chat FREE", duration: "30 min", price: "₹0", desc: "Free for new signups — no credit card needed", tag: "NEW SIGNUP OFFER", price_val: 0 },
   { type: "Strategy Call", duration: "30 min", price: "₹999", desc: "Voice call with Mukul directly", tag: "", price_val: 999 },
   { type: "Deep Dive Call", duration: "60 min", price: "₹1,799", desc: "Full audit + action plan", tag: "", price_val: 1799 },
   { type: "Monthly Retainer", duration: "Ongoing", price: "₹2,999/mo", desc: "2 calls + unlimited chat support", tag: "BEST VALUE", price_val: 2999 },
@@ -57,6 +58,7 @@ export default function Services() {
   const [selectedService, setSelectedService] = useState<ServiceDetail | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
+  const [tabClicked, setTabClicked] = useState(false);
   const [chatMessages, setChatMessages] = useState<{from:string;text:string;link?:string}[]>([
     { from: "bot", text: "Hi! Ask me about any service, pricing, delivery time, or maintenance. I answer instantly." }
   ]);
@@ -150,7 +152,7 @@ export default function Services() {
             <p className="text-gray-400 text-sm mb-2">Everything a new business needs to exist online.</p>
             <p className="text-amber-400/80 text-xs font-semibold mb-4 italic">“Stop being invisible. Start being found.”</p>
             <div className="flex items-baseline gap-1 mb-1"><span className="text-3xl font-black text-white">₹15,000</span><span className="text-xs text-gray-500">/ one-time</span></div>
-            <p className="text-xs text-gray-600 mb-6">+ ₹1,999/mo maintenance available</p>
+            <p className="text-sm text-gray-400 font-medium mb-6">+ ₹1,999/mo maintenance available</p>
             <ul className="space-y-3 mb-8">
               {["Logo + Brand Identity","5-Page Website","Google Business Profile","GST Registration","Business Email Setup"].map(i => (<li key={i} className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500 flex-shrink-0" />{i}</li>))}
             </ul>
@@ -164,7 +166,7 @@ export default function Services() {
             <p className="text-gray-400 text-sm mb-2">Complete execution. You sell, we build everything.</p>
             <p className="text-amber-400 text-xs font-semibold mb-6 italic">“Your entire digital business — in 30 days.”</p>
             <div className="flex items-baseline gap-1 mb-1"><span className="text-5xl font-black text-white">₹35,000</span><span className="text-sm text-gray-500">/ one-time</span></div>
-            <p className="text-xs text-gray-600 mb-6">+ ₹3,999/mo maintenance available</p>
+            <p className="text-sm text-gray-400 font-medium mb-6">+ ₹3,999/mo maintenance available</p>
             <div className="h-1 w-full bg-gray-800 rounded-full overflow-hidden mb-4"><div className="h-full w-full bg-gradient-to-r from-amber-500 to-yellow-600"></div></div>
             <ul className="space-y-3 mb-8">
               {["Everything in Starter","SEO Setup + 4 Blog Posts","WhatsApp Sales Bot","CRM + Lead Automation","30 Days Social Content"].map(i => (<li key={i} className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500 flex-shrink-0" />{i}</li>))}
@@ -180,7 +182,7 @@ export default function Services() {
             <p className="text-slate-600 text-sm mb-2">Enterprise infrastructure. No compromises.</p>
             <p className="text-slate-700 text-xs font-semibold mb-4 italic">“Built for businesses that refuse second place.”</p>
             <div className="flex items-baseline gap-1 mb-1"><span className="text-4xl font-black text-slate-900">₹95,000</span><span className="text-xs text-slate-500 font-bold">/ one-time</span></div>
-            <p className="text-xs text-slate-400 mb-6">+ ₹7,999/mo maintenance available</p>
+            <p className="text-sm text-slate-500 font-medium mb-6">+ ₹7,999/mo maintenance available</p>
             <ul className="space-y-3 mb-8">
               {["Enterprise Web + Native App","Admin “God Mode” Dashboard","Dedicated Growth Engineer","Legal & IP Contracts Included"].map(i => (<li key={i} className="flex gap-3 text-sm font-bold text-slate-800"><ShieldCheck className="w-4 h-4 text-black flex-shrink-0" />{i}</li>))}
             </ul>
@@ -200,7 +202,7 @@ export default function Services() {
               const isActive = activeTab === tab.id;
               const Icon = tab.icon;
               return (
-                <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={cn("relative px-6 py-3 rounded-xl transition-all duration-300 flex items-center gap-3 min-w-max group", isActive ? "bg-white/5 border border-white/10" : "hover:bg-white/5 border border-transparent")}>
+                <button key={tab.id} onClick={() => { setActiveTab(tab.id); setTabClicked(true); }} className={cn("relative px-6 py-3 rounded-xl transition-all duration-300 flex items-center gap-3 min-w-max group", isActive ? "bg-white/5 border border-white/10" : "hover:bg-white/5 border border-transparent")}>
                   {isActive && <motion.div layoutId="activeTabGlow" className={cn("absolute inset-0 rounded-xl bg-gradient-to-r opacity-10", tab.color)} />}
                   <div className={cn("p-2 rounded-lg bg-white/5 transition-colors", isActive ? "text-white" : "text-gray-500 group-hover:text-gray-300")}><Icon className={cn("w-5 h-5", isActive && tab.activeColor)} /></div>
                   <div className="text-left">
@@ -216,11 +218,16 @@ export default function Services() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 pb-32">
-        <AnimatePresence mode="wait">
+        {!tabClicked && (
+        <div className="max-w-7xl mx-auto px-4 pb-16 text-center">
+          <p className="text-gray-500 text-sm animate-pulse">↓ Select LaunchPad or ScaleOps above to explore services</p>
+        </div>
+      )}
+      <AnimatePresence mode="wait">
           <motion.div key={activeTab} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
 
             {/* LAUNCHPAD */}
-            {activeTab === "launchpad" && (
+            {activeTab === "launchpad" && tabClicked && (
               <div>
                 {!searchQuery && (
                   <>
@@ -268,7 +275,7 @@ export default function Services() {
             )}
 
             {/* SCALEOPS */}
-            {activeTab === "scaleops" && (
+            {activeTab === "scaleops" && tabClicked && (
               <div>
                 {!searchQuery && (
                   <>
@@ -351,6 +358,9 @@ export default function Services() {
               <div className="border-t border-white/5 p-2 flex gap-2">
                 <input type="text" value={chatInput} onChange={(e) => setChatInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && sendChat()} placeholder="Ask anything..." className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-gray-600 outline-none focus:border-amber-500/50" />
                 <button onClick={sendChat} className="bg-amber-500 hover:bg-amber-400 text-black p-2 rounded-lg transition-colors"><Send className="w-3 h-3" /></button>
+              </div>
+              <a href="https://wa.me/916284925684?text=Hi%20Mukul%2C%20I%20have%20a%20question%20about%20SAGEDO%20services" target="_blank" rel="noopener noreferrer" className="block text-center text-[10px] text-amber-500 hover:text-amber-400 py-2 border-t border-white/5">💬 Have a service query? Chat directly with Mukul →</a>
+              <div style="display:none">
               </div>
             </motion.div>
           )}
