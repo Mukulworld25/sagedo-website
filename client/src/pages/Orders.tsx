@@ -65,7 +65,7 @@ export default function Orders() {
     if (goldenTicketMode === 'true') {
       setTimeout(() => {
         toast({
-          title: "ð Starter Credit Mode!",
+          title: "Ã°ÂÂÂ Starter Credit Mode!",
           description: "Select any Bar 1 service below and it will be FREE!",
         });
       }, 500);
@@ -157,8 +157,7 @@ export default function Orders() {
         // Call Supabase Edge Function directly
         const response = await fetch('https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/create-razorpay-order', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' }
           body: JSON.stringify({
             amount: cartTotal > 0 ? cartTotal : orderAmount,
             service_name: 'SAGE DO Service',
@@ -179,15 +178,14 @@ export default function Orders() {
           currency: 'INR',
           name: 'SAGE DO',
           description: formData.service,
-          order_id: paymentOrder.id,
+          order_id: paymentOrder.razorpay_order_id,
           handler: async function (response: any) {
             try {
               // Verify payment on backend
               // Call Supabase verification edge function
               const verifyResponse = await fetch('https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/verify-razorpay', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' }
                 body: JSON.stringify({
                   razorpay_order_id: response.razorpay_order_id,
                   razorpay_payment_id: response.razorpay_payment_id,
@@ -314,7 +312,6 @@ export default function Orders() {
       const response = await fetch('https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/create-razorpay-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
         body: JSON.stringify({
           amount: orderAmount,
           service_name: 'SAGE DO Service Final Payment',
@@ -343,7 +340,6 @@ export default function Orders() {
             const verifyResponse = await fetch('https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/verify-razorpay', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              credentials: 'include',
               body: JSON.stringify({
                 razorpay_order_id: response.razorpay_order_id,
                 razorpay_payment_id: response.razorpay_payment_id,
@@ -476,15 +472,15 @@ export default function Orders() {
                         <span className="font-medium text-foreground">{item.name}</span>
                         {item.isGoldenEligible && (
                           <Badge className="bg-gradient-to-r from-yellow-400 to-amber-600 text-black text-xs">
-                            â¨ FREE
+                            Ã¢ÂÂ¨ FREE
                           </Badge>
                         )}
                       </div>
                       <div className="flex items-center gap-3">
                         {item.isGoldenEligible ? (
-                          <span className="text-green-500 font-bold">â¹0</span>
+                          <span className="text-green-500 font-bold">Ã¢ÂÂ¹0</span>
                         ) : (
-                          <span className="text-primary font-bold">â¹{item.price}</span>
+                          <span className="text-primary font-bold">Ã¢ÂÂ¹{item.price}</span>
                         )}
                         <button
                           type="button"
@@ -501,9 +497,9 @@ export default function Orders() {
                   <div className="flex items-center justify-between pt-3 border-t border-border/30">
                     <span className="text-muted-foreground">Total</span>
                     {hasOnlyFreeServices ? (
-                      <span className="text-2xl font-black text-green-500">FREE â¨</span>
+                      <span className="text-2xl font-black text-green-500">FREE Ã¢ÂÂ¨</span>
                     ) : (
-                      <span className="text-2xl font-black text-primary">â¹{cartTotal}</span>
+                      <span className="text-2xl font-black text-primary">Ã¢ÂÂ¹{cartTotal}</span>
                     )}
                   </div>
                 </div>
@@ -682,7 +678,7 @@ export default function Orders() {
                 {!isGoldenService && !hasOnlyFreeServices && !isServiceLocked && cart.length === 0 && (
                   <div className="space-y-2">
                     <Label htmlFor="amount" className="text-foreground">
-                      Order Amount (â¹) <span className="text-destructive">*</span>
+                      Order Amount (Ã¢ÂÂ¹) <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="amount"
@@ -718,13 +714,13 @@ export default function Orders() {
                         Submitting...
                       </>
                     ) : isGoldenService || hasOnlyFreeServices
-                      ? "â¨ Submit FREE Order"
-                      : `Pay â¹${cartTotal > 0 ? cartTotal : orderAmount} & Submit`}
+                      ? "Ã¢ÂÂ¨ Submit FREE Order"
+                      : `Pay Ã¢ÂÂ¹${cartTotal > 0 ? cartTotal : orderAmount} & Submit`}
                   </Button>
                 ) : (
                   <div className="space-y-4">
                     <div className="p-4 rounded-lg border border-green-500/50 bg-green-500/10">
-                      <p className="text-sm text-green-400 font-semibold">â Order Created Successfully!</p>
+                      <p className="text-sm text-green-400 font-semibold">Ã¢ÂÂ Order Created Successfully!</p>
                       <p className="text-xs text-muted-foreground mt-1">Order ID: {createdOrderId.slice(0, 8)}...</p>
                     </div>
 
@@ -736,7 +732,7 @@ export default function Orders() {
                       className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:opacity-90 text-lg py-6 flex items-center justify-center gap-2"
                     >
                       <CreditCard className="w-5 h-5" />
-                      Pay â¹{orderAmount} Now
+                      Pay Ã¢ÂÂ¹{orderAmount} Now
                     </Button>
 
                     <Button
@@ -822,7 +818,7 @@ export default function Orders() {
                   </div>
                   <div>
                     <p className="font-bold text-foreground">AI + Human Excellence</p>
-                    <p className="text-sm text-muted-foreground">We'll handle it for you â¨</p>
+                    <p className="text-sm text-muted-foreground">We'll handle it for you Ã¢ÂÂ¨</p>
                   </div>
                 </div>
 
