@@ -1,361 +1,134 @@
+// serviceData.ts — SAGEDO Complete Services Data
+// Updated: March 16, 2026 — LaunchPad / ScaleOps redesign
 
-export interface ServiceDetail {
-    id: string;
-    name: string;
-    description: string;
-    fullDescription: string;
-    price: number;
-    priceRange: string;
-    category: string;
-    imageUrl: string;
-    isGoldenEligible: boolean;
-    deliveryTime?: string;
-    standardFeatures: string[];
-    premiumFeatures: string[];
-    maintenance?: string;
-    maintenancePrice?: string;
-    whyBuy?: string;
+export interface Package {
+  id: string;
+  name: string;
+  price: string;
+  maintenance: string;
+  tagline: string;
+  killerLine: string;
+  features: string[];
+  highlight: boolean;
+  badge?: string;
 }
 
-export const allServices: ServiceDetail[] = [
+export interface Combo {
+  id: string;
+  name: string;
+  services: string[];
+  price: string;
+  icon: string;
+  description: string;
+}
+
+export interface Service {
+  id: string;
+  name: string;
+  description: string;
+  price: string;
+  maintenance: string;
+  category: string;
+  icon: string;
+  isGoldenEligible: boolean;
+  tag?: string;
+}
+
+export interface ConsultancyOption {
+  id: string;
+  name: string;
+  duration: string;
+  price: string;
+  priceNumeric: number;
+  badge?: string;
+  description: string;
+}
+
+export interface MaintenancePlan {
+  id: string;
+  name: string;
+  price: string;
+  priceNumeric: number;
+  coverage: string[];
+  badge?: string;
+}
+
+export const packages: Package[] = [
   {
-    id: "b01",
-    name: "Professional Logo Design",
-    category: "Business",
-    description: "A brand identity that commands respect, not just a logo.",
-    fullDescription: "Your logo is the first thing every client, investor, and partner sees. We combine AI creativity with professional design principles to create a unique, memorable logo that works across all mediums.",
-    price: 1999,
-    priceRange: "₹1,999 – ₹2,499",
-    imageUrl: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "3–5 days",
-    whyBuy: "First impressions close deals before you even speak.",
-    standardFeatures: ["3 unique concepts", "Source files (AI, PNG, SVG)", "2 revision rounds", "Dark + light variants"],
-    premiumFeatures: ["Unlimited revisions", "Brand guidelines doc", "Social media kit", "Stationery design"],
-    maintenance: "Not required",
-    maintenancePrice: "One-time"
+    id: "pkg-starter",
+    name: "Starter Launch",
+    price: "\u20B915,000",
+    maintenance: "\u20B91,999/mo",
+    tagline: "Everything to get you started",
+    killerLine: "Stop being invisible. Start being found.",
+    features: ["Professional Logo Design","Website Design & Development","SEO Setup","Google Business Profile","Business Email Setup","1 Month Free Support"],
+    highlight: false,
   },
   {
-    id: "b02",
-    name: "Website Design & Development",
-    category: "Business",
-    description: "Your 24/7 salesperson that never sleeps.",
-    fullDescription: "A professionally built 5-page business website on WordPress or React. Mobile-responsive, SEO-ready, and designed to convert visitors into customers from day one.",
-    price: 12999,
-    priceRange: "₹12,999 – ₹17,999",
-    imageUrl: "https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "7–10 days",
-    whyBuy: "Every day without a website is revenue left on the table.",
-    standardFeatures: ["5-page website", "Mobile responsive", "Contact form", "Basic SEO setup", "1 month support"],
-    premiumFeatures: ["Custom animations", "E-commerce integration", "Advanced SEO", "3 months support", "Performance optimization"],
-    maintenance: "Speed + security + updates + uptime monitoring",
-    maintenancePrice: "₹1,499/mo"
+    id: "pkg-full",
+    name: "Full Launch",
+    price: "\u20B935,000",
+    maintenance: "\u20B93,999/mo",
+    tagline: "Your complete digital presence",
+    killerLine: "Your entire digital business \u2014 in 30 days.",
+    features: ["Everything in Starter","WhatsApp Sales Bot","CRM Setup","Social Media Setup","3 Blog Posts","Analytics Dashboard","3 Months Free Support"],
+    highlight: true,
+    badge: "MOST POPULAR",
   },
   {
-    id: "b03",
-    name: "SEO Setup",
-    category: "Business",
-    description: "Get found on Google before your competitors do.",
-    fullDescription: "Complete technical SEO setup: robots.txt, sitemap, Search Console, meta tags, Schema markup, Crunchbase listing, and 2 SEO-optimized blog posts. Your business becomes visible to AI crawlers and Google within 48 hours.",
-    price: 3999,
-    priceRange: "₹3,999 – ₹5,999",
-    imageUrl: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "48 hours",
-    whyBuy: "96% of Indian startups are invisible on Google. Be in the 4%.",
-    standardFeatures: ["robots.txt + sitemap setup", "Google Search Console", "Meta tags + Schema", "2 blog posts", "Crunchbase profile"],
-    premiumFeatures: ["Wikidata entry", "Bing Webmaster", "AI crawler optimization", "5 blog posts", "Competitor analysis"],
-    maintenance: "1 blog post/mo + rank monitoring + competitor check + fixes",
-    maintenancePrice: "₹2,999/mo"
+    id: "pkg-vip",
+    name: "VIP Launch",
+    price: "\u20B995,000",
+    maintenance: "\u20B97,999/mo",
+    tagline: "For businesses that refuse second place",
+    killerLine: "Built for businesses that refuse second place.",
+    features: ["Everything in Full Launch","Mobile App Development","AI Website Chatbot","Sales Automation","LinkedIn Personal Branding","Monthly Strategy Call","Priority Support 24/7","6 Months Free Maintenance"],
+    highlight: false,
+    badge: "PREMIUM",
   },
-  {
-    id: "b04",
-    name: "WhatsApp Sales Bot",
-    category: "Business",
-    description: "Close sales while you sleep. Zero missed leads.",
-    fullDescription: "An intelligent WhatsApp bot that answers customer queries, qualifies leads, sends follow-ups, and routes hot leads to you. Built on the WhatsApp Business API with custom flows for your specific business.",
-    price: 6999,
-    priceRange: "₹6,999 – ₹9,999",
-    imageUrl: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "5–7 days",
-    whyBuy: "90% of Indian customers prefer WhatsApp. Meet them where they are.",
-    standardFeatures: ["Custom conversation flows", "Lead capture", "Auto-replies", "Human handoff", "Basic analytics"],
-    premiumFeatures: ["CRM integration", "Payment collection", "Multi-language", "Advanced analytics", "Unlimited flows"],
-    maintenance: "Flow updates + new automations + performance monitoring",
-    maintenancePrice: "₹999/mo"
-  },
-  {
-    id: "b05",
-    name: "CRM Setup",
-    category: "Business",
-    description: "Never lose a lead again. Every contact tracked.",
-    fullDescription: "We set up a complete Customer Relationship Management system tailored to your business. Track leads, manage follow-ups, automate pipelines, and close more deals with full visibility into your sales process.",
-    price: 7999,
-    priceRange: "₹7,999 – ₹11,999",
-    imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "5–7 days",
-    whyBuy: "Businesses with CRM close 29% more deals. Fact.",
-    standardFeatures: ["Pipeline setup", "Lead tracking", "Email integration", "Basic automation", "Team training"],
-    premiumFeatures: ["Advanced automation", "WhatsApp integration", "Custom reports", "Multi-pipeline", "Priority support"],
-    maintenance: "Data cleanup + new automations + user training + updates",
-    maintenancePrice: "₹1,499/mo"
-  },
-  {
-    id: "b06",
-    name: "Social Media Setup",
-    category: "Business",
-    description: "Build your presence on 3 platforms in one shot.",
-    fullDescription: "Complete setup of your business profiles on Instagram, LinkedIn, and Facebook. Optimized bios, cover images, first 9 posts, hashtag strategy, and content calendar. Your brand starts showing up where your customers are.",
-    price: 1999,
-    priceRange: "₹1,999 – ₹2,999",
-    imageUrl: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "3–5 days",
-    whyBuy: "Your customers are on social media right now looking for what you sell.",
-    standardFeatures: ["3 platform profiles", "Optimized bios", "9 launch posts", "Hashtag strategy", "Content calendar"],
-    premiumFeatures: ["Reels templates", "Story highlights", "Brand voice guide", "Competitor analysis", "Ad account setup"],
-    maintenance: "8 posts/month + engagement + analytics report",
-    maintenancePrice: "₹4,999/mo"
-  },
-  {
-    id: "b07",
-    name: "GST Registration",
-    category: "Business",
-    description: "Legally registered and GST-ready in 48 hours.",
-    fullDescription: "Complete GST registration handled end-to-end. We prepare your documents, file the application, and handle follow-ups until your GSTIN is issued. Required for all businesses with turnover above ₹20 lakhs or those selling online.",
-    price: 799,
-    priceRange: "₹799 – ₹1,299",
-    imageUrl: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "48 hours",
-    whyBuy: "No GSTIN = no big clients. Most corporates only work with GST-registered vendors.",
-    standardFeatures: ["Document preparation", "Application filing", "Follow-up handling", "GSTIN delivery", "Compliance guide"],
-    premiumFeatures: ["GST filing setup", "Accounting software link", "3 months support", "Invoice template"],
-    maintenance: "Not required",
-    maintenancePrice: "One-time"
-  },
-  {
-    id: "b08",
-    name: "MSME Registration",
-    category: "Business",
-    description: "Unlock government benefits your business deserves.",
-    fullDescription: "MSME (Udyam) registration gives you access to government schemes, subsidized loans, priority sector lending, and protection against delayed payments. We handle the entire registration process.",
-    price: 499,
-    priceRange: "₹499 – ₹799",
-    imageUrl: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "24–48 hours",
-    whyBuy: "Access to crore-level government loans and schemes. Cost: ₹499.",
-    standardFeatures: ["Udyam portal registration", "Certificate delivery", "Benefits guide"],
-    premiumFeatures: ["Multiple business registration", "Annual renewal reminder", "Scheme advisory"],
-    maintenance: "Not required",
-    maintenancePrice: "One-time"
-  },
-  {
-    id: "b09",
-    name: "Trademark Filing",
-    category: "Business",
-    description: "Your brand name is your biggest asset. Protect it.",
-    fullDescription: "Complete trademark application filing with the Indian Trademark Registry. We conduct a prior search, prepare the application, and file it. Your brand name, logo, and tagline protected under Indian law.",
-    price: 2499,
-    priceRange: "₹2,499 – ₹3,999",
-    imageUrl: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "5–7 days",
-    whyBuy: "Competitors copy what works. Trademark it before they do.",
-    standardFeatures: ["Prior art search", "Application preparation", "1 class filing", "TM-A certificate", "Filing receipt"],
-    premiumFeatures: ["Multiple class filing", "Priority examination", "Opposition handling", "Annual monitoring"],
-    maintenance: "Not required",
-    maintenancePrice: "One-time"
-  },
-  {
-    id: "b10",
-    name: "Google Business Profile",
-    category: "Business",
-    description: "Show up in ‘Near Me’ searches. Get local customers.",
-    fullDescription: "Complete Google Business Profile (GMB) setup and optimization. Verified listing, optimized description, photos, service areas, and review management setup. Your business appears on Google Maps when local customers search.",
-    price: 999,
-    priceRange: "₹999 – ₹1,499",
-    imageUrl: "https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "48 hours",
-    whyBuy: "46% of all Google searches are for local businesses. Be there.",
-    standardFeatures: ["Profile creation + verification", "Photos + cover", "Services listing", "Review setup", "Q&A setup"],
-    premiumFeatures: ["Post scheduling", "Competitor analysis", "Review response templates", "Monthly optimization"],
-    maintenance: "Monthly posts + review responses + optimization",
-    maintenancePrice: "₹999/mo"
-  },
-  {
-    id: "b11",
-    name: "Business Email Setup",
-    category: "Business",
-    description: "Stop sending from Gmail. Look like a real business.",
-    fullDescription: "Professional email setup with your own domain (you@yourcompany.com). We configure Google Workspace or Zoho Mail, set up SPF/DKIM/DMARC for deliverability, and ensure your emails never land in spam.",
-    price: 499,
-    priceRange: "₹499 – ₹799",
-    imageUrl: "https://images.unsplash.com/photo-1596526131083-e8c633064dbc?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "24 hours",
-    whyBuy: "Gmail kills credibility. One domain email changes perception instantly.",
-    standardFeatures: ["Domain email setup", "SPF + DKIM config", "Mobile setup", "5 email accounts", "Spam protection"],
-    premiumFeatures: ["Email signature design", "Team management", "Advanced filtering", "Backup setup"],
-    maintenance: "Not required",
-    maintenancePrice: "One-time"
-  },
-  {
-    id: "b12",
-    name: "AI Website Chatbot",
-    category: "Business",
-    description: "24/7 sales agent on your website. Zero salary.",
-    fullDescription: "A custom AI-powered chatbot trained on your business information. Answers FAQs, captures leads, qualifies prospects, and routes serious buyers to you — all without you being online.",
-    price: 4999,
-    priceRange: "₹4,999 – ₹7,999",
-    imageUrl: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "5–7 days",
-    whyBuy: "Visitors leave in 3 minutes. A chatbot keeps them engaged and captures the lead.",
-    standardFeatures: ["Custom training on your business", "FAQ automation", "Lead capture", "Email notification", "Mobile responsive"],
-    premiumFeatures: ["CRM integration", "WhatsApp handoff", "Multi-language", "Advanced analytics", "Custom personality"],
-    maintenance: "Training updates + new FAQs + performance tuning",
-    maintenancePrice: "₹999/mo"
-  },
-  {
-    id: "b13",
-    name: "Pitch Deck Design",
-    category: "Business",
-    description: "Raise funding or close clients with one presentation.",
-    fullDescription: "Investor-grade pitch deck designed to tell your story, communicate your traction, and get a yes. We handle slide design, data visualization, narrative structure, and the exact deck investors expect to see.",
-    price: 2499,
-    priceRange: "₹2,499 – ₹3,499",
-    imageUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "3–5 days",
-    whyBuy: "Investors decide in 3 minutes. Your deck either opens doors or closes them.",
-    standardFeatures: ["10–15 slides", "Professional design", "2 revision rounds", "PDF + PPTX delivery", "Slide notes"],
-    premiumFeatures: ["Animated version", "Financial model slides", "Executive summary", "Unlimited revisions", "Presentation coaching"],
-    maintenance: "Not required",
-    maintenancePrice: "One-time"
-  },
-  {
-    id: "b14",
-    name: "Sales Automation",
-    category: "Business",
-    description: "Your leads follow up themselves. Automatically.",
-    fullDescription: "End-to-end sales automation connecting your lead sources (website, WhatsApp, social media) to your CRM with automatic follow-up sequences, lead scoring, and deal pipeline management.",
-    price: 8999,
-    priceRange: "₹8,999 – ₹12,999",
-    imageUrl: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "7–10 days",
-    whyBuy: "80% of sales require 5 follow-ups. Automation does all 5 without you.",
-    standardFeatures: ["Lead capture automation", "Email sequences", "Follow-up triggers", "Basic CRM sync", "Reporting dashboard"],
-    premiumFeatures: ["WhatsApp automation", "Advanced scoring", "Multi-channel", "Custom workflows", "A/B testing"],
-    maintenance: "Workflow updates + new sequences + performance monitoring",
-    maintenancePrice: "₹1,999/mo"
-  },
-  {
-    id: "b15",
-    name: "Analytics Dashboard",
-    category: "Business",
-    description: "See your entire business in one screen.",
-    fullDescription: "A real-time business analytics dashboard that pulls data from your website, social media, sales, and marketing. See what’s working, what’s not, and where your revenue is coming from — all in one place.",
-    price: 6999,
-    priceRange: "₹6,999 – ₹9,999",
-    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "5–7 days",
-    whyBuy: "You can’t grow what you can’t measure. Data = better decisions.",
-    standardFeatures: ["Website analytics", "Revenue tracking", "Lead source reports", "Weekly email report", "Mobile access"],
-    premiumFeatures: ["Custom KPIs", "Predictive analytics", "Team access", "API integrations", "Executive summary"],
-    maintenance: "Data updates + new integrations + monthly insights report",
-    maintenancePrice: "₹1,499/mo"
-  },
-  {
-    id: "b16",
-    name: "HR System Setup",
-    category: "Business",
-    description: "Hire, manage, and pay your team without chaos.",
-    fullDescription: "Complete HR management system setup covering recruitment workflow, employee onboarding, attendance tracking, payroll integration, and performance management. Built for Indian businesses of all sizes.",
-    price: 5999,
-    priceRange: "₹5,999 – ₹9,999",
-    imageUrl: "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "7–10 days",
-    whyBuy: "Bad HR kills good companies. Get the system right before scaling.",
-    standardFeatures: ["Recruitment workflow", "Onboarding checklist", "Attendance tracking", "Leave management", "Team training"],
-    premiumFeatures: ["Payroll integration", "Performance reviews", "Custom policies", "Multi-location", "Compliance audit"],
-    maintenance: "System updates + new policies + user support",
-    maintenancePrice: "₹1,499/mo"
-  },
-  {
-    id: "b17",
-    name: "SEO Blog Writing",
-    category: "Business",
-    description: "Content that ranks, educates, and converts.",
-    fullDescription: "SEO-optimized blog posts written by AI + human editors. Keyword-targeted, properly structured, and designed to rank on Google. Each post includes meta title, description, headers, and internal linking strategy.",
-    price: 699,
-    priceRange: "₹699 – ₹999/post",
-    imageUrl: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "24–48 hours",
-    whyBuy: "Businesses with blogs get 55% more website visitors. Every post is a permanent asset.",
-    standardFeatures: ["800–1200 words", "Keyword optimized", "Meta title + description", "1 revision", "Published or delivered"],
-    premiumFeatures: ["2000+ words", "Custom graphics", "Social media snippets", "Email newsletter version", "Unlimited revisions"],
-    maintenance: "1 post/month included in SEO maintenance plan",
-    maintenancePrice: "₹699/post standalone"
-  },
-  {
-    id: "b18",
-    name: "Google Visibility Audit",
-    category: "Business",
-    description: "Find exactly why Google can’t find your business.",
-    fullDescription: "A comprehensive audit of your business’s online visibility. We check robots.txt, Search Console, sitemap, meta tags, Crunchbase presence, backlinks, page speed, and AI crawler accessibility. You get a detailed report with exact fixes.",
-    price: 499,
-    priceRange: "₹499 – ₹999",
-    imageUrl: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "24 hours",
-    whyBuy: "You can’t fix what you don’t know is broken. Start here.",
-    standardFeatures: ["SEO health check", "Crawlability report", "Speed analysis", "Competitor snapshot", "Fix priority list"],
-    premiumFeatures: ["Full backlink audit", "AI search visibility", "30-day action plan", "Video walkthrough", "30-min call included"],
-    maintenance: "Not required",
-    maintenancePrice: "One-time report"
-  },
-  {
-    id: "b19",
-    name: "Mobile App Development",
-    category: "Business",
-    description: "Launch your app in weeks, not months.",
-    fullDescription: "Native or cross-platform mobile app development for iOS and Android. From MVP to full-featured apps. We handle design, development, testing, and Play Store / App Store submission.",
-    price: 29999,
-    priceRange: "₹29,999 – ₹59,999",
-    imageUrl: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "21–45 days",
-    whyBuy: "Your competitors have apps. Your customers expect one too.",
-    standardFeatures: ["Cross-platform (iOS + Android)", "UI/UX design", "Basic features (4–6)", "Store submission", "30-day support"],
-    premiumFeatures: ["Native app", "Advanced features", "Backend integration", "Push notifications", "Analytics integration"],
-    maintenance: "Bug fixes + OS updates + performance monitoring",
-    maintenancePrice: "₹2,999/mo"
-  },
-  {
-    id: "b20",
-    name: "LinkedIn Personal Branding",
-    category: "Business",
-    description: "Turn your LinkedIn into a lead magnet.",
-    fullDescription: "Complete LinkedIn profile optimization for founders, executives, and professionals. Headline, summary, experience, skills, featured section, banner design, and a 30-day content strategy to build authority and attract inbound leads.",
-    price: 4999,
-    priceRange: "₹4,999 – ₹7,498",
-    imageUrl: "https://images.unsplash.com/photo-1611944212129-29977ae1398c?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "3–5 days",
-    whyBuy: "80% of B2B leads come from LinkedIn. Your profile is your pitch deck.",
-    standardFeatures: ["Full profile rewrite", "Custom banner design", "Headline optimization", "Featured section", "30-day content plan"],
-    premiumFeatures: ["10 posts written", "Engagement strategy", "Connection targeting", "Analytics setup", "Monthly review"],
-    maintenance: "4 posts/month + engagement + profile updates",
-    maintenancePrice: "₹2,999/mo"
-  },
+];
+
+export const combos: Combo[] = [
+  { id: "combo-brand", name: "Brand Starter", services: ["Logo Design","Brand Colors","Business Email"], price: "\u20B92,999 \u2013 \u20B93,499", icon: "\uD83C\uDFA8", description: "Launch your brand identity from day one" },
+  { id: "combo-google", name: "Google Presence", services: ["Website","SEO Setup","Google Business Profile"], price: "\u20B916,999 \u2013 \u20B919,999", icon: "\uD83D\uDD0D", description: "Get found on Google \u2014 fast" },
+  { id: "combo-legal", name: "Legal Foundation", services: ["GST Registration","MSME Registration","Trademark Filing"], price: "\u20B93,999 \u2013 \u20B95,999", icon: "\u2696\uFE0F", description: "Make your business 100% legal" },
+  { id: "combo-growth", name: "Growth Engine", services: ["SEO","4 Blog Posts/mo","Social Media"], price: "\u20B97,999 \u2013 \u20B99,999/mo", icon: "\uD83D\uDCC8", description: "Content and SEO that compounds over time" },
+  { id: "combo-sales", name: "Sales Machine", services: ["CRM Setup","WhatsApp Bot","Lead Automation"], price: "\u20B912,999 \u2013 \u20B914,999", icon: "\uD83E\uDD16", description: "Automate your sales pipeline end to end" },
+];
+
+export const launchpadServices: Service[] = [
+  { id: "svc-logo", name: "Professional Logo Design", description: "Custom logo that makes your brand unforgettable. 3 concepts, unlimited revisions.", price: "\u20B91,999 \u2013 \u20B92,499", maintenance: "One-time", category: "Branding", icon: "\u270F\uFE0F", isGoldenEligible: false },
+  { id: "svc-website", name: "Website Design & Development", description: "Fast, mobile-first website built to convert visitors into customers.", price: "\u20B912,999 \u2013 \u20B917,999", maintenance: "\u20B91,499/mo", category: "Web", icon: "\uD83D\uDCBB", isGoldenEligible: false },
+  { id: "svc-seo", name: "SEO Setup", description: "Full on-page SEO, Google Search Console setup, and keyword targeting.", price: "\u20B93,999 \u2013 \u20B95,999", maintenance: "\u20B92,999/mo", category: "Marketing", icon: "\uD83D\uDD0D", isGoldenEligible: false },
+  { id: "svc-whatsapp", name: "WhatsApp Sales Bot", description: "Automated WhatsApp bot that qualifies leads and books appointments 24/7.", price: "\u20B96,999 \u2013 \u20B99,999", maintenance: "\u20B9999/mo", category: "Automation", icon: "\uD83D\uDCAC", isGoldenEligible: false },
+  { id: "svc-crm", name: "CRM Setup", description: "Never lose a lead again. Full CRM setup with pipeline and automation.", price: "\u20B97,999 \u2013 \u20B911,999", maintenance: "\u20B91,499/mo", category: "Operations", icon: "\uD83D\uDCCA", isGoldenEligible: false },
+  { id: "svc-social", name: "Social Media Setup", description: "Professional profiles on all major platforms with branded content templates.", price: "\u20B91,999 \u2013 \u20B92,999", maintenance: "\u20B94,999/mo", category: "Marketing", icon: "\uD83D\uDCF1", isGoldenEligible: false },
+  { id: "svc-gst", name: "GST Registration", description: "Complete GST registration handled for you \u2014 fully compliant.", price: "\u20B9799 \u2013 \u20B91,299", maintenance: "One-time", category: "Legal", icon: "\uD83D\uDCCB", isGoldenEligible: false },
+  { id: "svc-msme", name: "MSME Registration", description: "Get your Udyam MSME certificate and unlock government benefits.", price: "\u20B9499 \u2013 \u20B9799", maintenance: "One-time", category: "Legal", icon: "\uD83C\uDFDB\uFE0F", isGoldenEligible: false },
+  { id: "svc-trademark", name: "Trademark Filing", description: "Protect your brand name and logo legally with trademark registration.", price: "\u20B92,499 \u2013 \u20B93,999", maintenance: "One-time", category: "Legal", icon: "\u2122\uFE0F", isGoldenEligible: false },
+  { id: "svc-gbp", name: "Google Business Profile", description: "Optimised Google Maps listing so local customers find you first.", price: "\u20B9999 \u2013 \u20B91,499", maintenance: "\u20B9999/mo", category: "Marketing", icon: "\uD83D\uDCCD", isGoldenEligible: false },
+  { id: "svc-email", name: "Business Email Setup", description: "Professional @yourbusiness.com email on Google Workspace or Zoho.", price: "\u20B9499 \u2013 \u20B9799", maintenance: "One-time", category: "Setup", icon: "\uD83D\uDCE7", isGoldenEligible: false },
+  { id: "svc-chatbot", name: "AI Website Chatbot", description: "AI chatbot on your website that answers queries and captures leads round the clock.", price: "\u20B94,999 \u2013 \u20B97,999", maintenance: "\u20B9999/mo", category: "Automation", icon: "\uD83E\uDD16", isGoldenEligible: false },
+  { id: "svc-pitch", name: "Pitch Deck Design", description: "Investor-ready pitch deck that tells your story and closes funding.", price: "\u20B92,499 \u2013 \u20B93,499", maintenance: "One-time", category: "Branding", icon: "\uD83C\uDFAF", isGoldenEligible: false },
+  { id: "svc-sales-auto", name: "Sales Automation", description: "End-to-end sales pipeline automation \u2014 from lead capture to follow-up.", price: "\u20B98,999 \u2013 \u20B912,999", maintenance: "\u20B91,999/mo", category: "Automation", icon: "\u26A1", isGoldenEligible: false },
+  { id: "svc-analytics", name: "Analytics Dashboard", description: "Real-time business dashboard \u2014 see your sales, traffic, and leads in one place.", price: "\u20B96,999 \u2013 \u20B99,999", maintenance: "\u20B91,499/mo", category: "Operations", icon: "\uD83D\uDCC8", isGoldenEligible: false },
+  { id: "svc-hr", name: "HR System Setup", description: "Attendance, payroll, and leave management \u2014 digitise your HR in one week.", price: "\u20B95,999 \u2013 \u20B99,999", maintenance: "\u20B91,499/mo", category: "Operations", icon: "\uD83D\uDC65", isGoldenEligible: false },
+  { id: "svc-blog", name: "SEO Blog Writing", description: "Keyword-optimised blog posts that rank on Google and drive organic traffic.", price: "\u20B9699 \u2013 \u20B9999/post", maintenance: "Per post", category: "Marketing", icon: "\u270D\uFE0F", isGoldenEligible: false },
+  { id: "svc-audit", name: "Google Visibility Audit", description: "Free 1-page report showing exactly where your business is invisible online and how to fix it.", price: "FREE", maintenance: "One-time report", category: "Audit", icon: "\uD83D\uDD0E", isGoldenEligible: false, tag: "FREE" },
+  { id: "svc-app", name: "Mobile App Development", description: "Custom Android & iOS app for your business \u2014 built in React Native.", price: "\u20B929,999 \u2013 \u20B959,999", maintenance: "\u20B92,999/mo", category: "Web", icon: "\uD83D\uDCF2", isGoldenEligible: false },
+  { id: "svc-linkedin", name: "LinkedIn Personal Branding", description: "Turn your LinkedIn into a client magnet \u2014 full profile optimisation + content strategy.", price: "\u20B94,999 \u2013 \u20B97,498", maintenance: "\u20B92,999/mo", category: "Marketing", icon: "\uD83D\uDCBC", isGoldenEligible: false },
+];
+
+export const scaleopsConsultancy: ConsultancyOption[] = [
+  { id: "consult-free", name: "First Chat FREE", duration: "30 min", price: "\u20B90", priceNumeric: 0, badge: "NEW SIGNUP OFFER", description: "One free strategy call for all new signups. No commitment, no pitch." },
+  { id: "consult-chat", name: "Chat Session", duration: "30 min", price: "\u20B9499", priceNumeric: 499, description: "Focused Q&A session. Get clear answers on your business challenges." },
+  { id: "consult-strategy", name: "Strategy Call", duration: "30 min", price: "\u20B9999", priceNumeric: 999, description: "Deep-dive with a roadmap and action plan you can execute immediately." },
+  { id: "consult-retainer", name: "Monthly Retainer", duration: "Ongoing", price: "\u20B92,999/mo", priceNumeric: 2999, badge: "BEST VALUE", description: "On-demand advisor every month. Priority access, weekly check-ins included." },
+];
+
+export const scaleopsMaintenance: MaintenancePlan[] = [
+  { id: "maint-seo", name: "SEO Maintenance", price: "\u20B92,999/mo", priceNumeric: 2999, coverage: ["1 optimised blog post/month","Rank monitoring & reporting","On-page fixes as needed","Google Search Console alerts"] },
+  { id: "maint-web", name: "Website Maintenance", price: "\u20B91,499/mo", priceNumeric: 1499, coverage: ["Speed & performance tuning","Security patches","Bug fixes within 24 hrs","Monthly uptime report"] },
+  { id: "maint-social", name: "Social Media Management", price: "\u20B94,999/mo", priceNumeric: 4999, coverage: ["8 branded posts/month","Engagement & reply management","Monthly analytics report","Hashtag & growth strategy"] },
+  { id: "maint-fullstack", name: "Full Stack Plan", price: "\u20B97,999/mo", priceNumeric: 7999, badge: "ALL INCLUDED", coverage: ["Everything in all 3 plans","Monthly strategy call","Priority support 24/7","Quarterly business review"] },
 ];
