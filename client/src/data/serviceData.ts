@@ -132,3 +132,6 @@ export const scaleopsMaintenance: MaintenancePlan[] = [
   { id: "maint-social", name: "Social Media Management", price: "\u20B94,999/mo", priceNumeric: 4999, coverage: ["8 branded posts/month","Engagement & reply management","Monthly analytics report","Hashtag & growth strategy"] },
   { id: "maint-fullstack", name: "Full Stack Plan", price: "\u20B97,999/mo", priceNumeric: 7999, badge: "ALL INCLUDED", coverage: ["Everything in all 3 plans","Monthly strategy call","Priority support 24/7","Quarterly business review"] },
 ];
+
+// Backward-compat export for Orders.tsx
+export const allServices = launchpadServices;
