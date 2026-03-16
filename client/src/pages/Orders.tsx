@@ -482,9 +482,9 @@ export default function Orders() {
                       </div>
                       <div className="flex items-center gap-3">
                         {item.isGoldenEligible ? (
-                          <span className="text-green-500 font-bold">¹0</span>
+                          <span className="text-green-500 font-bold">₹0</span>
                         ) : (
-                          <span className="text-primary font-bold">¹{item.price}</span>
+                          <span className="text-primary font-bold">₹{item.price}</span>
                         )}
                         <button
                           type="button"
@@ -503,7 +503,7 @@ export default function Orders() {
                     {hasOnlyFreeServices ? (
                       <span className="text-2xl font-black text-green-500">FREE ¨</span>
                     ) : (
-                      <span className="text-2xl font-black text-primary">¹{cartTotal}</span>
+                      <span className="text-2xl font-black text-primary">₹{cartTotal}</span>
                     )}
                   </div>
                 </div>
@@ -682,7 +682,7 @@ export default function Orders() {
                 {!isGoldenService && !hasOnlyFreeServices && !isServiceLocked && cart.length === 0 && (
                   <div className="space-y-2">
                     <Label htmlFor="amount" className="text-foreground">
-                      Order Amount (¹) <span className="text-destructive">*</span>
+                      Order Amount (₹) <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="amount"
@@ -719,7 +719,7 @@ export default function Orders() {
                       </>
                     ) : isGoldenService || hasOnlyFreeServices
                       ? "¨ Submit FREE Order"
-                      : `Pay ¹${cartTotal > 0 ? cartTotal : orderAmount} & Submit`}
+                      : `Pay ₹${cartTotal > 0 ? cartTotal : orderAmount} & Submit`}
                   </Button>
                 ) : (
                   <div className="space-y-4">
@@ -736,7 +736,7 @@ export default function Orders() {
                       className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:opacity-90 text-lg py-6 flex items-center justify-center gap-2"
                     >
                       <CreditCard className="w-5 h-5" />
-                      Pay ¹{orderAmount} Now
+                      Pay ₹{orderAmount} Now
                     </Button>
 
                     <Button
