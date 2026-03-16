@@ -1,10 +1,8 @@
 // Services.tsx — SAGEDO Services Page
 // Full rewrite: March 16, 2026
-// Fixes: hero breathing room, big tabs, bigger combos, services hidden by default, SEO updated
 
 import React, { useState, useRef } from "react";
 import { Helmet } from "react-helmet-async";
-import { useNavigate } from "react-router-dom";
 import {
   packages,
   combos,
@@ -24,7 +22,6 @@ function whatsappLink(message: string): string {
 const Services: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate();
   const tabSectionRef = useRef<HTMLDivElement>(null);
 
   const scrollToTabs = () => {
