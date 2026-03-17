@@ -1,18 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/sagedo-services.html",
-      "destination": "/sagedo-services.html"
-    },
-    {
-      "source": "/llms.txt",
-      "destination": "/llms.txt"
-    },
-    {
-      "source": "/services.json",
-      "destination": "/sagedo-services.html"
-    },
-    {
       "source": "/api/:path*",
       "destination": "https://sagedo-website.onrender.com/api/:path*"
     },
@@ -20,6 +8,5 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ],
-  "redirects": []
+  ]
 }
