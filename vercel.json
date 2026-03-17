@@ -11,7 +11,7 @@
   ],
   "redirects": [
     {
-      "source": "/api/services",
+      "source": "/services.json",
       "destination": "https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/services-data",
       "permanent": false
     }
