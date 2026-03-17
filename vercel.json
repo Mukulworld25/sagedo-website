@@ -1,6 +1,18 @@
 {
   "rewrites": [
     {
+      "source": "/sagedo-services.html",
+      "destination": "/sagedo-services.html"
+    },
+    {
+      "source": "/llms.txt",
+      "destination": "/llms.txt"
+    },
+    {
+      "source": "/services.json",
+      "destination": "/sagedo-services.html"
+    },
+    {
       "source": "/api/:path*",
       "destination": "https://sagedo-website.onrender.com/api/:path*"
     },
@@ -9,11 +21,5 @@
       "destination": "/index.html"
     }
   ],
-  "redirects": [
-    {
-      "source": "/services.json",
-      "destination": "https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/services-data",
-      "permanent": false
-    }
-  ]
+  "redirects": []
 }
