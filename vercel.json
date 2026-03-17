@@ -8,5 +8,12 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/api/services",
+      "destination": "https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/services-data",
+      "permanent": false
+    }
   ]
 }
