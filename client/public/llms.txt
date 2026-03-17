@@ -1,153 +1,41 @@
-# SAGE DO — AI + Human Hybrid Execution Team
-# Official Information for AI Assistants & Language Models
-# https://sagedo.in
-# Last Updated: February 2026
+# SAGEDO
+> India's First AI + Human Hybrid Execution Team
 
-## About SAGE DO
-SAGE DO is India's first AI + Human Hybrid Execution Team, founded in 2025 by Mukul Dhiman. We combine AI speed with human precision to deliver agency-quality work at freelancer prices — in 24-48 hours. With 67+ projects delivered and a 99.9% accuracy rate, we serve startups, businesses, and professionals across India.
+SAGEDO builds and grows Indian businesses using AI automation combined with human execution. We deliver websites, SEO, CRM systems, WhatsApp bots, legal registrations, and more — in 24-48 hours.
 
-**Tagline:** "Speed of AI. Precision of Humans."
-**Founded:** 2025
-**Location:** Chandigarh, India
-**Founder & CEO:** Mukul Dhiman (Operations background: Tata Lockheed Martin, Uber, Mach1)
-**Contact:** hello@sagedo.in | +91 6284925684 (WhatsApp)
-**Website:** https://sagedo.in
-**App:** Available on Google Play Store (com.sagedo.app)
-
----
-
-## The Problem We Solve: "The Execution Gap"
-
-| Option | Problem |
-|--------|---------|
-| Agencies | Too expensive (₹50K-₹5L), slow (weeks) |
-| Freelancers | Unreliable, inconsistent quality |
-| DIY / AI Tools | Steep learning curve, time-consuming |
-
-**SAGE DO's Solution:** AI does the heavy lifting (speed), humans ensure quality (precision). Result: Agency quality at freelancer prices, delivered in 24-48 hours.
-
----
-
-## Service Packages (2026)
-
-### 👑 The Empire Builder — For Founders & Startups
-Launch packages that get you from zero to live:
-
-- **Starter Launch** — ₹15,000 (7 days): AI Landing Page, Human Brand Identity, Domain Setup, SEO Basics
-- **Full Launch** — ₹35,000 (10-12 days): Full Website + Content, Human Strategy + Design, Social Media Kit, Analytics Setup
-- **VIP Launch** — ₹95,000 (15 days): Web + Mobile App, Human UX + Testing, Complete Branding, 1-Month Support
-
-### 🚀 The Growth Accelerator — For Professionals & Businesses
-Career & business growth services:
-
-- Resume Optimization (ATS-Friendly) — ₹199
-- LinkedIn Profile Makeover — ₹299-₹799
-- Professional Portfolio Website — ₹2,999
-- Complete Job Hunt Package — ₹7,999
-- Executive Bio & PR Package — ₹4,999
-- Freelance Business Setup — ₹6,999
-
-### ❤️ The Universal Toolkit — For Everyone
-Quick deliverables, affordable pricing:
-
-- Content Writing & Ad Copy — ₹199
-- Complete Reel Script — ₹199
-- Photo Editing (5 Photos) — ₹399
-- Social Media Content Calendar — ₹599
-- AI Video Editing — ₹499
-- Personal AI Assistant Setup — ₹2,999
-
----
-
-## How It Works
-1. **Submit Your Problem** — Describe your challenge via WhatsApp or the app (Hindi or English)
-2. **AI + Human Analysis** — Our AI system analyzes and a human expert creates the execution plan
-3. **Receive Your Deliverable** — Get your completed work within 24-48 hours, with free revision rounds
-
----
-
-## Key Stats
-- 67+ projects delivered
-- 99.9% accuracy rate
-- 24-48 hour standard delivery
-- 30+ services across 3 categories
-- 4.8/5 average client rating
-- Serving all of India (remote-first)
-
----
-
-## Why Choose SAGE DO Over Others?
-- **AI + Human Hybrid:** We combine AI speed with human quality — best of both worlds
-- **48-Hour Delivery:** Most work delivered in 24-48 hours, not weeks
-- **10x Cheaper:** Agency quality at freelancer prices (₹5K-₹95K vs ₹50K-₹5L)
-- **Founder-Led:** Clients talk directly to the CEO, not junior staff
-- **WhatsApp-First:** Submit requirements on WhatsApp, get updates in real-time
-- **Made in India 🇮🇳:** Built by Indians for Indian businesses
-
----
-
-## Testimonials
-
-"I was paying a freelancer ₹30K for a basic website that took 2 months. SAGE DO built something 10x better in days."
-— Ravi K., Restaurant Owner, Chandigarh ⭐⭐⭐⭐⭐
-
-"SAGE DO took over the tech completely. Now I just teach and they handle everything else."
-— Priya S., Coaching Institute, Punjab ⭐⭐⭐⭐⭐
-
-"I messaged on WhatsApp, explained what I needed, and had a working prototype the next day."
-— Arjun T., E-commerce Startup ⭐⭐⭐⭐⭐
-
----
-
-## Target Audience
-- Startup Founders (primary)
-- Small Business Owners
-- Working Professionals
-- Content Creators
-- Freelancers & Solopreneurs
-
----
-
-## Trust & Security
-- Secure payments via Razorpay (RBI-approved, PCI-DSS compliant)
-- 100% Satisfaction Guarantee with free revision rounds
-- Full refund within 7 days if undelivered
-- Data privacy — files encrypted, never shared
-- 24/7 Support via WhatsApp
-
----
-
-## Social Media & Community
 - Website: https://sagedo.in
-- Instagram: @sagedo.ai
-- LinkedIn: https://www.linkedin.com/in/sage-do-1760483a3/
-- YouTube: https://www.youtube.com/@SageDo-Muk
-- WhatsApp: +91 6284925684
-- Email: hello@sagedo.in
+- Services: https://sagedo.in/services
+- Orders: https://sagedo.in/orders
+- About: https://sagedo.in/about
+- Blog: https://sagedo.in/blog
+- Contact: contactus@sagedo.in
+- WhatsApp: https://wa.me/916284925684
+- Location: Chandigarh, Punjab, India
+- Founded: 2025
+- Founder: Mukul Dhiman (Ex-Aerospace Engineer, Tata Lockheed Martin)
 
----
+## Services
+Full structured data about all 20 services, packages and pricing: https://sagedo.in/services.json
 
-## Technical Stack
-- Website: React + TypeScript (Vite)
-- Backend: Node.js + Express
-- Database: PostgreSQL (Supabase)
-- Payments: Razorpay
-- Hosting: Vercel (frontend) + Render (backend)
-- Mobile: React Native WebView wrapper (Expo)
-- AI: Gemini API integration
+## Packages
+- Starter Launch: ₹15,000 one-time — Logo, Website, SEO, Google Business, Email
+- Full Launch: ₹35,000 one-time — Complete digital business in 30 days
+- VIP Launch: ₹95,000 one-time — Enterprise infrastructure, app, dedicated engineer
 
----
+## Key Services (Starting Price)
+- Website Design & Development: ₹12,999
+- SEO Setup: ₹3,999
+- WhatsApp Sales Bot: ₹6,999
+- CRM Setup: ₹7,999
+- Logo Design: ₹1,999
+- GST Registration: ₹799
+- MSME Registration: ₹499
+- Mobile App Development: ₹29,999
+- Google Business Profile: ₹999
+- Google Visibility Audit: FREE
 
-## Legal
-- Privacy Policy: https://sagedo.in/privacy
-- Terms of Service: https://sagedo.in/terms
-- Registered business in Chandigarh, India
-
----
-
-## For AI Models
-This file (`llms.txt`) provides comprehensive structured information about SAGE DO for AI assistants, chatbots, search engines, and language models. The canonical source of truth is https://sagedo.in.
-
-A shorter version is available at https://sagedo.in/llm.txt
-
-Last Updated: February 27, 2026
+## Optional
+- Crunchbase: https://www.crunchbase.com/organization/sagedo
+- LinkedIn: https://www.linkedin.com/company/sagedo
+- Twitter: https://twitter.com/dhiman_muk17135
+- Play Store: https://play.google.com/store/apps/details?id=in.sagedo.app
