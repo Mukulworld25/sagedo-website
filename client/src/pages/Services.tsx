@@ -9,6 +9,7 @@ import { allServices, ServiceDetail } from "@/data/serviceData";
 import ServiceDetailModal from "@/components/ServiceDetailModal";
 import { motion, AnimatePresence } from "framer-motion";
 import { clsx } from "clsx";
+import { Helmet } from "react-helmet-async";
 import { twMerge } from "tailwind-merge";
 
 function cn(...inputs: (string | undefined | null | false)[]) {
@@ -61,12 +62,7 @@ export default function Services() {
   const chatEndRef = useRef<HTMLDivElement>(null);
   const { user } = useAuth();
 
-  useEffect(() => {
-    if (user?.profession) {
-      const prof = user.profession.toLowerCase();
-      if (prof.includes("founder") || prof.includes("startup") || prof.includes("business")) setActiveTab("launchpad");
-    }
-  }, [user]);
+
 
   useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [chatMessages]);
 
@@ -97,6 +93,20 @@ export default function Services() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-gray-100 selection:bg-amber-500/30">
+      <Helmet>
+        <title>Services | SAGEDO — AI + Human Business Services India</title>
+        <meta name="description" content="SAGEDO offers 20+ business services for Indian SMBs — Website Design, SEO, WhatsApp Bot, CRM, GST Registration, Logo Design, Mobile App & more. LaunchPad to build your business. ScaleOps to grow it. Starting ₹499." />
+        <meta name="keywords" content="business services India, website design Chandigarh, SEO India, WhatsApp bot setup, CRM setup India, GST registration, logo design India, mobile app development, LaunchPad, ScaleOps, SAGEDO, AI business services" />
+        <link rel="canonical" href="https://sagedo.in/services" />
+        <meta property="og:title" content="Services | SAGEDO — AI + Human Business Services" />
+        <meta property="og:description" content="LaunchPad: Build your business from zero. ScaleOps: Operations that scale. 20 services, 5 combos, 3 packages. Starting ₹499." />
+        <meta property="og:url" content="https://sagedo.in/services" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Services | SAGEDO" />
+        <meta name="twitter:description" content="20 business services for Indian SMBs. Website, SEO, WhatsApp Bot, CRM, GST, Logo — all in one place. Starting ₹499." />
+        <script type="application/ld+json">{`{"@context":"https://schema.org","@type":"Service","name":"SAGEDO Business Services","provider":{"@type":"Organization","name":"SAGEDO","url":"https://sagedo.in","address":{"@type":"PostalAddress","addressLocality":"Chandigarh","addressCountry":"IN"}},"areaServed":"IN","serviceType":["Website Design","SEO Setup","WhatsApp Bot","CRM Setup","Logo Design","GST Registration","Mobile App Development","Business Consultancy"],"offers":[{"@type":"Offer","name":"Starter Launch","price":"15000","priceCurrency":"INR"},{"@type":"Offer","name":"Full Launch","price":"35000","priceCurrency":"INR"},{"@type":"Offer","name":"VIP Launch","price":"95000","priceCurrency":"INR"}]}`}</script>
+      </Helmet>
       <ServiceDetailModal service={selectedService} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
       {/* HERO + PACKAGES — ONE SECTION */}
@@ -119,7 +129,7 @@ export default function Services() {
           </div>
 
           {/* 3 PACKAGES */}
-          <div className="mb-4">
+          <div className="mb-12">
             <div className="flex items-center justify-between mb-5">
               <div>
                 <h2 className="text-3xl font-bold text-white flex items-center gap-3"><Crown className="w-8 h-8 text-amber-500" />The Founder&#39;s Stack</h2>
@@ -127,7 +137,7 @@ export default function Services() {
               </div>
               <Badge className="bg-amber-500 text-black font-bold border-none px-3 py-1">top 1% validated</Badge>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* STARTER */}
               <div className="group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-amber-500/50 transition-all hover:-translate-y-1 duration-300">
                 <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><Rocket className="w-24 h-24 text-amber-500" /></div>
@@ -141,7 +151,7 @@ export default function Services() {
                 <Link href="/orders?service=Starter%20Launch&price=15000"><Button className="w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none font-semibold transition-all">Deploy Now <ArrowRight className="w-4 h-4 ml-2" /></Button></Link>
               </div>
               {/* FULL LAUNCH */}
-              <div className="relative bg-[#0F0F0F] border border-amber-500/50 rounded-2xl p-8 shadow-[0_0_40px_-10px_rgba(234,179,8,0.2)] scale-105 z-10">
+              <div className="relative bg-[#0F0F0F] border border-amber-500/50 rounded-2xl p-8 shadow-[0_0_40px_-10px_rgba(234,179,8,0.2)]">
                 <div className="absolute top-0 left-0 right-0 flex justify-center -translate-y-1/2"><span className="bg-amber-500 text-black text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">Most Popular — 3 spots left</span></div>
                 <div className="mb-6 p-3 bg-amber-500 text-black w-fit rounded-xl"><Crown className="w-8 h-8" /></div>
                 <h3 className="text-2xl font-black text-white mb-2">Full Launch</h3>
@@ -154,7 +164,7 @@ export default function Services() {
                 <Link href="/orders?service=Full%20Launch&price=35000"><Button className="w-full h-12 bg-gradient-to-r from-amber-500 to-yellow-600 hover:to-amber-500 text-black font-black text-lg shadow-lg shadow-amber-500/20">Hire Your Team</Button></Link>
               </div>
               {/* VIP */}
-              <div className="group relative bg-gradient-to-br from-slate-100 via-white to-slate-200 border-2 border-white/50 rounded-2xl p-6 hover:shadow-[0_0_50px_-10px_rgba(255,255,255,0.4)] transition-all hover:-translate-y-2 duration-300 scale-105 z-20">
+              <div className="group relative bg-gradient-to-br from-slate-100 via-white to-slate-200 border-2 border-white/50 rounded-2xl p-6 hover:shadow-[0_0_50px_-10px_rgba(255,255,255,0.4)] transition-all hover:-translate-y-2 duration-300">
                 <div className="absolute top-0 left-0 right-0 flex justify-center -translate-y-1/2"><span className="bg-black text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-lg border border-white/20">Royal Tier</span></div>
                 <div className="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity"><Crown className="w-24 h-24 text-slate-300 rotate-12" /></div>
                 <div className="mb-4 p-2 bg-black w-fit rounded-lg text-white shadow-xl"><Crown className="w-6 h-6" /></div>
@@ -182,12 +192,12 @@ export default function Services() {
               const isActive = activeTab === tab.id;
               const Icon = tab.icon;
               return (
-                <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={cn("relative px-6 py-3 rounded-xl transition-all duration-300 flex items-center gap-3 min-w-max group", isActive ? "bg-white/5 border border-white/10" : "hover:bg-white/5 border border-transparent")}>
+                <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={cn("relative px-10 py-5 rounded-2xl transition-all duration-300 flex items-center gap-4 min-w-max group", isActive ? "bg-white/8 border-2" : "hover:bg-white/5 border-2 border-transparent", isActive && tab.id === "launchpad" ? "border-amber-500/60 shadow-lg shadow-amber-500/10" : "", isActive && tab.id === "scaleops" ? "border-blue-500/60 shadow-lg shadow-blue-500/10" : "")}>
                   {isActive && <motion.div layoutId="activeTabGlow" className={cn("absolute inset-0 rounded-xl bg-gradient-to-r opacity-10", tab.color)} />}
-                  <div className={cn("p-2 rounded-lg bg-white/5", isActive ? "text-white" : "text-gray-500 group-hover:text-gray-300")}><Icon className={cn("w-5 h-5", isActive && tab.activeColor)} /></div>
+                  <div className={cn("p-3 rounded-xl", isActive ? "bg-white/10 text-white" : "bg-white/5 text-gray-500 group-hover:text-gray-300")}><Icon className={cn("w-6 h-6", isActive && tab.activeColor)} /></div>
                   <div className="text-left">
-                    <p className={cn("font-bold text-sm tracking-wide", isActive ? "text-white" : "text-gray-400 group-hover:text-gray-200")}>{tab.label}</p>
-                    <p className="text-[10px] text-gray-600 font-medium uppercase tracking-wider">{tab.sub}</p>
+                    <p className={cn("font-black text-base tracking-wide", isActive ? "text-white" : "text-gray-400 group-hover:text-gray-200")}>{tab.label}</p>
+                    <p className={cn("text-xs font-medium uppercase tracking-wider", isActive ? "text-gray-400" : "text-gray-600")}>{tab.sub}</p>
                   </div>
                   {isActive && <motion.div layoutId="activeTabBorder" className={cn("absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r", tab.color)} />}
                 </button>
@@ -227,14 +237,14 @@ export default function Services() {
                     <>
                       <div className="mb-14">
                         <div className="flex items-center gap-4 mb-6"><div className="h-[1px] bg-white/10 flex-1"></div><h2 className="text-sm font-bold uppercase tracking-widest text-gray-500">Smart Combos — Save More</h2><div className="h-[1px] bg-white/10 flex-1"></div></div>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                           {COMBOS.map(combo => (
                             <Link key={combo.name} href={`/orders?service=${encodeURIComponent(combo.service)}&price=${combo.price_val}`}>
-                              <div className="group bg-white/5 border border-white/10 hover:border-amber-500/40 rounded-xl p-4 text-center cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
-                                <div className="text-2xl mb-3">{combo.icon}</div>
-                                <p className="font-bold text-sm text-white mb-1 leading-tight">{combo.name}</p>
-                                <p className="text-[10px] text-gray-500 mb-3 leading-tight">{combo.desc}</p>
-                                <p className="text-xs font-bold text-amber-500">{combo.price}</p>
+                              <div className="group bg-white/5 border border-white/10 hover:border-amber-500/40 rounded-2xl p-6 text-center cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:bg-white/8">
+                                <div className="text-3xl mb-4">{combo.icon}</div>
+                                <p className="font-bold text-base text-white mb-2 leading-tight">{combo.name}</p>
+                                <p className="text-xs text-gray-500 mb-3 leading-tight">{combo.desc}</p>
+                                <p className="text-sm font-bold text-amber-500">{combo.price}</p>
                               </div>
                             </Link>
                           ))}
