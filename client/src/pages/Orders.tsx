@@ -31,7 +31,7 @@ export default function Orders() {
     email: "",
     service: "",
     requirements: "",
-    deliveryPreference: "platform" as "platform" | "email",
+    deliveryPreference: "platform" as "platform" | "email" | "whatsapp",
   });
   const [createdOrderId, setCreatedOrderId] = useState<string | null>(null);
   const [orderAmount, setOrderAmount] = useState(0); // Default 0
@@ -620,7 +620,7 @@ export default function Orders() {
                   <Label className="text-foreground">
                     How would you like to receive your delivery? <span className="text-destructive">*</span>
                   </Label>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-3 gap-4">
                     <label
                       className={`flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${formData.deliveryPreference === 'platform'
                         ? 'border-primary bg-primary/10'
@@ -673,6 +673,33 @@ export default function Orders() {
                       <div>
                         <p className="font-medium text-foreground">Email</p>
                         <p className="text-xs text-muted-foreground">Receive download link via email</p>
+                      </div>
+                    </label>
+                    <label
+                      className={`flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${formData.deliveryPreference === 'whatsapp'
+                        ? 'border-primary bg-primary/10'
+                        : 'border-border/50 hover:border-primary/30'
+                        }`}
+                    >
+                      <input
+                        type="radio"
+                        name="deliveryPreference"
+                        value="whatsapp"
+                        checked={formData.deliveryPreference === 'whatsapp'}
+                        onChange={() => setFormData({ ...formData, deliveryPreference: 'whatsapp' })}
+                        className="sr-only"
+                      />
+                      <div className={`w-4 h-4 rounded-full border-2 ${formData.deliveryPreference === 'whatsapp'
+                        ? 'border-primary bg-primary'
+                        : 'border-muted-foreground'
+                        }`}>
+                        {formData.deliveryPreference === 'whatsapp' && (
+                          <div className="w-full h-full rounded-full bg-white scale-50" />
+                        )}
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground">WhatsApp</p>
+                        <p className="text-xs text-muted-foreground">Get update on WhatsApp</p>
                       </div>
                     </label>
                   </div>
