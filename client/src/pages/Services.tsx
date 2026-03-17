@@ -104,6 +104,10 @@ export default function Services() {
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Services | SAGEDO" />
+        <meta name="geo.region" content="IN-CH" />
+        <meta name="geo.placename" content="Chandigarh, Punjab, India" />
+        <meta name="geo.position" content="30.7333;76.7794" />
+        <meta name="ICBM" content="30.7333, 76.7794" />
         <meta name="twitter:description" content="20 business services for Indian SMBs. Website, SEO, WhatsApp Bot, CRM, GST, Logo — all in one place. Starting ₹499." />
         <script type="application/ld+json">{`{"@context":"https://schema.org","@type":"Service","name":"SAGEDO Business Services","provider":{"@type":"Organization","name":"SAGEDO","url":"https://sagedo.in","address":{"@type":"PostalAddress","addressLocality":"Chandigarh","addressCountry":"IN"}},"areaServed":"IN","serviceType":["Website Design","SEO Setup","WhatsApp Bot","CRM Setup","Logo Design","GST Registration","Mobile App Development","Business Consultancy"],"offers":[{"@type":"Offer","name":"Starter Launch","price":"15000","priceCurrency":"INR"},{"@type":"Offer","name":"Full Launch","price":"35000","priceCurrency":"INR"},{"@type":"Offer","name":"VIP Launch","price":"95000","priceCurrency":"INR"}]}`}</script>
       </Helmet>
@@ -209,17 +213,30 @@ export default function Services() {
 
       {/* NO TAB SELECTED */}
       {!activeTab && (
-        <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-          <div className="inline-flex flex-col items-center gap-6">
-            <p className="text-gray-400 text-lg font-medium">Choose your path to explore services</p>
-            <div className="flex gap-4">
-              <button onClick={() => setActiveTab("launchpad")} className="px-6 py-3 bg-amber-500/10 border border-amber-500/30 text-amber-400 rounded-xl font-semibold hover:bg-amber-500/20 transition-all">
-                🚀 LaunchPad — Build from zero
-              </button>
-              <button onClick={() => setActiveTab("scaleops")} className="px-6 py-3 bg-blue-500/10 border border-blue-500/30 text-blue-400 rounded-xl font-semibold hover:bg-blue-500/20 transition-all">
-                📈 ScaleOps — Scale what you have
-              </button>
-            </div>
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          <div className="text-center mb-10">
+            <p className="text-gray-500 text-sm uppercase tracking-widest font-bold mb-2">Where do you stand today?</p>
+            <h2 className="text-3xl md:text-4xl font-black text-white">Pick your path. <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-500">We execute.</span></h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <button onClick={() => setActiveTab("launchpad")} className="group relative text-left bg-gradient-to-br from-amber-500/15 via-amber-500/5 to-transparent border border-amber-500/30 hover:border-amber-500/60 rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_40px_-10px_rgba(234,179,8,0.3)] overflow-hidden">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-amber-500/20 transition-all" />
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-4"><div className="p-3 bg-amber-500/20 rounded-2xl text-2xl">🚀</div><div><p className="font-black text-xl text-white">LaunchPad</p><p className="text-amber-400/80 text-xs font-semibold uppercase tracking-wider">Build from zero</p></div></div>
+                <p className="text-gray-300 text-base font-medium mb-5 leading-relaxed">Starting a new business or going digital for the first time? We build everything — logo, website, SEO, CRM, WhatsApp bot — in 30 days.</p>
+                <ul className="space-y-2 mb-6">{["Website + SEO + Google Business","WhatsApp Sales Bot + CRM","Logo, Branding & Business Email","GST, MSME & Trademark Filing"].map(item => (<li key={item} className="flex items-center gap-2 text-sm text-gray-400"><span className="text-amber-400 text-xs">✓</span>{item}</li>))}</ul>
+                <div className="flex items-center gap-2 text-amber-400 font-bold text-sm group-hover:gap-3 transition-all">Explore LaunchPad <span>→</span></div>
+              </div>
+            </button>
+            <button onClick={() => setActiveTab("scaleops")} className="group relative text-left bg-gradient-to-br from-blue-500/15 via-blue-500/5 to-transparent border border-blue-500/30 hover:border-blue-500/60 rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_40px_-10px_rgba(59,130,246,0.3)] overflow-hidden">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-blue-500/20 transition-all" />
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-4"><div className="p-3 bg-blue-500/20 rounded-2xl text-2xl">⚙️</div><div><p className="font-black text-xl text-white">ScaleOps</p><p className="text-blue-400/80 text-xs font-semibold uppercase tracking-wider">Operations that scale</p></div></div>
+                <p className="text-gray-300 text-base font-medium mb-5 leading-relaxed">Already running a business? Book strategy sessions, maintain your SEO, keep your website fast, and automate operations every month.</p>
+                <ul className="space-y-2 mb-6">{["1-on-1 Strategy Sessions with Mukul","Monthly SEO & Content Maintenance","Website Speed & Security Upkeep","Social Media & Growth Management"].map(item => (<li key={item} className="flex items-center gap-2 text-sm text-gray-400"><span className="text-blue-400 text-xs">✓</span>{item}</li>))}</ul>
+                <div className="flex items-center gap-2 text-blue-400 font-bold text-sm group-hover:gap-3 transition-all">Explore ScaleOps <span>→</span></div>
+              </div>
+            </button>
           </div>
         </div>
       )}
@@ -325,9 +342,7 @@ export default function Services() {
 
       {/* FLOATING BUTTONS */}
       <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-        <a href="https://wa.me/916284925684?text=Hi%20Mukul%2C%20I%20have%20a%20query%20about%20SAGEDO%20services" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white px-4 py-2.5 rounded-full font-semibold text-sm shadow-lg shadow-green-900/40 transition-all hover:scale-105">
-          <Phone className="w-4 h-4" />Message Mukul
-        </a>
+        
         <AnimatePresence>
           {chatOpen && (
             <motion.div initial={{ opacity: 0, y: 20, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 20, scale: 0.95 }} className="w-80 bg-[#111] border border-white/10 rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
