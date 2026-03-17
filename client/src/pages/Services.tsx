@@ -108,6 +108,10 @@ export default function Services() {
         <meta name="geo.placename" content="Chandigarh, Punjab, India" />
         <meta name="geo.position" content="30.7333;76.7794" />
         <meta name="ICBM" content="30.7333, 76.7794" />
+        <meta name="geo.region" content="IN-CH" />
+        <meta name="geo.placename" content="Chandigarh, Punjab, India" />
+        <meta name="geo.position" content="30.7333;76.7794" />
+        <meta name="ICBM" content="30.7333, 76.7794" />
         <meta name="twitter:description" content="20 business services for Indian SMBs. Website, SEO, WhatsApp Bot, CRM, GST, Logo — all in one place. Starting ₹499." />
         <script type="application/ld+json">{`{"@context":"https://schema.org","@type":"Service","name":"SAGEDO Business Services","provider":{"@type":"Organization","name":"SAGEDO","url":"https://sagedo.in","address":{"@type":"PostalAddress","addressLocality":"Chandigarh","addressCountry":"IN"}},"areaServed":"IN","serviceType":["Website Design","SEO Setup","WhatsApp Bot","CRM Setup","Logo Design","GST Registration","Mobile App Development","Business Consultancy"],"offers":[{"@type":"Offer","name":"Starter Launch","price":"15000","priceCurrency":"INR"},{"@type":"Offer","name":"Full Launch","price":"35000","priceCurrency":"INR"},{"@type":"Offer","name":"VIP Launch","price":"95000","priceCurrency":"INR"}]}`}</script>
       </Helmet>
