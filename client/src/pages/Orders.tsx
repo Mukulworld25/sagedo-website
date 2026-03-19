@@ -442,8 +442,8 @@ export default function Orders() {
         {/* Split Layout Container - increased gap */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
 
-          {/* Left Side - Form Content - narrower to create space */}
-          <div className="flex-1 lg:max-w-xl lg:pr-8">
+          {/* Left Side - Form Content */}
+          <div className="flex-1 lg:max-w-xl lg:pr-8 order-2 lg:order-1">
             <div className="text-center lg:text-left mb-8">
               <h1 className="text-4xl md:text-5xl font-black text-foreground mb-4">
                 Place Your Order
@@ -837,8 +837,8 @@ export default function Orders() {
             </Card>
           </div>
 
-          {/* Right Side - Service Detail Preview Panel (Hidden on mobile) */}
-          <div className="hidden lg:flex lg:flex-col lg:w-5/12 lg:sticky lg:top-24 lg:self-start">
+          {/* Right Side - Service Detail Preview Panel */}
+          <div className="flex flex-col lg:w-5/12 lg:sticky lg:top-24 lg:self-start order-1 lg:order-2 mb-8 lg:mb-0">
             {selectedServiceDetails ? (
               <div className="space-y-6">
                 {/* Service Header Card */}

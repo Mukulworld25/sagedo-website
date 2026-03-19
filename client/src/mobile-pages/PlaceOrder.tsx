@@ -47,6 +47,18 @@ export const PlaceOrder: React.FC = () => {
     return () => { document.body.removeChild(script); };
   }, []);
 
+  // Check for pre-selected service from the mobile Services tab
+  useEffect(() => {
+    const preselectId = localStorage.getItem('sagedo_mobile_preselect_service');
+    if (preselectId) {
+      const targetService = allServices.find(s => s.id === preselectId);
+      if (targetService) {
+        setSelectedService(targetService);
+      }
+      localStorage.removeItem('sagedo_mobile_preselect_service'); // clear handoff
+    }
+  }, []);
+
   // Auto-dismiss toast
   useEffect(() => {
     if (toast) {
@@ -239,17 +251,56 @@ export const PlaceOrder: React.FC = () => {
         <div>
           <label className="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2 block">Service *</label>
           {selectedService ? (
-            <div className="p-4 rounded-2xl bg-red-500/5 border border-red-500/20 flex items-center justify-between">
-              <div className="flex-1">
-                <p className="text-white font-bold text-sm">{selectedService.name}</p>
-                <p className="text-neutral-400 text-xs">{selectedService.category} • {selectedService.priceRange}</p>
-                {isGoldenEligible && (
-                  <span className="inline-block mt-1 text-[9px] font-bold bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full">🎫 FREE with Golden Ticket</span>
-                )}
+            <div className="space-y-3">
+              <div className="p-4 rounded-2xl bg-red-500/5 border border-red-500/20 flex items-start justify-between">
+                <div className="flex-1">
+                  <p className="text-white font-black text-lg mb-1">{selectedService.name}</p>
+                  <p className="text-neutral-400 text-xs mb-2">{selectedService.category} • {selectedService.priceRange}</p>
+                  <div className="flex items-center gap-2 mt-1 mb-3">
+                    <span className="text-xs bg-white/5 px-2 py-1 rounded text-neutral-300 flex items-center gap-1">
+                      <Clock className="w-3 h-3 text-red-400" /> {selectedService.deliveryTime || '24-48 hrs'}
+                    </span>
+                    {isGoldenEligible && (
+                      <span className="text-[10px] font-bold bg-amber-500/20 text-amber-400 px-2 py-1 rounded-full flex items-center gap-1">
+                        <Star className="w-3 h-3 fill-amber-400" /> FREE (Golden Ticket)
+                      </span>
+                    )}
+                  </div>
+                  
+                  <div className="mt-4 space-y-4">
+                    {/* Standard Features */}
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 mb-2">What's Included</p>
+                      <div className="space-y-1.5">
+                        {selectedService.standardFeatures?.map((feature: string, i: number) => (
+                           <div key={i} className="flex items-start gap-2">
+                             <CheckCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0 mt-0.5" />
+                             <span className="text-xs text-neutral-300">{feature}</span>
+                           </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* Premium Features */}
+                    {(selectedService.premiumFeatures?.length ?? 0) > 0 && (
+                      <div>
+                        <p className="text-[10px] font-bold uppercase tracking-wider text-red-500 mb-2">Premium Upgrades</p>
+                        <div className="space-y-1.5">
+                          {selectedService.premiumFeatures?.map((feature: string, i: number) => (
+                             <div key={i} className="flex items-start gap-2">
+                               <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
+                               <span className="text-xs text-neutral-400">{feature}</span>
+                             </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <button onClick={() => { setSelectedService(null); setShowServicePicker(true); }} className="p-2 rounded-xl bg-white/10 active:scale-90 transition-all shrink-0 ml-3">
+                  <X className="w-4 h-4 text-white" />
+                </button>
               </div>
-              <button onClick={() => { setSelectedService(null); setShowServicePicker(true); }} className="p-2 rounded-xl bg-white/5 active:scale-90 transition-all">
-                <X className="w-4 h-4 text-neutral-400" />
-              </button>
             </div>
           ) : (
             <button

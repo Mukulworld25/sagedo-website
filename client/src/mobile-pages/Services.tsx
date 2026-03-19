@@ -278,7 +278,11 @@ export const Tools: React.FC<ServicesProps> = ({ onNavigate }) => {
                     {/* Fixed bottom CTA */}
                     <div className="px-5 py-4 bg-black border-t border-white/5">
                         <button
-                            onClick={() => { setSelectedService(null); onNavigate(AppRoute.PLACE_ORDER); }}
+                            onClick={() => { 
+                                localStorage.setItem('sagedo_mobile_preselect_service', selectedService.id);
+                                setSelectedService(null); 
+                                onNavigate(AppRoute.PLACE_ORDER); 
+                            }}
                             className="w-full py-4 rounded-2xl bg-red-600 text-white text-sm font-black uppercase tracking-widest flex items-center justify-center gap-2 active:scale-95 transition-all"
                             style={{ boxShadow: '0 4px 20px rgba(239,68,68,0.3)' }}
                         >
