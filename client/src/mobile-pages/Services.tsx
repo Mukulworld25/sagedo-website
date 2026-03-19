@@ -128,7 +128,13 @@ export const Tools: React.FC<ServicesProps> = ({ onNavigate }) => {
                         {currentTab.packages.map((pkg, idx) => (
                             <div
                                 key={idx}
-                                onClick={() => onNavigate(AppRoute.PLACE_ORDER)}
+                                onClick={() => {
+                                    const matchingSvc = allServices.find(s => s.name === pkg.name);
+                                    if (matchingSvc) {
+                                        localStorage.setItem('sagedo_mobile_preselect_service', matchingSvc.id);
+                                    }
+                                    onNavigate(AppRoute.PLACE_ORDER);
+                                }}
                                 className={`p-5 rounded-2xl border transition-all active:scale-[0.98] cursor-pointer ${idx === 1
                                         ? 'bg-red-500/10 border-red-500/30 shadow-lg shadow-red-500/10'
                                         : 'bg-white/[0.02] border-white/5'
