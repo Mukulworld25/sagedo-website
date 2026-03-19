@@ -86,11 +86,6 @@ export default function Footer() {
                   <span className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Place Order</span>
                 </Link>
               </li>
-              <li>
-                <Link href="/track">
-                  <span className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Track Order</span>
-                </Link>
-              </li>
             </ul>
           </div>
 

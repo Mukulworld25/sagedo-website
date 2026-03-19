@@ -16,7 +16,6 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentRoute, onNavigate }
     { route: AppRoute.HOME, icon: <Home className="w-6 h-6" />, label: t('nav.home') },
     { route: AppRoute.SERVICES, icon: <Grid className="w-6 h-6" />, label: t('nav.explore') },
     { route: AppRoute.PLACE_ORDER, icon: <PlusCircle className="w-12 h-12 text-white" />, label: t('nav.order'), isSpecial: true },
-    { route: AppRoute.TRACK, icon: <Activity className="w-6 h-6" />, label: t('nav.track') },
     { route: AppRoute.PROFILE, icon: <User className="w-6 h-6" />, label: t('nav.profile') },
   ];
 

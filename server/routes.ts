@@ -817,10 +817,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Contact Form Submission (Migrated to Supabase Edge Function)
   // Check implementation_plan.md and supabase/functions/contact/index.ts
   
-  // Gallery routes (public)
-    }
-  });
-
   // Visit Tracking (Session/Analytics)
   app.post('/api/track-visit', async (req: any, res) => {
     try {
