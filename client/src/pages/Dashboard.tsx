@@ -7,8 +7,10 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { User, Order } from "@shared/schema";
-import { Coins, Gift, TrendingUp, FileText, Download, Trash2, AlertTriangle, Camera, User as UserIcon, Settings } from "lucide-react";
+import { Coins, Gift, TrendingUp, FileText, Download, Trash2, AlertTriangle, Camera, User as UserIcon, Settings, Clock, Package, Truck, Home as HomeIcon, Timer, Gamepad2, Circle, Eye, EyeOff } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import OrderActivityFeed from "@/components/OrderActivityFeed";
+import MiniGame from "@/components/MiniGame";
 import {
   Dialog,
   DialogContent,
@@ -32,6 +34,7 @@ export default function Dashboard() {
     experience: "",
     feedback: ""
   });
+  const [trackingOrderId, setTrackingOrderId] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -363,11 +366,13 @@ export default function Dashboard() {
                       </td>
                       <td className="py-3 px-4">
                         <div className="flex items-center gap-2">
-                          <a href={`/track?orderId=${order.id}`}>
-                            <Button size="sm" variant="outline" className="text-xs">
-                              Track
-                            </Button>
-                          </a>
+                          <Button size="sm" variant="outline" className="text-xs" onClick={() => setTrackingOrderId(trackingOrderId === order.id ? null : order.id)}>
+                            {trackingOrderId === order.id ? (
+                              <><EyeOff className="w-3 h-3 mr-1" /> Hide</>
+                            ) : (
+                              <><Eye className="w-3 h-3 mr-1" /> Track</>
+                            )}
+                          </Button>
                           <a href={`/api/orders/${order.id}/invoice`} target="_blank" rel="noopener noreferrer">
                             <Button size="sm" variant="ghost" className="text-xs" title="Download Invoice">
                               📄
@@ -393,6 +398,140 @@ export default function Dashboard() {
             </div>
           )}
         </Card>
+
+        {/* Inline Order Tracking Section */}
+        {trackingOrderId && (() => {
+          const trackedOrder = orders.find((o: any) => o.id === trackingOrderId);
+          if (!trackedOrder) return null;
+
+          const stages = [
+            { name: "Pending", description: "Order received and waiting for processing", icon: Clock },
+            { name: "Processing", description: "We're working on your order", icon: Package },
+            { name: "Finalizing", description: "Quality check and final touches", icon: Truck },
+            { name: "Delivered", description: "Order completed and delivered", icon: HomeIcon },
+          ];
+          const statusToIndex: Record<string, number> = { pending: 0, processing: 1, finalizing: 2, delivered: 3 };
+          const currentStageIndex = statusToIndex[(trackedOrder as any).status] || 0;
+
+          // Progress & countdown
+          const progressMap: Record<string, number> = { pending: 0, processing: 33, finalizing: 66, delivered: 100 };
+          const progress = progressMap[(trackedOrder as any).status] || 0;
+          const getDeliveryHours = (deliveryTime?: string | null): number => {
+            if (!deliveryTime) return 48;
+            const t = deliveryTime.toLowerCase();
+            if (t.includes('24 hour')) return 24;
+            if (t.includes('48 hour')) return 48;
+            if (t.includes('2-3 day')) return 72;
+            if (t.includes('3-5 day')) return 120;
+            if (t.includes('5-7 day')) return 168;
+            return 48;
+          };
+          const deliveryHours = getDeliveryHours((trackedOrder as any).deliveryTime);
+          const orderDate = new Date((trackedOrder as any).createdAt);
+          const deliveryDate = new Date(orderDate.getTime() + deliveryHours * 60 * 60 * 1000);
+          const now = new Date();
+          const timeRemaining = deliveryDate.getTime() - now.getTime();
+          const days = Math.max(0, Math.floor(timeRemaining / (1000 * 60 * 60 * 24)));
+          const hours = Math.max(0, Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+          const minutes = Math.max(0, Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60)));
+
+          return (
+            <Card className="glass p-6 mb-8 border-primary/20">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+                  <Timer className="w-6 h-6 text-primary" />
+                  Tracking: {(trackedOrder as any).serviceName}
+                </h2>
+                <Button variant="ghost" size="sm" onClick={() => setTrackingOrderId(null)} className="text-muted-foreground">
+                  <EyeOff className="w-4 h-4 mr-1" /> Close
+                </Button>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="mb-8">
+                <div className="flex justify-between text-sm text-muted-foreground mb-2">
+                  <span>{(trackedOrder as any).status.charAt(0).toUpperCase() + (trackedOrder as any).status.slice(1)}</span>
+                  <span className="font-bold text-primary">{progress}% Complete</span>
+                </div>
+                <div className="h-3 bg-neutral-800 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-primary to-destructive rounded-full transition-all duration-500 ease-out"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Left: Timeline + Countdown */}
+                <div className="space-y-6">
+                  {/* Countdown */}
+                  {timeRemaining > 0 && (trackedOrder as any).status !== 'delivered' && (
+                    <div className="p-4 bg-neutral-800/50 rounded-xl border border-primary/20">
+                      <div className="text-xs text-muted-foreground mb-2">⏱️ Estimated Delivery In:</div>
+                      <div className="flex gap-3 justify-center text-center">
+                        <div className="bg-neutral-900 rounded-lg p-3 min-w-[55px]">
+                          <div className="text-xl font-bold text-primary">{days}</div>
+                          <div className="text-xs text-muted-foreground">Days</div>
+                        </div>
+                        <div className="bg-neutral-900 rounded-lg p-3 min-w-[55px]">
+                          <div className="text-xl font-bold text-primary">{hours}</div>
+                          <div className="text-xs text-muted-foreground">Hrs</div>
+                        </div>
+                        <div className="bg-neutral-900 rounded-lg p-3 min-w-[55px]">
+                          <div className="text-xl font-bold text-primary">{minutes}</div>
+                          <div className="text-xs text-muted-foreground">Min</div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Stage Timeline */}
+                  <div className="space-y-4">
+                    {stages.map((stage, index) => {
+                      const isCompleted = index <= currentStageIndex;
+                      const isCurrent = index === currentStageIndex;
+                      const Icon = stage.icon;
+                      return (
+                        <div key={stage.name} className={`flex items-center gap-4 ${index < stages.length - 1 ? 'pb-4 border-b border-border/20' : ''}`}>
+                          <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${
+                            isCompleted
+                              ? 'bg-gradient-to-r from-primary to-destructive text-white'
+                              : 'bg-neutral-800 text-muted-foreground'
+                          }`}>
+                            <Icon className="w-5 h-5" />
+                          </div>
+                          <div className="flex-1">
+                            <p className={`font-bold text-sm ${isCompleted ? 'text-foreground' : 'text-muted-foreground'}`}>
+                              {stage.name}
+                              {isCurrent && <span className="ml-2 text-xs text-primary">← Current</span>}
+                            </p>
+                            <p className="text-xs text-muted-foreground">{stage.description}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Right: Activity Feed + Mini Game */}
+                <div className="space-y-6">
+                  <div className="glass rounded-xl p-4">
+                    <OrderActivityFeed orderId={(trackedOrder as any).id} />
+                  </div>
+                  {(trackedOrder as any).status !== 'delivered' && (
+                    <div className="glass rounded-xl p-4">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Gamepad2 className="w-5 h-5 text-primary" />
+                        <span className="text-sm font-bold text-foreground">Play While You Wait</span>
+                      </div>
+                      <MiniGame />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </Card>
+          );
+        })()}
       </div>
 
       <Dialog open={isSurveyOpen} onOpenChange={setIsSurveyOpen}>

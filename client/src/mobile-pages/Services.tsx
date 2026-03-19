@@ -1,8 +1,8 @@
 
 import React, { useState, useMemo } from 'react';
-import { ArrowRight, Search, Crown, Rocket, Sparkles, Star, Zap, Clock, MessageCircle, ChevronRight } from 'lucide-react';
+import { ArrowRight, Search, Crown, Rocket, Sparkles, Star, Zap, Clock, MessageCircle, ChevronRight, X, CheckCircle2, Shield } from 'lucide-react';
 import { AppRoute } from '../mobile-types';
-import { allServices } from '../data/serviceData';
+import { allServices, ServiceDetail } from '../data/serviceData';
 
 interface ServicesProps {
     onNavigate: (route: AppRoute) => void;
@@ -43,6 +43,7 @@ const tabData = [
 export const Tools: React.FC<ServicesProps> = ({ onNavigate }) => {
     const [activeTab, setActiveTab] = useState('empire');
     const [searchQuery, setSearchQuery] = useState('');
+    const [selectedService, setSelectedService] = useState<ServiceDetail | null>(null);
 
     const currentTab = tabData.find(t => t.id === activeTab)!;
 
@@ -88,7 +89,7 @@ export const Tools: React.FC<ServicesProps> = ({ onNavigate }) => {
                 </div>
             </div>
 
-            {/* Tab Bar (horizontal scroll) */}
+            {/* Tab Bar */}
             <div className="px-5 mb-6">
                 <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
                     {tabData.map(tab => (
@@ -123,7 +124,6 @@ export const Tools: React.FC<ServicesProps> = ({ onNavigate }) => {
                     <h2 className="text-sm font-black text-white uppercase tracking-wider mb-4 flex items-center gap-2">
                         <Crown className="w-4 h-4 text-amber-400" /> Founder's Launch Packages
                     </h2>
-
                     <div className="space-y-3">
                         {currentTab.packages.map((pkg, idx) => (
                             <div
@@ -179,10 +179,9 @@ export const Tools: React.FC<ServicesProps> = ({ onNavigate }) => {
                         {filteredServices.map(service => (
                             <div
                                 key={service.id}
-                                onClick={() => onNavigate(AppRoute.PLACE_ORDER)}
+                                onClick={() => setSelectedService(service)}
                                 className="rounded-2xl overflow-hidden bg-white/[0.02] border border-white/5 active:scale-[0.97] transition-all cursor-pointer group"
                             >
-                                {/* Service Image */}
                                 <div className="relative h-28 overflow-hidden">
                                     <img src={service.imageUrl} alt={service.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -193,8 +192,6 @@ export const Tools: React.FC<ServicesProps> = ({ onNavigate }) => {
                                     )}
                                     <span className="absolute bottom-2 right-2 text-red-400 font-black text-sm">{service.priceRange.split(' - ')[0]}</span>
                                 </div>
-
-                                {/* Service Info */}
                                 <div className="p-3">
                                     <h3 className="text-white font-bold text-xs leading-tight mb-1 line-clamp-2">{service.name}</h3>
                                     <p className="text-neutral-500 text-[10px] leading-snug line-clamp-2">{service.description}</p>
@@ -209,6 +206,87 @@ export const Tools: React.FC<ServicesProps> = ({ onNavigate }) => {
                     </div>
                 )}
             </div>
+
+            {/* ═══════ SERVICE DETAIL MODAL ═══════ */}
+            {selectedService && (
+                <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex flex-col">
+                    {/* Header image */}
+                    <div className="relative h-48 shrink-0">
+                        <img src={selectedService.imageUrl} alt={selectedService.name} className="w-full h-full object-cover" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+                        <button
+                            onClick={() => setSelectedService(null)}
+                            className="absolute top-4 right-4 p-2.5 rounded-full bg-black/50 backdrop-blur-sm active:scale-90 transition-all"
+                        >
+                            <X className="w-5 h-5 text-white" />
+                        </button>
+                        <div className="absolute bottom-4 left-5 right-5">
+                            <h2 className="text-xl font-black text-white mb-1">{selectedService.name}</h2>
+                            <p className="text-red-400 font-black text-lg">{selectedService.priceRange}</p>
+                        </div>
+                    </div>
+
+                    {/* Scrollable content */}
+                    <div className="flex-1 overflow-y-auto px-5 py-6 space-y-6">
+                        <p className="text-neutral-300 text-sm leading-relaxed">{selectedService.fullDescription}</p>
+
+                        <div className="grid grid-cols-2 gap-3">
+                            <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                                <p className="text-[9px] text-neutral-600 uppercase tracking-wider mb-1">Category</p>
+                                <p className="text-white font-bold text-xs">{selectedService.category}</p>
+                            </div>
+                            <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                                <p className="text-[9px] text-neutral-600 uppercase tracking-wider mb-1">Delivery</p>
+                                <p className="text-white font-bold text-xs flex items-center justify-center gap-1">
+                                    <Clock className="w-3 h-3 text-red-400" /> {selectedService.deliveryTime || '24-48 hrs'}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 mb-3">What's Included</p>
+                            <div className="space-y-2.5">
+                                {selectedService.standardFeatures.map((f, i) => (
+                                    <div key={i} className="flex items-center gap-3">
+                                        <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
+                                        <span className="text-sm text-neutral-200">{f}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {selectedService.premiumFeatures.length > 0 && (
+                            <div>
+                                <p className="text-[10px] font-bold uppercase tracking-wider text-red-400 mb-3">Premium Upgrades</p>
+                                <div className="space-y-2.5">
+                                    {selectedService.premiumFeatures.map((f, i) => (
+                                        <div key={i} className="flex items-center gap-3">
+                                            <Star className="w-4 h-4 text-amber-500 shrink-0" />
+                                            <span className="text-sm text-neutral-400">{f}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        <div className="flex items-center justify-center gap-4 text-[10px] text-neutral-600 pt-2">
+                            <span className="flex items-center gap-1"><Shield className="w-3 h-3 text-green-500" /> Satisfaction Guarantee</span>
+                            <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-red-400" /> AI + Human Quality</span>
+                        </div>
+                    </div>
+
+                    {/* Fixed bottom CTA */}
+                    <div className="px-5 py-4 bg-black border-t border-white/5">
+                        <button
+                            onClick={() => { setSelectedService(null); onNavigate(AppRoute.PLACE_ORDER); }}
+                            className="w-full py-4 rounded-2xl bg-red-600 text-white text-sm font-black uppercase tracking-widest flex items-center justify-center gap-2 active:scale-95 transition-all"
+                            style={{ boxShadow: '0 4px 20px rgba(239,68,68,0.3)' }}
+                        >
+                            Order Now — {selectedService.priceRange.split(' - ')[0]} <ArrowRight className="w-4 h-4" />
+                        </button>
+                    </div>
+                </div>
+            )}
 
             {/* WhatsApp CTA */}
             <div className="px-5 mt-8 mb-4">

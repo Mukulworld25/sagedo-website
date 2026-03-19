@@ -126,24 +126,31 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             AI-Powered · Human-Crafted · India
           </p>
 
-          {/* CTAs */}
+          {/* CTAs — 3 Buttons matching website */}
           <div className="flex flex-col items-center gap-3 mt-8 w-full max-w-xs" style={{ animation: 'fadeInUp 0.6s ease-out 0.8s both' }}>
             <a
-              href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20visited%20SAGE%20DO%20and%20I'm%20interested%20in%20your%20services.%20Can%20we%20talk%3F"
+              href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20want%20to%20book%20a%20call%20to%20discuss%20my%20project."
               target="_blank"
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl text-sm font-black uppercase tracking-widest text-white active:scale-95 transition-all"
-              style={{ background: '#16a34a', boxShadow: '0 4px 20px rgba(22,163,74,0.4)', fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
+              style={{ background: '#dc2626', boxShadow: '0 4px 20px rgba(239,68,68,0.4)', fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
             >
-              <MessageCircle className="w-5 h-5" /> BOOK FREE CALL
+              📞 BOOK A CALL
             </a>
             <button
               onClick={() => onNavigate(AppRoute.SERVICES)}
               className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl text-sm font-bold uppercase tracking-widest text-white/80 active:scale-95 transition-all"
               style={{ border: '1px solid rgba(255,255,255,0.15)', fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
             >
-              SEE OUR WORK
+              <ArrowRight className="w-4 h-4" /> SERVICES
             </button>
+            <a
+              href="/free-audit"
+              className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl text-sm font-bold uppercase tracking-widest text-green-400 active:scale-95 transition-all"
+              style={{ border: '1px solid rgba(34,197,94,0.3)', fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
+            >
+              <Zap className="w-4 h-4" /> FREE AI AUDIT
+            </a>
           </div>
         </div>
       </section>

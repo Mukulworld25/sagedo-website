@@ -116,86 +116,67 @@ export default function Tracking() {
 
   return (
     <div className="min-h-screen pt-20 pb-16">
-      {/* 3-Column Hero: Girl LEFT | Tracking CENTER | Girl RIGHT */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center min-h-[600px]">
+      {/* Clean Centered Hero */}
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+        <div className="space-y-8">
 
-          {/* LEFT: Girl 1 - Pink Saree */}
-          <div className="hidden lg:block h-[550px] relative">
-            <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src="/girl_left.png"
-                alt="Customer Support"
-                className="w-full h-full object-cover object-top"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+          {/* Header */}
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-xs font-bold uppercase tracking-wider text-primary">Live Tracking</span>
             </div>
-            {/* Badge */}
-            <div className="absolute bottom-6 left-6 glass px-4 py-2 rounded-full">
-              <span className="text-sm font-bold">✨ Premium Support</span>
-            </div>
+            <h1 className="text-4xl md:text-5xl font-black text-foreground mb-4">
+              Track Your <span className="text-primary">Order</span>
+            </h1>
+            <p className="text-muted-foreground max-w-md mx-auto">
+              Enter your order ID to see real-time progress, delivery countdown, and activity updates.
+            </p>
           </div>
 
-          {/* CENTER: Tracking Form */}
-          <div className="w-full space-y-6">
-            <div className="text-center">
-              <h1 className="text-4xl md:text-5xl font-black text-foreground mb-4">
-                Track Your <span className="text-primary">Order</span>
-              </h1>
-              <p className="text-muted-foreground">
-                Enter your order ID to see real-time status ✨
-              </p>
+          {/* Tracking Form Card */}
+          <Card className="glass p-8 border-primary/20 shadow-2xl">
+            <form onSubmit={handleTrack} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="orderId" className="text-lg font-bold">
+                  Order ID
+                </Label>
+                <Input
+                  id="orderId"
+                  value={orderId}
+                  onChange={(e) => setOrderId(e.target.value)}
+                  placeholder="Enter order ID (e.g. #1234)"
+                  data-testid="input-order-id"
+                  className="h-12 text-lg"
+                />
+              </div>
+              <Button
+                type="submit"
+                size="lg"
+                disabled={isLoading}
+                data-testid="button-track-order"
+                className="w-full h-12 text-lg bg-gradient-to-r from-primary to-destructive hover:opacity-90"
+              >
+                {isLoading ? "Tracking..." : "Track Order 🚀"}
+              </Button>
+            </form>
+          </Card>
+
+          {/* Trust badges row */}
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-green-500" />
+              <span>Secure & Encrypted</span>
             </div>
-
-            <Card className="glass p-8 border-primary/20 shadow-2xl">
-              <form onSubmit={handleTrack} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="orderId" className="text-lg font-bold">
-                    Order ID
-                  </Label>
-                  <Input
-                    id="orderId"
-                    value={orderId}
-                    onChange={(e) => setOrderId(e.target.value)}
-                    placeholder="Enter order ID (e.g. #1234)"
-                    data-testid="input-order-id"
-                    className="h-12 text-lg"
-                  />
-                </div>
-                <Button
-                  type="submit"
-                  size="lg"
-                  disabled={isLoading}
-                  data-testid="button-track-order"
-                  className="w-full h-12 text-lg bg-gradient-to-r from-primary to-destructive hover:opacity-90"
-                >
-                  {isLoading ? "Tracking..." : "Track Order 🚀"}
-                </Button>
-              </form>
-            </Card>
-
-            <div className="flex items-center justify-center gap-3 text-sm text-muted-foreground">
-              <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
+            <div className="flex items-center gap-2">
+              <Zap className="w-4 h-4 text-primary" />
+              <span>Real-time Updates</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Heart className="w-4 h-4 text-pink-500" />
               <span>Trusted by 1000+ Indians</span>
             </div>
           </div>
-
-          {/* RIGHT: Girl 2 - Pink Saree */}
-          <div className="hidden lg:block h-[550px] relative">
-            <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src="/girl_right.png"
-                alt="AI Assistant"
-                className="w-full h-full object-cover object-top"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-            </div>
-            {/* Badge */}
-            <div className="absolute bottom-6 right-6 glass px-4 py-2 rounded-full">
-              <span className="text-sm font-bold">🤖 AI Powered</span>
-            </div>
-          </div>
-
         </div>
       </div>
 

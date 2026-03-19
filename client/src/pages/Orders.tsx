@@ -1,11 +1,11 @@
-﻿import { Card } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import { Upload, CheckCircle2, CreditCard, Sparkles, Plus, X, Star, LogIn, Loader2 } from "lucide-react";
+import { Upload, CheckCircle2, CreditCard, Sparkles, Plus, X, Star, LogIn, Loader2, Clock, Zap, Shield, ArrowRight } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useSearch, Link, useLocation } from "wouter";
@@ -52,6 +52,17 @@ export default function Orders() {
   // Calculate total from cart
   const cartTotal = cart.reduce((sum, item) => sum + (item.isGoldenEligible ? 0 : item.price), 0);
   const hasOnlyFreeServices = cart.length > 0 && cart.every(item => item.isGoldenEligible);
+
+  // Resolve selected service details for the preview panel
+  const selectedServiceDetails = (() => {
+    if (cart.length > 0) {
+      return allServices.find(s => s.id === cart[0].id) || null;
+    }
+    if (formData.service) {
+      return allServices.find(s => s.name === formData.service) || null;
+    }
+    return null;
+  })();
 
   // Read URL params and pre-fill form
   useEffect(() => {
@@ -826,50 +837,141 @@ export default function Orders() {
             </Card>
           </div>
 
-          {/* Right Side - Full Height Human Image (Hidden on mobile) */}
-          <div className="hidden lg:flex lg:flex-col lg:w-5/12 lg:fixed lg:right-0 lg:top-16 lg:bottom-0 lg:p-6">
-            {/* Full Height Image Container */}
-            <div className="relative h-full rounded-3xl overflow-hidden shadow-2xl border border-border/20">
-              <img
-                src="/gorgeous_woman.png"
-                alt="SAGE DO Support"
-                className="w-full h-full object-cover object-center"
-                loading="lazy"
-              />
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-transparent" />
+          {/* Right Side - Service Detail Preview Panel (Hidden on mobile) */}
+          <div className="hidden lg:flex lg:flex-col lg:w-5/12 lg:sticky lg:top-24 lg:self-start">
+            {selectedServiceDetails ? (
+              <div className="space-y-6">
+                {/* Service Header Card */}
+                <div className="relative rounded-2xl overflow-hidden border border-primary/20 bg-gradient-to-br from-background via-background to-primary/5 p-8 shadow-2xl shadow-primary/5">
+                  {/* Glow accent */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-destructive to-primary" />
 
-              {/* Content overlay at bottom */}
-              <div className="absolute bottom-0 left-0 right-0 p-8 space-y-6">
-                {/* AI + Human Badge */}
-                <div className="flex items-center gap-3 bg-background/80 backdrop-blur-sm p-4 rounded-xl w-fit">
-                  <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center shadow-lg">
-                    <Sparkles className="w-6 h-6 text-white" />
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-destructive/20 flex items-center justify-center shrink-0 border border-primary/20">
+                      <Sparkles className="w-7 h-7 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-black text-foreground leading-tight">
+                        {selectedServiceDetails.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mt-1">{selectedServiceDetails.category}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-bold text-foreground">AI + Human Excellence</p>
-                    <p className="text-sm text-muted-foreground">We'll handle it for you ¨</p>
+
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                    {selectedServiceDetails.fullDescription}
+                  </p>
+
+                  {/* Price & Delivery */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="p-4 rounded-xl bg-background/60 border border-border/30">
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Price Range</p>
+                      <p className="text-lg font-black text-primary">{selectedServiceDetails.priceRange}</p>
+                    </div>
+                    <div className="p-4 rounded-xl bg-background/60 border border-border/30">
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Delivery</p>
+                      <p className="text-lg font-black text-foreground flex items-center gap-2">
+                        <Clock className="w-4 h-4 text-primary" />
+                        {selectedServiceDetails.deliveryTime || '24-48 hrs'}
+                      </p>
+                    </div>
                   </div>
+
+                  {/* Standard Features */}
+                  <div className="mb-5">
+                    <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3">What's Included</p>
+                    <div className="space-y-2.5">
+                      {selectedServiceDetails.standardFeatures.map((feature, i) => (
+                        <div key={i} className="flex items-center gap-3">
+                          <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
+                          <span className="text-sm text-foreground">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Premium Features */}
+                  {selectedServiceDetails.premiumFeatures.length > 0 && (
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-wider text-primary mb-3">Premium Upgrades</p>
+                      <div className="space-y-2.5">
+                        {selectedServiceDetails.premiumFeatures.map((feature, i) => (
+                          <div key={i} className="flex items-center gap-3">
+                            <Star className="w-4 h-4 text-amber-500 shrink-0" />
+                            <span className="text-sm text-muted-foreground">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                {/* Trust Badges */}
-                <div className="bg-background/80 backdrop-blur-sm p-4 rounded-xl space-y-3">
-                  <div className="flex items-center gap-2 text-foreground">
-                    <CheckCircle2 className="w-5 h-5 text-green-500" />
-                    <span className="font-medium">Fast 24-48 hour delivery</span>
+                {/* Trust & Guarantee Card */}
+                <div className="rounded-2xl border border-border/20 bg-background/40 backdrop-blur-sm p-6 space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
+                      <Shield className="w-5 h-5 text-green-500" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-foreground text-sm">100% Satisfaction Guarantee</p>
+                      <p className="text-xs text-muted-foreground">Full refund if not satisfied</p>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 text-foreground">
-                    <CheckCircle2 className="w-5 h-5 text-green-500" />
-                    <span className="font-medium">100% Satisfaction guarantee</span>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <Zap className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-foreground text-sm">AI + Human Excellence</p>
+                      <p className="text-xs text-muted-foreground">Every deliverable is human-verified</p>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 text-foreground">
-                    <CheckCircle2 className="w-5 h-5 text-green-500" />
-                    <span className="font-medium">Secure payment via Razorpay</span>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center">
+                      <CheckCircle2 className="w-5 h-5 text-amber-500" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-foreground text-sm">Secure Payment via Razorpay</p>
+                      <p className="text-xs text-muted-foreground">SSL encrypted · UPI · Cards · Netbanking</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              /* No service selected — elegant placeholder */
+              <div className="rounded-2xl border border-dashed border-border/40 bg-gradient-to-br from-background via-background to-primary/5 p-12 text-center space-y-6 shadow-xl">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/10 to-destructive/10 flex items-center justify-center mx-auto border border-primary/20">
+                  <Sparkles className="w-10 h-10 text-primary/50" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-foreground mb-2">Select a Service</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">
+                    Browse our 30+ AI-powered services and see full details, pricing, and features right here.
+                  </p>
+                </div>
+                <a href="/services">
+                  <Button variant="outline" className="gap-2 border-primary/30 hover:bg-primary/10">
+                    Browse Services <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </a>
+
+                {/* Mini trust badges */}
+                <div className="pt-6 border-t border-border/20 space-y-3">
+                  <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-green-500" />
+                    <span className="text-xs">Fast 24-48 hour delivery</span>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-green-500" />
+                    <span className="text-xs">100% Satisfaction guarantee</span>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-green-500" />
+                    <span className="text-xs">Secure payment via Razorpay</span>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
         </div>

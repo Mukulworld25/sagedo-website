@@ -2,11 +2,12 @@ import React from 'react';
 import {
     User, Settings, Shield, LogOut, ChevronRight, Gift, Star,
     Globe, Bell, Moon, HelpCircle, MessageCircle, FileText,
-    Info, Trash2, Lock, Palette, Mail
+    Info, Trash2, Lock, Palette, Mail, Package
 } from 'lucide-react';
 import { useLanguage } from '../mobile-components/LanguageProvider';
 import { useAuth } from '@/contexts/AuthContext';
 import { AppRoute } from '../mobile-types';
+import { useQuery } from '@tanstack/react-query';
 
 interface ProfileProps {
     onNavigate?: (route: AppRoute) => void;
@@ -15,6 +16,12 @@ interface ProfileProps {
 export const Profile: React.FC<ProfileProps> = ({ onNavigate }) => {
     const { t, language, setLanguage } = useLanguage();
     const { user, logout } = useAuth();
+
+    // Fetch real order history
+    const { data: orders = [] } = useQuery({
+        queryKey: ['/api/orders'],
+        enabled: !!user,
+    });
 
     const toggleLanguage = () => {
         setLanguage(language === 'en' ? 'hi' : 'en');
@@ -102,10 +109,14 @@ export const Profile: React.FC<ProfileProps> = ({ onNavigate }) => {
                 )}
 
                 {/* Stats */}
-                <div className="grid grid-cols-2 gap-3 mt-5">
+                <div className="grid grid-cols-3 gap-3 mt-5">
                     <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 text-center">
                         <p className="text-red-400 font-black text-lg">{user?.hasGoldenTicket ? '1' : '0'}</p>
                         <p className="text-neutral-600 text-[9px] font-medium uppercase tracking-wider">Free Credits</p>
+                    </div>
+                    <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                        <p className="text-blue-400 font-black text-lg">{(orders as any[]).length}</p>
+                        <p className="text-neutral-600 text-[9px] font-medium uppercase tracking-wider">Orders</p>
                     </div>
                     <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 text-center">
                         <p className="text-green-400 font-black text-lg">₹100</p>
@@ -125,21 +136,21 @@ export const Profile: React.FC<ProfileProps> = ({ onNavigate }) => {
                             const content = (
                                 <div
                                     key={idx}
-                                    onClick={item.onClick}
-                                    className={`flex items-center justify-between px-4 py-3.5 ${idx < section.items.length - 1 ? 'border-b border-white/5' : ''} ${item.onClick ? 'cursor-pointer' : ''} active:bg-white/5 transition-colors`}
+                                    onClick={(item as any).onClick}
+                                    className={`flex items-center justify-between px-4 py-3.5 ${idx < section.items.length - 1 ? 'border-b border-white/5' : ''} ${(item as any).onClick ? 'cursor-pointer' : ''} active:bg-white/5 transition-colors`}
                                 >
                                     <div className="flex items-center gap-3">
-                                        <div className={`p-2 rounded-xl ${item.highlight ? 'bg-green-500/10 text-green-400' : 'bg-white/5 text-neutral-500'}`}>
+                                        <div className={`p-2 rounded-xl ${(item as any).highlight ? 'bg-green-500/10 text-green-400' : 'bg-white/5 text-neutral-500'}`}>
                                             <item.icon className="w-4.5 h-4.5" />
                                         </div>
                                         <div>
-                                            <span className={`font-bold text-sm ${item.highlight ? 'text-green-400' : 'text-neutral-300'}`}>{item.label}</span>
+                                            <span className={`font-bold text-sm ${(item as any).highlight ? 'text-green-400' : 'text-neutral-300'}`}>{item.label}</span>
                                             <p className="text-neutral-600 text-[10px]">{item.desc}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        {item.value && (
-                                            <span className="text-[10px] font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded-lg">{item.value}</span>
+                                        {(item as any).value && (
+                                            <span className="text-[10px] font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded-lg">{(item as any).value}</span>
                                         )}
                                         <ChevronRight className="w-4 h-4 text-neutral-700" />
                                     </div>

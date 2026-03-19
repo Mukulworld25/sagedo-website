@@ -107,22 +107,29 @@ export default function Home() {
             AI-Powered · Human-Crafted · India
           </p>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - 3 Systematic Actions */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
-            <Link href="/free-audit">
+            <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20want%20to%20book%20a%20call%20to%20discuss%20my%20project." target="_blank" rel="noopener noreferrer">
               <div className={buttonVariants({ size: "lg", className: "h-14 px-8 text-lg font-semibold bg-red-600 hover:bg-red-500 rounded-xl transition-all hover:scale-[1.02] hover:-translate-y-0.5 group cursor-pointer" })}
                 style={{ boxShadow: '0 4px 16px rgba(239, 68, 68, 0.4)', fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
               >
-                <Zap className="mr-2 h-5 w-5" /> GET FREE AI AUDIT
+                <Phone className="mr-2 h-5 w-5" /> BOOK A CALL
+              </div>
+            </a>
+            <Link href="/services">
+              <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-14 px-8 text-lg font-semibold rounded-xl border-white/20 hover:border-white/50 hover:bg-white/5 text-white transition-all cursor-pointer" })}
+                style={{ fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
+              >
+                <ArrowRight className="mr-2 h-5 w-5" /> SERVICES
               </div>
             </Link>
-            <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20visited%20SAGE%20DO%20and%20I'm%20interested%20in%20your%20services.%20Can%20we%20talk%3F" target="_blank" rel="noopener noreferrer">
+            <Link href="/free-audit">
               <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-14 px-8 text-lg font-semibold rounded-xl border-green-500/40 hover:border-green-400 hover:bg-green-500/10 text-green-400 hover:text-green-300 transition-all cursor-pointer" })}
                 style={{ fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
               >
-                <MessageCircle className="mr-2 h-5 w-5" /> WHATSAPP US
+                <Zap className="mr-2 h-5 w-5" /> FREE AUDIT
               </div>
-            </a>
+            </Link>
           </div>
         </div>
 
