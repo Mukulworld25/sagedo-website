@@ -727,6 +727,104 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
+          FREE AUDIT - Lead Capture CTA (Transitional CTA)
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-20 px-6 border-t border-border/30 bg-gradient-to-b from-primary/5 via-transparent to-transparent">
+        <div className="max-w-4xl mx-auto">
+          <div className="relative overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-br from-background via-background to-primary/5 p-8 md:p-12">
+            {/* Decorative glow */}
+            <div className="absolute -top-20 -right-20 w-60 h-60 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
+            <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-green-500/10 rounded-full blur-[80px] pointer-events-none" />
+            
+            <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center">
+              {/* Left: Copy */}
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">
+                  <Zap className="w-3 h-3" /> 100% FREE — No strings attached
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black text-foreground mb-3">
+                  Get a Free AI Business Audit
+                </h2>
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  Discover exactly what's holding your business back online. Our AI scans your digital presence and delivers a personalized roadmap — in under 24 hours.
+                </p>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" /> Website & SEO health check</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" /> Competitor comparison snapshot</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" /> Top 3 quick-win opportunities</li>
+                </ul>
+              </div>
+
+              {/* Right: Form */}
+              <div>
+                <form
+                  id="free-audit-form"
+                  className="space-y-4"
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    const form = e.target as HTMLFormElement;
+                    const businessName = (form.elements.namedItem('businessName') as HTMLInputElement).value;
+                    const whatsappNumber = (form.elements.namedItem('whatsappNumber') as HTMLInputElement).value;
+                    const btn = form.querySelector('button[type=submit]') as HTMLButtonElement;
+                    btn.textContent = 'Sending...';
+                    btn.disabled = true;
+                    try {
+                      const res = await fetch('/api/free-audit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ businessName, whatsappNumber }),
+                      });
+                      if (res.ok) {
+                        btn.textContent = '✅ Request Sent!';
+                        btn.className = btn.className.replace('bg-primary', 'bg-green-600');
+                        form.reset();
+                        setTimeout(() => { btn.textContent = 'Get My Free Audit →'; btn.disabled = false; btn.className = btn.className.replace('bg-green-600', 'bg-primary'); }, 3000);
+                      }
+                    } catch {
+                      btn.textContent = 'Get My Free Audit →';
+                      btn.disabled = false;
+                    }
+                  }}
+                >
+                  <div>
+                    <label htmlFor="audit-business" className="block text-sm font-medium text-foreground mb-1">Business Name</label>
+                    <input
+                      id="audit-business"
+                      name="businessName"
+                      type="text"
+                      required
+                      placeholder="e.g. Sharma Electronics"
+                      className="w-full px-4 py-3 rounded-xl bg-muted border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="audit-whatsapp" className="block text-sm font-medium text-foreground mb-1">WhatsApp Number</label>
+                    <input
+                      id="audit-whatsapp"
+                      name="whatsappNumber"
+                      type="tel"
+                      required
+                      placeholder="+91 98765 43210"
+                      className="w-full px-4 py-3 rounded-xl bg-muted border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full py-3 px-6 rounded-xl bg-primary text-primary-foreground font-bold text-base hover:opacity-90 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-primary/25"
+                  >
+                    Get My Free Audit →
+                  </button>
+                  <p className="text-xs text-muted-foreground text-center">
+                    We'll send your audit report via WhatsApp within 24 hours. No spam, ever.
+                  </p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
           TESTIMONIALS - Clean Cards (Bhindi Style)
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="py-24 px-6 border-t border-border/30 bg-gradient-to-b from-muted/30 to-transparent">
