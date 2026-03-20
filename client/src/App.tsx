@@ -12,7 +12,6 @@ import Home from "@/pages/Home";
 import Services from "@/pages/Services";
 import About from "@/pages/About";
 import Orders from "@/pages/Orders";
-import Tracking from "@/pages/Tracking";
 import Dashboard from "@/pages/Dashboard";
 import Admin from "@/pages/Admin";
 import OrderDetails from "@/pages/OrderDetails";

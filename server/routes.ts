@@ -12,6 +12,12 @@ import multer from "multer";
 import { WebSocket, WebSocketServer } from "ws";
 import rateLimit from "express-rate-limit";
 
+declare module "express-session" {
+  interface SessionData {
+    user: any;
+  }
+}
+
 // SECURITY: Rate Limiters
 const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -869,7 +875,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Onboarding Survey Submission
   app.post('/api/user/onboarding', async (req, res) => {
     // Debug logging for 401 issues
-    console.log(`[Onboarding] Request received. SessionId: ${req.sessionID}, IsAuth: ${req.isAuthenticated()}, User: ${req.user?.id}`);
+    console.log(`[Onboarding] Request received. SessionId: ${req.sessionID}, IsAuth: ${req.isAuthenticated()}, User: ${(req.user as any)?.id}`);
 
     // Unified Auth Check
     if (!req.session.user) {
@@ -1671,12 +1677,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Send admin notification email
       try {
-        await sendContactEmail({
-          name: businessName,
-          email: whatsappNumber,
-          subject: `🔥 FREE AUDIT REQUEST: ${businessName}`,
-          message: `Business: ${businessName}\nWebsite: ${websiteUrl || 'Not provided'}\nSocial: ${socialHandle || 'Not provided'}\nChallenge: ${biggestChallenge}\nWhatsApp: ${whatsappNumber}`,
-        });
+        await sendContactEmail(
+          businessName,
+          whatsappNumber,
+          `🔥 FREE AUDIT REQUEST: ${businessName}`,
+          `Business: ${businessName}\nWebsite: ${websiteUrl || 'Not provided'}\nSocial: ${socialHandle || 'Not provided'}\nChallenge: ${biggestChallenge}\nWhatsApp: ${whatsappNumber}`
+        );
       } catch (emailErr) {
         console.error('Admin notification email failed:', emailErr);
       }
@@ -1701,12 +1707,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Send admin notification
       try {
-        await sendContactEmail({
-          name: 'Newsletter Subscriber',
-          email: email,
-          subject: `📧 NEW Newsletter Subscriber: ${email}`,
-          message: `Email: ${email}\nSource: ${source || 'unknown'}\nTime: ${new Date().toISOString()}`,
-        });
+        await sendContactEmail(
+          'Newsletter Subscriber',
+          email,
+          `📧 NEW Newsletter Subscriber: ${email}`,
+          `Email: ${email}\nSource: ${source || 'unknown'}\nTime: ${new Date().toISOString()}`
+        );
       } catch (emailErr) {
         console.error('Newsletter notification email failed:', emailErr);
       }

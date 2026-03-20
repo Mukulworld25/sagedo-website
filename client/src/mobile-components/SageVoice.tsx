@@ -66,7 +66,7 @@ export const SageVoice: React.FC<SageVoiceProps> = ({ onClose }) => {
               processor.connect(inputCtx.destination);
             },
             onmessage: async (msg) => {
-              const audioData = msg.serverContent?.modelTurn?.parts[0]?.inlineData?.data;
+              const audioData = msg.serverContent?.modelTurn?.parts?.[0]?.inlineData?.data;
               if (audioData) {
                 setStatus('speaking');
                 nextStartTimeRef.current = Math.max(nextStartTimeRef.current, outputCtx.currentTime);
