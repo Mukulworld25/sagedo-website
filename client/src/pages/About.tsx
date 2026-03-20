@@ -22,8 +22,8 @@ export default function About() {
   const socialMedia = [
     { name: "WhatsApp", icon: MessageCircle, handle: "+91 6284925684", color: "from-green-600 to-emerald-600", url: "https://wa.me/916284925684" },
     { name: "Instagram", icon: Instagram, handle: "@sagedoai00", color: "from-pink-600 to-purple-600", url: "https://www.instagram.com/sagedoai00/" },
-    { name: "LinkedIn", icon: Linkedin, handle: "SAGE DO", color: "from-blue-600 to-blue-700", url: "https://www.linkedin.com/in/sage-do-1760483a3/" },
-    { name: "YouTube", icon: Youtube, handle: "@SageDo-Muk", color: "from-red-600 to-red-700", url: "https://www.youtube.com/@SageDo-Muk" },
+    { name: "LinkedIn", icon: Linkedin, handle: "SAGE DO", color: "from-blue-600 to-blue-700", url: "https://www.linkedin.com/company/112693037" },
+    { name: "YouTube", icon: Youtube, handle: "@SageDo-Ai", color: "from-red-600 to-red-700", url: "https://www.youtube.com/@SageDo-Ai" },
     { name: "Email", icon: Mail, handle: "hello@sagedo.in", color: "from-orange-600 to-red-600", url: "mailto:hello@sagedo.in" },
   ];
 
