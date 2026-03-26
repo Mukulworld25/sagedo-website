@@ -6,22 +6,28 @@ import { ArrowRight, CheckCircle, Shield, Zap, TrendingUp, Presentation, Star, M
 
 const testimonials = [
     {
-        name: "Ravi K.",
-        role: "E-commerce Founder",
-        initials: "RK",
-        text: "Mukul audited our site in one day and found 3 conversion issues we had missed for months. Our WhatsApp inquiries doubled the next week.",
-    },
-    {
-        name: "Priya S.",
-        role: "Consultant",
+        name: "Priya Siingh",
+        role: "Verified Trustpilot Review",
         initials: "PS",
-        text: "I was skeptical about a 'free' audit but the report was more detailed than what I paid agencies ₹10,000 for. Now I'm a paying SAGEDO client.",
+        text: "Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time. It has a clean interface and smooth onboarding. I've had a great experience with Sagedo.",
     },
     {
-        name: "Arjun M.",
-        role: "SaaS Founder",
-        initials: "AM",
-        text: "SAGEDO fixed our app crash in 2 hours. Our dev team had been stuck for 10 days. Worth every penny — and the audit was free.",
+        name: "Akshit Kashyap",
+        role: "Verified Trustpilot Review",
+        initials: "AK",
+        text: "Why AI is important. Everything is fine, nice service, very good behaviour. What a cool and knowledgeable experience to know about AI.",
+    },
+    {
+        name: "Arushi Vashist",
+        role: "Verified Trustpilot Review",
+        initials: "AV",
+        text: "Very reliable. Their service and everything were good.",
+    },
+    {
+        name: "Tahira War",
+        role: "Verified Trustpilot Review",
+        initials: "TW",
+        text: "Everything was good overall. Good service provider.",
     },
 ];
 

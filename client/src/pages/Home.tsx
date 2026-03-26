@@ -23,9 +23,10 @@ export default function Home() {
   ];
 
   const testimonials = [
-    { name: "Ravi K.", role: "Restaurant Owner, Chandigarh", text: "I was paying a freelancer ₹30K for a basic website that took 2 months. SAGE DO built something 10x better in days. My online orders have actually started.", rating: 5 },
-    { name: "Priya S.", role: "Coaching Institute, Punjab", text: "I was doing everything myself — website, social media, ads. SAGE DO took over the tech completely. Now I just teach and they handle everything else.", rating: 5 },
-    { name: "Arjun T.", role: "E-commerce Startup", text: "The speed is insane. I messaged on WhatsApp, explained what I needed, and had a working prototype the next day. No other agency works like this.", rating: 5 }
+    { name: "Priya Siingh", role: "Verified Trustpilot Review ⭐", text: "Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time. It has a clean interface and smooth onboarding. I've had a great experience with Sagedo.", rating: 5 },
+    { name: "Akshit Kashyap", role: "Verified Trustpilot Review ⭐", text: "Why AI is important. Everything is fine, nice service, very good behaviour. What a cool and knowledgeable experience to know about AI.", rating: 5 },
+    { name: "Arushi Vashist", role: "Verified Trustpilot Review ⭐", text: "Very reliable. Their service and everything were good.", rating: 4 },
+    { name: "Tahira War", role: "Verified Trustpilot Review ⭐", text: "Everything was good overall. Good service provider.", rating: 5 }
   ];
 
   return (

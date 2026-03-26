@@ -16,9 +16,10 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   const [activeStep, setActiveStep] = useState(1);
 
   const testimonials = [
-    { name: "Ravi K.", role: "Restaurant Owner, Chandigarh", text: "I was paying a freelancer ₹30K for a basic website that took 2 months. SAGE DO built something 10x better in days.", rating: 5 },
-    { name: "Priya S.", role: "Coaching Institute, Punjab", text: "SAGE DO took over the tech completely. Now I just teach and they handle everything else.", rating: 5 },
-    { name: "Arjun T.", role: "E-commerce Startup", text: "I messaged on WhatsApp, explained what I needed, and had a working prototype the next day. No other agency works like this.", rating: 5 }
+    { name: "Priya Siingh", role: "Verified Trustpilot Review ⭐", text: "Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time. Clean interface and smooth onboarding.", rating: 5 },
+    { name: "Akshit Kashyap", role: "Verified Trustpilot Review ⭐", text: "What a cool and knowledgeable experience to know about AI. Nice service, very good behaviour.", rating: 5 },
+    { name: "Arushi Vashist", role: "Verified Trustpilot Review ⭐", text: "Very reliable. Their service and everything were good.", rating: 4 },
+    { name: "Tahira War", role: "Verified Trustpilot Review ⭐", text: "Everything was good overall. Good service provider.", rating: 5 }
   ];
 
   const steps = [
