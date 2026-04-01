@@ -4,6 +4,38 @@ import { ArrowRight, Clock, User } from 'lucide-react';
 
 const blogPosts = [
     {
+        slug: 'how-much-website-cost-india-2026',
+        title: 'How Much Does a Website Cost in India in 2026? Complete Breakdown',
+        excerpt: 'An honest, no-BS breakdown of what a business website actually costs in India — from free DIY tools to ₹10L agency builds. Plus a comparison table to help you choose.',
+        date: 'April 1, 2026',
+        readTime: '6 min read',
+        category: 'Guide',
+    },
+    {
+        slug: '5-things-after-gst-registration',
+        title: '5 Things Every Business MUST Do After GST Registration',
+        excerpt: '1.8 lakh Indians register for GST every month — and most of them stop there. Here are the 5 digital assets every new business needs to start getting customers.',
+        date: 'April 1, 2026',
+        readTime: '5 min read',
+        category: 'Guide',
+    },
+    {
+        slug: 'google-business-profile-setup-guide-india',
+        title: 'Google Business Profile Setup Guide: Step-by-Step for Indian Businesses',
+        excerpt: 'A complete step-by-step guide to setting up your Google Business Profile so customers find you on Google Maps. Includes tips for service-area businesses without a physical shop.',
+        date: 'April 1, 2026',
+        readTime: '7 min read',
+        category: 'Guide',
+    },
+    {
+        slug: 'best-app-development-company-india-2026',
+        title: 'Best Affordable App Development Companies in India — 2026 Guide',
+        excerpt: 'Comparing app development options in India — agencies, freelancers, and AI-hybrid teams. Real cost comparisons, timelines, and what to watch out for.',
+        date: 'April 1, 2026',
+        readTime: '6 min read',
+        category: 'Guide',
+    },
+    {
         slug: 'why-indian-startup-websites-get-zero-google-traffic',
         title: 'Why 96% of Indian Startup Websites Get Zero Traffic from Google',
         excerpt: 'I have reviewed over 50 Indian startup websites in the last 6 months. 96% of them have the same 3 problems that guarantee zero Google traffic.',
