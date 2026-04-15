@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join SAGEDO — Apply Now</title>
+<style>
+  :root{--black:#0a0a0a;--white:#ffffff;--red:#E24B4A;--red-dark:#c43a39;--gray-100:#f5f5f5;--gray-200:#e8e8e8;--gray-400:#9a9a9a;--gray-600:#555555;--green:#25D366}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,'Segoe UI',sans-serif;background:var(--gray-100);color:var(--black);min-height:100vh}
+  .hero{background:var(--black);color:var(--white);padding:48px 24px 40px;text-align:center}
+  .hero-badge{display:inline-block;background:var(--red);color:#fff;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:20px}
+  .hero h1{font-size:clamp(26px,5vw,42px);font-weight:700;letter-spacing:-0.5px;line-height:1.2;margin-bottom:12px}
+  .hero h1 span{color:var(--red)}
+  .hero p{font-size:15px;color:#aaa;max-width:460px;margin:0 auto 28px;line-height:1.6}
+  .hero-pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .pill{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:#ccc;font-size:12px;padding:6px 14px;border-radius:20px}
+  .form-wrap{max-width:600px;margin:0 auto;padding:32px 16px 60px}
+  .card{background:var(--white);border-radius:16px;padding:28px 24px;margin-bottom:16px;border:1px solid var(--gray-200)}
+  .card-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;color:var(--gray-400);margin-bottom:20px}
+  .field{margin-bottom:18px}
+  .field:last-child{margin-bottom:0}
+  label{display:block;font-size:13px;font-weight:500;color:var(--gray-600);margin-bottom:6px}
+  label .req{color:var(--red)}
+  input,select,textarea{width:100%;padding:11px 14px;border:1.5px solid var(--gray-200);border-radius:10px;font-size:15px;font-family:inherit;background:var(--white);color:var(--black);transition:border-color 0.2s;-webkit-appearance:none}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--black)}
+  textarea{resize:vertical;min-height:90px;line-height:1.5}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:480px){.row{grid-template-columns:1fr}}
+  .time-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .time-btn{padding:10px 6px;border:1.5px solid var(--gray-200);border-radius:10px;font-size:13px;font-weight:500;background:var(--white);color:var(--gray-600);cursor:pointer;text-align:center;transition:all 0.15s}
+  .time-btn.selected{border-color:var(--black);background:var(--black);color:var(--white)}
+  .date-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+  .date-scroll::-webkit-scrollbar{height:0}
+  .date-btn{flex-shrink:0;width:60px;padding:10px 6px;border:1.5px solid var(--gray-200);border-radius:10px;text-align:center;cursor:pointer;background:var(--white);transition:all 0.15s}
+  .date-btn.selected{border-color:var(--black);background:var(--black);color:var(--white)}
+  .date-btn .day-name{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;opacity:0.6}
+  .date-btn .day-num{font-size:20px;font-weight:700;line-height:1;margin:4px 0}
+  .date-btn .month{font-size:10px;opacity:0.6}
+  .submit-btn{width:100%;padding:16px;background:var(--red);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;margin-top:8px}
+  .submit-btn:hover{background:var(--red-dark)}
+  .submit-btn:disabled{opacity:0.6;cursor:not-allowed}
+  .wa-note{display:flex;align-items:center;gap:10px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:14px 16px;margin-top:16px;font-size:13px;color:#166534}
+  .wa-dot{width:10px;height:10px;border-radius:50%;background:var(--green);flex-shrink:0}
+  .success{display:none;text-align:center;padding:48px 24px}
+  .success h2{font-size:24px;font-weight:700;margin-bottom:8px}
+  .success p{color:var(--gray-600);font-size:15px;line-height:1.6;margin-bottom:24px}
+  .success-wa{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;padding:14px 24px;border-radius:12px;font-weight:600;font-size:15px;text-decoration:none}
+  .error-msg{color:var(--red);font-size:13px;margin-top:6px;display:none}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-badge">Now Hiring</div>
+  <h1>Join <span>SAGEDO</span> as a<br>Sales Intern</h1>
+  <p>Commission-based &middot; Remote &middot; Chandigarh &middot; Help Indian businesses get online with AI</p>
+  <div class="hero-pills">
+    <span class="pill">100% Remote</span>
+    <span class="pill">Commission + Incentives</span>
+    <span class="pill">AI tools provided</span>
+    <span class="pill">Flexible hours</span>
+  </div>
+</div>
+<div class="form-wrap">
+  <form id="applyForm">
+    <div class="card">
+      <div class="card-title">Personal Details</div>
+      <div class="field"><label>Full Name <span class="req">*</span></label><input type="text" id="name" placeholder="Your full name" required></div>
+      <div class="row">
+        <div class="field"><label>Phone / WhatsApp <span class="req">*</span></label><input type="tel" id="phone" placeholder="+91 98765 43210" required></div>
+        <div class="field"><label>Email <span class="req">*</span></label><input type="email" id="email" placeholder="you@email.com" required></div>
+      </div>
+      <div class="field"><label>City</label><input type="text" id="city" placeholder="Where are you based?"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Your Experience</div>
+      <div class="field"><label>Sales Experience <span class="req">*</span></label><select id="experience" required><option value="">Select level</option><option value="fresher">Fresher</option><option value="0-1">Less than 1 year</option><option value="1-2">1-2 years</option><option value="2-4">2-4 years</option><option value="4+">4+ years</option></select></div>
+      <div class="field"><label>LinkedIn URL</label><input type="url" id="linkedin" placeholder="linkedin.com/in/yourname"></div>
+      <div class="field"><label>Why SAGEDO? <span class="req">*</span></label><textarea id="why_sagedo" placeholder="2-3 sentences. Be honest." required></textarea></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Pick Interview Date</div>
+      <div class="date-scroll" id="dateScroll"></div>
+      <input type="hidden" id="interview_date">
+      <div class="error-msg" id="dateError">Please select a date</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Pick Interview Time (IST)</div>
+      <div class="time-grid">
+        <button type="button" class="time-btn" data-time="12:00 PM">12:00 PM</button>
+        <button type="button" class="time-btn" data-time="12:30 PM">12:30 PM</button>
+        <button type="button" class="time-btn" data-time="1:00 PM">1:00 PM</button>
+        <button type="button" class="time-btn" data-time="1:30 PM">1:30 PM</button>
+        <button type="button" class="time-btn" data-time="2:00 PM">2:00 PM</button>
+        <button type="button" class="time-btn" data-time="2:30 PM">2:30 PM</button>
+        <button type="button" class="time-btn" data-time="3:00 PM">3:00 PM</button>
+        <button type="button" class="time-btn" data-time="3:30 PM">3:30 PM</button>
+        <button type="button" class="time-btn" data-time="4:00 PM">4:00 PM</button>
+        <button type="button" class="time-btn" data-time="4:30 PM">4:30 PM</button>
+        <button type="button" class="time-btn" data-time="5:00 PM">5:00 PM</button>
+        <button type="button" class="time-btn" data-time="5:30 PM">5:30 PM</button>
+      </div>
+      <input type="hidden" id="interview_time">
+      <div class="error-msg" id="timeError">Please select a time</div>
+    </div>
+    <button type="submit" class="submit-btn" id="submitBtn">Submit Application &rarr;</button>
+    <div class="wa-note"><div class="wa-dot"></div><span>WhatsApp confirmation within 10 mins. Save: <strong>+91 6284925684</strong></span></div>
+  </form>
+  <div class="success" id="successDiv">
+    <div style="font-size:56px;margin-bottom:16px">&#127881;</div>
+    <h2>Application Received!</h2>
+    <p id="successMsg">Interview booked. WhatsApp confirmation coming shortly from Mukul.</p>
+    <a class="success-wa" href="https://wa.me/916284925684?text=Hi%20Mukul%2C%20I%20just%20applied%20for%20Sales%20Intern%20at%20SAGEDO!" target="_blank">Message on WhatsApp</a>
+  </div>
+</div>
+<script>
+const FN='https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/submit-job-application';
+function buildDates(){const s=document.getElementById('dateScroll');const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];const t=new Date();t.setDate(t.getDate()+1);for(let i=0;i<14;i++){const d=new Date(t);d.setDate(t.getDate()+i);if(d.getDay()===0)continue;const b=document.createElement('div');b.className='date-btn';b.dataset.date=d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});b.innerHTML='<div class="day-name">'+days[d.getDay()]+'</div><div class="day-num">'+d.getDate()+'</div><div class="month">'+months[d.getMonth()]+'</div>';b.onclick=()=>{document.querySelectorAll('.date-btn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');document.getElementById('interview_date').value=b.dataset.date;document.getElementById('dateError').style.display='none'};s.appendChild(b)}}
+document.querySelectorAll('.time-btn').forEach(b=>{b.onclick=()=>{document.querySelectorAll('.time-btn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');document.getElementById('interview_time').value=b.dataset.time;document.getElementById('timeError').style.display='none'}});
+document.getElementById('applyForm').onsubmit=async(e)=>{e.preventDefault();const date=document.getElementById('interview_date').value;const time=document.getElementById('interview_time').value;if(!date){document.getElementById('dateError').style.display='block';return}if(!time){document.getElementById('timeError').style.display='block';return}const btn=document.getElementById('submitBtn');btn.disabled=true;btn.textContent='Submitting...';const p={name:document.getElementById('name').value,email:document.getElementById('email').value,phone:document.getElementById('phone').value,position:'Sales Intern (Commission Based)',experience:document.getElementById('experience').value,linkedin:document.getElementById('linkedin').value,why_sagedo:document.getElementById('why_sagedo').value,interview_date:date,interview_time:time};try{const r=await fetch(FN,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});const d=await r.json();if(d.success){document.getElementById('applyForm').style.display='none';document.getElementById('successDiv').style.display='block';document.getElementById('successMsg').textContent='Interview booked for '+date+' at '+time+' IST. WhatsApp confirmation coming from Mukul shortly.'}else{alert('Error: '+(d.error||'Try again'));btn.disabled=false;btn.textContent='Submit Application →'}}catch(err){alert('Network error. Try again.');btn.disabled=false;btn.textContent='Submit Application →'}};
+buildDates();
+</script>
+</body>
+</html>
