@@ -123,7 +123,7 @@ const Careers = () => {
             {[
               { title: 'Founder-Led', desc: 'Work directly with Mukul. No middle management, no red tape.', gradient: 'from-rose-500/10 to-orange-500/10', border: 'border-rose-500/20' },
               { title: 'Remote-First', desc: 'Work from anywhere in India. Results matter, not your location.', gradient: 'from-emerald-500/10 to-teal-500/10', border: 'border-emerald-500/20' },
-              { title: 'Real Impact', desc: 'Every project ships. You'll see your work live within 48 hours.', gradient: 'from-violet-500/10 to-blue-500/10', border: 'border-violet-500/20' },
+              { title: 'Real Impact', desc: "Every project ships. You'll see your work live within 48 hours.", gradient: 'from-violet-500/10 to-blue-500/10', border: 'border-violet-500/20' },
             ].map((item, i) => (
               <div key={i} className={`bg-gradient-to-br ${item.gradient} border ${item.border} rounded-2xl p-6`}>
                 <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
