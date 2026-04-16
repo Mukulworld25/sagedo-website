@@ -109,6 +109,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/book-call">
+                  <span className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Book a Strategy Call</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/careers">
+                  <span className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Careers</span>
+                </Link>
+              </li>
+              <li>
                 <FeedbackDialog />
               </li>
             </ul>
