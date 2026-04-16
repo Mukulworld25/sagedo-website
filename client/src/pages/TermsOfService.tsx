@@ -107,22 +107,28 @@ export default function TermsOfService() {
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-foreground mb-3">9. Client Responsibility for Verification ✅</h2>
-                        <div className="space-y-3 text-muted-foreground bg-primary/10 p-4 rounded-lg border border-primary/30">
+                        <h2 className="text-2xl font-bold text-foreground mb-3">9. Post-Launch Technical Guarantee 🛡️</h2>
+                        <div className="space-y-3 text-muted-foreground bg-emerald-500/10 p-4 rounded-lg border border-emerald-500/30">
                             <p>
-                                The Client acknowledges and agrees that they are <strong className="text-foreground">solely responsible for the human review and verification</strong> of all AI-generated deliverables before any public dissemination, commercial use, or reliance upon such materials.
+                                SAGE DO guarantees the <strong className="text-foreground">technical functionality</strong> of all deliverables for <strong className="text-foreground">7 calendar days</strong> following handover ("Guarantee Period"). Any verifiable bugs, broken links, or non-functional features reported during this window will be fixed at no additional cost.
                             </p>
-                            <p className="font-semibold text-primary">
-                                SAGE DO shall not be liable for any losses or damages arising from the Client's failure to verify the accuracy of the deliverables.
-                            </p>
-                            <p>This includes but is not limited to:</p>
+                            <p><strong className="text-foreground">This guarantee covers:</strong></p>
                             <ul className="list-disc pl-6 space-y-1">
-                                <li>Reviewing all content for factual accuracy before use</li>
-                                <li>Verifying code functionality before deployment</li>
-                                <li>Checking resume/CV information before submission</li>
-                                <li>Validating business strategies before implementation</li>
-                                <li>Proofreading all generated text before publication</li>
+                                <li>Code that crashes or produces errors</li>
+                                <li>Pages that fail to load correctly</li>
+                                <li>Forms, buttons, and interactive elements that don't function as specified</li>
+                                <li>Features that do not work as described in the agreed project scope</li>
                             </ul>
+                            <p><strong className="text-foreground">This guarantee does NOT cover:</strong></p>
+                            <ul className="list-disc pl-6 space-y-1">
+                                <li>Commercial outcomes such as revenue, leads, or traffic</li>
+                                <li>Subjective design preferences after project sign-off</li>
+                                <li>Issues caused by client modifications to the delivered code</li>
+                                <li>Third-party service outages (hosting providers, APIs, etc.)</li>
+                            </ul>
+                            <p className="font-semibold text-emerald-600 dark:text-emerald-400">
+                                🛡️ Beyond the 7-day Guarantee Period, ongoing support and modifications are available under our maintenance retainer plans.
+                            </p>
                         </div>
                     </section>
 

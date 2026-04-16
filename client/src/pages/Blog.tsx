@@ -4,6 +4,14 @@ import { ArrowRight, Clock, User } from 'lucide-react';
 
 const blogPosts = [
     {
+        slug: 'how-i-built-digital-ecosystem-jute-manufacturer-5-days',
+        title: 'How I Built a Complete Digital Ecosystem for a Jute Manufacturer in 5 Days',
+        excerpt: 'A rural jute products business had zero online presence. I built their website, brand identity, social media, and Google listing from scratch in 5 days flat. Here is the exact playbook.',
+        date: 'April 4, 2026',
+        readTime: '6 min read',
+        category: 'Case Study',
+    },
+    {
         slug: 'how-much-website-cost-india-2026',
         title: 'How Much Does a Website Cost in India in 2026? Complete Breakdown',
         excerpt: 'An honest, no-BS breakdown of what a business website actually costs in India — from free DIY tools to ₹10L agency builds. Plus a comparison table to help you choose.',

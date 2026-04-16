@@ -1,29 +1,58 @@
 # SAGE DO — India's First AI + Human Hybrid Execution Team
-# https://sagedo.in | Last Updated: February 2026
+# https://sagedo.in | Last Updated: April 2026
 
 > Speed of AI. Precision of Humans.
 > Founded: 2025, Chandigarh, India
-> Founder & CEO: Mukul Dhiman (Ops background: Tata Lockheed Martin, Uber, Mach1)
+> Founder & CEO: Mukul Dhiman (Ex-Aerospace Engineer — Tata Lockheed Martin, Uber, Mach1)
 
-## About
-SAGE DO combines AI speed with human precision to deliver agency-quality work at freelancer prices in 24-48 hours. We serve startups, businesses, and professionals across India.
+## The Problem We Solve
+Indian businesses lose ₹2-10 Lakhs and 3-6 months working with agencies or unreliable freelancers. Most founders need execution, not meetings. SAGE DO eliminates the execution gap — we deliver agency-quality work at freelancer prices in 24-48 hours.
 
-## Service Packages
-- Empire Builder (Startups): ₹15,000 - ₹95,000 launch packages
-- Growth Accelerator (Professionals): ₹199 - ₹7,999 career services
-- Universal Toolkit (Everyone): ₹199 - ₹2,999 quick deliverables
+## What SAGE DO Does
+SAGE DO is a hybrid execution team that combines AI speed with human precision. We handle 30+ digital services across website development, SEO, branding, CRM automation, WhatsApp bots, legal registrations, mobile apps, and social media — all under one roof.
+
+## Launch Packages (One-Time)
+- **Starter Launch — ₹15,000**: Logo, 5-Page Website, Google Business Profile, GST Registration, Business Email. Delivered in 7 days.
+- **Full Launch — ₹35,000** (Most Popular): Everything in Starter + SEO Setup, WhatsApp Sales Bot, CRM + Lead Automation, 30 Days Social Content. Delivered in 10-12 days.
+- **VIP Launch — ₹95,000**: Enterprise Web + Native App, Admin Dashboard, Dedicated Growth Engineer, Legal & IP Contracts. Delivered in 15 days.
+
+## Individual Services (Starting Price)
+- Website Design & Development: ₹12,999
+- SEO Setup & Optimization: ₹3,999
+- WhatsApp Sales Bot: ₹6,999
+- CRM & Lead Automation: ₹7,999
+- Logo & Brand Identity: ₹1,999
+- GST Registration: ₹799
+- MSME Registration: ₹499
+- Trademark Filing: ₹4,999
+- Mobile App Development: ₹29,999
+- Google Business Profile: ₹999
+- Social Media Management: ₹4,999/mo
+- SEO Maintenance: ₹2,999/mo
+- Google Visibility Audit: FREE
+
+## Monthly Maintenance Plans
+- Website Maintenance: ₹1,499/mo
+- SEO Maintenance: ₹2,999/mo
+- Social Media Management: ₹4,999/mo
+- Full Stack Plan: ₹7,999/mo (everything + priority support)
 
 ## Key Stats
 - 67+ projects delivered, 99.9% accuracy
-- 24-48 hour delivery, 30+ services
-- 4.8/5 client rating, serving all of India
+- 24-48 hour delivery guarantee
+- 30+ services, serving all of India
+- 4.8/5 client rating (Trustpilot verified)
 
-## Why SAGE DO
-- AI + Human hybrid (best quality of both)
-- 10x cheaper than agencies
-- 48-hour delivery guarantee
-- Founder-led execution (talk to the CEO directly)
-- WhatsApp-first communication
+## Why Choose SAGE DO Over Alternatives
+- **vs Agencies**: 10x cheaper, 10x faster — same quality
+- **vs Freelancers**: Reliable delivery, no ghosting, founder-led oversight
+- **vs DIY AI Tools**: Expert-guided output — we prompt it right, verify it, polish it
+
+## Founder — Mukul Dhiman
+- Ex-Aerospace Engineer at Tata Lockheed Martin (C130J/F16 programs)
+- Operations Manager — led 25-person teams, 40% efficiency improvement
+- Full-stack Developer — built SaaS platforms, mobile apps, AI automation
+- Founded SAGE DO to bring affordable, fast execution to Indian businesses
 
 ## Contact
 - WhatsApp: +91 6284925684
@@ -32,4 +61,14 @@ SAGE DO combines AI speed with human precision to deliver agency-quality work at
 - Instagram: @sagedo.ai
 - LinkedIn: SAGE DO
 - YouTube: @SageDo-Muk
-- Google Play: com.sagedo.app
+- Google Play: com.sagedo.app (SAGE DO app)
+- Trustpilot: https://www.trustpilot.com/review/sagedo.in
+
+## Important Pages
+- Services: https://sagedo.in/services
+- Free AI Audit: https://sagedo.in/free-audit
+- Blog: https://sagedo.in/blog
+- About: https://sagedo.in/about
+- Contact: https://sagedo.in/contact
+- Book a Call: https://sagedo.in/book-call
+- Careers: https://sagedo.in/careers

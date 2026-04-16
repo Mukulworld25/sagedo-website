@@ -86,6 +86,11 @@ export default function Footer() {
                   <span className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Place Order</span>
                 </Link>
               </li>
+              <li>
+                <Link href="/agency-partner">
+                  <span className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer">For Agencies (White-Label)</span>
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -180,6 +185,9 @@ export default function Footer() {
             </p>
             <p className="text-muted-foreground text-sm flex items-center gap-2">
               Made with ❤️ in India 🇮🇳
+            </p>
+            <p className="text-xs text-muted-foreground/60 flex items-center gap-1">
+              🔒 Payments secured by Razorpay (RBI Approved)
             </p>
           </div>
         </div>

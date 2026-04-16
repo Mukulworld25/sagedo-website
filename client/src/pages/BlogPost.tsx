@@ -4,6 +4,98 @@ import { ArrowLeft, ArrowRight, Clock, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const posts: Record<string, { title: string; meta: string; date: string; readTime: string; content: string }> = {
+    'how-i-built-digital-ecosystem-jute-manufacturer-5-days': {
+        title: 'How I Built a Complete Digital Ecosystem for a Jute Manufacturer in 5 Days',
+        meta: 'Case study: How SAGEDO built a complete digital ecosystem — website, branding, social media, and Google Business Profile — for a rural jute manufacturer in just 5 days.',
+        date: 'April 4, 2026',
+        readTime: '6 min read',
+        content: `This is a real case study. No fluff, no theory — just the exact steps I followed to take a rural jute products business from zero online presence to a fully operational digital brand in 5 days.
+
+## The Client: Aadi Himani
+
+Aadi Himani is a jute products manufacturing business based in a small town. The founder had a solid product line — bags, home decor, corporate gifting items — but zero digital presence. No website. No social media. No Google listing. Customers could only find them through word-of-mouth and local contacts.
+
+The challenge was clear: build everything from scratch, fast, and on a tight budget.
+
+## Day 1: Brand Identity and Strategy
+
+Before touching any code, I spent the first day understanding the business.
+
+**What I did:**
+- Deep-dive call with the founder to understand target customers, pricing, and competition
+- Designed the complete brand identity: logo, color palette (earthy greens and natural tones for jute), typography
+- Created brand guidelines so every future asset stays consistent
+- Mapped out the sitemap and content strategy for the website
+
+**Tools used:** Figma for design, AI for initial logo concepts, human refinement for final polish.
+
+## Day 2-3: Website Development
+
+With the brand locked in, I built the website.
+
+**What I delivered:**
+- 5-page responsive website (Home, Products, About, Contact, Blog)
+- Product catalog with high-quality images and descriptions
+- Contact form connected to WhatsApp for instant lead capture
+- SEO foundation: meta tags, schema markup, sitemap.xml, robots.txt
+- Mobile-first design (80% of Indian traffic is mobile)
+
+**Tech stack:** React, Tailwind CSS, Vercel for hosting. Fast, modern, and scalable.
+
+The website was not just a brochure — it was built to convert visitors into WhatsApp conversations. Every product page has a \"Order on WhatsApp\" button that opens a pre-filled message.
+
+## Day 4: Social Media and Content
+
+A website without traffic is a billboard in the desert. Day 4 was about creating the distribution layer.
+
+**What I set up:**
+- Instagram business account with optimized bio, highlights, and 15 ready-to-post content pieces
+- Facebook business page linked to Instagram for cross-posting
+- Content calendar for the first 30 days (mix of product showcases, behind-the-scenes manufacturing, and educational posts about jute sustainability)
+- WhatsApp Business profile with auto-replies and product catalog
+
+**Content strategy:** Instead of generic \"buy our products\" posts, I focused on the story. Jute is sustainable, eco-friendly, and handmade. That story sells itself — you just need to tell it right.
+
+## Day 5: Google Business Profile and Launch
+
+The final day was about making the business discoverable.
+
+**What I did:**
+- Created and optimized the Google Business Profile
+- Added service areas, business hours, product photos, and a compelling description
+- Submitted the website to Google Search Console and requested indexing
+- Set up Google Analytics for tracking
+- Final QA: tested every link, form, and button across mobile and desktop
+- Handed over all credentials and a simple 1-page \"how to manage your website\" guide
+
+## The Results
+
+| Metric | Before | After |
+|--------|--------|-------|
+| Online Presence | Zero | Full website + 3 social platforms + Google listing |
+| Discoverability | Word-of-mouth only | Searchable on Google, Instagram, and WhatsApp |
+| Lead Capture | Phone calls only | WhatsApp forms + Instagram DMs + Google Maps |
+| Time to Build | N/A | 5 days |
+| Investment | N/A | Under ₹20,000 |
+
+## What Made This Possible in 5 Days?
+
+Three things:
+
+**1. AI-accelerated development.** I used AI for content drafts, code scaffolding, and design iterations. What used to take a team of 4 people two weeks, one person with AI can do in days.
+
+**2. No committee decisions.** One founder, one builder. No approval chains, no 3-day feedback loops. We made decisions on WhatsApp in real-time.
+
+**3. Battle-tested playbook.** This was not my first rodeo. I have a repeatable system for new business launches — brand → website → social → Google — that I have refined over multiple projects.
+
+## The Takeaway for Indian Founders
+
+If you are sitting on a great product but have zero online presence, you do not need ₹5 lakhs and 6 months. You need a focused execution partner who can move fast.
+
+This is exactly what SAGEDO does. We take businesses from invisible to discoverable in days, not months.
+
+Want the same for your business? Start with a free audit at sagedo.in/free-audit — I will personally review your situation and give you a 5-point action plan within 24 hours.`,
+    },
     'how-much-website-cost-india-2026': {
         title: 'How Much Does a Website Cost in India in 2026? Complete Breakdown',
         meta: 'Honest breakdown of website development costs in India in 2026. Compare agencies, freelancers, DIY tools, and AI-hybrid teams. Updated pricing table included.',

@@ -20,6 +20,8 @@ export default function Navigation() {
     { href: "/services", label: t("nav.services") },
     { href: "/about", label: t("nav.about") },
     { href: "/orders", label: t("nav.orders") },
+    { href: "/book-call", label: "Book a Call" },
+    { href: "/careers", label: "Careers" },
   ];
 
   return (

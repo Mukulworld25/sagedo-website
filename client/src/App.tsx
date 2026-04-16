@@ -37,6 +37,9 @@ import AgencyAlternative from "@/pages/AgencyAlternative";
 import FreelancerAlternative from "@/pages/FreelancerAlternative";
 import DIYAlternative from "@/pages/DIYAlternative";
 import Refer from "@/pages/Refer";
+import AgencyPartner from "@/pages/AgencyPartner";
+import BookCall from "@/pages/BookCall";
+import Careers from "@/pages/Careers";
 import NotFound from "@/pages/not-found";
 
 import Navigation from "@/components/Navigation";
@@ -101,6 +104,9 @@ function Router() {
         <Route path="/alternatives/freelancer-alternative" component={FreelancerAlternative} />
         <Route path="/alternatives/diy-ai-alternative" component={DIYAlternative} />
         <Route path="/refer" component={Refer} />
+        <Route path="/agency-partner" component={AgencyPartner} />
+        <Route path="/book-call" component={BookCall} />
+        <Route path="/careers" component={Careers} />
         <Route component={NotFound} />
       </Switch>
       <Footer />

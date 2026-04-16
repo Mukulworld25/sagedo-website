@@ -385,6 +385,22 @@ const routes = [
     description: "Contact SAGEDO's Grievance Officer for complaints and dispute resolution.",
     content: `<h1>Grievance Officer — SAGEDO</h1><p>For complaints or grievances, contact our Grievance Officer. Email: hello@sagedo.in. Phone: +91 6284925684.</p>`,
   },
+
+  // ── BOOK A CALL ──────────────────────────────────────────────────
+  {
+    path: '/book-call',
+    title: "Book a Free Strategy Call — SAGEDO | Talk to the Founder",
+    description: "Book a free 30-minute strategy call with Mukul Dhiman, founder of SAGEDO. Discuss your business challenges and get a tailored execution roadmap. No sales pitch.",
+    content: `<h1>Book a Free Strategy Call with the Founder</h1><p>Talk directly to Mukul Dhiman — ex-Tata Lockheed Martin engineer turned AI builder. Get a brutally honest assessment of where your business stands digitally and exactly what to fix first.</p><h2>What You'll Get</h2><ul><li>5-Point Digital Health Check — Website, SEO, Social, Automation, Lead Capture scored honestly</li><li>Custom Execution Roadmap — Exactly what to build first, how long, and what it costs</li><li>Competitor Analysis — Quick scan of your top 3 competitors</li><li>No-BS Pricing — Transparent quote on the spot</li></ul><p>Book your slot now at sagedo.in/book-call or WhatsApp +91 6284925684</p>`,
+  },
+
+  // ── CAREERS ───────────────────────────────────────────────────────
+  {
+    path: '/careers',
+    title: "Careers at SAGEDO — Join India's First AI + Human Execution Team",
+    description: "Join SAGE DO and work at the intersection of AI and human execution. Open roles in engineering, design, SEO, sales, and AI prompt engineering. Remote-first, founder-led.",
+    content: `<h1>Careers at SAGE DO — Build the Future of Execution</h1><p>SAGE DO isn't just another agency. We're building India's first AI + Human hybrid execution engine. If you want to ship real work for real businesses — not sit in meetings — this is your place.</p><h2>Open Positions</h2><ul><li>AI Prompt Engineer — Full-time / Remote</li><li>Full-Stack Developer — Full-time / Remote</li><li>Brand & Graphic Designer — Contract / Remote</li><li>SEO & Content Strategist — Full-time / Remote</li><li>Sales & Outreach Executive — Full-time / Chandigarh</li><li>Digital Marketing Intern — Internship / Remote</li></ul><h2>Why Join?</h2><ul><li>Founder-led — Work directly with Mukul, no middle management</li><li>Remote-first — Work from anywhere in India</li><li>Real impact — Every project ships, you see your work live within 48 hours</li></ul><p>Apply at sagedo.in/careers or WhatsApp +91 6284925684</p>`,
+  },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -449,7 +465,44 @@ function prerender() {
       `<meta property="og:url" content="${canonicalUrl}" />`
     );
 
-    // 5. Replace the existing noscript block with route-specific content
+    // 5. Inject Article JSON-LD schema for blog posts
+    //    This gives Google rich snippet data (author, date, reading time)
+    if (route.path.startsWith('/blog/') && route.path !== '/blog') {
+      const articleTitle = route.title.split(' — ')[0] || route.title;
+      const articleSchema = `<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "${articleTitle.replace(/"/g, '\\"')}",
+    "description": "${route.description.replace(/"/g, '\\"')}",
+    "author": {
+      "@type": "Person",
+      "name": "Mukul Dhiman",
+      "url": "https://sagedo.in/about-founder"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "SAGE DO",
+      "url": "https://sagedo.in",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sagedo.in/sagedo_logo_pro_clean.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://sagedo.in${route.path}"
+    },
+    "url": "https://sagedo.in${route.path}",
+    "image": "https://sagedo.in/sagedo_logo_pro_clean.png",
+    "inLanguage": "en"
+  }
+  </script>`;
+      // Inject before </head>
+      html = html.replace('</head>', `${articleSchema}\n</head>`);
+    }
+
+    // 6. Replace the existing noscript block with route-specific content
     //    The noscript block is VISIBLE to crawlers that don't execute JS
     //    Real users with JS enabled see the React app instead
     const seoBlock = `<!-- Pre-rendered SEO content for: ${route.path} -->

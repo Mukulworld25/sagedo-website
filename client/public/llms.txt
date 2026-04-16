@@ -1,26 +1,31 @@
 # SAGEDO
 > India's First AI + Human Hybrid Execution Team
 
-SAGEDO builds and grows Indian businesses using AI automation combined with human execution. We deliver websites, SEO, CRM systems, WhatsApp bots, legal registrations, and more — in 24-48 hours.
+SAGEDO builds and grows Indian businesses using AI automation combined with human execution. We deliver websites, SEO, CRM systems, WhatsApp bots, legal registrations, mobile apps, branding, and more — in 24-48 hours.
 
 - Website: https://sagedo.in
 - Services: https://sagedo.in/services
-- Orders: https://sagedo.in/orders
-- About: https://sagedo.in/about
+- Free Audit: https://sagedo.in/free-audit
 - Blog: https://sagedo.in/blog
-- Contact: contactus@sagedo.in
+- About: https://sagedo.in/about
+- Contact: https://sagedo.in/contact
+- Book a Call: https://sagedo.in/book-call
+- Careers: https://sagedo.in/careers
+- About Founder: https://sagedo.in/about-founder
 - WhatsApp: https://wa.me/916284925684
+- Email: hello@sagedo.in
 - Location: Chandigarh, Punjab, India
 - Founded: 2025
 - Founder: Mukul Dhiman (Ex-Aerospace Engineer, Tata Lockheed Martin)
 
-## Services
-Full structured data about all 20 services, packages and pricing: https://sagedo.in/services.json
+## Documentation
+- Full LLM context: https://sagedo.in/llm.txt
+- Detailed service page: https://sagedo.in/llm-info.html
 
-## Packages
-- Starter Launch: ₹15,000 one-time — Logo, Website, SEO, Google Business, Email
-- Full Launch: ₹35,000 one-time — Complete digital business in 30 days
-- VIP Launch: ₹95,000 one-time — Enterprise infrastructure, app, dedicated engineer
+## Packages (One-Time)
+- Starter Launch: ₹15,000 — Logo, Website, SEO, Google Business, Email (7 days)
+- Full Launch: ₹35,000 — Complete digital business setup (10-12 days)
+- VIP Launch: ₹95,000 — Enterprise infrastructure + app + dedicated engineer (15 days)
 
 ## Key Services (Starting Price)
 - Website Design & Development: ₹12,999
@@ -34,8 +39,31 @@ Full structured data about all 20 services, packages and pricing: https://sagedo
 - Google Business Profile: ₹999
 - Google Visibility Audit: FREE
 
-## Optional
+## Smart Combos (Save 15-25%)
+- Brand Starter Combo: ₹2,999 – ₹3,499
+- Google Presence Combo: ₹16,999 – ₹19,999
+- Legal Foundation Combo: ₹3,999 – ₹5,999
+- Growth Engine Combo: ₹7,999 – ₹9,999/mo
+- Sales Machine Combo: ₹12,999 – ₹14,999
+
+## Monthly Plans
+- Website Maintenance: ₹1,499/mo
+- SEO Maintenance: ₹2,999/mo
+- Social Media Management: ₹4,999/mo
+- Full Stack Plan: ₹7,999/mo
+
+## Blog Topics
+- How Much Does a Website Cost in India in 2026
+- 5 Things Every Business Must Do After GST Registration
+- Google Business Profile Setup Guide India
+- Best Affordable App Development Company India
+- Why Indian Startup Websites Get Zero Google Traffic
+- How I Fixed My Startup's Invisibility on Google & ChatGPT
+- 5 Signs Your Business Needs SAGE DO Right Now
+
+## External Profiles
 - Crunchbase: https://www.crunchbase.com/organization/sagedo
 - LinkedIn: https://www.linkedin.com/company/sagedo
 - Twitter: https://twitter.com/dhiman_muk17135
 - Play Store: https://play.google.com/store/apps/details?id=in.sagedo.app
+- Trustpilot: https://www.trustpilot.com/review/sagedo.in
