@@ -247,7 +247,7 @@ export const allServices: ServiceDetail[] = [
     fullDescription: "Professional email setup with your own domain (you@yourcompany.com). We configure Google Workspace or Zoho Mail, set up SPF/DKIM/DMARC for deliverability, and ensure your emails never land in spam.",
     price: 499,
     priceRange: "₹499 – ₹799",
-    imageUrl: "https://images.unsplash.com/photo-1596526131083-e8c633064dbc?q=80&w=1000&auto=format&fit=crop",
+    imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&auto=format",
     isGoldenEligible: false,
     deliveryTime: "24 hours",
     whyBuy: "Gmail kills credibility. One domain email changes perception instantly.",
