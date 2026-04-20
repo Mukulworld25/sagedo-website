@@ -7,7 +7,7 @@
       "destination": "https://sagedo-website.onrender.com/api/:path*"
     },
     {
-      "source": "/((?!.*\\.).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
