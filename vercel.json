@@ -1,16 +1,19 @@
 {
   "rewrites": [
     {
-      "source": "/consult",
-      "destination": "/consult.html"
-    },
-    {
       "source": "/api/:path*",
       "destination": "https://sagedo-website.onrender.com/api/:path*"
     },
     {
       "source": "/(.*)",
       "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/consult",
+      "destination": "https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/consult-page",
+      "permanent": false
     }
   ]
 }
