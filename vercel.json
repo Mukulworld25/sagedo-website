@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/consult",
+      "destination": "/consult.html"
+    },
+    {
       "source": "/api/:path*",
       "destination": "https://sagedo-website.onrender.com/api/:path*"
     },
