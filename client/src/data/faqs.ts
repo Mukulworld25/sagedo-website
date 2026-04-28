@@ -14,7 +14,7 @@ export const faqs: FAQItem[] = [
     {
         id: 'trending',
         question: "Trending services",
-        answer: "🔥 **Trending Services (Top Pics):**\n\n**Assignments / Academic:**\n1) Fast Homework & Essays\n2) Research & Reports\n3) Code & Problem Solving\n\n**Career:**\n1) ATS-optimized Resumes\n2) Tailored Cover Letters\n3) LinkedIn Profiles\n\n**Content:**\n1) SEO Blog Posts\n2) Social Media Campaigns\n3) Pitch / Proposal Copy\n\n**Business:**\n1) Pitch Decks / PPT Design\n2) Business Proposals\n3) Infographics",
+        answer: "🔥 **Trending Services (Top Pics):**\n\n**Startup Execution:**\n1) SaaS & Web Development\n2) Market & Competitor Analysis\n3) Custom AI Automations\n\n**Executive:**\n1) C-Suite ATS Formatting\n2) LinkedIn Authority Branding\n3) Executive Pitch Practice\n\n**Content:**\n1) SEO Blog Posts\n2) Social Media Campaigns\n3) Pitch / Proposal Copy\n\n**Business:**\n1) Pitch Decks / PPT Design\n2) Business Proposals\n3) BI Dashboards",
         keywords: ['trending', 'popular', 'hot', 'best', 'top', 'recommend'],
         category: 'trending'
     },
@@ -30,7 +30,7 @@ export const faqs: FAQItem[] = [
     {
         id: 'founder_identity',
         question: "Who runs SageDo?",
-        answer: "SAGE DO was founded by Mukul Dhiman, a passionate entrepreneur from Chandigarh, India.\\n\\nHe built SAGE DO to help students and professionals get quality work done without the usual hassle.\\n\\nWant to connect? Here are our official handles:\\n- LinkedIn: SAGE DO\\n- Email: hello@sagedo.in\\n- WhatsApp: +91 6284925684.\n\nI’ve worked closely with the founder for over 20 years, helping ensure every service combines AI speed with human precision.\n\nIf you’d like, I can also share our official social media links.",
+        answer: "SAGE DO was founded by Mukul Dhiman, an entrepreneur from Chandigarh, India.\\n\\nHe built SAGE DO to help ambitious founders and professionals get quality execution without the usual agency retainers.\\n\\nWant to connect? Here are our official handles:\\n- LinkedIn: SAGE DO\\n- Email: hello@sagedo.in\\n- WhatsApp: +91 6284925684.\n\nEvery service combines AI speed with human precision.\n\nIf you’d like, I can also share our official social media links.",
         keywords: ['who made you', 'who created you', 'who built you', 'who is your founder', 'who runs sagedo', 'who is behind sagedo', 'founder', 'your founder', 'mukul', 'developer', 'ceo', 'owner', 'boss', 'team'],
         category: 'general'
     },
@@ -51,24 +51,24 @@ export const faqs: FAQItem[] = [
     {
         id: 'who_can_use',
         question: "Who can use SageDo?",
-        answer: "Students, professionals, business owners, job seekers — anyone who wants high quality work done quickly and correctly.",
-        keywords: ['who can use', 'for whom', 'target audience', 'student', 'professional'],
+        answer: "Founders, established businesses, professionals, and ambitious startups — anyone who needs world-class digital execution at AI speeds.",
+        keywords: ['who can use', 'for whom', 'target audience', 'founder', 'professional', 'business'],
         category: 'general'
     },
 
-    // --- Services: Academic ---
+    // --- Services: Execution & Automation ---
     {
-        id: 'assignment_help',
-        question: "Can you help with my assignment?",
-        answer: "Absolutely — send your brief and files. I’ll coordinate AI drafting and a human review so it’s accurate, referenced, and tailored to your professor’s needs.",
-        keywords: ['assignment', 'homework', 'essay', 'academic', 'college', 'school'],
+        id: 'tech_stack',
+        question: "What tech stack do you use?",
+        answer: "We deploy modern architectures. React/Next.js for frontends, Python/Node for backends, and advanced models like DeepSeek and Claude for our AI integrations.",
+        keywords: ['tech stack', 'programming', 'code', 'framework', 'development'],
         category: 'service'
     },
     {
         id: 'originality',
-        question: "Will the assignment be original?",
-        answer: "Yes — everything is created to your brief and checked. We deliver original work and take care to avoid plagiarism.",
-        keywords: ['original', 'plagiarism', 'copy', 'unique', 'turnitin'],
+        question: "Will the output be 100% original?",
+        answer: "Yes — everything is created to your brief and checked by humans. We deliver original work and take care to avoid plagiarism or generic AI copy.",
+        keywords: ['original', 'plagiarism', 'copy', 'unique', 'ai'],
         category: 'service'
     },
     {
@@ -86,12 +86,12 @@ export const faqs: FAQItem[] = [
         category: 'service'
     },
 
-    // --- Services: Career (Resume/CV) ---
+    // --- Services: Career (Executive Resumes) ---
     {
         id: 'resume_writing',
-        question: "Do you write resumes and cover letters?",
-        answer: "Yes — ATS-friendly, industry-focused resumes and matched cover letters that highlight what hiring managers care about.",
-        keywords: ['resume', 'cv', 'curriculum vitae', 'cover letter', 'job application'],
+        question: "Do you write executive resumes and cover letters?",
+        answer: "Yes — we do C-Suite ATS-friendly, industry-focused portfolios and matched cover letters that highlight what high-level hiring managers care about.",
+        keywords: ['resume', 'cv', 'curriculum vitae', 'cover letter', 'job application', 'portfolio'],
         category: 'service'
     },
     {
@@ -200,9 +200,9 @@ export const faqs: FAQItem[] = [
     },
     {
         id: 'delivery_time',
-        question: "How fast do you deliver assignments?",
-        answer: "Delivery depends on complexity, but we prioritise quality. Small tasks can be hours; bigger projects are planned to meet your deadline without shortcuts.",
-        keywords: ['fast', 'speed', 'time', 'when', 'deadline', 'urgent', 'same day'],
+        question: "How fast do you deliver execution projects?",
+        answer: "Depending on scale, we can deploy a landing page in 24 hours, or a complex automation suite in a few days. Our Hybrid model guarantees extreme speed without sacrificing precision.",
+        keywords: ['fast', 'speed', 'time', 'when', 'deadline', 'urgent', 'turnaround'],
         category: 'service'
     },
     {

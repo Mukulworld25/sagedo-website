@@ -1,0 +1,37 @@
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+
+> rest-express@1.0.1 build
+> vite build && node scripts/prerender.mjs
+
+[36mvite v5.4.20 [32mbuilding for production...[36m[39m
+transforming...
+Browserslist: browsers data (caniuse-lite) is 6 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+
+A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+[32m✓[39m 51 modules transformed.
+[31mx[39m Build failed in 7.09s
+[31merror during build:
+[31m[vite:esbuild] Transform failed with 1 error:
+C:/Users/admin/sagedo-website/client/src/pages/Careers.tsx:126:70: ERROR: Expected "}" but found "ll"[31m
+file: [36mC:/Users/admin/sagedo-website/client/src/pages/Careers.tsx:126:70[31m
+[33m
+[33mExpected "}" but found "ll"[33m
+124|                { title: 'Founder-Led', desc: 'Work directly with Mukul. No middle management, no red tape.', gradient: 'from-rose-500/10 to-orange-500/10', border: 'border-rose-500/20' },
+125|                { title: 'Remote-First', desc: 'Work from anywhere in India. Results matter, not your location.', gradient: 'from-emerald-500/10 to-teal-500/10', border: 'border-emerald-500/20' },
+126|                { title: 'Real Impact', desc: 'Every project ships. You'll see your work live within 48 hours.', gradient: 'from-violet-500/10 to-blue-500/10', border: 'border-violet-500/20' },
+   |                                                                        ^
+127|              ].map((item, i) => (
+128|                <div key={i} className={`bg-gradient-to-br ${item.gradient} border ${item.border} rounded-2xl p-6`}>
+[31m
+    at failureErrorWithLog (C:\Users\admin\sagedo-website\node_modules\vite\node_modules\esbuild\lib\main.js:1472:15)
+    at C:\Users\admin\sagedo-website\node_modules\vite\node_modules\esbuild\lib\main.js:755:50
+    at responseCallbacks.<computed> (C:\Users\admin\sagedo-website\node_modules\vite\node_modules\esbuild\lib\main.js:622:9)
+    at handleIncomingPacket (C:\Users\admin\sagedo-website\node_modules\vite\node_modules\esbuild\lib\main.js:677:12)
+    at Socket.readFromStdout (C:\Users\admin\sagedo-website\node_modules\vite\node_modules\esbuild\lib\main.js:600:7)
+    at Socket.emit (node:events:508:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)[39m

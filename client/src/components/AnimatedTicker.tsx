@@ -2,15 +2,14 @@
 import { useEffect, useState } from "react";
 
 const taglines = [
-    "We do your daily grind, you do grand things.",
-    "Assignment & Research Experts.",
-    "We do your busy work.",
-    "Sagedo: Your Personal Assistant.",
+    "AI Speed. Human Precision.",
+    "Enterprise AI Solutions.",
+    "SAGE DO: Elite Execution Hybrid.",
     "From tedious tasks to grand goals.",
-    "We do your daily grind, you do grand things.",
-    "Assignment & Research Experts.",
-    "We do your busy work.",
-    "Sagedo: Your Personal Assistant.",
+    "AI Speed. Human Precision.",
+    "B2B Automation Hub.",
+    "We build digital ecosystems.",
+    "SAGE DO: The Founder's Unfair Advantage.",
 ];
 
 export function AnimatedTicker() {

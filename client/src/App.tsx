@@ -1,4 +1,5 @@
 import { Switch, Route } from "wouter";
+import { HelmetProvider } from 'react-helmet-async';
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -11,7 +12,6 @@ import Home from "@/pages/Home";
 import Services from "@/pages/Services";
 import About from "@/pages/About";
 import Orders from "@/pages/Orders";
-import Tracking from "@/pages/Tracking";
 import Dashboard from "@/pages/Dashboard";
 import Admin from "@/pages/Admin";
 import OrderDetails from "@/pages/OrderDetails";
@@ -28,6 +28,18 @@ import FAQ from "@/pages/FAQ";
 import VerifyEmail from "@/pages/verify-email";
 import Settings from "@/pages/Settings";
 import Pay from "@/pages/Pay";
+import FreeAudit from "@/pages/FreeAudit";
+import AboutFounder from "@/pages/AboutFounder";
+import Blog from "@/pages/Blog";
+import BlogPost from "@/pages/BlogPost";
+import AIReadinessCheck from "@/pages/AIReadinessCheck";
+import AgencyAlternative from "@/pages/AgencyAlternative";
+import FreelancerAlternative from "@/pages/FreelancerAlternative";
+import DIYAlternative from "@/pages/DIYAlternative";
+import Refer from "@/pages/Refer";
+import AgencyPartner from "@/pages/AgencyPartner";
+import BookCall from "@/pages/BookCall";
+import Careers from "@/pages/Careers";
 import NotFound from "@/pages/not-found";
 
 import Navigation from "@/components/Navigation";
@@ -44,8 +56,16 @@ import AdminNotification from "@/components/AdminNotification";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
+import MobileAppEntry from "./MobileAppEntry";
+import { useLocation } from "wouter";
+
 function Router() {
   useAnalytics(); // Auto-tracks every route change
+  const [location] = useLocation();
+
+  if (location.startsWith('/app')) {
+    return <MobileAppEntry />;
+  }
 
   return (
     <>
@@ -58,7 +78,6 @@ function Router() {
         <Route path="/services" component={Services} />
         <Route path="/about" component={About} />
         <Route path="/orders" component={Orders} />
-        <Route path="/track" component={Tracking} />
         <Route path="/login" component={Login} />
         <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/reset-password" component={ResetPassword} />
@@ -76,6 +95,18 @@ function Router() {
         <Route path="/faq" component={FAQ} />
         <Route path="/order-success" component={OrderSuccess} />
         <Route path="/pay" component={Pay} />
+        <Route path="/free-audit" component={FreeAudit} />
+        <Route path="/about-founder" component={AboutFounder} />
+        <Route path="/blog" component={Blog} />
+        <Route path="/blog/:slug" component={BlogPost} />
+        <Route path="/tools/ai-readiness-check" component={AIReadinessCheck} />
+        <Route path="/alternatives/agency-alternative" component={AgencyAlternative} />
+        <Route path="/alternatives/freelancer-alternative" component={FreelancerAlternative} />
+        <Route path="/alternatives/diy-ai-alternative" component={DIYAlternative} />
+        <Route path="/refer" component={Refer} />
+        <Route path="/agency-partner" component={AgencyPartner} />
+        <Route path="/book-call" component={BookCall} />
+        <Route path="/careers" component={Careers} />
         <Route component={NotFound} />
       </Switch>
       <Footer />
@@ -88,19 +119,21 @@ function Router() {
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <LanguageProvider>
-          <ErrorBoundary>
-            <AuthProvider>
-              <TooltipProvider>
-                <Router />
-                <Toaster />
-              </TooltipProvider>
-            </AuthProvider>
-          </ErrorBoundary>
-        </LanguageProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <LanguageProvider>
+            <ErrorBoundary>
+              <AuthProvider>
+                <TooltipProvider>
+                  <Router />
+                  <Toaster />
+                </TooltipProvider>
+              </AuthProvider>
+            </ErrorBoundary>
+          </LanguageProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   );
 }

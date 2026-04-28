@@ -45,9 +45,6 @@ export default function NotFound() {
               <Link href="/orders">
                 <Button variant="ghost" size="sm">Order Now</Button>
               </Link>
-              <Link href="/track">
-                <Button variant="ghost" size="sm">Track Order</Button>
-              </Link>
             </div>
           </div>
         </div>

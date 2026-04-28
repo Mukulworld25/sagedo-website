@@ -10,7 +10,7 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isAuthenticated, isLoading, user, logout } = useAuth();
   const { t } = useLanguage();
-  const API_URL = ''; // Use relative URL - Vercel proxy forwards to Render
+  const API_URL = 'https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1';
 
   // AI Templates link - only shown to logged in users
   const AI_TEMPLATES_LINK = "https://chatgpt.com/g/g-690c95a9e7dc8191b0338671195897a2-prompt-generator";
@@ -20,7 +20,8 @@ export default function Navigation() {
     { href: "/services", label: t("nav.services") },
     { href: "/about", label: t("nav.about") },
     { href: "/orders", label: t("nav.orders") },
-    { href: "/track", label: t("nav.track") },
+    { href: "/book-call", label: "Book a Call" },
+    { href: "/careers", label: "Careers" },
   ];
 
   return (
@@ -122,7 +123,7 @@ export default function Navigation() {
                         variant="default"
                         data-testid="button-logout"
                         onClick={async () => {
-                          await fetch(`${API_URL}/api/auth/logout`, { method: 'POST', credentials: 'include' });
+                          await fetch(`${API_URL}/api/auth/logout`, { method: 'POST' });
                           logout();
                           window.location.href = '/';
                         }}
@@ -235,7 +236,7 @@ export default function Navigation() {
                       data-testid="button-mobile-logout"
                       className="w-full bg-neutral-700 hover:bg-neutral-600"
                       onClick={async () => {
-                        await fetch(`${API_URL}/api/auth/logout`, { method: 'POST', credentials: 'include' });
+                        await fetch(`${API_URL}/api/auth/logout`, { method: 'POST' });
                         logout();
                         window.location.href = '/';
                       }}

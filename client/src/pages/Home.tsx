@@ -11,7 +11,7 @@ export default function Home() {
 
   const categories = [
     { name: "Business", count: "10", description: "Landing pages, ads, automation & more", icon: <Briefcase className="w-6 h-6 text-primary" /> },
-    { name: "Student", count: "7", description: "Research, PPTs, photo editing & more", icon: <GraduationCap className="w-6 h-6 text-primary" /> },
+    { name: "Startup Launch", count: "4", description: "B2B Outreach, Competitor Analysis, AI Training", icon: <Zap className="w-6 h-6 text-primary" /> },
     { name: "Professional", count: "8", description: "Resumes, LinkedIn, cover letters & more", icon: <User className="w-6 h-6 text-primary" /> },
     { name: "Personal", count: "5", description: "Reels, diet plans, photo edits & more", icon: <Sparkles className="w-6 h-6 text-primary" /> }
   ];
@@ -23,9 +23,10 @@ export default function Home() {
   ];
 
   const testimonials = [
-    { name: "Ravi K.", role: "Restaurant Owner, Chandigarh", text: "I was paying a freelancer ₹30K for a basic website that took 2 months. SAGE DO built something 10x better in days. My online orders have actually started.", rating: 5 },
-    { name: "Priya S.", role: "Coaching Institute, Punjab", text: "I was doing everything myself — website, social media, ads. SAGE DO took over the tech completely. Now I just teach and they handle everything else.", rating: 5 },
-    { name: "Arjun T.", role: "E-commerce Startup", text: "The speed is insane. I messaged on WhatsApp, explained what I needed, and had a working prototype the next day. No other agency works like this.", rating: 5 }
+    { name: "Priya Siingh", role: "Verified Trustpilot Review ⭐", text: "Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time. It has a clean interface and smooth onboarding. I've had a great experience with Sagedo.", rating: 5 },
+    { name: "Akshit Kashyap", role: "Verified Trustpilot Review ⭐", text: "Why AI is important. Everything is fine, nice service, very good behaviour. What a cool and knowledgeable experience to know about AI.", rating: 5 },
+    { name: "Arushi Vashist", role: "Verified Trustpilot Review ⭐", text: "Very reliable. Their service and everything were good.", rating: 4 },
+    { name: "Tahira War", role: "Verified Trustpilot Review ⭐", text: "Everything was good overall. Good service provider.", rating: 5 }
   ];
 
   return (
@@ -107,22 +108,29 @@ export default function Home() {
             AI-Powered · Human-Crafted · India
           </p>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - 3 Systematic Actions */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
-            <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20visited%20SAGE%20DO%20and%20I'm%20interested%20in%20your%20services.%20Can%20we%20talk%3F" target="_blank" rel="noopener noreferrer">
-              <div className={buttonVariants({ size: "lg", className: "h-14 px-8 text-lg font-semibold bg-green-600 hover:bg-green-500 rounded-xl transition-all hover:scale-[1.02] hover:-translate-y-0.5 group cursor-pointer" })}
-                style={{ boxShadow: '0 4px 16px rgba(34, 197, 94, 0.4)', fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
+            <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20want%20to%20book%20a%20call%20to%20discuss%20my%20project." target="_blank" rel="noopener noreferrer">
+              <div className={buttonVariants({ size: "lg", className: "h-14 px-8 text-lg font-semibold bg-red-600 hover:bg-red-500 rounded-xl transition-all hover:scale-[1.02] hover:-translate-y-0.5 group cursor-pointer" })}
+                style={{ boxShadow: '0 4px 16px rgba(239, 68, 68, 0.4)', fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
               >
-                <MessageCircle className="mr-2 h-5 w-5" /> BOOK FREE CALL
+                <Phone className="mr-2 h-5 w-5" /> BOOK A CALL
               </div>
             </a>
-            <a href="#portfolio">
-              <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-14 px-8 text-lg font-semibold rounded-xl border-white/20 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all cursor-pointer" })}
+            <Link href="/services">
+              <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-14 px-8 text-lg font-semibold rounded-xl border-white/20 hover:border-white/50 hover:bg-white/5 text-white transition-all cursor-pointer" })}
                 style={{ fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
               >
-                SEE OUR WORK
+                <ArrowRight className="mr-2 h-5 w-5" /> SERVICES
               </div>
-            </a>
+            </Link>
+            <Link href="/free-audit">
+              <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-14 px-8 text-lg font-semibold rounded-xl border-green-500/40 hover:border-green-400 hover:bg-green-500/10 text-green-400 hover:text-green-300 transition-all cursor-pointer" })}
+                style={{ fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
+              >
+                <Zap className="mr-2 h-5 w-5" /> FREE AUDIT
+              </div>
+            </Link>
           </div>
         </div>
 
@@ -608,10 +616,10 @@ export default function Home() {
                 text: "group-hover:text-blue-500"
               },
               {
-                name: "Ace Academics",
-                sub: "Research, PPTs, Theses",
-                desc: "Top grades, zero stress. We do the heavy lifting.",
-                icon: "🎓",
+                name: "Startup Launch",
+                sub: "B2B Outreach & Market Analysis",
+                desc: "Launch faster and dominate your niche.",
+                icon: "🚀",
                 color: "from-emerald-500/10 to-emerald-600/5",
                 border: "group-hover:border-emerald-500/50",
                 text: "group-hover:text-emerald-500"
@@ -713,6 +721,104 @@ export default function Home() {
                 <a href="https://www.linkedin.com/in/mukul-dhiman" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
                   View LinkedIn →
                 </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          FREE AUDIT - Lead Capture CTA (Transitional CTA)
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-20 px-6 border-t border-border/30 bg-gradient-to-b from-primary/5 via-transparent to-transparent">
+        <div className="max-w-4xl mx-auto">
+          <div className="relative overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-br from-background via-background to-primary/5 p-8 md:p-12">
+            {/* Decorative glow */}
+            <div className="absolute -top-20 -right-20 w-60 h-60 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
+            <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-green-500/10 rounded-full blur-[80px] pointer-events-none" />
+            
+            <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center">
+              {/* Left: Copy */}
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">
+                  <Zap className="w-3 h-3" /> 100% FREE — No strings attached
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black text-foreground mb-3">
+                  Get a Free AI Business Audit
+                </h2>
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  Discover exactly what's holding your business back online. Our AI scans your digital presence and delivers a personalized roadmap — in under 24 hours.
+                </p>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" /> Website & SEO health check</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" /> Competitor comparison snapshot</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" /> Top 3 quick-win opportunities</li>
+                </ul>
+              </div>
+
+              {/* Right: Form */}
+              <div>
+                <form
+                  id="free-audit-form"
+                  className="space-y-4"
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    const form = e.target as HTMLFormElement;
+                    const businessName = (form.elements.namedItem('businessName') as HTMLInputElement).value;
+                    const whatsappNumber = (form.elements.namedItem('whatsappNumber') as HTMLInputElement).value;
+                    const btn = form.querySelector('button[type=submit]') as HTMLButtonElement;
+                    btn.textContent = 'Sending...';
+                    btn.disabled = true;
+                    try {
+                      const res = await fetch('/api/free-audit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ businessName, whatsappNumber }),
+                      });
+                      if (res.ok) {
+                        btn.textContent = '✅ Request Sent!';
+                        btn.className = btn.className.replace('bg-primary', 'bg-green-600');
+                        form.reset();
+                        setTimeout(() => { btn.textContent = 'Get My Free Audit →'; btn.disabled = false; btn.className = btn.className.replace('bg-green-600', 'bg-primary'); }, 3000);
+                      }
+                    } catch {
+                      btn.textContent = 'Get My Free Audit →';
+                      btn.disabled = false;
+                    }
+                  }}
+                >
+                  <div>
+                    <label htmlFor="audit-business" className="block text-sm font-medium text-foreground mb-1">Business Name</label>
+                    <input
+                      id="audit-business"
+                      name="businessName"
+                      type="text"
+                      required
+                      placeholder="e.g. Sharma Electronics"
+                      className="w-full px-4 py-3 rounded-xl bg-muted border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="audit-whatsapp" className="block text-sm font-medium text-foreground mb-1">WhatsApp Number</label>
+                    <input
+                      id="audit-whatsapp"
+                      name="whatsappNumber"
+                      type="tel"
+                      required
+                      placeholder="+91 98765 43210"
+                      className="w-full px-4 py-3 rounded-xl bg-muted border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full py-3 px-6 rounded-xl bg-primary text-primary-foreground font-bold text-base hover:opacity-90 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-primary/25"
+                  >
+                    Get My Free Audit →
+                  </button>
+                  <p className="text-xs text-muted-foreground text-center">
+                    We'll send your audit report via WhatsApp within 24 hours. No spam, ever.
+                  </p>
+                </form>
               </div>
             </div>
           </div>

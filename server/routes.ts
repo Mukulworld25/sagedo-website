@@ -12,6 +12,12 @@ import multer from "multer";
 import { WebSocket, WebSocketServer } from "ws";
 import rateLimit from "express-rate-limit";
 
+declare module "express-session" {
+  interface SessionData {
+    user: any;
+  }
+}
+
 // SECURITY: Rate Limiters
 const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -814,6 +820,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Contact Form Submission (Migrated to Supabase Edge Function)
+  // Check implementation_plan.md and supabase/functions/contact/index.ts
+  
+  // Visit Tracking (Session/Analytics)
+  app.post('/api/track-visit', async (req: any, res) => {
+    try {
+      const { path } = req.body;
+      const userId = req.session?.user?.id || 'anonymous';
+      const timestamp = new Date().toISOString();
+
+      // Log the visit
+      console.log(`[VISIT] ${userId} → ${path} at ${timestamp}`);
+
+      res.json({ success: true });
+    } catch (error) {
+      // Silent fail — analytics should never break the app
+      res.json({ success: true });
+    }
+  });
+
   // BRUNO CHAT API (The Central Brain)
   app.post('/api/chat', async (req, res) => {
     const { message } = req.body;
@@ -849,7 +875,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Onboarding Survey Submission
   app.post('/api/user/onboarding', async (req, res) => {
     // Debug logging for 401 issues
-    console.log(`[Onboarding] Request received. SessionId: ${req.sessionID}, IsAuth: ${req.isAuthenticated()}, User: ${req.user?.id}`);
+    console.log(`[Onboarding] Request received. SessionId: ${req.sessionID}, IsAuth: ${req.isAuthenticated()}, User: ${(req.user as any)?.id}`);
 
     // Unified Auth Check
     if (!req.session.user) {
@@ -876,13 +902,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ success: false, message: "Onboarding already completed" });
       }
 
-      const { profession, age, gender, aiProficiency, mobileNumber, referralSource } = req.body;
+      const { profession, age, gender, aiProficiency, mobileNumber, referralSource, name } = req.body;
+
+      // Update user's name if provided (simplified onboarding)
+      if (name && name.trim()) {
+        await storage.upsertUser({ ...dbUser, name: name.trim() });
+        req.session.user.name = name.trim();
+      }
 
       // 1. Update User Profile
       // Use local 'user' variable from session, not req.user
       const updatedUser = await storage.submitOnboarding(user.id, {
         profession,
-        age: parseInt(age),
+        age: parseInt(age) || 0,
         gender,
         aiProficiency,
         mobileNumber,
@@ -976,100 +1008,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Payment routes (no auth required - order creation validates user)
-  app.post('/api/payment/create-order', async (req, res) => {
-    try {
-      const { orderId } = req.body;
-      if (!orderId) {
-        return res.status(400).json({ message: 'Order ID required' });
-      }
 
-      // SECURITY: Ignore client 'amount'. Fetch real price from DB.
-      const order = await storage.getOrder(orderId);
-      if (!order) {
-        return res.status(404).json({ message: 'Order not found' });
-      }
-
-      // If order has an amountPaid set (e.g. from service price), use it.
-      // Otherwise we might need to lookup service. But typically order creation sets this.
-      // Assuming 'amountPaid' is the price to charge.
-      // Or if amountPaid is 0/null, we should check the service price.
-      // Let's check service price to be safe if amountPaid is missing.
-      let finalAmount = order.amountPaid || 0;
-
-      if (!finalAmount && order.serviceId) {
-        const service = await storage.getService(order.serviceId);
-        if (service) finalAmount = service.price;
-      }
-
-      if (!finalAmount || finalAmount <= 0) {
-        // If still 0, maybe it's custom. But we shouldn't trust client blindly unless strict logic.
-        // For now, if DB says 0, we assume it's an error or free.
-        // Let's default to failing if we can't find a trusted price. 
-        // However, if the user really wants to pay 1 rupee, they can't unless code allows.
-        // Let's trust DB only.
-        return res.status(400).json({ message: 'Invalid order amount' });
-      }
-
-      console.log(`Creating Razorpay order: amount=${finalAmount}, orderId=${orderId}`);
-      const paymentOrder = await createPaymentOrder(finalAmount, orderId);
-      console.log('Razorpay order created:', paymentOrder.id);
-      res.json(paymentOrder);
-    } catch (error: any) {
-      console.error("Error creating payment order:", error);
-      console.error("Razorpay error details:", error?.error || error?.message || error);
-      res.status(500).json({
-        message: "Failed to create payment order",
-        error: error?.error?.description || error?.message || 'Unknown error'
-      });
-    }
-  });
-
-  app.post('/api/payment/verify', async (req, res) => {
-    try {
-      const { razorpay_order_id, razorpay_payment_id, razorpay_signature, orderId } = req.body;
-
-      if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature || !orderId) {
-        return res.status(400).json({ message: 'Missing payment verification data' });
-      }
-
-      const isValid = verifyPaymentSignature(
-        razorpay_order_id,
-        razorpay_payment_id,
-        razorpay_signature
-      );
-
-      if (isValid) {
-        // Update order as paid
-        const order = await storage.getOrderById(orderId);
-        if (order) {
-          await storage.updateOrderStatus(orderId, 'processing');
-        }
-
-        // Send response immediately (don't wait for email)
-        res.json({ success: true, message: 'Payment verified successfully' });
-
-        // Send payment success email in background (fire-and-forget)
-        if (order) {
-          sendPaymentSuccessEmail({
-            customerName: order.customerName || 'Customer',
-            customerEmail: order.customerEmail,
-            orderId: order.id,
-            serviceName: order.serviceName,
-            amount: order.amountPaid || 0,
-            orderDate: (order.createdAt || new Date()).toLocaleDateString(),
-            paymentId: razorpay_payment_id,
-            paymentMethod: 'Razorpay'
-          }).catch(err => console.error('Payment email failed (background):', err));
-        }
-      } else {
-        res.status(400).json({ success: false, message: 'Invalid payment signature' });
-      }
-    } catch (error) {
-      console.error("Error verifying payment:", error);
-      res.status(500).json({ message: "Payment verification failed" });
-    }
-  });
 
   // Admin routes (protected with admin role check)
   app.get('/api/admin/orders', isAuthenticated, isAdmin, async (req, res) => {
@@ -1632,6 +1571,156 @@ export async function registerRoutes(app: Express): Promise<Server> {
         text: "I'm having trouble thinking right now! 🙈 Try again or reach us on WhatsApp.",
         options: ['Contact WhatsApp', 'Try Again']
       });
+    }
+  });
+
+  // ═══════════════════════════════════════════════
+  // MOBILE APP - Server-Side Gemini Proxy
+  // Keeps GEMINI_API_KEY secure on server
+  // ═══════════════════════════════════════════════
+
+  app.post('/api/mobile/chat', async (req: any, res) => {
+    try {
+      const { message, history, image, mode, location, userPrefs } = req.body;
+      if (!message && !image) return res.status(400).json({ message: "Message or image required" });
+
+      if (!process.env.GEMINI_API_KEY) {
+        return res.status(503).json({ text: "AI service is not configured. Please contact support." });
+      }
+
+      const { GoogleGenerativeAI } = await import('@google/generative-ai');
+      const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+      const personaMap: Record<string, string> = {
+        student: "an expert academic tutor focused on deep research, step-by-step logic, and structural excellence",
+        pro: "a sharp productivity consultant focused on efficiency, career growth, and executive communication",
+        business: "a growth strategist specialized in marketing psychology, conversion, and business scaling",
+        creative: "an imaginative partner for boundary-pushing content, scripting, and visual storytelling"
+      };
+
+      const baseInstruction = `You are Sage, the core intelligence of SAGE DO. You are not a bot; you are an AI Operating System.`;
+      const namePart = userPrefs?.name ? ` User: ${userPrefs.name}.` : "";
+      const personaText = userPrefs?.persona ? ` Persona: ${personaMap[userPrefs.persona] || personaMap.student}.` : "";
+      const toneText = userPrefs?.tone ? ` Tone: ${userPrefs.tone}.` : "";
+      const systemInstruction = `${baseInstruction}${namePart}${personaText}${toneText} Use professional Markdown. Be brilliant, concise, and helpful. Always provide actionable next steps.`;
+
+      let modelName = 'gemini-1.5-flash';
+      const chatMode = mode || 'standard';
+
+      if (chatMode === 'thinking') modelName = 'gemini-1.5-pro';
+
+      const model = genAI.getGenerativeModel({
+        model: modelName,
+        systemInstruction,
+      });
+
+      // Build conversation history
+      const contents: any[] = (history || []).map((msg: any) => ({
+        role: msg.role,
+        parts: [
+          ...(msg.image ? [{ inlineData: { mimeType: 'image/jpeg', data: msg.image.split(',')[1] || msg.image } }] : []),
+          { text: msg.text }
+        ]
+      }));
+
+      // Add current message
+      const currentParts: any[] = [];
+      if (image) {
+        currentParts.push({ inlineData: { mimeType: 'image/jpeg', data: image.split(',')[1] || image } });
+      }
+      currentParts.push({ text: message || "Analyze this image." });
+      contents.push({ role: 'user', parts: currentParts });
+
+      const result = await model.generateContent({ contents });
+      const responseText = result.response.text();
+
+      res.json({ text: responseText, groundingMetadata: null });
+    } catch (error: any) {
+      console.error("Mobile chat proxy error:", error);
+      res.status(500).json({ text: "Sorry, something went wrong. Please try again." });
+    }
+  });
+
+  app.post('/api/mobile/assignment', async (req: any, res) => {
+    try {
+      const { topic, subject, level, words, tone, instructions } = req.body;
+      if (!topic) return res.status(400).json({ message: "Topic is required" });
+
+      if (!process.env.GEMINI_API_KEY) {
+        return res.status(503).json({ message: "AI service is not configured." });
+      }
+
+      const { GoogleGenerativeAI } = await import('@google/generative-ai');
+      const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
+
+      const prompt = `Write a world-class academic assignment on "${topic}" for ${level} level. Word count: ${words}. Style: ${tone}. Instructions: ${instructions}. Use deep research and professional structure.`;
+      const result = await model.generateContent(prompt);
+
+      res.json({ text: result.response.text() });
+    } catch (error: any) {
+      console.error("Assignment proxy error:", error);
+      res.status(500).json({ message: "Failed to generate assignment." });
+    }
+  });
+
+  // ===== Free Audit Form Submission (GAP-15) =====
+  app.post('/api/free-audit', async (req: any, res) => {
+    try {
+      const { businessName, websiteUrl, socialHandle, biggestChallenge, whatsappNumber } = req.body;
+
+      if (!businessName || !whatsappNumber) {
+        return res.status(400).json({ message: 'Business name and WhatsApp number are required' });
+      }
+
+      console.log('📋 Free Audit Request:', { businessName, websiteUrl, socialHandle, biggestChallenge, whatsappNumber });
+
+      // Send admin notification email
+      try {
+        await sendContactEmail(
+          businessName,
+          whatsappNumber,
+          `🔥 FREE AUDIT REQUEST: ${businessName}`,
+          `Business: ${businessName}\nWebsite: ${websiteUrl || 'Not provided'}\nSocial: ${socialHandle || 'Not provided'}\nChallenge: ${biggestChallenge}\nWhatsApp: ${whatsappNumber}`
+        );
+      } catch (emailErr) {
+        console.error('Admin notification email failed:', emailErr);
+      }
+
+      res.json({ success: true, message: 'Audit request received' });
+    } catch (error: any) {
+      console.error('Free audit error:', error);
+      res.status(500).json({ message: 'Failed to submit audit request' });
+    }
+  });
+
+  // ===== Newsletter Subscription (GAP-26) =====
+  app.post('/api/newsletter', async (req: any, res) => {
+    try {
+      const { email, source } = req.body;
+
+      if (!email || !email.includes('@')) {
+        return res.status(400).json({ message: 'Valid email is required' });
+      }
+
+      console.log('📧 Newsletter Subscription:', { email, source });
+
+      // Send admin notification
+      try {
+        await sendContactEmail(
+          'Newsletter Subscriber',
+          email,
+          `📧 NEW Newsletter Subscriber: ${email}`,
+          `Email: ${email}\nSource: ${source || 'unknown'}\nTime: ${new Date().toISOString()}`
+        );
+      } catch (emailErr) {
+        console.error('Newsletter notification email failed:', emailErr);
+      }
+
+      res.json({ success: true, message: 'Subscribed successfully' });
+    } catch (error: any) {
+      console.error('Newsletter error:', error);
+      res.status(500).json({ message: 'Failed to subscribe' });
     }
   });
 

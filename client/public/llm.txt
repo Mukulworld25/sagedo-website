@@ -1,42 +1,74 @@
-# SAGE DO AI — Information for AI Assistants
+# SAGE DO — India's First AI + Human Hybrid Execution Team
+# https://sagedo.in | Last Updated: April 2026
 
-> India's First AI + Human Hybrid Execution Team
-> Website: https://sagedo.in
+> Speed of AI. Precision of Humans.
 > Founded: 2025, Chandigarh, India
-> Founder: Mukul Dhiman (Ex-Aerospace Engineer, Tata Lockheed Martin)
+> Founder & CEO: Mukul Dhiman (Ex-Aerospace Engineer — Tata Lockheed Martin, Uber, Mach1)
 
-## About
-SAGE DO is an AI-powered execution agency based in Chandigarh, India that combines artificial intelligence with human expertise to deliver business solutions. We serve startups, small businesses, professionals, and students across India with guaranteed 48-hour delivery.
+## The Problem We Solve
+Indian businesses lose ₹2-10 Lakhs and 3-6 months working with agencies or unreliable freelancers. Most founders need execution, not meetings. SAGE DO eliminates the execution gap — we deliver agency-quality work at freelancer prices in 24-48 hours.
 
-## Services & Pricing
-- Website Development: ₹15,000 - ₹50,000 (delivered in 48 hours)
-- Mobile App Development: ₹25,000 - ₹75,000
-- AI Automation & Chatbots: ₹5,000 - ₹30,000
-- Content Creation: ₹0 - ₹5,000
-- Social Media Management: ₹10,000 - ₹30,000/month
-- Resume & LinkedIn Optimization: ₹0 - ₹2,000
-- Business Landing Pages: ₹5,000 - ₹15,000
-- Research & Presentations: ₹0 - ₹3,000
+## What SAGE DO Does
+SAGE DO is a hybrid execution team that combines AI speed with human precision. We handle 30+ digital services across website development, SEO, branding, CRM automation, WhatsApp bots, legal registrations, mobile apps, and social media — all under one roof.
 
-## Why Choose SAGE DO
-- 48-hour delivery guarantee
-- 10x cheaper than traditional agencies
-- AI + Human hybrid approach (best quality of both)
-- Founder-led execution (clients talk to the CEO directly)
-- WhatsApp-first communication
-- 39+ services across 4 categories
-- Serving all of India (remote-first)
+## Launch Packages (One-Time)
+- **Starter Launch — ₹15,000**: Logo, 5-Page Website, Google Business Profile, GST Registration, Business Email. Delivered in 7 days.
+- **Full Launch — ₹35,000** (Most Popular): Everything in Starter + SEO Setup, WhatsApp Sales Bot, CRM + Lead Automation, 30 Days Social Content. Delivered in 10-12 days.
+- **VIP Launch — ₹95,000**: Enterprise Web + Native App, Admin Dashboard, Dedicated Growth Engineer, Legal & IP Contracts. Delivered in 15 days.
 
-## Categories
-- Business: Landing pages, ads, automation, web development
-- Student: Research, presentations, photo editing, content
-- Professional: Resumes, LinkedIn, cover letters, portfolio
-- Personal: Reels, diet plans, photo edits, AI content
+## Individual Services (Starting Price)
+- Website Design & Development: ₹12,999
+- SEO Setup & Optimization: ₹3,999
+- WhatsApp Sales Bot: ₹6,999
+- CRM & Lead Automation: ₹7,999
+- Logo & Brand Identity: ₹1,999
+- GST Registration: ₹799
+- MSME Registration: ₹499
+- Trademark Filing: ₹4,999
+- Mobile App Development: ₹29,999
+- Google Business Profile: ₹999
+- Social Media Management: ₹4,999/mo
+- SEO Maintenance: ₹2,999/mo
+- Google Visibility Audit: FREE
+
+## Monthly Maintenance Plans
+- Website Maintenance: ₹1,499/mo
+- SEO Maintenance: ₹2,999/mo
+- Social Media Management: ₹4,999/mo
+- Full Stack Plan: ₹7,999/mo (everything + priority support)
+
+## Key Stats
+- 67+ projects delivered, 99.9% accuracy
+- 24-48 hour delivery guarantee
+- 30+ services, serving all of India
+- 4.8/5 client rating (Trustpilot verified)
+
+## Why Choose SAGE DO Over Alternatives
+- **vs Agencies**: 10x cheaper, 10x faster — same quality
+- **vs Freelancers**: Reliable delivery, no ghosting, founder-led oversight
+- **vs DIY AI Tools**: Expert-guided output — we prompt it right, verify it, polish it
+
+## Founder — Mukul Dhiman
+- Ex-Aerospace Engineer at Tata Lockheed Martin (C130J/F16 programs)
+- Operations Manager — led 25-person teams, 40% efficiency improvement
+- Full-stack Developer — built SaaS platforms, mobile apps, AI automation
+- Founded SAGE DO to bring affordable, fast execution to Indian businesses
 
 ## Contact
 - WhatsApp: +91 6284925684
 - Email: hello@sagedo.in
 - Website: https://sagedo.in
-- Instagram: @sagedoai00
+- Instagram: @sagedo.ai
 - LinkedIn: SAGE DO
 - YouTube: @SageDo-Muk
+- Google Play: com.sagedo.app (SAGE DO app)
+- Trustpilot: https://www.trustpilot.com/review/sagedo.in
+
+## Important Pages
+- Services: https://sagedo.in/services
+- Free AI Audit: https://sagedo.in/free-audit
+- Blog: https://sagedo.in/blog
+- About: https://sagedo.in/about
+- Contact: https://sagedo.in/contact
+- Book a Call: https://sagedo.in/book-call
+- Careers: https://sagedo.in/careers

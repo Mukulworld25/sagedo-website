@@ -21,6 +21,7 @@
 ---
 
 ## 🧠 3. Marketing Strategy & Workflows ("The Brain")
+*   **🚨 MASTER INSTRUCTIONS (VIRAL FORMULA):** [MASTER_INSTRUCTIONS.md](file:///C:/Users/admin/.gemini/antigravity/brain/3d424e5a-289e-46e7-919d-547f71e9c485/MASTER_INSTRUCTIONS.md)
 *   **Master Content Guide:** [SAGEDO_MASTER_CONTENT_GUIDE.md](file:///C:/Users/admin/.gemini/antigravity/brain/8ebab65a-5642-4652-8720-74de3e702000/SAGEDO_MASTER_CONTENT_GUIDE.md)
 *   **Marketing Head OS:** [MARKETING_HEAD_OS.md](file:///C:/Users/admin/.gemini/antigravity/brain/8ebab65a-5642-4652-8720-74de3e702000/MARKETING_HEAD_OS.md)
 *   **Proposed Strategy:** [PROPOSED_CONTENT_STRATEGY.md](file:///C:/Users/admin/.gemini/antigravity/brain/8ebab65a-5642-4652-8720-74de3e702000/PROPOSED_CONTENT_STRATEGY.md)

@@ -31,7 +31,16 @@ export default function Contact() {
         setIsSubmitting(true);
 
         try {
-            await apiRequest("POST", "/api/contact", formData);
+            const response = await fetch('https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1/contact-form', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.error || 'Failed to send message');
+            }
 
             setSubmitted(true);
             toast({
