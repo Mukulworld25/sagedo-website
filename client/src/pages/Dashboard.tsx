@@ -188,11 +188,18 @@ export default function Dashboard() {
                 </Button>
               </a>
             )}
-            <a href="/api/logout">
-              <Button variant="outline" data-testid="button-logout" className="glass hover-elevate">
+            <Button variant="outline" data-testid="button-logout" className="glass hover-elevate" onClick={async () => {
+                const { logout } = await import('@/contexts/AuthContext').then(() => ({ logout: () => {} }));
+                // Use the auth context logout
+                try {
+                  await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+                } catch (e) {}
+                localStorage.removeItem('sagedo_auth_user');
+                sessionStorage.removeItem('sagedo_onboarding_skipped');
+                window.location.href = '/';
+              }}>
                 Logout
               </Button>
-            </a>
           </div>
         </div>
 
