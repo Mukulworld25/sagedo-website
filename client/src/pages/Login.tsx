@@ -277,9 +277,9 @@ export default function Login() {
                 {/* Terms */}
                 <p className="mt-8 text-center text-xs text-muted-foreground">
                     By continuing, you agree to our{' '}
-                    <a href="/terms" className="text-primary hover:underline">Terms</a>
+                    <a href="/terms-of-service" className="text-primary hover:underline">Terms</a>
                     {' & '}
-                    <a href="/privacy" className="text-primary hover:underline">Privacy Policy</a>
+                    <a href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</a>
                 </p>
             </div>
 
