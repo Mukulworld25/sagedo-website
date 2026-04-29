@@ -646,43 +646,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Admin Order Routes
-  app.get('/api/admin/orders', isAuthenticated, isAdmin, async (req, res) => {
-    try {
-      const orders = await storage.getAllOrders();
-      res.json(orders);
-    } catch (error) {
-      console.error("Error fetching admin orders:", error);
-      res.status(500).json({ message: "Failed to fetch orders" });
-    }
-  });
-
-  app.patch('/api/admin/orders/:id', isAuthenticated, isAdmin, async (req, res) => {
-    try {
-      const { status, deliveryNotes } = req.body;
-      if (!status) return res.status(400).json({ message: "Status required" });
-
-      const order = await storage.updateOrderStatus(req.params.id, status, deliveryNotes);
-
-      // Send email notification when order is delivered
-      if (status === 'delivered' && order) {
-        sendOrderDeliveredEmail({
-          customerName: order.customerName || 'Customer',
-          customerEmail: order.customerEmail,
-          orderId: order.id,
-          serviceName: order.serviceName,
-          amount: order.amountPaid || 0,
-          orderDate: new Date(order.createdAt!).toLocaleDateString('en-IN'),
-          deliveryNotes: deliveryNotes,
-        }).catch(err => console.error('Delivery email failed:', err));
-      }
-
-      res.json(order);
-    } catch (error) {
-      console.error("Error updating order:", error);
-      res.status(500).json({ message: "Failed to update order" });
-    }
-  });
 
   app.get('/api/orders/:id', async (req, res) => {
     try {
@@ -809,36 +772,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Gallery routes (public)
-  app.get('/api/gallery', async (req, res) => {
-    try {
-      const items = await storage.getVisibleGalleryItems();
-      res.json(items);
-    } catch (error) {
-      console.warn("Database not configured - returning empty gallery");
-      res.json([]);
-    }
-  });
 
-  // Contact Form Submission (Migrated to Supabase Edge Function)
-  // Check implementation_plan.md and supabase/functions/contact/index.ts
-  
-  // Visit Tracking (Session/Analytics)
-  app.post('/api/track-visit', async (req: any, res) => {
-    try {
-      const { path } = req.body;
-      const userId = req.session?.user?.id || 'anonymous';
-      const timestamp = new Date().toISOString();
-
-      // Log the visit
-      console.log(`[VISIT] ${userId} → ${path} at ${timestamp}`);
-
-      res.json({ success: true });
-    } catch (error) {
-      // Silent fail — analytics should never break the app
-      res.json({ success: true });
-    }
-  });
 
   // BRUNO CHAT API (The Central Brain)
   app.post('/api/chat', async (req, res) => {
@@ -1326,25 +1260,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Newsletter subscription (public)
-  app.post('/api/newsletter', async (req, res) => {
-    try {
-      const { email } = req.body;
 
-      if (!email || !email.includes('@')) {
-        return res.status(400).json({ message: 'Valid email required' });
-      }
-
-      // Log the subscription (you could also save to DB)
-      console.log('📧 Newsletter subscription:', email);
-
-      // For now, just log it. Could be extended to save to a newsletters table
-      res.json({ success: true, message: 'Subscribed successfully!' });
-    } catch (error) {
-      console.error('Newsletter error:', error);
-      res.status(500).json({ message: 'Failed to subscribe' });
-    }
-  });
 
   // Contact Form
   app.post('/api/contact', async (req, res) => {
