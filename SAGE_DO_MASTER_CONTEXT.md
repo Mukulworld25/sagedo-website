@@ -34,7 +34,7 @@ How we achieve 99.9% accuracy and 24-48 hour delivery times:
 ---
 
 ## 4. Comprehensive Service Catalog & Pricing Matrix
-We exclusively serve B2B and professional markets. We **DO NOT** offer student, academic, or homework services. All services are categorized into Business, Professional, Startup Launch, and Personal.
+We exclusively serve B2B and professional markets. We **DO NOT** offer student, academic, or homework services. All services are categorized into Business, Startup Launch, Scale Business, and AI Automation.
 
 ### A. Business & Automation Solutions
 1. **24/7 AI Voice & Chat Bots**
@@ -110,28 +110,28 @@ We exclusively serve B2B and professional markets. We **DO NOT** offer student, 
    - **Price:** ₹2,499 - ₹4,499
    - **Description:** Realistic 30-minute AI-driven VC investor simulation with performance analytics.
 
-### D. Content Creators & Personal
-1. **Podcast -> Viral Shorts Engine**
-   - **Price:** ₹14,999 / mo
-   - **Description:** Turns 1 long-form video (Podcast/Zoom) into 10 high-retention viral shorts using AI moment extraction.
-2. **High-CTR YouTube Thumbnail**
-   - **Price:** ₹199 - ₹599
-   - **Description:** Click-optimized thumbnails using psychological triggers and A/B testing variations.
-3. **Viral Reel/Short Editing**
-   - **Price:** ₹499 - ₹1,499
-   - **Description:** Dynamic captions, sound design, VFX, and trending audio sync.
-4. **Influencer Media Kit**
-   - **Price:** ₹799 - ₹1,198
-   - **Description:** Stunning PDF detailing audience analytics and rate cards to secure brand deals.
-5. **AI Health & Nutrition Plan**
-   - **Price:** ₹349 - ₹523
-   - **Description:** Hyper-personalized 30-day meal plans based on AI analysis of preferences and goals.
-6. **Smart Travel Itinerary**
-   - **Price:** ₹499 - ₹748
-   - **Description:** Day-by-day schedules, logicistics, and budget optimization for seamless trips.
-7. **Custom Illustration / Photo Retouching**
-   - **Price:** ₹299 - ₹1,348
-   - **Description:** Digital art generation, color correction, and object removal.
+### D. Scale Business
+1. **Google Ads & PPC Campaigns**
+   - **Price:** ₹6,999
+   - **Description:** End-to-end setup of Google search/display campaigns, keyword bidding, and conversion tracking.
+2. **Meta Lead Generation Funnel**
+   - **Price:** ₹7,999
+   - **Description:** High-converting Facebook & Instagram lead ads with instant CRM/form integration.
+3. **SEO Performance Roadmap**
+   - **Price:** ₹4,999
+   - **Description:** Comprehensive audit, keyword mapping, competitor gap analysis, and 6-month ranking action plan.
+4. **B2B Cold Email Outreach**
+   - **Price:** ₹8,999
+   - **Description:** Technical setup of secondary domains, SPF/DKIM/DMARC records, warm-up, and copywriting for 3 sequences.
+5. **LinkedIn Executive Thought Leadership**
+   - **Price:** ₹5,999
+   - **Description:** 10 custom high-engagement posts, content pillars, and profile design for startup founders.
+6. **Premium Pitch Deck Design**
+   - **Price:** ₹6,999
+   - **Description:** Investor-ready slide deck copywriting and design (up to 12 slides).
+7. **Press Release & Media Distribution**
+   - **Price:** ₹4,999
+   - **Description:** Writing and syndication of 1 professional announcement to major PR distribution portals.
 
 ---
 

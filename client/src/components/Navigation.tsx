@@ -134,16 +134,6 @@ export default function Navigation() {
                     </>
                   ) : (
                     <>
-                      <Link href="/login">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          data-testid="button-login"
-                          className="border-neutral-700 hover:border-neutral-600 hover:bg-neutral-800/50"
-                        >
-                          Login
-                        </Button>
-                      </Link>
                       <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20visited%20SAGE%20DO%20and%20I'm%20interested%20in%20your%20services." target="_blank" rel="noopener noreferrer">
                         <Button
                           size="sm"
@@ -246,17 +236,6 @@ export default function Navigation() {
                   </>
                 ) : (
                   <div className="space-y-2">
-                    <Link href="/login">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        data-testid="button-mobile-login"
-                        className="w-full border-neutral-700"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        Login
-                      </Button>
-                    </Link>
                     <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20visited%20SAGE%20DO%20and%20I'm%20interested%20in%20your%20services." target="_blank" rel="noopener noreferrer">
                       <Button
                         size="sm"

@@ -88,7 +88,7 @@ export default function Services() {
     }, 600);
   };
 
-  const launchpadServices = allServices.filter(s => s.category === "Business");
+  const launchpadServices = allServices.filter(s => ["Business", "Startup Launch", "Scale Business", "AI Automation"].includes(s.category));
   const getFiltered = (list: ServiceDetail[]) => searchQuery.trim() ? list.filter(s => s.name.toLowerCase().includes(searchQuery.toLowerCase()) || s.description.toLowerCase().includes(searchQuery.toLowerCase())) : list;
 
   return (

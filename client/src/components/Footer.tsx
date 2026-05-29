@@ -146,6 +146,31 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+        {/* Local Landing Pages Grid for Technical SEO */}
+        <div className="py-8 border-t border-border/20 text-xs text-muted-foreground">
+          <p className="font-semibold text-foreground mb-3 uppercase tracking-wider text-[10px]">Serving Businesses Across India</p>
+          <div className="flex flex-wrap gap-x-4 gap-y-2">
+            <a href="/website-development-india.html" className="hover:text-foreground transition-colors">Website Development India</a>
+            <span className="opacity-30">•</span>
+            <a href="/app-development-india.html" className="hover:text-foreground transition-colors">App Development India</a>
+            <span className="opacity-30">•</span>
+            <a href="/google-business-profile-setup.html" className="hover:text-foreground transition-colors">Google Business Profile Setup</a>
+            <span className="opacity-30">•</span>
+            <a href="/new-business-setup-india.html" className="hover:text-foreground transition-colors">New Business Setup India</a>
+            <span className="opacity-30">•</span>
+            <a href="/digital-marketing-bangalore.html" className="hover:text-foreground transition-colors">Digital Marketing Bangalore</a>
+            <span className="opacity-30">•</span>
+            <a href="/digital-marketing-chandigarh.html" className="hover:text-foreground transition-colors">Digital Marketing Chandigarh</a>
+            <span className="opacity-30">•</span>
+            <a href="/digital-marketing-delhi.html" className="hover:text-foreground transition-colors">Digital Marketing Delhi NCR</a>
+            <span className="opacity-30">•</span>
+            <a href="/digital-marketing-hyderabad.html" className="hover:text-foreground transition-colors">Digital Marketing Hyderabad</a>
+            <span className="opacity-30">•</span>
+            <a href="/digital-marketing-mumbai.html" className="hover:text-foreground transition-colors">Digital Marketing Mumbai</a>
+            <span className="opacity-30">•</span>
+            <a href="/digital-marketing-pune.html" className="hover:text-foreground transition-colors">Digital Marketing Pune</a>
+          </div>
+        </div>
 
         {/* Newsletter Section */}
         <div className="py-8 border-t border-border/20 mb-8">

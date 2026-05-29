@@ -80,9 +80,9 @@ export const faqs: FAQItem[] = [
     },
     {
         id: 'citation',
-        question: "Do you help with academic integrity or citation?",
-        answer: "Yes — we include references and proper citations when required and advise on best practices to maintain academic integrity.",
-        keywords: ['citation', 'reference', 'bibliography', 'integrity', 'academic'],
+        question: "Do you include references and citations in business content?",
+        answer: "Yes — we include proper references, data citations, and source attribution when creating business reports, blog articles, and research-backed marketing content.",
+        keywords: ['citation', 'reference', 'bibliography', 'sources', 'data'],
         category: 'service'
     },
 

@@ -1508,7 +1508,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
       const personaMap: Record<string, string> = {
-        student: "an expert academic tutor focused on deep research, step-by-step logic, and structural excellence",
         pro: "a sharp productivity consultant focused on efficiency, career growth, and executive communication",
         business: "a growth strategist specialized in marketing psychology, conversion, and business scaling",
         creative: "an imaginative partner for boundary-pushing content, scripting, and visual storytelling"
@@ -1516,7 +1515,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const baseInstruction = `You are Sage, the core intelligence of SAGE DO. You are not a bot; you are an AI Operating System.`;
       const namePart = userPrefs?.name ? ` User: ${userPrefs.name}.` : "";
-      const personaText = userPrefs?.persona ? ` Persona: ${personaMap[userPrefs.persona] || personaMap.student}.` : "";
+      const personaText = userPrefs?.persona ? ` Persona: ${personaMap[userPrefs.persona] || personaMap.business}.` : ` Persona: ${personaMap.business}.`;
       const toneText = userPrefs?.tone ? ` Tone: ${userPrefs.tone}.` : "";
       const systemInstruction = `${baseInstruction}${namePart}${personaText}${toneText} Use professional Markdown. Be brilliant, concise, and helpful. Always provide actionable next steps.`;
 
@@ -1557,28 +1556,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post('/api/mobile/assignment', async (req: any, res) => {
-    try {
-      const { topic, subject, level, words, tone, instructions } = req.body;
-      if (!topic) return res.status(400).json({ message: "Topic is required" });
 
-      if (!process.env.GEMINI_API_KEY) {
-        return res.status(503).json({ message: "AI service is not configured." });
-      }
-
-      const { GoogleGenerativeAI } = await import('@google/generative-ai');
-      const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
-
-      const prompt = `Write a world-class academic assignment on "${topic}" for ${level} level. Word count: ${words}. Style: ${tone}. Instructions: ${instructions}. Use deep research and professional structure.`;
-      const result = await model.generateContent(prompt);
-
-      res.json({ text: result.response.text() });
-    } catch (error: any) {
-      console.error("Assignment proxy error:", error);
-      res.status(500).json({ message: "Failed to generate assignment." });
-    }
-  });
 
   // ===== Free Audit Form Submission (GAP-15) =====
   app.post('/api/free-audit', async (req: any, res) => {

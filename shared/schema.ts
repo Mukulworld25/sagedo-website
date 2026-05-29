@@ -69,7 +69,7 @@ export const services = pgTable("services", {
   name: text("name").notNull(),
   description: text("description").notNull(),
   price: integer("price").notNull(), // in rupees
-  category: varchar("category", { length: 50 }).notNull(), // Business, Student, Professional, Personal
+  category: varchar("category", { length: 50 }).notNull(), // Business, Startup Launch, Scale Business, AI Automation
   imageUrl: text("image_url"),
   isGoldenEligible: boolean("is_golden_eligible").default(false).notNull(),
   deliveryTime: text("delivery_time"), // e.g., "24 hours", "2-3 days"

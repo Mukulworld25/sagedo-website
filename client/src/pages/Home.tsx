@@ -10,10 +10,10 @@ export default function Home() {
   const [activeStep, setActiveStep] = useState(1);
 
   const categories = [
-    { name: "Business", count: "10", description: "Landing pages, ads, automation & more", icon: <Briefcase className="w-6 h-6 text-primary" /> },
-    { name: "Startup Launch", count: "4", description: "B2B Outreach, Competitor Analysis, AI Training", icon: <Zap className="w-6 h-6 text-primary" /> },
-    { name: "Professional", count: "8", description: "Resumes, LinkedIn, cover letters & more", icon: <User className="w-6 h-6 text-primary" /> },
-    { name: "Personal", count: "5", description: "Reels, diet plans, photo edits & more", icon: <Sparkles className="w-6 h-6 text-primary" /> }
+    { name: "Business Growth", count: "12", description: "Websites, ads, landing pages & funnels", icon: <Briefcase className="w-6 h-6 text-primary" /> },
+    { name: "Startup Launch", count: "6", description: "MVP development, pitches & wireframing", icon: <Zap className="w-6 h-6 text-primary" /> },
+    { name: "Executive Branding", count: "8", description: "LinkedIn branding, executive bios & PR", icon: <User className="w-6 h-6 text-primary" /> },
+    { name: "AI Automation", count: "6", description: "CRM setup, workflow bots & scraping", icon: <Sparkles className="w-6 h-6 text-primary" /> }
   ];
 
   const steps = [

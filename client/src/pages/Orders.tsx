@@ -405,36 +405,7 @@ export default function Orders() {
     }
   };
 
-  // If not authenticated, show login required message
-  if (!isLoading && !isAuthenticated) {
-    return (
-      <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-lg mx-auto text-center">
-          <Card className="glass p-12">
-            <LogIn className="w-16 h-16 mx-auto mb-6 text-primary" />
-            <h1 className="text-3xl font-black text-foreground mb-4">
-              Login Required
-            </h1>
-            <p className="text-muted-foreground mb-8">
-              Please login or create an account to place an order. It only takes a minute!
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/login">
-                <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-primary to-destructive">
-                  <LogIn className="w-4 h-4 mr-2" /> Login
-                </Button>
-              </Link>
-              <Link href="/login?register=true">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                  Sign Up FREE
-                </Button>
-              </Link>
-            </div>
-          </Card>
-        </div>
-      </div>
-    );
-  }
+
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
@@ -523,6 +494,21 @@ export default function Orders() {
 
             <Card className="glass p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Name / Company Name */}
+                <div className="space-y-2">
+                  <Label htmlFor="name" className="text-foreground">
+                    Name / Company Name
+                  </Label>
+                  <Input
+                    id="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="E.g., Jane Doe or Acme Corp"
+                    className="glass border-border/50"
+                  />
+                </div>
+
                 {/* Email - Primary field */}
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-foreground">

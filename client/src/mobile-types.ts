@@ -38,18 +38,8 @@ export enum AppRoute {
   TRACK = 'track',
   PROFILE = 'profile',
   CHAT = 'chat',
-  TOOL_ASSIGNMENT = 'tool_assignment',
   TOOL_IMAGE_EDITOR = 'tool_image_editor',
   NOTIFICATIONS = 'notifications'
-}
-
-export interface AssignmentParams {
-  topic: string;
-  subject: string;
-  level: string;
-  words: number;
-  tone: string;
-  instructions: string;
 }
 
 export type ChatMode = 'standard' | 'thinking' | 'search' | 'maps';

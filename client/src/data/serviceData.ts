@@ -72,7 +72,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b01",
     name: "Professional Logo Design",
-    category: "Business",
+    category: "Startup Launch",
     description: "A brand identity that commands respect, not just a logo.",
     fullDescription: "Your logo is the first thing every client, investor, and partner sees. We combine AI creativity with professional design principles to create a unique, memorable logo that works across all mediums.",
     price: 1999,
@@ -106,7 +106,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b03",
     name: "SEO Setup",
-    category: "Business",
+    category: "Scale Business",
     description: "Get found on Google before your competitors do.",
     fullDescription: "Complete technical SEO setup: robots.txt, sitemap, Search Console, meta tags, Schema markup, Crunchbase listing, and 2 SEO-optimized blog posts. Your business becomes visible to AI crawlers and Google within 48 hours.",
     price: 3999,
@@ -123,7 +123,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b04",
     name: "WhatsApp Sales Bot",
-    category: "Business",
+    category: "AI Automation",
     description: "Close sales while you sleep. Zero missed leads.",
     fullDescription: "An intelligent WhatsApp bot that answers customer queries, qualifies leads, sends follow-ups, and routes hot leads to you. Built on the WhatsApp Business API with custom flows for your specific business.",
     price: 6999,
@@ -140,7 +140,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b05",
     name: "CRM Setup",
-    category: "Business",
+    category: "AI Automation",
     description: "Never lose a lead again. Every contact tracked.",
     fullDescription: "We set up a complete Customer Relationship Management system tailored to your business. Track leads, manage follow-ups, automate pipelines, and close more deals with full visibility into your sales process.",
     price: 7999,
@@ -157,7 +157,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b06",
     name: "Social Media Setup",
-    category: "Business",
+    category: "Scale Business",
     description: "Build your presence on 3 platforms in one shot.",
     fullDescription: "Complete setup of your business profiles on Instagram, LinkedIn, and Facebook. Optimized bios, cover images, first 9 posts, hashtag strategy, and content calendar. Your brand starts showing up where your customers are.",
     price: 1999,
@@ -174,7 +174,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b07",
     name: "GST Registration",
-    category: "Business",
+    category: "Startup Launch",
     description: "Legally registered and GST-ready in 48 hours.",
     fullDescription: "Complete GST registration handled end-to-end. We prepare your documents, file the application, and handle follow-ups until your GSTIN is issued. Required for all businesses with turnover above ₹20 lakhs or those selling online.",
     price: 799,
@@ -191,7 +191,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b08",
     name: "MSME Registration",
-    category: "Business",
+    category: "Startup Launch",
     description: "Unlock government benefits your business deserves.",
     fullDescription: "MSME (Udyam) registration gives you access to government schemes, subsidized loans, priority sector lending, and protection against delayed payments. We handle the entire registration process.",
     price: 499,
@@ -208,7 +208,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b09",
     name: "Trademark Filing",
-    category: "Business",
+    category: "Startup Launch",
     description: "Your brand name is your biggest asset. Protect it.",
     fullDescription: "Complete trademark application filing with the Indian Trademark Registry. We conduct a prior search, prepare the application, and file it. Your brand name, logo, and tagline protected under Indian law.",
     price: 2499,
@@ -225,7 +225,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b10",
     name: "Google Business Profile",
-    category: "Business",
+    category: "Scale Business",
     description: "Show up in ‘Near Me’ searches. Get local customers.",
     fullDescription: "Complete Google Business Profile (GMB) setup and optimization. Verified listing, optimized description, photos, service areas, and review management setup. Your business appears on Google Maps when local customers search.",
     price: 999,
@@ -242,7 +242,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b11",
     name: "Business Email Setup",
-    category: "Business",
+    category: "Startup Launch",
     description: "Stop sending from Gmail. Look like a real business.",
     fullDescription: "Professional email setup with your own domain (you@yourcompany.com). We configure Google Workspace or Zoho Mail, set up SPF/DKIM/DMARC for deliverability, and ensure your emails never land in spam.",
     price: 499,
@@ -259,7 +259,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b12",
     name: "AI Website Chatbot",
-    category: "Business",
+    category: "AI Automation",
     description: "24/7 sales agent on your website. Zero salary.",
     fullDescription: "A custom AI-powered chatbot trained on your business information. Answers FAQs, captures leads, qualifies prospects, and routes serious buyers to you — all without you being online.",
     price: 4999,
@@ -276,7 +276,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b13",
     name: "Pitch Deck Design",
-    category: "Business",
+    category: "Startup Launch",
     description: "Raise funding or close clients with one presentation.",
     fullDescription: "Investor-grade pitch deck designed to tell your story, communicate your traction, and get a yes. We handle slide design, data visualization, narrative structure, and the exact deck investors expect to see.",
     price: 2499,
@@ -293,7 +293,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b14",
     name: "Sales Automation",
-    category: "Business",
+    category: "AI Automation",
     description: "Your leads follow up themselves. Automatically.",
     fullDescription: "End-to-end sales automation connecting your lead sources (website, WhatsApp, social media) to your CRM with automatic follow-up sequences, lead scoring, and deal pipeline management.",
     price: 8999,
@@ -310,7 +310,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b15",
     name: "Analytics Dashboard",
-    category: "Business",
+    category: "AI Automation",
     description: "See your entire business in one screen.",
     fullDescription: "A real-time business analytics dashboard that pulls data from your website, social media, sales, and marketing. See what’s working, what’s not, and where your revenue is coming from — all in one place.",
     price: 6999,
@@ -327,7 +327,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b16",
     name: "HR System Setup",
-    category: "Business",
+    category: "AI Automation",
     description: "Hire, manage, and pay your team without chaos.",
     fullDescription: "Complete HR management system setup covering recruitment workflow, employee onboarding, attendance tracking, payroll integration, and performance management. Built for Indian businesses of all sizes.",
     price: 5999,
@@ -344,7 +344,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b17",
     name: "SEO Blog Writing",
-    category: "Business",
+    category: "Scale Business",
     description: "Content that ranks, educates, and converts.",
     fullDescription: "SEO-optimized blog posts written by AI + human editors. Keyword-targeted, properly structured, and designed to rank on Google. Each post includes meta title, description, headers, and internal linking strategy.",
     price: 699,
@@ -361,7 +361,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b18",
     name: "Google Visibility Audit",
-    category: "Business",
+    category: "Scale Business",
     description: "Find exactly why Google can’t find your business.",
     fullDescription: "A comprehensive audit of your business’s online visibility. We check robots.txt, Search Console, sitemap, meta tags, Crunchbase presence, backlinks, page speed, and AI crawler accessibility. You get a detailed report with exact fixes.",
     price: 499,
@@ -378,7 +378,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b19",
     name: "Mobile App Development",
-    category: "Business",
+    category: "Startup Launch",
     description: "Launch your app in weeks, not months.",
     fullDescription: "Native or cross-platform mobile app development for iOS and Android. From MVP to full-featured apps. We handle design, development, testing, and Play Store / App Store submission.",
     price: 29999,
@@ -395,7 +395,7 @@ export const allServices: ServiceDetail[] = [
   {
     id: "b20",
     name: "LinkedIn Personal Branding",
-    category: "Business",
+    category: "Scale Business",
     description: "Turn your LinkedIn into a lead magnet.",
     fullDescription: "Complete LinkedIn profile optimization for founders, executives, and professionals. Headline, summary, experience, skills, featured section, banner design, and a 30-day content strategy to build authority and attract inbound leads.",
     price: 4999,

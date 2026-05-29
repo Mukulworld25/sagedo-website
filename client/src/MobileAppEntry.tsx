@@ -5,7 +5,7 @@ import { BottomNav, Header } from './mobile-components/Layout';
 import { Home } from './mobile-pages/Home';
 import { Chat } from './mobile-pages/Chat';
 import { Tools } from './mobile-pages/Services';
-import { AssignmentTool, ImageEditorTool } from './mobile-pages/Tools_Impl';
+import { ImageEditorTool } from './mobile-pages/Tools_Impl';
 import { PlaceOrder } from './mobile-pages/PlaceOrder';
 import { Track } from './mobile-pages/Track';
 import { Profile } from './mobile-pages/Profile';
@@ -89,7 +89,6 @@ const App: React.FC = () => {
       case AppRoute.SERVICES: return <Tools onNavigate={setCurrentRoute} />;
       case AppRoute.PLACE_ORDER: return <PlaceOrder />;
       case AppRoute.TRACK: return <Track />;
-      case AppRoute.TOOL_ASSIGNMENT: return <AssignmentTool onBack={() => setCurrentRoute(AppRoute.SERVICES)} />;
       case AppRoute.TOOL_IMAGE_EDITOR: return <ImageEditorTool onBack={() => setCurrentRoute(AppRoute.SERVICES)} />;
       case AppRoute.PROFILE: return <Profile />;
       case AppRoute.NOTIFICATIONS:

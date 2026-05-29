@@ -42,10 +42,11 @@ Most businesses face 3 bad choices:
 SAGE DO is the 4th option: Hybrid AI + Human team. Agency quality at freelancer prices.
 
 ## SAGE DO Services (mention when relevant):
-- Business Services (12): Landing Pages, Google Ads, SEO Blog, Social Media Kit, Logo Design, Pitch Deck, Business Plan, Ad Creative, Email Campaign, Product Photos, Company Profile, Automation Bot
-- Professional Services (10): ATS Resume, Cover Letter, LinkedIn Makeover, Mock Interview, Portfolio, Email Templates, Bio Writer, Salary Negotiation, Career Roadmap, Video Resume
-- Personal Services (8): Short-form Video, Diet Plan, Photo Edit, Personal Finance, Wedding Invite, Travel Itinerary, AI Avatar, Gift Ideas
-- 39 services total, prices from ₹49 to ₹9,999
+- Business (4): Starter Launch, Full Launch, VIP Launch, Website Design & Development
+- Startup Launch (7): Logo Design, GST Registration, MSME Registration, Trademark Filing, Business Email Setup, Pitch Deck Design, Mobile App Development
+- Scale Business (6): SEO Setup, Social Media Setup, Google Business Profile, SEO Blog Writing, Google Visibility Audit, LinkedIn Personal Branding
+- AI Automation (6): WhatsApp Sales Bot, CRM Setup, AI Website Chatbot, Sales Automation, Analytics Dashboard, HR System Setup
+- 23 B2B services total, prices from ₹499 to ₹95,000
 
 ## Pricing & Delivery:
 - Pricing: Starts from ₹49. Most packages ₹500–₹5000. Enterprise/Custom available.
@@ -80,7 +81,7 @@ SAGE DO is the 4th option: Hybrid AI + Human team. Agency quality at freelancer 
 
 ## PERSONALITY EXAMPLES:
 - User: "Hi" → "Namaste! 🙏 Welcome to SAGE DO! I'm Bruno, your go-to for getting things done. What can I help you with today? 🚀"
-- User: "What is this?" → "Great question! 🎯 SAGE DO is India's first AI + Human hybrid team. We combine AI speed with human precision to deliver everything from resumes to websites — faster and better than agencies, at prices that make sense! What do you need done? 😊"
+- User: "What is this?" → "Great question! 🎯 SAGE DO is India's first AI + Human hybrid team. We combine AI speed with human precision to deliver everything from websites to automation systems, pitch decks to marketing campaigns — faster than agencies, at prices that make sense for growing businesses! What do you need done? 😊"
 - User: "Too expensive" → "Arre bhai, we start from just ₹49! 💰 Most of our services are 10x cheaper than agencies. Tell me what you need and I'll find the best-value option for you! 🎯"
 
 Remember: You're not just answering questions — you're representing India's most innovative service company. Make every interaction count! 🔥`;
@@ -217,7 +218,7 @@ You're now in "Real Talk" mode - be brutally honest but constructive. Don't suga
             lowerMsg.includes('about this') || lowerMsg.includes('sagedo mean') || lowerMsg.includes('tell me about') ||
             lowerMsg.includes('what does sage') || lowerMsg.includes('explain') || lowerMsg.includes('what is your')) {
             return {
-                text: "Great question! 🎯 SAGE DO is India's First AI + Human Hybrid Execution Team. We combine AI speed with human precision to deliver everything from resumes to websites, pitch decks to marketing campaigns — faster than agencies, at prices starting from just ₹49! What do you need done? 😊",
+                text: "Great question! 🎯 SAGE DO is India's First AI + Human Hybrid Execution Team. We combine AI speed with human precision to deliver everything from websites to automation systems, pitch decks to marketing campaigns — faster than agencies, at prices that make sense for growing businesses! What do you need done? 😊",
                 options: ['View Services', 'Check Pricing', 'Talk to Human']
             };
         }
@@ -249,7 +250,7 @@ You're now in "Real Talk" mode - be brutally honest but constructive. Don't suga
             lowerMsg.includes('what can') || lowerMsg.includes('offer') || lowerMsg.includes('available') ||
             lowerMsg.includes('list') || lowerMsg.includes('catalog')) {
             return {
-                text: "🔥 **Our Services:**\n\n💼 Career: ATS Resumes, Cover Letters, LinkedIn\n✍️ Content: SEO Blogs, Social Media, Marketing\n💡 Business: Pitch Decks, Proposals, Logos\n🔧 Tech: Websites, Apps, SaaS MVPs, AI Agents\n\nAll powered by AI + Human precision! Which interests you? 🎯",
+                text: "🔥 **Our Services:**\n\n🚀 Startup Launch: Logo, Website, App, Legal Registrations\n📈 Scale Business: SEO, Google Ads, LinkedIn Branding\n🤖 AI Automation: WhatsApp Bots, CRM, Sales Automation\n💡 Business: Pitch Decks, Analytics Dashboards\n\nAll powered by AI + Human precision! Which interests you? 🎯",
                 options: ['View All Services', 'Get Quote', 'Talk to Human']
             };
         }
@@ -402,14 +403,14 @@ You're now in "Real Talk" mode - be brutally honest but constructive. Don't suga
             lowerMsg.includes('which') || lowerMsg.includes('suggest') || lowerMsg.includes('recommend') ||
             lowerMsg.includes('what should')) {
             return {
-                text: "No worries! 🤔 Just describe what you're trying to accomplish — whether it's for business, studies, career, or a personal project. I'll recommend the perfect service for you! Or I can connect you with our team for a free consultation 📧",
+                text: "No worries! 🤔 Just describe what you're trying to accomplish — whether it's for your startup, business growth, or automation needs. I'll recommend the perfect service for you! Or I can connect you with our team for a free consultation 📧",
                 options: ['Describe My Need', 'View Services', 'Talk to Human']
             };
         }
 
         // --- CATCH-ALL: Smart default (instead of "I don't know") ---
         return {
-            text: "Great question! 🎯 SAGE DO offers 30+ services powered by AI + Human precision — from resumes to websites to marketing. Tell me more about what you need, or check out our Services page! I'm here to help 😊",
+            text: "Great question! 🎯 SAGE DO offers 23+ B2B services powered by AI + Human precision — from websites to automation systems to marketing. Tell me more about what you need, or check out our Services page! I'm here to help 😊",
             options: ['Browse Services', 'Check Pricing', 'Talk to Human']
         };
     }

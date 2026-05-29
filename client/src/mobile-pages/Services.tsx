@@ -24,19 +24,19 @@ const tabData = [
     },
     {
         id: 'growth',
-        label: 'Growth Accelerator',
+        label: 'Scale Business',
         icon: '🚀',
-        subtitle: 'For Professionals & Businesses',
-        desc: 'AI + Human services for career growth',
-        categories: ['Professional'],
+        subtitle: 'For Growing Companies',
+        desc: 'AI + Human services for business growth',
+        categories: ['Scale Business'],
     },
     {
         id: 'universal',
-        label: 'Universal Toolkit',
-        icon: '❤️',
-        subtitle: 'For Everyone',
-        desc: 'Quick deliverables, affordable pricing',
-        categories: ['Personal', 'All'],
+        label: 'AI Automation Systems',
+        icon: '🤖',
+        subtitle: 'For Workflow Efficiency',
+        desc: 'Automate operations, CRM & custom bots',
+        categories: ['AI Automation'],
     }
 ];
 
@@ -320,4 +320,4 @@ export const Tools: React.FC<ServicesProps> = ({ onNavigate }) => {
     );
 };
 
-export { AssignmentTool, ImageEditorTool } from './Tools_Impl';
+export { ImageEditorTool } from './Tools_Impl';

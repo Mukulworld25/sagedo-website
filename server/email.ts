@@ -410,20 +410,20 @@ export async function sendWelcomeEmail(email: string, name: string) {
         <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #1a1a2e; color: #ffffff; padding: 30px; border-radius: 16px;">
           <h1 style="color: #f43f5e; font-size: 28px;">Welcome to SAGE DO! 🌟</h1>
           <p style="color: #e2e8f0;">Hey ${name},</p>
-          <p style="color: #e2e8f0;">Thanks for joining the revolution. You just took the first step towards a smarter career.</p>
+          <p style="color: #e2e8f0;">Thanks for joining the revolution. You just took the first step towards smarter business execution.</p>
           
           <div style="background: #2d2d44; padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #10b981;">
             <p style="color: #ffffff; font-weight: bold; margin: 0 0 10px 0;">🚀 Quick Start Guide:</p>
             <ul style="color: #e2e8f0; padding-left: 20px; margin: 0;">
               <li style="margin-bottom: 8px;">Check your <strong>Dashboard</strong> for free AI tools.</li>
-              <li style="margin-bottom: 8px;">Upload your resume for a <strong>Free ATS Score</strong>.</li>
+              <li style="margin-bottom: 8px;">Explore our <strong>Services</strong> to find the right execution package.</li>
               <li style="margin-bottom: 8px;">Need help? Reply to this email!</li>
             </ul>
           </div>
 
           <p style="color: #94a3b8;">
-            <strong>Pro Tip:</strong> We have a secret "Resume Fixer" service that is currently 50% off for new members. 
-            <a href="https://sagedo.in/services" style="color: #f43f5e; text-decoration: none;">Check it out here.</a>
+            <strong>Pro Tip:</strong> Book a <strong>Free Business Visibility Audit</strong> — we'll check your Google presence and give you a personalized growth roadmap. 
+            <a href="https://sagedo.in/free-audit" style="color: #f43f5e; text-decoration: none;">Get your free audit here.</a>
           </p>
           
           <div style="text-align: center; margin: 32px 0;">

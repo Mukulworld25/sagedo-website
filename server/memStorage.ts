@@ -90,12 +90,12 @@ export class MemStorage implements IStorage {
             { id: '13', name: 'Startup Pitch Deck', description: 'Investor-ready 10-slide Pitch Deck', fullDescription: 'Get your startup funded with a stunning pitch deck.', price: 4999, category: 'Startup Launch', imageUrl: 'https://images.unsplash.com/photo-1556761175-5973dc0f32d7?w=400&h=300&fit=crop', isGoldenEligible: true, freeEligible: false, deliveryTime: '3 Days', revisionsIncluded: 2, clickCount: 65 },
             { id: '14', name: 'SaaS Wireframing', description: 'UX/UI Wireframes for your App', fullDescription: 'High-fidelity wireframes for your next big idea.', price: 6999, category: 'Startup Launch', imageUrl: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=400&h=300&fit=crop', isGoldenEligible: true, freeEligible: false, deliveryTime: '4 Days', revisionsIncluded: 2, clickCount: 50 },
 
-            // Professional (Career Growth)
-            { id: '21', name: 'Resume Writing (CV)', description: 'Professional CV to get Hired', fullDescription: 'ATS Friendly Resume.', price: 2499, category: 'Professional', imageUrl: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&h=300&fit=crop', isGoldenEligible: true, freeEligible: true, deliveryTime: '2 Days', revisionsIncluded: 2, clickCount: 40 },
-            { id: '22', name: 'LinkedIn Profile Makeover', description: 'Rank High on LinkedIn', fullDescription: 'Attract recruiters.', price: 1999, category: 'Professional', imageUrl: 'https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=400&h=300&fit=crop', isGoldenEligible: true, freeEligible: true, deliveryTime: '2 Days', revisionsIncluded: 2, clickCount: 35 },
+            // Scale Business (Growth)
+            { id: '21', name: 'SEO Setup & Optimization', description: 'Get Found on Google', fullDescription: 'Comprehensive SEO audit and setup.', price: 3999, category: 'Scale Business', imageUrl: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&h=300&fit=crop', isGoldenEligible: true, freeEligible: false, deliveryTime: '3 Days', revisionsIncluded: 2, clickCount: 40 },
+            { id: '22', name: 'LinkedIn Personal Branding', description: 'Build Authority on LinkedIn', fullDescription: 'Executive LinkedIn optimization.', price: 1999, category: 'Scale Business', imageUrl: 'https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=400&h=300&fit=crop', isGoldenEligible: true, freeEligible: false, deliveryTime: '2 Days', revisionsIncluded: 2, clickCount: 35 },
 
-            // Personal
-            { id: '31', name: 'Viral Reel Script', description: 'Scripts for Instagram/YouTube', fullDescription: 'Go viral.', price: 299, category: 'Personal', imageUrl: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=300&fit=crop', isGoldenEligible: true, freeEligible: true, deliveryTime: '24h', revisionsIncluded: 1, clickCount: 20 },
+            // AI Automation
+            { id: '31', name: 'WhatsApp Sales Bot', description: 'Automate Lead Capture & FAQ', fullDescription: 'AI-powered WhatsApp automation.', price: 6999, category: 'AI Automation', imageUrl: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=300&fit=crop', isGoldenEligible: false, freeEligible: false, deliveryTime: '3 Days', revisionsIncluded: 1, clickCount: 20 },
         ];
 
         servicesList.forEach(s => {

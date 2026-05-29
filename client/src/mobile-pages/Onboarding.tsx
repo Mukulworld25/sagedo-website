@@ -17,10 +17,9 @@ export const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
   });
 
   const personas = [
-    { id: 'student', title: 'Student', icon: GraduationCap, desc: 'Assignments, research & study guides' },
-    { id: 'pro', title: 'Professional', icon: Briefcase, desc: 'Resumes, LinkedIn & career growth' },
-    { id: 'business', title: 'Business Owner', icon: Rocket, desc: 'Ad copies, landing pages & automation' },
-    { id: 'creative', title: 'Creative', icon: Palette, desc: 'Content strategy, scripts & editing' },
+    { id: 'founder', title: 'Founder / Builder', icon: Rocket, desc: 'MVPs, launches & business setup' },
+    { id: 'business', title: 'Business Owner', icon: Briefcase, desc: 'CRM, automation & landing pages' },
+    { id: 'creative', title: 'Creative / Executive', icon: Palette, desc: 'Branding, thought leadership & content' },
   ];
 
   const languages = [
@@ -35,7 +34,7 @@ export const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
   const tones = [
     { id: 'Professional', desc: 'Sharp, concise, and executive' },
     { id: 'Casual', desc: 'Friendly, empathetic, and witty' },
-    { id: 'Academic', desc: 'Thorough, cited, and detailed' },
+    { id: 'Analytical', desc: 'Structured, data-driven, and factual' },
     { id: 'Creative', desc: 'Out-of-the-box and experimental' }
   ];
 

@@ -1,7 +1,4 @@
-// Mobile App Gemini Service — Server-Side Proxy
-// All Gemini calls go through our secure server API (no client-side API key needed)
-
-import { AssignmentParams, ChatMode } from "../mobile-types";
+import { ChatMode } from "../mobile-types";
 
 export const generateChatResponse = async (
   message: string,
@@ -53,19 +50,4 @@ export const editImage = async (imageBase64: string, prompt: string): Promise<st
   }
 };
 
-export const generateAssignment = async (params: AssignmentParams): Promise<string> => {
-  try {
-    const response = await fetch('/api/mobile/assignment', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify(params),
-    });
 
-    if (!response.ok) throw new Error("Assignment generation failed");
-    const result = await response.json();
-    return result.text || "Error generating content.";
-  } catch (error) {
-    throw error;
-  }
-};
