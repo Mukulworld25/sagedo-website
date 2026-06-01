@@ -427,78 +427,141 @@ export default function Home() {
       {/* Duplicate tables removed — keeping only the first one above */}
 
       <section className="py-24 px-6 bg-gradient-to-b from-primary/5 to-transparent">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
+              Pricing Options
+            </p>
             <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4">
               Simple, Transparent Pricing
             </h2>
             <p className="text-lg text-muted-foreground">
-              Choose the plan that fits your workflow needs. No hidden fees.
+              Choose the package to launch or scale your business. Fixed pricing, no hidden fees.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Starter Plan */}
-            <div className="relative p-8 rounded-3xl border border-border/50 bg-background/50 backdrop-blur-sm hover:border-primary/30 transition-all">
-              <h3 className="text-2xl font-bold mb-2">Starter</h3>
-              <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-4xl font-black">₹0</span>
-                <span className="text-muted-foreground">/month</span>
+          <div className="grid md:grid-cols-3 gap-8 items-stretch">
+            {/* Starter Launch Package */}
+            <div className="relative p-8 rounded-3xl border border-border/50 bg-background/50 backdrop-blur-sm hover:border-primary/30 transition-all flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-neutral-400">Launch Suite</span>
+                <h3 className="text-2xl font-bold mt-2 mb-1">Starter Launch</h3>
+                <p className="text-xs text-muted-foreground mb-6">Delivered in 7 days</p>
+                <div className="flex items-baseline gap-1 mb-6">
+                  <span className="text-4xl font-black">₹15,000</span>
+                  <span className="text-muted-foreground text-xs">one-time</span>
+                </div>
+                <ul className="space-y-4 mb-8 text-sm">
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                    <span>Professional Logo & Identity</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                    <span>5-Page Business Website</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                    <span>Google Business Profile Setup</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                    <span>GST & Legal Registration</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                    <span>Professional Business Email</span>
+                  </li>
+                </ul>
               </div>
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary" />
-                  <span>Access to Free AI Templates</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary" />
-                  <span>Basic Workflow Features</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary" />
-                  <span>Community Support</span>
-                </li>
-              </ul>
-              <Link href="/login?register=true">
-                <div className={buttonVariants({ variant: "outline", className: "w-full h-12 rounded-xl text-lg cursor-pointer" })}>
-                  Get Started Free
+              <Link href="/orders">
+                <div className={buttonVariants({ variant: "outline", className: "w-full h-12 rounded-xl text-md font-semibold cursor-pointer" })}>
+                  Get Started
                 </div>
               </Link>
             </div>
 
-            {/* Pro Plan */}
-            <div className="relative p-5 sm:p-8 rounded-3xl border-2 border-primary bg-primary/5 backdrop-blur-sm shadow-xl shadow-primary/10">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-bold whitespace-nowrap">
+            {/* Full Launch Package */}
+            <div className="relative p-8 rounded-3xl border-2 border-primary bg-primary/5 backdrop-blur-sm shadow-xl shadow-primary/10 flex flex-col justify-between transform md:-translate-y-4">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-xs font-bold whitespace-nowrap">
                 MOST POPULAR
               </div>
-              <h3 className="text-2xl font-bold mb-2">Pro</h3>
-              <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-4xl font-black">₹499</span>
-                <span className="text-muted-foreground">/month</span>
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-primary">Scale Suite</span>
+                <h3 className="text-2xl font-bold mt-2 mb-1">Full Launch</h3>
+                <p className="text-xs text-primary mb-6">Delivered in 10-12 days</p>
+                <div className="flex items-baseline gap-1 mb-6">
+                  <span className="text-4xl font-black">₹35,000</span>
+                  <span className="text-muted-foreground text-xs">one-time</span>
+                </div>
+                <ul className="space-y-4 mb-8 text-sm">
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                    <span><strong>Everything in Starter</strong></span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                    <span>Advanced SEO & Keyword Setup</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                    <span>WhatsApp Sales & FAQ Bot</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                    <span>CRM & Lead Routing Automation</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                    <span>30-Day Social Media Content</span>
+                  </li>
+                </ul>
               </div>
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span><strong>Everything in Starter</strong></span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-1" />
-                  <span className="text-sm sm:text-base"><strong className="text-foreground">Service Credit:</strong> Use it for ANY service delivered within <strong className="text-amber-500">24-48 hours</strong></span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-1" />
-                  <span className="text-sm sm:text-base"><strong className="text-foreground">Fast Services:</strong> All eligible services are marked with a ⭐ badge</span>
-                </li>
-              </ul>
+              <Link href="/orders">
+                <div className={buttonVariants({ className: "w-full h-12 bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl text-md font-bold shadow-lg shadow-primary/20 cursor-pointer" })}>
+                  Launch Your Business
+                </div>
+              </Link>
+            </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
-                <Link href="/login?register=true">
-                  <div className={buttonVariants({ size: "lg", className: "w-full h-12 bg-gradient-to-r from-amber-500 to-amber-600 text-amber-950 font-bold hover:opacity-90 rounded-xl shadow-lg shadow-amber-500/25 whitespace-normal h-auto py-3 cursor-pointer" })}>
-                    <Gift className="mr-2 h-5 w-5 flex-shrink-0" />
-                    <span>Claim FREE AI Templates</span>
-                  </div>
-                </Link>
+            {/* VIP Launch Package */}
+            <div className="relative p-8 rounded-3xl border border-border/50 bg-background/50 backdrop-blur-sm hover:border-primary/30 transition-all flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-neutral-400">Enterprise Suite</span>
+                <h3 className="text-2xl font-bold mt-2 mb-1">VIP Launch</h3>
+                <p className="text-xs text-muted-foreground mb-6">Delivered in 15 days</p>
+                <div className="flex items-baseline gap-1 mb-6">
+                  <span className="text-4xl font-black">₹95,000</span>
+                  <span className="text-muted-foreground text-xs">one-time</span>
+                </div>
+                <ul className="space-y-4 mb-8 text-sm">
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                    <span><strong>Everything in Full</strong></span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                    <span>Custom Web + Native Mobile App</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                    <span>Private Admin Dashboard Portal</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                    <span>IP, Legal & Privacy Contracts</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                    <span>1-Month Dedicated Support</span>
+                  </li>
+                </ul>
               </div>
+              <Link href="/orders">
+                <div className={buttonVariants({ variant: "outline", className: "w-full h-12 rounded-xl text-md font-semibold cursor-pointer" })}>
+                  Contact Enterprise
+                </div>
+              </Link>
             </div>
           </div>
         </div>
