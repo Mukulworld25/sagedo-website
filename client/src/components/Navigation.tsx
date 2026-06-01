@@ -133,7 +133,17 @@ export default function Navigation() {
                       </Button>
                     </>
                   ) : (
-                    <>
+                    <div className="flex items-center gap-3">
+                      <Link href="/login">
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          data-testid="button-login"
+                          className="text-muted-foreground hover:text-foreground hover:bg-neutral-800/30"
+                        >
+                          Login
+                        </Button>
+                      </Link>
                       <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20visited%20SAGE%20DO%20and%20I'm%20interested%20in%20your%20services." target="_blank" rel="noopener noreferrer">
                         <Button
                           size="sm"
@@ -145,7 +155,7 @@ export default function Navigation() {
                           <span className="relative">WhatsApp Us</span>
                         </Button>
                       </a>
-                    </>
+                    </div>
                   )}
                 </>
               )}
@@ -248,6 +258,17 @@ export default function Navigation() {
                         <span className="relative">WhatsApp Us</span>
                       </Button>
                     </a>
+                    <Link href="/login">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        data-testid="button-mobile-login"
+                        className="w-full border-neutral-700 hover:bg-neutral-800/30"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Login / Portal
+                      </Button>
+                    </Link>
                   </div>
                 )}
               </div>

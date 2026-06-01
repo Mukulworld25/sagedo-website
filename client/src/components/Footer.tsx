@@ -91,6 +91,11 @@ export default function Footer() {
                   <span className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer">For Agencies (White-Label)</span>
                 </Link>
               </li>
+              <li>
+                <Link href="/login">
+                  <span className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Client & Partner Portal</span>
+                </Link>
+              </li>
             </ul>
           </div>
 
