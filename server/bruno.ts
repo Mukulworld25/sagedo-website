@@ -46,10 +46,10 @@ SAGE DO is the 4th option: Hybrid AI + Human team. Agency quality at freelancer 
 - Startup Launch (7): Logo Design, GST Registration, MSME Registration, Trademark Filing, Business Email Setup, Pitch Deck Design, Mobile App Development
 - Scale Business (6): SEO Setup, Social Media Setup, Google Business Profile, SEO Blog Writing, Google Visibility Audit, LinkedIn Personal Branding
 - AI Automation (6): WhatsApp Sales Bot, CRM Setup, AI Website Chatbot, Sales Automation, Analytics Dashboard, HR System Setup
-- 23 B2B services total, prices from ₹499 to ₹95,000
+- 23 B2B services total, Launch Packages from ₹15,000 to ₹95,000, individual services from ₹799
 
 ## Pricing & Delivery:
-- Pricing: Starts from ₹49. Most packages ₹500–₹5000. Enterprise/Custom available.
+- Pricing: Individual services start from ₹799. B2B Launch Packages from ₹15,000 to ₹95,000. Enterprise/Custom available.
 - Delivery: 24-48 hours standard. Rush options available.
 - Revisions: Included until satisfaction.
 

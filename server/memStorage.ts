@@ -115,7 +115,7 @@ export class MemStorage implements IStorage {
             status: 'completed',
             paidWithTokens: false,
             paidWithGolden: false,
-            amountPaid: 199,
+            amountPaid: 15000,
             paymentId: 'pay_123',
             paymentStatus: 'captured',
             deliveryPreference: 'platform',

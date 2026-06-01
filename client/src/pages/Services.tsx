@@ -25,10 +25,10 @@ const COMBOS = [
 ];
 
 const CONSULT_OPTIONS = [
-  { type: "First Chat FREE", duration: "30 min", price: "₹0", desc: "Free for new signups — no credit card", tag: "NEW SIGNUP OFFER", price_val: 0 },
-  { type: "Chat Session", duration: "30 min", price: "₹499", desc: "Text-based strategic session", tag: "", price_val: 499 },
-  { type: "Strategy Call", duration: "30 min", price: "₹999", desc: "Voice call with Mukul directly", tag: "", price_val: 999 },
-  { type: "Monthly Retainer", duration: "Ongoing", price: "₹2,999/mo", desc: "2 calls + unlimited chat support", tag: "BEST VALUE", price_val: 2999 },
+  { type: "First Discovery Call", duration: "15 min", price: "₹0", desc: "15-minute scoping call on Zoom or WhatsApp", tag: "FREE", price_val: 0 },
+  { type: "AI & Web Growth Audit", duration: "45 min", price: "₹1,999", desc: "Speed, SEO, conversion audit & tech roadmap", tag: "POPULAR LEAD IN", price_val: 1999 },
+  { type: "Strategic Consultation", duration: "45 min", price: "₹3,499", desc: "One-on-one strategy call directly with Mukul", tag: "", price_val: 3499 },
+  { type: "Growth Retainer", duration: "Ongoing", price: "₹9,999/mo", desc: "Weekly sync calls + priority WhatsApp access", tag: "BEST VALUE", price_val: 9999 },
 ];
 
 const MAINTENANCE_PLANS = [
@@ -95,11 +95,11 @@ export default function Services() {
     <div className="min-h-screen bg-[#0a0a0a] text-gray-100 selection:bg-amber-500/30">
       <Helmet>
         <title>Services | SAGEDO — AI + Human Business Services India</title>
-        <meta name="description" content="SAGEDO offers 20+ business services for Indian SMBs — Website Design, SEO, WhatsApp Bot, CRM, GST Registration, Logo Design, Mobile App & more. LaunchPad to build your business. ScaleOps to grow it. Starting ₹499." />
+        <meta name="description" content="SAGEDO offers 20+ B2B business services for Indian SMBs — Website Design, SEO, WhatsApp Bot, CRM, GST Registration, Logo Design, Mobile App & more. LaunchPad to build your business. ScaleOps to grow it. Packages from ₹15,000." />
         <meta name="keywords" content="business services India, website design Chandigarh, SEO India, WhatsApp bot setup, CRM setup India, GST registration, logo design India, mobile app development, LaunchPad, ScaleOps, SAGEDO, AI business services" />
         <link rel="canonical" href="https://sagedo.in/services" />
         <meta property="og:title" content="Services | SAGEDO — AI + Human Business Services" />
-        <meta property="og:description" content="LaunchPad: Build your business from zero. ScaleOps: Operations that scale. 20 services, 5 combos, 3 packages. Starting ₹499." />
+        <meta property="og:description" content="LaunchPad: Build your business from zero. ScaleOps: Operations that scale. 20 services, 5 combos, 3 packages. Packages from ₹15,000." />
         <meta property="og:url" content="https://sagedo.in/services" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -112,7 +112,7 @@ export default function Services() {
         <meta name="geo.placename" content="Chandigarh, Punjab, India" />
         <meta name="geo.position" content="30.7333;76.7794" />
         <meta name="ICBM" content="30.7333, 76.7794" />
-        <meta name="twitter:description" content="20 business services for Indian SMBs. Website, SEO, WhatsApp Bot, CRM, GST, Logo — all in one place. Starting ₹499." />
+        <meta name="twitter:description" content="20 business services for Indian SMBs. Website, SEO, WhatsApp Bot, CRM, GST, Logo — all in one place. Packages from ₹15,000." />
         <script type="application/ld+json">{`{"@context":"https://schema.org","@type":"Service","name":"SAGEDO Business Services","provider":{"@type":"Organization","name":"SAGEDO","url":"https://sagedo.in","address":{"@type":"PostalAddress","addressLocality":"Chandigarh","addressCountry":"IN"}},"areaServed":"IN","serviceType":["Website Design","SEO Setup","WhatsApp Bot","CRM Setup","Logo Design","GST Registration","Mobile App Development","Business Consultancy"],"offers":[{"@type":"Offer","name":"Starter Launch","price":"15000","priceCurrency":"INR"},{"@type":"Offer","name":"Full Launch","price":"35000","priceCurrency":"INR"},{"@type":"Offer","name":"VIP Launch","price":"95000","priceCurrency":"INR"}]}`}</script>
       </Helmet>
       <ServiceDetailModal service={selectedService} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
