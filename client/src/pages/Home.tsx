@@ -657,57 +657,65 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-4">
-              Our Services
+              Most In-Demand Services
             </p>
             <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4">
-              An AI Assistant for Every Part of Your Life
+              What Indian Businesses Are Buying Right Now
             </h2>
             <p className="text-lg text-muted-foreground">
-              Choose your category and see what we can solve for you.
+              Backed by 2025–26 search demand data across 500M+ Indian users.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                name: "React Web Development",
-                sub: "Vite / Next.js / Custom Builds",
-                desc: "Speed-optimized websites that convert visitors into paying customers.",
-                icon: "⚡",
-                color: "from-blue-500/10 to-blue-600/5",
-                border: "group-hover:border-blue-500/50",
-                text: "group-hover:text-blue-500",
-                badge: "Bestseller"
-              },
-              {
-                name: "WhatsApp CRM Bots",
-                sub: "Lead Qualify & Auto-Close",
-                desc: "24/7 sales agent that captures, qualifies, and routes leads automatically.",
+                name: "WhatsApp Automation",
+                sub: "Chatbots · Lead Capture · Auto-Replies",
+                desc: "98% open rate. 500M+ Indian users. The #1 demanded business channel.",
                 icon: "💬",
                 color: "from-emerald-500/10 to-emerald-600/5",
                 border: "group-hover:border-emerald-500/50",
                 text: "group-hover:text-emerald-500",
-                badge: "Highest ROI"
+                badge: "#1 Demand",
+                sample: "/sample-whatsapp-automation.png",
+                cite: "Source: Meta India 2025 — 500M+ active users"
               },
               {
-                name: "Technical SEO & Local Search",
-                sub: "Google Maps & AI Search",
-                desc: "Get found by customers searching for exactly what you sell.",
-                icon: "🔍",
+                name: "Business Website",
+                sub: "Mobile-First · SEO-Ready · High-Converting",
+                desc: "Your 24/7 digital storefront. Customers research online before buying.",
+                icon: "🌐",
+                color: "from-blue-500/10 to-blue-600/5",
+                border: "group-hover:border-blue-500/50",
+                text: "group-hover:text-blue-500",
+                badge: "Most Searched",
+                sample: "/sample-business-website.png",
+                cite: "Source: Google India SMB Report 2025"
+              },
+              {
+                name: "Google My Business & SEO",
+                sub: "Local Pack · Maps Ranking · AI Search",
+                desc: "97% of consumers search online before visiting. Rank #1 locally.",
+                icon: "📍",
                 color: "from-purple-500/10 to-purple-600/5",
                 border: "group-hover:border-purple-500/50",
                 text: "group-hover:text-purple-500",
-                badge: "Most Requested"
+                badge: "Highest Intent",
+                sample: "/sample-seo-google-maps.png",
+                cite: "Source: BrightLocal 2025 — 97% search locally"
               },
               {
-                name: "CRM & Lead Automation",
-                sub: "Pipeline & Operations Setup",
-                desc: "Never lose a lead again. Every contact tracked and followed up.",
-                icon: "📊",
+                name: "Lead Generation & CRM",
+                sub: "Sales Pipeline · Auto Follow-Up · Conversion",
+                desc: "Stop losing leads. Automated pipeline that follows up and closes deals.",
+                icon: "📈",
                 color: "from-orange-500/10 to-orange-600/5",
                 border: "group-hover:border-orange-500/50",
                 text: "group-hover:text-orange-500",
-                badge: "Growth Engine"
+                badge: "Revenue Engine",
+                sample: "/sample-crm-lead-automation.png",
+                cite: "Source: HubSpot 2025 — CRM = 29% more closes"
               }
             ].map((category) => (
               <Link key={category.name} href="/services">
@@ -721,17 +729,29 @@ export default function Home() {
                       {(category as any).badge && <span className="text-[10px] font-bold uppercase tracking-wider bg-primary/15 text-primary px-2 py-1 rounded-full">{(category as any).badge}</span>}
                     </div>
 
+                    {/* Sample Preview */}
+                    {(category as any).sample && (
+                      <div className="mb-4 rounded-xl overflow-hidden border border-border/20 aspect-video">
+                        <img src={(category as any).sample} alt={`${category.name} sample`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                      </div>
+                    )}
+
                     <h3 className="text-2xl font-black text-foreground mb-2 leading-tight">
                       {category.name}
                     </h3>
 
-                    <p className={`text-sm font-bold uppercase tracking-wider mb-4 text-muted-foreground ${category.text} transition-colors`}>
+                    <p className={`text-sm font-bold uppercase tracking-wider mb-3 text-muted-foreground ${category.text} transition-colors`}>
                       {category.sub}
                     </p>
 
-                    <p className="text-muted-foreground mb-8 text-sm leading-relaxed">
+                    <p className="text-muted-foreground mb-3 text-sm leading-relaxed">
                       {category.desc}
                     </p>
+
+                    {/* Citation */}
+                    {(category as any).cite && (
+                      <p className="text-[10px] text-muted-foreground/50 italic mb-4">{(category as any).cite}</p>
+                    )}
 
                     <div className="mt-auto">
                       <div className={`inline-flex items-center text-sm font-bold text-foreground border-b-2 border-transparent ${category.border} pb-1 transition-all group-hover:pl-2`}>
@@ -817,9 +837,9 @@ export default function Home() {
               <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
                 <Shield className="w-7 h-7 text-primary" />
               </div>
-              <h3 className="text-xl font-black text-foreground mb-3">Aerospace Quality Standard</h3>
+              <h3 className="text-xl font-black text-foreground mb-3">Defence-Grade Quality Process</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
-                Our founder's Ex-Lockheed Martin F-16 & C-130J experience translates into a rigorous 30% quality verification process on every deliverable. Zero bugs. Clean code.
+                Every deliverable goes through a rigorous verification process built on mission-critical engineering standards. Zero bugs. Clean code. Nothing ships without passing our 30-point quality check.
               </p>
             </div>
 
