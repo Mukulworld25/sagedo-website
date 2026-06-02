@@ -111,6 +111,61 @@ export default function ServiceDetailModal({ service, isOpen, onClose }: Service
                         </div>
                     </div>
 
+                    {/* Execution Blueprint - Only renders for services with detailed B2B fields */}
+                    {(service.howWeDoIt || service.howWeStart || service.whatItTakes || service.whatIsIncluded) && (
+                        <div className="mt-10 space-y-6">
+                            <div className="flex items-center gap-3 mb-2">
+                                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center border border-blue-500/20">
+                                    <Zap className="w-5 h-5 text-blue-400" />
+                                </div>
+                                <div>
+                                    <h3 className="text-xl font-bold text-white">Execution Blueprint</h3>
+                                    <p className="text-sm text-gray-400">Exactly how we deliver this for you.</p>
+                                </div>
+                            </div>
+
+                            <div className="grid md:grid-cols-2 gap-6">
+                                {service.howWeDoIt && (
+                                    <div className="p-5 rounded-2xl bg-white/5 border border-white/5 space-y-3">
+                                        <h4 className="text-sm font-bold uppercase tracking-wider text-blue-400">⚙️ How We Do It</h4>
+                                        <p className="text-gray-300 text-sm leading-relaxed">{service.howWeDoIt}</p>
+                                    </div>
+                                )}
+                                {service.howWeStart && (
+                                    <div className="p-5 rounded-2xl bg-white/5 border border-white/5 space-y-3">
+                                        <h4 className="text-sm font-bold uppercase tracking-wider text-green-400">🚀 How We Start</h4>
+                                        <p className="text-gray-300 text-sm leading-relaxed">{service.howWeStart}</p>
+                                    </div>
+                                )}
+                                {service.whatItTakes && (
+                                    <div className="p-5 rounded-2xl bg-white/5 border border-white/5 space-y-3">
+                                        <h4 className="text-sm font-bold uppercase tracking-wider text-amber-400">📋 What You Provide</h4>
+                                        <p className="text-gray-300 text-sm leading-relaxed">{service.whatItTakes}</p>
+                                    </div>
+                                )}
+                                {service.whatIsIncluded && service.whatIsIncluded.length > 0 && (
+                                    <div className="p-5 rounded-2xl bg-white/5 border border-white/5 space-y-3">
+                                        <h4 className="text-sm font-bold uppercase tracking-wider text-purple-400">📦 Full Inclusions</h4>
+                                        <ul className="space-y-2">
+                                            {service.whatIsIncluded.map((item, idx) => (
+                                                <li key={idx} className="flex items-start gap-2">
+                                                    <CheckCircle2 className="w-4 h-4 text-purple-400 mt-0.5 shrink-0" />
+                                                    <span className="text-gray-300 text-sm">{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
+
+                            {service.costDetails && (
+                                <div className="p-4 rounded-xl bg-gradient-to-r from-green-500/10 to-transparent border border-green-500/20">
+                                    <p className="text-sm text-green-400 font-semibold">💰 Pricing: {service.costDetails}</p>
+                                </div>
+                            )}
+                        </div>
+                    )}
+
                     <div className="mt-8 text-center">
                         <p className="text-sm text-gray-500">
                             Need a custom enterprise solution? <a href="/contact" className="text-amber-500 hover:underline">Contact Sales</a>

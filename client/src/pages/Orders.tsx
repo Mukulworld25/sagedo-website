@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import { Upload, CheckCircle2, CreditCard, Sparkles, Plus, X, Star, LogIn, Loader2, Clock, Zap, Shield, ArrowRight } from "lucide-react";
+import { Upload, CheckCircle2, CreditCard, Sparkles, Plus, X, Star, LogIn, Loader2, Clock, Zap, Shield, ArrowRight, CalendarClock, Banknote } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useSearch, Link, useLocation } from "wouter";
@@ -37,6 +37,8 @@ export default function Orders() {
   const [orderAmount, setOrderAmount] = useState(0); // Default 0
   const [isRazorpayLoaded, setIsRazorpayLoaded] = useState(false);
   const [isServiceLocked, setIsServiceLocked] = useState(false);
+  const [paymentPlan, setPaymentPlan] = useState<'full' | 'half' | 'installment_3x'>('full');
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const API_URL = 'https://zsevqsmpvgoipwlhzjoy.supabase.co/functions/v1';
 
   // Multi-service cart (up to 3 services)
@@ -52,6 +54,20 @@ export default function Orders() {
   // Calculate total from cart
   const cartTotal = cart.reduce((sum, item) => sum + (item.isGoldenEligible ? 0 : item.price), 0);
   const hasOnlyFreeServices = cart.length > 0 && cart.every(item => item.isGoldenEligible);
+
+  // Calculate the actual amount due today based on payment plan
+  const totalOrderValue = cartTotal > 0 ? cartTotal : orderAmount;
+  const dueToday = (() => {
+    if (isGoldenService || hasOnlyFreeServices || totalOrderValue === 0) return 0;
+    switch (paymentPlan) {
+      case 'half': return Math.ceil(totalOrderValue / 2);
+      case 'installment_3x': return Math.ceil(totalOrderValue / 3);
+      default: return totalOrderValue;
+    }
+  })();
+  const remainingBalance = totalOrderValue - dueToday;
+  const canUseInstallments = totalOrderValue >= 15000;
+  const canUseHalf = totalOrderValue >= 5000;
 
   // Resolve selected service details for the preview panel
   const selectedServiceDetails = (() => {
@@ -171,7 +187,7 @@ export default function Orders() {
           headers: { 'Content-Type': 'application/json' },
           
           body: JSON.stringify({
-            amount: cartTotal > 0 ? cartTotal : orderAmount,
+            amount: dueToday,
             service_name: 'SAGE DO Service',
             order_id: orderId
           })
@@ -297,14 +313,22 @@ export default function Orders() {
       }
     }
 
+    // Build payment plan details to append to requirements
+    const isFree = isGoldenService || hasOnlyFreeServices || totalOrderValue === 0;
+    let paymentPlanText = '';
+    if (!isFree && paymentPlan !== 'full') {
+      const planName = paymentPlan === 'half' ? '50/50 Split' : '3-Part Installments';
+      paymentPlanText = `\n\n--- PAYMENT PLAN ---\nPlan: ${planName}\nTotal Contract: ₹${totalOrderValue.toLocaleString('en-IN')}\nDue Today: ₹${dueToday.toLocaleString('en-IN')}\nRemaining: ₹${remainingBalance.toLocaleString('en-IN')}${paymentPlan === 'half' ? ' (due on delivery)' : ` (₹${Math.ceil(totalOrderValue / 3).toLocaleString('en-IN')} at milestone + ₹${(totalOrderValue - Math.ceil(totalOrderValue / 3) * 2).toLocaleString('en-IN')} on delivery)`}\n90% Money-Back Guarantee Acknowledged: Yes\n---`;
+    }
+
     orderMutation.mutate({
       customerName: formData.name,
       customerEmail: formData.email,
       serviceName: formData.service,
-      requirements: formData.requirements,
+      requirements: (formData.requirements || '') + paymentPlanText,
       fileUrls,
       deliveryPreference: formData.deliveryPreference,
-      isFreeOrder: isGoldenService || hasOnlyFreeServices || orderAmount === 0,
+      isFreeOrder: isFree,
     });
   };
 
@@ -327,7 +351,7 @@ export default function Orders() {
         headers: { 'Content-Type': 'application/json' },
         
         body: JSON.stringify({
-          amount: orderAmount,
+          amount: dueToday,
           service_name: 'SAGE DO Service Final Payment',
           order_id: createdOrderId
         })
@@ -724,16 +748,164 @@ export default function Orders() {
                   </div>
                 )}
 
+                {/* Payment Plan Selector - Only for paid orders above threshold */}
+                {!isGoldenService && !hasOnlyFreeServices && totalOrderValue > 0 && (
+                  <div className="space-y-3">
+                    <Label className="text-foreground flex items-center gap-2">
+                      <CalendarClock className="w-4 h-4 text-primary" />
+                      Payment Plan
+                    </Label>
+                    <div className="space-y-3">
+                      {/* Full Payment */}
+                      <label
+                        className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${paymentPlan === 'full'
+                          ? 'border-primary bg-primary/10'
+                          : 'border-border/50 hover:border-primary/30'
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="paymentPlan"
+                          value="full"
+                          checked={paymentPlan === 'full'}
+                          onChange={() => setPaymentPlan('full')}
+                          className="sr-only"
+                        />
+                        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${paymentPlan === 'full'
+                          ? 'border-primary bg-primary'
+                          : 'border-muted-foreground'
+                        }`}>
+                          {paymentPlan === 'full' && <div className="w-2 h-2 rounded-full bg-white" />}
+                        </div>
+                        <div className="flex-1">
+                          <p className="font-bold text-foreground">💳 Pay Full Amount</p>
+                          <p className="text-xs text-muted-foreground">₹{totalOrderValue.toLocaleString('en-IN')} today</p>
+                        </div>
+                      </label>
+
+                      {/* 50/50 Split */}
+                      {canUseHalf && (
+                        <label
+                          className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${paymentPlan === 'half'
+                            ? 'border-green-500 bg-green-500/10'
+                            : 'border-border/50 hover:border-green-500/30'
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="paymentPlan"
+                            value="half"
+                            checked={paymentPlan === 'half'}
+                            onChange={() => setPaymentPlan('half')}
+                            className="sr-only"
+                          />
+                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${paymentPlan === 'half'
+                            ? 'border-green-500 bg-green-500'
+                            : 'border-muted-foreground'
+                          }`}>
+                            {paymentPlan === 'half' && <div className="w-2 h-2 rounded-full bg-white" />}
+                          </div>
+                          <div className="flex-1">
+                            <p className="font-bold text-foreground">🏗️ 50% Upfront, 50% on Delivery</p>
+                            <p className="text-xs text-muted-foreground">₹{Math.ceil(totalOrderValue / 2).toLocaleString('en-IN')} today · ₹{(totalOrderValue - Math.ceil(totalOrderValue / 2)).toLocaleString('en-IN')} on delivery</p>
+                          </div>
+                          <Badge variant="secondary" className="shrink-0 bg-green-500/20 text-green-400 border-green-500/30 text-xs">Popular</Badge>
+                        </label>
+                      )}
+
+                      {/* 3x Installments */}
+                      {canUseInstallments && (
+                        <label
+                          className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${paymentPlan === 'installment_3x'
+                            ? 'border-purple-500 bg-purple-500/10'
+                            : 'border-border/50 hover:border-purple-500/30'
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="paymentPlan"
+                            value="installment_3x"
+                            checked={paymentPlan === 'installment_3x'}
+                            onChange={() => setPaymentPlan('installment_3x')}
+                            className="sr-only"
+                          />
+                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${paymentPlan === 'installment_3x'
+                            ? 'border-purple-500 bg-purple-500'
+                            : 'border-muted-foreground'
+                          }`}>
+                            {paymentPlan === 'installment_3x' && <div className="w-2 h-2 rounded-full bg-white" />}
+                          </div>
+                          <div className="flex-1">
+                            <p className="font-bold text-foreground">📅 3 Interest-Free Installments</p>
+                            <p className="text-xs text-muted-foreground">₹{Math.ceil(totalOrderValue / 3).toLocaleString('en-IN')} × 3 — first payment today</p>
+                          </div>
+                          <Badge variant="secondary" className="shrink-0 bg-purple-500/20 text-purple-400 border-purple-500/30 text-xs">0% Interest</Badge>
+                        </label>
+                      )}
+                    </div>
+
+                    {/* Billing Summary */}
+                    {paymentPlan !== 'full' && (
+                      <div className="mt-4 p-4 rounded-xl bg-gradient-to-r from-primary/5 to-transparent border border-primary/20 space-y-2">
+                        <div className="flex justify-between text-sm">
+                          <span className="text-muted-foreground">Total Contract</span>
+                          <span className="text-foreground font-medium">₹{totalOrderValue.toLocaleString('en-IN')}</span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span className="text-green-400 font-semibold">Due Today</span>
+                          <span className="text-green-400 font-bold text-lg">₹{dueToday.toLocaleString('en-IN')}</span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span className="text-muted-foreground">Remaining Balance</span>
+                          <span className="text-muted-foreground">₹{remainingBalance.toLocaleString('en-IN')}</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground pt-2 border-t border-border/20">
+                          {paymentPlan === 'half'
+                            ? 'Remaining balance due upon project delivery. Deliverables released after full payment.'
+                            : 'Installment 2 due at milestone approval. Installment 3 due on final delivery.'}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* 90% Money-Back Guarantee Alert */}
+                {!isGoldenService && !hasOnlyFreeServices && totalOrderValue > 0 && (
+                  <div className="p-4 rounded-xl bg-gradient-to-r from-green-500/10 to-emerald-500/5 border border-green-500/20 flex items-start gap-3">
+                    <Shield className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-bold text-green-400">90% Money-Back Guarantee</p>
+                      <p className="text-xs text-muted-foreground mt-1">Not satisfied? Get 90% of your payment back within 7 days of delivery. 10% retained for API, hosting, and setup costs. <a href="/refund-policy" className="text-primary hover:underline">Full policy →</a></p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Terms & Refund Policy Checkbox */}
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="terms-acceptance"
+                    checked={termsAccepted}
+                    onChange={(e) => setTermsAccepted(e.target.checked)}
+                    className="mt-1 w-4 h-4 rounded border-border accent-primary cursor-pointer"
+                  />
+                  <label htmlFor="terms-acceptance" className="text-xs text-muted-foreground cursor-pointer">
+                    I agree to the <a href="/terms-of-service" className="text-primary hover:underline">Terms of Service</a> and <a href="/refund-policy" className="text-primary hover:underline">Refund Policy</a>, including the 90% money-back guarantee and milestone-gated delivery terms.
+                  </label>
+                </div>
+
                 {/* Submit Button */}
                 {!createdOrderId ? (
                   <Button
                     type="submit"
                     size="lg"
-                    disabled={orderMutation.isPending || uploadMutation.isPending}
+                    disabled={orderMutation.isPending || uploadMutation.isPending || !termsAccepted}
                     data-testid="button-submit-order"
                     className={`w-full text-lg py-6 ${isGoldenService || hasOnlyFreeServices
                       ? 'bg-gradient-to-r from-yellow-500 to-amber-600 hover:opacity-90'
-                      : 'bg-gradient-to-r from-primary to-destructive hover:opacity-90'
+                      : !termsAccepted
+                        ? 'bg-muted text-muted-foreground cursor-not-allowed'
+                        : 'bg-gradient-to-r from-primary to-destructive hover:opacity-90'
                       }`}
                   >
                     {orderMutation.isPending || uploadMutation.isPending ? (
@@ -743,7 +915,9 @@ export default function Orders() {
                       </>
                     ) : isGoldenService || hasOnlyFreeServices
                       ? "¨ Submit FREE Order"
-                      : `Pay ₹${cartTotal > 0 ? cartTotal : orderAmount} & Submit`}
+                      : paymentPlan === 'full'
+                        ? `Pay ₹${totalOrderValue.toLocaleString('en-IN')} & Submit`
+                        : `Pay ₹${dueToday.toLocaleString('en-IN')} & Submit`}
                   </Button>
                 ) : (
                   <div className="space-y-4">
@@ -760,7 +934,7 @@ export default function Orders() {
                       className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:opacity-90 text-lg py-6 flex items-center justify-center gap-2"
                     >
                       <CreditCard className="w-5 h-5" />
-                      Pay ₹{orderAmount} Now
+                      Pay ₹{dueToday.toLocaleString('en-IN')} Now
                     </Button>
 
                     <Button
@@ -769,6 +943,8 @@ export default function Orders() {
                       variant="ghost"
                       onClick={() => {
                         setFormData({ name: "", email: "", service: "", requirements: "", deliveryPreference: "platform" });
+                        setPaymentPlan('full');
+                        setTermsAccepted(false);
                         setFiles([]);
                         setCreatedOrderId(null);
                       }}
@@ -899,8 +1075,8 @@ export default function Orders() {
                       <Shield className="w-5 h-5 text-green-500" />
                     </div>
                     <div>
-                      <p className="font-bold text-foreground text-sm">100% Satisfaction Guarantee</p>
-                      <p className="text-xs text-muted-foreground">Full refund if not satisfied</p>
+                      <p className="font-bold text-foreground text-sm">90% Money-Back Guarantee</p>
+                      <p className="text-xs text-muted-foreground">90% refund within 7 days of delivery</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -949,7 +1125,7 @@ export default function Orders() {
                   </div>
                   <div className="flex items-center justify-center gap-2 text-muted-foreground">
                     <CheckCircle2 className="w-4 h-4 text-green-500" />
-                    <span className="text-xs">100% Satisfaction guarantee</span>
+                    <span className="text-xs">90% Money-Back Guarantee</span>
                   </div>
                   <div className="flex items-center justify-center gap-2 text-muted-foreground">
                     <CheckCircle2 className="w-4 h-4 text-green-500" />

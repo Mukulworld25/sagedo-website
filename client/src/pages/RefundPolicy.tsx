@@ -9,7 +9,7 @@ export default function RefundPolicy() {
                 <Card className="glass p-8 space-y-6">
                     <section>
                         <p className="text-sm text-muted-foreground mb-4">
-                            Last Updated: December 17, 2025
+                            Last Updated: June 2, 2026
                         </p>
                         <p className="text-muted-foreground">
                             At SAGE DO, we strive for 100% customer satisfaction. This policy outlines our refund, cancellation, and delivery terms in compliance with the Consumer Protection Act, 2019 and Consumer Protection (E-Commerce) Rules, 2020.
@@ -157,6 +157,44 @@ export default function RefundPolicy() {
                             <p className="mt-3">
                                 <strong>Response Time:</strong> We aim to respond to all queries within 24-48 hours.
                             </p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-foreground mb-3">11. 90% Money-Back Guarantee</h2>
+                        <div className="space-y-3 text-muted-foreground">
+                            <ul className="list-disc pl-6 space-y-2">
+                                <li>SAGE DO offers a <strong>90% Money-Back Guarantee</strong> on all B2B service orders.</li>
+                                <li>If you are not satisfied with the deliverables, request a refund within <strong>7 calendar days</strong> of delivery.</li>
+                                <li>We will refund 90% of the amount you have paid. The remaining 10% is retained as a non-refundable administrative fee.</li>
+                                <li>The 10% administrative retainer covers: third-party API costs (OpenAI, Meta, WhatsApp API credits), domain/hosting provisioning, server setup, and GST/compliance processing.</li>
+                                <li>This guarantee applies to the amount actually paid, not the total contract value.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-foreground mb-3">12. Installment Payment Refund Policy</h2>
+                        <div className="space-y-3 text-muted-foreground">
+                            <p>For orders placed under a split payment plan (50/50 or 3-Part Installments):</p>
+                            <ul className="list-disc pl-6 space-y-2">
+                                <li>Refunds are calculated as <strong>90% of the total amount paid to date</strong>, not the total contract value.</li>
+                                <li><strong>Example:</strong> If you paid ₹20,000 of a ₹60,000 contract, your refund = 90% of ₹20,000 = ₹18,000.</li>
+                                <li>Outstanding installments are automatically cancelled upon refund approval.</li>
+                                <li>Refund requests must be submitted before the next installment due date.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-foreground mb-3">13. Milestone-Gated Delivery</h2>
+                        <div className="space-y-3 text-muted-foreground">
+                            <p>For orders under split payment plans, deliverables are released in stages corresponding to each payment milestone.</p>
+                            <ul className="list-disc pl-6 space-y-2">
+                                <li><strong>50/50 Plan:</strong> Phase 1 deliverables released after 50% payment. Final deliverables released after balance payment.</li>
+                                <li><strong>3-Part Plan:</strong> Deliverables released in 3 stages — after each installment is received.</li>
+                                <li>Final project files, source code, and admin access are transferred only after full payment is complete.</li>
+                            </ul>
                         </div>
                     </section>
 
