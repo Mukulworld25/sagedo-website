@@ -15,6 +15,7 @@ export interface ServiceDetail {
     maintenance?: string;
     maintenancePrice?: string;
     whyBuy?: string;
+    badge?: string;
 }
 
 export const allServices: ServiceDetail[] = [
@@ -70,21 +71,22 @@ export const allServices: ServiceDetail[] = [
     maintenancePrice: "₹7,999/mo"
   },
   {
-    id: "b01",
-    name: "Professional Logo Design",
-    category: "Startup Launch",
-    description: "A brand identity that commands respect, not just a logo.",
-    fullDescription: "Your logo is the first thing every client, investor, and partner sees. We combine AI creativity with professional design principles to create a unique, memorable logo that works across all mediums.",
-    price: 1999,
-    priceRange: "₹1,999 – ₹2,499",
-    imageUrl: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1000&auto=format&fit=crop",
+    id: "b04",
+    name: "WhatsApp Sales Bot",
+    category: "AI Automation",
+    description: "Close sales while you sleep. Zero missed leads.",
+    fullDescription: "An intelligent WhatsApp bot that answers customer queries, qualifies leads, sends follow-ups, and routes hot leads to you. Built on the WhatsApp Business API with custom flows for your specific business.",
+    price: 6999,
+    priceRange: "₹6,999 – ₹9,999",
+    imageUrl: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=1000&auto=format&fit=crop",
     isGoldenEligible: false,
-    deliveryTime: "3–5 days",
-    whyBuy: "First impressions close deals before you even speak.",
-    standardFeatures: ["3 unique concepts", "Source files (AI, PNG, SVG)", "2 revision rounds", "Dark + light variants"],
-    premiumFeatures: ["Unlimited revisions", "Brand guidelines doc", "Social media kit", "Stationery design"],
-    maintenance: "Not required",
-    maintenancePrice: "One-time"
+    deliveryTime: "5–7 days",
+    whyBuy: "90% of Indian customers prefer WhatsApp. Meet them where they are.",
+    badge: "Bestseller",
+    standardFeatures: ["Custom conversation flows", "Lead capture", "Auto-replies", "Human handoff", "Basic analytics"],
+    premiumFeatures: ["CRM integration", "Payment collection", "Multi-language", "Advanced analytics", "Unlimited flows"],
+    maintenance: "Flow updates + new automations + performance monitoring",
+    maintenancePrice: "₹999/mo"
   },
   {
     id: "b02",
@@ -98,6 +100,7 @@ export const allServices: ServiceDetail[] = [
     isGoldenEligible: false,
     deliveryTime: "7–10 days",
     whyBuy: "Every day without a website is revenue left on the table.",
+    badge: "Most Popular",
     standardFeatures: ["5-page website", "Mobile responsive", "Contact form", "Basic SEO setup", "1 month support"],
     premiumFeatures: ["Custom animations", "E-commerce integration", "Advanced SEO", "3 months support", "Performance optimization"],
     maintenance: "Speed + security + updates + uptime monitoring",
@@ -115,27 +118,11 @@ export const allServices: ServiceDetail[] = [
     isGoldenEligible: false,
     deliveryTime: "48 hours",
     whyBuy: "96% of Indian startups are invisible on Google. Be in the 4%.",
+    badge: "Most Requested",
     standardFeatures: ["robots.txt + sitemap setup", "Google Search Console", "Meta tags + Schema", "2 blog posts", "Crunchbase profile"],
     premiumFeatures: ["Wikidata entry", "Bing Webmaster", "AI crawler optimization", "5 blog posts", "Competitor analysis"],
     maintenance: "1 blog post/mo + rank monitoring + competitor check + fixes",
     maintenancePrice: "₹2,999/mo"
-  },
-  {
-    id: "b04",
-    name: "WhatsApp Sales Bot",
-    category: "AI Automation",
-    description: "Close sales while you sleep. Zero missed leads.",
-    fullDescription: "An intelligent WhatsApp bot that answers customer queries, qualifies leads, sends follow-ups, and routes hot leads to you. Built on the WhatsApp Business API with custom flows for your specific business.",
-    price: 6999,
-    priceRange: "₹6,999 – ₹9,999",
-    imageUrl: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=1000&auto=format&fit=crop",
-    isGoldenEligible: false,
-    deliveryTime: "5–7 days",
-    whyBuy: "90% of Indian customers prefer WhatsApp. Meet them where they are.",
-    standardFeatures: ["Custom conversation flows", "Lead capture", "Auto-replies", "Human handoff", "Basic analytics"],
-    premiumFeatures: ["CRM integration", "Payment collection", "Multi-language", "Advanced analytics", "Unlimited flows"],
-    maintenance: "Flow updates + new automations + performance monitoring",
-    maintenancePrice: "₹999/mo"
   },
   {
     id: "b05",
@@ -149,10 +136,28 @@ export const allServices: ServiceDetail[] = [
     isGoldenEligible: false,
     deliveryTime: "5–7 days",
     whyBuy: "Businesses with CRM close 29% more deals. Fact.",
+    badge: "Highest ROI",
     standardFeatures: ["Pipeline setup", "Lead tracking", "Email integration", "Basic automation", "Team training"],
     premiumFeatures: ["Advanced automation", "WhatsApp integration", "Custom reports", "Multi-pipeline", "Priority support"],
     maintenance: "Data cleanup + new automations + user training + updates",
     maintenancePrice: "₹1,499/mo"
+  },
+  {
+    id: "b01",
+    name: "Professional Logo Design",
+    category: "Startup Launch",
+    description: "A brand identity that commands respect, not just a logo.",
+    fullDescription: "Your logo is the first thing every client, investor, and partner sees. We combine AI creativity with professional design principles to create a unique, memorable logo that works across all mediums.",
+    price: 1999,
+    priceRange: "₹1,999 – ₹2,499",
+    imageUrl: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1000&auto=format&fit=crop",
+    isGoldenEligible: false,
+    deliveryTime: "3–5 days",
+    whyBuy: "First impressions close deals before you even speak.",
+    standardFeatures: ["3 unique concepts", "Source files (AI, PNG, SVG)", "2 revision rounds", "Dark + light variants"],
+    premiumFeatures: ["Unlimited revisions", "Brand guidelines doc", "Social media kit", "Stationery design"],
+    maintenance: "Not required",
+    maintenancePrice: "One-time"
   },
   {
     id: "b06",

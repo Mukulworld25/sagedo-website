@@ -284,6 +284,7 @@ export default function Services() {
                             <h3 className="font-bold text-white text-base leading-tight mb-1">{service.name}</h3>
                             <p className="text-amber-500 font-bold text-sm bg-black/50 px-2 py-0.5 rounded-md inline-block border border-amber-500/20">{service.priceRange}</p>
                           </div>
+                          {service.badge && <span className="absolute top-3 right-3 z-20 text-[9px] font-bold uppercase tracking-wider bg-amber-500 text-black px-2 py-0.5 rounded-full">{service.badge}</span>}
                         </div>
                         <div className="p-4">
                           <p className="text-xs text-amber-400/80 font-semibold mb-2 italic">{(service as any).whyBuy || ""}</p>

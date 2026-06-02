@@ -3,7 +3,7 @@
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle2, Zap, Star, Gift, ChevronRight, Briefcase, GraduationCap, User, Sparkles, MessageCircle, Phone, ExternalLink } from "lucide-react";
+import { ArrowRight, CheckCircle2, Zap, Star, Gift, ChevronRight, Briefcase, GraduationCap, User, Sparkles, MessageCircle, Phone, ExternalLink, Shield, Clock, Handshake } from "lucide-react";
 import { useState } from "react";
 
 export default function Home() {
@@ -670,40 +670,44 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                name: "Scale Business",
-                sub: "Ads, Landing Pages, Funnels",
-                desc: "Stop burning cash. Get high-converting assets.",
-                icon: "📈",
+                name: "React Web Development",
+                sub: "Vite / Next.js / Custom Builds",
+                desc: "Speed-optimized websites that convert visitors into paying customers.",
+                icon: "⚡",
                 color: "from-blue-500/10 to-blue-600/5",
                 border: "group-hover:border-blue-500/50",
-                text: "group-hover:text-blue-500"
+                text: "group-hover:text-blue-500",
+                badge: "Bestseller"
               },
               {
-                name: "Startup Launch",
-                sub: "B2B Outreach & Market Analysis",
-                desc: "Launch faster and dominate your niche.",
-                icon: "🚀",
+                name: "WhatsApp CRM Bots",
+                sub: "Lead Qualify & Auto-Close",
+                desc: "24/7 sales agent that captures, qualifies, and routes leads automatically.",
+                icon: "💬",
                 color: "from-emerald-500/10 to-emerald-600/5",
                 border: "group-hover:border-emerald-500/50",
-                text: "group-hover:text-emerald-500"
+                text: "group-hover:text-emerald-500",
+                badge: "Highest ROI"
               },
               {
-                name: "Career Boost",
-                sub: "Resumes, LinkedIn, Portfolios",
-                desc: "Land your dream job with top-1% personal branding.",
-                icon: "🚀",
+                name: "Technical SEO & Local Search",
+                sub: "Google Maps & AI Search",
+                desc: "Get found by customers searching for exactly what you sell.",
+                icon: "🔍",
                 color: "from-purple-500/10 to-purple-600/5",
                 border: "group-hover:border-purple-500/50",
-                text: "group-hover:text-purple-500"
+                text: "group-hover:text-purple-500",
+                badge: "Most Requested"
               },
               {
-                name: "Viral Content",
-                sub: "Reels, Edits, Scripts",
-                desc: "Grow your audience with thumb-stopping content.",
-                icon: "🔥",
+                name: "CRM & Lead Automation",
+                sub: "Pipeline & Operations Setup",
+                desc: "Never lose a lead again. Every contact tracked and followed up.",
+                icon: "📊",
                 color: "from-orange-500/10 to-orange-600/5",
                 border: "group-hover:border-orange-500/50",
-                text: "group-hover:text-orange-500"
+                text: "group-hover:text-orange-500",
+                badge: "Growth Engine"
               }
             ].map((category) => (
               <Link key={category.name} href="/services">
@@ -712,7 +716,10 @@ export default function Home() {
                   <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
                   <div className="relative p-8 z-10 flex flex-col h-full">
-                    <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-500">{category.icon}</div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="text-5xl transform group-hover:scale-110 transition-transform duration-500">{category.icon}</div>
+                      {(category as any).badge && <span className="text-[10px] font-bold uppercase tracking-wider bg-primary/15 text-primary px-2 py-1 rounded-full">{(category as any).badge}</span>}
+                    </div>
 
                     <h3 className="text-2xl font-black text-foreground mb-2 leading-tight">
                       {category.name}
@@ -785,6 +792,57 @@ export default function Home() {
                   View LinkedIn →
                 </a>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          WHY FOUNDERS CHOOSE SAGEDO - Trust Pillars
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 border-t border-border/30">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
+              The Unfair Advantage
+            </p>
+            <h2 className="text-3xl md:text-5xl font-black text-foreground">
+              Why Founders Choose SAGEDO
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Pillar 1 */}
+            <div className="relative group p-8 rounded-3xl border border-border/30 bg-background/50 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1">
+              <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                <Shield className="w-7 h-7 text-primary" />
+              </div>
+              <h3 className="text-xl font-black text-foreground mb-3">Aerospace Quality Standard</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                Our founder's Ex-Lockheed Martin F-16 & C-130J experience translates into a rigorous 30% quality verification process on every deliverable. Zero bugs. Clean code.
+              </p>
+            </div>
+
+            {/* Pillar 2 */}
+            <div className="relative group p-8 rounded-3xl border border-border/30 bg-background/50 hover:border-green-500/30 transition-all duration-300 hover:-translate-y-1">
+              <div className="w-14 h-14 rounded-2xl bg-green-500/10 flex items-center justify-center mb-6">
+                <Clock className="w-7 h-7 text-green-500" />
+              </div>
+              <h3 className="text-xl font-black text-foreground mb-3">48-Hour SLA Guarantee</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                Every service ships within 48 hours or your money back. No exceptions. While agencies take 30–60 days, we deliver at 10x speed using AI-native workflows.
+              </p>
+            </div>
+
+            {/* Pillar 3 */}
+            <div className="relative group p-8 rounded-3xl border border-border/30 bg-background/50 hover:border-amber-500/30 transition-all duration-300 hover:-translate-y-1">
+              <div className="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center mb-6">
+                <Handshake className="w-7 h-7 text-amber-500" />
+              </div>
+              <h3 className="text-xl font-black text-foreground mb-3">No-Contract. Pay Per Result.</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                No long-term lock-ins. No retainer traps. You pay for what you need, when you need it. Cancel anytime. Your money, your choice.
+              </p>
             </div>
           </div>
         </div>
