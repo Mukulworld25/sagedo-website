@@ -275,6 +275,49 @@ export const Tools: React.FC<ServicesProps> = ({ onNavigate }) => {
                             </div>
                         )}
 
+                        {(selectedService.howWeDoIt || selectedService.howWeStart || selectedService.whatItTakes || selectedService.whatIsIncluded) && (
+                            <div className="mt-4 pt-4 border-t border-white/5 space-y-4">
+                                <p className="text-[10px] font-bold uppercase tracking-wider text-red-400">Execution Blueprint</p>
+                                
+                                {selectedService.howWeDoIt && (
+                                    <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
+                                        <p className="text-[10px] font-bold uppercase tracking-wider text-blue-400">⚙️ How We Do It</p>
+                                        <p className="text-xs text-neutral-300 leading-relaxed">{selectedService.howWeDoIt}</p>
+                                    </div>
+                                )}
+                                {selectedService.howWeStart && (
+                                    <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
+                                        <p className="text-[10px] font-bold uppercase tracking-wider text-green-400">🚀 How We Start</p>
+                                        <p className="text-xs text-neutral-300 leading-relaxed">{selectedService.howWeStart}</p>
+                                    </div>
+                                )}
+                                {selectedService.whatItTakes && (
+                                    <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
+                                        <p className="text-[10px] font-bold uppercase tracking-wider text-amber-400">📋 What You Provide</p>
+                                        <p className="text-xs text-neutral-300 leading-relaxed">{selectedService.whatItTakes}</p>
+                                    </div>
+                                )}
+                                {selectedService.whatIsIncluded && selectedService.whatIsIncluded.length > 0 && (
+                                    <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-2">
+                                        <p className="text-[10px] font-bold uppercase tracking-wider text-purple-400">📦 Full Inclusions</p>
+                                        <ul className="space-y-1.5">
+                                            {selectedService.whatIsIncluded.map((item, idx) => (
+                                                <li key={idx} className="flex items-start gap-2">
+                                                    <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 mt-0.5 shrink-0" />
+                                                    <span className="text-xs text-neutral-300 leading-tight">{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                                {selectedService.costDetails && (
+                                    <div className="p-3.5 rounded-xl bg-gradient-to-r from-green-500/10 to-transparent border border-green-500/20 text-xs font-semibold text-green-400">
+                                        💰 Pricing: {selectedService.costDetails}
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
                         <div className="flex items-center justify-center gap-4 text-[10px] text-neutral-600 pt-2">
                             <span className="flex items-center gap-1"><Shield className="w-3 h-3 text-green-500" /> Satisfaction Guarantee</span>
                             <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-red-400" /> AI + Human Quality</span>

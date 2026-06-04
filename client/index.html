@@ -65,7 +65,7 @@
     "founder": {
       "@type": "Person",
       "name": "Mukul Dhiman",
-      "description": "Ex-Tata Lockheed Martin Aerospace Engineer turned AI Founder",
+      "description": "Former aerospace systems engineer turned AI Founder",
       "url": "https://www.linkedin.com/company/112693037"
     },
     "foundingDate": "2025",
@@ -212,7 +212,7 @@
         "name": "Who founded SAGE DO?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "SAGE DO was founded by Mukul Dhiman, who brings operations experience from Tata Lockheed Martin, Uber, and Mach1. He built SAGE DO to bring that execution discipline to help Indian founders launch and scale faster."
+          "text": "SAGE DO was founded by Mukul Dhiman, a former aerospace systems engineer turned AI builder. He brings operations experience from top aerospace and logistics companies. He built SAGE DO to bring that execution discipline to help Indian founders launch and scale faster."
         }
       },
       {
@@ -236,7 +236,7 @@
         "name": "What is the best budget CRM setup for Indian small businesses?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "SAGE DO offers affordable CRM setup starting from ₹4,999. We configure industry-standard CRMs (like HubSpot Free, Zoho, or custom solutions) specifically optimized for Indian SMBs with WhatsApp integration, lead tracking, and automated follow-ups — delivered in 24-48 hours."
+          "text": "SAGE DO offers affordable CRM setup starting from ₹14,999. We configure industry-standard CRMs (like HubSpot Free, Zoho, or custom solutions) specifically optimized for Indian SMBs with WhatsApp integration, lead tracking, and automated follow-ups — delivered in 24-48 hours."
         }
       },
       {
@@ -244,7 +244,7 @@
         "name": "How much does a WhatsApp sales bot cost in India?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "SAGE DO builds WhatsApp sales bots starting at ₹4,999. Our bots handle lead qualification, FAQs, appointment booking, and order updates — all automated. Setup takes 24-48 hours and includes integration with your existing business workflow."
+          "text": "SAGE DO builds WhatsApp sales bots starting at ₹11,999. Our bots handle lead qualification, FAQs, appointment booking, and order updates — all automated. Setup takes 24-48 hours and includes integration with your existing business workflow."
         }
       },
       {
@@ -304,6 +304,26 @@
             "description": "Web + Mobile App, Human UX + Testing, Complete Branding, 1-Month Support — delivered in 15 days"
           },
           "price": "95000",
+          "priceCurrency": "INR"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "AI Agent Development",
+            "description": "Autonomous AI employees for sales, support & operations"
+          },
+          "price": "45000",
+          "priceCurrency": "INR"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Missed-Call Text-Back System",
+            "description": "Automated SMS follow-up for every missed call"
+          },
+          "price": "9999",
           "priceCurrency": "INR"
         }
       ]
@@ -401,17 +421,50 @@ document.addEventListener("submit", function(e) {
       <div class="spinner"></div>
     </div>
     <noscript>
-      <h1>SAGE DO - AI + Human Execution for Founders</h1>
-      <p>SAGE DO provides elite digital ecosystem creation and AI business automation for ambitious Indian startups and founders.</p>
+      <h1>SAGE DO — India's First AI + Human Hybrid Execution Team</h1>
+      <p>SAGE DO provides precision-engineered AI business automation and digital ecosystem creation for ambitious Indian startups and founders. Founded by Mukul Dhiman, a former aerospace systems engineer turned AI builder.</p>
+      <h2>Our Services</h2>
       <ul>
+        <li>WhatsApp Sales Bot — from ₹11,999</li>
+        <li>CRM & Lead Automation — from ₹14,999</li>
+        <li>Mobile App Development — from ₹59,999</li>
+        <li>AI Agent Development — from ₹45,000</li>
+        <li>AI Voice Receptionist — from ₹35,000</li>
+        <li>Missed-Call Text-Back System — from ₹9,999</li>
+        <li>Google & Meta Ads Management — from ₹14,999/mo</li>
+        <li>Reputation Management — from ₹7,999</li>
         <li>Custom SaaS & AI App Development</li>
-        <li>Automated Marketing & Lead Generation</li>
         <li>Brand Identity & Creative Execution</li>
         <li>Data Solutions & AI Executive Dashboards</li>
       </ul>
-      <p>Stop paying high agency retainers. Execute faster with our elite Hybrid Tech Stack.</p>
+      <h2>Launch Packages</h2>
+      <ul>
+        <li>Starter Launch Package — ₹15,000 (AI Landing Page, Brand Identity, Domain Setup, SEO Basics — 7 days)</li>
+        <li>Full Launch Package — ₹35,000 (Full Website + Content, Social Media Kit, Analytics — 10-12 days)</li>
+        <li>VIP Launch Package — ₹95,000 (Web + Mobile App, Complete Branding, 1-Month Support — 15 days)</li>
+      </ul>
+      <p>Stop paying high agency retainers. Execute faster with our elite Hybrid Tech Stack. Based in Chandigarh, serving all of India.</p>
+      <p>Contact: hello@sagedo.in | +91-6284925684</p>
     </noscript>
   </div>
+  <script>
+  // Route-specific SEO for SPA
+  (function() {
+    var path = window.location.pathname;
+    var titleEl = document.querySelector('title');
+    var canonicalEl = document.querySelector('link[rel="canonical"]');
+    var descEl = document.querySelector('meta[name="description"]');
+    if (path === '/services' || path === '/services/') {
+      titleEl.textContent = 'AI Business Services & Pricing | SAGEDO — India\'s Hybrid Execution Team';
+      canonicalEl.setAttribute('href', 'https://sagedo.in/services');
+      descEl.setAttribute('content', 'Explore SAGEDO services: WhatsApp Sales Bot from ₹11,999, CRM from ₹14,999, AI Agent Development from ₹45,000, Mobile Apps from ₹59,999, Missed-Call Text-Back from ₹9,999, and more. Delivered in 24-48 hours.');
+    } else if (path === '/orders' || path === '/orders/') {
+      titleEl.textContent = 'Checkout | SAGEDO — Secure Payment';
+      canonicalEl.setAttribute('href', 'https://sagedo.in/orders');
+      descEl.setAttribute('content', 'Complete your SAGEDO order securely. Fast checkout for AI business services, automation packages, and digital solutions.');
+    }
+  })();
+  </script>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 
