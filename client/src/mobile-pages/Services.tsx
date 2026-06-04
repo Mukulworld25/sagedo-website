@@ -44,8 +44,18 @@ export const Tools: React.FC<ServicesProps> = ({ onNavigate }) => {
     const [activeTab, setActiveTab] = useState('empire');
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedService, setSelectedService] = useState<ServiceDetail | null>(null);
+    const [showAllServices, setShowAllServices] = useState(false);
 
     const currentTab = tabData.find(t => t.id === activeTab)!;
+
+    const FEATURED_IDS = ["b04", "b05", "b02", "ai_agent_dev"];
+    const featuredServices = useMemo(() => {
+        return allServices.filter(s => FEATURED_IDS.includes(s.id));
+    }, []);
+
+    const specializedServices = useMemo(() => {
+        return allServices.filter(s => currentTab.categories.includes(s.category) && !FEATURED_IDS.includes(s.id));
+    }, [currentTab]);
 
     const filteredServices = useMemo(() => {
         let services = allServices.filter(s => currentTab.categories.includes(s.category));
@@ -95,7 +105,7 @@ export const Tools: React.FC<ServicesProps> = ({ onNavigate }) => {
                     {tabData.map(tab => (
                         <button
                             key={tab.id}
-                            onClick={() => { setActiveTab(tab.id); setSearchQuery(''); }}
+                            onClick={() => { setActiveTab(tab.id); setSearchQuery(''); setShowAllServices(false); }}
                             className={`flex items-center gap-2 px-4 py-3 rounded-2xl whitespace-nowrap shrink-0 transition-all active:scale-95 ${activeTab === tab.id
                                     ? 'bg-red-500/15 border border-red-500/30 text-white'
                                     : 'bg-white/[0.03] border border-white/5 text-neutral-400'
@@ -173,43 +183,146 @@ export const Tools: React.FC<ServicesProps> = ({ onNavigate }) => {
             <div className="px-5">
                 <h2 className="text-sm font-black text-white uppercase tracking-wider mb-4 flex items-center gap-2">
                     <Zap className="w-4 h-4 text-red-400" />
-                    {searchQuery ? `Results for "${searchQuery}"` : 'Individual Services'}
+                    {searchQuery ? `Results for "${searchQuery}"` : 'B2B Core & Specialized Solutions'}
                 </h2>
 
-                {filteredServices.length === 0 ? (
-                    <div className="text-center py-12">
-                        <p className="text-neutral-500 text-sm">No services found. Try a different search.</p>
-                    </div>
-                ) : (
-                    <div className="grid grid-cols-2 gap-3">
-                        {filteredServices.map(service => (
-                            <div
-                                key={service.id}
-                                onClick={() => setSelectedService(service)}
-                                className="rounded-2xl overflow-hidden bg-white/[0.02] border border-white/5 active:scale-[0.97] transition-all cursor-pointer group"
-                            >
-                                <div className="relative h-28 overflow-hidden">
-                                    <img src={service.imageUrl} alt={service.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                                    {service.isGoldenEligible && (
-                                        <span className="absolute top-2 left-2 text-[8px] font-bold bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full backdrop-blur-sm border border-amber-500/20">
-                                            🎫 Free Eligible
-                                        </span>
-                                    )}
-                                    <span className="absolute bottom-2 right-2 text-red-400 font-black text-sm">{service.priceRange.split(' - ')[0]}</span>
-                                </div>
-                                <div className="p-3">
-                                    <h3 className="text-white font-bold text-xs leading-tight mb-1 line-clamp-2">{service.name}</h3>
-                                    <p className="text-neutral-500 text-[10px] leading-snug line-clamp-2">{service.description}</p>
-                                    <div className="flex items-center gap-1 mt-2 text-[9px] font-medium text-red-400">
-                                        <span>🤖 AI Speed</span>
-                                        <span className="text-neutral-700">+</span>
-                                        <span>🧠 Human Quality</span>
+                {searchQuery.trim() ? (
+                    filteredServices.length === 0 ? (
+                        <div className="text-center py-12">
+                            <p className="text-neutral-500 text-sm">No services found. Try a different search.</p>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-2 gap-3">
+                            {filteredServices.map(service => (
+                                <div
+                                    key={service.id}
+                                    onClick={() => setSelectedService(service)}
+                                    className="rounded-2xl overflow-hidden bg-white/[0.02] border border-white/5 active:scale-[0.97] transition-all cursor-pointer group"
+                                >
+                                    <div className="relative h-28 overflow-hidden">
+                                        <img src={service.imageUrl} alt={service.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                                        {service.isGoldenEligible && (
+                                            <span className="absolute top-2 left-2 text-[8px] font-bold bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full backdrop-blur-sm border border-amber-500/20">
+                                                🎫 Free Eligible
+                                            </span>
+                                        )}
+                                        <span className="absolute bottom-2 right-2 text-red-400 font-black text-sm">{service.priceRange.split(' - ')[0]}</span>
+                                    </div>
+                                    <div className="p-3">
+                                        <h3 className="text-white font-bold text-xs leading-tight mb-1 line-clamp-2">{service.name}</h3>
+                                        <p className="text-neutral-500 text-[10px] leading-snug line-clamp-2">{service.description}</p>
+                                        <div className="flex items-center gap-1 mt-2 text-[9px] font-medium text-red-400">
+                                            <span>🤖 AI Speed</span>
+                                            <span className="text-neutral-700">+</span>
+                                            <span>🧠 Human Quality</span>
+                                        </div>
                                     </div>
                                 </div>
+                            ))}
+                        </div>
+                    )
+                ) : (
+                    <>
+                        {/* 1. Core B2B Featured Grid */}
+                        <div className="grid grid-cols-2 gap-3">
+                            {featuredServices.map(service => (
+                                <div
+                                    key={service.id}
+                                    onClick={() => setSelectedService(service)}
+                                    className="rounded-2xl overflow-hidden bg-gradient-to-b from-white/8 to-white/[0.02] border border-amber-500/20 active:scale-[0.97] transition-all cursor-pointer group shadow-lg shadow-amber-500/5"
+                                >
+                                    <div className="relative h-28 overflow-hidden">
+                                        <img src={service.imageUrl} alt={service.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                                        {service.badge && (
+                                            <span className="absolute top-2 left-2 text-[8px] font-black bg-amber-500 text-black px-2 py-0.5 rounded-full uppercase tracking-wider">
+                                                {service.badge}
+                                            </span>
+                                        )}
+                                        <span className="absolute bottom-2 right-2 text-amber-400 font-black text-[10px] bg-black/60 px-1.5 py-0.5 rounded border border-amber-500/20">{service.priceRange.split(' – ')[0]}</span>
+                                    </div>
+                                    <div className="p-3">
+                                        <h3 className="text-white font-extrabold text-xs leading-tight mb-1 group-hover:text-amber-400 transition-colors line-clamp-1">{service.name}</h3>
+                                        <p className="text-neutral-400 text-[10px] leading-snug line-clamp-2 mb-2">{service.description}</p>
+                                        <div className="flex flex-wrap gap-1 mt-1">
+                                            {service.standardFeatures.slice(0, 2).map((feat, i) => (
+                                                <span key={i} className="text-[8px] font-semibold px-1.5 py-0.5 rounded bg-white/[0.04] text-neutral-300 border border-white/5 line-clamp-1">
+                                                    ✓ {feat}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* 2. Expandable Drawer Button */}
+                        {specializedServices.length > 0 && (
+                            <div className="mt-5 mb-3 flex justify-center">
+                                <button
+                                    onClick={() => setShowAllServices(!showAllServices)}
+                                    className="group relative flex items-center justify-between w-full py-4 px-5 bg-gradient-to-r from-red-500/10 to-red-500/5 border border-red-500/25 rounded-2xl active:scale-[0.98] transition-all cursor-pointer"
+                                >
+                                    <div className="flex items-center gap-3 text-left">
+                                        <div className="p-2 bg-red-500/20 rounded-xl text-red-400">
+                                            <Sparkles className="w-4 h-4" />
+                                        </div>
+                                        <div>
+                                            <h3 className="font-bold text-xs text-white">
+                                                Explore {specializedServices.length}+ Specialized Services
+                                            </h3>
+                                            <p className="text-[9px] text-neutral-400">
+                                                Click to view full B2B catalog
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="text-neutral-400">
+                                        <ChevronRight
+                                            className="w-4 h-4"
+                                            style={{
+                                                transform: showAllServices ? 'rotate(270deg)' : 'rotate(90deg)',
+                                                transition: 'transform 0.3s'
+                                            }}
+                                        />
+                                    </div>
+                                </button>
                             </div>
-                        ))}
-                    </div>
+                        )}
+
+                        {/* 3. Specialized Services Grid */}
+                        {showAllServices && (
+                            <div className="grid grid-cols-2 gap-3 mt-3 animate-fade-in">
+                                {specializedServices.map(service => (
+                                    <div
+                                        key={service.id}
+                                        onClick={() => setSelectedService(service)}
+                                        className="rounded-2xl overflow-hidden bg-white/[0.02] border border-white/5 active:scale-[0.97] transition-all cursor-pointer group"
+                                    >
+                                        <div className="relative h-28 overflow-hidden">
+                                            <img src={service.imageUrl} alt={service.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                                            {service.isGoldenEligible && (
+                                                <span className="absolute top-2 left-2 text-[8px] font-bold bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full backdrop-blur-sm border border-amber-500/20">
+                                                    🎫 Free Eligible
+                                                </span>
+                                            )}
+                                            <span className="absolute bottom-2 right-2 text-red-400 font-black text-sm">{service.priceRange.split(' - ')[0]}</span>
+                                        </div>
+                                        <div className="p-3">
+                                            <h3 className="text-white font-bold text-xs leading-tight mb-1 line-clamp-2">{service.name}</h3>
+                                            <p className="text-neutral-500 text-[10px] leading-snug line-clamp-2">{service.description}</p>
+                                            <div className="flex items-center gap-1 mt-2 text-[9px] font-medium text-red-400">
+                                                <span>🤖 AI Speed</span>
+                                                <span className="text-neutral-700">+</span>
+                                                <span>🧠 Human Quality</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
 

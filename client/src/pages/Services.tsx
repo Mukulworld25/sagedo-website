@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
-import { Search, ArrowRight, Crown, Rocket, Star, ShieldCheck, Zap, MessageCircle, X, Send, ChevronRight, TrendingUp, Phone } from "lucide-react";
+import { Search, ArrowRight, Crown, Rocket, Star, ShieldCheck, Zap, MessageCircle, X, Send, ChevronRight, TrendingUp, Phone, ChevronDown, Sparkles } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { apiRequest } from "@/lib/queryClient";
 import { allServices, ServiceDetail } from "@/data/serviceData";
@@ -50,8 +50,9 @@ const AUTO_REPLIES: Record<string, string> = {
 };
 
 export default function Services() {
-  const [activeTab, setActiveTab] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<string | null>("launchpad");
   const [searchQuery, setSearchQuery] = useState("");
+  const [showAllServices, setShowAllServices] = useState(false);
   const [selectedService, setSelectedService] = useState<ServiceDetail | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
@@ -88,6 +89,11 @@ export default function Services() {
     }, 600);
   };
 
+  const FEATURED_IDS = ["b04", "b05", "b02", "ai_agent_dev"];
+  const featuredServices = allServices.filter(s => FEATURED_IDS.includes(s.id));
+  const specializedServices = allServices.filter(s => 
+    ["Business", "Startup Launch", "Scale Business", "AI Automation"].includes(s.category) && !FEATURED_IDS.includes(s.id)
+  );
   const launchpadServices = allServices.filter(s => ["Business", "Startup Launch", "Scale Business", "AI Automation"].includes(s.category));
   const getFiltered = (list: ServiceDetail[]) => searchQuery.trim() ? list.filter(s => s.name.toLowerCase().includes(searchQuery.toLowerCase()) || s.description.toLowerCase().includes(searchQuery.toLowerCase())) : list;
 
@@ -201,7 +207,7 @@ export default function Services() {
               const Icon = tab.icon;
               return (
                 <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={cn("relative px-10 py-5 rounded-2xl transition-all duration-300 flex items-center gap-4 min-w-max group", isActive ? "bg-white/8 border-2" : "hover:bg-white/5 border-2 border-transparent", isActive && tab.id === "launchpad" ? "border-amber-500/60 shadow-lg shadow-amber-500/10" : "", isActive && tab.id === "scaleops" ? "border-blue-500/60 shadow-lg shadow-blue-500/10" : "")}>
-                  {isActive && <motion.div layoutId="activeTabGlow" className={cn("absolute inset-0 rounded-xl bg-gradient-to-r opacity-10", tab.color)} />}
+                  {isActive && <motion.div layoutId="activeTabGlow" className={cn("absolute inset-0 rounded-xl bg-gradient-to-r", tab.color)} style={{ opacity: 0.08 }} />}
                   <div className={cn("p-3 rounded-xl", isActive ? "bg-white/10 text-white" : "bg-white/5 text-gray-500 group-hover:text-gray-300")}><Icon className={cn("w-6 h-6", isActive && tab.activeColor)} /></div>
                   <div className="text-left">
                     <p className={cn("font-black text-base tracking-wide", isActive ? "text-white" : "text-gray-400 group-hover:text-gray-200")}>{tab.label}</p>
@@ -271,38 +277,172 @@ export default function Services() {
                           ))}
                         </div>
                       </div>
-                      <div className="flex items-center gap-4 mb-8"><div className="h-[1px] bg-white/10 flex-1"></div><span className="text-xs font-bold uppercase tracking-widest text-gray-500">Individual Services</span><div className="h-[1px] bg-white/10 flex-1"></div></div>
+                      <div className="flex items-center gap-4 mb-8"><div className="h-[1px] bg-white/10 flex-1"></div><span className="text-xs font-bold uppercase tracking-widest text-gray-500">B2B Core & Specialized Solutions</span><div className="h-[1px] bg-white/10 flex-1"></div></div>
                     </>
                   )}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {getFiltered(launchpadServices).map(service => (
-                      <div key={service.id} onClick={() => handleCardClick(service)} className="group relative bg-white/5 border border-white/5 hover:border-amber-500/30 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-                        <div className="h-40 overflow-hidden relative">
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
-                          <img src={service.imageUrl} alt={service.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                          <div className="absolute bottom-4 left-4 z-20">
-                            <h3 className="font-bold text-white text-base leading-tight mb-1">{service.name}</h3>
-                            <p className="text-amber-500 font-bold text-sm bg-black/50 px-2 py-0.5 rounded-md inline-block border border-amber-500/20">{service.priceRange}</p>
+
+                  {searchQuery.trim() ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                      {getFiltered(launchpadServices).map(service => (
+                        <div key={service.id} onClick={() => handleCardClick(service)} className="group relative bg-white/5 border border-white/5 hover:border-amber-500/30 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+                          <div className="h-40 overflow-hidden relative">
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
+                            <img src={service.imageUrl} alt={service.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                            <div className="absolute bottom-4 left-4 z-20">
+                              <h3 className="font-bold text-white text-base leading-tight mb-1">{service.name}</h3>
+                              <p className="text-amber-500 font-bold text-sm bg-black/50 px-2 py-0.5 rounded-md inline-block border border-amber-500/20">{service.priceRange}</p>
+                            </div>
+                            {service.badge && <span className="absolute top-3 right-3 z-20 text-[9px] font-bold uppercase tracking-wider bg-amber-500 text-black px-2 py-0.5 rounded-full">{service.badge}</span>}
                           </div>
-                          {service.badge && <span className="absolute top-3 right-3 z-20 text-[9px] font-bold uppercase tracking-wider bg-amber-500 text-black px-2 py-0.5 rounded-full">{service.badge}</span>}
-                        </div>
-                        <div className="p-4">
-                          <p className="text-xs text-amber-400/80 font-semibold mb-2 italic">{(service as any).whyBuy || ""}</p>
-                          <p className="text-sm text-gray-400 line-clamp-2 mb-4">{service.description}</p>
-                          <div className="flex gap-2">
-                            <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}`} onClick={(e) => e.stopPropagation()} className="flex-1">
-                              <Button size="sm" className="w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none transition-colors font-semibold text-xs">
-                                Order → {service.priceRange}
-                              </Button>
-                            </Link>
-                            <a href={`https://wa.me/916284925684?text=${encodeURIComponent('Hi Mukul, I want to know more about: ' + service.name + ' (' + service.priceRange + ')')}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="flex-shrink-0 bg-green-600 hover:bg-green-500 text-white px-2 py-1.5 rounded-md text-xs font-semibold flex items-center transition-colors">
-                              Ask
-                            </a>
+                          <div className="p-4">
+                            <p className="text-xs text-amber-400/80 font-semibold mb-2 italic">{(service as any).whyBuy || ""}</p>
+                            <p className="text-sm text-gray-400 line-clamp-2 mb-4">{service.description}</p>
+                            <div className="flex gap-2">
+                              <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}`} onClick={(e) => e.stopPropagation()} className="flex-1">
+                                <Button size="sm" className="w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none transition-colors font-semibold text-xs">
+                                  Order → {service.priceRange}
+                                </Button>
+                              </Link>
+                              <a href={`https://wa.me/916284925684?text=${encodeURIComponent('Hi Mukul, I want to know more about: ' + service.name + ' (' + service.priceRange + ')')}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="flex-shrink-0 bg-green-600 hover:bg-green-500 text-white px-2 py-1.5 rounded-md text-xs font-semibold flex items-center transition-colors">
+                                Ask
+                              </a>
+                            </div>
                           </div>
                         </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <>
+                      {/* 1. Core B2B Featured Grid */}
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                        {featuredServices.map(service => (
+                          <div
+                            key={service.id}
+                            onClick={() => handleCardClick(service)}
+                            className="group relative bg-gradient-to-b from-white/10 to-white/[0.02] border border-white/10 hover:border-amber-500/50 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer shadow-[0_0_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] flex flex-col md:flex-row h-full min-h-[300px]"
+                          >
+                            <div className="md:w-2/5 h-48 md:h-full relative overflow-hidden flex-shrink-0">
+                              <div className="absolute inset-0 bg-gradient-to-r md:bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
+                              <img src={service.imageUrl} alt={service.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                              {service.badge && (
+                                <span className="absolute top-4 left-4 z-20 text-[10px] font-black uppercase tracking-wider bg-amber-500 text-black px-3 py-1 rounded-full shadow-lg">
+                                  {service.badge}
+                                </span>
+                              )}
+                            </div>
+                            <div className="p-6 flex-1 flex flex-col justify-between">
+                              <div>
+                                <div className="flex justify-between items-start gap-4 mb-2">
+                                  <h3 className="font-extrabold text-white text-xl leading-snug group-hover:text-amber-400 transition-colors">
+                                    {service.name}
+                                  </h3>
+                                </div>
+                                <p className="text-amber-500 font-extrabold text-base mb-3">
+                                  {service.priceRange}
+                                </p>
+                                <p className="text-sm text-gray-400 mb-4 leading-relaxed line-clamp-2">
+                                  {service.description}
+                                </p>
+                                <ul className="space-y-2 mb-6">
+                                  {service.standardFeatures.slice(0, 3).map((f, i) => (
+                                    <li key={i} className="flex items-center gap-2 text-xs font-semibold text-gray-300">
+                                      <ShieldCheck className="w-4 h-4 text-amber-500 flex-shrink-0" />
+                                      <span>{f}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                              <div className="flex gap-3 mt-auto">
+                                <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}`} onClick={(e) => e.stopPropagation()} className="flex-1">
+                                  <Button size="sm" className="w-full h-10 bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs transition-colors rounded-xl shadow-md">
+                                    Order → {service.priceRange.split(' – ')[0]}
+                                  </Button>
+                                </Link>
+                                <a href={`https://wa.me/916284925684?text=${encodeURIComponent('Hi Mukul, I want to know more about: ' + service.name + ' (' + service.priceRange + ')')}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="flex-shrink-0 bg-green-600 hover:bg-green-500 text-white px-3 h-10 rounded-xl text-xs font-extrabold flex items-center transition-colors">
+                                  Ask
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+
+                      {/* 2. Expandable Drawer Button */}
+                      <div className="mt-12 mb-8 flex justify-center">
+                        <button
+                          onClick={() => setShowAllServices(!showAllServices)}
+                          className="group relative flex flex-col items-center justify-center w-full max-w-3xl py-6 px-8 bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-amber-500/10 border border-amber-500/20 hover:border-amber-500/50 rounded-2xl transition-all duration-300 shadow-[0_0_20px_rgba(245,158,11,0.05)] hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] cursor-pointer"
+                        >
+                          <div className="absolute inset-0 rounded-2xl bg-amber-500/5 opacity-50 group-hover:opacity-100 transition-opacity animate-pulse" />
+                          <div className="relative z-10 flex items-center justify-between w-full">
+                            <div className="flex items-center gap-4 text-left">
+                              <div className="p-3 bg-amber-500/20 rounded-xl text-amber-400 group-hover:scale-110 transition-transform">
+                                <Sparkles className="w-6 h-6 animate-pulse" />
+                              </div>
+                              <div>
+                                <h3 className="font-bold text-lg text-white group-hover:text-amber-400 transition-colors">
+                                  Explore 20+ Specialized Services
+                                </h3>
+                                <p className="text-xs text-gray-400">
+                                  GST, MSME, Trademark, Logos, Pitch Decks, SEO Blogs, and more
+                                </p>
+                              </div>
+                            </div>
+                            <motion.div
+                              animate={{ rotate: showAllServices ? 180 : 0 }}
+                              transition={{ duration: 0.3 }}
+                              className="p-2 bg-white/5 rounded-full text-gray-400 group-hover:text-white"
+                            >
+                              <ChevronDown className="w-5 h-5" />
+                            </motion.div>
+                          </div>
+                        </button>
+                      </div>
+
+                      {/* 3. Specialized Services Grid inside Drawer */}
+                      <AnimatePresence initial={false}>
+                        {showAllServices && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            className="overflow-hidden"
+                          >
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-4">
+                              {specializedServices.map(service => (
+                                <div key={service.id} onClick={() => handleCardClick(service)} className="group relative bg-white/5 border border-white/5 hover:border-amber-500/30 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+                                  <div className="h-40 overflow-hidden relative">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
+                                    <img src={service.imageUrl} alt={service.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                    <div className="absolute bottom-4 left-4 z-20">
+                                      <h3 className="font-bold text-white text-base leading-tight mb-1">{service.name}</h3>
+                                      <p className="text-amber-500 font-bold text-sm bg-black/50 px-2 py-0.5 rounded-md inline-block border border-amber-500/20">{service.priceRange}</p>
+                                    </div>
+                                    {service.badge && <span className="absolute top-3 right-3 z-20 text-[9px] font-bold uppercase tracking-wider bg-amber-500 text-black px-2 py-0.5 rounded-full">{service.badge}</span>}
+                                  </div>
+                                  <div className="p-4">
+                                    <p className="text-xs text-amber-400/80 font-semibold mb-2 italic">{(service as any).whyBuy || ""}</p>
+                                    <p className="text-sm text-gray-400 line-clamp-2 mb-4">{service.description}</p>
+                                    <div className="flex gap-2">
+                                      <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}`} onClick={(e) => e.stopPropagation()} className="flex-1">
+                                        <Button size="sm" className="w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none transition-colors font-semibold text-xs">
+                                          Order → {service.priceRange}
+                                        </Button>
+                                      </Link>
+                                      <a href={`https://wa.me/916284925684?text=${encodeURIComponent('Hi Mukul, I want to know more about: ' + service.name + ' (' + service.priceRange + ')')}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="flex-shrink-0 bg-green-600 hover:bg-green-500 text-white px-2 py-1.5 rounded-md text-xs font-semibold flex items-center transition-colors">
+                                        Ask
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </>
+                  )}
                   {getFiltered(launchpadServices).length === 0 && <div className="text-center py-20"><p className="text-gray-500">No services found.</p></div>}
                 </div>
               )}
