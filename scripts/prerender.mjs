@@ -257,8 +257,8 @@ const routes = [
   },
   {
     path: '/blog/how-much-website-cost-india-2026',
-    title: "How Much Does a Website Cost in India in 2026? Complete Breakdown — SAGEDO",
-    description: "Honest breakdown of website development costs in India 2026. Compare DIY (₹3K-8K), freelancers (₹10K-30K), agencies (₹50K-10L), and AI-hybrid teams (₹15K-35K).",
+    title: "Website Design Cost in India (2026 Pricing Guide & Secrets) — SAGEDO",
+    description: "How much does website design cost in India? Read the honest 2026 pricing guide comparing DIY, freelancers, agencies, and how to save up to 80% on development.",
     content: `<article><h1>How Much Does a Website Cost in India in 2026?</h1><p>By Mukul Dhiman | April 1, 2026 | 6 min read</p><h2>Quick Price Comparison</h2><p>DIY (Wix/WordPress): ₹3,000–₹8,000. Freelancer: ₹10,000–₹30,000 (2-4 weeks). Mid-tier Agency: ₹50,000–₹2,00,000 (4-8 weeks). Premium Agency: ₹2,00,000–₹10,00,000+ (2-6 months). AI + Human Hybrid (SAGEDO): ₹15,000–₹35,000 (7-12 days).</p><h2>The SAGEDO Approach</h2><p>Starter Launch (₹15,000): 5-page website + brand identity + SEO basics + domain setup. 7-day delivery. Full Launch (₹35,000): 10+ pages + blog + social + Google Business + CRM + WhatsApp bot. 10-12 days.</p><p>The result is agency-quality work at freelancer prices, delivered in days instead of weeks.</p><p>Get a free quote at sagedo.in/free-audit.</p></article>`,
   },
   {
