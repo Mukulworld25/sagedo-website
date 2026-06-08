@@ -221,7 +221,8 @@ export default function Contact() {
                                         <h3 className="font-semibold">Address</h3>
                                         <p className="text-muted-foreground">
                                             SAGE DO<br />
-                                            Chandigarh, India
+                                            SCO-38, Mohali City Centre,<br />
+                                            Aerocity, Mohali, Punjab 140306
                                         </p>
                                     </div>
                                 </div>
