@@ -60,7 +60,7 @@ export default function About() {
 
           <div className="p-8 md:p-12 rounded-2xl bg-background/50 border border-border/20 mb-8">
             <p className="text-xl text-muted-foreground leading-relaxed mb-6">
-              <strong className="text-foreground">SAGE DO is India's first AI + Human hybrid service platform.</strong> We combine the speed and scale of artificial intelligence with the precision and creativity of human experts to deliver professional-grade digital services — from websites and apps to content creation, marketing, and business automation.
+              <strong className="text-foreground">SAGE DO is India's first AI + Human hybrid service platform.</strong> We combine the speed and scale of artificial intelligence with the precision and creativity of human experts to deliver professional-grade digital services — from websites and apps to marketing and business automation.
             </p>
             With <strong className="text-foreground">30+ services</strong> across Startup Launch, Marketing, Design, and Engineering categories, we serve visionary founders, high-growth startups, and elite enterprises who refuse to settle for mediocre results. Every task is analyzed by AI, verified by humans, and delivered within <strong className="text-primary">24-48 hours</strong>.
             <p className="text-lg text-muted-foreground leading-relaxed">

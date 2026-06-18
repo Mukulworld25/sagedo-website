@@ -46,7 +46,6 @@ const routes = [
         <li>Logo &amp; Brand Identity — from ₹1,999</li>
         <li>GST, MSME &amp; Trademark Registration</li>
         <li>Mobile App Development — ₹95,000</li>
-        <li>Social Media Management — from ₹4,999/mo</li>
       </ul>
       <h2>Launch Packages</h2>
       <p><strong>Starter Launch — ₹15,000:</strong> AI Landing Page, Brand Identity, Domain Setup, SEO Basics. Delivered in 7 days.</p>
@@ -89,7 +88,6 @@ const routes = [
         <li>Brand Starter Combo — Logo + Brand Colors + Business Email: ₹2,999 – ₹3,499</li>
         <li>Google Presence Combo — Website + SEO + Google Business Profile: ₹16,999 – ₹19,999</li>
         <li>Legal Foundation Combo — GST + MSME + Trademark Filing: ₹3,999 – ₹5,999</li>
-        <li>Growth Engine Combo — SEO + 4 Blog Posts + Social Media: ₹7,999 – ₹9,999/mo</li>
         <li>Sales Machine Combo — CRM + WhatsApp Bot + Lead Automation: ₹12,999 – ₹14,999</li>
       </ul>
       <h2>Individual Services (LaunchPad)</h2>
@@ -105,7 +103,6 @@ const routes = [
         <li>Trademark Filing</li>
         <li>Business Email Setup</li>
         <li>Mobile App Development</li>
-        <li>Social Media Content Creation</li>
       </ul>
       <h2>ScaleOps — Ongoing Operations</h2>
       <h3>Expert Guidance</h3>
@@ -119,7 +116,6 @@ const routes = [
       <ul>
         <li>SEO Maintenance — ₹2,999/mo: 1 blog post/mo + rank monitoring + competitor check</li>
         <li>Website Maintenance — ₹1,499/mo: Speed + security updates + bug fixes + uptime</li>
-        <li>Social Media Management — ₹4,999/mo: 8 posts/month + engagement + analytics</li>
         <li>Full Stack Plan — ₹7,999/mo: Everything above + priority support + monthly strategy call</li>
       </ul>
       <p>Contact: WhatsApp +91 6284925684 | Email hello@sagedo.in</p>
@@ -133,7 +129,7 @@ const routes = [
     description: "Learn about SAGEDO, founded by Mukul Dhiman (ex-Tata Lockheed Martin). We combine AI speed with human precision to deliver 30+ digital services across India. Based in Chandigarh.",
     content: `
       <h1>About SAGE DO</h1>
-      <p>SAGE DO is India's first AI + Human hybrid service platform. We combine the speed and scale of artificial intelligence with the precision and creativity of human experts to deliver professional-grade digital services — from websites and apps to content creation, marketing, and business automation.</p>
+      <p>SAGE DO is India's first AI + Human hybrid service platform. We combine the speed and scale of artificial intelligence with the precision and creativity of human experts to deliver professional-grade digital services — from websites and apps to marketing and business automation.</p>
       <p>With 30+ services across Startup Launch, Marketing, Design, and Engineering categories, we serve visionary founders, high-growth startups, and elite enterprises. Every task is analyzed by AI, verified by humans, and delivered within 24-48 hours.</p>
       <h2>Founder — Mukul Dhiman</h2>
       <p>Ex-Aerospace engineer (Tata Lockheed Martin — C130J/F16 programs), Operations Manager (25-person teams, 40% efficiency improvement), Full-stack Developer (SaaS, mobile apps, AI automation), AI Engineer (Built 30+ AI-powered services from scratch).</p>
@@ -307,7 +303,7 @@ const routes = [
     path: '/blog/5-signs-business-needs-sagedo',
     title: "5 Signs Your Business Needs SAGEDO Right Now — SAGEDO Blog",
     description: "5 warning signs your business execution is broken: unfinished website, freelancer chaos, dead social media, no analytics, doing everything yourself.",
-    content: `<article><h1>5 Signs Your Business Needs SAGEDO Right Now</h1><p>By Mukul Dhiman | February 25, 2026 | 4 min read</p><ol><li>You're still "working on" your website after 2+ weeks</li><li>You're spending more time managing freelancers than building</li><li>Your social media looks like an afterthought</li><li>You don't know where your leads come from</li><li>You're doing everything yourself — CEO, designer, writer, tech support</li></ol><p>SAGEDO fixes all of these. Starter Launch ₹15,000. Social media from ₹4,999/mo. Get a free audit at sagedo.in/free-audit.</p></article>`,
+    content: `<article><h1>5 Signs Your Business Needs SAGEDO Right Now</h1><p>By Mukul Dhiman | February 25, 2026 | 4 min read</p><ol><li>You're still "working on" your website after 2+ weeks</li><li>You're spending more time managing freelancers than building</li><li>Your social media looks like an afterthought</li><li>You don't know where your leads come from</li><li>You're doing everything yourself — CEO, designer, writer, tech support</li></ol>      <p>SAGEDO fixes all of these. Starter Launch ₹15,000. Social media setup from ₹1,999. Get a free audit at sagedo.in/free-audit.</p></article>`,
   },
 
   // ── ALTERNATIVES PAGES ──────────────────────────────────────────────

@@ -20,7 +20,6 @@ const COMBOS = [
   { name: "Brand Starter", desc: "Logo + Brand Colors + Business Email", price: "₹2,999 – ₹3,499", icon: "🎨", service: "Brand Starter Combo", price_val: 2999 },
   { name: "Google Presence", desc: "Website + SEO + Google Business Profile", price: "₹16,999 – ₹19,999", icon: "🌐", service: "Google Presence Combo", price_val: 16999 },
   { name: "Legal Foundation", desc: "GST + MSME + Trademark Filing", price: "₹3,999 – ₹5,999", icon: "📋", service: "Legal Foundation Combo", price_val: 3999 },
-  { name: "Growth Engine", desc: "SEO + 4 Blog Posts + Social Media", price: "₹7,999 – ₹9,999/mo", icon: "📈", service: "Growth Engine Combo", price_val: 7999 },
   { name: "Sales Machine", desc: "CRM + WhatsApp Bot + Lead Automation", price: "₹12,999 – ₹14,999", icon: "🤖", service: "Sales Machine Combo", price_val: 12999 },
 ];
 
@@ -34,7 +33,6 @@ const CONSULT_OPTIONS = [
 const MAINTENANCE_PLANS = [
   { name: "SEO Maintenance", price: "₹2,999/mo", what: "1 blog post/mo + rank monitoring + competitor check + fixes", icon: "🔍", price_val: 2999 },
   { name: "Website Maintenance", price: "₹1,499/mo", what: "Speed + security updates + bug fixes + uptime monitoring", icon: "🌐", price_val: 1499 },
-  { name: "Social Media Mgmt", price: "₹4,999/mo", what: "8 posts/month + engagement + hashtag strategy + analytics", icon: "📱", price_val: 4999 },
   { name: "Full Stack Plan", price: "₹7,999/mo", what: "Everything above + priority support + monthly strategy call", icon: "⚡", price_val: 7999 },
 ];
 
@@ -243,7 +241,7 @@ export default function Services() {
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-4"><div className="p-3 bg-blue-500/20 rounded-2xl text-2xl">⚙️</div><div><p className="font-black text-xl text-white">ScaleOps</p><p className="text-blue-400/80 text-xs font-semibold uppercase tracking-wider">Operations that scale</p></div></div>
                 <p className="text-gray-300 text-base font-medium mb-5 leading-relaxed">Already running a business? Book strategy sessions, maintain your SEO, keep your website fast, and automate operations every month.</p>
-                <ul className="space-y-2 mb-6">{["1-on-1 Strategy Sessions with Mukul","Monthly SEO & Content Maintenance","Website Speed & Security Upkeep","Social Media & Growth Management"].map(item => (<li key={item} className="flex items-center gap-2 text-sm text-gray-400"><span className="text-blue-400 text-xs">✓</span>{item}</li>))}</ul>
+                <ul className="space-y-2 mb-6">{["1-on-1 Strategy Sessions with Mukul","Monthly SEO & Content Maintenance","Website Speed & Security Upkeep"].map(item => (<li key={item} className="flex items-center gap-2 text-sm text-gray-400"><span className="text-blue-400 text-xs">✓</span>{item}</li>))}</ul>
                 <div className="flex items-center gap-2 text-blue-400 font-bold text-sm group-hover:gap-3 transition-all">Explore ScaleOps <span>→</span></div>
               </div>
             </button>

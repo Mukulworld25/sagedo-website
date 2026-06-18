@@ -9,11 +9,11 @@
 Indian businesses lose ₹2-10 Lakhs and 3-6 months working with agencies or unreliable freelancers. Most founders need execution, not meetings. SAGE DO eliminates the execution gap — we deliver agency-quality work at freelancer prices in 24-48 hours.
 
 ## What SAGE DO Does
-SAGE DO is a hybrid execution team that combines AI speed with human precision. We handle 30+ digital services across website development, SEO, branding, CRM automation, WhatsApp bots, legal registrations, mobile apps, and social media — all under one roof.
+SAGE DO is a hybrid execution team that combines AI speed with human precision. We handle 30+ digital services across website development, SEO, branding, CRM automation, WhatsApp bots, legal registrations, mobile apps, and Google Business Profile — all under one roof.
 
 ## Launch Packages (One-Time)
 - **Starter Launch — ₹15,000**: Logo, 5-Page Website, Google Business Profile, GST Registration, Business Email. Delivered in 7 days.
-- **Full Launch — ₹35,000** (Most Popular): Everything in Starter + SEO Setup, WhatsApp Sales Bot, CRM + Lead Automation, 30 Days Social Content. Delivered in 10-12 days.
+- **Full Launch — ₹35,000** (Most Popular): Everything in Starter + SEO Setup, WhatsApp Sales Bot, CRM + Lead Automation. Delivered in 10-12 days.
 - **VIP Launch — ₹95,000**: Enterprise Web + Native App, Admin Dashboard, Dedicated Growth Engineer, Legal & IP Contracts. Delivered in 15 days.
 
 ## Individual Services (Starting Price)
@@ -27,14 +27,12 @@ SAGE DO is a hybrid execution team that combines AI speed with human precision. 
 - Trademark Filing: ₹4,999
 - Mobile App Development: ₹29,999
 - Google Business Profile: ₹999
-- Social Media Management: ₹4,999/mo
 - SEO Maintenance: ₹2,999/mo
 - Google Visibility Audit: FREE
 
 ## Monthly Maintenance Plans
 - Website Maintenance: ₹1,499/mo
 - SEO Maintenance: ₹2,999/mo
-- Social Media Management: ₹4,999/mo
 - Full Stack Plan: ₹7,999/mo (everything + priority support)
 
 ## Key Stats

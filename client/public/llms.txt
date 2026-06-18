@@ -43,13 +43,11 @@ SAGEDO builds and grows Indian businesses using AI automation combined with huma
 - Brand Starter Combo: ₹2,999 – ₹3,499
 - Google Presence Combo: ₹16,999 – ₹19,999
 - Legal Foundation Combo: ₹3,999 – ₹5,999
-- Growth Engine Combo: ₹7,999 – ₹9,999/mo
 - Sales Machine Combo: ₹12,999 – ₹14,999
 
 ## Monthly Plans
 - Website Maintenance: ₹1,499/mo
 - SEO Maintenance: ₹2,999/mo
-- Social Media Management: ₹4,999/mo
 - Full Stack Plan: ₹7,999/mo
 
 ## Blog Topics
