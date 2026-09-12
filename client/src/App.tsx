@@ -1,3 +1,5 @@
+import React from "react";
+import { Suspense } from "react";
 import { Switch, Route } from "wouter";
 import { HelmetProvider } from 'react-helmet-async';
 import { queryClient } from "./lib/queryClient";
@@ -8,39 +10,39 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/components/LanguageProvider";
 
-import Home from "@/pages/Home";
-import Services from "@/pages/Services";
-import About from "@/pages/About";
-import Orders from "@/pages/Orders";
-import Dashboard from "@/pages/Dashboard";
-import Admin from "@/pages/Admin";
-import OrderDetails from "@/pages/OrderDetails";
-import OrderSuccess from "@/pages/OrderSuccess";
-import Login from "@/pages/Login";
-import ForgotPassword from "@/pages/ForgotPassword";
-import ResetPassword from "@/pages/ResetPassword";
-import PrivacyPolicy from "@/pages/PrivacyPolicy";
-import TermsOfService from "@/pages/TermsOfService";
-import RefundPolicy from "@/pages/RefundPolicy";
-import GrievanceOfficer from "@/pages/GrievanceOfficer";
-import Contact from "@/pages/Contact";
-import FAQ from "@/pages/FAQ";
-import VerifyEmail from "@/pages/verify-email";
-import Settings from "@/pages/Settings";
-import Pay from "@/pages/Pay";
-import FreeAudit from "@/pages/FreeAudit";
-import AboutFounder from "@/pages/AboutFounder";
-import Blog from "@/pages/Blog";
-import BlogPost from "@/pages/BlogPost";
-import AIReadinessCheck from "@/pages/AIReadinessCheck";
-import AgencyAlternative from "@/pages/AgencyAlternative";
-import FreelancerAlternative from "@/pages/FreelancerAlternative";
-import DIYAlternative from "@/pages/DIYAlternative";
-import Refer from "@/pages/Refer";
-import AgencyPartner from "@/pages/AgencyPartner";
-import BookCall from "@/pages/BookCall";
-import Careers from "@/pages/Careers";
-import NotFound from "@/pages/not-found";
+const Home = React.lazy(() => import("@/pages/Home"));
+const Services = React.lazy(() => import("@/pages/Services"));
+const About = React.lazy(() => import("@/pages/About"));
+const Orders = React.lazy(() => import("@/pages/Orders"));
+const Dashboard = React.lazy(() => import("@/pages/Dashboard"));
+const Admin = React.lazy(() => import("@/pages/Admin"));
+const OrderDetails = React.lazy(() => import("@/pages/OrderDetails"));
+const OrderSuccess = React.lazy(() => import("@/pages/OrderSuccess"));
+const Login = React.lazy(() => import("@/pages/Login"));
+const ForgotPassword = React.lazy(() => import("@/pages/ForgotPassword"));
+const ResetPassword = React.lazy(() => import("@/pages/ResetPassword"));
+const PrivacyPolicy = React.lazy(() => import("@/pages/PrivacyPolicy"));
+const TermsOfService = React.lazy(() => import("@/pages/TermsOfService"));
+const RefundPolicy = React.lazy(() => import("@/pages/RefundPolicy"));
+const GrievanceOfficer = React.lazy(() => import("@/pages/GrievanceOfficer"));
+const Contact = React.lazy(() => import("@/pages/Contact"));
+const FAQ = React.lazy(() => import("@/pages/FAQ"));
+const VerifyEmail = React.lazy(() => import("@/pages/verify-email"));
+const Settings = React.lazy(() => import("@/pages/Settings"));
+const Pay = React.lazy(() => import("@/pages/Pay"));
+const FreeAudit = React.lazy(() => import("@/pages/FreeAudit"));
+const AboutFounder = React.lazy(() => import("@/pages/AboutFounder"));
+const Blog = React.lazy(() => import("@/pages/Blog"));
+const BlogPost = React.lazy(() => import("@/pages/BlogPost"));
+const AIReadinessCheck = React.lazy(() => import("@/pages/AIReadinessCheck"));
+const AgencyAlternative = React.lazy(() => import("@/pages/AgencyAlternative"));
+const FreelancerAlternative = React.lazy(() => import("@/pages/FreelancerAlternative"));
+const DIYAlternative = React.lazy(() => import("@/pages/DIYAlternative"));
+const Refer = React.lazy(() => import("@/pages/Refer"));
+const AgencyPartner = React.lazy(() => import("@/pages/AgencyPartner"));
+const BookCall = React.lazy(() => import("@/pages/BookCall"));
+const Careers = React.lazy(() => import("@/pages/Careers"));
+const NotFound = React.lazy(() => import("@/pages/not-found"));
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -50,72 +52,73 @@ import { apiRequest } from "@/lib/queryClient";
 import { useEffect } from "react";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import ScrollToTop from "@/components/ScrollToTop";
-
 import OnboardingSurvey from "@/components/OnboardingSurvey";
 import AdminNotification from "@/components/AdminNotification";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 import { useAnalytics } from "@/hooks/useAnalytics";
-
 import MobileAppEntry from "./MobileAppEntry";
 import { useLocation } from "wouter";
 
+function LoadingFallback() {
+  return (
+    <div className="flex min-h-[50vh] items-center justify-center">
+      <div className="flex flex-col items-center gap-3">
+        <div className="h-7 w-7 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin" />
+        <p className="text-sm text-zinc-500 font-medium">Loading SAGEDO…</p>
+      </div>
+    </div>
+  );
+}
+
+
 function Router() {
-  useAnalytics(); // Auto-tracks every route change
+  useAnalytics();
   const [location] = useLocation();
-
-  if (location.startsWith('/app')) {
-    return <MobileAppEntry />;
-  }
-
+  if (location.startsWith("/app")) { return <MobileAppEntry />; }
   return (
     <>
-      <ScrollToTop />
-      <AdminNotification />
-      <OnboardingSurvey />
-      <Navigation />
+      <ScrollToTop /><AdminNotification /><OnboardingSurvey /><Navigation />
       <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/services" component={Services} />
-        <Route path="/about" component={About} />
-        <Route path="/orders" component={Orders} />
-        <Route path="/login" component={Login} />
-        <Route path="/forgot-password" component={ForgotPassword} />
-        <Route path="/reset-password" component={ResetPassword} />
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/admin" component={Admin} />
-        <Route path="/admin/orders/:id" component={OrderDetails} />
-        <Route path="/privacy-policy" component={PrivacyPolicy} />
-        <Route path="/terms-of-service" component={TermsOfService} />
-        <Route path="/refund-policy" component={RefundPolicy} />
-        <Route path="/shipping-policy" component={RefundPolicy} />
-        <Route path="/grievance-officer" component={GrievanceOfficer} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/verify-email" component={VerifyEmail} />
-        <Route path="/settings" component={Settings} />
-        <Route path="/faq" component={FAQ} />
-        <Route path="/order-success" component={OrderSuccess} />
-        <Route path="/pay" component={Pay} />
-        <Route path="/free-audit" component={FreeAudit} />
-        <Route path="/about-founder" component={AboutFounder} />
-        <Route path="/blog" component={Blog} />
-        <Route path="/blog/:slug" component={BlogPost} />
-        <Route path="/tools/ai-readiness-check" component={AIReadinessCheck} />
-        <Route path="/alternatives/agency-alternative" component={AgencyAlternative} />
-        <Route path="/alternatives/freelancer-alternative" component={FreelancerAlternative} />
-        <Route path="/alternatives/diy-ai-alternative" component={DIYAlternative} />
-        <Route path="/refer" component={Refer} />
-        <Route path="/agency-partner" component={AgencyPartner} />
-        <Route path="/book-call" component={BookCall} />
-        <Route path="/careers" component={Careers} />
-        <Route component={NotFound} />
+        <Route path="/"><Suspense fallback={<LoadingFallback />}><Home /></Suspense></Route>
+        <Route path="/services"><Suspense fallback={<LoadingFallback />}><Services /></Suspense></Route>
+        <Route path="/about"><Suspense fallback={<LoadingFallback />}><About /></Suspense></Route>
+        <Route path="/orders"><Suspense fallback={<LoadingFallback />}><Orders /></Suspense></Route>
+        <Route path="/login"><Suspense fallback={<LoadingFallback />}><Login /></Suspense></Route>
+        <Route path="/forgot-password"><Suspense fallback={<LoadingFallback />}><ForgotPassword /></Suspense></Route>
+        <Route path="/reset-password"><Suspense fallback={<LoadingFallback />}><ResetPassword /></Suspense></Route>
+        <Route path="/dashboard"><Suspense fallback={<LoadingFallback />}><Dashboard /></Suspense></Route>
+        <Route path="/admin"><Suspense fallback={<LoadingFallback />}><Admin /></Suspense></Route>
+        <Route path="/admin/orders/:id"><Suspense fallback={<LoadingFallback />}><OrderDetails /></Suspense></Route>
+        <Route path="/privacy-policy"><Suspense fallback={<LoadingFallback />}><PrivacyPolicy /></Suspense></Route>
+        <Route path="/terms-of-service"><Suspense fallback={<LoadingFallback />}><TermsOfService /></Suspense></Route>
+        <Route path="/refund-policy"><Suspense fallback={<LoadingFallback />}><RefundPolicy /></Suspense></Route>
+        <Route path="/shipping-policy"><Suspense fallback={<LoadingFallback />}><RefundPolicy /></Suspense></Route>
+        <Route path="/grievance-officer"><Suspense fallback={<LoadingFallback />}><GrievanceOfficer /></Suspense></Route>
+        <Route path="/contact"><Suspense fallback={<LoadingFallback />}><Contact /></Suspense></Route>
+        <Route path="/verify-email"><Suspense fallback={<LoadingFallback />}><VerifyEmail /></Suspense></Route>
+        <Route path="/settings"><Suspense fallback={<LoadingFallback />}><Settings /></Suspense></Route>
+        <Route path="/faq"><Suspense fallback={<LoadingFallback />}><FAQ /></Suspense></Route>
+        <Route path="/order-success"><Suspense fallback={<LoadingFallback />}><OrderSuccess /></Suspense></Route>
+        <Route path="/pay"><Suspense fallback={<LoadingFallback />}><Pay /></Suspense></Route>
+        <Route path="/free-audit"><Suspense fallback={<LoadingFallback />}><FreeAudit /></Suspense></Route>
+        <Route path="/about-founder"><Suspense fallback={<LoadingFallback />}><AboutFounder /></Suspense></Route>
+        <Route path="/blog"><Suspense fallback={<LoadingFallback />}><Blog /></Suspense></Route>
+        <Route path="/blog/:slug"><Suspense fallback={<LoadingFallback />}><BlogPost /></Suspense></Route>
+        <Route path="/tools/ai-readiness-check"><Suspense fallback={<LoadingFallback />}><AIReadinessCheck /></Suspense></Route>
+        <Route path="/alternatives/agency-alternative"><Suspense fallback={<LoadingFallback />}><AgencyAlternative /></Suspense></Route>
+        <Route path="/alternatives/freelancer-alternative"><Suspense fallback={<LoadingFallback />}><FreelancerAlternative /></Suspense></Route>
+        <Route path="/alternatives/diy-ai-alternative"><Suspense fallback={<LoadingFallback />}><DIYAlternative /></Suspense></Route>
+        <Route path="/refer"><Suspense fallback={<LoadingFallback />}><Refer /></Suspense></Route>
+        <Route path="/agency-partner"><Suspense fallback={<LoadingFallback />}><AgencyPartner /></Suspense></Route>
+        <Route path="/book-call"><Suspense fallback={<LoadingFallback />}><BookCall /></Suspense></Route>
+        <Route path="/careers"><Suspense fallback={<LoadingFallback />}><Careers /></Suspense></Route>
+        <Route><Suspense fallback={<LoadingFallback />}><NotFound /></Suspense></Route>
       </Switch>
-      <Footer />
-      <ChatWidget />
-      <CookieConsent />
-      <ExitIntentPopup />
+      <Footer /><ChatWidget /><CookieConsent /><ExitIntentPopup />
     </>
   );
 }
+
 
 export default function App() {
   return (
@@ -126,8 +129,7 @@ export default function App() {
             <ErrorBoundary>
               <AuthProvider>
                 <TooltipProvider>
-                  <Router />
-                  <Toaster />
+                  <Router /><Toaster />
                 </TooltipProvider>
               </AuthProvider>
             </ErrorBoundary>
@@ -137,3 +139,4 @@ export default function App() {
     </HelmetProvider>
   );
 }
+
