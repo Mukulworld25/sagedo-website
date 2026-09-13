@@ -3,8 +3,9 @@
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle2, Zap, Star, Gift, ChevronRight, Briefcase, GraduationCap, User, Sparkles, MessageCircle, Phone, ExternalLink, Shield, Clock, Handshake } from "lucide-react";
+import { ArrowRight, CheckCircle2, Zap, Star, Gift, ChevronRight, Briefcase, GraduationCap, User, Sparkles, MessageCircle, Phone, ExternalLink, Shield, Clock, Handshake, CreditCard } from "lucide-react";
 import { useState } from "react";
+import { trackWhatsAppClick } from "@/hooks/useAnalytics";
 
 export default function Home() {
   const [activeStep, setActiveStep] = useState(1);
@@ -110,7 +111,12 @@ export default function Home() {
 
           {/* CTA Buttons - 3 Systematic Actions */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
-            <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20want%20to%20book%20a%20call%20to%20discuss%20my%20project." target="_blank" rel="noopener noreferrer">
+            <a 
+              href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20want%20to%20book%20a%20call%20to%20discuss%20my%20project." 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick('hero_cta')}
+            >
               <div className={buttonVariants({ size: "lg", className: "h-14 px-8 text-lg font-semibold bg-red-600 hover:bg-red-500 rounded-xl transition-all hover:scale-[1.02] hover:-translate-y-0.5 group cursor-pointer" })}
                 style={{ boxShadow: '0 4px 16px rgba(239, 68, 68, 0.4)', fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
               >
@@ -306,7 +312,7 @@ export default function Home() {
               <div className="p-6">
                 <span className="text-xs font-bold uppercase tracking-wider text-primary">SaaS Platform</span>
                 <h3 className="text-lg font-bold text-foreground mt-2">SAGE DO — AI Service Platform</h3>
-                <p className="text-sm text-muted-foreground mt-2">Full-stack AI + Human hybrid platform with 30+ services, payment integration, and real-time tracking.</p>
+                <p className="text-sm text-muted-foreground mt-2">Full-stack AI + Human hybrid platform with 10 specialized execution engines, payment integration, and real-time tracking.</p>
                 <a href="https://sagedo.in" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-bold text-primary mt-4 hover:underline">
                   View Live <ExternalLink className="w-3 h-3" />
                 </a>
@@ -343,7 +349,13 @@ export default function Home() {
                 <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">Business Website</span>
                 <h3 className="text-lg font-bold text-foreground mt-2">Local Business Starter Pack</h3>
                 <p className="text-sm text-muted-foreground mt-2">Complete digital presence: website, Google Maps listing, WhatsApp integration, and social media setup.</p>
-                <a href="https://wa.me/916284925684?text=Hi!%20I%20want%20to%20see%20more%20of%20your%20work." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-bold text-emerald-400 mt-4 hover:underline">
+                <a 
+                  href="https://wa.me/916284925684?text=Hi!%20I%20want%20to%20see%20more%20of%20your%20work." 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  onClick={() => trackWhatsAppClick('portfolio_demo_cta')}
+                  className="inline-flex items-center gap-1 text-sm font-bold text-emerald-400 mt-4 hover:underline"
+                >
                   Ask for Demo <MessageCircle className="w-3 h-3" />
                 </a>
               </div>
@@ -351,7 +363,12 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-10">
-            <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20want%20to%20discuss%20a%20project%20similar%20to%20what%20I%20saw%20on%20your%20portfolio." target="_blank" rel="noopener noreferrer">
+            <a 
+              href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20want%20to%20discuss%20a%20project%20similar%20to%20what%20I%20saw%20on%20your%20portfolio." 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick('portfolio_discuss_cta')}
+            >
               <div className={buttonVariants({ className: "bg-green-600 hover:bg-green-500 text-white font-bold px-8 h-12 rounded-xl cursor-pointer" })}>
                 <MessageCircle className="mr-2 h-5 w-5" /> Discuss Your Project on WhatsApp
               </div>
@@ -384,7 +401,7 @@ export default function Home() {
                   <th className="p-4 text-sm font-bold text-muted-foreground uppercase tracking-wider">Feature</th>
                   <th className="p-4 text-sm font-bold text-red-400 uppercase tracking-wider bg-red-500/5 rounded-t-xl">Freelancer (₹15k)</th>
                   <th className="p-4 text-sm font-bold text-orange-400 uppercase tracking-wider">Agency (₹5 Lakhs+)</th>
-                  <th className="p-4 text-xl font-black text-primary uppercase tracking-wider bg-primary/10 rounded-t-xl border-t-2 border-primary">SAGE DO (₹35k)</th>
+                  <th className="p-4 text-xl font-black text-primary uppercase tracking-wider bg-primary/10 rounded-t-xl border-t-2 border-primary">SAGE DO (From ₹45k)</th>
                 </tr>
               </thead>
               <tbody className="text-sm md:text-base">
@@ -441,122 +458,137 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 items-stretch">
-            {/* Starter Launch Package */}
+            {/* Digital Presence Engine */}
             <div className="relative p-8 rounded-3xl border border-border/50 bg-background/50 backdrop-blur-sm hover:border-primary/30 transition-all flex flex-col justify-between">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-neutral-400">Launch Suite</span>
-                <h3 className="text-2xl font-bold mt-2 mb-1">Starter Launch</h3>
-                <p className="text-xs text-muted-foreground mb-6">Delivered in 7 days</p>
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-4xl font-black">₹15,000</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-neutral-400">Inbound Suite</span>
+                <h3 className="text-2xl font-bold mt-2 mb-1">Digital Presence Engine</h3>
+                <p className="text-xs text-muted-foreground mb-6">Delivered in 14 days</p>
+                <div className="flex items-baseline gap-1 mb-2">
+                  <span className="text-4xl font-black">₹45,000</span>
                   <span className="text-muted-foreground text-xs">one-time</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-xs text-primary font-medium mb-6">
+                  <CreditCard className="w-3.5 h-3.5 flex-shrink-0" />
+                  <span>3 milestone installments available (from ₹15,000/mo)</span>
                 </div>
                 <ul className="space-y-4 mb-8 text-sm">
                   <li className="flex items-center gap-3">
                     <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>Professional Logo & Identity</span>
+                    <span>Custom Mobile Web Storefront (Sub-1.2s LCP)</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>5-Page Business Website</span>
+                    <span>WhatsApp Cloud API Lead Webhook</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>Google Business Profile Setup</span>
+                    <span>Interactive Dynamic Calculator / Quoter</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>GST & Legal Registration</span>
+                    <span>Automated Founder WhatsApp Lead Alerts</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>Professional Business Email</span>
+                    <span>SSL + High-Performance Edge Setup</span>
                   </li>
                 </ul>
               </div>
-              <Link href="/orders">
+              <Link href="/orders?service=Digital%20Presence%20Engine&price=45000">
                 <div className={buttonVariants({ variant: "outline", className: "w-full h-12 rounded-xl text-md font-semibold cursor-pointer" })}>
-                  Get Started
+                  Deploy Now
                 </div>
               </Link>
             </div>
 
-            {/* Full Launch Package */}
+            {/* Sovereign Revenue Engine™ Package */}
             <div className="relative p-8 rounded-3xl border-2 border-primary bg-primary/5 backdrop-blur-sm shadow-xl shadow-primary/10 flex flex-col justify-between transform md:-translate-y-4">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-xs font-bold whitespace-nowrap">
                 MOST POPULAR
               </div>
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Scale Suite</span>
-                <h3 className="text-2xl font-bold mt-2 mb-1">Full Launch</h3>
-                <p className="text-xs text-primary mb-6">Delivered in 10-12 days</p>
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-4xl font-black">₹35,000</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-primary">Flagship Asset</span>
+                <h3 className="text-2xl font-bold mt-2 mb-1">Sovereign Revenue Engine™</h3>
+                <p className="text-xs text-primary mb-6">Delivered in 28 days</p>
+                <div className="flex items-baseline gap-1 mb-2">
+                  <span className="text-4xl font-black">₹1,50,000</span>
                   <span className="text-muted-foreground text-xs">one-time</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-xs text-primary font-medium mb-6">
+                  <CreditCard className="w-3.5 h-3.5 flex-shrink-0" />
+                  <span>3 milestone installments available (from ₹50,000/mo)</span>
                 </div>
                 <ul className="space-y-4 mb-8 text-sm">
                   <li className="flex items-center gap-3">
                     <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span><strong>Everything in Starter</strong></span>
+                    <span><strong>Full Custom CRM (Zero Per-Seat Fees)</strong></span>
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>Advanced SEO & Keyword Setup</span>
+                    <span>Unlimited Seats & Role-Based Access (RBAC)</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>WhatsApp Sales & FAQ Bot</span>
+                    <span>Automated WhatsApp Lead Routing & Tracking</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>CRM & Lead Routing Automation</span>
+                    <span>Native Tally Prime / ERP Bridge Integration</span>
                   </li>
-
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                    <span>Real-Time Margin & Sales Velocity Dashboard</span>
+                  </li>
                 </ul>
               </div>
-              <Link href="/orders">
+              <Link href="/orders?service=Sovereign%20Revenue%20Engine%E2%84%A2&price=150000">
                 <div className={buttonVariants({ className: "w-full h-12 bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl text-md font-bold shadow-lg shadow-primary/20 cursor-pointer" })}>
-                  Launch Your Business
+                  Hire Your Team
                 </div>
               </Link>
             </div>
 
-            {/* VIP Launch Package */}
+            {/* Enterprise Infrastructure Package */}
             <div className="relative p-8 rounded-3xl border border-border/50 bg-background/50 backdrop-blur-sm hover:border-primary/30 transition-all flex flex-col justify-between">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-neutral-400">Enterprise Suite</span>
-                <h3 className="text-2xl font-bold mt-2 mb-1">VIP Launch</h3>
-                <p className="text-xs text-muted-foreground mb-6">Delivered in 15 days</p>
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-4xl font-black">₹95,000</span>
+                <h3 className="text-2xl font-bold mt-2 mb-1">Enterprise Infrastructure</h3>
+                <p className="text-xs text-muted-foreground mb-6">Delivered in 45–60 days</p>
+                <div className="flex items-baseline gap-1 mb-2">
+                  <span className="text-4xl font-black">₹3,50,000</span>
                   <span className="text-muted-foreground text-xs">one-time</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-xs text-primary font-medium mb-6">
+                  <CreditCard className="w-3.5 h-3.5 flex-shrink-0" />
+                  <span>3 milestone installments available (from ₹1,16,667/mo)</span>
                 </div>
                 <ul className="space-y-4 mb-8 text-sm">
                   <li className="flex items-center gap-3">
                     <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span><strong>Everything in Full</strong></span>
+                    <span><strong>Deep Bi-directional Tally Prime & Ledger Sync</strong></span>
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>Custom Web + Native Mobile App</span>
+                    <span>Multi-Branch Quotation & Dispatch Workflows</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>Private Admin Dashboard Portal</span>
+                    <span>Custom AI OCR Document Processing</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>IP, Legal & Privacy Contracts</span>
+                    <span>Sovereign VPS Deployment (Zero-Data-Retention)</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>1-Month Dedicated Support</span>
+                    <span>Priority 2-Hour P1 Dedicated Server SLA</span>
                   </li>
                 </ul>
               </div>
-              <Link href="/orders">
-                <div className={buttonVariants({ variant: "outline", className: "w-full h-12 rounded-xl text-md font-semibold cursor-pointer" })}>
-                  Contact Enterprise
+              <Link href="/orders?service=Enterprise%20Infrastructure&price=350000">
+                <div className={buttonVariants({ variant: "outline", className: "w-full h-12 rounded-xl text-md font-semibold cursor-pointer hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors" })}>
+                  Become a Titan
                 </div>
               </Link>
             </div>
@@ -764,7 +796,7 @@ export default function Home() {
           <div className="text-center mt-12">
             <Link href="/services">
               <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-12 px-8 rounded-xl border-border/50 hover:bg-muted/50 cursor-pointer" })}>
-                Explore All 30+ Services <ArrowRight className="ml-2 h-5 w-5" />
+                Explore All Services <ArrowRight className="ml-2 h-5 w-5" />
               </div>
             </Link>
           </div>
@@ -800,7 +832,12 @@ export default function Home() {
                 Ex-Aerospace engineer turned AI builder. I started SAGE DO because I saw Indian businesses getting ripped off by agencies charging ₹5 Lakhs for what AI can do in 48 hours. I personally oversee every project.
               </p>
               <div className="flex flex-col sm:flex-row items-center gap-3">
-                <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20saw%20your%20profile%20on%20SAGE%20DO.%20Can%20we%20discuss%20my%20project%3F" target="_blank" rel="noopener noreferrer">
+                <a 
+                  href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20saw%20your%20profile%20on%20SAGE%20DO.%20Can%20we%20discuss%20my%20project%3F" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onClick={() => trackWhatsAppClick('founder_section_cta')}
+                >
                   <div className={buttonVariants({ className: "bg-green-600 hover:bg-green-500 text-white font-bold px-6 h-11 rounded-xl cursor-pointer" })}>
                     <MessageCircle className="mr-2 h-4 w-4" /> Message Me Directly
                   </div>
@@ -918,10 +955,15 @@ export default function Home() {
                         btn.className = btn.className.replace('bg-primary', 'bg-green-600');
                         form.reset();
                         setTimeout(() => { btn.textContent = 'Get My Free Audit →'; btn.disabled = false; btn.className = btn.className.replace('bg-green-600', 'bg-primary'); }, 3000);
+                      } else {
+                        btn.textContent = 'Get My Free Audit →';
+                        btn.disabled = false;
+                        alert('Could not submit audit. Please message us on WhatsApp directly at +91 6284925684.');
                       }
                     } catch {
                       btn.textContent = 'Get My Free Audit →';
                       btn.disabled = false;
+                      alert('Network connection error. Please message us on WhatsApp directly at +91 6284925684.');
                     }
                   }}
                 >
@@ -1019,7 +1061,12 @@ export default function Home() {
             ⚡ Average response time: Under 5 minutes
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20want%20to%20discuss%20my%20business%20needs.%20What's%20the%20best%20way%20to%20get%20started%3F" target="_blank" rel="noopener noreferrer">
+            <a 
+              href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20want%20to%20discuss%20my%20business%20needs.%20What's%20the%20best%20way%20to%20get%20started%3F" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick('final_bottom_cta')}
+            >
               <div className={buttonVariants({ size: "lg", className: "h-14 px-10 text-lg font-semibold bg-green-600 hover:bg-green-500 rounded-xl shadow-lg shadow-green-500/25 transition-all hover:scale-105 cursor-pointer" })}>
                 <MessageCircle className="mr-2 h-5 w-5" /> WhatsApp Us Now
               </div>

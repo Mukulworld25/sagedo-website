@@ -39,18 +39,15 @@ const routes = [
       <p>Every AI needs a human in the loop. We're the best AI generalists in the game. We prompt it right, verify the output, and polish it until it's not just good — it's perfect.</p>
       <h2>Our Services</h2>
       <ul>
-        <li>Website Design &amp; Development — from ₹15,000</li>
-        <li>SEO Setup &amp; Monthly Maintenance</li>
-        <li>WhatsApp Sales Bot — from ₹4,999</li>
-        <li>CRM &amp; Lead Automation</li>
-        <li>Logo &amp; Brand Identity — from ₹1,999</li>
-        <li>GST, MSME &amp; Trademark Registration</li>
-        <li>Mobile App Development — ₹95,000</li>
+        <li>3 Delivery Tiers — Digital Presence Engine, Sovereign Revenue Engine™, Enterprise Infrastructure</li>
+        <li>SAGEDO Revenue Infrastructure Blueprint — ₹25,000, 100% credited against any tier build</li>
+        <li>AI Agent Development, AI Voice Agents &amp; Mobile App Development</li>
+        <li>Recurring Add-Ons — Google &amp; Meta Ads Management, AI Content Engine, SEO Content Retainer</li>
       </ul>
-      <h2>Launch Packages</h2>
-      <p><strong>Starter Launch — ₹15,000:</strong> AI Landing Page, Brand Identity, Domain Setup, SEO Basics. Delivered in 7 days.</p>
-      <p><strong>Full Launch — ₹35,000:</strong> Full Website + Content, Social Media Kit, Analytics, CRM + WhatsApp Bot. Delivered in 10-12 days.</p>
-      <p><strong>VIP Launch — ₹95,000:</strong> Web + Mobile App, Complete Branding, Admin Dashboard, 1-Month Support. Delivered in 15 days.</p>
+      <h2>Delivery Tiers</h2>
+      <p><strong>Digital Presence Engine — ₹45,000–₹75,000:</strong> Logo + Brand Identity, 5-Page Website, Google Business Profile, SEO Basics, Business Email. Live in 14 days or full refund. AMC ₹15,000/month.</p>
+      <p><strong>Sovereign Revenue Engine™ — ₹1,50,000–₹2,50,000 (Most Popular):</strong> Everything in Digital Presence Engine + CRM + Lead Automation, WhatsApp Sales Bot, SEO Setup + 4 Blog Posts, 30 Days Social Content. Live in 28 days, 10-gate QA certified. AMC ₹25,000/month.</p>
+      <p><strong>Enterprise Infrastructure — Starting at ₹3,50,000:</strong> Enterprise Web + Native App, Admin Dashboard, Dedicated Growth Engineer, Legal &amp; IP Contracts. AMC ₹35,000/month.</p>
       <h2>How It Works</h2>
       <ol>
         <li>Submit Your Problem — Describe your challenge in plain English or Hindi.</li>
@@ -72,51 +69,33 @@ const routes = [
   {
     path: '/services',
     title: "Services | SAGEDO — AI + Human Business Services India",
-    description: "SAGEDO offers 20+ business services for Indian SMBs — Website Design, SEO, WhatsApp Bot, CRM, GST Registration, Logo Design, Mobile App & more. Starting ₹499. Delivered in 24-48 hours.",
+    description: "SAGEDO delivers 3 execution tiers from ₹45,000 — Digital Presence Engine, Sovereign Revenue Engine™, Enterprise Infrastructure — plus the ₹25,000 Revenue Infrastructure Blueprint (100% credited) and recurring growth add-ons.",
     content: `
       <h1>SAGEDO Services — Build Your Legacy</h1>
-      <p>Precision-engineered services for founders, leaders, and visionaries who refuse to settle for average. Over 20 services across two tracks: LaunchPad (build from zero) and ScaleOps (operations that scale).</p>
-      <h2>The Founder's Stack — Launch Packages</h2>
-      <h3>Starter Launch — ₹15,000</h3>
-      <p>Everything a new business needs to exist online: Logo + Brand Identity, 5-Page Website, Google Business Profile, GST Registration, Business Email. Delivered in 7 days.</p>
-      <h3>Full Launch — ₹35,000 (Most Popular)</h3>
-      <p>Complete execution: Everything in Starter + SEO Setup + 4 Blog Posts, WhatsApp Sales Bot, CRM + Lead Automation, 30 Days Social Content. Delivered in 10-12 days.</p>
-      <h3>VIP Launch — ₹95,000</h3>
-      <p>Enterprise infrastructure: Enterprise Web + Native App, Admin Dashboard, Dedicated Growth Engineer, Legal &amp; IP Contracts. Delivered in 15 days.</p>
-      <h2>Smart Combos — Save More</h2>
+      <p>Precision-engineered services for founders, leaders, and visionaries who refuse to settle for average. One consolidated catalog: 3 delivery tiers, the Blueprint audit, standalone AI builds, and recurring add-ons.</p>
+      <h2>The Founder's Stack — Delivery Tiers</h2>
+      <h3>Digital Presence Engine — ₹45,000–₹75,000</h3>
+      <p>Everything a serious business needs to exist online: Logo + Brand Identity, 5-Page Website + SEO Basics, Google Business Profile, Business Email, Social Media Setup, GST + MSME Registration. Live in 14 days or full refund. AMC ₹15,000/month.</p>
+      <h3>Sovereign Revenue Engine™ — ₹1,50,000–₹2,50,000 (Most Popular)</h3>
+      <p>Complete execution: Everything in Digital Presence Engine + CRM + Lead Automation, WhatsApp Sales Bot + AI Website Chatbot, Sales Automation, Analytics Dashboard, Missed-Call Text-Back, Review Automation, SEO Setup + 4 Blog Posts, 30 Days Social Content. Live in 28 days, 10-gate QA certified. AMC ₹25,000/month.</p>
+      <h3>Enterprise Infrastructure — Starting at ₹3,50,000</h3>
+      <p>Enterprise infrastructure: Enterprise Web + Native App, Admin Dashboard, Dedicated Growth Engineer, Legal &amp; IP Contracts + Trademark Filing, HR System Setup. AMC ₹35,000/month.</p>
+      <h2>SAGEDO Revenue Infrastructure Blueprint — ₹25,000</h2>
+      <p>A deep audit of your revenue infrastructure — website, SEO, funnel, CRM, automations, analytics — with a prioritized build blueprint. 100% of the fee is credited against any tier build within 90 days.</p>
+      <h2>Standalone Builds &amp; Recurring Add-Ons</h2>
       <ul>
-        <li>Brand Starter Combo — Logo + Brand Colors + Business Email: ₹2,999 – ₹3,499</li>
-        <li>Google Presence Combo — Website + SEO + Google Business Profile: ₹16,999 – ₹19,999</li>
-        <li>Legal Foundation Combo — GST + MSME + Trademark Filing: ₹3,999 – ₹5,999</li>
-        <li>Sales Machine Combo — CRM + WhatsApp Bot + Lead Automation: ₹12,999 – ₹14,999</li>
+        <li>Mobile App Development — ₹59,999 – ₹95,000</li>
+        <li>AI Agent Development &amp; Operations — ₹45,000 – ₹75,000</li>
+        <li>AI Voice &amp; Telephony Agents — ₹45,000 – ₹55,000</li>
+        <li>Google &amp; Meta Ads Management — ₹15,000 – ₹25,000/month</li>
+        <li>AI Content Repurposing Engine — ₹15,000/month</li>
+        <li>SEO Content Retainer — ₹15,000/month</li>
       </ul>
-      <h2>Individual Services (LaunchPad)</h2>
+      <h2>AMC &amp; Expert Guidance</h2>
       <ul>
-        <li>Website Design &amp; Development</li>
-        <li>SEO Setup &amp; Optimization</li>
-        <li>Logo &amp; Brand Identity Design</li>
-        <li>Google Business Profile Setup</li>
-        <li>WhatsApp Sales Bot</li>
-        <li>CRM &amp; Lead Automation</li>
-        <li>GST Registration</li>
-        <li>MSME Registration</li>
-        <li>Trademark Filing</li>
-        <li>Business Email Setup</li>
-        <li>Mobile App Development</li>
-      </ul>
-      <h2>ScaleOps — Ongoing Operations</h2>
-      <h3>Expert Guidance</h3>
-      <ul>
-        <li>First Chat FREE — 30 min (New signup offer)</li>
-        <li>Chat Session — 30 min: ₹499</li>
-        <li>Strategy Call — 30 min with Mukul: ₹999</li>
-        <li>Monthly Retainer — 2 calls + unlimited chat: ₹2,999/mo</li>
-      </ul>
-      <h3>Maintenance Plans</h3>
-      <ul>
-        <li>SEO Maintenance — ₹2,999/mo: 1 blog post/mo + rank monitoring + competitor check</li>
-        <li>Website Maintenance — ₹1,499/mo: Speed + security updates + bug fixes + uptime</li>
-        <li>Full Stack Plan — ₹7,999/mo: Everything above + priority support + monthly strategy call</li>
+        <li>Tier AMCs — ₹15,000/mo (Tier 1), ₹25,000/mo (Tier 2), ₹35,000/mo (Tier 3)</li>
+        <li>First Discovery Call — 15 min, FREE</li>
+        <li>Growth Retainer — ₹15,000/mo: weekly sync calls + priority WhatsApp access</li>
       </ul>
       <p>Contact: WhatsApp +91 6284925684 | Email hello@sagedo.in</p>
     `,
@@ -129,7 +108,7 @@ const routes = [
     description: "Learn about SAGEDO, founded by Mukul Dhiman (ex-Tata Lockheed Martin). We combine AI speed with human precision to deliver 30+ digital services across India. Based in Chandigarh.",
     content: `
       <h1>About SAGE DO</h1>
-      <p>SAGE DO is India's first AI + Human hybrid service platform. We combine the speed and scale of artificial intelligence with the precision and creativity of human experts to deliver professional-grade digital services — from websites and apps to marketing and business automation.</p>
+      <p>SAGE DO is India's first AI + Human hybrid service platform. We combine the speed and scale of artificial intelligence with the precision and creativity of human experts to deliver professional-grade digital services — from websites and apps to content creation, marketing, and business automation.</p>
       <p>With 30+ services across Startup Launch, Marketing, Design, and Engineering categories, we serve visionary founders, high-growth startups, and elite enterprises. Every task is analyzed by AI, verified by humans, and delivered within 24-48 hours.</p>
       <h2>Founder — Mukul Dhiman</h2>
       <p>Ex-Aerospace engineer (Tata Lockheed Martin — C130J/F16 programs), Operations Manager (25-person teams, 40% efficiency improvement), Full-stack Developer (SaaS, mobile apps, AI automation), AI Engineer (Built 30+ AI-powered services from scratch).</p>
@@ -179,19 +158,19 @@ const routes = [
       <h2>What is SAGE DO?</h2>
       <p>SAGE DO is India's first AI + Human Hybrid Execution Team. We combine AI speed with human precision to deliver agency-quality websites, apps, branding, and automation in 24-48 hours at freelancer prices.</p>
       <h2>How much does SAGE DO cost?</h2>
-      <p>Individual services start from ₹199. Startup launch packages range from ₹15,000 (Starter) to ₹95,000 (VIP). We are 10x cheaper than traditional agencies.</p>
+      <p>SAGE DO pricing is structured in three tiers: Digital Presence Engine (₹45,000–₹75,000 one-time, AMC ₹15,000/month), Sovereign Revenue Engine™ (₹1,50,000–₹2,50,000 one-time, AMC ₹25,000/month), and Enterprise Infrastructure (starting at ₹3,50,000, AMC ₹35,000/month).</p>
       <h2>How fast does SAGE DO deliver?</h2>
-      <p>Most services are delivered within 24-48 hours. Starter Launch package in 7 days, Full Launch in 10-12 days.</p>
+      <p>The Digital Presence Engine is live in 14 days or you receive a full refund. Sovereign Revenue Engine™ goes live in 28 days, 10-gate QA certified. Enterprise Infrastructure timelines are scoped per engagement.</p>
       <h2>Who founded SAGE DO?</h2>
       <p>Mukul Dhiman, ex-Tata Lockheed Martin aerospace engineer turned AI founder. He personally oversees every project.</p>
       <h2>Is SAGE DO available in my city?</h2>
       <p>Yes! SAGE DO serves all of India remotely. Based in Chandigarh, we work with clients across Delhi, Mumbai, Bangalore, Hyderabad, and all other cities via WhatsApp.</p>
       <h2>How much does an AI website cost in India?</h2>
-      <p>At SAGE DO, a professional AI-powered website starts at ₹15,000 with our Starter Launch package — delivered in just 7 days. Traditional agencies charge ₹2-5 Lakhs.</p>
+      <p>At SAGE DO, a professional AI-powered website starts at ₹45,000 with the Digital Presence Engine — live in 14 days or full refund. Traditional agencies charge ₹2-5 Lakhs.</p>
       <h2>What is the best budget CRM setup for Indian small businesses?</h2>
-      <p>SAGE DO offers affordable CRM setup starting from ₹4,999. We configure HubSpot Free, Zoho, or custom solutions optimized for Indian SMBs with WhatsApp integration.</p>
+      <p>CRM and revenue automation at SAGE DO is delivered through Sovereign Revenue Engine™ (₹1,50,000–₹2,50,000 one-time, AMC ₹25,000/month) — CRM setup, lead automation, and WhatsApp integration, live in 28 days with 10-gate QA certification.</p>
       <h2>How much does a WhatsApp sales bot cost in India?</h2>
-      <p>SAGE DO builds WhatsApp sales bots starting at ₹4,999. Setup takes 24-48 hours and includes integration with your existing business workflow.</p>
+      <p>WhatsApp sales automation at SAGE DO is included in the Sovereign Revenue Engine™ tier (₹1,50,000–₹2,50,000 one-time, AMC ₹25,000/month), live in 28 days with 10-gate QA certification.</p>
     `,
   },
 
@@ -221,6 +200,8 @@ const routes = [
     content: `
       <h1>SAGEDO Blog — Insights &amp; Case Studies</h1>
       <p>Real stories from the frontlines of AI execution. No fluff. No theory. Just what works for Indian founders.</p>
+      <h2><a href="/blog/custom-crm-vs-zoho-zero-seat-decision-indian-msmes">Custom CRM vs. Zoho: The Zero-Per-Seat Decision for Indian MSMEs</a></h2>
+      <p>Pillar guide: Zoho costs ₹12 lakh/year at 100 users vs ₹3.6 lakh/year all-in for a SAGEDO custom CRM — full 5-year TCO table, crossover math, and FAQ.</p>
       <h2><a href="/blog/how-i-built-digital-ecosystem-jute-manufacturer-5-days">How I Built a Complete Digital Ecosystem for a Jute Manufacturer in 5 Days</a></h2>
       <p>A rural jute products business had zero online presence. I built their website, brand identity, social media, and Google listing from scratch in 5 days flat.</p>
       <h2><a href="/blog/how-much-website-cost-india-2026">How Much Does a Website Cost in India in 2026? Complete Breakdown</a></h2>
@@ -303,7 +284,7 @@ const routes = [
     path: '/blog/5-signs-business-needs-sagedo',
     title: "5 Signs Your Business Needs SAGEDO Right Now — SAGEDO Blog",
     description: "5 warning signs your business execution is broken: unfinished website, freelancer chaos, dead social media, no analytics, doing everything yourself.",
-    content: `<article><h1>5 Signs Your Business Needs SAGEDO Right Now</h1><p>By Mukul Dhiman | February 25, 2026 | 4 min read</p><ol><li>You're still "working on" your website after 2+ weeks</li><li>You're spending more time managing freelancers than building</li><li>Your social media looks like an afterthought</li><li>You don't know where your leads come from</li><li>You're doing everything yourself — CEO, designer, writer, tech support</li></ol>      <p>SAGEDO fixes all of these. Starter Launch ₹15,000. Social media setup from ₹1,999. Get a free audit at sagedo.in/free-audit.</p></article>`,
+    content: `<article><h1>5 Signs Your Business Needs SAGEDO Right Now</h1><p>By Mukul Dhiman | February 25, 2026 | 4 min read</p><ol><li>You're still "working on" your website after 2+ weeks</li><li>You're spending more time managing freelancers than building</li><li>Your social media looks like an afterthought</li><li>You don't know where your leads come from</li><li>You're doing everything yourself — CEO, designer, writer, tech support</li></ol><p>SAGEDO fixes all of these. Starter Launch ₹15,000. Social media from ₹4,999/mo. Get a free audit at sagedo.in/free-audit.</p></article>`,
   },
 
   // ── ALTERNATIVES PAGES ──────────────────────────────────────────────
@@ -397,6 +378,120 @@ const routes = [
     description: "Join SAGE DO and work at the intersection of AI and human execution. Open roles in engineering, design, SEO, sales, and AI prompt engineering. Remote-first, founder-led.",
     content: `<h1>Careers at SAGE DO — Build the Future of Execution</h1><p>SAGE DO isn't just another agency. We're building India's first AI + Human hybrid execution engine. If you want to ship real work for real businesses — not sit in meetings — this is your place.</p><h2>Open Positions</h2><ul><li>AI Prompt Engineer — Full-time / Remote</li><li>Full-Stack Developer — Full-time / Remote</li><li>Brand & Graphic Designer — Contract / Remote</li><li>SEO & Content Strategist — Full-time / Remote</li><li>Sales & Outreach Executive — Full-time / Chandigarh</li><li>Digital Marketing Intern — Internship / Remote</li></ul><h2>Why Join?</h2><ul><li>Founder-led — Work directly with Mukul, no middle management</li><li>Remote-first — Work from anywhere in India</li><li>Real impact — Every project ships, you see your work live within 48 hours</li></ul><p>Apply at sagedo.in/careers or WhatsApp +91 6284925684</p>`,
   },
+
+  // ── PILLAR: CUSTOM CRM VS ZOHO (Sept 2026) ──────────────────────────
+  {
+    path: '/blog/custom-crm-vs-zoho-zero-seat-decision-indian-msmes',
+    title: 'Custom CRM vs. Zoho: The Zero-Per-Seat Decision for Indian MSMEs — SAGEDO',
+    description: 'Zoho costs ₹12 lakh/year at 100 users (₹45 lakh over 5 years). A SAGEDO custom CRM is ₹2.5 lakh one-time plus ₹25,000/month (₹17.5 lakh over 5 years) with zero per-seat cost. Full 5-year TCO table, crossover math, and FAQ for Indian MSMEs.',
+    jsonLd: `<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "How much does custom CRM development cost in Chandigarh and Mohali?", "acceptedAnswer": {"@type": "Answer", "text": "In the Tri-City market, a production custom CRM with unlimited seats, WhatsApp lead routing, GST/Tally flows, and dashboards costs ₹1,50,000–₹2,50,000 one-time from SAGEDO (delivered in 28 days, source code included). Metro agencies quote ₹8–15 lakh for equivalent scope. Zoho's alternative is roughly ₹12,000/seat/year, ongoing."}},
+    {"@type": "Question", "name": "Is Zoho CRM cheaper than a custom-built CRM?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, up to roughly 8–25 users depending on growth. For a business scaling from 25 to 100 users, cumulative Zoho licence spend passes the one-time custom build cost around year 2–3; after the crossover the custom CRM is cheaper every year — about ₹3.6 lakh/year all-in versus ₹12 lakh/year for 100 Zoho seats."}},
+    {"@type": "Question", "name": "What does zero per seat mean in CRM pricing?", "acceptedAnswer": {"@type": "Answer", "text": "A zero-per-seat custom CRM carries no per-user licence. Adding users has zero marginal software cost; the only recurring cost is a flat maintenance contract — ₹25,000/month at SAGEDO — covering hosting, security patching, backups, and support, which does not scale with headcount."}},
+    {"@type": "Question", "name": "How long does a SAGEDO custom CRM take to build?", "acceptedAnswer": {"@type": "Answer", "text": "SAGEDO's published Sovereign Revenue Engine delivery window is 28 calendar days: discovery and blueprint in days 1–3, the core build sprint in days 4–21, and handover with staff training and a monitored SLA in days 22–28. Full source code and database credentials transfer at handover."}},
+    {"@type": "Question", "name": "Do we own our CRM data and code with a custom build?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The PostgreSQL database and full source code are handed over, and unaided export in documented formats should be a contractual requirement with any vendor. With Zoho, data remains in Zoho's multi-tenant cloud, accessible via APIs and export tools but never self-hosted."}},
+    {"@type": "Question", "name": "Can a custom CRM integrate with WhatsApp, Tally, and Razorpay?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — that integration is the core value. SAGEDO builds ship with WhatsApp Business API lead capture and routing, GST-aware Tally handoff, and Razorpay/UPI payment capture as core scope rather than paid add-on modules, which is where per-seat SaaS bills typically expand."}}
+  ]
+}
+</script>`,
+    content: `<article>
+<h1>Custom CRM vs. Zoho: The Zero-Per-Seat Decision for Indian MSMEs</h1>
+<p>By Mukul Dhiman | September 10, 2026 | 10 min read | SAGEDO — SCO-38, Mohali City Centre, serving Chandigarh, Panchkula, and all India.</p>
+<h2>BLUF — the answer in 40 words</h2>
+<p>At 100 users, Zoho CRM costs ₹12 lakh a year — ₹45 lakh over five years. A SAGEDO custom CRM is ₹2.5 lakh one-time plus ₹25,000/month, or ₹17.5 lakh over five years, with zero per-seat cost. Custom wins after crossover.</p>
+<h2>Why per-seat pricing is the wrong unit for a growing business</h2>
+<p>Zoho CRM's India list price is roughly ₹1,000/user/month (mid-plan, annual billing, before GST). At 25 users that is ₹3,00,000/year; at 50 users ₹6,00,000/year; at 100 users ₹12,00,000/year. The licence compounds with every headcount you add — and you own nothing at the end.</p>
+<h2>Zoho vs SAGEDO: 5-year TCO (25 users scaling to 100)</h2>
+<table>
+<tr><th>Line item</th><th>Zoho (per-seat SaaS)</th><th>SAGEDO custom CRM (Sovereign Revenue Engine)</th></tr>
+<tr><td>Build / setup (Year 0)</td><td>₹1,50,000 partner setup + migration</td><td>₹2,50,000 one-time — 28-day build, unlimited seats</td></tr>
+<tr><td>Years 1–2 (25 users)</td><td>₹3,00,000/year licences</td><td>₹3,00,000/year flat AMC</td></tr>
+<tr><td>Years 3–5 (100 users)</td><td>₹12,00,000/year licences</td><td>₹3,00,000/year flat AMC</td></tr>
+<tr><td><strong>5-year total</strong></td><td><strong>₹43,50,000</strong></td><td><strong>₹17,50,000 (≈60% cheaper)</strong></td></tr>
+<tr><td>Cost of the 100th seat</td><td>₹12,000/year, forever</td><td>₹0</td></tr>
+<tr><td>Data ownership</td><td>Vendor-hosted, API export only</td><td>Own PostgreSQL + full source code</td></tr>
+<tr><td>WhatsApp / Tally / Razorpay</td><td>Paid add-on modules + glue</td><td>Built into the core build</td></tr>
+</table>
+<h2>The honest crossover point</h2>
+<p>Below ~8 users, Zoho is cheaper — stay on it. For a business scaling from 25 to 100 users, cumulative licence spend passes the one-time build cost around year 2–3. After the crossover the custom CRM is cheaper every single year, because 100 Zoho seats cost ₹12 lakh annually while 100 custom seats cost ₹0.</p>
+<h2>What a SAGEDO Sovereign Revenue Engine build includes (28-day delivery)</h2>
+<p>Custom CRM with unlimited seats and role-based access control; WhatsApp Business API lead capture with routing under 60-second speed-to-lead; GST-aware Tally handoff; Razorpay/UPI payment capture; revenue dashboards with no per-report charges; full source-code and database handover. One-time ₹1,50,000–₹2,50,000 by scope, then a flat ₹25,000/month AMC covering hosting, SSL, security patching, backups, and support. For comparison, metro system-integration agencies typically quote ₹8–15 lakh for equivalent scope with 4–6 month timelines.</p>
+<h2>FAQ — Custom CRM vs Zoho for Indian MSMEs</h2>
+<p><strong>How much does custom CRM development cost in Chandigarh and Mohali?</strong> ₹1,50,000–₹2,50,000 one-time from SAGEDO (28 days, source code included); ₹8–15 lakh at metro agencies; the Zoho alternative is roughly ₹12,000/seat/year, ongoing.</p>
+<p><strong>Is Zoho CRM cheaper than a custom-built CRM?</strong> Yes below roughly 8–25 users. Above the crossover (year 2–3 for a 25→100 user trajectory), the custom CRM is cheaper every year — ₹3.6 lakh/year all-in vs ₹12 lakh/year at 100 seats.</p>
+<p><strong>What does zero per seat mean?</strong> No per-user licence at all; the only recurring cost is the flat ₹25,000/month AMC, which does not scale with headcount.</p>
+<p><strong>How long does a SAGEDO custom CRM take?</strong> 28 calendar days: discovery (days 1–3), build sprint (days 4–21), handover with training and SLA (days 22–28).</p>
+<p><strong>Do we own our data and code?</strong> Yes — PostgreSQL database and full source code are handed over; Zoho data stays in Zoho's multi-tenant cloud.</p>
+<p><strong>Can it integrate WhatsApp, Tally, and Razorpay?</strong> Yes — as core scope, not paid add-ons.</p>
+<p>Request the free 72-hour Revenue-Leak Audit at sagedo.in/free-audit or WhatsApp +91-6284925684. Pricing figures are face-value estimates as of September 2026; verify vendor sheets before signing.</p>
+</article>`,
+  },
+
+  // ── PUBLIC UTILITY ROUTES (pre-render shells for crawlers) ─────────
+  {
+    path: '/orders',
+    title: 'Checkout | SAGEDO — Secure Payment',
+    description: 'Complete your SAGEDO order securely. Fast checkout for AI business services, automation packages, and digital solutions.',
+    content: `<h1>Checkout | SAGEDO</h1><p>Complete your order for AI business services, automation packages, and digital solutions.</p><p>Secure payment processing available.</p>`,
+  },
+  {
+    path: '/login',
+    title: 'Login | SAGEDO',
+    description: 'Log in to your SAGEDO account to access your projects and orders.',
+    content: `<h1>Login | SAGEDO</h1><p>Log in to access your account, projects, and order history.</p>`,
+  },
+  {
+    path: '/forgot-password',
+    title: 'Forgot Password | SAGEDO',
+    description: 'Enter your email to reset your password and regain access to your account.',
+    content: `<h1>Forgot Password | SAGEDO</h1><p>Enter your email address to receive a password reset link.</p>`,
+  },
+  {
+    path: '/reset-password',
+    title: 'Reset Password | SAGEDO',
+    description: 'Set a new password for your SAGEDO account.',
+    content: `<h1>Reset Password | SAGEDO</h1><p>Set a new password for your SAGEDO account.</p>`,
+  },
+  {
+    path: '/dashboard',
+    title: 'Dashboard | SAGEDO',
+    description: 'Your SAGEDO dashboard — view projects, orders, and analytics.',
+    content: `<h1>Dashboard | SAGEDO</h1><p>View your projects, orders, and analytics dashboard.</p>`,
+  },
+  {
+    path: '/verify-email',
+    title: 'Verify Email | SAGEDO',
+    description: 'Verify your email address to complete your SAGEDO account setup.',
+    content: `<h1>Verify Email | SAGEDO</h1><p>Click the verification link sent to your email to complete your account setup.</p>`,
+  },
+  {
+    path: '/settings',
+    title: 'Settings | SAGEDO',
+    description: 'Update your account settings and profile information.',
+    content: `<h1>Settings | SAGEDO</h1><p>Update your account settings and profile information.</p>`,
+  },
+  {
+    path: '/order-success',
+    title: 'Order Successful | SAGEDO',
+    description: 'Your order has been completed successfully. Thank you for your purchase!',
+    content: `<h1>Order Successful | SAGEDO</h1><p>Thank you for your purchase! Your order has been completed successfully.</p>`,
+  },
+  {
+    path: '/pay',
+    title: 'Payment | SAGEDO',
+    description: 'Payment page for SAGEDO services.',
+    content: `<h1>Payment | SAGEDO</h1><p>Complete payment for SAGEDO services.</p>`,
+  },
+  {
+    path: '/shipping-policy',
+    title: 'Shipping Policy | SAGEDO',
+    description: 'SAGEDO shipping policy and delivery information.',
+    content: `<h1>Shipping Policy | SAGEDO</h1><p>SAGEDO ships digital deliverables (source code, credentials, design assets) electronically. Physical goods, where applicable, are dispatched within 3-5 business days via standard courier with tracking. For delivery questions contact hello@sagedo.in or WhatsApp +91-6284925684.</p>`,
+  }
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -498,6 +593,11 @@ function prerender() {
       html = html.replace('</head>', `${articleSchema}\n</head>`);
     }
 
+    // 5b. Inject optional route-specific JSON-LD (e.g., FAQPage on pillar posts)
+    if (route.jsonLd) {
+      html = html.replace('</head>', `${route.jsonLd}\n</head>`);
+    }
+
     // 6. Replace the existing noscript block with route-specific content
     //    The noscript block is VISIBLE to crawlers that don't execute JS
     //    Real users with JS enabled see the React app instead
@@ -522,7 +622,6 @@ function prerender() {
     successCount++;
     console.log(`  ✓ ${route.path}`);
   }
-
   console.log(`\n✅ Pre-rendered ${successCount}/${routes.length} routes in dist/`);
   console.log('   Each page now has unique title, meta, canonical, OG tags, and body content.');
 }

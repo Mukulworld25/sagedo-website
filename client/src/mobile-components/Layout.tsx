@@ -67,7 +67,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentRoute, onNavigate }
                 </div>
                 <div className="text-left">
                   <p className="text-white font-bold text-sm">Order a Service</p>
-                  <p className="text-neutral-400 text-xs">Browse 30+ services and place an order</p>
+                  <p className="text-neutral-400 text-xs">Browse services and place an order</p>
                 </div>
               </button>
             </div>

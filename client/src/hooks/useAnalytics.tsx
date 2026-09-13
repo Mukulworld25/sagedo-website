@@ -32,3 +32,18 @@ export function useAnalytics() {
 
     }, [location]);
 }
+
+export function trackEvent(eventName: string, params?: Record<string, any>) {
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', eventName, params);
+    }
+}
+
+export function trackWhatsAppClick(source: string, extra?: Record<string, any>) {
+    trackEvent('whatsapp_click', {
+        event_category: 'Lead',
+        event_label: source,
+        source,
+        ...extra
+    });
+}

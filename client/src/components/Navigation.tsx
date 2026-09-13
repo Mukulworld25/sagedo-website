@@ -2,6 +2,7 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Sparkles, Gift, ExternalLink, Settings, MessageCircle } from "lucide-react";
 import { useState } from "react";
+import { trackWhatsAppClick } from "@/hooks/useAnalytics";
 import { useAuth } from "@/hooks/useAuth";
 import { useLanguage } from "@/components/LanguageProvider";
 
@@ -144,7 +145,12 @@ export default function Navigation() {
                           Login
                         </Button>
                       </Link>
-                      <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20visited%20SAGE%20DO%20and%20I'm%20interested%20in%20your%20services." target="_blank" rel="noopener noreferrer">
+                      <a 
+                        href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20visited%20SAGE%20DO%20and%20I'm%20interested%20in%20your%20services." 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        onClick={() => trackWhatsAppClick('navbar_desktop_cta')}
+                      >
                         <Button
                           size="sm"
                           variant="default"
@@ -246,13 +252,20 @@ export default function Navigation() {
                   </>
                 ) : (
                   <div className="space-y-2">
-                    <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20visited%20SAGE%20DO%20and%20I'm%20interested%20in%20your%20services." target="_blank" rel="noopener noreferrer">
+                    <a 
+                      href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20visited%20SAGE%20DO%20and%20I'm%20interested%20in%20your%20services." 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      onClick={() => {
+                        trackWhatsAppClick('navbar_mobile_cta');
+                        setIsMobileMenuOpen(false);
+                      }}
+                    >
                       <Button
                         size="sm"
                         variant="default"
                         data-testid="button-mobile-signup"
                         className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400"
-                        onClick={() => setIsMobileMenuOpen(false)}
                       >
                         <MessageCircle className="w-4 h-4 mr-1.5" />
                         <span className="relative">WhatsApp Us</span>

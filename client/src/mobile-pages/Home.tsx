@@ -330,7 +330,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           onClick={() => onNavigate(AppRoute.SERVICES)}
           className="w-full mt-5 py-3.5 rounded-2xl border border-white/10 text-white/80 text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 active:scale-95 transition-all hover:bg-white/5"
         >
-          Explore All 30+ Services <ArrowRight className="w-4 h-4" />
+          Explore All Services <ArrowRight className="w-4 h-4" />
         </button>
       </section>
 

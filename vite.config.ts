@@ -22,7 +22,10 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
+          // Code splitting for better performance (only packages that are
+          // installed and actually imported by client code)
           vendor: ['react', 'react-dom'],
+          ui: ['lucide-react', 'wouter'],
         },
       },
     },

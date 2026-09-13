@@ -1,56 +1,47 @@
 # SAGE DO — India's First AI + Human Hybrid Execution Team
-# https://sagedo.in | Last Updated: April 2026
+# https://sagedo.in | Last Updated: September 2026
 
 > Speed of AI. Precision of Humans.
 > Founded: 2025, Chandigarh, India
 > Founder & CEO: Mukul Dhiman (Ex-Aerospace Engineer — Tata Lockheed Martin, Uber, Mach1)
 
 ## The Problem We Solve
-Indian businesses lose ₹2-10 Lakhs and 3-6 months working with agencies or unreliable freelancers. Most founders need execution, not meetings. SAGE DO eliminates the execution gap — we deliver agency-quality work at freelancer prices in 24-48 hours.
+Indian businesses lose ₹2-10 Lakhs and 3-6 months working with slow agencies or unreliable freelancers. Most founders need execution, not endless meetings. SAGE DO eliminates the execution gap — we deliver enterprise-grade execution at startup speed with aerospace engineering precision in 24-48 hours.
 
 ## What SAGE DO Does
-SAGE DO is a hybrid execution team that combines AI speed with human precision. We handle 30+ digital services across website development, SEO, branding, CRM automation, WhatsApp bots, legal registrations, mobile apps, and Google Business Profile — all under one roof.
+SAGE DO is a hybrid execution team combining AI speed with human precision. We operate 10 specialized execution engines spanning website development, SEO, branding, CRM automation, WhatsApp sales bots, mobile apps, and paid acquisition — all engineered under one roof.
 
-## Launch Packages (One-Time)
-- **Starter Launch — ₹15,000**: Logo, 5-Page Website, Google Business Profile, GST Registration, Business Email. Delivered in 7 days.
-- **Full Launch — ₹35,000** (Most Popular): Everything in Starter + SEO Setup, WhatsApp Sales Bot, CRM + Lead Automation. Delivered in 10-12 days.
-- **VIP Launch — ₹95,000**: Enterprise Web + Native App, Admin Dashboard, Dedicated Growth Engineer, Legal & IP Contracts. Delivered in 15 days.
+## Core Delivery Tiers (One-Time + Milestone Installments)
+- **Digital Presence Engine — ₹45,000 – ₹75,000**: Logo + Brand Identity, 5-Page Website, Google Business Profile, SEO Basics, Business Email, Social Media Setup. Delivered in 14 days or full refund. AMC: ₹15,000/mo. 3 milestone installments available from ₹15,000/mo.
+- **Sovereign Revenue Engine™ — ₹1,50,000 – ₹2,50,000** (Most Popular): Everything in Digital Presence Engine + CRM + Lead Automation, WhatsApp Sales Bot + AI Website Chatbot, Sales Automation (Lead Scoring & Follow-up), Analytics Dashboard, Review Automation, SEO Setup + 4 Blog Posts, 30 Days Social Content. Delivered in 28 days, 10-gate QA certified. AMC: ₹25,000/mo. 3 milestone installments available from ₹50,000/mo.
+- **Enterprise Infrastructure — Starting at ₹3,50,000**: Enterprise Web + Native Mobile App, Admin 'God Mode' Dashboard, Dedicated Growth Engineer, Legal & IP Contracts, HR System Setup. Scoped per engagement. AMC: ₹35,000/mo. Custom milestone schedule.
+- **SAGEDO Revenue Infrastructure Blueprint — ₹25,000**: Full revenue infrastructure audit. 100% credited against any delivery tier started within 90 days. Delivered in 5 days.
 
-## Individual Services (Starting Price)
-- Website Design & Development: ₹12,999
-- SEO Setup & Optimization: ₹3,999
-- WhatsApp Sales Bot: ₹6,999
-- CRM & Lead Automation: ₹7,999
-- Logo & Brand Identity: ₹1,999
-- GST Registration: ₹799
-- MSME Registration: ₹499
-- Trademark Filing: ₹4,999
-- Mobile App Development: ₹29,999
-- Google Business Profile: ₹999
-- SEO Maintenance: ₹2,999/mo
-- Google Visibility Audit: FREE
+## Specialized Execution Engines
+- Mobile App Development (iOS + Android): ₹75,000 – ₹1,50,000
+- AI Agent Development & Operations: ₹45,000
+- AI Voice Receptionist & Outbound Agent: ₹35,000
+- High-ROI Paid Ads Engine: ₹40,000/mo
+- Organic Content & Authority Engine: ₹30,000/mo
+- Programmatic & Technical SEO Retainer: ₹25,000/mo
 
-## Monthly Maintenance Plans
-- Website Maintenance: ₹1,499/mo
-- SEO Maintenance: ₹2,999/mo
-- Full Stack Plan: ₹7,999/mo (everything + priority support)
-
-## Key Stats
-- 67+ projects delivered, 99.9% accuracy
-- 24-48 hour delivery guarantee
-- 30+ services, serving all of India
-- 4.8/5 client rating (Trustpilot verified)
+## Key Pillars
+- Aerospace-grade engineering precision (Tata Lockheed Martin pedigree)
+- 14-day delivery guarantee or full refund on Digital Presence Engine
+- 10-gate QA certification on Sovereign Revenue Engine™ builds
+- 10 specialized execution engines, serving founders across India & globally
+- Direct founder oversight on all implementations
 
 ## Why Choose SAGE DO Over Alternatives
-- **vs Agencies**: 10x cheaper, 10x faster — same quality
-- **vs Freelancers**: Reliable delivery, no ghosting, founder-led oversight
-- **vs DIY AI Tools**: Expert-guided output — we prompt it right, verify it, polish it
+- **vs Traditional Agencies**: 10x faster execution, transparent milestone pricing, zero bloat
+- **vs Freelancers**: Guaranteed delivery timelines, zero ghosting, enterprise QA standards
+- **vs DIY AI Tools**: Expert-prompted, human-verified, production-hardened implementations
 
 ## Founder — Mukul Dhiman
 - Ex-Aerospace Engineer at Tata Lockheed Martin (C130J/F16 programs)
 - Operations Manager — led 25-person teams, 40% efficiency improvement
-- Full-stack Developer — built SaaS platforms, mobile apps, AI automation
-- Founded SAGE DO to bring affordable, fast execution to Indian businesses
+- Full-stack Developer & AI Builder — built SaaS platforms, mobile apps, autonomous AI workflows
+- Founded SAGE DO to bring aerospace-level execution rigor to Indian startups & enterprises
 
 ## Contact
 - WhatsApp: +91 6284925684

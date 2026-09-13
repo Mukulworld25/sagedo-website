@@ -17,9 +17,9 @@ const tabData = [
         desc: 'AI + Human packages to launch and scale',
         categories: ['Business', 'Startup Launch'],
         packages: [
-            { name: "Starter Launch", price: "₹15,000", desc: "Website ready for solo founders", delivery: "7 days", badge: "STARTER", features: ["AI Landing Page", "Human Brand Identity", "Domain Setup", "SEO Basics"] },
-            { name: "Full Launch", price: "₹35,000", desc: "Complete technical & creative execution", delivery: "10-12 days", badge: "POPULAR", features: ["Full Website + Content", "Human Strategy + Design", "Social Media Kit", "Analytics Setup"] },
-            { name: "VIP Launch", price: "₹95,000", desc: "Full stack web + mobile + branding", delivery: "15 days", badge: "VIP", features: ["Web + Mobile App", "Human UX + Testing", "Complete Branding", "1-Month Support"] }
+            { name: "Digital Presence Engine", price: "₹45,000", desc: "Inbound lead capture & WhatsApp gateway", delivery: "14 days", badge: "INBOUND", features: ["Mobile Web Storefront", "WhatsApp API Webhook", "Interactive Calculator", "Founder Lead Alerts"] },
+            { name: "Sovereign Revenue Engine™", price: "₹1,50,000", desc: "Custom CRM & WhatsApp sales pipeline", delivery: "28 days", badge: "POPULAR", features: ["Full Custom CRM", "Unlimited Seats & RBAC", "WhatsApp Lead Routing", "Tally Prime Bridge"] },
+            { name: "Enterprise Infrastructure", price: "₹3,50,000", desc: "Sovereign automation & ERP bridge", delivery: "45-60 days", badge: "ENTERPRISE", features: ["Tally Prime Ledger Sync", "Multi-Branch Dispatch", "Custom AI OCR", "Sovereign VPS"] }
         ]
     },
     {
@@ -91,7 +91,7 @@ export const Tools: React.FC<ServicesProps> = ({ onNavigate }) => {
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500" />
                     <input
                         type="text"
-                        placeholder="Search 30+ services..."
+                        placeholder="Search all services..."
                         value={searchQuery}
                         onChange={e => setSearchQuery(e.target.value)}
                         className="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white/[0.03] border border-white/8 text-white text-sm placeholder:text-neutral-600 focus:outline-none focus:border-red-500/40 focus:bg-white/[0.05] transition-all"

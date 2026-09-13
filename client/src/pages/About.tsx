@@ -22,7 +22,7 @@ export default function About() {
   const socialMedia = [
     { name: "WhatsApp", icon: MessageCircle, handle: "+91 6284925684", color: "from-green-600 to-emerald-600", url: "https://wa.me/916284925684" },
     { name: "Instagram", icon: Instagram, handle: "@sagedoai00", color: "from-pink-600 to-purple-600", url: "https://www.instagram.com/sagedoai00/" },
-    { name: "LinkedIn", icon: Linkedin, handle: "SAGE DO", color: "from-blue-600 to-blue-700", url: "https://www.linkedin.com/company/112693037" },
+    { name: "LinkedIn", icon: Linkedin, handle: "SAGE DO", color: "from-blue-600 to-blue-700", url: "https://www.linkedin.com/company/sagedo-in/" },
     { name: "YouTube", icon: Youtube, handle: "@SageDo-Ai", color: "from-red-600 to-red-700", url: "https://www.youtube.com/@SageDo-Ai" },
     { name: "Email", icon: Mail, handle: "hello@sagedo.in", color: "from-orange-600 to-red-600", url: "mailto:hello@sagedo.in" },
   ];
@@ -31,7 +31,7 @@ export default function About() {
     { emoji: "🚀", text: "Ex-Aerospace Engineer (Tata Lockheed Martin — C130J/F16 programs)" },
     { emoji: "⚙️", text: "Operations Manager (25-person teams, 40% efficiency improvement)" },
     { emoji: "💻", text: "Full-stack Developer (SaaS, mobile apps, AI automation)" },
-    { emoji: "🤖", text: "AI Engineer (Built 30+ AI-powered services from scratch)" },
+    { emoji: "🤖", text: "AI Systems Engineer (Architected end-to-end AI hybrid engines)" },
   ];
 
   return (
@@ -62,7 +62,7 @@ export default function About() {
             <p className="text-xl text-muted-foreground leading-relaxed mb-6">
               <strong className="text-foreground">SAGE DO is India's first AI + Human hybrid service platform.</strong> We combine the speed and scale of artificial intelligence with the precision and creativity of human experts to deliver professional-grade digital services — from websites and apps to marketing and business automation.
             </p>
-            With <strong className="text-foreground">30+ services</strong> across Startup Launch, Marketing, Design, and Engineering categories, we serve visionary founders, high-growth startups, and elite enterprises who refuse to settle for mediocre results. Every task is analyzed by AI, verified by humans, and delivered within <strong className="text-primary">24-48 hours</strong>.
+            With <strong className="text-foreground">specialized execution engines</strong> across Startup Launch, Marketing, Design, and Engineering categories, we serve visionary founders, high-growth startups, and elite enterprises who refuse to settle for mediocre results. Every task is analyzed by AI, verified by humans, and delivered within <strong className="text-primary">24-48 hours</strong>.
             <p className="text-lg text-muted-foreground leading-relaxed">
               Founded in Chandigarh, India, SAGE DO was built on a simple truth: <span className="text-primary font-semibold">Indian businesses deserve agency-quality work at startup-friendly prices</span>. No more paying ₹5 Lakhs to agencies. No more chasing freelancers. No more spending hours fighting with AI tools. Just tell us what you need — we handle the rest.
             </p>
@@ -180,7 +180,7 @@ export default function About() {
           <div className="text-center mt-8">
             <a href="/services">
               <div className={buttonVariants({ variant: "outline", className: "font-bold px-8 h-12 rounded-xl cursor-pointer border-border/50 hover:bg-muted/50" })}>
-                Explore All 30+ Services <ArrowRight className="ml-2 h-4 w-4" />
+                Explore All Services <ArrowRight className="ml-2 h-4 w-4" />
               </div>
             </a>
           </div>
@@ -494,8 +494,9 @@ export default function About() {
                 <div className="space-y-3 text-muted-foreground text-sm">
                   <p>
                     SAGE DO AI<br />
-                    Chandigarh, India<br />
-                    PIN: 160014
+                    SCO-38, Mohali City Centre, Aerocity<br />
+                    Mohali, Punjab 140306<br />
+                    <span className="text-xs text-muted-foreground font-mono">MSME Reg: UDYAM-HP-04-0042175</span>
                   </p>
                   <p className="text-xs text-muted-foreground">
                     Mon – Sat, 10:00 AM – 7:00 PM IST

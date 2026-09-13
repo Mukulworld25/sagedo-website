@@ -30,3 +30,11 @@ Thumbs.db
 .env*.local
 
 sagedo.env
+
+# Credential rotation artifacts (contain old secret values)
+scrub_replacements.txt
+scripts/generate_rotated_credentials.js
+scripts/prepare_git_scrub.py
+
+# Confidential client invoices
+invoices/

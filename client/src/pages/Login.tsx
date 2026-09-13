@@ -338,7 +338,7 @@ export default function Login() {
                     <div className="mt-12 flex gap-8">
                         <div className="flex items-center gap-2 text-slate-400">
                             <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-sm">🎯</div>
-                            <span className="text-sm font-medium">30+ Services</span>
+                            <span className="text-sm font-medium">Full-Stack Services</span>
                         </div>
                         <div className="flex items-center gap-2 text-slate-400">
                             <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-sm">⚡</div>

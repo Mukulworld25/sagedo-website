@@ -111,7 +111,7 @@ export const Track: React.FC = () => {
                     <div className="p-5 rounded-2xl bg-gradient-to-b from-blue-500/5 to-transparent border border-blue-500/10">
                         <Rocket className="w-6 h-6 text-blue-400 mb-3" />
                         <h3 className="text-white font-bold text-xs mb-1">Our Mission</h3>
-                        <p className="text-neutral-500 text-[10px] leading-snug">Agency quality at freelancer prices with AI speed.</p>
+                        <p className="text-neutral-500 text-[10px] leading-snug">Enterprise execution at startup speed with AI precision.</p>
                     </div>
                 </div>
             </section>

@@ -1,4 +1,5 @@
 import { MessageCircle } from "lucide-react";
+import { trackWhatsAppClick } from "@/hooks/useAnalytics";
 
 export default function WhatsAppFloat() {
   const whatsappNumber = "916284925684";
@@ -10,6 +11,7 @@ export default function WhatsAppFloat() {
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => trackWhatsAppClick('floating_button')}
       data-testid="button-whatsapp-float"
       className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-r from-green-600 to-emerald-600 shadow-lg hover:scale-110 transition-transform duration-300 hover-elevate active-elevate-2"
       aria-label="Chat on WhatsApp"

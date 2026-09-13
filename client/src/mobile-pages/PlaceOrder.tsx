@@ -314,7 +314,7 @@ export const PlaceOrder: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-white font-bold text-sm">Select a Service</p>
-                    <p className="text-neutral-500 text-xs">Browse 30+ AI-powered services</p>
+                    <p className="text-neutral-500 text-xs">Browse our AI-powered services</p>
                   </div>
                 </div>
                 <ChevronRight className="w-5 h-5 text-neutral-600" />

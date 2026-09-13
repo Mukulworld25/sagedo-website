@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ArrowRight, CheckCircle, Shield, Zap, TrendingUp, Presentation, Star, MessageCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, Shield, Zap, TrendingUp, Presentation, Star, MessageCircle, AlertCircle } from 'lucide-react';
+import { trackWhatsAppClick } from '@/hooks/useAnalytics';
 
 const testimonials = [
     {
@@ -42,22 +43,30 @@ const FreeAudit = () => {
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setErrorMessage(null);
 
         try {
-            await fetch('/api/free-audit', {
+            const res = await fetch('/api/free-audit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
+            if (res.ok) {
+                setIsSuccess(true);
+            } else {
+                const data = await res.json().catch(() => ({}));
+                setErrorMessage(data.message || 'Server error. Please try again or message Mukul directly on WhatsApp.');
+            }
         } catch (error) {
             console.error('Free audit submission error:', error);
+            setErrorMessage('Network connection error. Please check your internet or message us on WhatsApp.');
         } finally {
             setIsSubmitting(false);
-            setIsSuccess(true);
         }
     };
 
@@ -166,6 +175,7 @@ const FreeAudit = () => {
                                             href={`https://wa.me/916284925684?text=${encodeURIComponent(`Hi Mukul, I just submitted my Free Audit request on sagedo.in. My business is ${formData.businessName}.`)}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            onClick={() => trackWhatsAppClick('free_audit_success_direct')}
                                             className="inline-flex items-center gap-2 mt-4 px-6 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white font-semibold transition-colors"
                                         >
                                             <MessageCircle className="w-5 h-5" />
@@ -179,6 +189,25 @@ const FreeAudit = () => {
                                             <h2 className="text-2xl font-bold font-outfit text-white mb-2">Request Free Audit</h2>
                                             <p className="text-sm text-zinc-400 font-inter">Takes 60 seconds.</p>
                                         </div>
+
+                                        {errorMessage && (
+                                            <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm relative z-10 flex flex-col gap-2">
+                                                <div className="flex items-center gap-2 font-semibold">
+                                                    <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+                                                    <span>{errorMessage}</span>
+                                                </div>
+                                                <a
+                                                    href={`https://wa.me/916284925684?text=${encodeURIComponent(`Hi Mukul, my Free Audit submission had an issue on the website. My business is ${formData.businessName || 'not specified'}.`)}`}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    onClick={() => trackWhatsAppClick('free_audit_error_fallback')}
+                                                    className="inline-flex items-center gap-1.5 text-xs text-green-400 hover:text-green-300 font-bold underline mt-1"
+                                                >
+                                                    <MessageCircle className="w-3.5 h-3.5" />
+                                                    Click here to message directly on WhatsApp instead →
+                                                </a>
+                                            </div>
+                                        )}
 
                                         <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
                                             <div className="space-y-2">

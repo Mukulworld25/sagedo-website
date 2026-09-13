@@ -92,7 +92,7 @@ export default function Orders() {
     if (goldenTicketMode === 'true') {
       setTimeout(() => {
         toast({
-          title: "ð Starter Credit Mode!",
+          title: "🎟️ Starter Credit Mode!",
           description: "Select any Bar 1 service below and it will be FREE!",
         });
       }, 500);
@@ -134,20 +134,22 @@ export default function Orders() {
 
   // Load Razorpay SDK
   useEffect(() => {
+    if ((window as any).Razorpay) {
+      setIsRazorpayLoaded(true);
+      return;
+    }
+    if (document.querySelector('script[src="https://checkout.razorpay.com/v1/checkout.js"]')) {
+      return;
+    }
     const script = document.createElement('script');
     script.src = 'https://checkout.razorpay.com/v1/checkout.js';
     script.async = true;
     script.onload = () => setIsRazorpayLoaded(true);
-    script.onerror = () => toast({
-      title: "Connection Error",
-      description: "Failed to load payment system. Please refresh.",
-      variant: "destructive"
-    });
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
+    script.onerror = () => {
+      console.warn("Razorpay SDK could not be loaded initially.");
+      setIsRazorpayLoaded(false);
     };
+    document.body.appendChild(script);
   }, []);
 
   const uploadMutation = useMutation({
@@ -1108,7 +1110,7 @@ export default function Orders() {
                 <div>
                   <h3 className="text-xl font-bold text-foreground mb-2">Select a Service</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">
-                    Browse our 30+ AI-powered services and see full details, pricing, and features right here.
+                    Browse our specialized AI-powered services and see full details, pricing, and features right here.
                   </p>
                 </div>
                 <a href="/services">
