@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   ArrowRight, MessageCircle, Star, ShieldCheck, Zap,
-  Clock, TrendingUp, CheckCircle2, Rocket, Crown, Users
+  Clock, TrendingUp, CheckCircle2, Rocket, Crown, Users, AlertOctagon
 } from 'lucide-react';
 import { AppRoute } from '../mobile-types';
 
@@ -16,7 +16,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   const [activeStep, setActiveStep] = useState(1);
 
   const testimonials = [
-    { name: "Priya Siingh", role: "Verified Trustpilot Review ⭐", text: "Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time. Clean interface and smooth onboarding.", rating: 5 },
+    { name: "Priya Singh", role: "Verified Trustpilot Review ⭐", text: "Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time. Clean interface and smooth onboarding.", rating: 5 },
     { name: "Akshit Kashyap", role: "Verified Trustpilot Review ⭐", text: "What a cool and knowledgeable experience to know about AI. Nice service, very good behaviour.", rating: 5 },
     { name: "Arushi Vashist", role: "Verified Trustpilot Review ⭐", text: "Very reliable. Their service and everything were good.", rating: 4 },
     { name: "Tahira War", role: "Verified Trustpilot Review ⭐", text: "Everything was good overall. Good service provider.", rating: 5 }
@@ -182,7 +182,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         {/* Old Way */}
         <div className="p-6 rounded-3xl bg-neutral-950/50 border border-neutral-800/80 mb-4">
           <h3 className="text-lg font-bold text-red-400 mb-5 flex items-center gap-2">
-            <span>❌</span> The Old Way
+            <AlertOctagon className="w-5 h-5 text-red-400 shrink-0" /> The Old Way
           </h3>
           <div className="space-y-4">
             {[
@@ -205,7 +205,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         <div className="p-6 rounded-3xl border border-red-500/30 relative overflow-hidden" style={{ background: '#111', boxShadow: '0 0 40px rgba(239,68,68,0.08)' }}>
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-50" />
           <h3 className="text-lg font-bold text-red-400 mb-5 flex items-center gap-2">
-            <span>✅</span> The SAGE DO Way
+            <ShieldCheck className="w-5 h-5 text-red-400 shrink-0" /> The SAGE DO Way
           </h3>
           <div className="space-y-4">
             {[

@@ -285,6 +285,7 @@ export default function ChatWidget() {
         <>
             {/* Toggle Button */}
             <button
+                data-testid="chat-widget-fab"
                 onClick={() => setIsOpen(!isOpen)}
                 className={`fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full shadow-xl transition-all duration-300 hover:scale-105 ${isOpen ? "bg-destructive rotate-90" : "bg-gradient-to-tr from-primary to-orange-600 animate-pulse-slow"
                     }`}

@@ -3,44 +3,45 @@ import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Briefcase, CheckCircle, ArrowRight, Rocket, Code, Palette, TrendingUp, Users, Globe } from 'lucide-react';
+import { Briefcase, CheckCircle, ArrowRight, Code, Video, TrendingUp, Cpu, Sparkles, Globe } from 'lucide-react';
+import RevealOnScroll from '@/components/ui/RevealOnScroll';
 
 const openRoles = [
   {
-    title: 'AI Prompt Engineer',
-    type: 'Full-time / Remote',
-    icon: Rocket,
-    description: 'Craft high-precision prompts for client deliverables. Must understand business context and translate briefs into AI-ready instructions.',
-  },
-  {
-    title: 'Full-Stack Developer',
+    title: 'AI Developer',
     type: 'Full-time / Remote',
     icon: Code,
-    description: 'Build websites, dashboards, and SaaS products using React, Node.js, and modern tooling. Ship fast, iterate faster.',
+    description: 'Build and ship production-ready web apps, client portals, and AI interfaces using React, TypeScript, Node.js, and LLM APIs. Focus on rapid delivery, clean architecture, and seamless integrations.',
   },
   {
-    title: 'Brand & Graphic Designer',
+    title: 'AI Video Editor & Motion Designer',
     type: 'Contract / Remote',
-    icon: Palette,
-    description: 'Create logos, brand identities, social media content, and marketing visuals. Proficiency in Figma/Canva required.',
+    icon: Video,
+    description: 'Produce high-retention short-form and long-form video content leveraging modern AI generative tools, Premiere, and After Effects. Transform rough creative briefs into polished, scroll-stopping narratives.',
   },
   {
-    title: 'SEO & Content Strategist',
+    title: 'AI Business Development Executive',
     type: 'Full-time / Remote',
     icon: TrendingUp,
-    description: 'Plan and execute SEO strategies, write blog content, manage Google Business Profiles, and drive organic visibility.',
+    description: 'Identify and engage prospective B2B clients, qualify inbound founder inquiries, and articulate SAGEDO\'s hybrid execution value. Lead discovery consultations and drive high-ticket deal closings.',
   },
   {
-    title: 'Sales & Outreach Executive',
-    type: 'Full-time / Chandigarh',
-    icon: Users,
-    description: 'Drive inbound and outbound sales. Build relationships with founders, pitch SAGE DO solutions, and close deals.',
+    title: 'AI Systems Engineer',
+    type: 'Full-time / Remote',
+    icon: Cpu,
+    description: 'Architect autonomous agent pipelines, vector search / RAG systems, and telephony voice infrastructure. Connect foundational AI models with robust production backends and enterprise APIs.',
   },
   {
-    title: 'Digital Marketing Intern',
-    type: 'Internship / Remote',
+    title: 'AI Operations Generalist',
+    type: 'Full-time / Remote',
+    icon: Sparkles,
+    description: 'Master multi-modal AI tools to execute diverse deliverables across research, asset generation, prompt chaining, and QA. Bridge the gap between engineering and creative workflows with zero friction.',
+  },
+  {
+    title: 'AI Content Strategist',
+    type: 'Full-time / Remote',
     icon: Globe,
-    description: 'Learn and execute real campaigns across LinkedIn, Instagram, and Google Ads. Get mentored by the founder directly.',
+    description: 'Design and execute high-ranking SEO strategies, B2B technical articles, and programmatic content engines. Combine AI-assisted research with sharp human editorial judgment to scale organic reach.',
   },
 ];
 
@@ -97,7 +98,7 @@ const Careers = () => {
     <>
       <Helmet>
         <title>Careers at SAGEDO — Join India's First AI + Human Execution Team</title>
-        <meta name="description" content="Join SAGE DO and work at the intersection of AI and human execution. Open roles in engineering, design, SEO, sales, and AI prompt engineering. Remote-first, founder-led." />
+        <meta name="description" content="Join SAGE DO and work at the intersection of AI and human execution. Open roles in AI development, video editing, business development, systems engineering, operations, and content strategy. Remote-first, founder-led." />
       </Helmet>
 
       <main className="min-h-screen bg-[#09090b] text-white pt-24 pb-16">
@@ -125,36 +126,42 @@ const Careers = () => {
               { title: 'Remote-First', desc: 'Work from anywhere in India. Results matter, not your location.', gradient: 'from-emerald-500/10 to-teal-500/10', border: 'border-emerald-500/20' },
               { title: 'Real Impact', desc: "Every project ships. You'll see your work live within 48 hours.", gradient: 'from-violet-500/10 to-blue-500/10', border: 'border-violet-500/20' },
             ].map((item, i) => (
-              <div key={i} className={`bg-gradient-to-br ${item.gradient} border ${item.border} rounded-2xl p-6`}>
-                <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-sm text-zinc-400">{item.desc}</p>
-              </div>
+              <RevealOnScroll key={i} delay={i * 75}>
+                <div className={`bg-gradient-to-br ${item.gradient} border ${item.border} rounded-2xl p-6 h-full`}>
+                  <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                  <p className="text-sm text-zinc-400">{item.desc}</p>
+                </div>
+              </RevealOnScroll>
             ))}
           </div>
 
           {/* Open Roles */}
           <div className="mb-16">
-            <h2 className="text-2xl font-bold text-white mb-6 text-center">Open Positions</h2>
+            <RevealOnScroll>
+              <h2 className="text-2xl font-bold text-white mb-6 text-center">Open Positions</h2>
+            </RevealOnScroll>
             <div className="grid md:grid-cols-2 gap-4">
               {openRoles.map((role, i) => (
-                <div key={i} className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-6 hover:border-violet-500/30 transition-colors">
-                  <div className="flex items-start gap-4">
-                    <div className="p-2.5 bg-violet-500/10 rounded-xl">
-                      <role.icon className="w-5 h-5 text-violet-400" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-bold text-white">{role.title}</h3>
-                      <span className="text-xs text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded-full">{role.type}</span>
-                      <p className="text-sm text-zinc-400 mt-2">{role.description}</p>
+                <RevealOnScroll key={i} delay={i * 50}>
+                  <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-6 hover:border-violet-500/30 transition-colors h-full">
+                    <div className="flex items-start gap-4">
+                      <div className="p-2.5 bg-violet-500/10 rounded-xl">
+                        <role.icon className="w-5 h-5 text-violet-400" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-bold text-white">{role.title}</h3>
+                        <span className="text-xs text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded-full">{role.type}</span>
+                        <p className="text-sm text-zinc-400 mt-2">{role.description}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </RevealOnScroll>
               ))}
             </div>
           </div>
 
           {/* Application Form */}
-          <div className="max-w-2xl mx-auto">
+          <RevealOnScroll delay={100} className="max-w-2xl mx-auto">
             <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-6 md:p-8">
               {isSuccess ? (
                 <div className="text-center py-12">
@@ -267,7 +274,7 @@ const Careers = () => {
                 </form>
               )}
             </div>
-          </div>
+          </RevealOnScroll>
         </div>
       </main>
     </>

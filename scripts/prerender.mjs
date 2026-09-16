@@ -55,9 +55,9 @@ const routes = [
         <li>Receive Your Answer — Get a clear, actionable solution sent right back to you.</li>
       </ol>
       <h2>Meet the Founder — Mukul Dhiman</h2>
-      <p>Ex-Aerospace engineer (Tata Lockheed Martin) turned AI builder. Mukul started SAGE DO because Indian businesses were getting ripped off by agencies charging ₹5 Lakhs for what AI can do in 48 hours. He personally oversees every project.</p>
+      <p>Ex-Aerospace systems engineer turned AI builder. Mukul started SAGE DO because Indian businesses were getting ripped off by agencies charging ₹5 Lakhs for what AI can do in 48 hours. He personally oversees every project.</p>
       <h2>Testimonials</h2>
-      <p>"Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time." — Priya Siingh, Verified Trustpilot Review</p>
+      <p>"Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time." — Priya Singh, Verified Trustpilot Review</p>
       <p>"Nice service, very good behaviour. What a cool and knowledgeable experience." — Akshit Kashyap, Verified Trustpilot Review</p>
       <h2>Get a Free AI Business Audit</h2>
       <p>Discover exactly what's holding your business back online. Our AI scans your digital presence and delivers a personalized roadmap — in under 24 hours. 100% free, no strings attached.</p>
@@ -105,13 +105,13 @@ const routes = [
   {
     path: '/about',
     title: "About SAGEDO — India's First AI + Human Hybrid Execution Team",
-    description: "Learn about SAGEDO, founded by Mukul Dhiman (ex-Tata Lockheed Martin). We combine AI speed with human precision to deliver 30+ digital services across India. Based in Chandigarh.",
+    description: "Learn about SAGEDO, founded by Mukul Dhiman. Combining 5 years of aerospace precision engineering with modern AI speed to deliver 30+ digital services across India. Based in Chandigarh.",
     content: `
       <h1>About SAGE DO</h1>
       <p>SAGE DO is India's first AI + Human hybrid service platform. We combine the speed and scale of artificial intelligence with the precision and creativity of human experts to deliver professional-grade digital services — from websites and apps to content creation, marketing, and business automation.</p>
       <p>With 30+ services across Startup Launch, Marketing, Design, and Engineering categories, we serve visionary founders, high-growth startups, and elite enterprises. Every task is analyzed by AI, verified by humans, and delivered within 24-48 hours.</p>
       <h2>Founder — Mukul Dhiman</h2>
-      <p>Ex-Aerospace engineer (Tata Lockheed Martin — C130J/F16 programs), Operations Manager (25-person teams, 40% efficiency improvement), Full-stack Developer (SaaS, mobile apps, AI automation), AI Engineer (Built 30+ AI-powered services from scratch).</p>
+      <p>Aerospace systems engineer with 5 years in precision manufacturing and high-tolerance systems, Operations Manager (25-person teams, 40% efficiency improvement), Full-stack Developer (SaaS, mobile apps, AI automation), AI Engineer (Built 30+ AI-powered services from scratch).</p>
       <h2>Our Vision</h2>
       <p>To democratize access to world-class digital services for every Indian founder, executive, and forward-thinking business — making enterprise-quality work available at startup-friendly prices, delivered at AI speed.</p>
       <h2>Our Mission</h2>
@@ -162,7 +162,7 @@ const routes = [
       <h2>How fast does SAGE DO deliver?</h2>
       <p>The Digital Presence Engine is live in 14 days or you receive a full refund. Sovereign Revenue Engine™ goes live in 28 days, 10-gate QA certified. Enterprise Infrastructure timelines are scoped per engagement.</p>
       <h2>Who founded SAGE DO?</h2>
-      <p>Mukul Dhiman, ex-Tata Lockheed Martin aerospace engineer turned AI founder. He personally oversees every project.</p>
+      <p>Mukul Dhiman, ex-aerospace systems engineer turned AI founder. He personally oversees every project.</p>
       <h2>Is SAGE DO available in my city?</h2>
       <p>Yes! SAGE DO serves all of India remotely. Based in Chandigarh, we work with clients across Delhi, Mumbai, Bangalore, Hyderabad, and all other cities via WhatsApp.</p>
       <h2>How much does an AI website cost in India?</h2>
@@ -332,9 +332,9 @@ const routes = [
   // ── ABOUT FOUNDER ───────────────────────────────────────────────────
   {
     path: '/about-founder',
-    title: "Mukul Dhiman — Founder of SAGEDO | Ex-Tata Lockheed Martin",
-    description: "Meet Mukul Dhiman, founder of SAGEDO. Ex-Aerospace Engineer at Tata Lockheed Martin, Operations Manager, Full-stack Developer, AI Engineer.",
-    content: `<h1>Mukul Dhiman — Founder &amp; CEO, SAGE DO</h1><p>Ex-Aerospace Engineer at Tata Lockheed Martin (C130J/F16 programs). Operations Manager who led 25-person teams. Full-stack developer who built 30+ AI-powered services. Founded SAGEDO to bring agency-quality execution to Indian businesses at startup-friendly prices.</p>`,
+    title: "Mukul Dhiman — Founder of SAGEDO | Aerospace Systems Engineer turned AI Founder",
+    description: "Meet Mukul Dhiman, founder of SAGEDO. Aerospace systems engineer with 5 years in precision manufacturing, Operations Manager, Full-stack Developer, AI Systems Engineer.",
+    content: `<h1>Mukul Dhiman — Founder &amp; CEO, SAGE DO</h1><p>Aerospace systems engineer with 5 years in high-tolerance precision manufacturing. Operations Manager who led 25-person engineering teams. Full-stack developer who built 30+ AI-powered services. Founded SAGEDO to bring aerospace-grade execution precision to Indian businesses at startup-friendly prices.</p>`,
   },
 
   // ── LEGAL PAGES ─────────────────────────────────────────────────────
@@ -368,15 +368,15 @@ const routes = [
     path: '/book-call',
     title: "Book a Free Strategy Call — SAGEDO | Talk to the Founder",
     description: "Book a free 30-minute strategy call with Mukul Dhiman, founder of SAGEDO. Discuss your business challenges and get a tailored execution roadmap. No sales pitch.",
-    content: `<h1>Book a Free Strategy Call with the Founder</h1><p>Talk directly to Mukul Dhiman — ex-Tata Lockheed Martin engineer turned AI builder. Get a brutally honest assessment of where your business stands digitally and exactly what to fix first.</p><h2>What You'll Get</h2><ul><li>5-Point Digital Health Check — Website, SEO, Social, Automation, Lead Capture scored honestly</li><li>Custom Execution Roadmap — Exactly what to build first, how long, and what it costs</li><li>Competitor Analysis — Quick scan of your top 3 competitors</li><li>No-BS Pricing — Transparent quote on the spot</li></ul><p>Book your slot now at sagedo.in/book-call or WhatsApp +91 6284925684</p>`,
+    content: `<h1>Book a Free Strategy Call with the Founder</h1><p>Talk directly to Mukul Dhiman — aerospace systems engineer turned AI founder. Get a brutally honest assessment of where your business stands digitally and exactly what to fix first.</p><h2>What You'll Get</h2><ul><li>5-Point Digital Health Check — Website, SEO, Social, Automation, Lead Capture scored honestly</li><li>Custom Execution Roadmap — Exactly what to build first, how long, and what it costs</li><li>Competitor Analysis — Quick scan of your top 3 competitors</li><li>No-BS Pricing — Transparent quote on the spot</li></ul><p>Book your slot now at sagedo.in/book-call or WhatsApp +91 6284925684</p>`,
   },
 
   // ── CAREERS ───────────────────────────────────────────────────────
   {
     path: '/careers',
     title: "Careers at SAGEDO — Join India's First AI + Human Execution Team",
-    description: "Join SAGE DO and work at the intersection of AI and human execution. Open roles in engineering, design, SEO, sales, and AI prompt engineering. Remote-first, founder-led.",
-    content: `<h1>Careers at SAGE DO — Build the Future of Execution</h1><p>SAGE DO isn't just another agency. We're building India's first AI + Human hybrid execution engine. If you want to ship real work for real businesses — not sit in meetings — this is your place.</p><h2>Open Positions</h2><ul><li>AI Prompt Engineer — Full-time / Remote</li><li>Full-Stack Developer — Full-time / Remote</li><li>Brand & Graphic Designer — Contract / Remote</li><li>SEO & Content Strategist — Full-time / Remote</li><li>Sales & Outreach Executive — Full-time / Chandigarh</li><li>Digital Marketing Intern — Internship / Remote</li></ul><h2>Why Join?</h2><ul><li>Founder-led — Work directly with Mukul, no middle management</li><li>Remote-first — Work from anywhere in India</li><li>Real impact — Every project ships, you see your work live within 48 hours</li></ul><p>Apply at sagedo.in/careers or WhatsApp +91 6284925684</p>`,
+    description: "Join SAGE DO and work at the intersection of AI and human execution. Open roles in systems engineering, architecture, copywriting, SEO, and performance marketing. Remote-first, founder-led.",
+    content: `<h1>Careers at SAGE DO — Build the Future of Execution</h1><p>SAGE DO isn't just another agency. We're building India's first AI + Human hybrid execution engine. If you want to ship real work for real businesses — not sit in meetings — this is your place.</p><h2>Open Positions</h2><ul><li>Senior AI Prompt &amp; Systems Engineer — Full-time / Remote</li><li>Full-Stack Systems Architect (React / Node / Python) — Full-time / Remote</li><li>Conversion Copywriter &amp; Brand Strategist — Full-time / Remote</li><li>Technical SEO &amp; Programmatic Growth Specialist — Full-time / Remote</li><li>Growth Operations &amp; Client Delivery Manager — Full-time / Chandigarh</li><li>Performance Marketing Specialist (Google &amp; Meta Ads) — Full-time / Remote</li></ul><h2>Why Join?</h2><ul><li>Founder-led — Work directly with Mukul, no middle management</li><li>Remote-first — Work from anywhere in India</li><li>Real impact — Every project ships, you see your work live within 48 hours</li></ul><p>Apply at sagedo.in/careers or WhatsApp +91 6284925684</p>`,
   },
 
   // ── PILLAR: CUSTOM CRM VS ZOHO (Sept 2026) ──────────────────────────
@@ -427,11 +427,258 @@ const routes = [
 <p><strong>How long does a SAGEDO custom CRM take?</strong> 28 calendar days: discovery (days 1–3), build sprint (days 4–21), handover with training and SLA (days 22–28).</p>
 <p><strong>Do we own our data and code?</strong> Yes — PostgreSQL database and full source code are handed over; Zoho data stays in Zoho's multi-tenant cloud.</p>
 <p><strong>Can it integrate WhatsApp, Tally, and Razorpay?</strong> Yes — as core scope, not paid add-ons.</p>
-<p>Request the free 72-hour Revenue-Leak Audit at sagedo.in/free-audit or WhatsApp +91-6284925684. Pricing figures are face-value estimates as of September 2026; verify vendor sheets before signing.</p>
+    <p>Request the free 72-hour Revenue-Leak Audit at sagedo.in/free-audit or WhatsApp +91-6284925684. Pricing figures are face-value estimates as of September 2026; verify vendor sheets before signing.</p>
 </article>`,
   },
 
+  // ── AEO / GEO PILLAR PAGES (September 2026) ────────────────────────
+  {
+    path: '/ai-automation-agency-india',
+    title: 'AI Automation Agency in India | Custom AI Agents & Workflows — SAGEDO',
+    description: "India's premier AI automation agency. Autonomous AI agents, WhatsApp sales bots, CRM integrations, and workflow automation in 14-28 days. Zero per-seat fees.",
+    jsonLd: `<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What does an AI automation agency in India do?", "acceptedAnswer": {"@type": "Answer", "text": "An AI automation agency audits repetitive operational bottlenecks and develops custom AI systems—like autonomous lead qualification bots, document extractors, and CRM sync engines—that reduce manual work by 70–80%."}},
+    {"@type": "Question", "name": "How much does custom AI automation cost in India?", "acceptedAnswer": {"@type": "Answer", "text": "At SAGEDO, standalone automation modules start at ₹15,000–₹45,000, while complete end-to-end operational automation suites (Sovereign Revenue Engine™) range from ₹1,50,000 to ₹2,50,000 with source code handover."}},
+    {"@type": "Question", "name": "Will the AI hallucinate or give wrong pricing to my clients?", "acceptedAnswer": {"@type": "Answer", "text": "No. SAGEDO implements deterministic guardrails, structured JSON schema validations, and human-in-the-loop review layers so the AI never quotes unauthorized discounts or fabricated terms."}},
+    {"@type": "Question", "name": "How long does implementation take?", "acceptedAnswer": {"@type": "Answer", "text": "Our published delivery window is 14 to 28 calendar days depending on whether you need a single automated workflow or a full operational pipeline."}},
+    {"@type": "Question", "name": "Can the AI integrate with our existing ERP or Tally?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We build bi-directional connectors for Tally Prime, custom SQL databases, Google Sheets, Razorpay, and proprietary legacy systems."}}
+  ]
+}
+</script>`,
+    content: `<article>
+<h1>AI Automation Agency in India: Autonomous Systems Built for High-Growth MSMEs</h1>
+<p>By Mukul Dhiman | September 2026 | 8 min read | SAGEDO — SCO-38, Mohali City Centre, serving Chandigarh, Delhi NCR, Mumbai, Bangalore, and all India.</p>
+<h2>BLUF — the answer in 40 words</h2>
+<p>Indian businesses waste 15–25 hours weekly per employee on manual data entry and follow-ups. SAGEDO builds custom AI agents, WhatsApp bots, and autonomous pipeline workflows in 14–28 days with zero recurring per-user software taxes.</p>
+<h2>Why Indian Companies Are Replacing Fragile Zapier Glue With Sovereign AI</h2>
+<p>Most Indian enterprises attempting AI automation end up with a brittle maze of no-code tools that break whenever an unformatted message arrives. SAGEDO engineers sovereign, self-hosted AI automation engines with PostgreSQL and human-in-the-loop review guards.</p>
+<h2>Zapier / No-Code Tools vs SAGEDO Sovereign Automation</h2>
+<table>
+<tr><th>Feature</th><th>DIY / No-Code Tools</th><th>SAGEDO Sovereign Automation</th></tr>
+<tr><td>Delivery Timeline</td><td>Weeks of trial &amp; error</td><td>14–28 Days Full Handover</td></tr>
+<tr><td>Recurring Task Taxes</td><td>₹15,000–₹60,000/mo</td><td>₹0 Per-Task Software Tax</td></tr>
+<tr><td>Complex Logic &amp; OCR</td><td>Fails on unstructured PDFs</td><td>Custom Fine-Tuned AI + Human QA</td></tr>
+<tr><td>WhatsApp Cloud API</td><td>Third-party markup per msg</td><td>Direct Meta Cloud API Integration</td></tr>
+<tr><td>Data Sovereignty</td><td>Overseas multi-tenant cloud</td><td>100% Owned Database &amp; VPS</td></tr>
+</table>
+<h2>FAQ — AI Automation Agency in India</h2>
+<p><strong>What does an AI automation agency in India do?</strong> Audits operational bottlenecks and develops custom AI systems that reduce manual work by 70–80%.</p>
+<p><strong>How much does custom AI automation cost in India?</strong> ₹15,000–₹45,000 for standalone modules; ₹1,50,000–₹2,50,000 for complete end-to-end suites.</p>
+<p><strong>Will the AI hallucinate?</strong> No. Deterministic schema validation and human review prevent hallucinations.</p>
+<p><strong>How long does implementation take?</strong> 14 to 28 calendar days guaranteed.</p>
+<p><strong>Can the AI integrate with ERP or Tally?</strong> Yes, native bi-directional sync included.</p>
+<p>Claim your free 72-hour Revenue Leak Audit at sagedo.in/free-audit or WhatsApp +91-6284925684.</p>
+</article>`
+  },
+
+  {
+    path: '/b2b-lead-generation-systems',
+    title: 'B2B Lead Generation Systems India | Automated Inbound & CRM — SAGEDO',
+    description: "Modern B2B lead generation systems for Indian founders. Combine sub-second web speed, WhatsApp speed-to-lead, and automated CRM tracking to 3x your deal pipeline.",
+    jsonLd: `<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Why are traditional lead generation agencies failing in B2B?", "acceptedAnswer": {"@type": "Answer", "text": "They focus on raw impression volume rather than conversion mechanics. B2B buyers require instant validation, clear pricing transparency, and immediate WhatsApp communication."}},
+    {"@type": "Question", "name": "How quickly can a custom B2B lead system be deployed?", "acceptedAnswer": {"@type": "Answer", "text": "SAGEDO delivers complete inbound systems—including landing pages, interactive calculators, and WhatsApp CRM pipelines—in 14 to 28 calendar days."}},
+    {"@type": "Question", "name": "Do you manage our ad spend or just build the system?", "acceptedAnswer": {"@type": "Answer", "text": "We build the foundational conversion infrastructure first, and offer optional recurring Google & Meta B2B ad management retainers starting at ₹25,000/month."}},
+    {"@type": "Question", "name": "Can the system filter out spam leads?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We integrate phone number validation, corporate email verification, and qualification questions that filter low-intent inquiries before they hit your sales team."}},
+    {"@type": "Question", "name": "What ROI can we expect?", "acceptedAnswer": {"@type": "Answer", "text": "By cutting lead response time from 4 hours to 45 seconds, our clients typically observe a 40% to 150% increase in qualified sales conversations within 60 days of launch."}}
+  ]
+}
+</script>`,
+    content: `<article>
+<h1>B2B Lead Generation Systems: Engineering Predictable Revenue Without Agency Retainers</h1>
+<p>By Mukul Dhiman | September 2026 | 9 min read | SAGEDO — SCO-38, Mohali City Centre, serving businesses across India.</p>
+<h2>BLUF — the answer in 40 words</h2>
+<p>Cold email spray-and-pray is dead. Modern B2B lead generation in India requires high-intent programmatic landing pages, sub-60-second WhatsApp response mechanics, and zero-leakage CRM routing that turns anonymous traffic into signed purchase orders.</p>
+<h2>The Fatal Flaw in Traditional Indian B2B Lead Gen</h2>
+<p>Most B2B companies in India pay agencies ₹50,000 to ₹1,50,000 monthly retainers for generic ads with slow WordPress pages. Leads wait 24 to 48 hours for a callback, by which time intent has evaporated. SAGEDO deploys sub-1.2s LCP React storefronts with instant WhatsApp webhooks.</p>
+<h2>Traditional Lead Agency vs SAGEDO Sovereign Lead System</h2>
+<table>
+<tr><th>Dimension</th><th>Traditional Lead Agency</th><th>SAGEDO Sovereign Lead System</th></tr>
+<tr><td>Speed to Lead</td><td>4 to 24 Hours (Email / Manual call)</td><td>Under 45 Seconds via WhatsApp API</td></tr>
+<tr><td>Asset Ownership</td><td>Rented landing pages &amp; locked accounts</td><td>100% Owned Source Code &amp; Assets</td></tr>
+<tr><td>Pricing Model</td><td>Monthly retainer forever (₹60k–1.5L/mo)</td><td>One-Time Build + Optional Flat AMC</td></tr>
+<tr><td>Conversion Infrastructure</td><td>Generic web form with high drop-off</td><td>Interactive Calculators + WhatsApp Webhook</td></tr>
+<tr><td>Lead Qualification</td><td>Junk phone numbers &amp; tire-kickers</td><td>Verified Phone OTP + Pre-Screening</td></tr>
+</table>
+<h2>FAQ — B2B Lead Generation Systems</h2>
+<p><strong>Why are traditional agencies failing?</strong> They prioritize vanity clicks over speed-to-lead and conversion mechanics.</p>
+<p><strong>How fast can it launch?</strong> 14 to 28 calendar days for full deployment.</p>
+<p><strong>Can we filter spam leads?</strong> Yes, verified phone and company email validation are built-in.</p>
+<p>Request your free 72-hour Revenue Leak Audit at sagedo.in/free-audit or WhatsApp +91-6284925684.</p>
+</article>`
+  },
+
+  {
+    path: '/custom-crm-development-chandigarh',
+    title: 'Custom CRM Development Chandigarh & Mohali | Zero Per-Seat — SAGEDO',
+    description: "Leading custom CRM development in Chandigarh & Mohali. Build a zero-per-seat CRM with WhatsApp lead routing, Tally Prime sync, and 28-day delivery. From ₹1,50,000.",
+    jsonLd: `<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Where is SAGEDO located in Chandigarh/Mohali?", "acceptedAnswer": {"@type": "Answer", "text": "Our engineering headquarters is located at SCO-38, Mohali City Centre, Aerocity, serving clients across Chandigarh, Mohali, Panchkula, and Zirakpur."}},
+    {"@type": "Question", "name": "How much does custom CRM development cost in Chandigarh?", "acceptedAnswer": {"@type": "Answer", "text": "A production custom CRM with unlimited seats, WhatsApp routing, and Tally integration costs ₹1,50,000 to ₹2,50,000 one-time at SAGEDO, compared to ₹8–15 Lakhs quoted by metro agencies."}},
+    {"@type": "Question", "name": "Is custom CRM really cheaper than Zoho for small teams?", "acceptedAnswer": {"@type": "Answer", "text": "For teams under 8 users, Zoho is cost-effective. However, once your team reaches 15–25 users, a custom CRM crosses over to become dramatically cheaper, saving up to ₹25+ Lakhs over 5 years."}},
+    {"@type": "Question", "name": "Can our staff be trained on the custom system easily?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Days 22–28 of our delivery sprint include comprehensive staff training and clean, intuitive interfaces that telecallers master in less than 30 minutes."}},
+    {"@type": "Question", "name": "What happens if we need changes after launch?", "acceptedAnswer": {"@type": "Answer", "text": "We offer a flat ₹25,000/month AMC that covers hosting, security patches, automated backups, and ongoing feature updates without headcount penalties."}}
+  ]
+}
+</script>`,
+    content: `<article>
+<h1>Custom CRM Development in Chandigarh: Zero-Per-Seat Software for Tricity Businesses</h1>
+<p>By Mukul Dhiman | September 2026 | 9 min read | SAGEDO — SCO-38, Mohali City Centre, serving Chandigarh Sector 17/34/IT Park, Panchkula, and Zirakpur.</p>
+<h2>BLUF — the answer in 40 words</h2>
+<p>Zoho and Salesforce cost ₹12 Lakhs/year at 100 seats. SAGEDO builds custom, unlimited-seat CRMs right here in Chandigarh &amp; Mohali for ₹1,50,000–₹2,50,000 one-time with zero per-user licensing fees and native Tally + WhatsApp integration in 28 days.</p>
+<h2>Why Tricity Enterprises Are Ditching Generic SaaS Platforms</h2>
+<p>Chandigarh, Mohali, and Panchkula house over 5,000 thriving manufacturing, pharma, and IT businesses. Per-seat SaaS software compounds exponentially and fails to integrate natively with Tally Prime or GST workflows without expensive add-ons.</p>
+<h2>Zoho CRM vs SAGEDO Sovereign CRM (Tricity)</h2>
+<table>
+<tr><th>Feature</th><th>Zoho CRM (50 Seats)</th><th>SAGEDO Sovereign CRM</th></tr>
+<tr><td>5-Year Software Cost</td><td>₹25,00,000+ compounding per seat</td><td>₹2,50,000 one-time + flat AMC (≈60% savings)</td></tr>
+<tr><td>Per-User License Fee</td><td>₹800–₹3,000/seat/month</td><td>₹0 / User (Unlimited Team Seats)</td></tr>
+<tr><td>Tally Prime Integration</td><td>Paid third-party connector ($50/mo)</td><td>Native Bi-directional Ledger Sync</td></tr>
+<tr><td>Delivery SLA</td><td>3–6 Months customization delay</td><td>28 Calendar Days Handover Guarantee</td></tr>
+<tr><td>Local Support</td><td>Global ticketing queue</td><td>In-person Tricity founder access &amp; training</td></tr>
+</table>
+<h2>FAQ — Custom CRM Development Chandigarh</h2>
+<p><strong>Where is SAGEDO located?</strong> SCO-38, Mohali City Centre, Aerocity, serving Chandigarh, Mohali, Panchkula, and Zirakpur.</p>
+<p><strong>How much does it cost?</strong> ₹1,50,000 to ₹2,50,000 one-time (28-day SLA, full source code included).</p>
+<p><strong>Is it cheaper than Zoho?</strong> Yes, once teams grow beyond 15–25 users, saving up to ₹25+ Lakhs over 5 years.</p>
+<p>Visit us at SCO-38 Mohali City Centre or WhatsApp +91-6284925684.</p>
+</article>`
+  },
+
+  {
+    path: '/custom-crm-development-ludhiana',
+    title: 'Custom CRM Development in Ludhiana | Industrial & Manufacturing — SAGEDO',
+    description: "Industrial-grade custom CRM development for Ludhiana manufacturers, textile mills, and exporters. Unlimited seats, Tally Prime sync, 28-day delivery.",
+    jsonLd: `<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "How does SAGEDO support Ludhiana clients from Chandigarh/Mohali?", "acceptedAnswer": {"@type": "Answer", "text": "Ludhiana is just 90 minutes from our Mohali headquarters. We conduct discovery calls, kick-offs, and final staff training sessions directly at your factory or office."}},
+    {"@type": "Question", "name": "Can the CRM integrate with our Tally Prime setup at Focal Point?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We build secure local bridges that sync transactions directly with your on-premise or cloud-hosted Tally Prime server."}},
+    {"@type": "Question", "name": "What is the pricing for an industrial custom CRM?", "acceptedAnswer": {"@type": "Answer", "text": "Our Sovereign Revenue Engine™ packages range from ₹1,50,000 to ₹2,50,000 one-time, delivered in 28 days with zero recurring per-user fees."}},
+    {"@type": "Question", "name": "Can our sales reps book orders from remote dealer visits?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The system includes a mobile-optimized PWA that allows sales reps to book orders offline and sync automatically upon reconnecting."}},
+    {"@type": "Question", "name": "Do we own the software completely?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We transfer 100% source code ownership and full database rights upon project handover."}}
+  ]
+}
+</script>`,
+    content: `<article>
+<h1>Custom CRM Development in Ludhiana: Industrial-Grade Software for Manufacturing Hubs</h1>
+<p>By Mukul Dhiman | September 2026 | 8 min read | SAGEDO — Serving Focal Point, Industrial Area A/B, Miller Ganj, and Punjab exporters.</p>
+<h2>BLUF — the answer in 40 words</h2>
+<p>Ludhiana's bicycle, auto-part, knitwear, and steel manufacturers require specialized quotation tracking, raw material rate indexing, and Tally ledger handoffs that off-the-shelf SaaS cannot handle. SAGEDO builds custom, zero-per-seat CRMs in 28 days from ₹1,50,000.</p>
+<h2>Why Generic Cloud CRMs Break in Ludhiana Manufacturing Plants</h2>
+<p>Ludhiana manufacturers deal with multi-tier dealer pricing, batch numbers, fluctuating raw material costs, and credit hold rules. Standard SaaS tools like HubSpot or Zoho require dozens of expensive workarounds. SAGEDO builds tailored manufacturing engines with automated dealer credit holds and Tally sync.</p>
+<h2>Legacy Tally-Only vs SAGEDO Industrial CRM</h2>
+<table>
+<tr><th>Operational Need</th><th>Legacy Desktop / Tally Alone</th><th>SAGEDO Industrial CRM</th></tr>
+<tr><td>Field Sales Visibility</td><td>Paper order sheets &amp; late WhatsApp calls</td><td>Real-Time Mobile Order Booking with Dealer Limits</td></tr>
+<tr><td>Quotation Generation</td><td>Manual Excel sheets prone to rate errors</td><td>Automated Cost-Index Quotation Builder</td></tr>
+<tr><td>Dealer Credit Control</td><td>Manual check in Tally by accountant</td><td>Automated Dispatch Hold on Overdue Accounts</td></tr>
+<tr><td>Multi-User Licensing</td><td>Expensive per-seat Tally/SaaS add-on fees</td><td>Unlimited Factory, Office &amp; Field Users</td></tr>
+</table>
+<h2>FAQ — Custom CRM Development Ludhiana</h2>
+<p><strong>Can it integrate with our Tally Prime at Focal Point?</strong> Yes, automated bi-directional ledger and dispatch sync.</p>
+<p><strong>What is the delivery timeline?</strong> 28 calendar days guaranteed.</p>
+<p><strong>Do we own the code?</strong> Yes, 100% source code and database ownership transferred.</p>
+<p>Contact Mukul Dhiman via WhatsApp at +91-6284925684 or visit sagedo.in/free-audit.</p>
+</article>`
+  },
+
+  {
+    path: '/custom-crm-development-panchkula',
+    title: 'Custom CRM Development in Panchkula | Pharma & Healthcare — SAGEDO',
+    description: "Custom CRM software for Panchkula pharmaceutical companies, diagnostics, and service businesses. Unlimited seats, compliance-ready, 28-day delivery.",
+    jsonLd: `<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Can SAGEDO handle pharmaceutical compliance requirements?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We structure audit logs, role-based permissions, and data integrity safeguards to ensure compliant record-keeping for healthcare and pharma distributors."}},
+    {"@type": "Question", "name": "How close is your team to Panchkula?", "acceptedAnswer": {"@type": "Answer", "text": "We are located across the border at Mohali City Centre, less than 20 minutes from Panchkula Industrial Area and MDC."}},
+    {"@type": "Question", "name": "How much does a Panchkula custom CRM cost?", "acceptedAnswer": {"@type": "Answer", "text": "Our complete Sovereign Revenue Engine™ builds range between ₹1,50,000 and ₹2,50,000 one-time, with zero recurring per-user license fees."}},
+    {"@type": "Question", "name": "Can our Medical Representatives use this on Android smartphones?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The system is 100% mobile-responsive and functions as an installable Progressive Web App (PWA) on any Android or iOS device."}},
+    {"@type": "Question", "name": "Do we own the data?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. All databases and source code are deployed directly to your private server with zero vendor lock-in."}}
+  ]
+}
+</script>`,
+    content: `<article>
+<h1>Custom CRM Development in Panchkula: Zero-License Software for Pharma &amp; Services</h1>
+<p>By Mukul Dhiman | September 2026 | 8 min read | SAGEDO — Serving Industrial Area Phase 1 &amp; 2, MDC Sector 5, and Panchkula.</p>
+<h2>BLUF — the answer in 40 words</h2>
+<p>Panchkula's pharmaceutical distributors, diagnostic labs, and professional consultancies lose margin paying for multi-seat CRM subscriptions. SAGEDO builds custom, zero-per-seat CRMs with doctor/dealer tracking and GST invoicing in 28 days from ₹1,50,000.</p>
+<h2>Why Panchkula Pharma Companies Need Custom Systems</h2>
+<p>Panchkula pharma enterprises manage PCD franchise networks, MR field reporting, physician sample allocations, and chemist order flows. Standard CRM platforms charge ₹1,500/seat/month and lack pharmaceutical territory safeguards. SAGEDO builds compliant, unlimited-seat platforms.</p>
+<h2>Generic Commercial SaaS vs SAGEDO Tailored Panchkula CRM</h2>
+<table>
+<tr><th>Feature</th><th>Off-The-Shelf SaaS</th><th>SAGEDO Custom CRM</th></tr>
+<tr><td>Pharma / PCD Workflows</td><td>Not supported without complex code</td><td>Pre-built Territory, Sample &amp; Franchise Modules</td></tr>
+<tr><td>License Cost for 30 MRs</td><td>₹30,000–₹60,000 every single month</td><td>₹0 (Unlimited Field Medical Reps)</td></tr>
+<tr><td>WhatsApp Order Capture</td><td>Requires separate subscriptions</td><td>Native WhatsApp Cloud API Integrated</td></tr>
+<tr><td>Deployment Time</td><td>2 to 4 months setup</td><td>28-Day Guaranteed Delivery SLA</td></tr>
+</table>
+<h2>FAQ — Custom CRM Development Panchkula</h2>
+<p><strong>Can Medical Reps use this on mobile?</strong> Yes, lightweight mobile PWA works on any Android or iPhone.</p>
+<p><strong>Are doctor visit records secure?</strong> Yes, sovereign database hosted on private VPS.</p>
+<p><strong>How much does it cost?</strong> ₹1,50,000 to ₹2,50,000 one-time build.</p>
+<p>Connect on WhatsApp at +91-6284925684 or request an audit at sagedo.in/free-audit.</p>
+</article>`
+  },
+
+  {
+    path: '/ai-automation-agency-zirakpur',
+    title: 'AI Automation Agency in Zirakpur | Real Estate & Retail Bots — SAGEDO',
+    description: "Zirakpur's top AI automation agency. Sub-60s WhatsApp bots, real estate lead capture, and CRM automation for high-velocity local businesses.",
+    jsonLd: `<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Why is AI automation critical for Zirakpur businesses?", "acceptedAnswer": {"@type": "Answer", "text": "Zirakpur is a high-velocity transit and residential market where customers demand immediate answers. AI automation ensures no inquiry is missed during evenings, weekends, or holidays."}},
+    {"@type": "Question", "name": "How much does real estate AI automation cost?", "acceptedAnswer": {"@type": "Answer", "text": "Standalone WhatsApp bots and lead-routing setups start from ₹15,000 to ₹45,000, while complete end-to-end sales engines are ₹1,50,000 one-time."}},
+    {"@type": "Question", "name": "Can the bot speak both Hindi and English?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Our AI models understand conversational Hinglish, formal Hindi, and English seamlessly, catering to all buyer demographics in Northern India."}},
+    {"@type": "Question", "name": "Can we route leads to specific sales executives on PR7 or VIP Road?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The system automatically rotates leads or assigns them based on project type, unit size, or agent availability."}},
+    {"@type": "Question", "name": "How fast can this be live for our current campaign?", "acceptedAnswer": {"@type": "Answer", "text": "We deploy and test production WhatsApp AI automation engines in 7 to 14 business days."}}
+  ]
+}
+</script>`,
+    content: `<article>
+<h1>AI Automation Agency in Zirakpur: 24/7 WhatsApp Lead Engines for High-Velocity Hubs</h1>
+<p>By Mukul Dhiman | September 2026 | 7 min read | SAGEDO — Serving VIP Road, PR7 Airport Road, and Zirakpur businesses.</p>
+<h2>BLUF — the answer in 40 words</h2>
+<p>Zirakpur real estate developers, hospitality venues, and retail businesses lose up to 45% of potential buyers who inquire after business hours. SAGEDO builds 24/7 autonomous WhatsApp sales bots and lead routers that engage prospects under 60 seconds from ₹45,000.</p>
+<h2>The 60-Second Rule in Zirakpur's Hyper-Competitive Market</h2>
+<p>When buyers click ads for properties on PR7 or VIP Road, they simultaneously click 3 competitor projects. Inquiries that wait 3 hours for a sales callback lose to whoever responds first. SAGEDO deploys conversational AI bots that greet buyers in under 45 seconds with floor plans and booking invites.</p>
+<h2>Human Telecallers Alone vs SAGEDO AI Sales Engine</h2>
+<table>
+<tr><th>Metric</th><th>Traditional Telecalling Team</th><th>SAGEDO AI Sales Engine</th></tr>
+<tr><td>Night &amp; Weekend Inquiries</td><td>Unanswered until Monday morning</td><td>Instant Conversational Reply in &lt;45s</td></tr>
+<tr><td>Monthly Payroll Expense</td><td>₹45,000–₹1,00,000/mo in staff</td><td>One-Time Setup with Zero Per-Lead Fees</td></tr>
+<tr><td>Catalog / Brochure Delivery</td><td>Manual typing or delayed email</td><td>Instant Automated PDF &amp; Video Delivery</td></tr>
+<tr><td>Site Visit Scheduling</td><td>Back-and-forth phone tagging</td><td>Direct Calendar &amp; Google Maps Invite</td></tr>
+</table>
+<h2>FAQ — AI Automation Agency Zirakpur</h2>
+<p><strong>Can the bot speak Hindi/Hinglish?</strong> Yes, fluent multilingual understanding.</p>
+<p><strong>How fast can it launch?</strong> 7 to 14 business days for active ad campaigns.</p>
+<p><strong>What is the cost?</strong> Modular setups from ₹15,000 to ₹45,000; complete sales engines ₹1,50,000.</p>
+<p>WhatsApp Mukul Dhiman directly at +91-6284925684 or visit sagedo.in/free-audit.</p>
+</article>`
+  },
+
   // ── PUBLIC UTILITY ROUTES (pre-render shells for crawlers) ─────────
+
   {
     path: '/orders',
     title: 'Checkout | SAGEDO — Secure Payment',
@@ -491,6 +738,12 @@ const routes = [
     title: 'Shipping Policy | SAGEDO',
     description: 'SAGEDO shipping policy and delivery information.',
     content: `<h1>Shipping Policy | SAGEDO</h1><p>SAGEDO ships digital deliverables (source code, credentials, design assets) electronically. Physical goods, where applicable, are dispatched within 3-5 business days via standard courier with tracking. For delivery questions contact hello@sagedo.in or WhatsApp +91-6284925684.</p>`,
+  },
+  {
+    path: '/locations',
+    title: 'Regional Service Locations & Hubs | SAGEDO',
+    description: "Explore SAGE DO's regional hubs, local SEO landing pages, and specialized AI automation infrastructure across Bangalore, Chandigarh, Delhi NCR, Mumbai, and nationwide.",
+    content: `<h1>Regional Service Locations &amp; Hubs | SAGEDO</h1><p>Headquartered at Mohali City Centre, SAGE DO deploys sovereign revenue engines, AI agent workflows, and digital infrastructure for businesses across every major Indian metro.</p><h2>Major Metro Hubs</h2><ul><li><a href="/digital-marketing-bangalore.html">Bangalore</a></li><li><a href="/digital-marketing-chandigarh.html">Chandigarh Tri-City</a></li><li><a href="/digital-marketing-delhi.html">Delhi NCR</a></li><li><a href="/digital-marketing-hyderabad.html">Hyderabad</a></li><li><a href="/digital-marketing-mumbai.html">Mumbai</a></li><li><a href="/digital-marketing-pune.html">Pune</a></li></ul><h2>Regional Tri-City &amp; Industrial Pillars</h2><ul><li><a href="/custom-crm-development-chandigarh">Custom CRM Development Chandigarh</a></li><li><a href="/custom-crm-development-ludhiana">Custom CRM Development Ludhiana</a></li><li><a href="/custom-crm-development-panchkula">Custom CRM Development Panchkula</a></li><li><a href="/ai-automation-agency-zirakpur">AI Automation Agency Zirakpur</a></li></ul><h2>Nationwide Digital Solutions</h2><ul><li><a href="/website-development-india.html">Website Development India</a></li><li><a href="/app-development-india.html">Mobile App Development India</a></li><li><a href="/google-business-profile-setup.html">Google Business Profile Setup</a></li><li><a href="/new-business-setup-india.html">New Business Setup India</a></li><li><a href="/ai-automation-agency-india">AI Automation Agency India</a></li><li><a href="/b2b-lead-generation-systems">B2B Lead Generation Systems</a></li></ul>`,
   }
 ];
 
@@ -560,35 +813,34 @@ function prerender() {
     //    This gives Google rich snippet data (author, date, reading time)
     if (route.path.startsWith('/blog/') && route.path !== '/blog') {
       const articleTitle = route.title.split(' — ')[0] || route.title;
-      const articleSchema = `<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "${articleTitle.replace(/"/g, '\\"')}",
-    "description": "${route.description.replace(/"/g, '\\"')}",
-    "author": {
-      "@type": "Person",
-      "name": "Mukul Dhiman",
-      "url": "https://sagedo.in/about-founder"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "SAGE DO",
-      "url": "https://sagedo.in",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://sagedo.in/sagedo_logo_pro_clean.png"
-      }
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://sagedo.in${route.path}"
-    },
-    "url": "https://sagedo.in${route.path}",
-    "image": "https://sagedo.in/sagedo_logo_pro_clean.png",
-    "inLanguage": "en"
-  }
-  </script>`;
+      const articleSchemaObj = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": articleTitle,
+        "description": route.description,
+        "author": {
+          "@type": "Person",
+          "name": "Mukul Dhiman",
+          "url": "https://sagedo.in/about-founder"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "SAGE DO",
+          "url": "https://sagedo.in",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://sagedo.in/sagedo_logo_pro_clean.png"
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": `https://sagedo.in${route.path}`
+        },
+        "url": `https://sagedo.in${route.path}`,
+        "image": "https://sagedo.in/sagedo_logo_pro_clean.png",
+        "inLanguage": "en"
+      };
+      const articleSchema = `<script type="application/ld+json">\n${JSON.stringify(articleSchemaObj, null, 2)}\n</script>`;
       // Inject before </head>
       html = html.replace('</head>', `${articleSchema}\n</head>`);
     }

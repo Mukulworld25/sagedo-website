@@ -5,13 +5,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import { Upload, CheckCircle2, CreditCard, Sparkles, Plus, X, Star, LogIn, Loader2, Clock, Zap, Shield, ArrowRight, CalendarClock, Banknote } from "lucide-react";
+import { Upload, CheckCircle2, CreditCard, Sparkles, Plus, X, Star, LogIn, Loader2, Clock, Zap, Shield, ArrowRight, CalendarClock, Banknote, Award, TrendingUp, ShieldCheck } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useSearch, Link, useLocation } from "wouter";
 import { allServices } from "@/data/serviceData";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/hooks/useAuth";
+import RevealOnScroll from "@/components/ui/RevealOnScroll";
 
 // Declare Razorpay on window
 declare global {
@@ -434,20 +435,96 @@ export default function Orders() {
 
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#08080a' }}>
+      {/* Task W: Visible Atmospheric Hero Background (Crimson Radial Glow + Tech Grid) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true" data-testid="orders-atmospheric-bg">
+        {/* 1. Tech Grid Matrix with radial fade mask */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px',
+            maskImage: 'radial-gradient(ellipse 80% 60% at 50% 25%, #000 35%, transparent 85%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 25%, #000 35%, transparent 85%)'
+          }}
+        />
+
+        {/* 2. Primary Crimson Core Glow behind hero title and stat cards */}
+        <div 
+          className="absolute -top-12 left-1/2 -translate-x-1/2 w-[850px] h-[550px]"
+          style={{
+            background: 'radial-gradient(circle 420px at 50% 45%, rgba(220, 38, 38, 0.25) 0%, rgba(185, 28, 28, 0.12) 45%, transparent 70%)',
+            filter: 'blur(35px)',
+          }}
+        />
+
+        {/* 3. Secondary subtle right-side ambient crimson glow */}
+        <div 
+          className="absolute top-28 right-[5%] w-[450px] h-[450px]"
+          style={{
+            background: 'radial-gradient(circle 260px at 50% 50%, rgba(220, 38, 38, 0.14) 0%, transparent 70%)',
+            filter: 'blur(45px)',
+          }}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Split Layout Container - increased gap */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
 
-          {/* Left Side - Form Content */}
-          <div className="flex-1 lg:max-w-xl lg:pr-8 order-2 lg:order-1">
-            <div className="text-center lg:text-left mb-8">
-              <h1 className="text-4xl md:text-5xl font-black text-foreground mb-4">
+          {/* Left Side - Form Content (Rendered first on mobile and desktop) */}
+          <div className="flex-1 lg:max-w-xl lg:pr-8 order-1 lg:order-1">
+            <div className="text-center lg:text-left mb-6">
+              <h1 className="text-4xl md:text-5xl font-black text-foreground mb-3">
                 Place Your Order
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground">
-                Tell us what you need, and we'll get it done for you.
+              <p className="text-base sm:text-lg text-muted-foreground">
+                Tell us what you need. Our AI + Human execution team delivers within 24–48 hours.
               </p>
+            </div>
+
+            {/* Results Wall — Real Outcomes from Case Studies */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-6">
+              <RevealOnScroll delay={0}>
+                <div className="p-3 rounded-xl bg-card/60 border border-border/40 flex flex-col h-full">
+                  <div className="flex items-center gap-1.5 text-primary text-xs font-semibold mb-1">
+                    <TrendingUp className="w-3.5 h-3.5" />
+                    <span>Genesis</span>
+                  </div>
+                  <span className="text-lg sm:text-xl font-black text-foreground">1,400+</span>
+                  <span className="text-[11px] text-muted-foreground leading-tight">Waitlist Signups</span>
+                </div>
+              </RevealOnScroll>
+              <RevealOnScroll delay={60}>
+                <div className="p-3 rounded-xl bg-card/60 border border-border/40 flex flex-col h-full">
+                  <div className="flex items-center gap-1.5 text-emerald-400 text-xs font-semibold mb-1">
+                    <Zap className="w-3.5 h-3.5" />
+                    <span>Elevate</span>
+                  </div>
+                  <span className="text-lg sm:text-xl font-black text-emerald-400">+400%</span>
+                  <span className="text-[11px] text-muted-foreground leading-tight">Booking Surge</span>
+                </div>
+              </RevealOnScroll>
+              <RevealOnScroll delay={120}>
+                <div className="p-3 rounded-xl bg-card/60 border border-border/40 flex flex-col h-full">
+                  <div className="flex items-center gap-1.5 text-blue-400 text-xs font-semibold mb-1">
+                    <Clock className="w-3.5 h-3.5" />
+                    <span>Speed</span>
+                  </div>
+                  <span className="text-lg sm:text-xl font-black text-blue-400">24–48h</span>
+                  <span className="text-[11px] text-muted-foreground leading-tight">First Prototype</span>
+                </div>
+              </RevealOnScroll>
+              <RevealOnScroll delay={180}>
+                <div className="p-3 rounded-xl bg-card/60 border border-border/40 flex flex-col h-full">
+                  <div className="flex items-center gap-1.5 text-amber-400 text-xs font-semibold mb-1">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    <span>Quality</span>
+                  </div>
+                  <span className="text-lg sm:text-xl font-black text-amber-400">100%</span>
+                  <span className="text-[11px] text-muted-foreground leading-tight">Human-Reviewed</span>
+                </div>
+              </RevealOnScroll>
             </div>
 
             {/* Cart / Selected Services Banner */}
@@ -470,7 +547,7 @@ export default function Orders() {
                     </h3>
                     {cart.length < 3 && !hasOnlyFreeServices && !isServiceLocked && (
                       <Link href="/services">
-                        <Button variant="outline" size="sm" className="gap-1">
+                        <Button variant="outline" className="h-11 lg:h-8 px-3 text-xs gap-1">
                           <Plus className="w-4 h-4" /> Add More
                         </Button>
                       </Link>
@@ -497,7 +574,8 @@ export default function Orders() {
                         <button
                           type="button"
                           onClick={() => setCart(cart.filter(c => c.id !== item.id))}
-                          className="text-muted-foreground hover:text-destructive transition-colors"
+                          className="min-w-[44px] min-h-[44px] -mr-2 flex items-center justify-center text-muted-foreground hover:text-destructive transition-colors"
+                          aria-label="Remove item"
                         >
                           <X className="w-4 h-4" />
                         </button>
@@ -519,6 +597,29 @@ export default function Orders() {
             )}
 
             <Card className="glass p-8">
+              {/* 3-Step Execution Checklist / Progress Indicator */}
+              {/* Step Progress Indicator - Mobile-responsive no-truncation */}
+              <div className="grid grid-cols-3 gap-1.5 sm:gap-2 p-1.5 rounded-xl bg-neutral-900/80 border border-neutral-800/80 text-[11px] sm:text-xs mb-6">
+                <div className={`flex items-center justify-center gap-1 sm:gap-1.5 py-2 px-1 sm:px-2 rounded-lg font-medium transition-all ${
+                  formData.email ? 'bg-emerald-950/60 text-emerald-400 border border-emerald-800/50' : 'bg-neutral-800/50 text-neutral-300'
+                }`}>
+                  {formData.email ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> : <span className="w-4 h-4 rounded-full bg-neutral-700 text-[10px] flex items-center justify-center text-white font-bold shrink-0">1</span>}
+                  <span className="whitespace-nowrap"><span className="hidden sm:inline">01 </span>Details</span>
+                </div>
+                <div className={`flex items-center justify-center gap-1 sm:gap-1.5 py-2 px-1 sm:px-2 rounded-lg font-medium transition-all ${
+                  formData.requirements.trim().length > 10 ? 'bg-emerald-950/60 text-emerald-400 border border-emerald-800/50' : 'bg-neutral-800/50 text-neutral-300'
+                }`}>
+                  {formData.requirements.trim().length > 10 ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> : <span className="w-4 h-4 rounded-full bg-neutral-700 text-[10px] flex items-center justify-center text-white font-bold shrink-0">2</span>}
+                  <span className="whitespace-nowrap"><span className="hidden sm:inline">02 </span>Brief</span>
+                </div>
+                <div className={`flex items-center justify-center gap-1 sm:gap-1.5 py-2 px-1 sm:px-2 rounded-lg font-medium transition-all ${
+                  termsAccepted ? 'bg-primary/20 text-primary border border-primary/40' : 'bg-neutral-800/50 text-neutral-400'
+                }`}>
+                  <span className="w-4 h-4 rounded-full bg-primary/30 text-[10px] flex items-center justify-center text-primary font-bold shrink-0">3</span>
+                  <span className="whitespace-nowrap"><span className="hidden sm:inline">03 </span>Confirm</span>
+                </div>
+              </div>
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name / Company Name */}
                 <div className="space-y-2">
@@ -643,9 +744,9 @@ export default function Orders() {
                   <Label className="text-foreground">
                     How would you like to receive your delivery? <span className="text-destructive">*</span>
                   </Label>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                     <label
-                      className={`flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${formData.deliveryPreference === 'platform'
+                      className={`flex items-center gap-3 p-3.5 sm:p-4 rounded-xl border-2 cursor-pointer transition-all min-h-[52px] ${formData.deliveryPreference === 'platform'
                         ? 'border-primary bg-primary/10'
                         : 'border-border/50 hover:border-primary/30'
                         }`}
@@ -658,21 +759,21 @@ export default function Orders() {
                         onChange={() => setFormData({ ...formData, deliveryPreference: 'platform' })}
                         className="sr-only"
                       />
-                      <div className={`w-4 h-4 rounded-full border-2 ${formData.deliveryPreference === 'platform'
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${formData.deliveryPreference === 'platform'
                         ? 'border-primary bg-primary'
                         : 'border-muted-foreground'
                         }`}>
                         {formData.deliveryPreference === 'platform' && (
-                          <div className="w-full h-full rounded-full bg-white scale-50" />
+                          <div className="w-2 h-2 rounded-full bg-white" />
                         )}
                       </div>
                       <div>
-                        <p className="font-medium text-foreground">Dashboard</p>
+                        <p className="font-semibold text-sm text-foreground">Dashboard</p>
                         <p className="text-xs text-muted-foreground">Download from your dashboard</p>
                       </div>
                     </label>
                     <label
-                      className={`flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${formData.deliveryPreference === 'email'
+                      className={`flex items-center gap-3 p-3.5 sm:p-4 rounded-xl border-2 cursor-pointer transition-all min-h-[52px] ${formData.deliveryPreference === 'email'
                         ? 'border-primary bg-primary/10'
                         : 'border-border/50 hover:border-primary/30'
                         }`}
@@ -685,21 +786,21 @@ export default function Orders() {
                         onChange={() => setFormData({ ...formData, deliveryPreference: 'email' })}
                         className="sr-only"
                       />
-                      <div className={`w-4 h-4 rounded-full border-2 ${formData.deliveryPreference === 'email'
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${formData.deliveryPreference === 'email'
                         ? 'border-primary bg-primary'
                         : 'border-muted-foreground'
                         }`}>
                         {formData.deliveryPreference === 'email' && (
-                          <div className="w-full h-full rounded-full bg-white scale-50" />
+                          <div className="w-2 h-2 rounded-full bg-white" />
                         )}
                       </div>
                       <div>
-                        <p className="font-medium text-foreground">Email</p>
+                        <p className="font-semibold text-sm text-foreground">Email</p>
                         <p className="text-xs text-muted-foreground">Receive download link via email</p>
                       </div>
                     </label>
                     <label
-                      className={`flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${formData.deliveryPreference === 'whatsapp'
+                      className={`flex items-center gap-3 p-3.5 sm:p-4 rounded-xl border-2 cursor-pointer transition-all min-h-[52px] ${formData.deliveryPreference === 'whatsapp'
                         ? 'border-primary bg-primary/10'
                         : 'border-border/50 hover:border-primary/30'
                         }`}
@@ -712,16 +813,16 @@ export default function Orders() {
                         onChange={() => setFormData({ ...formData, deliveryPreference: 'whatsapp' })}
                         className="sr-only"
                       />
-                      <div className={`w-4 h-4 rounded-full border-2 ${formData.deliveryPreference === 'whatsapp'
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${formData.deliveryPreference === 'whatsapp'
                         ? 'border-primary bg-primary'
                         : 'border-muted-foreground'
                         }`}>
                         {formData.deliveryPreference === 'whatsapp' && (
-                          <div className="w-full h-full rounded-full bg-white scale-50" />
+                          <div className="w-2 h-2 rounded-full bg-white" />
                         )}
                       </div>
                       <div>
-                        <p className="font-medium text-foreground">WhatsApp</p>
+                        <p className="font-semibold text-sm text-foreground">WhatsApp</p>
                         <p className="text-xs text-muted-foreground">Get update on WhatsApp</p>
                       </div>
                     </label>
@@ -882,18 +983,29 @@ export default function Orders() {
                   </div>
                 )}
 
-                {/* Terms & Refund Policy Checkbox */}
-                <div className="flex items-start gap-3">
+                {/* Terms & Refund Policy Checkbox - 44px touch target */}
+                <label htmlFor="terms-acceptance" className="flex items-start gap-3 p-2 -ml-2 rounded-xl cursor-pointer hover:bg-neutral-900/50 min-h-[44px] transition-colors">
                   <input
                     type="checkbox"
                     id="terms-acceptance"
                     checked={termsAccepted}
                     onChange={(e) => setTermsAccepted(e.target.checked)}
-                    className="mt-1 w-4 h-4 rounded border-border accent-primary cursor-pointer"
+                    className="mt-1 w-5 h-5 rounded border-border accent-primary cursor-pointer shrink-0"
                   />
-                  <label htmlFor="terms-acceptance" className="text-xs text-muted-foreground cursor-pointer">
-                    I agree to the <a href="/terms-of-service" className="text-primary hover:underline">Terms of Service</a> and <a href="/refund-policy" className="text-primary hover:underline">Refund Policy</a>, including the 90% money-back guarantee and milestone-gated delivery terms.
-                  </label>
+                  <span className="text-xs text-muted-foreground leading-relaxed">
+                    I agree to the <a href="/terms-of-service" className="text-primary hover:underline py-1 inline-block">Terms of Service</a> and <a href="/refund-policy" className="text-primary hover:underline py-1 inline-block">Refund Policy</a>, including the 90% money-back guarantee and milestone-gated delivery terms.
+                  </span>
+                </label>
+
+                {/* Reassurance Micro-Copy Block */}
+                <div className="p-4 rounded-xl bg-gradient-to-r from-primary/10 via-neutral-900/90 to-background border border-primary/25 space-y-1.5">
+                  <div className="flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-wider">
+                    <Zap className="w-4 h-4 text-primary shrink-0" />
+                    <span>You're one step from your Execution Vault</span>
+                  </div>
+                  <p className="text-xs text-neutral-300 leading-relaxed">
+                    Once submitted, your dedicated tracker activates immediately. Mukul &amp; the engineering team review your brief the same business day, and the hybrid AI-human pipeline begins building your deliverables with guaranteed 24–48h milestone speed.
+                  </p>
                 </div>
 
                 {/* Submit Button */}
@@ -924,7 +1036,7 @@ export default function Orders() {
                 ) : (
                   <div className="space-y-4">
                     <div className="p-4 rounded-lg border border-green-500/50 bg-green-500/10">
-                      <p className="text-sm text-green-400 font-semibold"> Order Created Successfully!</p>
+                      <p className="text-sm text-green-400 font-semibold">… Order Created Successfully!</p>
                       <p className="text-xs text-muted-foreground mt-1">Order ID: {createdOrderId.slice(0, 8)}...</p>
                     </div>
 
@@ -958,51 +1070,60 @@ export default function Orders() {
                 )}
               </form>
 
-              {/* Trust Badges */}
-              <div className="mt-6 pt-6 border-t border-border/30">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                  <div className="w-4 h-4 rounded-full bg-green-500 flex items-center justify-center">
-                    <CheckCircle2 className="w-3 h-3 text-white" />
+              {/* Trust Badges & Credibility Markers */}
+              <div className="mt-6 pt-6 border-t border-border/30 space-y-4">
+                {/* Verified Trust Badges */}
+                <div className="flex flex-wrap items-center justify-center gap-2.5 text-xs">
+                  {/* Trustpilot */}
+                  <a
+                    href="https://www.trustpilot.com/review/sagedo.in"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 min-h-[44px] sm:min-h-0 px-3 py-1.5 rounded-full bg-neutral-900/90 border border-neutral-800 hover:border-neutral-700 text-neutral-300 transition-colors"
+                  >
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="#00b67a" className="shrink-0">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                    <span className="font-semibold text-white">4.0</span>
+                    <span className="text-neutral-400">on Trustpilot</span>
+                  </a>
+
+                  {/* MSME Udyam */}
+                  <a
+                    href="https://udyamregistration.gov.in/Udyam_Verify.aspx"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 min-h-[44px] sm:min-h-0 px-3 py-1.5 rounded-full bg-neutral-900/90 border border-neutral-800 hover:border-emerald-500/30 text-neutral-300 transition-colors"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
+                    <span className="text-neutral-400 font-medium">MSME:</span>
+                    <span className="text-emerald-400 font-mono text-[11px]">UDYAM-HP-04-0042175</span>
+                  </a>
+
+                  {/* 90% Guarantee */}
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-900/90 border border-neutral-800 text-neutral-300">
+                    <Shield className="w-3.5 h-3.5 text-green-400 shrink-0" />
+                    <span>90% Money-Back SLA</span>
                   </div>
-                  <span className="text-sm text-muted-foreground">100% Secure Payment</span>
                 </div>
-                <div className="flex flex-wrap items-center justify-center gap-4">
-                  {/* Razorpay */}
-                  <div className="px-3 py-2 bg-card/50 rounded-lg border border-border/30 flex items-center gap-2">
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 18.5L4 16V8.5l8 4v8zM12 11L4.5 7 12 3l7.5 4L12 11zm8 5l-6.5 3.25V13l6.5-3.25V16z" />
-                    </svg>
-                    <span className="text-xs font-medium">Razorpay</span>
-                  </div>
-                  {/* Visa */}
-                  <div className="px-3 py-2 bg-card/50 rounded-lg border border-border/30">
-                    <span className="text-xs font-bold text-blue-500">VISA</span>
-                  </div>
-                  {/* Mastercard */}
-                  <div className="px-3 py-2 bg-card/50 rounded-lg border border-border/30">
-                    <div className="flex -space-x-1">
-                      <div className="w-4 h-4 rounded-full bg-red-500" />
-                      <div className="w-4 h-4 rounded-full bg-yellow-500" />
-                    </div>
-                  </div>
-                  {/* UPI */}
-                  <div className="px-3 py-2 bg-card/50 rounded-lg border border-border/30">
-                    <span className="text-xs font-bold text-green-600">UPI</span>
-                  </div>
-                  {/* SSL */}
-                  <div className="px-3 py-2 bg-card/50 rounded-lg border border-border/30 flex items-center gap-1">
-                    <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                    <span className="text-xs font-medium">SSL</span>
-                  </div>
+
+                {/* Payment Security */}
+                <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-[11px] text-muted-foreground">
+                  <span className="flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0" />
+                    <span>RBI-Authorized Payment via Razorpay</span>
+                  </span>
+                  <span>•</span>
+                  <span>256-Bit SSL Encrypted</span>
+                  <span>•</span>
+                  <span>UPI, Cards &amp; Netbanking</span>
                 </div>
               </div>
             </Card>
           </div>
 
           {/* Right Side - Service Detail Preview Panel */}
-          <div className="flex flex-col lg:w-5/12 lg:sticky lg:top-24 lg:self-start order-1 lg:order-2 mb-8 lg:mb-0">
+          <div className="flex flex-col lg:w-5/12 lg:sticky lg:top-24 lg:self-start order-2 lg:order-2 mb-8 lg:mb-0">
             {selectedServiceDetails ? (
               <div className="space-y-6">
                 {/* Service Header Card */}
@@ -1071,69 +1192,142 @@ export default function Orders() {
                 </div>
 
                 {/* Trust & Guarantee Card */}
-                <div className="rounded-2xl border border-border/20 bg-background/40 backdrop-blur-sm p-6 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
-                      <Shield className="w-5 h-5 text-green-500" />
+                <RevealOnScroll delay={100}>
+                  <div className="rounded-2xl border border-border/20 bg-background/40 backdrop-blur-sm p-6 space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
+                        <Shield className="w-5 h-5 text-green-500" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-foreground text-sm">90% Money-Back Guarantee</p>
+                        <p className="text-xs text-muted-foreground">90% refund within 7 days of delivery</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-bold text-foreground text-sm">90% Money-Back Guarantee</p>
-                      <p className="text-xs text-muted-foreground">90% refund within 7 days of delivery</p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <Zap className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-foreground text-sm">AI + Human Excellence</p>
+                        <p className="text-xs text-muted-foreground">Every deliverable is human-verified</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center">
+                        <CheckCircle2 className="w-5 h-5 text-amber-500" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-foreground text-sm">Secure Payment via Razorpay</p>
+                        <p className="text-xs text-muted-foreground">SSL encrypted · UPI · Cards · Netbanking</p>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <Zap className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-bold text-foreground text-sm">AI + Human Excellence</p>
-                      <p className="text-xs text-muted-foreground">Every deliverable is human-verified</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center">
-                      <CheckCircle2 className="w-5 h-5 text-amber-500" />
-                    </div>
-                    <div>
-                      <p className="font-bold text-foreground text-sm">Secure Payment via Razorpay</p>
-                      <p className="text-xs text-muted-foreground">SSL encrypted · UPI · Cards · Netbanking</p>
-                    </div>
-                  </div>
-                </div>
+                </RevealOnScroll>
               </div>
             ) : (
-              /* No service selected — elegant placeholder */
-              <div className="rounded-2xl border border-dashed border-border/40 bg-gradient-to-br from-background via-background to-primary/5 p-12 text-center space-y-6 shadow-xl">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/10 to-destructive/10 flex items-center justify-center mx-auto border border-primary/20">
-                  <Sparkles className="w-10 h-10 text-primary/50" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">Select a Service</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">
-                    Browse our specialized AI-powered services and see full details, pricing, and features right here.
-                  </p>
-                </div>
-                <a href="/services">
-                  <Button variant="outline" className="gap-2 border-primary/30 hover:bg-primary/10">
-                    Browse Services <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </a>
+              /* Execution Vault & Proven Outcomes Showcase */
+              <div className="space-y-6">
+                <RevealOnScroll delay={100}>
+                  <div className="relative rounded-2xl overflow-hidden border border-primary/25 bg-gradient-to-br from-background via-neutral-900/60 to-primary/5 p-7 shadow-2xl shadow-primary/5">
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-emerald-400 to-primary" />
+                    
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="flex items-center gap-2.5">
+                        <div className="p-2 rounded-xl bg-primary/15 text-primary">
+                          <Award className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-black text-foreground">The Execution Vault</h3>
+                          <p className="text-xs text-muted-foreground">Real outcomes from our hybrid builds</p>
+                        </div>
+                      </div>
+                      <Badge variant="outline" className="text-xs border-emerald-500/40 text-emerald-400 bg-emerald-500/10">
+                        Live Track Record
+                      </Badge>
+                    </div>
 
-                {/* Mini trust badges */}
-                <div className="pt-6 border-t border-border/20 space-y-3">
-                  <div className="flex items-center justify-center gap-2 text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-green-500" />
-                    <span className="text-xs">Fast 24-48 hour delivery</span>
+                    {/* Case Study 1: Project Genesis */}
+                    <div className="p-4 rounded-xl bg-card/60 border border-border/40 mb-3 space-y-1.5 hover:border-primary/30 transition-colors">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-bold text-foreground">Project Genesis</span>
+                        <span className="text-primary font-bold">1,400+ Waitlist</span>
+                      </div>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        B2C startup MVP built, branded, and launched in 18 days. Secured local angel funding based on polished MVP demo &amp; early traction.
+                      </p>
+                    </div>
+
+                    {/* Case Study 2: Project Elevate */}
+                    <div className="p-4 rounded-xl bg-card/60 border border-border/40 mb-3 space-y-1.5 hover:border-emerald-500/30 transition-colors">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-bold text-foreground">Project Elevate</span>
+                        <span className="text-emerald-400 font-bold">+400% Bookings</span>
+                      </div>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        Healthcare specialist clinic digital ecosystem &amp; local SEO takeover. Generated ₹35L+ ROI from high-ticket patient acquisition in 60 days.
+                      </p>
+                    </div>
+
+                    {/* Verified Trustpilot Review */}
+                    <div className="p-4 rounded-xl bg-neutral-900/90 border border-border/30 space-y-2">
+                      <div className="flex items-center gap-1 text-[#00b67a]">
+                        {[1, 2, 3, 4, 5].map((s) => (
+                          <Star key={s} className="w-3 h-3 fill-current" />
+                        ))}
+                      </div>
+                      <p className="text-xs text-neutral-300 italic leading-relaxed">
+                        "Easy-to-use and efficient platform that helps simplify tasks and save time."
+                      </p>
+                      <p className="text-[10px] text-muted-foreground font-semibold">
+                        — Priya Singh, Verified Trustpilot Review
+                      </p>
+                    </div>
+
+                    <div className="pt-4 mt-4 border-t border-border/20 flex flex-col gap-2.5">
+                      <p className="text-xs text-muted-foreground text-center">
+                        Need to browse our full 30+ service catalog first?
+                      </p>
+                      <Link href="/services">
+                        <Button variant="outline" className="w-full h-11 lg:h-9 text-xs sm:text-sm gap-2 border-primary/30 hover:bg-primary/10">
+                          Browse Services Directory <ArrowRight className="w-4 h-4" />
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center gap-2 text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-green-500" />
-                    <span className="text-xs">90% Money-Back Guarantee</span>
+                </RevealOnScroll>
+
+                {/* Trust & Guarantee Card */}
+                <RevealOnScroll delay={150}>
+                  <div className="rounded-2xl border border-border/20 bg-background/40 backdrop-blur-sm p-5 space-y-3.5">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-xl bg-green-500/10 flex items-center justify-center shrink-0">
+                        <Shield className="w-4 h-4 text-green-500" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-foreground text-xs">90% Money-Back Guarantee</p>
+                        <p className="text-[11px] text-muted-foreground">90% refund within 7 days if SLA is not met</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                        <Zap className="w-4 h-4 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-foreground text-xs">AI Speed + Human Engineering</p>
+                        <p className="text-[11px] text-muted-foreground">Every line of code &amp; design human-verified</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-foreground text-xs">Sovereign Asset Handover</p>
+                        <p className="text-[11px] text-muted-foreground">You own 100% of your source code &amp; database</p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center gap-2 text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-green-500" />
-                    <span className="text-xs">Secure payment via Razorpay</span>
-                  </div>
-                </div>
+                </RevealOnScroll>
               </div>
             )}
           </div>

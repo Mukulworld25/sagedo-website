@@ -7,7 +7,7 @@ import { trackWhatsAppClick } from '@/hooks/useAnalytics';
 
 const testimonials = [
     {
-        name: "Priya Siingh",
+        name: "Priya Singh",
         role: "Verified Trustpilot Review",
         initials: "PS",
         text: "Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time. It has a clean interface and smooth onboarding. I've had a great experience with Sagedo.",

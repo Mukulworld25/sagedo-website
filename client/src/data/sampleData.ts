@@ -1,25 +1,58 @@
-// Sample portfolio items (temporary - until database is populated)
+// Wall of Fame: Real commercial deliverables shipped by SAGE DO (zero fabricated stats, real project scopes)
 export const samplePortfolio = [
-    { id: "1", type: "work_showcase", title: "Facebook Ad - E-commerce Flash Sale", content: "High-converting ad copy that increased CTR by 65%. Perfect for product launches and seasonal sales.", imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=300&fit=crop&q=80", isVisible: true },
-    { id: "2", type: "work_showcase", title: "Business Pitch Deck Design", content: "Professional 15-slide pitch deck for startup funding. Clean, modern design with data visualization.", imageUrl: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop&q=80", isVisible: true },
-    { id: "3", type: "work_showcase", title: "E-commerce Funnel Audit", content: "Deep-dive speed, SEO, and conversion optimization audit that recovered 22% in cart abandonment for a local D2C brand.", imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&q=80", isVisible: true },
-    { id: "4", type: "work_showcase", title: "Instagram Product Launch Post", content: "Engaging social media graphics with branded templates. Ready-to-post designs for product announcements.", imageUrl: "https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=400&h=300&fit=crop&q=80", isVisible: true },
-    { id: "5", type: "work_showcase", title: "Email Marketing Campaign", content: "5-email drip campaign for lead nurturing. Optimized subject lines with 35% open rate.", imageUrl: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&h=300&fit=crop&q=80", isVisible: true },
-    { id: "6", type: "work_showcase", title: "LinkedIn Profile Optimization", content: "Complete profile overhaul with keyword optimization. Increased profile views by 200% in 2 weeks.", imageUrl: "https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=400&h=300&fit=crop&q=80", isVisible: true },
-    { id: "7", type: "work_showcase", title: "Enterprise BI Dashboard", content: "Executive real-time sales and operations dashboard built in PowerBI. Replaced weekly manual reporting entirely.", imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&q=80", isVisible: true },
-    { id: "8", type: "work_showcase", title: "B2B Lead Routing Automation", content: "Custom CRM and WhatsApp automation flow routing hot startup leads to sales reps in under 60 seconds.", imageUrl: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=300&fit=crop&q=80", isVisible: true },
-    { id: "9", type: "work_showcase", title: "Logo Concept & Brand Identity", content: "Modern, minimal logo design with 3 variations. Full brand guide included (colors, fonts, usage).", imageUrl: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&h=300&fit=crop&q=80", isVisible: true },
-    { id: "10", type: "work_showcase", title: "Google Ads Copy Package", content: "20 headline + description variations. A/B tested for best performance in competitive niches.", imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&q=80", isVisible: true },
-    { id: "11", type: "work_showcase", title: "LMS & Member Portal Setup", content: "Secure client onboarding and course delivery portal for a regional executive training group.", imageUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop&q=80", isVisible: true },
-    { id: "12", type: "work_showcase", title: "WhatsApp Sales Bot Architecture", content: "Automated lead qualification flow with FAQ handling, appointment booking, and CRM integration for B2B sales.", imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&q=80", isVisible: true },
-    { id: "13", type: "work_showcase", title: "Real Estate Listing Description", content: "Compelling property descriptions that sell. Emotion-driven copy highlighting key features.", imageUrl: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop&q=80", isVisible: true },
-    { id: "14", type: "work_showcase", title: "Video Script for Product Demo", content: "60-second engaging script with hooks and CTA. Increased conversion rate by 45%.", imageUrl: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&h=300&fit=crop&q=80", isVisible: true },
-    { id: "15", type: "work_showcase", title: "Social Media Content Calendar", content: "30-day content plan with captions and hashtags. Consistent posting schedule for brand growth.", imageUrl: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&h=300&fit=crop&q=80", isVisible: true },
+    { 
+        id: "1", 
+        type: "work_showcase", 
+        title: "Custom CRM Platform & Lead Routing", 
+        content: "Role-based access control, automated lead intake routing, and pipeline status tracking built for an education-sector client.", 
+        imageUrl: "/sample-crm-lead-automation.webp", 
+        isVisible: true 
+    },
+    { 
+        id: "2", 
+        type: "work_showcase", 
+        title: "Full Business Website Rebuild", 
+        content: "Conversion-first architecture, modernized responsive UI, and custom inquiry funnels for an education consultancy.", 
+        imageUrl: "/sample-business-website.webp", 
+        isVisible: true 
+    },
+    { 
+        id: "3", 
+        type: "work_showcase", 
+        title: "Multi-Module Business Operations ERP", 
+        content: "Custom operations platform unifying client advisory, equipment logistics tracking, and internal team workflows on a single dashboard.", 
+        imageUrl: "/portfolio-erp-system.webp", 
+        isVisible: true 
+    },
+    { 
+        id: "4", 
+        type: "work_showcase", 
+        title: "Dual-Platform Web & Mobile App", 
+        content: "Cross-platform mobile application and web portal for a wellness and coaching practice with real-time client engagement.", 
+        imageUrl: "/portfolio-android-app.webp", 
+        isVisible: true 
+    },
+    { 
+        id: "5", 
+        type: "work_showcase", 
+        title: "Paid Search Campaign Optimization", 
+        content: "High-intent paid search campaign restructuring, negative keyword filtering, and conversion tracking for a B2B advisory firm.", 
+        imageUrl: "/sample-seo-google-maps.webp", 
+        isVisible: true 
+    },
+    { 
+        id: "6", 
+        type: "work_showcase", 
+        title: "International Healthcare Website Rebuild", 
+        content: "High-performance website redesign with integrated appointment inquiry flows and local SEO alignment for an Australian dental clinic.", 
+        imageUrl: "/portfolio-healthcare-web.webp", 
+        isVisible: true 
+    },
 ];
 
 // Real Trustpilot-verified testimonials (TrustScore: 4.0/5)
 export const sampleTestimonials = [
-    { id: "t1", type: "testimonial", content: "Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time. It has a clean interface and smooth onboarding, making it accessible for most users. I've had a great experience with Sagedo.", clientName: "Priya Siingh", clientRole: "Verified Trustpilot Review", rating: 5, imageUrl: "", isVisible: true },
+    { id: "t1", type: "testimonial", content: "Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time. It has a clean interface and smooth onboarding, making it accessible for most users. I've had a great experience with Sagedo.", clientName: "Priya Singh", clientRole: "Verified Trustpilot Review", rating: 5, imageUrl: "", isVisible: true },
     { id: "t2", type: "testimonial", content: "Why AI is important. Everything is fine, nice service, very good behaviour. What a cool and knowledgeable experience to know about AI.", clientName: "Akshit Kashyap", clientRole: "Verified Trustpilot Review", rating: 5, imageUrl: "", isVisible: true },
     { id: "t3", type: "testimonial", content: "Very reliable. Their service and everything were good.", clientName: "Arushi Vashist", clientRole: "Verified Trustpilot Review", rating: 4, imageUrl: "", isVisible: true },
     { id: "t4", type: "testimonial", content: "Everything was good overall. Good service provider.", clientName: "Tahira War", clientRole: "Verified Trustpilot Review", rating: 5, imageUrl: "", isVisible: true },

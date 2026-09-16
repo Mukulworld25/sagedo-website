@@ -12,6 +12,7 @@ import { clsx } from "clsx";
 import { Helmet } from "react-helmet-async";
 import { twMerge } from "tailwind-merge";
 import { trackWhatsAppClick } from "@/hooks/useAnalytics";
+import RevealOnScroll from "@/components/ui/RevealOnScroll";
 
 function cn(...inputs: (string | undefined | null | false)[]) {
   return twMerge(clsx(inputs));
@@ -152,55 +153,67 @@ export default function Services() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* DIGITAL PRESENCE ENGINE */}
-              <div className="group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-amber-500/50 transition-all hover:-translate-y-1 duration-300">
-                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><Rocket className="w-24 h-24 text-amber-500" /></div>
-                <div className="mb-4 p-2 bg-amber-500/10 w-fit rounded-lg text-amber-500"><Zap className="w-6 h-6" /></div>
-                <h3 className="text-xl font-bold text-white mb-1">Digital Presence Engine</h3>
-                <p className="text-gray-400 text-sm mb-1">Inbound lead capture & WhatsApp gateway.</p>
-                <p className="text-amber-400/80 text-xs font-semibold mb-4 italic">“Stop being invisible. Start capturing demand.”</p>
-                <div className="flex items-baseline gap-1 mb-1"><span className="text-3xl font-black text-white">₹45,000</span><span className="text-xs text-gray-500">/ one-time</span></div>
-                <div className="flex items-center gap-1.5 text-xs text-amber-400 font-medium mb-2">
-                  <CreditCard className="w-3.5 h-3.5 flex-shrink-0" />
-                  <span>3-part milestone plan available (from ₹15,000/mo)</span>
+              <RevealOnScroll delay={0}>
+                <div className="group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-amber-500/50 transition-all hover:-translate-y-1 duration-300 h-full flex flex-col justify-between">
+                  <div>
+                    <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><Rocket className="w-24 h-24 text-amber-500" /></div>
+                    <div className="mb-4 p-2 bg-amber-500/10 w-fit rounded-lg text-amber-500"><Zap className="w-6 h-6" /></div>
+                    <h3 className="text-xl font-bold text-white mb-1">Digital Presence Engine</h3>
+                    <p className="text-gray-400 text-sm mb-1">Inbound lead capture & WhatsApp gateway.</p>
+                    <p className="text-amber-400/80 text-xs font-semibold mb-4 italic">“Stop being invisible. Start capturing demand.”</p>
+                    <div className="flex items-baseline gap-1 mb-1"><span className="text-3xl font-black text-white">₹45,000</span><span className="text-xs text-gray-500">/ one-time</span></div>
+                    <div className="flex items-center gap-1.5 text-xs text-amber-400 font-medium mb-2">
+                      <CreditCard className="w-3.5 h-3.5 flex-shrink-0" />
+                      <span>3-part milestone plan available (from ₹15,000/mo)</span>
+                    </div>
+                    <p className="text-sm text-gray-400 font-medium mb-6">+ ₹15,000/mo maintenance available</p>
+                    <ul className="space-y-3 mb-8">{["Custom Mobile Web Storefront (Sub-1.2s LCP)","WhatsApp Cloud API Lead Webhook","Interactive Dynamic Calculator / Quoter","Automated Founder WhatsApp Lead Alerts","SSL + High-Performance Edge Setup"].map(i=>(<li key={i} className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500 flex-shrink-0" />{i}</li>))}</ul>
+                  </div>
+                  <Link href="/orders?service=Digital%20Presence%20Engine&price=45000"><Button className="min-h-[44px] sm:min-h-0 w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none font-semibold transition-all">Deploy Now <ArrowRight className="w-4 h-4 ml-2" /></Button></Link>
                 </div>
-                <p className="text-sm text-gray-400 font-medium mb-6">+ ₹15,000/mo maintenance available</p>
-                <ul className="space-y-3 mb-8">{["Custom Mobile Web Storefront (Sub-1.2s LCP)","WhatsApp Cloud API Lead Webhook","Interactive Dynamic Calculator / Quoter","Automated Founder WhatsApp Lead Alerts","SSL + High-Performance Edge Setup"].map(i=>(<li key={i} className="flex gap-3 text-sm text-gray-300"><ShieldCheck className="w-4 h-4 text-amber-500 flex-shrink-0" />{i}</li>))}</ul>
-                <Link href="/orders?service=Digital%20Presence%20Engine&price=45000"><Button className="w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none font-semibold transition-all">Deploy Now <ArrowRight className="w-4 h-4 ml-2" /></Button></Link>
-              </div>
+              </RevealOnScroll>
               {/* SOVEREIGN REVENUE ENGINE */}
-              <div className="relative bg-[#0F0F0F] border border-amber-500/50 rounded-2xl p-8 shadow-[0_0_40px_-10px_rgba(234,179,8,0.2)]">
-                <div className="absolute top-0 left-0 right-0 flex justify-center -translate-y-1/2"><span className="bg-amber-500 text-black text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">Most Popular — 3 spots left</span></div>
-                <div className="mb-6 p-3 bg-amber-500 text-black w-fit rounded-xl"><Crown className="w-8 h-8" /></div>
-                <h3 className="text-2xl font-black text-white mb-2">Sovereign Revenue Engine™</h3>
-                <p className="text-gray-400 text-sm mb-1">Custom CRM & automated WhatsApp pipeline.</p>
-                <p className="text-amber-400 text-xs font-semibold mb-6 italic">“Your sovereign revenue machine — in 28 days.”</p>
-                <div className="flex items-baseline gap-1 mb-1"><span className="text-5xl font-black text-white">₹1,50,000</span><span className="text-sm text-gray-500">/ one-time</span></div>
-                <div className="flex items-center gap-1.5 text-xs text-amber-400 font-medium mb-2">
-                  <CreditCard className="w-3.5 h-3.5 flex-shrink-0" />
-                  <span>3-part milestone plan available (from ₹50,000/mo)</span>
+              <RevealOnScroll delay={80}>
+                <div className="relative bg-[#0F0F0F] border border-amber-500/50 rounded-2xl p-8 shadow-[0_0_40px_-10px_rgba(234,179,8,0.2)] h-full flex flex-col justify-between">
+                  <div>
+                    <div className="absolute top-0 left-0 right-0 flex justify-center -translate-y-1/2"><span className="bg-amber-500 text-black text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">Most Popular — 3 spots left</span></div>
+                    <div className="mb-6 p-3 bg-amber-500 text-black w-fit rounded-xl"><Crown className="w-8 h-8" /></div>
+                    <h3 className="text-2xl font-black text-white mb-2">Sovereign Revenue Engine™</h3>
+                    <p className="text-gray-400 text-sm mb-1">Custom CRM & automated WhatsApp pipeline.</p>
+                    <p className="text-amber-400 text-xs font-semibold mb-6 italic">“Your sovereign revenue machine — in 28 days.”</p>
+                    <div className="flex items-baseline gap-1 mb-1"><span className="text-5xl font-black text-white">₹1,50,000</span><span className="text-sm text-gray-500">/ one-time</span></div>
+                    <div className="flex items-center gap-1.5 text-xs text-amber-400 font-medium mb-2">
+                      <CreditCard className="w-3.5 h-3.5 flex-shrink-0" />
+                      <span>3-part milestone plan available (from ₹50,000/mo)</span>
+                    </div>
+                    <p className="text-sm text-gray-400 font-medium mb-6">+ ₹25,000/mo maintenance available</p>
+                    <div className="h-1 w-full bg-gray-800 rounded-full overflow-hidden mb-4"><div className="h-full w-full bg-gradient-to-r from-amber-500 to-yellow-600"></div></div>
+                    <ul className="space-y-3 mb-8">{["Full Custom CRM (Zero Per-Seat Fees)","Unlimited Seats & Role-Based Access (RBAC)","Automated WhatsApp Lead Routing & Tracking","Native Tally Prime / ERP Bridge Integration","Real-Time Margin & Sales Velocity Dashboard"].map(i=>(<li key={i} className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500 flex-shrink-0" />{i}</li>))}</ul>
+                  </div>
+                  <Link href="/orders?service=Sovereign%20Revenue%20Engine%E2%84%A2&price=150000"><Button className="w-full h-12 bg-gradient-to-r from-amber-500 to-yellow-600 hover:to-amber-500 text-black font-black text-lg shadow-lg shadow-amber-500/20">Hire Your Team</Button></Link>
                 </div>
-                <p className="text-sm text-gray-400 font-medium mb-6">+ ₹25,000/mo maintenance available</p>
-                <div className="h-1 w-full bg-gray-800 rounded-full overflow-hidden mb-4"><div className="h-full w-full bg-gradient-to-r from-amber-500 to-yellow-600"></div></div>
-                <ul className="space-y-3 mb-8">{["Full Custom CRM (Zero Per-Seat Fees)","Unlimited Seats & Role-Based Access (RBAC)","Automated WhatsApp Lead Routing & Tracking","Native Tally Prime / ERP Bridge Integration","Real-Time Margin & Sales Velocity Dashboard"].map(i=>(<li key={i} className="flex gap-3 text-sm font-medium text-white"><Star className="w-4 h-4 text-amber-500 fill-amber-500 flex-shrink-0" />{i}</li>))}</ul>
-                <Link href="/orders?service=Sovereign%20Revenue%20Engine%E2%84%A2&price=150000"><Button className="w-full h-12 bg-gradient-to-r from-amber-500 to-yellow-600 hover:to-amber-500 text-black font-black text-lg shadow-lg shadow-amber-500/20">Hire Your Team</Button></Link>
-              </div>
+              </RevealOnScroll>
               {/* ENTERPRISE INFRASTRUCTURE */}
-              <div className="group relative bg-gradient-to-br from-slate-100 via-white to-slate-200 border-2 border-white/50 rounded-2xl p-6 hover:shadow-[0_0_50px_-10px_rgba(255,255,255,0.4)] transition-all hover:-translate-y-2 duration-300">
-                <div className="absolute top-0 left-0 right-0 flex justify-center -translate-y-1/2"><span className="bg-black text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-lg border border-white/20">Royal Tier</span></div>
-                <div className="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity"><Crown className="w-24 h-24 text-slate-300 rotate-12" /></div>
-                <div className="mb-4 p-2 bg-black w-fit rounded-lg text-white shadow-xl"><Crown className="w-6 h-6" /></div>
-                <h3 className="text-2xl font-black text-slate-900 mb-1 tracking-tight">Enterprise Infrastructure</h3>
-                <p className="text-slate-600 text-sm mb-1">Sovereign automation & ERP bridge. No compromises.</p>
-                <p className="text-slate-700 text-xs font-semibold mb-4 italic">“Built for businesses that refuse second place.”</p>
-                <div className="flex items-baseline gap-1 mb-1"><span className="text-4xl font-black text-slate-900">₹3,50,000</span><span className="text-xs text-slate-500 font-bold">/ one-time</span></div>
-                <div className="flex items-center gap-1.5 text-xs text-slate-800 font-bold mb-2">
-                  <CreditCard className="w-3.5 h-3.5 flex-shrink-0" />
-                  <span>3-part milestone plan available (from ₹1,16,667/mo)</span>
+              <RevealOnScroll delay={160}>
+                <div className="group relative bg-gradient-to-br from-slate-100 via-white to-slate-200 border-2 border-white/50 rounded-2xl p-6 hover:shadow-[0_0_50px_-10px_rgba(255,255,255,0.4)] transition-all hover:-translate-y-2 duration-300 h-full flex flex-col justify-between">
+                  <div>
+                    <div className="absolute top-0 left-0 right-0 flex justify-center -translate-y-1/2"><span className="bg-black text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-lg border border-white/20">Royal Tier</span></div>
+                    <div className="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity"><Crown className="w-24 h-24 text-slate-300 rotate-12" /></div>
+                    <div className="mb-4 p-2 bg-black w-fit rounded-lg text-white shadow-xl"><Crown className="w-6 h-6" /></div>
+                    <h3 className="text-2xl font-black text-slate-900 mb-1 tracking-tight">Enterprise Infrastructure</h3>
+                    <p className="text-slate-600 text-sm mb-1">Sovereign automation & ERP bridge. No compromises.</p>
+                    <p className="text-slate-700 text-xs font-semibold mb-4 italic">“Built for businesses that refuse second place.”</p>
+                    <div className="flex items-baseline gap-1 mb-1"><span className="text-4xl font-black text-slate-900">₹3,50,000</span><span className="text-xs text-slate-500 font-bold">/ one-time</span></div>
+                    <div className="flex items-center gap-1.5 text-xs text-slate-800 font-bold mb-2">
+                      <CreditCard className="w-3.5 h-3.5 flex-shrink-0" />
+                      <span>3-part milestone plan available (from ₹1,16,667/mo)</span>
+                    </div>
+                    <p className="text-sm text-slate-500 font-medium mb-6">+ ₹35,000/mo maintenance available</p>
+                    <ul className="space-y-3 mb-8">{["Deep Bi-directional Tally Prime & Ledger Sync","Multi-Branch Dispatch & Quotation Workflows","Custom AI OCR Document Processing","Sovereign VPS Deployment (Zero-Data-Retention)","Priority 2-Hour P1 Dedicated Server SLA"].map(i=>(<li key={i} className="flex gap-3 text-sm font-bold text-slate-800"><ShieldCheck className="w-4 h-4 text-black flex-shrink-0" />{i}</li>))}</ul>
+                  </div>
+                  <Link href="/orders?service=Enterprise%20Infrastructure&price=350000"><Button className="w-full h-12 bg-black hover:bg-slate-900 text-white font-black text-lg shadow-2xl shadow-black/20 border border-slate-800">Become a Titan</Button></Link>
                 </div>
-                <p className="text-sm text-slate-500 font-medium mb-6">+ ₹35,000/mo maintenance available</p>
-                <ul className="space-y-3 mb-8">{["Deep Bi-directional Tally Prime & Ledger Sync","Multi-Branch Dispatch & Quotation Workflows","Custom AI OCR Document Processing","Sovereign VPS Deployment (Zero-Data-Retention)","Priority 2-Hour P1 Dedicated Server SLA"].map(i=>(<li key={i} className="flex gap-3 text-sm font-bold text-slate-800"><ShieldCheck className="w-4 h-4 text-black flex-shrink-0" />{i}</li>))}</ul>
-                <Link href="/orders?service=Enterprise%20Infrastructure&price=350000"><Button className="w-full h-12 bg-black hover:bg-slate-900 text-white font-black text-lg shadow-2xl shadow-black/20 border border-slate-800">Become a Titan</Button></Link>
-              </div>
+              </RevealOnScroll>
             </div>
           </div>
         </div>
@@ -276,15 +289,17 @@ export default function Services() {
                       <div className="mb-14">
                         <div className="flex items-center gap-4 mb-6"><div className="h-[1px] bg-white/10 flex-1"></div><h2 className="text-sm font-bold uppercase tracking-widest text-gray-500">Smart Combos — Save More</h2><div className="h-[1px] bg-white/10 flex-1"></div></div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                          {COMBOS.map(combo => (
-                            <Link key={combo.name} href={`/orders?service=${encodeURIComponent(combo.service)}&price=${combo.price_val}`}>
-                              <div className="group bg-white/5 border border-white/10 hover:border-amber-500/40 rounded-2xl p-6 text-center cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:bg-white/8">
-                                <div className="text-3xl mb-4">{combo.icon}</div>
-                                <p className="font-bold text-base text-white mb-2 leading-tight">{combo.name}</p>
-                                <p className="text-xs text-gray-500 mb-3 leading-tight">{combo.desc}</p>
-                                <p className="text-sm font-bold text-amber-500">{combo.price}</p>
-                              </div>
-                            </Link>
+                          {COMBOS.map((combo, i) => (
+                            <RevealOnScroll key={combo.name} delay={i * 60}>
+                              <Link href={`/orders?service=${encodeURIComponent(combo.service)}&price=${combo.price_val}`}>
+                                <div className="group bg-white/5 border border-white/10 hover:border-amber-500/40 rounded-2xl p-6 text-center cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:bg-white/8 h-full">
+                                  <div className="text-3xl mb-4">{combo.icon}</div>
+                                  <p className="font-bold text-base text-white mb-2 leading-tight">{combo.name}</p>
+                                  <p className="text-xs text-gray-500 mb-3 leading-tight">{combo.desc}</p>
+                                  <p className="text-sm font-bold text-amber-500">{combo.price}</p>
+                                </div>
+                              </Link>
+                            </RevealOnScroll>
                           ))}
                         </div>
                       </div>
@@ -310,7 +325,7 @@ export default function Services() {
                             <p className="text-sm text-gray-400 line-clamp-2 mb-4">{service.description}</p>
                             <div className="flex gap-2">
                               <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}`} onClick={(e) => e.stopPropagation()} className="flex-1">
-                                <Button size="sm" className="w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none transition-colors font-semibold text-xs">
+                                <Button size="sm" className="min-h-[44px] sm:min-h-0 w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none transition-colors font-semibold text-xs">
                                   Order → {service.priceRange}
                                 </Button>
                               </Link>
@@ -322,7 +337,7 @@ export default function Services() {
                                   e.stopPropagation();
                                   trackWhatsAppClick(`services_search_${service.id}`);
                                 }} 
-                                className="flex-shrink-0 bg-green-600 hover:bg-green-500 text-white px-2 py-1.5 rounded-md text-xs font-semibold flex items-center transition-colors"
+                                className="min-h-[44px] sm:min-h-0 flex-shrink-0 bg-green-600 hover:bg-green-500 text-white px-2 py-1.5 rounded-md text-xs font-semibold flex items-center transition-colors"
                               >
                                 Ask
                               </a>
@@ -335,64 +350,65 @@ export default function Services() {
                     <>
                       {/* 1. Core B2B Featured Grid */}
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-                        {featuredServices.map(service => (
-                          <div
-                            key={service.id}
-                            onClick={() => handleCardClick(service)}
-                            className="group relative bg-gradient-to-b from-white/10 to-white/[0.02] border border-white/10 hover:border-amber-500/50 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer shadow-[0_0_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] flex flex-col md:flex-row h-full min-h-[300px]"
-                          >
-                            <div className="md:w-2/5 h-48 md:h-full relative overflow-hidden flex-shrink-0">
-                              <div className="absolute inset-0 bg-gradient-to-r md:bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
-                              <img src={service.imageUrl} alt={service.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                              {service.badge && (
-                                <span className="absolute top-4 left-4 z-20 text-[10px] font-black uppercase tracking-wider bg-amber-500 text-black px-3 py-1 rounded-full shadow-lg">
-                                  {service.badge}
-                                </span>
-                              )}
-                            </div>
-                            <div className="p-6 flex-1 flex flex-col justify-between">
-                              <div>
-                                <div className="flex justify-between items-start gap-4 mb-2">
-                                  <h3 className="font-extrabold text-white text-xl leading-snug group-hover:text-amber-400 transition-colors">
-                                    {service.name}
-                                  </h3>
+                        {featuredServices.map((service, i) => (
+                          <RevealOnScroll key={service.id} delay={i * 80}>
+                            <div
+                              onClick={() => handleCardClick(service)}
+                              className="group relative bg-gradient-to-b from-white/10 to-white/[0.02] border border-white/10 hover:border-amber-500/50 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer shadow-[0_0_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] flex flex-col md:flex-row h-full min-h-[300px]"
+                            >
+                              <div className="md:w-2/5 h-48 md:h-full relative overflow-hidden flex-shrink-0">
+                                <div className="absolute inset-0 bg-gradient-to-r md:bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
+                                <img src={service.imageUrl} alt={service.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                {service.badge && (
+                                  <span className="absolute top-4 left-4 z-20 text-[10px] font-black uppercase tracking-wider bg-amber-500 text-black px-3 py-1 rounded-full shadow-lg">
+                                    {service.badge}
+                                  </span>
+                                )}
+                              </div>
+                              <div className="p-6 flex-1 flex flex-col justify-between">
+                                <div>
+                                  <div className="flex justify-between items-start gap-4 mb-2">
+                                    <h3 className="font-extrabold text-white text-xl leading-snug group-hover:text-amber-400 transition-colors">
+                                      {service.name}
+                                    </h3>
+                                  </div>
+                                  <p className="text-amber-500 font-extrabold text-base mb-3">
+                                    {service.priceRange}
+                                  </p>
+                                  <p className="text-sm text-gray-400 mb-4 leading-relaxed line-clamp-2">
+                                    {service.description}
+                                  </p>
+                                  <ul className="space-y-2 mb-6">
+                                    {service.standardFeatures.slice(0, 3).map((f, i) => (
+                                      <li key={i} className="flex items-center gap-2 text-xs font-semibold text-gray-300">
+                                        <ShieldCheck className="w-4 h-4 text-amber-500 flex-shrink-0" />
+                                        <span>{f}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
                                 </div>
-                                <p className="text-amber-500 font-extrabold text-base mb-3">
-                                  {service.priceRange}
-                                </p>
-                                <p className="text-sm text-gray-400 mb-4 leading-relaxed line-clamp-2">
-                                  {service.description}
-                                </p>
-                                <ul className="space-y-2 mb-6">
-                                  {service.standardFeatures.slice(0, 3).map((f, i) => (
-                                    <li key={i} className="flex items-center gap-2 text-xs font-semibold text-gray-300">
-                                      <ShieldCheck className="w-4 h-4 text-amber-500 flex-shrink-0" />
-                                      <span>{f}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                              <div className="flex gap-3 mt-auto">
-                                <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}`} onClick={(e) => e.stopPropagation()} className="flex-1">
-                                  <Button size="sm" className="w-full h-10 bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs transition-colors rounded-xl shadow-md">
-                                    Order → {service.priceRange.split(' – ')[0]}
-                                  </Button>
-                                </Link>
-                                <a 
-                                  href={`https://wa.me/916284925684?text=${encodeURIComponent('Hi Mukul, I want to know more about: ' + service.name + ' (' + service.priceRange + ')')}`} 
-                                  target="_blank" 
-                                  rel="noopener noreferrer" 
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    trackWhatsAppClick(`services_featured_${service.id}`);
-                                  }} 
-                                  className="flex-shrink-0 bg-green-600 hover:bg-green-500 text-white px-3 h-10 rounded-xl text-xs font-extrabold flex items-center transition-colors"
-                                >
-                                  Ask
-                                </a>
+                                <div className="flex gap-3 mt-auto">
+                                  <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}`} onClick={(e) => e.stopPropagation()} className="flex-1">
+                                    <Button size="sm" className="min-h-[44px] sm:min-h-0 w-full h-10 bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs transition-colors rounded-xl shadow-md">
+                                      Order → {service.priceRange.split(' – ')[0]}
+                                    </Button>
+                                  </Link>
+                                  <a 
+                                    href={`https://wa.me/916284925684?text=${encodeURIComponent('Hi Mukul, I want to know more about: ' + service.name + ' (' + service.priceRange + ')')}`} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      trackWhatsAppClick(`services_featured_${service.id}`);
+                                    }} 
+                                    className="min-h-[44px] sm:min-h-0 flex-shrink-0 bg-green-600 hover:bg-green-500 text-white px-3 h-10 rounded-xl text-xs font-extrabold flex items-center transition-colors"
+                                  >
+                                    Ask
+                                  </a>
+                                </div>
                               </div>
                             </div>
-                          </div>
+                          </RevealOnScroll>
                         ))}
                       </div>
 
@@ -455,7 +471,7 @@ export default function Services() {
                                     <p className="text-sm text-gray-400 line-clamp-2 mb-4">{service.description}</p>
                                     <div className="flex gap-2">
                                       <Link href={`/orders?service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}`} onClick={(e) => e.stopPropagation()} className="flex-1">
-                                        <Button size="sm" className="w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none transition-colors font-semibold text-xs">
+                                        <Button size="sm" className="min-h-[44px] sm:min-h-0 w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none transition-colors font-semibold text-xs">
                                           Order → {service.priceRange}
                                         </Button>
                                       </Link>
@@ -467,7 +483,7 @@ export default function Services() {
                                           e.stopPropagation();
                                           trackWhatsAppClick(`services_drawer_${service.id}`);
                                         }} 
-                                        className="flex-shrink-0 bg-green-600 hover:bg-green-500 text-white px-2 py-1.5 rounded-md text-xs font-semibold flex items-center transition-colors"
+                                        className="min-h-[44px] sm:min-h-0 flex-shrink-0 bg-green-600 hover:bg-green-500 text-white px-2 py-1.5 rounded-md text-xs font-semibold flex items-center transition-colors"
                                       >
                                         Ask
                                       </a>
@@ -491,29 +507,37 @@ export default function Services() {
                   <div className="mb-14">
                     <div className="flex items-center gap-4 mb-6"><div className="h-[1px] bg-white/10 flex-1"></div><h2 className="text-sm font-bold uppercase tracking-widest text-gray-500">Expert Guidance — Book a Session</h2><div className="h-[1px] bg-white/10 flex-1"></div></div>
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                      {CONSULT_OPTIONS.map(opt => (
-                        <div key={opt.type} className={cn("bg-white/5 border rounded-xl p-5 transition-all hover:-translate-y-1 duration-300", opt.tag === "NEW SIGNUP OFFER" ? "border-green-500/30 bg-green-500/5" : opt.tag === "BEST VALUE" ? "border-amber-500/30 bg-amber-500/5" : "border-white/10 hover:border-white/20")}>
-                          {opt.tag && <span className={cn("inline-block text-[10px] font-bold px-2 py-0.5 rounded-full mb-3 uppercase tracking-wider", opt.tag === "NEW SIGNUP OFFER" ? "bg-green-500 text-black" : "bg-amber-500 text-black")}>{opt.tag}</span>}
-                          <p className="text-xs text-gray-500 mb-1">{opt.type}</p>
-                          <p className="font-bold text-white text-base mb-1">{opt.duration}</p>
-                          <p className={cn("font-black text-xl mb-2", opt.price_val === 0 ? "text-green-400" : "text-amber-500")}>{opt.price}</p>
-                          <p className="text-xs text-gray-500 mb-4">{opt.desc}</p>
-                          <Link href={`/orders?service=${encodeURIComponent(opt.type)}&price=${opt.price_val}`}><Button size="sm" className="w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none text-xs">Book Now</Button></Link>
-                        </div>
+                      {CONSULT_OPTIONS.map((opt, i) => (
+                        <RevealOnScroll key={opt.type} delay={i * 50}>
+                          <div className={cn("bg-white/5 border rounded-xl p-5 transition-all hover:-translate-y-1 duration-300 h-full flex flex-col justify-between", opt.tag === "NEW SIGNUP OFFER" ? "border-green-500/30 bg-green-500/5" : opt.tag === "BEST VALUE" ? "border-amber-500/30 bg-amber-500/5" : "border-white/10 hover:border-white/20")}>
+                            <div>
+                              {opt.tag && <span className={cn("inline-block text-[10px] font-bold px-2 py-0.5 rounded-full mb-3 uppercase tracking-wider", opt.tag === "NEW SIGNUP OFFER" ? "bg-green-500 text-black" : "bg-amber-500 text-black")}>{opt.tag}</span>}
+                              <p className="text-xs text-gray-500 mb-1">{opt.type}</p>
+                              <p className="font-bold text-white text-base mb-1">{opt.duration}</p>
+                              <p className={cn("font-black text-xl mb-2", opt.price_val === 0 ? "text-green-400" : "text-amber-500")}>{opt.price}</p>
+                              <p className="text-xs text-gray-500 mb-4">{opt.desc}</p>
+                            </div>
+                            <Link href={`/orders?service=${encodeURIComponent(opt.type)}&price=${opt.price_val}`}><Button size="sm" className="w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none text-xs">Book Now</Button></Link>
+                          </div>
+                        </RevealOnScroll>
                       ))}
                     </div>
                   </div>
                   <div className="flex items-center gap-4 mb-6"><div className="h-[1px] bg-white/10 flex-1"></div><h2 className="text-sm font-bold uppercase tracking-widest text-gray-500">Maintenance Plans — Stay on Top</h2><div className="h-[1px] bg-white/10 flex-1"></div></div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-                    {MAINTENANCE_PLANS.map(plan => (
-                      <div key={plan.name} className="group bg-white/5 border border-white/10 hover:border-blue-500/30 rounded-xl p-5 transition-all hover:-translate-y-1 duration-300">
-                        <div className="text-2xl mb-3">{plan.icon}</div>
-                        <p className="font-bold text-white text-sm mb-1">{plan.name}</p>
-                        <p className="text-blue-400 font-black text-lg mb-2">{plan.price}</p>
-                        <p className="text-xs text-gray-500 mb-2 leading-relaxed">{plan.what}</p>
-                        <p className="text-[10px] text-gray-600 mb-4 italic">Stop anytime. Ranking holds 60–90 days.</p>
-                        <Link href={`/orders?service=${encodeURIComponent(plan.name)}&price=${plan.price_val}`}><Button size="sm" className="w-full bg-white/10 hover:bg-blue-500 hover:text-white text-white border-none text-xs">Subscribe <ChevronRight className="w-3 h-3 ml-1" /></Button></Link>
-                      </div>
+                    {MAINTENANCE_PLANS.map((plan, i) => (
+                      <RevealOnScroll key={plan.name} delay={i * 50}>
+                        <div className="group bg-white/5 border border-white/10 hover:border-blue-500/30 rounded-xl p-5 transition-all hover:-translate-y-1 duration-300 h-full flex flex-col justify-between">
+                          <div>
+                            <div className="text-2xl mb-3">{plan.icon}</div>
+                            <p className="font-bold text-white text-sm mb-1">{plan.name}</p>
+                            <p className="text-blue-400 font-black text-lg mb-2">{plan.price}</p>
+                            <p className="text-xs text-gray-500 mb-2 leading-relaxed">{plan.what}</p>
+                            <p className="text-[10px] text-gray-600 mb-4 italic">Stop anytime. Ranking holds 60–90 days.</p>
+                          </div>
+                          <Link href={`/orders?service=${encodeURIComponent(plan.name)}&price=${plan.price_val}`}><Button size="sm" className="w-full bg-white/10 hover:bg-blue-500 hover:text-white text-white border-none text-xs">Subscribe <ChevronRight className="w-3 h-3 ml-1" /></Button></Link>
+                        </div>
+                      </RevealOnScroll>
                     ))}
                   </div>
                 </div>

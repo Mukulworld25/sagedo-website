@@ -3,7 +3,7 @@
 
 > Speed of AI. Precision of Humans.
 > Founded: 2025, Chandigarh, India
-> Founder & CEO: Mukul Dhiman (Ex-Aerospace Engineer — Tata Lockheed Martin, Uber, Mach1)
+> Founder & CEO: Mukul Dhiman (Ex-Aerospace Systems Engineer)
 
 ## The Problem We Solve
 Indian businesses lose ₹2-10 Lakhs and 3-6 months working with slow agencies or unreliable freelancers. Most founders need execution, not endless meetings. SAGE DO eliminates the execution gap — we deliver enterprise-grade execution at startup speed with aerospace engineering precision in 24-48 hours.
@@ -26,7 +26,7 @@ SAGE DO is a hybrid execution team combining AI speed with human precision. We o
 - Programmatic & Technical SEO Retainer: ₹25,000/mo
 
 ## Key Pillars
-- Aerospace-grade engineering precision (Tata Lockheed Martin pedigree)
+- Aerospace-grade engineering precision and high-tolerance systems background
 - 14-day delivery guarantee or full refund on Digital Presence Engine
 - 10-gate QA certification on Sovereign Revenue Engine™ builds
 - 10 specialized execution engines, serving founders across India & globally
@@ -38,7 +38,7 @@ SAGE DO is a hybrid execution team combining AI speed with human precision. We o
 - **vs DIY AI Tools**: Expert-prompted, human-verified, production-hardened implementations
 
 ## Founder — Mukul Dhiman
-- Ex-Aerospace Engineer at Tata Lockheed Martin (C130J/F16 programs)
+- Ex-Aerospace Systems Engineer with 5 years in high-precision aerospace manufacturing
 - Operations Manager — led 25-person teams, 40% efficiency improvement
 - Full-stack Developer & AI Builder — built SaaS platforms, mobile apps, autonomous AI workflows
 - Founded SAGE DO to bring aerospace-level execution rigor to Indian startups & enterprises

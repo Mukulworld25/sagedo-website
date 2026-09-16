@@ -16,7 +16,7 @@ SAGEDO builds and grows Indian businesses using AI automation combined with huma
 - Email: hello@sagedo.in
 - Location: Chandigarh, Punjab, India
 - Founded: 2025
-- Founder: Mukul Dhiman (Ex-Aerospace Engineer, Tata Lockheed Martin)
+- Founder: Mukul Dhiman (Ex-Aerospace Systems Engineer)
 
 ## Documentation
 - Full LLM context: https://sagedo.in/llm.txt

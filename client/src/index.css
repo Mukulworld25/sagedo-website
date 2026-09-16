@@ -93,10 +93,10 @@
 }
 
 .hero-sep {
-  width: 200px;
+  width: 180px;
   height: 2px;
   background: rgba(220, 38, 38, 0.2);
-  margin: 20px auto;
+  margin: 12px auto;
   position: relative;
   overflow: hidden;
   border-radius: 2px;
@@ -129,23 +129,108 @@
 /* Mobile responsiveness for hero */
 @media (max-width: 768px) {
   .hero-logo-bg {
-    width: 130vmin;
-    height: 130vmin;
+    width: 260px;
+    height: 260px;
+    max-width: 260px;
+    max-height: 260px;
+    animation: none;
+  }
+
+  .hero-ring {
+    animation: none;
   }
 
   .hero-ring-target {
-    width: 130vmin;
-    height: 130vmin;
+    width: 290px;
+    height: 290px;
+    max-width: 290px;
+    max-height: 290px;
+    animation: none;
   }
 
   .hero-ring-outer {
-    width: 143vmin;
-    height: 143vmin;
+    width: 320px;
+    height: 320px;
+    max-width: 320px;
+    max-height: 320px;
+    animation: none;
   }
 
   .hero-ring-data {
-    width: 104vmin;
-    height: 104vmin;
+    width: 230px;
+    height: 230px;
+    max-width: 230px;
+    max-height: 230px;
+    animation: none;
+  }
+}
+
+/* RevenueLeakageCalculator Sliders (Mobile Touch Target >= 44px, thumb >= 24px) */
+@media (max-width: 767px) {
+  .calculator-slider {
+    height: 44px !important;
+    min-height: 44px !important;
+    cursor: pointer;
+    background: transparent !important;
+    touch-action: pan-y;
+  }
+
+  .calculator-slider::-webkit-slider-runnable-track {
+    height: 8px;
+    background-color: #262626;
+    border-radius: 9999px;
+  }
+
+  .calculator-slider::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #dc2626;
+    border: 3px solid #ffffff;
+    box-shadow: 0 0 10px rgba(220, 38, 38, 0.6);
+    margin-top: -10px;
+    cursor: pointer;
+  }
+
+  .calculator-slider::-moz-range-track {
+    height: 8px;
+    background-color: #262626;
+    border-radius: 9999px;
+  }
+
+  .calculator-slider::-moz-range-thumb {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #dc2626;
+    border: 3px solid #ffffff;
+    box-shadow: 0 0 10px rgba(220, 38, 38, 0.6);
+    cursor: pointer;
+  }
+}
+
+/* Mobile-only touch targets: footer sitemap links, inline utility links, form controls.
+   Scoped to <768px (mobile range) so md:/lg: desktop layouts are untouched. */
+@media (max-width: 767px) {
+  .footer-link-list li > a,
+  .footer-link-list li > a > span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .tap-inline {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not(.sr-only),
+  select,
+  textarea {
+    min-height: 44px;
   }
 }
 
@@ -666,3 +751,10 @@
 .markdown-content code { background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; font-size: 0.85em; }
 .markdown-content pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 0.5rem; }
 .markdown-content h1, .markdown-content h2, .markdown-content h3 { font-weight: 800; margin-top: 0.75rem; margin-bottom: 0.25rem; }
+
+/* Mobile ChatWidget FAB offset when cookie consent banner is visible (<768px only) */
+@media (max-width: 767px) {
+  body.has-cookie-banner [data-testid="chat-widget-fab"] {
+    bottom: 74px !important;
+  }
+}

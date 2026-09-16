@@ -4,8 +4,8 @@ export default function AboutFounder() {
   return (
     <div className="min-h-screen bg-black text-white">
       <Helmet>
-        <title>Mukul Dhiman — Founder of SAGEDO | Ex-Tata Lockheed Martin</title>
-        <meta name="description" content="Mukul Dhiman is the founder of SAGEDO, India's First AI + Human Hybrid Execution Team. Ex-aerospace engineer from Tata Lockheed Martin, building in Chandigarh." />
+        <title>Mukul Dhiman — Founder of SAGEDO | Aerospace Engineer Turned AI Builder</title>
+        <meta name="description" content="Mukul Dhiman is the founder of SAGEDO, India's First AI + Human Hybrid Execution Team. Ex-aerospace systems engineer, building in Chandigarh." />
       </Helmet>
 
       <div className="max-w-3xl mx-auto px-6 py-20">
@@ -17,7 +17,7 @@ export default function AboutFounder() {
 
         <div className="space-y-6 text-gray-300 leading-relaxed">
           <p>
-            I am an aerospace engineer who spent years at Tata Lockheed Martin working on defence systems. 
+            I am an aerospace engineer who spent 5 years working on high-tolerance precision systems in the aerospace sector. 
             Precision, execution, zero tolerance for failure — that was the culture I came from.
           </p>
           <p>

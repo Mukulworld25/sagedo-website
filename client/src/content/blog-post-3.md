@@ -23,7 +23,7 @@ I went to crunchbase.com, clicked Add Company, and filled in SAGEDO's details. C
 
 Within minutes of submitting, Crunchbase's AI ran an analysis on SAGEDO. It assigned a Growth Prediction score of 88 out of 100. The label: Growing — Very Likely.
 
-This score is calculated based on your founding team's background, market category, location, and early traction signals. My aerospace engineering background from Tata Lockheed Martin combined with the AI category gave SAGEDO a strong signal.
+This score is calculated based on your founding team's background, market category, location, and early traction signals. My high-tolerance aerospace systems engineering background combined with the AI category gave SAGEDO a strong signal.
 
 ## Why This Matters for Your Startup
 

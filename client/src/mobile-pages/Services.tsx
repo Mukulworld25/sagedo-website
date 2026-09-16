@@ -146,7 +146,7 @@ export const Tools: React.FC<ServicesProps> = ({ onNavigate }) => {
                                     onNavigate(AppRoute.PLACE_ORDER);
                                 }}
                                 className={`p-5 rounded-2xl border transition-all active:scale-[0.98] cursor-pointer ${idx === 1
-                                        ? 'bg-red-500/10 border-red-500/30 shadow-lg shadow-red-500/10'
+                                        ? 'bg-amber-500/[0.08] border-amber-500/40 shadow-lg shadow-amber-500/10'
                                         : 'bg-white/[0.02] border-white/5'
                                     }`}
                             >
@@ -159,7 +159,7 @@ export const Tools: React.FC<ServicesProps> = ({ onNavigate }) => {
                                             </span>
                                         )}
                                     </div>
-                                    <span className="text-red-400 font-black text-lg">{pkg.price}</span>
+                                    <span className={idx === 1 ? "text-amber-400 font-black text-lg" : "text-white font-black text-lg"}>{pkg.price}</span>
                                 </div>
                                 <p className="text-neutral-400 text-xs mb-3">{pkg.desc}</p>
                                 <div className="flex items-center gap-2 mb-3">

@@ -9,6 +9,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/components/LanguageProvider";
+import { CurrencyProvider } from "@/contexts/CurrencyContext";
 
 const Home = React.lazy(() => import("@/pages/Home"));
 const Services = React.lazy(() => import("@/pages/Services"));
@@ -42,6 +43,8 @@ const Refer = React.lazy(() => import("@/pages/Refer"));
 const AgencyPartner = React.lazy(() => import("@/pages/AgencyPartner"));
 const BookCall = React.lazy(() => import("@/pages/BookCall"));
 const Careers = React.lazy(() => import("@/pages/Careers"));
+const Locations = React.lazy(() => import("@/pages/Locations"));
+const PillarPage = React.lazy(() => import("@/pages/PillarPage"));
 const NotFound = React.lazy(() => import("@/pages/not-found"));
 
 import Navigation from "@/components/Navigation";
@@ -112,6 +115,16 @@ function Router() {
         <Route path="/agency-partner"><Suspense fallback={<LoadingFallback />}><AgencyPartner /></Suspense></Route>
         <Route path="/book-call"><Suspense fallback={<LoadingFallback />}><BookCall /></Suspense></Route>
         <Route path="/careers"><Suspense fallback={<LoadingFallback />}><Careers /></Suspense></Route>
+        <Route path="/locations"><Suspense fallback={<LoadingFallback />}><Locations /></Suspense></Route>
+        
+        {/* AEO / GEO Pillar & City Routes (Tasks B & C) */}
+        <Route path="/ai-automation-agency-india"><Suspense fallback={<LoadingFallback />}><PillarPage slug="ai-automation-agency-india" /></Suspense></Route>
+        <Route path="/b2b-lead-generation-systems"><Suspense fallback={<LoadingFallback />}><PillarPage slug="b2b-lead-generation-systems" /></Suspense></Route>
+        <Route path="/custom-crm-development-chandigarh"><Suspense fallback={<LoadingFallback />}><PillarPage slug="custom-crm-development-chandigarh" /></Suspense></Route>
+        <Route path="/custom-crm-development-ludhiana"><Suspense fallback={<LoadingFallback />}><PillarPage slug="custom-crm-development-ludhiana" /></Suspense></Route>
+        <Route path="/custom-crm-development-panchkula"><Suspense fallback={<LoadingFallback />}><PillarPage slug="custom-crm-development-panchkula" /></Suspense></Route>
+        <Route path="/ai-automation-agency-zirakpur"><Suspense fallback={<LoadingFallback />}><PillarPage slug="ai-automation-agency-zirakpur" /></Suspense></Route>
+
         <Route><Suspense fallback={<LoadingFallback />}><NotFound /></Suspense></Route>
       </Switch>
       <Footer /><ChatWidget /><CookieConsent /><ExitIntentPopup />
@@ -126,13 +139,15 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
           <LanguageProvider>
-            <ErrorBoundary>
-              <AuthProvider>
-                <TooltipProvider>
-                  <Router /><Toaster />
-                </TooltipProvider>
-              </AuthProvider>
-            </ErrorBoundary>
+            <CurrencyProvider>
+              <ErrorBoundary>
+                <AuthProvider>
+                  <TooltipProvider>
+                    <Router /><Toaster />
+                  </TooltipProvider>
+                </AuthProvider>
+              </ErrorBoundary>
+            </CurrencyProvider>
           </LanguageProvider>
         </ThemeProvider>
       </QueryClientProvider>

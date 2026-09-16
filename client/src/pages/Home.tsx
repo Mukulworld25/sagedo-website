@@ -3,11 +3,16 @@
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle2, Zap, Star, Gift, ChevronRight, Briefcase, GraduationCap, User, Sparkles, MessageCircle, Phone, ExternalLink, Shield, Clock, Handshake, CreditCard } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, CheckCircle2, Zap, Star, Gift, ChevronRight, Briefcase, GraduationCap, User, Sparkles, MessageCircle, Phone, ExternalLink, Shield, Clock, Handshake, CreditCard, Globe, Smartphone, Store, AlertOctagon, ShieldCheck } from "lucide-react";
+import React, { useState, Suspense, lazy } from "react";
 import { trackWhatsAppClick } from "@/hooks/useAnalytics";
+import { useCurrency } from "@/contexts/CurrencyContext";
+import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
+
+const RevenueLeakageCalculator = lazy(() => import("@/components/RevenueLeakageCalculator"));
 
 export default function Home() {
+  const { formatAmount } = useCurrency();
   const [activeStep, setActiveStep] = useState(1);
 
   const categories = [
@@ -24,7 +29,7 @@ export default function Home() {
   ];
 
   const testimonials = [
-    { name: "Priya Siingh", role: "Verified Trustpilot Review ⭐", text: "Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time. It has a clean interface and smooth onboarding. I've had a great experience with Sagedo.", rating: 5 },
+    { name: "Priya Singh", role: "Verified Trustpilot Review ⭐", text: "Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time. It has a clean interface and smooth onboarding. I've had a great experience with Sagedo.", rating: 5 },
     { name: "Akshit Kashyap", role: "Verified Trustpilot Review ⭐", text: "Why AI is important. Everything is fine, nice service, very good behaviour. What a cool and knowledgeable experience to know about AI.", rating: 5 },
     { name: "Arushi Vashist", role: "Verified Trustpilot Review ⭐", text: "Very reliable. Their service and everything were good.", rating: 4 },
     { name: "Tahira War", role: "Verified Trustpilot Review ⭐", text: "Everything was good overall. Good service provider.", rating: 5 }
@@ -41,12 +46,22 @@ export default function Home() {
         {/* Background radial glow */}
         <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 60% 60% at 50% 50%, #1a0505 0%, #030303 70%)' }} />
 
-        {/* Center Logo (background, visible, 110vmin) */}
-        <img
-          src="/sagedo_logo_final_circle.png"
-          alt=""
-          className="hero-logo-bg"
-        />
+        {/* Center Logo (background, visible, responsive WebP + fetchpriority high) */}
+        <picture className="contents">
+          <source media="(max-width: 767px)" srcSet="/sagedo_logo_mobile.webp" type="image/webp" />
+          <source srcSet="/sagedo_logo_final_circle.webp" type="image/webp" />
+          <img
+            src="/sagedo_logo_final_circle.png"
+            alt="SAGE DO Sovereign AI Core"
+            className="hero-logo-bg"
+            // @ts-ignore
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
+            width="600"
+            height="600"
+          />
+        </picture>
 
         {/* HUD Rings */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ zIndex: 2 }}>
@@ -69,7 +84,7 @@ export default function Home() {
             className="font-black uppercase leading-none"
             style={{
               fontFamily: "'Orbitron', sans-serif",
-              fontSize: 'clamp(3rem, 9vw, 11rem)',
+              fontSize: 'clamp(2.5rem, 7vw, 8.5rem)',
               letterSpacing: '0.05em',
               lineHeight: 0.85,
               background: 'linear-gradient(180deg, #fff 10%, #ccc 50%, #666 100%)',
@@ -92,7 +107,7 @@ export default function Home() {
             className="font-bold uppercase leading-none"
             style={{
               fontFamily: "'Orbitron', sans-serif",
-              fontSize: 'clamp(1.8rem, 5.25vw, 6.4rem)',
+              fontSize: 'clamp(1.5rem, 4.1vw, 4.8rem)',
               letterSpacing: '0.08em',
               lineHeight: 0.85,
               background: 'linear-gradient(180deg, #aaa 0%, #555 100%)',
@@ -105,33 +120,33 @@ export default function Home() {
           </p>
 
           {/* Supporting text */}
-          <p className="mt-6 text-sm sm:text-base text-neutral-500 max-w-xl mx-auto" style={{ fontFamily: "'Share Tech Mono', monospace", letterSpacing: '2px' }}>
+          <p className="mt-4 sm:mt-5 text-xs sm:text-sm text-neutral-400 max-w-xl mx-auto" style={{ fontFamily: "'Share Tech Mono', monospace", letterSpacing: '2px' }}>
             AI-Powered · Human-Crafted · India
           </p>
 
           {/* CTA Buttons - 3 Systematic Actions */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8">
             <a 
               href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20want%20to%20book%20a%20call%20to%20discuss%20my%20project." 
               target="_blank" 
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick('hero_cta')}
             >
-              <div className={buttonVariants({ size: "lg", className: "h-14 px-8 text-lg font-semibold bg-red-600 hover:bg-red-500 rounded-xl transition-all hover:scale-[1.02] hover:-translate-y-0.5 group cursor-pointer" })}
+              <div className={buttonVariants({ size: "lg", className: "h-12 sm:h-13 px-6 sm:px-7 text-base sm:text-lg font-semibold bg-red-600 hover:bg-red-500 rounded-xl transition-all hover:scale-[1.02] hover:-translate-y-0.5 group cursor-pointer" })}
                 style={{ boxShadow: '0 4px 16px rgba(239, 68, 68, 0.4)', fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
               >
                 <Phone className="mr-2 h-5 w-5" /> BOOK A CALL
               </div>
             </a>
             <Link href="/services">
-              <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-14 px-8 text-lg font-semibold rounded-xl border-white/20 hover:border-white/50 hover:bg-white/5 text-white transition-all cursor-pointer" })}
+              <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-12 sm:h-13 px-6 sm:px-7 text-base sm:text-lg font-semibold rounded-xl border-white/20 hover:border-white/50 hover:bg-white/5 text-white transition-all cursor-pointer" })}
                 style={{ fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
               >
                 <ArrowRight className="mr-2 h-5 w-5" /> SERVICES
               </div>
             </Link>
             <Link href="/free-audit">
-              <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-14 px-8 text-lg font-semibold rounded-xl border-green-500/40 hover:border-green-400 hover:bg-green-500/10 text-green-400 hover:text-green-300 transition-all cursor-pointer" })}
+              <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-12 sm:h-13 px-6 sm:px-7 text-base sm:text-lg font-semibold rounded-xl border-green-500/40 hover:border-green-400 hover:bg-green-500/10 text-green-400 hover:text-green-300 transition-all cursor-pointer" })}
                 style={{ fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
               >
                 <Zap className="mr-2 h-5 w-5" /> FREE AUDIT
@@ -178,109 +193,121 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 gap-8 items-stretch">
             {/* The Old Way (Problem) */}
-            <div className="p-8 rounded-3xl bg-neutral-950/50 border border-neutral-800/80 backdrop-blur-sm relative group overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-b from-red-500/5 to-transparent opacity-50" />
-              <h3 className="text-2xl font-bold text-red-400 mb-8 flex items-center gap-3">
-                <span className="text-3xl">❌</span> The Old Way
-              </h3>
-              <div className="space-y-6">
-                <div className="flex gap-4 items-start">
-                  <div className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 font-bold shrink-0">1</div>
-                  <div>
-                    <h4 className="font-bold text-neutral-200">Agencies</h4>
-                    <p className="text-neutral-400">Expensive (₹2-5L), slow (60-90 days), and endless meetings.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4 items-start">
-                  <div className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 font-bold shrink-0">2</div>
-                  <div>
-                    <h4 className="font-bold text-neutral-200">Freelancers</h4>
-                    <p className="text-neutral-400">Unreliable, ghost mid-project, inconsistent quality.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4 items-start">
-                  <div className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 font-bold shrink-0">3</div>
-                  <div>
-                    <h4 className="font-bold text-neutral-200">DIY & AI Tools</h4>
-                    <p className="text-neutral-400">Steep learning curve, spent hours prompting, mediocre results.</p>
+            <RevealOnScroll delay={0} className="h-full">
+              <div className="p-8 rounded-3xl bg-neutral-950/50 border border-neutral-800/80 backdrop-blur-sm relative group overflow-hidden h-full flex flex-col justify-between">
+                <div className="absolute inset-0 bg-gradient-to-b from-red-500/5 to-transparent opacity-50" />
+                <div>
+                  <h3 className="text-2xl font-bold text-red-400 mb-8 flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-red-500/10 flex items-center justify-center shrink-0 border border-red-500/20">
+                      <AlertOctagon className="w-5 h-5 text-red-400" />
+                    </div>
+                    The Old Way
+                  </h3>
+                  <div className="space-y-6">
+                    <div className="flex gap-4 items-start">
+                      <div className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 font-bold shrink-0">1</div>
+                      <div>
+                        <h4 className="font-bold text-neutral-200">Agencies</h4>
+                        <p className="text-neutral-400">Expensive (₹2-5L), slow (60-90 days), and endless meetings.</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-4 items-start">
+                      <div className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 font-bold shrink-0">2</div>
+                      <div>
+                        <h4 className="font-bold text-neutral-200">Freelancers</h4>
+                        <p className="text-neutral-400">Unreliable, ghost mid-project, inconsistent quality.</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-4 items-start">
+                      <div className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 font-bold shrink-0">3</div>
+                      <div>
+                        <h4 className="font-bold text-neutral-200">DIY & AI Tools</h4>
+                        <p className="text-neutral-400">Steep learning curve, spent hours prompting, mediocre results.</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </RevealOnScroll>
 
             {/* The SAGE DO Way (Solution) */}
-            <div className="p-8 rounded-3xl bg-neutral-900 border border-primary/30 relative group shadow-2xl shadow-primary/10 overflow-hidden transform md:-translate-y-4">
-              {/* Glowing border effect */}
-              <div className="absolute inset-0 border-2 border-primary/20 rounded-3xl" />
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
+            <RevealOnScroll delay={100} className="h-full">
+              <div className="p-8 rounded-3xl bg-neutral-900 border border-primary/30 relative group shadow-2xl shadow-primary/10 overflow-hidden transform md:-translate-y-4 h-full flex flex-col justify-between">
+                {/* Glowing border effect */}
+                <div className="absolute inset-0 border-2 border-primary/20 rounded-3xl" />
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
 
-              <h3 className="text-2xl font-bold text-primary mb-8 flex items-center gap-3 relative z-10">
-                <span className="text-3xl">✅</span> The SAGE DO Way
-              </h3>
-              <div className="space-y-6 relative z-10">
-                <div className="flex gap-4 items-start">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">1</div>
-                  <div>
-                    <h4 className="font-bold text-white">Hybrid Speed</h4>
-                    <p className="text-neutral-300">AI speed + Human oversight = Agency quality in <span className="text-primary font-bold">24-48 hours</span>.</p>
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-bold text-primary mb-8 flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-primary/20 flex items-center justify-center shrink-0 border border-primary/30">
+                      <ShieldCheck className="w-5 h-5 text-primary" />
+                    </div>
+                    The SAGE DO Way
+                  </h3>
+                  <div className="space-y-6">
+                    <div className="flex gap-4 items-start">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">1</div>
+                      <div>
+                        <h4 className="font-bold text-white">Hybrid Speed</h4>
+                        <p className="text-neutral-300">AI speed + Human oversight = Agency quality in <span className="text-primary font-bold">24-48 hours</span>.</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-4 items-start">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">2</div>
+                      <div>
+                        <h4 className="font-bold text-white">Reliability</h4>
+                        <p className="text-neutral-300">Dedicated project manager, daily updates, guaranteed delivery.</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-4 items-start">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">3</div>
+                      <div>
+                        <h4 className="font-bold text-white">Affordability</h4>
+                        <p className="text-neutral-300">Prices that make sense (starting ₹0), pay only for results.</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="flex gap-4 items-start">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">2</div>
-                  <div>
-                    <h4 className="font-bold text-white">Reliability</h4>
-                    <p className="text-neutral-300">Dedicated project manager, daily updates, guaranteed delivery.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4 items-start">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">3</div>
-                  <div>
-                    <h4 className="font-bold text-white">Affordability</h4>
-                    <p className="text-neutral-300">Prices that make sense (starting ₹0), pay only for results.</p>
-                  </div>
+
+                {/* Button inside card */}
+                <div className="mt-8 pt-6 border-t border-primary/10 relative z-10">
+                  <Link href="/services">
+                    <div className={buttonVariants({ className: "w-full min-h-[44px] sm:min-h-0 bg-primary text-primary-foreground hover:bg-primary/90 font-bold hover:scale-[1.01] transition-all duration-200" })}>
+                      Bridge the Gap Now <ArrowRight className="ml-2 w-4 h-4" />
+                    </div>
+                  </Link>
                 </div>
               </div>
-
-              {/* Button inside card */}
-              <div className="mt-8 pt-6 border-t border-primary/10 relative z-10">
-                <Link href="/services">
-                  <div className={buttonVariants({ className: "w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold" })}>
-                    Bridge the Gap Now <ArrowRight className="ml-2 w-4 h-4" />
-                  </div>
-                </Link>
-              </div>
-            </div>
+            </RevealOnScroll>
           </div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          AI + HUMAN SECTION - Clean Quote
+          AI + HUMAN SECTION - Clean Institutional Positioning
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="py-24 px-6 border-t border-border/30">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-6">
-            Why Choose SAGEDO?
-          </p>
-          <blockquote className="text-2xl sm:text-3xl md:text-4xl text-foreground font-medium leading-relaxed mb-6">
-            "Yeah I use AI too, why should I pay you?" 🤔
-          </blockquote>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Here's the thing — <span className="text-foreground font-medium">every AI needs a human in the loop</span>.
-            We're the best AI generalists in the game. We prompt it right, verify the output, and polish it
-            until it's <span className="text-foreground font-medium">not just good — it's perfect</span>.
-          </p>
-          <div className="mt-8 flex items-center justify-center gap-3 text-muted-foreground">
-            <span className="text-2xl">✨</span>
-            <span>AI Power</span>
-            <span className="text-muted-foreground/50">+</span>
-            <span className="text-2xl">🧠</span>
-            <span>Human Expertise</span>
-            <span className="text-muted-foreground/50">=</span>
-            <span className="text-2xl">💯</span>
-            <span className="text-foreground font-semibold">Perfect Results</span>
+        <RevealOnScroll>
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-6">
+              Engineering Discernment
+            </p>
+            <blockquote className="text-2xl sm:text-3xl md:text-4xl text-foreground font-medium leading-relaxed mb-6">
+              "Why hire an execution partner when raw AI models are everywhere?"
+            </blockquote>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Raw AI produces statistically plausible drafts; human systems engineers deliver verified revenue infrastructure.
+              We prompt, architect, audit, and harden every deliverable so your business receives <span className="text-foreground font-medium">zero-defect, production-grade assets</span>.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm sm:text-base font-semibold text-neutral-300">
+              <span className="text-primary font-bold">Autonomous AI Speed</span>
+              <span className="text-muted-foreground/50">+</span>
+              <span className="text-white font-bold">Sovereign Human Verification</span>
+              <span className="text-muted-foreground/50">=</span>
+              <span className="text-emerald-400 font-bold">Zero Hallucination Delivery</span>
+            </div>
           </div>
-        </div>
+        </RevealOnScroll>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
@@ -302,67 +329,132 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {/* Project 1 - SAGE DO Website */}
-            <div className="group relative rounded-2xl border border-border/30 bg-background/50 overflow-hidden hover:border-primary/30 transition-all hover:-translate-y-1">
-              <div className="aspect-video bg-gradient-to-br from-red-500/20 to-orange-500/10 flex items-center justify-center">
-                <div className="text-center">
-                  <span className="text-4xl mb-2 block">🌐</span>
-                  <span className="text-sm font-bold text-white/70">sagedo.in</span>
+            <RevealOnScroll delay={0} className="h-full">
+              <div className="group relative rounded-2xl border border-border/30 bg-background/50 overflow-hidden hover:border-primary/30 transition-all hover:-translate-y-1 h-full flex flex-col justify-between">
+                <div>
+                  <div className="aspect-video bg-gradient-to-br from-red-500/20 to-orange-500/10 flex items-center justify-center p-3 sm:p-4 overflow-hidden">
+                    {/* Browser-chrome mockup frame */}
+                    <div className="w-full h-full rounded-lg border border-red-500/20 bg-zinc-900/80 flex flex-col overflow-hidden shadow-sm">
+                      {/* Top chrome bar */}
+                      <div className="h-6 bg-zinc-900/95 border-b border-red-500/10 px-2.5 flex items-center gap-2 flex-shrink-0">
+                        <div className="flex items-center gap-1.5">
+                          <div className="w-1.5 h-1.5 rounded-full bg-zinc-600/70" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-zinc-600/70" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-zinc-600/70" />
+                        </div>
+                        <div className="flex-1 max-w-[130px] mx-auto h-3.5 rounded bg-zinc-800/80 border border-white/5 flex items-center justify-center px-1.5">
+                          <span className="text-[9px] text-zinc-400 font-mono tracking-tight truncate">sagedo.in</span>
+                        </div>
+                      </div>
+                      {/* Mockup Screen (roughly 16:10, real screenshot) */}
+                      <div className="flex-1 w-full bg-gradient-to-br from-red-950/20 via-zinc-900 to-neutral-950 relative overflow-hidden flex items-center justify-center">
+                        <img
+                          src="/portfolio-sagedo-prod.webp"
+                          alt="sagedo.in SaaS Platform preview"
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <span className="text-xs font-bold uppercase tracking-wider text-primary">SaaS Platform</span>
+                    <h3 className="text-lg font-bold text-foreground mt-2">SAGE DO — AI Service Platform</h3>
+                    <p className="text-sm text-muted-foreground mt-2">Full-stack AI + Human hybrid platform with 10 specialized execution engines, payment integration, and real-time tracking.</p>
+                  </div>
+                </div>
+                <div className="px-6 pb-6 pt-0">
+                  <a href="https://sagedo.in" target="_blank" rel="noopener noreferrer" className="tap-inline inline-flex items-center gap-1 text-sm font-bold text-primary hover:underline">
+                    View Live <ExternalLink className="w-3 h-3" />
+                  </a>
                 </div>
               </div>
-              <div className="p-6">
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">SaaS Platform</span>
-                <h3 className="text-lg font-bold text-foreground mt-2">SAGE DO — AI Service Platform</h3>
-                <p className="text-sm text-muted-foreground mt-2">Full-stack AI + Human hybrid platform with 10 specialized execution engines, payment integration, and real-time tracking.</p>
-                <a href="https://sagedo.in" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-bold text-primary mt-4 hover:underline">
-                  View Live <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-            </div>
+            </RevealOnScroll>
 
             {/* Project 2 - Mobile App */}
-            <div className="group relative rounded-2xl border border-border/30 bg-background/50 overflow-hidden hover:border-primary/30 transition-all hover:-translate-y-1">
-              <div className="aspect-video bg-gradient-to-br from-blue-500/20 to-cyan-500/10 flex items-center justify-center">
-                <div className="text-center">
-                  <span className="text-4xl mb-2 block">📱</span>
-                  <span className="text-sm font-bold text-white/70">Android App</span>
+            <RevealOnScroll delay={100} className="h-full">
+              <div className="group relative rounded-2xl border border-border/30 bg-background/50 overflow-hidden hover:border-primary/30 transition-all hover:-translate-y-1 h-full flex flex-col justify-between">
+                <div>
+                  <div className="aspect-video bg-gradient-to-br from-blue-500/20 to-cyan-500/10 flex items-center justify-center p-2.5 sm:p-3 overflow-hidden">
+                    {/* Phone-frame mockup */}
+                    <div className="h-full aspect-[9/19.5] rounded-[16px] border border-blue-400/20 bg-zinc-900/80 p-1 flex flex-col shadow-sm">
+                      {/* Phone notch / camera dot */}
+                      <div className="w-2.5 h-1 bg-zinc-700/70 rounded-full mx-auto my-0.5 flex-shrink-0" />
+                      {/* Phone screen container */}
+                      <div className="rounded-[12px] overflow-hidden flex-1 bg-gradient-to-b from-blue-950/40 via-zinc-900 to-neutral-950 flex items-center justify-center relative">
+                        <img
+                          src="/portfolio-android-app.webp"
+                          alt="SAGE DO Android Mobile App Preview"
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <span className="text-xs font-bold uppercase tracking-wider text-blue-400">Mobile App</span>
+                    <h3 className="text-lg font-bold text-foreground mt-2">SAGE DO Mobile — Android</h3>
+                    <p className="text-sm text-muted-foreground mt-2">Native Android app with push notifications, AI chat, order tracking, and admin dashboard.</p>
+                  </div>
+                </div>
+                <div className="px-6 pb-6 pt-0">
+                  <span className="inline-flex items-center gap-1 text-sm font-bold text-blue-400">
+                    Available on Android
+                  </span>
                 </div>
               </div>
-              <div className="p-6">
-                <span className="text-xs font-bold uppercase tracking-wider text-blue-400">Mobile App</span>
-                <h3 className="text-lg font-bold text-foreground mt-2">SAGE DO Mobile — Android</h3>
-                <p className="text-sm text-muted-foreground mt-2">Native Android app with push notifications, AI chat, order tracking, and admin dashboard.</p>
-                <span className="inline-flex items-center gap-1 text-sm font-bold text-blue-400 mt-4">
-                  Available on Android
-                </span>
-              </div>
-            </div>
+            </RevealOnScroll>
 
             {/* Project 3 - Client Work */}
-            <div className="group relative rounded-2xl border border-border/30 bg-background/50 overflow-hidden hover:border-primary/30 transition-all hover:-translate-y-1">
-              <div className="aspect-video bg-gradient-to-br from-emerald-500/20 to-green-500/10 flex items-center justify-center">
-                <div className="text-center">
-                  <span className="text-4xl mb-2 block">🏪</span>
-                  <span className="text-sm font-bold text-white/70">Local Business</span>
+            <RevealOnScroll delay={200} className="h-full">
+              <div className="group relative rounded-2xl border border-border/30 bg-background/50 overflow-hidden hover:border-primary/30 transition-all hover:-translate-y-1 h-full flex flex-col justify-between">
+              <div className="aspect-video bg-gradient-to-br from-emerald-500/20 to-green-500/10 flex items-center justify-center p-3 sm:p-4 overflow-hidden">
+                {/* Browser-chrome mockup frame */}
+                <div className="w-full h-full rounded-lg border border-emerald-400/20 bg-zinc-900/80 flex flex-col overflow-hidden shadow-sm">
+                  {/* Top chrome bar */}
+                  <div className="h-6 bg-zinc-900/95 border-b border-emerald-400/10 px-2.5 flex items-center gap-2 flex-shrink-0">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-zinc-600/70" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-zinc-600/70" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-zinc-600/70" />
+                    </div>
+                    <div className="flex-1 max-w-[130px] mx-auto h-3.5 rounded bg-zinc-800/80 border border-white/5 flex items-center justify-center px-1.5">
+                      <span className="text-[9px] text-zinc-400 font-mono tracking-tight truncate">localbusiness.in</span>
+                    </div>
+                  </div>
+                  {/* Designed placeholder mockup for Local Business */}
+                  <div className="flex-1 w-full bg-gradient-to-br from-emerald-950/20 via-zinc-900 to-neutral-950 relative overflow-hidden flex items-center justify-center">
+                    <img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Cdefs%3E%3ClinearGradient id='eg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230f1f16'/%3E%3Cstop offset='50%25' stop-color='%23101412'/%3E%3Cstop offset='100%25' stop-color='%23090d0b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='250' fill='url(%23eg)'/%3E%3Crect x='20' y='16' width='40' height='8' rx='2' fill='%2310b981' fill-opacity='0.6'/%3E%3Crect x='280' y='17' width='30' height='6' rx='2' fill='%2371717a' fill-opacity='0.4'/%3E%3Crect x='320' y='17' width='30' height='6' rx='2' fill='%2371717a' fill-opacity='0.4'/%3E%3Crect x='360' y='14' width='24' height='12' rx='3' fill='%2310b981' fill-opacity='0.3'/%3E%3Crect x='20' y='42' width='160' height='14' rx='3' fill='%23e4e4e7' fill-opacity='0.7'/%3E%3Crect x='20' y='62' width='220' height='7' rx='2' fill='%23a1a1aa' fill-opacity='0.4'/%3E%3Crect x='20' y='73' width='180' height='7' rx='2' fill='%23a1a1aa' fill-opacity='0.3'/%3E%3Crect x='20' y='88' width='60' height='14' rx='4' fill='%2310b981' fill-opacity='0.5'/%3E%3Crect x='20' y='116' width='110' height='110' rx='6' fill='%2318181b' fill-opacity='0.7' stroke='%2310b981' stroke-opacity='0.2' stroke-width='1'/%3E%3Ccircle cx='40' cy='136' r='8' fill='%2310b981' fill-opacity='0.2'/%3E%3Crect x='32' y='154' width='70' height='7' rx='2' fill='%23d4d4d8' fill-opacity='0.5'/%3E%3Crect x='32' y='167' width='85' height='5' rx='2' fill='%2371717a' fill-opacity='0.3'/%3E%3Crect x='145' y='116' width='110' height='110' rx='6' fill='%2318181b' fill-opacity='0.7' stroke='%2310b981' stroke-opacity='0.2' stroke-width='1'/%3E%3Ccircle cx='165' cy='136' r='8' fill='%2310b981' fill-opacity='0.2'/%3E%3Crect x='157' y='154' width='70' height='7' rx='2' fill='%23d4d4d8' fill-opacity='0.5'/%3E%3Crect x='157' y='167' width='85' height='5' rx='2' fill='%2371717a' fill-opacity='0.3'/%3E%3Crect x='270' y='116' width='110' height='110' rx='6' fill='%2318181b' fill-opacity='0.7' stroke='%2310b981' stroke-opacity='0.2' stroke-width='1'/%3E%3Ccircle cx='290' cy='136' r='8' fill='%2310b981' fill-opacity='0.2'/%3E%3Crect x='282' y='154' width='70' height='7' rx='2' fill='%23d4d4d8' fill-opacity='0.5'/%3E%3Crect x='282' y='167' width='85' height='5' rx='2' fill='%2371717a' fill-opacity='0.3'/%3E%3C/svg%3E"
+                      alt="Local Business Starter Pack website preview"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
                 </div>
               </div>
               <div className="p-6">
                 <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">Business Website</span>
                 <h3 className="text-lg font-bold text-foreground mt-2">Local Business Starter Pack</h3>
-                <p className="text-sm text-muted-foreground mt-2">Complete digital presence: website, Google Maps listing, WhatsApp integration, and social media setup.</p>
-                <a 
-                  href="https://wa.me/916284925684?text=Hi!%20I%20want%20to%20see%20more%20of%20your%20work." 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  onClick={() => trackWhatsAppClick('portfolio_demo_cta')}
-                  className="inline-flex items-center gap-1 text-sm font-bold text-emerald-400 mt-4 hover:underline"
-                >
-                  Ask for Demo <MessageCircle className="w-3 h-3" />
-                </a>
-              </div>
+                  </div>
+                  <div className="px-6 pb-6 pt-0">
+                    <a 
+                      href="https://wa.me/916284925684?text=Hi!%20I%20want%20to%20see%20more%20of%20your%20work." 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      onClick={() => trackWhatsAppClick('portfolio_demo_cta')}
+                      className="tap-inline inline-flex items-center gap-1 text-sm font-bold text-emerald-400 hover:underline"
+                    >
+                      Ask for Demo <MessageCircle className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </RevealOnScroll>
             </div>
-          </div>
 
-          <div className="text-center mt-10">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+            <Link href="/about#wall-of-fame">
+              <div className={buttonVariants({ variant: "outline", className: "font-bold px-6 h-12 rounded-xl cursor-pointer border-border/50 hover:bg-muted/50 gap-2 shadow-sm text-foreground hover:text-primary transition-colors" })}>
+                See our delivered work →
+              </div>
+            </Link>
             <a 
               href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20want%20to%20discuss%20a%20project%20similar%20to%20what%20I%20saw%20on%20your%20portfolio." 
               target="_blank" 
@@ -394,7 +486,8 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="overflow-x-auto">
+          {/* Desktop & Tablet Table (>= 640px) */}
+          <div className="hidden sm:block overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="border-b border-white/10">
@@ -438,6 +531,106 @@ export default function Home() {
               </tbody>
             </table>
           </div>
+
+          {/* Mobile Comparison Cards (Shown only below sm: 640px) */}
+          <div className="block sm:hidden space-y-4">
+            {/* SAGE DO Highlight Card */}
+            <div className="p-5 rounded-2xl border-2 border-primary bg-primary/10 shadow-lg shadow-primary/10 relative overflow-hidden">
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-primary bg-primary/20 px-2.5 py-1 rounded-full inline-block mb-1">
+                    ★ Sovereign AI Advantage
+                  </span>
+                  <h3 className="text-xl font-black text-white">SAGE DO</h3>
+                </div>
+                <div className="text-right">
+                  <span className="text-xs font-bold text-primary">From ₹45,000</span>
+                </div>
+              </div>
+              <div className="space-y-2.5 text-xs">
+                <div className="flex justify-between items-center py-1.5 border-b border-white/10">
+                  <span className="text-muted-foreground">Speed to Launch</span>
+                  <span className="font-bold text-green-400">⚡ 48 Hours</span>
+                </div>
+                <div className="flex justify-between items-center py-1.5 border-b border-white/10">
+                  <span className="text-muted-foreground">Tech Stack</span>
+                  <span className="font-bold text-green-400">💎 Enterprise AI Stack</span>
+                </div>
+                <div className="flex justify-between items-center py-1.5 border-b border-white/10">
+                  <span className="text-muted-foreground">Strategy</span>
+                  <span className="font-bold text-green-400">🚀 Viral Launch Kit Included</span>
+                </div>
+                <div className="flex justify-between items-center py-1.5 border-b border-white/10">
+                  <span className="text-muted-foreground">Risk</span>
+                  <span className="font-bold text-green-400">🛡️ Zero (Guaranteed)</span>
+                </div>
+                <div className="flex justify-between items-center py-1.5">
+                  <span className="text-muted-foreground">Support</span>
+                  <span className="font-bold text-green-400">🤝 AI + Founder Access</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Freelancer Card */}
+            <div className="p-5 rounded-2xl border border-white/10 bg-neutral-900/40">
+              <div className="flex justify-between items-start mb-4">
+                <h3 className="text-base font-bold text-neutral-300">Freelancer</h3>
+                <span className="text-xs font-medium text-red-400">₹15,000</span>
+              </div>
+              <div className="space-y-2.5 text-xs">
+                <div className="flex justify-between items-center py-1.5 border-b border-white/5">
+                  <span className="text-muted-foreground">Speed to Launch</span>
+                  <span className="text-neutral-400">30 Days (If lucky)</span>
+                </div>
+                <div className="flex justify-between items-center py-1.5 border-b border-white/5">
+                  <span className="text-muted-foreground">Tech Stack</span>
+                  <span className="text-neutral-400">Basic Templates</span>
+                </div>
+                <div className="flex justify-between items-center py-1.5 border-b border-white/5">
+                  <span className="text-muted-foreground">Strategy</span>
+                  <span className="text-neutral-400">None (Just Code)</span>
+                </div>
+                <div className="flex justify-between items-center py-1.5 border-b border-white/5">
+                  <span className="text-muted-foreground">Risk</span>
+                  <span className="text-red-400 font-medium">High (Ghosting)</span>
+                </div>
+                <div className="flex justify-between items-center py-1.5">
+                  <span className="text-muted-foreground">Support</span>
+                  <span className="text-neutral-400">Email Only</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Traditional Agency Card */}
+            <div className="p-5 rounded-2xl border border-white/10 bg-neutral-900/40">
+              <div className="flex justify-between items-start mb-4">
+                <h3 className="text-base font-bold text-neutral-300">Traditional Agency</h3>
+                <span className="text-xs font-medium text-orange-400">₹5 Lakhs+</span>
+              </div>
+              <div className="space-y-2.5 text-xs">
+                <div className="flex justify-between items-center py-1.5 border-b border-white/5">
+                  <span className="text-muted-foreground">Speed to Launch</span>
+                  <span className="text-neutral-400">3-6 Months</span>
+                </div>
+                <div className="flex justify-between items-center py-1.5 border-b border-white/5">
+                  <span className="text-muted-foreground">Tech Stack</span>
+                  <span className="text-neutral-400">Custom Code</span>
+                </div>
+                <div className="flex justify-between items-center py-1.5 border-b border-white/5">
+                  <span className="text-muted-foreground">Strategy</span>
+                  <span className="text-neutral-400">₹1 Lakh+ Retainer</span>
+                </div>
+                <div className="flex justify-between items-center py-1.5 border-b border-white/5">
+                  <span className="text-muted-foreground">Risk</span>
+                  <span className="text-orange-400 font-medium">Low (Slow)</span>
+                </div>
+                <div className="flex justify-between items-center py-1.5">
+                  <span className="text-muted-foreground">Support</span>
+                  <span className="text-neutral-400">Account Manager</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -459,142 +652,154 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-8 items-stretch">
             {/* Digital Presence Engine */}
-            <div className="relative p-8 rounded-3xl border border-border/50 bg-background/50 backdrop-blur-sm hover:border-primary/30 transition-all flex flex-col justify-between">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-neutral-400">Inbound Suite</span>
-                <h3 className="text-2xl font-bold mt-2 mb-1">Digital Presence Engine</h3>
-                <p className="text-xs text-muted-foreground mb-6">Delivered in 14 days</p>
-                <div className="flex items-baseline gap-1 mb-2">
-                  <span className="text-4xl font-black">₹45,000</span>
-                  <span className="text-muted-foreground text-xs">one-time</span>
+            <RevealOnScroll delay={0} className="h-full">
+              <div className="relative p-8 rounded-3xl border border-border/50 bg-background/50 backdrop-blur-sm hover:border-primary/30 transition-all flex flex-col justify-between h-full">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-neutral-400">Inbound Suite</span>
+                  <h3 className="text-2xl font-bold mt-2 mb-1">Digital Presence Engine</h3>
+                  <p className="text-xs text-muted-foreground mb-6">Delivered in 14 days</p>
+                  <div className="flex items-baseline gap-1 mb-2">
+                    <span className="text-4xl font-black">{formatAmount(45000)}</span>
+                    <span className="text-muted-foreground text-xs">one-time</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs text-primary font-medium mb-6">
+                    <CreditCard className="w-3.5 h-3.5 flex-shrink-0" />
+                    <span>3 milestone installments available (from {formatAmount(15000)}/mo)</span>
+                  </div>
+                  <ul className="space-y-4 mb-8 text-sm">
+                    <li className="flex items-center gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                      <span>Custom Mobile Web Storefront (Sub-1.2s LCP)</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                      <span>WhatsApp Cloud API Lead Webhook</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                      <span>Interactive Dynamic Calculator / Quoter</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                      <span>Automated Founder WhatsApp Lead Alerts</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                      <span>SSL + High-Performance Edge Setup</span>
+                    </li>
+                  </ul>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs text-primary font-medium mb-6">
-                  <CreditCard className="w-3.5 h-3.5 flex-shrink-0" />
-                  <span>3 milestone installments available (from ₹15,000/mo)</span>
-                </div>
-                <ul className="space-y-4 mb-8 text-sm">
-                  <li className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>Custom Mobile Web Storefront (Sub-1.2s LCP)</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>WhatsApp Cloud API Lead Webhook</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>Interactive Dynamic Calculator / Quoter</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>Automated Founder WhatsApp Lead Alerts</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>SSL + High-Performance Edge Setup</span>
-                  </li>
-                </ul>
+                <Link href="/orders?service=Digital%20Presence%20Engine&price=45000">
+                  <div className={buttonVariants({ variant: "outline", className: "w-full h-12 rounded-xl text-md font-semibold cursor-pointer hover:scale-[1.01] transition-all duration-200" })}>
+                    Deploy Now
+                  </div>
+                </Link>
               </div>
-              <Link href="/orders?service=Digital%20Presence%20Engine&price=45000">
-                <div className={buttonVariants({ variant: "outline", className: "w-full h-12 rounded-xl text-md font-semibold cursor-pointer" })}>
-                  Deploy Now
-                </div>
-              </Link>
-            </div>
+            </RevealOnScroll>
 
             {/* Sovereign Revenue Engine™ Package */}
-            <div className="relative p-8 rounded-3xl border-2 border-primary bg-primary/5 backdrop-blur-sm shadow-xl shadow-primary/10 flex flex-col justify-between transform md:-translate-y-4">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-xs font-bold whitespace-nowrap">
-                MOST POPULAR
+            <RevealOnScroll delay={100} className="h-full">
+              <div className="relative p-8 rounded-3xl border-2 border-amber-500/70 bg-gradient-to-b from-amber-500/[0.08] via-amber-500/[0.03] to-transparent backdrop-blur-sm shadow-[0_0_50px_-12px_rgba(245,158,11,0.22)] flex flex-col justify-between transform md:-translate-y-4 transition-all duration-300 hover:shadow-[0_0_60px_-10px_rgba(245,158,11,0.32)] h-full">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 to-amber-400 text-neutral-950 px-4 py-1 rounded-full text-xs font-black uppercase tracking-wider shadow-md shadow-amber-500/25 whitespace-nowrap">
+                  MOST POPULAR
+                </div>
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-amber-400">Flagship Asset</span>
+                  <h3 className="text-2xl font-bold mt-2 mb-1 text-white">Sovereign Revenue Engine™</h3>
+                  <p className="text-xs text-amber-300/80 mb-6 font-medium">Delivered in 28 days</p>
+                  <div className="flex items-baseline gap-1 mb-2">
+                    <span className="text-4xl font-black text-white">{formatAmount(150000)}</span>
+                    <span className="text-muted-foreground text-xs">one-time</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs text-amber-400/90 font-medium mb-6">
+                    <CreditCard className="w-3.5 h-3.5 flex-shrink-0 text-amber-400" />
+                    <span>3 milestone installments available (from {formatAmount(50000)}/mo)</span>
+                  </div>
+                  <ul className="space-y-4 mb-8 text-sm">
+                    <li className="flex items-center gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                      <span><strong>Full Custom CRM (Zero Per-Seat Fees)</strong></span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                      <span>Unlimited Seats & Role-Based Access (RBAC)</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                      <span>Automated WhatsApp Lead Routing & Tracking</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                      <span>Native Tally Prime / ERP Bridge Integration</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                      <span>Real-Time Margin & Sales Velocity Dashboard</span>
+                    </li>
+                  </ul>
+                </div>
+                <Link href="/orders?service=Sovereign%20Revenue%20Engine%E2%84%A2&price=150000">
+                  <div className="w-full h-12 flex items-center justify-center bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-neutral-950 font-black rounded-xl text-md shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer">
+                    Hire Your Team
+                  </div>
+                </Link>
               </div>
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Flagship Asset</span>
-                <h3 className="text-2xl font-bold mt-2 mb-1">Sovereign Revenue Engine™</h3>
-                <p className="text-xs text-primary mb-6">Delivered in 28 days</p>
-                <div className="flex items-baseline gap-1 mb-2">
-                  <span className="text-4xl font-black">₹1,50,000</span>
-                  <span className="text-muted-foreground text-xs">one-time</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs text-primary font-medium mb-6">
-                  <CreditCard className="w-3.5 h-3.5 flex-shrink-0" />
-                  <span>3 milestone installments available (from ₹50,000/mo)</span>
-                </div>
-                <ul className="space-y-4 mb-8 text-sm">
-                  <li className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span><strong>Full Custom CRM (Zero Per-Seat Fees)</strong></span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>Unlimited Seats & Role-Based Access (RBAC)</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>Automated WhatsApp Lead Routing & Tracking</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>Native Tally Prime / ERP Bridge Integration</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>Real-Time Margin & Sales Velocity Dashboard</span>
-                  </li>
-                </ul>
-              </div>
-              <Link href="/orders?service=Sovereign%20Revenue%20Engine%E2%84%A2&price=150000">
-                <div className={buttonVariants({ className: "w-full h-12 bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl text-md font-bold shadow-lg shadow-primary/20 cursor-pointer" })}>
-                  Hire Your Team
-                </div>
-              </Link>
-            </div>
+            </RevealOnScroll>
 
             {/* Enterprise Infrastructure Package */}
-            <div className="relative p-8 rounded-3xl border border-border/50 bg-background/50 backdrop-blur-sm hover:border-primary/30 transition-all flex flex-col justify-between">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-neutral-400">Enterprise Suite</span>
-                <h3 className="text-2xl font-bold mt-2 mb-1">Enterprise Infrastructure</h3>
-                <p className="text-xs text-muted-foreground mb-6">Delivered in 45–60 days</p>
-                <div className="flex items-baseline gap-1 mb-2">
-                  <span className="text-4xl font-black">₹3,50,000</span>
-                  <span className="text-muted-foreground text-xs">one-time</span>
+            <RevealOnScroll delay={200} className="h-full">
+              <div className="relative p-8 rounded-3xl border border-border/50 bg-background/50 backdrop-blur-sm hover:border-primary/30 transition-all flex flex-col justify-between h-full">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-neutral-400">Enterprise Suite</span>
+                  <h3 className="text-2xl font-bold mt-2 mb-1">Enterprise Infrastructure</h3>
+                  <p className="text-xs text-muted-foreground mb-6">Delivered in 45–60 days</p>
+                  <div className="flex items-baseline gap-1 mb-2">
+                    <span className="text-4xl font-black">{formatAmount(350000)}</span>
+                    <span className="text-muted-foreground text-xs">one-time</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs text-primary font-medium mb-6">
+                    <CreditCard className="w-3.5 h-3.5 flex-shrink-0" />
+                    <span>3 milestone installments available (from {formatAmount(116667)}/mo)</span>
+                  </div>
+                  <ul className="space-y-4 mb-8 text-sm">
+                    <li className="flex items-center gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                      <span><strong>Deep Bi-directional Tally Prime & Ledger Sync</strong></span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                      <span>Multi-Branch Quotation & Dispatch Workflows</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                      <span>Custom AI OCR Document Processing</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                      <span>Sovereign VPS Deployment (Zero-Data-Retention)</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                      <span>Priority 2-Hour P1 Dedicated Server SLA</span>
+                    </li>
+                  </ul>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs text-primary font-medium mb-6">
-                  <CreditCard className="w-3.5 h-3.5 flex-shrink-0" />
-                  <span>3 milestone installments available (from ₹1,16,667/mo)</span>
-                </div>
-                <ul className="space-y-4 mb-8 text-sm">
-                  <li className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span><strong>Deep Bi-directional Tally Prime & Ledger Sync</strong></span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>Multi-Branch Quotation & Dispatch Workflows</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>Custom AI OCR Document Processing</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>Sovereign VPS Deployment (Zero-Data-Retention)</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    <span>Priority 2-Hour P1 Dedicated Server SLA</span>
-                  </li>
-                </ul>
+                <Link href="/orders?service=Enterprise%20Infrastructure&price=350000">
+                  <div className={buttonVariants({ variant: "outline", className: "w-full h-12 rounded-xl text-md font-semibold cursor-pointer hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors hover:scale-[1.01] duration-200" })}>
+                    Become a Titan
+                  </div>
+                </Link>
               </div>
-              <Link href="/orders?service=Enterprise%20Infrastructure&price=350000">
-                <div className={buttonVariants({ variant: "outline", className: "w-full h-12 rounded-xl text-md font-semibold cursor-pointer hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors" })}>
-                  Become a Titan
-                </div>
-              </Link>
-            </div>
+            </RevealOnScroll>
           </div>
         </div>
       </section>
+
+      {/* Revenue Leakage Calculator (Category C Feature) */}
+      <Suspense fallback={<div className="py-16 text-center text-xs text-muted-foreground/60">Loading calculator...</div>}>
+        <RevenueLeakageCalculator />
+      </Suspense>
+
 
       {/* ═══════════════════════════════════════════════════════════════════
           HOW IT WORKS - Interactive Steps (Bhindi Style)
@@ -701,12 +906,11 @@ export default function Home() {
               {
                 name: "WhatsApp Automation",
                 sub: "Chatbots · Lead Capture · Auto-Replies",
-                desc: "98% open rate. 500M+ Indian users. The #1 demanded business channel.",
+                desc: "98% open rate. 500M+ Indian users. Direct conversational channel for businesses.",
                 icon: "💬",
-                color: "from-emerald-500/10 to-emerald-600/5",
-                border: "group-hover:border-emerald-500/50",
-                text: "group-hover:text-emerald-500",
-                badge: "#1 Demand",
+                color: "from-emerald-500/20 via-emerald-500/10 to-transparent",
+                border: "border-emerald-500/50 shadow-[0_0_35px_-8px_rgba(16,185,129,0.35)] md:-translate-y-2 group-hover:border-emerald-500/80",
+                text: "text-emerald-400 group-hover:text-emerald-300",
                 sample: "/sample-whatsapp-automation.png",
                 cite: "Source: Meta India 2025 — 500M+ active users"
               },
@@ -719,6 +923,7 @@ export default function Home() {
                 border: "group-hover:border-blue-500/50",
                 text: "group-hover:text-blue-500",
                 badge: "Most Searched",
+                badgeClass: "bg-primary/15 text-primary",
                 sample: "/sample-business-website.png",
                 cite: "Source: Google India SMB Report 2025"
               },
@@ -731,6 +936,7 @@ export default function Home() {
                 border: "group-hover:border-purple-500/50",
                 text: "group-hover:text-purple-500",
                 badge: "Highest Intent",
+                badgeClass: "bg-primary/15 text-primary",
                 sample: "/sample-seo-google-maps.png",
                 cite: "Source: BrightLocal 2025 — 97% search locally"
               },
@@ -743,53 +949,56 @@ export default function Home() {
                 border: "group-hover:border-orange-500/50",
                 text: "group-hover:text-orange-500",
                 badge: "Revenue Engine",
+                badgeClass: "bg-primary/15 text-primary",
                 sample: "/sample-crm-lead-automation.png",
                 cite: "Source: HubSpot 2025 — CRM = 29% more closes"
               }
-            ].map((category) => (
-              <Link key={category.name} href="/services">
-                <div className={`group h-full relative overflow-hidden rounded-3xl border border-border/40 bg-background/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${category.border} cursor-pointer`}>
-                  {/* Hover Gradient Background */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+            ].map((category, idx) => (
+              <RevealOnScroll key={category.name} delay={idx * 80} className="h-full">
+                <Link href="/services">
+                  <div className={`group h-full relative overflow-hidden rounded-3xl border border-border/40 bg-background/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${category.border} cursor-pointer`}>
+                    {/* Hover Gradient Background */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
-                  <div className="relative p-8 z-10 flex flex-col h-full">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="text-5xl transform group-hover:scale-110 transition-transform duration-500">{category.icon}</div>
-                      {(category as any).badge && <span className="text-[10px] font-bold uppercase tracking-wider bg-primary/15 text-primary px-2 py-1 rounded-full">{(category as any).badge}</span>}
-                    </div>
-
-                    {/* Sample Preview */}
-                    {(category as any).sample && (
-                      <div className="mb-4 rounded-xl overflow-hidden border border-border/20 aspect-video">
-                        <img src={(category as any).sample} alt={`${category.name} sample`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                    <div className="relative p-8 z-10 flex flex-col h-full">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="text-5xl transform group-hover:scale-110 transition-transform duration-500">{category.icon}</div>
+                        {(category as any).badge && <span className={`text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full ${(category as any).badgeClass || "bg-primary/15 text-primary"}`}>{(category as any).badge}</span>}
                       </div>
-                    )}
 
-                    <h3 className="text-2xl font-black text-foreground mb-2 leading-tight">
-                      {category.name}
-                    </h3>
+                      {/* Sample Preview */}
+                      {(category as any).sample && (
+                        <div className="mb-4 rounded-xl overflow-hidden border border-border/20 aspect-video">
+                          <img src={(category as any).sample} alt={`${category.name} sample`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                        </div>
+                      )}
 
-                    <p className={`text-sm font-bold uppercase tracking-wider mb-3 text-muted-foreground ${category.text} transition-colors`}>
-                      {category.sub}
-                    </p>
+                      <h3 className="text-2xl font-black text-foreground mb-2 leading-tight">
+                        {category.name}
+                      </h3>
 
-                    <p className="text-muted-foreground mb-3 text-sm leading-relaxed">
-                      {category.desc}
-                    </p>
+                      <p className={`text-sm font-bold uppercase tracking-wider mb-3 text-muted-foreground ${category.text} transition-colors`}>
+                        {category.sub}
+                      </p>
 
-                    {/* Citation */}
-                    {(category as any).cite && (
-                      <p className="text-[10px] text-muted-foreground/50 italic mb-4">{(category as any).cite}</p>
-                    )}
+                      <p className="text-muted-foreground mb-3 text-sm leading-relaxed">
+                        {category.desc}
+                      </p>
 
-                    <div className="mt-auto">
-                      <div className={`inline-flex items-center text-sm font-bold text-foreground border-b-2 border-transparent ${category.border} pb-1 transition-all group-hover:pl-2`}>
-                        View Solutions <ArrowRight className="w-4 h-4 ml-2" />
+                      {/* Citation */}
+                      {(category as any).cite && (
+                        <p className="text-[10px] text-muted-foreground/50 italic mb-4">{(category as any).cite}</p>
+                      )}
+
+                      <div className="mt-auto">
+                        <div className={`inline-flex items-center text-sm font-bold text-foreground border-b-2 border-transparent ${category.border} pb-1 transition-all group-hover:pl-2`}>
+                          View Solutions <ArrowRight className="w-4 h-4 ml-2" />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </RevealOnScroll>
             ))}
           </div>
 
@@ -842,7 +1051,7 @@ export default function Home() {
                     <MessageCircle className="mr-2 h-4 w-4" /> Message Me Directly
                   </div>
                 </a>
-                <a href="https://www.linkedin.com/in/mukul-dhiman" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                <a href="https://www.linkedin.com/in/mukul-dhiman" target="_blank" rel="noopener noreferrer" className="tap-inline text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
                   View LinkedIn →
                 </a>
               </div>

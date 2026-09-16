@@ -91,7 +91,7 @@ const BookCall = () => {
               Book a Strategy Call with the Founder
             </h1>
             <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
-              Talk directly to Mukul Dhiman — ex-Tata Lockheed Martin engineer turned AI builder. 
+              Talk directly to Mukul Dhiman — ex-aerospace systems engineer turned AI builder. 
               Get a brutally honest assessment of where your business stands digitally and exactly what to fix first.
             </p>
           </div>

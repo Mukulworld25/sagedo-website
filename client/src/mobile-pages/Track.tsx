@@ -94,11 +94,11 @@ export const Track: React.FC = () => {
                         <div>
                             <h3 className="text-white font-bold text-sm">Mukul Dhiman</h3>
                             <p className="text-neutral-500 text-xs">Founder & CEO, SAGE DO</p>
-                            <p className="text-red-400 text-[10px] font-bold">Ex-Aerospace Engineer (Tata Lockheed Martin)</p>
+                            <p className="text-red-400 text-[10px] font-bold">Ex-Aerospace Systems Engineer</p>
                         </div>
                     </div>
                     <p className="text-neutral-400 text-xs leading-relaxed">
-                        5 years building fighter jets (C130J, F16) taught me one thing: precision matters. Now I bring aerospace-grade execution standards to businesses.
+                        5 years in high-tolerance aerospace engineering taught me one thing: precision matters. Now I bring aerospace-grade execution standards to businesses.
                     </p>
                 </div>
 
