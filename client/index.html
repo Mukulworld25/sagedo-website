@@ -460,24 +460,32 @@ document.addEventListener("submit", function(e) {
     </noscript>
   </div>
   <script>
-  // Route-specific SEO for SPA
+  // Route-specific SEO for SPA (synchronized with prerender engine)
   (function() {
     var path = window.location.pathname;
     var titleEl = document.querySelector('title');
     var canonicalEl = document.querySelector('link[rel="canonical"]');
     var descEl = document.querySelector('meta[name="description"]');
     if (path === '/services' || path === '/services/') {
-      titleEl.textContent = 'AI Business Services & Pricing | SAGEDO — India\'s Hybrid Execution Team';
-      canonicalEl.setAttribute('href', 'https://sagedo.in/services');
-      descEl.setAttribute('content', 'Explore SAGEDO services: WhatsApp Automation Bot from ₹14,999, CRM from ₹24,999, AI Agent Development from ₹45,000, Mobile Apps from ₹75,000, Missed-Call Text-Back from ₹12,999, and more.');
+      if (titleEl) titleEl.textContent = 'Services | SAGEDO — AI + Human Business Services India';
+      if (canonicalEl) canonicalEl.setAttribute('href', 'https://sagedo.in/services');
+      if (descEl) descEl.setAttribute('content', 'SAGEDO delivers 3 execution tiers from ₹45,000 — Digital Presence Engine, Sovereign Revenue Engine™, Enterprise Infrastructure — plus the ₹25,000 Revenue Infrastructure Blueprint (100% credited) and recurring growth add-ons.');
     } else if (path === '/orders' || path === '/orders/') {
-      titleEl.textContent = 'Checkout | SAGEDO — Secure Payment';
-      canonicalEl.setAttribute('href', 'https://sagedo.in/orders');
-      descEl.setAttribute('content', 'Complete your SAGEDO order securely. Fast checkout for AI business services, automation packages, and digital solutions.');
+      if (titleEl) titleEl.textContent = 'Checkout | SAGEDO — Secure Payment';
+      if (canonicalEl) canonicalEl.setAttribute('href', 'https://sagedo.in/orders');
+      if (descEl) descEl.setAttribute('content', 'Complete your SAGEDO order securely. Fast checkout for AI business services, automation packages, and digital solutions.');
+    } else if (path === '/about' || path === '/about/') {
+      if (titleEl) titleEl.textContent = 'About SAGEDO | India\'s First AI + Human Hybrid Execution Team';
+      if (canonicalEl) canonicalEl.setAttribute('href', 'https://sagedo.in/about');
+      if (descEl) descEl.setAttribute('content', 'Learn about SAGEDO, founded by Mukul Dhiman. Combining 5 years of aerospace precision engineering with modern AI speed to deliver 30+ digital services across India. Based in Chandigarh.');
+    } else if (path === '/careers' || path === '/careers/') {
+      if (titleEl) titleEl.textContent = 'Careers at SAGEDO | Join India\'s AI + Human Hybrid Team';
+      if (canonicalEl) canonicalEl.setAttribute('href', 'https://sagedo.in/careers');
+      if (descEl) descEl.setAttribute('content', 'Explore open AI roles at SAGEDO: AI Developer, AI Video Editor, AI Business Development Executive, AI Systems Engineer, AI Operations Generalist, and AI Content Strategist.');
     } else if (path === '/blog/how-much-website-cost-india-2026' || path === '/blog/how-much-website-cost-india-2026/') {
-      titleEl.textContent = 'Website Design Cost in India (2026 Pricing Guide & Secrets) — SAGEDO';
-      canonicalEl.setAttribute('href', 'https://sagedo.in/blog/how-much-website-cost-india-2026');
-      descEl.setAttribute('content', 'How much does website design cost in India? Read the honest 2026 pricing guide comparing DIY, freelancers, agencies, and how to save up to 80% on development.');
+      if (titleEl) titleEl.textContent = 'Website Design Cost in India (2026 Pricing Guide & Secrets) — SAGEDO';
+      if (canonicalEl) canonicalEl.setAttribute('href', 'https://sagedo.in/blog/how-much-website-cost-india-2026');
+      if (descEl) descEl.setAttribute('content', 'How much does website design cost in India? Read the honest 2026 pricing guide comparing DIY, freelancers, agencies, and how to save up to 80% on development.');
     }
   })();
   </script>
