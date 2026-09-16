@@ -14,8 +14,8 @@ export const faqs: FAQItem[] = [
     {
         id: 'trending',
         question: "Trending services",
-        answer: "🔥 **Trending Services (Top Pics):**\n\n**Startup Execution:**\n1) SaaS & Web Development\n2) Market & Competitor Analysis\n3) Custom AI Automations\n\n**Executive:**\n1) C-Suite ATS Formatting\n2) LinkedIn Authority Branding\n3) Executive Pitch Practice\n\n**Content:**\n1) SEO Blog Posts\n2) Social Media Campaigns\n3) Pitch / Proposal Copy\n\n**Business:**\n1) Pitch Decks / PPT Design\n2) Business Proposals\n3) BI Dashboards",
-        keywords: ['trending', 'popular', 'hot', 'best', 'top', 'recommend'],
+        answer: "🔥 **Top Demand Services:**\n\n**High Demand Flagships:**\n1) Google Listing & SEO / GEO / AEO Optimization\n2) High-Converting Website Design & Development\n3) Custom CRM & Lead Routing Systems\n\n**AI Automation:**\n1) WhatsApp Sales & Qualification Bots\n2) Autonomous AI Agents\n3) Bi-Directional ERP / Tally Bridges\n\n**Content & Search:**\n1) SEO / GEO / AEO Blog Engine\n2) Social Media Campaigns\n3) Pitch / Proposal Copy",
+        keywords: ['trending', 'popular', 'hot', 'best', 'top', 'recommend', 'high demand'],
         category: 'trending'
     },
 
@@ -120,15 +120,15 @@ export const faqs: FAQItem[] = [
     {
         id: 'content_services',
         question: "What content services do you provide?",
-        answer: "Blogs, web copy, product descriptions, SEO articles, social posts, and long-form content — all optimized for clarity and impact.",
+        answer: "Blogs, web copy, product descriptions, SEO / GEO / AEO articles, social posts, and long-form content — all optimized for clarity and organic + AI search impact.",
         keywords: ['content', 'writing', 'blog', 'article', 'post', 'copy'],
         category: 'service'
     },
     {
         id: 'seo',
-        question: "Can you write SEO content?",
-        answer: "Yes — we craft content that reads well and helps with search visibility, using proven on-page practices and strong user intent focus.",
-        keywords: ['seo', 'search engine', 'ranking', 'keywords', 'google'],
+        question: "Can you optimize for SEO, GEO & AEO?",
+        answer: "Yes — we don't just optimize for traditional Google Search (SEO). We engineer full SEO / GEO / AEO optimization: structured schema for Google AI Overviews, crawler discovery for ChatGPT and Perplexity, plus Google Maps 3-Pack setup so local and national buyers find you first.",
+        keywords: ['seo', 'geo', 'aeo', 'search engine', 'ranking', 'keywords', 'google', 'chatgpt', 'perplexity', 'ai overviews'],
         category: 'service'
     },
     {

@@ -140,23 +140,23 @@ export default function Footer() {
             <h4 className="font-semibold text-white mb-4 tracking-wide text-sm uppercase text-neutral-300">Solutions</h4>
             <ul className="footer-link-list space-y-2.5 text-sm">
               <li>
-                <Link href="/services">
-                  <span className="text-neutral-400 hover:text-white transition-colors cursor-pointer">Services Directory</span>
-                </Link>
+                <a href="/google-business-profile-setup.html">
+                  <span className="text-neutral-400 hover:text-white transition-colors cursor-pointer">SEO / GEO / AEO Optimization</span>
+                </a>
               </li>
               <li>
-                <Link href="/services#packages">
-                  <span className="text-neutral-400 hover:text-white transition-colors cursor-pointer">Launch Packages</span>
+                <a href="/website-development-india.html">
+                  <span className="text-neutral-400 hover:text-white transition-colors cursor-pointer">Business Website Development</span>
+                </a>
+              </li>
+              <li>
+                <Link href="/custom-crm-development-chandigarh">
+                  <span className="text-neutral-400 hover:text-white transition-colors cursor-pointer">Custom Zero-Seat CRM</span>
                 </Link>
               </li>
               <li>
                 <Link href="/services#packages">
                   <span className="text-neutral-400 hover:text-white transition-colors cursor-pointer">Sovereign Revenue Engine™</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/#calculator">
-                  <span className="text-neutral-400 hover:text-white transition-colors cursor-pointer">Revenue Leakage Calculator</span>
                 </Link>
               </li>
               <li>

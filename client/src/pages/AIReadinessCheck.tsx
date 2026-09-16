@@ -55,7 +55,7 @@ const questions = [
 function getRecommendations(answers: number[], totalScore: number) {
     const recs = [];
     if (answers[0] >= 20) recs.push({ icon: Zap, title: "AI Automation Priority", desc: "Your team is spending 15+ hours on repetitive work. AI automation can cut this by 70% and free your team for growth tasks." });
-    if (answers[1] >= 20) recs.push({ icon: Target, title: "Website Upgrade Needed", desc: "Your online presence is below standard. A professional website with SEO will bring organic leads and establish credibility." });
+    if (answers[1] >= 20) recs.push({ icon: Target, title: "Website & Search Upgrade Needed", desc: "Your online presence is below standard. A professional website with SEO / GEO / AEO will bring organic leads and establish credibility across Google and AI search." });
     if (answers[2] >= 20) recs.push({ icon: TrendingUp, title: "Customer Management Gap", desc: "Manual inquiry handling is losing you leads. A WhatsApp Business + CRM setup can capture 3x more customers." });
     if (answers[3] >= 15) recs.push({ icon: Zap, title: "Revenue Acceleration", desc: "At your stage, speed of execution matters most. SAGEDO's hybrid approach can help you launch and iterate 5x faster." });
     if (answers[4] >= 20) recs.push({ icon: Target, title: `${['Content', 'Tech', 'Sales', 'Operations'][questions[4].options.findIndex(o => o.score === answers[4])]} Bottleneck Fix`, desc: "Your biggest bottleneck is exactly what SAGEDO specializes in. We can remove this blocker in 24-48 hours." });

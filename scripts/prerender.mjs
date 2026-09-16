@@ -34,19 +34,19 @@ const routes = [
     description: "SAGEDO combines AI speed with human precision to deliver agency-quality websites, apps, branding, and automation in 24-48 hours at freelancer prices. Based in Chandigarh, serving all India.",
     content: `
       <h1>SAGE DO — Speed of AI. Precision of Humans.</h1>
-      <p>SAGE DO is India's first AI + Human hybrid execution team. We deliver agency-quality websites, apps, branding, CRM, SEO, and business automation — in 24-48 hours at freelancer prices.</p>
+      <p>SAGE DO is India's first AI + Human hybrid execution team. We deliver agency-quality websites, apps, branding, CRM, SEO / GEO / AEO, and business automation — in 24-48 hours at freelancer prices.</p>
       <h2>Why Choose SAGE DO?</h2>
       <p>Every AI needs a human in the loop. We're the best AI generalists in the game. We prompt it right, verify the output, and polish it until it's not just good — it's perfect.</p>
-      <h2>Our Services</h2>
+      <h2>Our Top Demand Services</h2>
       <ul>
-        <li>3 Delivery Tiers — Digital Presence Engine, Sovereign Revenue Engine™, Enterprise Infrastructure</li>
-        <li>SAGEDO Revenue Infrastructure Blueprint — ₹25,000, 100% credited against any tier build</li>
-        <li>AI Agent Development, AI Voice Agents &amp; Mobile App Development</li>
-        <li>Recurring Add-Ons — Google &amp; Meta Ads Management, AI Content Engine, SEO Content Retainer</li>
+        <li>1. Google Business Profile &amp; SEO / GEO / AEO Optimization (Google Local 3-Pack &amp; AI Search Engine ranking)</li>
+        <li>2. High-Converting Website Design &amp; Development (Sub-1.2s speed, mobile-first, conversion-engineered)</li>
+        <li>3. Custom CRM &amp; Lead Routing Systems (Zero per-seat software taxes, unlimited seats, WhatsApp lead routing)</li>
+        <li>4. WhatsApp Automation Bots &amp; Autonomous AI Agents</li>
       </ul>
       <h2>Delivery Tiers</h2>
-      <p><strong>Digital Presence Engine — ₹45,000–₹75,000:</strong> Logo + Brand Identity, 5-Page Website, Google Business Profile, SEO Basics, Business Email. Live in 14 days or full refund. AMC ₹15,000/month.</p>
-      <p><strong>Sovereign Revenue Engine™ — ₹1,50,000–₹2,50,000 (Most Popular):</strong> Everything in Digital Presence Engine + CRM + Lead Automation, WhatsApp Sales Bot, SEO Setup + 4 Blog Posts, 30 Days Social Content. Live in 28 days, 10-gate QA certified. AMC ₹25,000/month.</p>
+      <p><strong>Digital Presence Engine — ₹45,000–₹75,000:</strong> Logo + Brand Identity, 5-Page Website, Google Business Profile, SEO / GEO / AEO Basics, Business Email. Live in 14 days or full refund. AMC ₹15,000/month.</p>
+      <p><strong>Sovereign Revenue Engine™ — ₹1,50,000–₹2,50,000 (Most Popular):</strong> Everything in Digital Presence Engine + CRM + Lead Automation, WhatsApp Sales Bot, SEO / GEO / AEO Setup + 4 Blog Posts, 30 Days Social Content. Live in 28 days, 10-gate QA certified. AMC ₹25,000/month.</p>
       <p><strong>Enterprise Infrastructure — Starting at ₹3,50,000:</strong> Enterprise Web + Native App, Admin Dashboard, Dedicated Growth Engineer, Legal &amp; IP Contracts. AMC ₹35,000/month.</p>
       <h2>How It Works</h2>
       <ol>
@@ -75,13 +75,13 @@ const routes = [
       <p>Precision-engineered services for founders, leaders, and visionaries who refuse to settle for average. One consolidated catalog: 3 delivery tiers, the Blueprint audit, standalone AI builds, and recurring add-ons.</p>
       <h2>The Founder's Stack — Delivery Tiers</h2>
       <h3>Digital Presence Engine — ₹45,000–₹75,000</h3>
-      <p>Everything a serious business needs to exist online: Logo + Brand Identity, 5-Page Website + SEO Basics, Google Business Profile, Business Email, Social Media Setup, GST + MSME Registration. Live in 14 days or full refund. AMC ₹15,000/month.</p>
+      <p>Everything a serious business needs to exist online: Logo + Brand Identity, 5-Page Website + SEO / GEO / AEO Basics, Google Business Profile, Business Email, Social Media Setup, GST + MSME Registration. Live in 14 days or full refund. AMC ₹15,000/month.</p>
       <h3>Sovereign Revenue Engine™ — ₹1,50,000–₹2,50,000 (Most Popular)</h3>
-      <p>Complete execution: Everything in Digital Presence Engine + CRM + Lead Automation, WhatsApp Sales Bot + AI Website Chatbot, Sales Automation, Analytics Dashboard, Missed-Call Text-Back, Review Automation, SEO Setup + 4 Blog Posts, 30 Days Social Content. Live in 28 days, 10-gate QA certified. AMC ₹25,000/month.</p>
+      <p>Complete execution: Everything in Digital Presence Engine + CRM + Lead Automation, WhatsApp Sales Bot + AI Website Chatbot, Sales Automation, Analytics Dashboard, Missed-Call Text-Back, Review Automation, SEO / GEO / AEO Setup + 4 Blog Posts, 30 Days Social Content. Live in 28 days, 10-gate QA certified. AMC ₹25,000/month.</p>
       <h3>Enterprise Infrastructure — Starting at ₹3,50,000</h3>
       <p>Enterprise infrastructure: Enterprise Web + Native App, Admin Dashboard, Dedicated Growth Engineer, Legal &amp; IP Contracts + Trademark Filing, HR System Setup. AMC ₹35,000/month.</p>
       <h2>SAGEDO Revenue Infrastructure Blueprint — ₹25,000</h2>
-      <p>A deep audit of your revenue infrastructure — website, SEO, funnel, CRM, automations, analytics — with a prioritized build blueprint. 100% of the fee is credited against any tier build within 90 days.</p>
+      <p>A deep audit of your revenue infrastructure — website, SEO / GEO / AEO, funnel, CRM, automations, analytics — with a prioritized build blueprint. 100% of the fee is credited against any tier build within 90 days.</p>
       <h2>Standalone Builds &amp; Recurring Add-Ons</h2>
       <ul>
         <li>Mobile App Development — ₹59,999 – ₹95,000</li>
@@ -89,7 +89,7 @@ const routes = [
         <li>AI Voice &amp; Telephony Agents — ₹45,000 – ₹55,000</li>
         <li>Google &amp; Meta Ads Management — ₹15,000 – ₹25,000/month</li>
         <li>AI Content Repurposing Engine — ₹15,000/month</li>
-        <li>SEO Content Retainer — ₹15,000/month</li>
+        <li>SEO / GEO / AEO Content Retainer — ₹15,000/month</li>
       </ul>
       <h2>AMC &amp; Expert Guidance</h2>
       <ul>

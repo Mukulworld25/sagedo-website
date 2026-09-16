@@ -904,54 +904,56 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                name: "WhatsApp Automation",
-                sub: "Chatbots · Lead Capture · Auto-Replies",
-                desc: "98% open rate. 500M+ Indian users. Direct conversational channel for businesses.",
-                icon: "💬",
-                color: "from-emerald-500/20 via-emerald-500/10 to-transparent",
-                border: "border-emerald-500/50 shadow-[0_0_35px_-8px_rgba(16,185,129,0.35)] md:-translate-y-2 group-hover:border-emerald-500/80",
-                text: "text-emerald-400 group-hover:text-emerald-300",
-                sample: "/sample-whatsapp-automation.png",
-                cite: "Source: Meta India 2025 — 500M+ active users"
+                name: "Google Listing & SEO / GEO / AEO",
+                sub: "Local 3-Pack · Maps · AI Search Engines",
+                desc: "Get found on Google Maps & recommended by ChatGPT, Perplexity & AI Search. Dominate local search.",
+                icon: "📍",
+                color: "from-amber-500/20 via-amber-500/10 to-transparent",
+                border: "border-amber-500/50 shadow-[0_0_35px_-8px_rgba(245,158,11,0.35)] md:-translate-y-2 group-hover:border-amber-500/80",
+                text: "text-amber-400 group-hover:text-amber-300",
+                badge: "High Demand",
+                badgeClass: "bg-amber-500/20 text-amber-300 border border-amber-500/40 font-bold",
+                sample: "/sample-seo-google-maps.png",
+                cite: "Source: BrightLocal 2026 — 97% search locally first"
               },
               {
                 name: "Business Website",
-                sub: "Mobile-First · SEO-Ready · High-Converting",
-                desc: "Your 24/7 digital storefront. Customers research online before buying.",
+                sub: "Sub-1.2s Fast · Mobile-First · SEO / AEO Ready",
+                desc: "Your 24/7 high-converting storefront. Designed to turn visitors into paying customers from day one.",
                 icon: "🌐",
                 color: "from-blue-500/10 to-blue-600/5",
                 border: "group-hover:border-blue-500/50",
                 text: "group-hover:text-blue-500",
-                badge: "Most Searched",
-                badgeClass: "bg-primary/15 text-primary",
+                badge: "High Demand",
+                badgeClass: "bg-blue-500/20 text-blue-300 border border-blue-500/40 font-bold",
                 sample: "/sample-business-website.png",
-                cite: "Source: Google India SMB Report 2025"
+                cite: "Source: Google SMB 2026 — 88% research before buying"
               },
               {
-                name: "Google My Business & SEO",
-                sub: "Local Pack · Maps Ranking · AI Search",
-                desc: "97% of consumers search online before visiting. Rank #1 locally.",
-                icon: "📍",
-                color: "from-purple-500/10 to-purple-600/5",
-                border: "group-hover:border-purple-500/50",
-                text: "group-hover:text-purple-500",
-                badge: "Highest Intent",
-                badgeClass: "bg-primary/15 text-primary",
-                sample: "/sample-seo-google-maps.png",
-                cite: "Source: BrightLocal 2025 — 97% search locally"
-              },
-              {
-                name: "Lead Generation & CRM",
-                sub: "Sales Pipeline · Auto Follow-Up · Conversion",
-                desc: "Stop losing leads. Automated pipeline that follows up and closes deals.",
+                name: "Lead Generation & Custom CRM",
+                sub: "Zero Per-Seat Taxes · Auto Follow-Up · Tally Sync",
+                desc: "Never lose a lead again. Instant WhatsApp lead routing, unlimited seats & automated pipeline tracking.",
                 icon: "📈",
                 color: "from-orange-500/10 to-orange-600/5",
                 border: "group-hover:border-orange-500/50",
                 text: "group-hover:text-orange-500",
-                badge: "Revenue Engine",
-                badgeClass: "bg-primary/15 text-primary",
+                badge: "High Demand",
+                badgeClass: "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold",
                 sample: "/sample-crm-lead-automation.png",
-                cite: "Source: HubSpot 2025 — CRM = 29% more closes"
+                cite: "Source: HubSpot 2026 — CRM delivers 29% more closes"
+              },
+              {
+                name: "WhatsApp Automation Bot",
+                sub: "24/7 AI Sales · Instant Lead Reply · Auto-Qualify",
+                desc: "98% open rate. Engage every incoming customer inquiry in under 45 seconds while you sleep.",
+                icon: "💬",
+                color: "from-emerald-500/10 to-emerald-600/5",
+                border: "group-hover:border-emerald-500/50",
+                text: "group-hover:text-emerald-400",
+                badge: "Popular",
+                badgeClass: "bg-primary/15 text-primary",
+                sample: "/sample-whatsapp-automation.png",
+                cite: "Source: Meta India 2026 — 500M+ active users"
               }
             ].map((category, idx) => (
               <RevealOnScroll key={category.name} delay={idx * 80} className="h-full">
@@ -1134,7 +1136,7 @@ export default function Home() {
                   Discover exactly what's holding your business back online. Our AI scans your digital presence and delivers a personalized roadmap — in under 24 hours.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" /> Website & SEO health check</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" /> Website & SEO / GEO / AEO health check</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" /> Competitor comparison snapshot</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" /> Top 3 quick-win opportunities</li>
                 </ul>

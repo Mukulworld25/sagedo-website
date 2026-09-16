@@ -20,33 +20,33 @@ function cn(...inputs: (string | undefined | null | false)[]) {
 
 const COMBOS = [
   { name: "Brand Starter", desc: "Logo + Brand Colors + Business Email", price: "₹2,999 – ₹3,499", icon: "🎨", service: "Brand Starter Combo", price_val: 2999 },
-  { name: "Google Presence", desc: "Website + SEO + Google Business Profile", price: "₹16,999 – ₹19,999", icon: "🌐", service: "Google Presence Combo", price_val: 16999 },
+  { name: "Google Presence", desc: "Website + SEO / GEO / AEO + Google Business Profile", price: "₹16,999 – ₹19,999", icon: "🌐", service: "Google Presence Combo", price_val: 16999 },
   { name: "Legal Foundation", desc: "GST + MSME + Trademark Filing", price: "₹3,999 – ₹5,999", icon: "📋", service: "Legal Foundation Combo", price_val: 3999 },
   { name: "Sales Machine", desc: "CRM + WhatsApp Bot + Lead Automation", price: "₹12,999 – ₹14,999", icon: "🤖", service: "Sales Machine Combo", price_val: 12999 },
 ];
 
 const CONSULT_OPTIONS = [
   { type: "First Discovery Call", duration: "15 min", price: "₹0", desc: "15-minute scoping call on Zoom or WhatsApp", tag: "FREE", price_val: 0 },
-  { type: "AI & Web Growth Audit", duration: "45 min", price: "₹1,999", desc: "Speed, SEO, conversion audit & tech roadmap", tag: "POPULAR LEAD IN", price_val: 1999 },
+  { type: "AI & Web Growth Audit", duration: "45 min", price: "₹1,999", desc: "Speed, SEO / GEO / AEO, conversion audit & tech roadmap", tag: "POPULAR LEAD IN", price_val: 1999 },
   { type: "Strategic Consultation", duration: "45 min", price: "₹3,499", desc: "One-on-one strategy call directly with Mukul", tag: "", price_val: 3499 },
   { type: "Growth Retainer", duration: "Ongoing", price: "₹9,999/mo", desc: "Weekly sync calls + priority WhatsApp access", tag: "BEST VALUE", price_val: 9999 },
 ];
 
 const MAINTENANCE_PLANS = [
-  { name: "SEO Maintenance", price: "₹2,999/mo", what: "1 blog post/mo + rank monitoring + competitor check + fixes", icon: "🔍", price_val: 2999 },
+  { name: "SEO / GEO / AEO Maintenance", price: "₹2,999/mo", what: "1 post/mo + AI citation & rank monitoring + competitor check + fixes", icon: "🔍", price_val: 2999 },
   { name: "Website Maintenance", price: "₹1,499/mo", what: "Speed + security updates + bug fixes + uptime monitoring", icon: "🌐", price_val: 1499 },
   { name: "Full Stack Plan", price: "₹7,999/mo", what: "Everything above + priority support + monthly strategy call", icon: "⚡", price_val: 7999 },
 ];
 
 const AUTO_REPLIES: Record<string, string> = {
-  seo: "SEO setup keeps you on Google for 60–90 days. Our ₹2,999/mo maintenance publishes fresh content monthly to maintain and grow your ranking.",
+  seo: "Our SEO / GEO / AEO optimization keeps you on Google and recommended in ChatGPT/Perplexity. Our ₹2,999/mo maintenance publishes fresh content and monitors AI citations to grow your ranking.",
   website: "We build on WordPress or React. 5-page website delivered in 7–10 days. ₹1,499/mo maintenance covers speed, security, and updates.",
   price: "All prices are just above freelancer rates but far below agency rates. Range pricing means basic to premium options.",
   maintenance: "Maintenance means we handle your service monthly — new content, updates, rank monitoring — so you never have to worry about it.",
   guarantee: "Every service has a 48-hour delivery guarantee. If we miss it, full refund. No questions asked.",
   gst: "GST registration takes 48 hours. ₹799–₹1,299 one-time. Required for all businesses.",
   logo: "Logo delivered in 3–5 days. Includes source files and 2 revision rounds. ₹1,999–₹2,499.",
-  package: "The Full Launch at ₹35,000 covers website, SEO, CRM, sales bot, and 30 days of content.",
+  package: "The Full Launch at ₹35,000 covers website, SEO / GEO / AEO, CRM, sales bot, and 30 days of content.",
 };
 
 export default function Services() {
@@ -89,8 +89,8 @@ export default function Services() {
     }, 600);
   };
 
-  const FEATURED_IDS = ["b04", "b05", "b02", "ai_agent_dev"];
-  const featuredServices = allServices.filter(s => FEATURED_IDS.includes(s.id));
+  const FEATURED_IDS = ["b03", "b02", "b05", "b04"];
+  const featuredServices = FEATURED_IDS.map(id => allServices.find(s => s.id === id)).filter(Boolean) as ServiceDetail[];
   const specializedServices = allServices.filter(s => 
     ["Business", "Startup Launch", "Scale Business", "AI Automation"].includes(s.category) && !FEATURED_IDS.includes(s.id)
   );
@@ -101,11 +101,11 @@ export default function Services() {
     <div className="min-h-screen bg-[#0a0a0a] text-gray-100 selection:bg-amber-500/30">
       <Helmet>
         <title>Services | SAGEDO — AI + Human Business Services India</title>
-        <meta name="description" content="SAGEDO offers 20+ B2B business services for Indian SMBs — Website Design, SEO, WhatsApp Bot, CRM, GST Registration, Logo Design, Mobile App & more. LaunchPad to build your business. ScaleOps to grow it. Packages from ₹15,000." />
-        <meta name="keywords" content="business services India, website design Chandigarh, SEO India, WhatsApp bot setup, CRM setup India, GST registration, logo design India, mobile app development, LaunchPad, ScaleOps, SAGEDO, AI business services" />
+        <meta name="description" content="SAGEDO offers 20+ B2B business services for Indian SMBs — Google Business Profile & SEO / GEO / AEO, Website Design, Custom CRM, WhatsApp Bot, GST Registration, Logo Design & more. Packages from ₹15,000." />
+        <meta name="keywords" content="business services India, website design Chandigarh, SEO GEO AEO India, Google Business Profile Chandigarh, WhatsApp bot setup, CRM setup India, GST registration, logo design India, mobile app development, LaunchPad, ScaleOps, SAGEDO, AI business services" />
         <link rel="canonical" href="https://sagedo.in/services" />
         <meta property="og:title" content="Services | SAGEDO — AI + Human Business Services" />
-        <meta property="og:description" content="LaunchPad: Build your business from zero. ScaleOps: Operations that scale. 20 services, 5 combos, 3 packages. Packages from ₹15,000." />
+        <meta property="og:description" content="LaunchPad: Build your business from zero. ScaleOps: Operations that scale. High demand SEO / GEO / AEO, Websites, and Custom CRM systems." />
         <meta property="og:url" content="https://sagedo.in/services" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -257,8 +257,8 @@ export default function Services() {
               <div className="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-amber-500/20 transition-all" />
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-4"><div className="p-3 bg-amber-500/20 rounded-2xl text-2xl">🚀</div><div><p className="font-black text-xl text-white">LaunchPad</p><p className="text-amber-400/80 text-xs font-semibold uppercase tracking-wider">Build from zero</p></div></div>
-                <p className="text-gray-300 text-base font-medium mb-5 leading-relaxed">Starting a new business or going digital for the first time? We build everything — logo, website, SEO, CRM, WhatsApp bot — in 30 days.</p>
-                <ul className="space-y-2 mb-6">{["Website + SEO + Google Business","WhatsApp Sales Bot + CRM","Logo, Branding & Business Email","GST, MSME & Trademark Filing"].map(item => (<li key={item} className="flex items-center gap-2 text-sm text-gray-400"><span className="text-amber-400 text-xs">✓</span>{item}</li>))}</ul>
+                <p className="text-gray-300 text-base font-medium mb-5 leading-relaxed">Starting a new business or going digital for the first time? We build everything — logo, website, SEO / GEO / AEO, CRM, WhatsApp bot — in 30 days.</p>
+                <ul className="space-y-2 mb-6">{["Website + SEO / GEO / AEO + Google Business","WhatsApp Sales Bot + CRM","Logo, Branding & Business Email","GST, MSME & Trademark Filing"].map(item => (<li key={item} className="flex items-center gap-2 text-sm text-gray-400"><span className="text-amber-400 text-xs">✓</span>{item}</li>))}</ul>
                 <div className="flex items-center gap-2 text-amber-400 font-bold text-sm group-hover:gap-3 transition-all">Explore LaunchPad <span>→</span></div>
               </div>
             </button>
@@ -266,8 +266,8 @@ export default function Services() {
               <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-blue-500/20 transition-all" />
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-4"><div className="p-3 bg-blue-500/20 rounded-2xl text-2xl">⚙️</div><div><p className="font-black text-xl text-white">ScaleOps</p><p className="text-blue-400/80 text-xs font-semibold uppercase tracking-wider">Operations that scale</p></div></div>
-                <p className="text-gray-300 text-base font-medium mb-5 leading-relaxed">Already running a business? Book strategy sessions, maintain your SEO, keep your website fast, and automate operations every month.</p>
-                <ul className="space-y-2 mb-6">{["1-on-1 Strategy Sessions with Mukul","Monthly SEO & Content Maintenance","Website Speed & Security Upkeep"].map(item => (<li key={item} className="flex items-center gap-2 text-sm text-gray-400"><span className="text-blue-400 text-xs">✓</span>{item}</li>))}</ul>
+                <p className="text-gray-300 text-base font-medium mb-5 leading-relaxed">Already running a business? Book strategy sessions, maintain your SEO / GEO / AEO, keep your website fast, and automate operations every month.</p>
+                <ul className="space-y-2 mb-6">{["1-on-1 Strategy Sessions with Mukul","Monthly SEO / GEO / AEO & Content Maintenance","Website Speed & Security Upkeep"].map(item => (<li key={item} className="flex items-center gap-2 text-sm text-gray-400"><span className="text-blue-400 text-xs">✓</span>{item}</li>))}</ul>
                 <div className="flex items-center gap-2 text-blue-400 font-bold text-sm group-hover:gap-3 transition-all">Explore ScaleOps <span>→</span></div>
               </div>
             </button>

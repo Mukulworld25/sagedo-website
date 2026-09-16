@@ -118,7 +118,7 @@ const BookCall = () => {
                 <h2 className="text-xl font-bold mb-4 text-white">What You'll Get</h2>
                 <div className="space-y-4">
                   {[
-                    { title: '5-Point Digital Health Check', desc: 'Website, SEO, social, automation, lead capture — scored honestly.' },
+                    { title: '5-Point Digital Health Check', desc: 'Website, SEO / GEO / AEO, CRM, automation, lead capture — scored honestly.' },
                     { title: 'Custom Execution Roadmap', desc: 'Exactly what to build first, how long it takes, and what it costs.' },
                     { title: 'Competitor Analysis', desc: 'Quick scan of your top 3 competitors and where you can beat them.' },
                     { title: 'No-BS Pricing', desc: 'Transparent quote on the spot — no "let me get back to you" games.' },
