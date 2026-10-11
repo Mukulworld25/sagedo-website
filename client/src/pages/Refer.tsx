@@ -9,7 +9,7 @@ export default function Refer() {
     const [copied, setCopied] = useState(false);
 
     const referralLink = referrerName.trim()
-        ? `https://sagedo.in/free-audit?ref=${encodeURIComponent(referrerName.trim().toLowerCase().replace(/\s+/g, '-'))}`
+        ? `https://sagedo.in/free-demo?ref=${encodeURIComponent(referrerName.trim().toLowerCase().replace(/\s+/g, '-'))}`
         : '';
 
     const handleCopy = () => {
@@ -23,8 +23,8 @@ export default function Refer() {
     const handleShare = () => {
         if (referralLink && navigator.share) {
             navigator.share({
-                title: 'SAGEDO — Free AI Business Audit',
-                text: 'Get a free AI audit for your business from SAGEDO — India\'s first AI + Human execution team.',
+                title: 'SAGEDO — Free Preview',
+                text: 'See your business the way Google and AI will show it with a free preview in 24 hours from SAGEDO.',
                 url: referralLink,
             });
         }
@@ -108,7 +108,7 @@ export default function Refer() {
                     {referralLink && (
                         <div className="mt-6 text-center">
                             <a
-                                href={`https://wa.me/?text=${encodeURIComponent(`Hey! I've been working with SAGEDO — India's first AI + Human execution team. They're amazing for websites, automation, and marketing.\n\nGet a FREE AI audit for your business: ${referralLink}`)}`}
+                                href={`https://wa.me/?text=${encodeURIComponent(`Hey! I've been working with SAGEDO — India's first AI + Human execution team. They're amazing for websites, automation, and marketing.\n\nGet a FREE preview for your business: ${referralLink}`)}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white font-semibold transition-colors"

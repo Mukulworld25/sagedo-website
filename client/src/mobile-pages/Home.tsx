@@ -146,11 +146,11 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
               <ArrowRight className="w-4 h-4" /> SERVICES
             </button>
             <a
-              href="/free-audit"
-              className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl text-sm font-bold uppercase tracking-widest text-green-400 active:scale-95 transition-all"
-              style={{ border: '1px solid rgba(34,197,94,0.3)', fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
+              href="/free-demo"
+              className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl text-sm font-bold uppercase tracking-widest text-primary active:scale-95 transition-all"
+              style={{ border: '1px solid rgba(244,63,94,0.3)', fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
             >
-              <Zap className="w-4 h-4" /> FREE AI AUDIT
+              <Zap className="w-4 h-4" /> GET YOUR FREE PREVIEW
             </a>
           </div>
         </div>

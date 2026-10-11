@@ -160,8 +160,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/free-audit">
-                  <span className="text-neutral-400 hover:text-white transition-colors cursor-pointer">Free 5-Point AI Audit</span>
+                <Link href="/free-demo">
+                  <span className="text-neutral-400 hover:text-white transition-colors cursor-pointer">Get Your Free Preview</span>
                 </Link>
               </li>
               <li>

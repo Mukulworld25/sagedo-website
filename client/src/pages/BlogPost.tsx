@@ -94,7 +94,7 @@ If you are sitting on a great product but have zero online presence, you do not 
 
 This is exactly what SAGEDO does. We take businesses from invisible to discoverable in days, not months.
 
-Want the same for your business? Start with a free audit at sagedo.in/free-audit — I will personally review your situation and give you a 5-point action plan within 24 hours.`,
+Want the same for your business? Get your free preview at sagedo.in/free-demo — we will send a concept homepage, a Google profile draft and a snapshot of how AI could describe you within 24 hours.`,
     },
     'how-much-website-cost-india-2026': {
         title: 'How Much Does a Website Cost in India in 2026? Complete Breakdown',
@@ -150,7 +150,7 @@ The question is not "should I build a website?" — it is "how fast can I get on
 
 For most Indian businesses in 2026, the sweet spot is ₹15,000-₹35,000 for a professional, conversion-ready website delivered in under 2 weeks. This gives you high quality without the agency markup or freelancer risk.
 
-Want to know exactly what your website will cost? Get a free audit at sagedo.in/free-audit — we will analyze your needs and give you a specific quote within 2 hours.`,
+Want to know exactly what your website will look like? Get your free preview at sagedo.in/free-demo — we will send a concept homepage and Google profile draft within 24 hours.`,
     },
     '5-things-after-gst-registration': {
         title: '5 Things Every Business MUST Do After GST Registration',
@@ -220,7 +220,7 @@ Do not want to set up 5 different things? SAGEDO's Starter Launch Package (₹15
 - Professional logo and brand identity
 - WhatsApp Business setup
 
-Start the new financial year right. Visit sagedo.in/free-audit for a free digital assessment of your business.`,
+Start the new financial year right. Visit sagedo.in/free-demo for a free preview of your business on Google and AI.`,
     },
     'google-business-profile-setup-guide-india': {
         title: 'Google Business Profile Setup Guide: Step-by-Step for Indian Businesses',
@@ -371,7 +371,7 @@ Our pricing:
 
 In 2026, there is no reason to spend ₹5L+ and wait 6 months for an app. AI-hybrid teams like SAGEDO deliver production-ready apps in days at a fraction of the cost. The technology gap between a ₹5L agency app and a ₹95K SAGEDO app has closed to near zero.
 
-Get a free app consultation at sagedo.in/free-audit — we will give you a specific quote with exact features, timeline, and technology recommendations within 2 hours.`,
+Get your free preview at sagedo.in/free-demo — we will send a concept preview and recommendations within 24 hours.`,
     },
     'how-i-fixed-sagedo-visibility-google-chatgpt': {
         title: "How I Fixed My Indian Startup's Invisibility on Google and ChatGPT in 24 Hours",
@@ -564,7 +564,7 @@ This is the biggest sign. If you're the CEO, the designer, the content writer, t
 
 ## Get Started — Free
 
-Not sure if SAGEDO is right for you? Get a free AI audit of your business. We'll analyze your website, social media, and processes — and give you a 5-point action report. No sales pitch. No strings.`,
+Not sure if SAGEDO is right for you? Get your free preview at sagedo.in/free-demo. We'll send a concept homepage, Google profile draft and AI snapshot within 24 hours. No payment. No obligation.`,
     },
 };
 
@@ -675,10 +675,10 @@ export default function BlogPost() {
                     {/* CTA */}
                     <div className="mt-16 p-8 rounded-2xl bg-gradient-to-r from-primary/10 to-destructive/10 border border-primary/20 text-center">
                         <h3 className="text-2xl font-bold text-foreground mb-3">Want this for your business?</h3>
-                        <p className="text-muted-foreground mb-6">Get a free AI audit — delivered in 24 hours. No sales pitch.</p>
-                        <Link href="/free-audit">
+                        <p className="text-muted-foreground mb-6">See your business the way Google and AI will show it. Free preview in 24 hours.</p>
+                        <Link href="/free-demo">
                             <Button size="lg" className="bg-gradient-to-r from-primary to-destructive hover:opacity-90">
-                                Get Free AI Audit <ArrowRight className="ml-2 w-4 h-4" />
+                                Get Your Free Preview <ArrowRight className="ml-2 w-4 h-4" />
                             </Button>
                         </Link>
                     </div>

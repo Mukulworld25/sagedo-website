@@ -1,0 +1,3 @@
+/free-audit /free-demo 301
+/free-audit/* /free-demo 301
+/audit /free-demo 301

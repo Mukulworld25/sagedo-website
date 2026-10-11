@@ -14,6 +14,18 @@ const RevenueLeakageCalculator = lazy(() => import("@/components/RevenueLeakageC
 export default function Home() {
   const { formatAmount } = useCurrency();
   const [activeStep, setActiveStep] = useState(1);
+  const [approvedTestimonials, setApprovedTestimonials] = useState<any[]>([]);
+
+  React.useEffect(() => {
+    fetch('/api/testimonials/approved')
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+          setApprovedTestimonials(data);
+        }
+      })
+      .catch(err => console.error("Error fetching approved testimonials:", err));
+  }, []);
 
   const categories = [
     { name: "Business Growth", count: "12", description: "Websites, ads, landing pages & funnels", icon: <Briefcase className="w-6 h-6 text-primary" /> },
@@ -145,11 +157,11 @@ export default function Home() {
                 <ArrowRight className="mr-2 h-5 w-5" /> SERVICES
               </div>
             </Link>
-            <Link href="/free-audit">
-              <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-12 sm:h-13 px-6 sm:px-7 text-base sm:text-lg font-semibold rounded-xl border-green-500/40 hover:border-green-400 hover:bg-green-500/10 text-green-400 hover:text-green-300 transition-all cursor-pointer" })}
+            <Link href="/free-demo">
+              <div className={buttonVariants({ variant: "outline", size: "lg", className: "h-12 sm:h-13 px-6 sm:px-7 text-base sm:text-lg font-semibold rounded-xl border-primary/40 hover:border-primary hover:bg-primary/10 text-primary hover:text-primary transition-all cursor-pointer" })}
                 style={{ fontFamily: "'Orbitron', sans-serif", letterSpacing: '2px' }}
               >
-                <Zap className="mr-2 h-5 w-5" /> FREE AUDIT
+                <Zap className="mr-2 h-5 w-5" /> GET YOUR FREE PREVIEW
               </div>
             </Link>
           </div>
@@ -1114,7 +1126,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          FREE AUDIT - Lead Capture CTA (Transitional CTA)
+          FREE PREVIEW - Lead Capture CTA (Transitional CTA)
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="py-20 px-6 border-t border-border/30 bg-gradient-to-b from-primary/5 via-transparent to-transparent">
         <div className="max-w-4xl mx-auto">
@@ -1127,89 +1139,38 @@ export default function Home() {
               {/* Left: Copy */}
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">
-                  <Zap className="w-3 h-3" /> 100% FREE — No strings attached
+                  <Zap className="w-3 h-3" /> 100% FREE — No obligation
                 </div>
                 <h2 className="text-2xl md:text-3xl font-black text-foreground mb-3">
-                  Get a Free AI Business Audit
+                  See Your Business the Way Google and AI Will Show It
                 </h2>
                 <p className="text-muted-foreground mb-4 leading-relaxed">
-                  Discover exactly what's holding your business back online. Our AI scans your digital presence and delivers a personalized roadmap — in under 24 hours.
+                  Tell us about your business. We'll send a concept homepage, a Google profile draft and a snapshot of how AI could describe you. Free preview in 24 hours.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" /> Website & SEO / GEO / AEO health check</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" /> Competitor comparison snapshot</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" /> Top 3 quick-win opportunities</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" /> Concept homepage draft</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" /> Google Business profile draft</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" /> AI snapshot of your business</li>
                 </ul>
               </div>
 
-              {/* Right: Form */}
-              <div>
-                <form
-                  id="free-audit-form"
-                  className="space-y-4"
-                  onSubmit={async (e) => {
-                    e.preventDefault();
-                    const form = e.target as HTMLFormElement;
-                    const businessName = (form.elements.namedItem('businessName') as HTMLInputElement).value;
-                    const whatsappNumber = (form.elements.namedItem('whatsappNumber') as HTMLInputElement).value;
-                    const btn = form.querySelector('button[type=submit]') as HTMLButtonElement;
-                    btn.textContent = 'Sending...';
-                    btn.disabled = true;
-                    try {
-                      const res = await fetch('/api/free-audit', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ businessName, whatsappNumber }),
-                      });
-                      if (res.ok) {
-                        btn.textContent = '✅ Request Sent!';
-                        btn.className = btn.className.replace('bg-primary', 'bg-green-600');
-                        form.reset();
-                        setTimeout(() => { btn.textContent = 'Get My Free Audit →'; btn.disabled = false; btn.className = btn.className.replace('bg-green-600', 'bg-primary'); }, 3000);
-                      } else {
-                        btn.textContent = 'Get My Free Audit →';
-                        btn.disabled = false;
-                        alert('Could not submit audit. Please message us on WhatsApp directly at +91 6284925684.');
-                      }
-                    } catch {
-                      btn.textContent = 'Get My Free Audit →';
-                      btn.disabled = false;
-                      alert('Network connection error. Please message us on WhatsApp directly at +91 6284925684.');
-                    }
-                  }}
-                >
-                  <div>
-                    <label htmlFor="audit-business" className="block text-sm font-medium text-foreground mb-1">Business Name</label>
-                    <input
-                      id="audit-business"
-                      name="businessName"
-                      type="text"
-                      required
-                      placeholder="e.g. Sharma Electronics"
-                      className="w-full px-4 py-3 rounded-xl bg-muted border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                    />
+              {/* Right: CTA Card */}
+              <div className="flex flex-col items-center justify-center p-6 sm:p-8 rounded-2xl bg-card border border-border/50 text-center space-y-4">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                  <Sparkles className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-foreground">Free Preview in 24 Hours</h3>
+                  <p className="text-xs text-muted-foreground mt-1">No payment. No obligation. Direct to WhatsApp.</p>
+                </div>
+                <Link href="/free-demo" className="w-full">
+                  <div className="w-full py-3.5 px-6 rounded-xl bg-primary text-primary-foreground font-bold text-base hover:opacity-90 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-primary/25 cursor-pointer text-center">
+                    Get Your Free Preview →
                   </div>
-                  <div>
-                    <label htmlFor="audit-whatsapp" className="block text-sm font-medium text-foreground mb-1">WhatsApp Number</label>
-                    <input
-                      id="audit-whatsapp"
-                      name="whatsappNumber"
-                      type="tel"
-                      required
-                      placeholder="+91 98765 43210"
-                      className="w-full px-4 py-3 rounded-xl bg-muted border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full py-3 px-6 rounded-xl bg-primary text-primary-foreground font-bold text-base hover:opacity-90 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-primary/25"
-                  >
-                    Get My Free Audit →
-                  </button>
-                  <p className="text-xs text-muted-foreground text-center">
-                    We'll send your audit report via WhatsApp within 24 hours. No spam, ever.
-                  </p>
-                </form>
+                </Link>
+                <p className="text-xs text-muted-foreground text-center">
+                  A preview is a concept of what we would build. It is not a ranking guarantee.
+                </p>
               </div>
             </div>
           </div>
@@ -1231,28 +1192,68 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((t, i) => (
-              <div
-                key={i}
-                className="p-6 rounded-2xl bg-background border border-border/30 hover:border-primary/30 transition-colors"
-              >
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(t.rating)].map((_, j) => (
-                    <Star key={j} className="w-4 h-4 text-amber-500 fill-amber-500" />
-                  ))}
-                </div>
-                <p className="text-foreground mb-6 leading-relaxed">"{t.text}"</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-destructive flex items-center justify-center text-white font-bold text-sm">
-                    {t.name.charAt(0)}
+            {approvedTestimonials.length > 0
+              ? approvedTestimonials.map((t, i) => (
+                  <div
+                    key={i}
+                    className="p-6 rounded-2xl bg-background border border-border/30 hover:border-primary/30 transition-colors flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center gap-1 mb-4">
+                        {[...Array(t.rating || 5)].map((_, j) => (
+                          <Star key={j} className="w-4 h-4 text-amber-500 fill-amber-500" />
+                        ))}
+                      </div>
+                      <p className="text-foreground mb-4 leading-relaxed">"{t.written_review || t.writtenReview || t.review || t.text}"</p>
+                      {t.media_url && (
+                        <div className="mb-4 rounded-xl overflow-hidden border border-border/30 bg-muted/20 max-h-48 flex items-center justify-center">
+                          {t.media_type?.startsWith("video") ? (
+                            <video src={t.media_url} controls className="w-full max-h-48 object-cover" />
+                          ) : (
+                            <img src={t.media_url} alt={t.name} className="w-full max-h-48 object-cover" />
+                          )}
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-3 pt-2 border-t border-border/20">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-destructive flex items-center justify-center text-white font-bold text-sm shrink-0">
+                        {t.name?.charAt(0) || "C"}
+                      </div>
+                      <div>
+                        <p className="font-semibold text-foreground">{t.name}</p>
+                        <p className="text-sm text-muted-foreground">{t.business || "Verified Client"}</p>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-semibold text-foreground">{t.name}</p>
-                    <p className="text-sm text-muted-foreground">{t.role}</p>
+                ))
+              : testimonials.map((t, i) => (
+                  <div
+                    key={i}
+                    className="p-6 rounded-2xl bg-background border border-border/30 hover:border-primary/30 transition-colors"
+                  >
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(t.rating)].map((_, j) => (
+                        <Star key={j} className="w-4 h-4 text-amber-500 fill-amber-500" />
+                      ))}
+                    </div>
+                    <p className="text-foreground mb-6 leading-relaxed">"{t.text}"</p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-destructive flex items-center justify-center text-white font-bold text-sm">
+                        {t.name.charAt(0)}
+                      </div>
+                      <div>
+                        <p className="font-semibold text-foreground">{t.name}</p>
+                        <p className="text-sm text-muted-foreground">{t.role}</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link href="/share-your-experience" className="text-xs text-muted-foreground hover:text-primary transition-colors underline-offset-4 hover:underline">
+              Worked with us? Share your experience →
+            </Link>
           </div>
         </div>
       </section>

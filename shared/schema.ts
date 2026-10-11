@@ -249,6 +249,51 @@ export const insertOrderActivitySchema = createInsertSchema(orderActivities).omi
   isRead: true,
 });
 
+// Demo requests (Free Preview)
+export const demoRequests = pgTable("demo_requests", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  createdAt: timestamp("created_at").defaultNow(),
+  name: text("name").notNull(),
+  businessName: text("business_name").notNull(),
+  city: text("city").notNull(),
+  whatsapp: text("whatsapp").notNull(),
+  website: text("website"),
+  interests: text("interests").array(),
+  note: text("note"),
+  consent: boolean("consent").default(false).notNull(),
+  utmSource: text("utm_source"),
+  utmMedium: text("utm_medium"),
+  utmCampaign: text("utm_campaign"),
+  referrer: text("referrer"),
+  status: text("status").default("new").notNull(),
+});
+
+export const insertDemoRequestSchema = createInsertSchema(demoRequests).omit({
+  id: true,
+  createdAt: true,
+  status: true,
+});
+
+// Testimonials (Client Reviews)
+export const testimonials = pgTable("testimonials", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  createdAt: timestamp("created_at").defaultNow(),
+  name: text("name").notNull(),
+  business: text("business").notNull(),
+  rating: integer("rating").notNull(),
+  writtenReview: text("written_review").notNull(),
+  mediaUrl: text("media_url"),
+  mediaType: text("media_type"),
+  consent: boolean("consent").default(false).notNull(),
+  status: text("status").default("pending").notNull(),
+});
+
+export const insertTestimonialSchema = createInsertSchema(testimonials).omit({
+  id: true,
+  createdAt: true,
+  status: true,
+});
+
 // Types
 export type UpsertUser = typeof users.$inferInsert;
 export type User = typeof users.$inferSelect;
@@ -277,3 +322,10 @@ export type InsertContactMessage = z.infer<typeof insertContactMessageSchema>;
 
 export type OrderActivity = typeof orderActivities.$inferSelect;
 export type InsertOrderActivity = z.infer<typeof insertOrderActivitySchema>;
+
+export type DemoRequest = typeof demoRequests.$inferSelect;
+export type InsertDemoRequest = z.infer<typeof insertDemoRequestSchema>;
+
+export type Testimonial = typeof testimonials.$inferSelect;
+export type InsertTestimonial = z.infer<typeof insertTestimonialSchema>;
+

@@ -35,6 +35,23 @@
       ]
     }
   ],
+  "redirects": [
+    {
+      "source": "/free-audit",
+      "destination": "/free-demo",
+      "permanent": true
+    },
+    {
+      "source": "/free-audit/:path*",
+      "destination": "/free-demo",
+      "permanent": true
+    },
+    {
+      "source": "/audit",
+      "destination": "/free-demo",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/:path*",

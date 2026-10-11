@@ -223,9 +223,9 @@ export default function RevenueLeakageCalculator() {
 
             {/* CTAs */}
             <div className="space-y-3">
-              <Link href="/free-audit">
+              <Link href="/free-demo">
                 <Button size="lg" className="w-full h-12 font-bold bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl shadow-lg shadow-primary/20 cursor-pointer">
-                  Claim Free 72-Hour Leakage Audit <ArrowRight className="w-4 h-4 ml-2" />
+                  Get Your Free Preview <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
               <a 

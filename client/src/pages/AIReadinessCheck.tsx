@@ -166,13 +166,13 @@ export default function AIReadinessCheck() {
 
                             {/* CTA */}
                             <div className="p-8 rounded-2xl bg-gradient-to-r from-primary/10 to-destructive/10 border border-primary/20 text-center">
-                                <h3 className="text-2xl font-bold text-foreground mb-3">Get Your Free Custom AI Audit</h3>
+                                <h3 className="text-2xl font-bold text-foreground mb-3">See Your Business the Way Google and AI Will Show It</h3>
                                 <p className="text-muted-foreground mb-6">
-                                    A SAGEDO expert will personally analyze your business and deliver a detailed action plan in 24 hours. Free. No strings.
+                                    Tell us about your business. We'll send a concept homepage, a Google profile draft and a snapshot of how AI could describe you. Free preview in 24 hours.
                                 </p>
-                                <Link href="/free-audit">
+                                <Link href="/free-demo">
                                     <Button size="lg" className="bg-gradient-to-r from-primary to-destructive hover:opacity-90 text-lg px-8">
-                                        Get Free AI Audit <ArrowRight className="ml-2 w-5 h-5" />
+                                        Get Your Free Preview <ArrowRight className="ml-2 w-5 h-5" />
                                     </Button>
                                 </Link>
                             </div>

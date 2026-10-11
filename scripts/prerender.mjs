@@ -59,8 +59,8 @@ const routes = [
       <h2>Testimonials</h2>
       <p>"Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time." — Priya Singh, Verified Trustpilot Review</p>
       <p>"Nice service, very good behaviour. What a cool and knowledgeable experience." — Akshit Kashyap, Verified Trustpilot Review</p>
-      <h2>Get a Free AI Business Audit</h2>
-      <p>Discover exactly what's holding your business back online. Our AI scans your digital presence and delivers a personalized roadmap — in under 24 hours. 100% free, no strings attached.</p>
+      <h2>See Your Business the Way Google and AI Will Show It — Free Preview</h2>
+      <p>Tell us about your business. We'll send a concept homepage, a Google profile draft and a snapshot of how AI could describe you. Free preview in 24 hours. No payment, no obligation.</p>
       <p>Contact: WhatsApp +91 6284925684 | Email hello@sagedo.in | Visit sagedo.in</p>
     `,
   },
@@ -174,21 +174,21 @@ const routes = [
     `,
   },
 
-  // ── FREE AUDIT ──────────────────────────────────────────────────────
+  // ── FREE PREVIEW ────────────────────────────────────────────────────
   {
-    path: '/free-audit',
-    title: "Free AI Business Audit — SAGEDO | 24-Hour Delivery",
-    description: "Get a free 5-point AI Audit for your business delivered via WhatsApp in 24 hours. Uncover visibility, automation, and revenue gaps. No sales pitch, 100% actionable.",
+    path: '/free-demo',
+    title: "Get Your Free Preview | SAGE DO",
+    description: "See your business the way Google and AI will show it. Free preview in 24 hours. Tell us about your business. We'll send a concept homepage, a Google profile draft and a snapshot of how AI could describe you. No payment. No obligation.",
     content: `
-      <h1>Free AI Business Audit — Stop Guessing. Find Your Execution Gap.</h1>
-      <p>A perfect product that nobody sees is a dead product. We'll analyze your business and send you a brutal, 5-point execution plan to fix your visibility and revenue gaps in 24 hours.</p>
-      <h2>What You Get in Your Custom PDF</h2>
+      <h1>See your business the way Google and AI will show it. Free preview in 24 hours.</h1>
+      <p>Tell us about your business. We'll send a concept homepage, a Google profile draft and a snapshot of how AI could describe you. No payment. No obligation.</p>
+      <h2>What You Get in Your Concept Preview</h2>
       <ul>
-        <li>Organic Visibility Score — See exactly why your competitors are found instead of you.</li>
-        <li>Automation Opportunities — Where AI can replace your manual daily grind.</li>
-        <li>Conversion Bottlenecks — Why your traffic isn't converting into revenue.</li>
+        <li>Concept Homepage Draft — A visual preview of what we would build for your brand.</li>
+        <li>Google Profile Draft — Mockup of how your business appears on Google Search and Maps.</li>
+        <li>AI Snapshot — How ChatGPT, Perplexity, and AI search engines could describe you.</li>
       </ul>
-      <p>No sales pressure. No generic fluff. Just 100% actionable advice we'd charge ₹25,000 for. Request your free audit at sagedo.in/free-audit or WhatsApp +91 6284925684.</p>
+      <p>A preview is a concept of what we would build. It is not a ranking guarantee. Request your free preview at sagedo.in/free-demo or WhatsApp +91 6284925684.</p>
     `,
   },
 
@@ -230,13 +230,13 @@ const routes = [
     path: '/blog/how-i-built-digital-ecosystem-jute-manufacturer-5-days',
     title: "How I Built a Complete Digital Ecosystem for a Jute Manufacturer in 5 Days — SAGEDO",
     description: "Case study: SAGEDO built a complete digital ecosystem — website, branding, social media, and Google Business Profile — for a rural jute manufacturer in just 5 days.",
-    content: `<article><h1>How I Built a Complete Digital Ecosystem for a Jute Manufacturer in 5 Days</h1><p>By Mukul Dhiman | April 4, 2026 | 6 min read</p><p>A rural jute products business had zero online presence. No website. No social media. No Google listing. I built their website, brand identity, social media, and Google listing from scratch in 5 days flat.</p><h2>Day 1: Brand Identity and Strategy</h2><p>Deep-dive call with the founder. Designed complete brand identity: logo, color palette, typography. Created brand guidelines.</p><h2>Day 2-3: Website Development</h2><p>5-page responsive website. Product catalog. Contact form connected to WhatsApp. SEO foundation: meta tags, schema markup, sitemap. Mobile-first design.</p><h2>Day 4: Social Media and Content</h2><p>Instagram business account with 15 ready-to-post content pieces. Facebook business page. 30-day content calendar. WhatsApp Business with auto-replies.</p><h2>Day 5: Google Business Profile and Launch</h2><p>Created and optimized Google Business Profile. Submitted to Search Console. Set up Analytics. Final QA across devices.</p><h2>Results</h2><p>Full website + 3 social platforms + Google listing. Searchable on Google, Instagram, and WhatsApp. Lead capture via WhatsApp forms + Instagram DMs + Google Maps. Total investment: Under ₹20,000 in 5 days.</p><p>Want the same for your business? Visit sagedo.in/free-audit for a free assessment.</p></article>`,
+    content: `<article><h1>How I Built a Complete Digital Ecosystem for a Jute Manufacturer in 5 Days</h1><p>By Mukul Dhiman | April 4, 2026 | 6 min read</p><p>A rural jute products business had zero online presence. No website. No social media. No Google listing. I built their website, brand identity, social media, and Google listing from scratch in 5 days flat.</p><h2>Day 1: Brand Identity and Strategy</h2><p>Deep-dive call with the founder. Designed complete brand identity: logo, color palette, typography. Created brand guidelines.</p><h2>Day 2-3: Website Development</h2><p>5-page responsive website. Product catalog. Contact form connected to WhatsApp. SEO foundation: meta tags, schema markup, sitemap. Mobile-first design.</p><h2>Day 4: Social Media and Content</h2><p>Instagram business account with 15 ready-to-post content pieces. Facebook business page. 30-day content calendar. WhatsApp Business with auto-replies.</p><h2>Day 5: Google Business Profile and Launch</h2><p>Created and optimized Google Business Profile. Submitted to Search Console. Set up Analytics. Final QA across devices.</p><h2>Results</h2><p>Full website + 3 social platforms + Google listing. Searchable on Google, Instagram, and WhatsApp. Lead capture via WhatsApp forms + Instagram DMs + Google Maps. Total investment: Under ₹20,000 in 5 days.</p><p>Want the same for your business? Visit sagedo.in/free-demo for a free assessment.</p></article>`,
   },
   {
     path: '/blog/how-much-website-cost-india-2026',
     title: "Website Design Cost in India (2026 Pricing Guide & Secrets) — SAGEDO",
     description: "How much does website design cost in India? Read the honest 2026 pricing guide comparing DIY, freelancers, agencies, and how to save up to 80% on development.",
-    content: `<article><h1>How Much Does a Website Cost in India in 2026?</h1><p>By Mukul Dhiman | April 1, 2026 | 6 min read</p><h2>Quick Price Comparison</h2><p>DIY (Wix/WordPress): ₹3,000–₹8,000. Freelancer: ₹10,000–₹30,000 (2-4 weeks). Mid-tier Agency: ₹50,000–₹2,00,000 (4-8 weeks). Premium Agency: ₹2,00,000–₹10,00,000+ (2-6 months). AI + Human Hybrid (SAGEDO): ₹15,000–₹35,000 (7-12 days).</p><h2>The SAGEDO Approach</h2><p>Starter Launch (₹15,000): 5-page website + brand identity + SEO basics + domain setup. 7-day delivery. Full Launch (₹35,000): 10+ pages + blog + social + Google Business + CRM + WhatsApp bot. 10-12 days.</p><p>The result is agency-quality work at freelancer prices, delivered in days instead of weeks.</p><p>Get a free quote at sagedo.in/free-audit.</p></article>`,
+    content: `<article><h1>How Much Does a Website Cost in India in 2026?</h1><p>By Mukul Dhiman | April 1, 2026 | 6 min read</p><h2>Quick Price Comparison</h2><p>DIY (Wix/WordPress): ₹3,000–₹8,000. Freelancer: ₹10,000–₹30,000 (2-4 weeks). Mid-tier Agency: ₹50,000–₹2,00,000 (4-8 weeks). Premium Agency: ₹2,00,000–₹10,00,000+ (2-6 months). AI + Human Hybrid (SAGEDO): ₹15,000–₹35,000 (7-12 days).</p><h2>The SAGEDO Approach</h2><p>Starter Launch (₹15,000): 5-page website + brand identity + SEO basics + domain setup. 7-day delivery. Full Launch (₹35,000): 10+ pages + blog + social + Google Business + CRM + WhatsApp bot. 10-12 days.</p><p>The result is agency-quality work at freelancer prices, delivered in days instead of weeks.</p><p>Get a free quote at sagedo.in/free-demo.</p></article>`,
   },
   {
     path: '/blog/5-things-after-gst-registration',
@@ -254,7 +254,7 @@ const routes = [
     path: '/blog/best-app-development-company-india-2026',
     title: "Best Affordable App Development Companies in India 2026 — SAGEDO Blog",
     description: "Compare app development costs in India 2026. Top agencies ₹5L-50L, mid agencies ₹1L-10L, freelancers ₹20K-3L, AI-hybrid (SAGEDO) ₹15K-95K.",
-    content: `<article><h1>Best Affordable App Development Companies in India — 2026 Guide</h1><p>By Mukul Dhiman | April 1, 2026 | 6 min read</p><h2>Cost Comparison</h2><p>Top Agency: ₹5L–50L, 4-8 months. Mid Agency: ₹1L–10L, 2-4 months. Freelancer: ₹20K–3L, 1-3 months. SAGEDO: ₹15K–95K, 7-15 days.</p><h2>What to Look For</h2><p>React Native for cross-platform. Check live portfolio on Play Store. Real-time communication via WhatsApp. Fixed pricing. Post-launch support included.</p><p>SAGEDO builds apps using React Native, Next.js, Node.js + PostgreSQL. Web app from ₹15K, full mobile app ₹95K. Get a free consultation at sagedo.in/free-audit.</p></article>`,
+    content: `<article><h1>Best Affordable App Development Companies in India — 2026 Guide</h1><p>By Mukul Dhiman | April 1, 2026 | 6 min read</p><h2>Cost Comparison</h2><p>Top Agency: ₹5L–50L, 4-8 months. Mid Agency: ₹1L–10L, 2-4 months. Freelancer: ₹20K–3L, 1-3 months. SAGEDO: ₹15K–95K, 7-15 days.</p><h2>What to Look For</h2><p>React Native for cross-platform. Check live portfolio on Play Store. Real-time communication via WhatsApp. Fixed pricing. Post-launch support included.</p><p>SAGEDO builds apps using React Native, Next.js, Node.js + PostgreSQL. Web app from ₹15K, full mobile app ₹95K. Get your free preview at sagedo.in/free-demo.</p></article>`,
   },
   {
     path: '/blog/why-indian-startup-websites-get-zero-google-traffic',
@@ -284,7 +284,7 @@ const routes = [
     path: '/blog/5-signs-business-needs-sagedo',
     title: "5 Signs Your Business Needs SAGEDO Right Now — SAGEDO Blog",
     description: "5 warning signs your business execution is broken: unfinished website, freelancer chaos, dead social media, no analytics, doing everything yourself.",
-    content: `<article><h1>5 Signs Your Business Needs SAGEDO Right Now</h1><p>By Mukul Dhiman | February 25, 2026 | 4 min read</p><ol><li>You're still "working on" your website after 2+ weeks</li><li>You're spending more time managing freelancers than building</li><li>Your social media looks like an afterthought</li><li>You don't know where your leads come from</li><li>You're doing everything yourself — CEO, designer, writer, tech support</li></ol><p>SAGEDO fixes all of these. Starter Launch ₹15,000. Social media from ₹4,999/mo. Get a free audit at sagedo.in/free-audit.</p></article>`,
+    content: `<article><h1>5 Signs Your Business Needs SAGEDO Right Now</h1><p>By Mukul Dhiman | February 25, 2026 | 4 min read</p><ol><li>You're still "working on" your website after 2+ weeks</li><li>You're spending more time managing freelancers than building</li><li>Your social media looks like an afterthought</li><li>You don't know where your leads come from</li><li>You're doing everything yourself — CEO, designer, writer, tech support</li></ol><p>SAGEDO fixes all of these. Starter Launch ₹15,000. Social media from ₹4,999/mo. Get a free audit at sagedo.in/free-demo.</p></article>`,
   },
 
   // ── ALTERNATIVES PAGES ──────────────────────────────────────────────
@@ -427,7 +427,7 @@ const routes = [
 <p><strong>How long does a SAGEDO custom CRM take?</strong> 28 calendar days: discovery (days 1–3), build sprint (days 4–21), handover with training and SLA (days 22–28).</p>
 <p><strong>Do we own our data and code?</strong> Yes — PostgreSQL database and full source code are handed over; Zoho data stays in Zoho's multi-tenant cloud.</p>
 <p><strong>Can it integrate WhatsApp, Tally, and Razorpay?</strong> Yes — as core scope, not paid add-ons.</p>
-    <p>Request the free 72-hour Revenue-Leak Audit at sagedo.in/free-audit or WhatsApp +91-6284925684. Pricing figures are face-value estimates as of September 2026; verify vendor sheets before signing.</p>
+    <p>Request the free 72-hour Revenue-Leak Audit at sagedo.in/free-demo or WhatsApp +91-6284925684. Pricing figures are face-value estimates as of September 2026; verify vendor sheets before signing.</p>
 </article>`,
   },
 
@@ -471,7 +471,7 @@ const routes = [
 <p><strong>Will the AI hallucinate?</strong> No. Deterministic schema validation and human review prevent hallucinations.</p>
 <p><strong>How long does implementation take?</strong> 14 to 28 calendar days guaranteed.</p>
 <p><strong>Can the AI integrate with ERP or Tally?</strong> Yes, native bi-directional sync included.</p>
-<p>Claim your free 72-hour Revenue Leak Audit at sagedo.in/free-audit or WhatsApp +91-6284925684.</p>
+<p>Claim your free 72-hour Revenue Leak Audit at sagedo.in/free-demo or WhatsApp +91-6284925684.</p>
 </article>`
   },
 
@@ -512,7 +512,7 @@ const routes = [
 <p><strong>Why are traditional agencies failing?</strong> They prioritize vanity clicks over speed-to-lead and conversion mechanics.</p>
 <p><strong>How fast can it launch?</strong> 14 to 28 calendar days for full deployment.</p>
 <p><strong>Can we filter spam leads?</strong> Yes, verified phone and company email validation are built-in.</p>
-<p>Request your free 72-hour Revenue Leak Audit at sagedo.in/free-audit or WhatsApp +91-6284925684.</p>
+<p>Request your free 72-hour Revenue Leak Audit at sagedo.in/free-demo or WhatsApp +91-6284925684.</p>
 </article>`
   },
 
@@ -593,7 +593,7 @@ const routes = [
 <p><strong>Can it integrate with our Tally Prime at Focal Point?</strong> Yes, automated bi-directional ledger and dispatch sync.</p>
 <p><strong>What is the delivery timeline?</strong> 28 calendar days guaranteed.</p>
 <p><strong>Do we own the code?</strong> Yes, 100% source code and database ownership transferred.</p>
-<p>Contact Mukul Dhiman via WhatsApp at +91-6284925684 or visit sagedo.in/free-audit.</p>
+<p>Contact Mukul Dhiman via WhatsApp at +91-6284925684 or visit sagedo.in/free-demo.</p>
 </article>`
   },
 
@@ -633,7 +633,7 @@ const routes = [
 <p><strong>Can Medical Reps use this on mobile?</strong> Yes, lightweight mobile PWA works on any Android or iPhone.</p>
 <p><strong>Are doctor visit records secure?</strong> Yes, sovereign database hosted on private VPS.</p>
 <p><strong>How much does it cost?</strong> ₹1,50,000 to ₹2,50,000 one-time build.</p>
-<p>Connect on WhatsApp at +91-6284925684 or request an audit at sagedo.in/free-audit.</p>
+<p>Connect on WhatsApp at +91-6284925684 or request an audit at sagedo.in/free-demo.</p>
 </article>`
   },
 
@@ -673,7 +673,7 @@ const routes = [
 <p><strong>Can the bot speak Hindi/Hinglish?</strong> Yes, fluent multilingual understanding.</p>
 <p><strong>How fast can it launch?</strong> 7 to 14 business days for active ad campaigns.</p>
 <p><strong>What is the cost?</strong> Modular setups from ₹15,000 to ₹45,000; complete sales engines ₹1,50,000.</p>
-<p>WhatsApp Mukul Dhiman directly at +91-6284925684 or visit sagedo.in/free-audit.</p>
+<p>WhatsApp Mukul Dhiman directly at +91-6284925684 or visit sagedo.in/free-demo.</p>
 </article>`
   },
 

@@ -135,10 +135,10 @@ export default function Blog() {
                     {/* CTA */}
                     <div className="mt-16 text-center p-8 rounded-2xl bg-gradient-to-r from-primary/10 to-destructive/10 border border-primary/20">
                         <h3 className="text-2xl font-bold text-foreground mb-3">Want results like these for your business?</h3>
-                        <p className="text-muted-foreground mb-6">Get a free AI audit — no sales pitch, just actionable insights.</p>
-                        <Link href="/free-audit">
+                        <p className="text-muted-foreground mb-6">See your business the way Google and AI will show it. Free preview in 24 hours.</p>
+                        <Link href="/free-demo">
                             <button className="px-8 py-3 rounded-xl bg-gradient-to-r from-primary to-destructive text-white font-semibold hover:opacity-90 transition-opacity">
-                                Get Your Free AI Audit <ArrowRight className="inline w-4 h-4 ml-1" />
+                                Get Your Free Preview <ArrowRight className="inline w-4 h-4 ml-1" />
                             </button>
                         </Link>
                     </div>

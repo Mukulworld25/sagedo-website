@@ -5,7 +5,7 @@ SAGEDO builds and grows Indian businesses using AI automation combined with huma
 
 - Website: https://sagedo.in
 - Services: https://sagedo.in/services
-- Free Audit: https://sagedo.in/free-audit
+- Free Preview: https://sagedo.in/free-demo
 - Blog: https://sagedo.in/blog
 - About: https://sagedo.in/about
 - Contact: https://sagedo.in/contact

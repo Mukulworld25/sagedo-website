@@ -11,6 +11,7 @@ import PDFDocument from 'pdfkit';
 import multer from "multer";
 import { WebSocket, WebSocketServer } from "ws";
 import rateLimit from "express-rate-limit";
+import { supabase, uploadToSupabase } from "./supabase";
 
 declare module "express-session" {
   interface SessionData {
@@ -25,6 +26,14 @@ const globalLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   message: "Too many requests from this IP, please try again after 15 minutes"
+});
+
+const demoLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // Limit each IP to 10 requests per 15 mins (Stops automated demo/review spam)
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: "Too many requests submitted. Please try again after 15 minutes or message us on WhatsApp."
 });
 
 const authLimiter = rateLimit({
@@ -1558,33 +1567,218 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
 
 
-  // ===== Free Audit Form Submission (GAP-15) =====
+  // Redirect old audit routes to /free-demo (301)
+  app.get(['/free-audit', '/free-audit/*'], (_req, res) => {
+    res.redirect(301, '/free-demo');
+  });
+
+  // ===== Free Preview Form Submission (TASK 1) =====
+  app.post('/api/free-demo', demoLimiter, async (req: any, res) => {
+    try {
+      const {
+        name,
+        business_name,
+        city,
+        whatsapp,
+        website,
+        interests,
+        note,
+        consent,
+        honeypot,
+        utm_source,
+        utm_medium,
+        utm_campaign,
+        referrer
+      } = req.body;
+
+      // Anti-bot honeypot check: silently accept and discard if honeypot is filled
+      if (honeypot) {
+        console.warn('🤖 Honeypot caught bot submission for /api/free-demo');
+        return res.json({ success: true, message: 'Preview request received' });
+      }
+
+      // Server-side validation
+      if (!name || typeof name !== 'string' || !name.trim()) {
+        return res.status(400).json({ message: 'Name is required' });
+      }
+      if (!business_name || typeof business_name !== 'string' || !business_name.trim()) {
+        return res.status(400).json({ message: 'Business name is required' });
+      }
+      if (!city || typeof city !== 'string' || !city.trim()) {
+        return res.status(400).json({ message: 'City is required' });
+      }
+      if (!whatsapp || typeof whatsapp !== 'string' || !whatsapp.trim()) {
+        return res.status(400).json({ message: 'WhatsApp number is required' });
+      }
+      if (!consent) {
+        return res.status(400).json({ message: 'WhatsApp contact consent is required' });
+      }
+
+      console.log('📋 Free Preview Request:', { name, business_name, city, whatsapp, website, interests });
+
+      // Insert into Supabase demo_requests table
+      try {
+        const { error: dbError } = await supabase
+          .from('demo_requests')
+          .insert([{
+            name: name.trim(),
+            business_name: business_name.trim(),
+            city: city.trim(),
+            whatsapp: whatsapp.trim(),
+            website: website ? website.trim() : null,
+            interests: Array.isArray(interests) ? interests : [],
+            note: note ? note.trim() : null,
+            consent: Boolean(consent),
+            utm_source: utm_source || null,
+            utm_medium: utm_medium || null,
+            utm_campaign: utm_campaign || null,
+            referrer: referrer || null,
+            status: 'new'
+          }]);
+
+        if (dbError) {
+          console.error('Supabase demo_requests insert error:', dbError);
+        }
+      } catch (insertErr) {
+        console.error('Error inserting demo request to database:', insertErr);
+      }
+
+      // Send admin notification email (reusing old audit mechanism)
+      try {
+        const interestList = Array.isArray(interests) && interests.length > 0
+          ? interests.join(', ')
+          : 'None specified';
+        await sendContactEmail(
+          name,
+          whatsapp,
+          `🔥 FREE PREVIEW REQUEST: ${business_name} (${city})`,
+          `Name: ${name}\nBusiness: ${business_name}\nCity: ${city}\nWhatsApp: ${whatsapp}\nWebsite: ${website || 'Not provided'}\nInterests: ${interestList}\nNote: ${note || 'None'}\nReferrer: ${referrer || 'Direct'}\nUTM: ${utm_source || '-'} / ${utm_medium || '-'} / ${utm_campaign || '-'}`
+        );
+      } catch (emailErr) {
+        console.error('Admin notification email failed for free demo:', emailErr);
+      }
+
+      res.json({ success: true, message: 'Preview request received' });
+    } catch (error: any) {
+      console.error('Free demo error:', error);
+      res.status(500).json({ message: 'Failed to submit preview request' });
+    }
+  });
+
+  // Backward compatibility alias for /api/free-audit
   app.post('/api/free-audit', async (req: any, res) => {
     try {
       const { businessName, websiteUrl, socialHandle, biggestChallenge, whatsappNumber } = req.body;
-
       if (!businessName || !whatsappNumber) {
         return res.status(400).json({ message: 'Business name and WhatsApp number are required' });
       }
-
-      console.log('📋 Free Audit Request:', { businessName, websiteUrl, socialHandle, biggestChallenge, whatsappNumber });
-
-      // Send admin notification email
       try {
         await sendContactEmail(
           businessName,
           whatsappNumber,
-          `🔥 FREE AUDIT REQUEST: ${businessName}`,
+          `🔥 FREE PREVIEW REQUEST: ${businessName}`,
           `Business: ${businessName}\nWebsite: ${websiteUrl || 'Not provided'}\nSocial: ${socialHandle || 'Not provided'}\nChallenge: ${biggestChallenge}\nWhatsApp: ${whatsappNumber}`
         );
       } catch (emailErr) {
         console.error('Admin notification email failed:', emailErr);
       }
-
-      res.json({ success: true, message: 'Audit request received' });
+      res.json({ success: true, message: 'Preview request received' });
     } catch (error: any) {
-      console.error('Free audit error:', error);
-      res.status(500).json({ message: 'Failed to submit audit request' });
+      res.status(500).json({ message: 'Failed to submit request' });
+    }
+  });
+
+  // ===== Client Review / Testimonials Submission (TASK 2) =====
+  app.post('/api/testimonials', demoLimiter, async (req: any, res) => {
+    try {
+      const { name, business, rating, written_review, media_url, media_type, consent } = req.body;
+
+      if (!name || typeof name !== 'string' || !name.trim()) {
+        return res.status(400).json({ message: 'Name is required' });
+      }
+      if (!business || typeof business !== 'string' || !business.trim()) {
+        return res.status(400).json({ message: 'Business name is required' });
+      }
+      const numRating = Number(rating);
+      if (!numRating || numRating < 1 || numRating > 5) {
+        return res.status(400).json({ message: 'Rating must be between 1 and 5' });
+      }
+      if (!written_review || typeof written_review !== 'string' || !written_review.trim()) {
+        return res.status(400).json({ message: 'Written review is required' });
+      }
+      if (!consent) {
+        return res.status(400).json({ message: 'Consent is required to publish review' });
+      }
+
+      console.log('⭐ New Testimonial submitted:', { name, business, rating });
+
+      const { data, error: dbError } = await supabase
+        .from('testimonials')
+        .insert([{
+          name: name.trim(),
+          business: business.trim(),
+          rating: numRating,
+          written_review: written_review.trim(),
+          media_url: media_url || null,
+          media_type: media_type || null,
+          consent: Boolean(consent),
+          status: 'pending' // Admin must approve in Supabase dashboard
+        }])
+        .select();
+
+      if (dbError) {
+        console.error('Supabase testimonials insert error:', dbError);
+      }
+
+      // Notify admin via email
+      try {
+        await sendContactEmail(
+          name,
+          'reviews@sagedo.in',
+          `⭐ NEW REVIEW PENDING APPROVAL: ${name} (${business}) - ${numRating} Stars`,
+          `Name: ${name}\nBusiness: ${business}\nRating: ${numRating} Stars\nReview: ${written_review}\nMedia: ${media_url || 'None'}\n\nPlease approve or reject this testimonial in the Supabase dashboard.`
+        );
+      } catch (emailErr) {
+        console.error('Admin notification email failed for review:', emailErr);
+      }
+
+      res.json({ success: true, message: 'Review submitted for approval' });
+    } catch (error: any) {
+      console.error('Testimonial submission error:', error);
+      res.status(500).json({ message: 'Failed to submit review' });
+    }
+  });
+
+  // Get approved testimonials for public display
+  app.get('/api/testimonials/approved', async (_req, res) => {
+    try {
+      const { data, error } = await supabase
+        .from('testimonials')
+        .select('*')
+        .eq('status', 'approved')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error fetching approved testimonials:', error);
+        return res.json([]);
+      }
+      res.json(data || []);
+    } catch (error) {
+      res.status(500).json({ message: 'Error retrieving testimonials' });
+    }
+  });
+
+  // Upload review media fallback
+  app.post('/api/upload-review-media', upload.single('file'), async (req: any, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: 'No file provided' });
+      }
+      const result = await uploadToSupabase(req.file.buffer, req.file.originalname, 'testimonials');
+      res.json({ url: result.url });
+    } catch (error: any) {
+      console.error('Review media upload error:', error);
+      res.status(500).json({ message: 'Upload failed' });
     }
   });
 

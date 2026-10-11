@@ -54,9 +54,9 @@ export default function FreelancerAlternative() {
 
                     <div className="p-8 rounded-2xl bg-gradient-to-r from-primary/10 to-destructive/10 border border-primary/20 text-center">
                         <h3 className="text-2xl font-bold text-foreground mb-3">Stop Gambling on Freelancers</h3>
-                        <p className="text-muted-foreground mb-6">Get a free AI audit and see what reliable execution looks like.</p>
-                        <Link href="/free-audit">
-                            <Button size="lg" className="bg-gradient-to-r from-primary to-destructive hover:opacity-90">Get Free AI Audit <ArrowRight className="ml-2 w-4 h-4" /></Button>
+                        <p className="text-muted-foreground mb-6">See your business the way Google and AI will show it. Free preview in 24 hours.</p>
+                        <Link href="/free-demo">
+                            <Button size="lg" className="bg-gradient-to-r from-primary to-destructive hover:opacity-90">Get Your Free Preview <ArrowRight className="ml-2 w-4 h-4" /></Button>
                         </Link>
                     </div>
                 </div>

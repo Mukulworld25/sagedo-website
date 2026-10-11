@@ -217,9 +217,9 @@ export default function PillarPage({ slug: propSlug }: PillarPageProps) {
               {page.ctaText}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/free-audit">
+              <Link href="/free-demo">
                 <Button size="lg" className="w-full sm:w-auto h-12 px-8 font-bold bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl shadow-lg shadow-primary/25 cursor-pointer">
-                  Get Free Revenue Audit <ArrowRight className="w-4 h-4 ml-2" />
+                  Get Your Free Preview <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
               <a 

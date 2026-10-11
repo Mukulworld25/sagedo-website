@@ -1,6 +1,6 @@
 import React from "react";
 import { Suspense } from "react";
-import { Switch, Route } from "wouter";
+import { Switch, Route, Redirect } from "wouter";
 import { HelmetProvider } from 'react-helmet-async';
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -31,7 +31,10 @@ const FAQ = React.lazy(() => import("@/pages/FAQ"));
 const VerifyEmail = React.lazy(() => import("@/pages/verify-email"));
 const Settings = React.lazy(() => import("@/pages/Settings"));
 const Pay = React.lazy(() => import("@/pages/Pay"));
-const FreeAudit = React.lazy(() => import("@/pages/FreeAudit"));
+const FreeDemo = React.lazy(() => import("@/pages/FreeDemo"));
+const FreeDemoThanks = React.lazy(() => import("@/pages/FreeDemoThanks"));
+const ShareYourExperience = React.lazy(() => import("@/pages/ShareYourExperience"));
+
 const AboutFounder = React.lazy(() => import("@/pages/AboutFounder"));
 const Blog = React.lazy(() => import("@/pages/Blog"));
 const BlogPost = React.lazy(() => import("@/pages/BlogPost"));
@@ -103,7 +106,10 @@ function Router() {
         <Route path="/faq"><Suspense fallback={<LoadingFallback />}><FAQ /></Suspense></Route>
         <Route path="/order-success"><Suspense fallback={<LoadingFallback />}><OrderSuccess /></Suspense></Route>
         <Route path="/pay"><Suspense fallback={<LoadingFallback />}><Pay /></Suspense></Route>
-        <Route path="/free-audit"><Suspense fallback={<LoadingFallback />}><FreeAudit /></Suspense></Route>
+        <Route path="/free-demo"><Suspense fallback={<LoadingFallback />}><FreeDemo /></Suspense></Route>
+        <Route path="/free-demo/thanks"><Suspense fallback={<LoadingFallback />}><FreeDemoThanks /></Suspense></Route>
+        <Route path="/share-your-experience"><Suspense fallback={<LoadingFallback />}><ShareYourExperience /></Suspense></Route>
+        <Route path="/free-audit"><Redirect to="/free-demo" /></Route>
         <Route path="/about-founder"><Suspense fallback={<LoadingFallback />}><AboutFounder /></Suspense></Route>
         <Route path="/blog"><Suspense fallback={<LoadingFallback />}><Blog /></Suspense></Route>
         <Route path="/blog/:slug"><Suspense fallback={<LoadingFallback />}><BlogPost /></Suspense></Route>

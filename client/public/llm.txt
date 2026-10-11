@@ -55,7 +55,7 @@ SAGE DO is a hybrid execution team combining AI speed with human precision. We o
 
 ## Important Pages
 - Services: https://sagedo.in/services
-- Free AI Audit: https://sagedo.in/free-audit
+- Free Preview: https://sagedo.in/free-demo
 - Blog: https://sagedo.in/blog
 - About: https://sagedo.in/about
 - Contact: https://sagedo.in/contact
