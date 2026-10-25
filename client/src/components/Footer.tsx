@@ -54,11 +54,11 @@ export default function Footer() {
               </a>
             </div>
 
-            <p className="text-xs text-neutral-400/90 leading-relaxed">
-              SCO-38, Mohali City Centre, Aerocity, Mohali, Punjab 140306
-            </p>
-
-            <p className="text-xs text-neutral-400 flex flex-wrap items-center gap-1">
+            <div className="text-xs text-neutral-400/90 space-y-1 leading-relaxed">
+              <p><strong className="text-neutral-300">Registered Office:</strong> Himachal Pradesh, India</p>
+              <p><strong className="text-neutral-300">Operating Office:</strong> SCO-38, Mohali City Centre, Aerocity, Mohali, Punjab 140306</p>
+              <p><strong className="text-neutral-300">GSTIN:</strong> 02XXXXX0000X1Z5 (Provisional / Registration Applied)</p>
+              <p className="flex flex-wrap items-center gap-1 pt-0.5">
                 <span className="text-neutral-300 font-medium">MSME (Udyam) Reg:</span>{' '}
                 <a
                   href="https://udyamregistration.gov.in/Udyam_Verify.aspx"
@@ -70,6 +70,7 @@ export default function Footer() {
                   UDYAM-HP-04-0042175
                 </a>
               </p>
+            </div>
 
             {/* Monochrome Social & Contact Icons - 44px on mobile */}
             <div className="flex items-center gap-2 sm:gap-1.5 pt-1 flex-wrap">
@@ -252,7 +253,7 @@ export default function Footer() {
         <div className="pt-6 border-t border-border/20">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-400">
             <div className="flex items-center gap-2 flex-wrap text-center md:text-left">
-              <span>© 2025 SAGE DO AI. All rights reserved.</span>
+              <span>© 2026 SAGE DO AI. All rights reserved.</span>
               <span className="hidden sm:inline opacity-30">•</span>
               <span className="text-neutral-400/80">Speed of AI. Precision of Humans.</span>
             </div>

@@ -9,7 +9,7 @@ export default function RefundPolicy() {
                 <Card className="glass p-8 space-y-6">
                     <section>
                         <p className="text-sm text-muted-foreground mb-4">
-                            Last Updated: June 2, 2026
+                            Last Updated: October 25, 2026
                         </p>
                         <p className="text-muted-foreground">
                             At SAGE DO, we strive for 100% customer satisfaction. This policy outlines our refund, cancellation, and delivery terms in compliance with the Consumer Protection Act, 2019 and Consumer Protection (E-Commerce) Rules, 2020.
@@ -18,30 +18,31 @@ export default function RefundPolicy() {
 
                     {/* Shipping & Delivery Section */}
                     <section className="bg-primary/5 p-6 rounded-lg border border-primary/20">
-                        <h2 className="text-2xl font-bold text-foreground mb-4">📦 Shipping & Delivery Policy</h2>
+                        <h2 className="text-2xl font-bold text-foreground mb-4">📦 Service Handover & Delivery Policy</h2>
 
                         <div className="space-y-4 text-muted-foreground">
                             <div>
-                                <h3 className="font-semibold text-foreground mb-2">Platform Access & Delivery</h3>
-                                <p>SAGE DO is a SaaS (Software-as-a-Service) Platform. <strong className="text-foreground">We do not sell physical products or static digital bundles.</strong> Users purchase a subscription or credits to access our AI-powered workflow software.</p>
+                                <h3 className="font-semibold text-foreground mb-2">Bespoke Digital & Revenue Infrastructure</h3>
+                                <p>SAGE DO delivers custom digital engineering, revenue systems, and sovereign AI automations. Deliverables include bespoke software codebases, cloud infrastructure, WhatsApp Cloud API integrations, and CRM architectures governed by transparent milestone deliverables.</p>
                             </div>
 
                             <div>
-                                <h3 className="font-semibold text-foreground mb-2">Delivery Timeline</h3>
-                                <p>Services (AI credits/dashboard access) are delivered <strong className="text-foreground">instantly upon successful payment</strong>. For custom service orders, delivery timelines are specified on each service page and typically range from 24 hours to 3-5 business days.</p>
+                                <h3 className="font-semibold text-foreground mb-2">48-Hour Functional Prototype & Delivery Timelines</h3>
+                                <p>All builds are backed by our <strong className="text-foreground">48-Hour Functional Prototype Guarantee</strong>. Full production milestones are phased: 7 calendar days for SMB LaunchPad Starter, 10–12 days for LaunchPad Growth, 14 days for Digital Presence Engine, 28 days for Sovereign Revenue Engine™, and 45–60 days for Enterprise Infrastructure.</p>
                             </div>
 
                             <div>
-                                <h3 className="font-semibold text-foreground mb-2">Confirmation</h3>
-                                <p>A confirmation email is sent to your registered email address immediately after every successful transaction. You can also track your order status in real-time from your dashboard.</p>
+                                <h3 className="font-semibold text-foreground mb-2">Confirmation & Progress Tracking</h3>
+                                <p>A confirmation email and onboarding access are provided immediately upon order placement. Clients receive a dedicated WhatsApp communication channel and live milestone tracking with your assigned growth engineer.</p>
                             </div>
 
                             <div>
-                                <h3 className="font-semibold text-foreground mb-2">Delivery Methods</h3>
+                                <h3 className="font-semibold text-foreground mb-2">Handover Methods</h3>
                                 <ul className="list-disc pl-6 space-y-1">
-                                    <li>Email with download links</li>
-                                    <li>Direct access through your SAGE DO dashboard</li>
-                                    <li>Google Drive or cloud storage links (for large files)</li>
+                                    <li>Direct repository handover (GitHub/GitLab) with full source code rights</li>
+                                    <li>Sovereign VPS deployment with verified production environment variables</li>
+                                    <li>Credentials and administrative console access handover</li>
+                                    <li>Walkthrough video documentation and technical training session</li>
                                 </ul>
                             </div>
                         </div>
@@ -51,10 +52,10 @@ export default function RefundPolicy() {
                         <h2 className="text-2xl font-bold text-foreground mb-3">1. Refund Eligibility</h2>
                         <p className="text-muted-foreground mb-3">You are eligible for a refund if:</p>
                         <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                            <li><strong>Service not delivered:</strong> If we fail to deliver the service within the promised timeframe without valid reason</li>
-                            <li><strong>Quality issues:</strong> If the delivered service does not meet the specifications you provided and we cannot correct it after reasonable attempts</li>
-                            <li><strong>Duplicate payment:</strong> If you were charged multiple times for the same order due to a technical error</li>
-                            <li><strong>Service cancellation:</strong> If we are unable to fulfill your order and cancel it</li>
+                            <li><strong>Service not delivered:</strong> If we fail to deliver the agreed milestone within the promised timeframe without valid mutual extension</li>
+                            <li><strong>Quality issues:</strong> If the delivered milestone does not meet the technical specifications agreed upon and cannot be corrected during reasonable revision sprints</li>
+                            <li><strong>Duplicate payment:</strong> If you were charged multiple times for the same order due to a payment gateway error</li>
+                            <li><strong>Service cancellation:</strong> If we are unable to fulfill your order and cancel the engagement</li>
                         </ul>
                     </section>
 
@@ -62,11 +63,11 @@ export default function RefundPolicy() {
                         <h2 className="text-2xl font-bold text-foreground mb-3">2. Non-Refundable Services</h2>
                         <p className="text-muted-foreground mb-3">Refunds will NOT be provided in the following cases:</p>
                         <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                            <li>Services already delivered and accepted by you</li>
-                            <li>Changes in requirements after service delivery</li>
-                            <li>Delays caused by incomplete or incorrect information provided by you</li>
-                            <li>Subjective dissatisfaction with delivered content (when it meets agreed specifications)</li>
-                            <li>Token bonuses, promotional credits, or Welcome Bonus credits</li>
+                            <li>Milestones already formally approved and signed off by you</li>
+                            <li>Changes in scope or requirements requested after milestone delivery</li>
+                            <li>Delays caused by failure to provide required domain/API access or content assets</li>
+                            <li>Subjective aesthetic preference changes when deliverables strictly satisfy agreed wireframes/specifications</li>
+                            <li>Promotional discounts, pilot waivers, or complimentary discovery sessions</li>
                         </ul>
                     </section>
 
@@ -75,14 +76,14 @@ export default function RefundPolicy() {
                         <div className="space-y-3 text-muted-foreground">
                             <p><strong>Before Service Starts:</strong></p>
                             <ul className="list-disc pl-6 space-y-1 mb-3">
-                                <li>Full refund if order is cancelled within 1 hour of payment</li>
-                                <li>50% refund if cancelled after 1 hour but before work begins</li>
+                                <li>Full (100%) refund if the order is cancelled within 1 hour of payment before resource allocation</li>
+                                <li>50% refund if cancelled after 1 hour but before prototype sprint commencement</li>
                             </ul>
 
                             <p><strong>After Work Begins:</strong></p>
                             <ul className="list-disc pl-6 space-y-1">
-                                <li>No refund once work has commenced</li>
-                                <li>Partial delivery may be provided at our discretion</li>
+                                <li>Governed by our <strong className="text-foreground">Milestone-Gated 90% Money-Back Guarantee</strong>. If an agreed milestone cannot satisfy verified specifications following revision sprints, the client is entitled to a 90% refund of that milestone fee.</li>
+                                <li>The remaining 10% strictly covers incurred, non-recoverable hard costs (cloud provisioning, third-party API tokens, domain/SSL registries, and gateway fees).</li>
                             </ul>
                         </div>
                     </section>
@@ -161,14 +162,14 @@ export default function RefundPolicy() {
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-foreground mb-3">11. 90% Money-Back Guarantee</h2>
+                        <h2 className="text-2xl font-bold text-foreground mb-3">11. Milestone-Gated 90% Money-Back Guarantee</h2>
                         <div className="space-y-3 text-muted-foreground">
                             <ul className="list-disc pl-6 space-y-2">
-                                <li>SAGE DO offers a <strong>90% Money-Back Guarantee</strong> on all B2B service orders.</li>
-                                <li>If you are not satisfied with the deliverables, request a refund within <strong>7 calendar days</strong> of delivery.</li>
-                                <li>We will refund 90% of the amount you have paid. The remaining 10% is retained as a non-refundable administrative fee.</li>
-                                <li>The 10% administrative retainer covers: third-party API costs (OpenAI, Meta, WhatsApp API credits), domain/hosting provisioning, server setup, and GST/compliance processing.</li>
-                                <li>This guarantee applies to the amount actually paid, not the total contract value.</li>
+                                <li>SAGE DO delivers bespoke engineering and digital infrastructure backed by our <strong>Milestone-Gated 90% Money-Back Guarantee</strong>.</li>
+                                <li>Every engagement includes our <strong>48-Hour Functional Prototype Guarantee</strong>. If we fail to deliver an agreed milestone or verifiable specifications cannot be satisfied following reasonable revision sprints, the client is entitled to a <strong>90% refund of the milestone fee</strong>.</li>
+                                <li>The remaining 10% is retained strictly for non-recoverable, irreversible third-party cloud and infrastructure costs (VPS provisioning, domain/SSL registries, third-party LLM/WhatsApp API consumption, and payment gateway settlement charges).</li>
+                                <li>Refund requests must be submitted within <strong>7 calendar days</strong> of milestone handover.</li>
+                                <li>This guarantee applies to the specific milestone amount paid, maintaining total transparency throughout delivery.</li>
                             </ul>
                         </div>
                     </section>

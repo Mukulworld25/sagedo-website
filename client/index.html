@@ -57,289 +57,302 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "SAGE DO",
-    "alternateName": "SageDo",
-    "url": "https://sagedo.in",
-    "logo": "https://sagedo.in/sagedo_logo_pro_clean.png",
-    "description": "India's First AI + Human Hybrid Execution Team. We provide precision-engineered services for founders, professionals, and startups.",
-    "slogan": "Speed of AI. Precision of Humans.",
-    "founder": {
-      "@type": "Person",
-      "name": "Mukul Dhiman",
-      "description": "Former aerospace systems engineer turned AI Founder",
-      "url": "https://www.linkedin.com/in/mukul-dhiman"
-    },
-    "foundingDate": "2025",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "SCO-38, Mohali City Centre, Aerocity",
-      "addressLocality": "Mohali",
-      "addressRegion": "Punjab",
-      "postalCode": "140306",
-      "addressCountry": "IN"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "email": "hello@sagedo.in",
-      "telephone": "+91-6284925684",
-      "contactType": "Customer Support",
-      "areaServed": "IN",
-      "availableLanguage": ["en", "hi"]
-    },
-    "sameAs": [
-      "https://www.linkedin.com/company/sagedo-in/",
-      "https://www.youtube.com/@SageDo-Ai",
-      "https://www.instagram.com/sagedoai00/",
-      "https://play.google.com/store/apps/details?id=com.sagedo.app"
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "SAGEDO",
-    "alternateName": "Sage Do",
-    "image": "https://sagedo.in/sagedo_logo_pro_clean.png",
-    "description": "India's First AI + Human Hybrid Execution Team. We help founders, startups and business owners execute faster using AI speed and human precision. Enterprise-grade execution at startup speed with aerospace engineering precision in 24-48 hours.",
-    "url": "https://sagedo.in",
-    "telephone": "+916284925684",
-    "email": "hello@sagedo.in",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "SCO-38, Mohali City Centre, Aerocity",
-      "addressLocality": "Mohali",
-      "addressRegion": "Punjab",
-      "postalCode": "140306",
-      "addressCountry": "IN"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 30.6558,
-      "longitude": 76.7552
-    },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-      "opens": "09:00",
-      "closes": "21:00"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/company/sagedo-in/",
-      "https://www.youtube.com/@SageDo-Ai",
-      "https://www.instagram.com/sagedoai00/",
-      "https://play.google.com/store/apps/details?id=com.sagedo.app"
-    ],
-    "priceRange": "₹₹",
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "SAGEDO Services",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Free Preview",
-            "url": "https://sagedo.in/free-demo"
-          },
-          "price": "0",
-          "priceCurrency": "INR"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://sagedo.in/#organization",
+        "name": "SAGE DO",
+        "alternateName": "SageDo",
+        "url": "https://sagedo.in",
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "https://sagedo.in/#logo",
+          "url": "https://sagedo.in/sagedo_logo_pro_clean.png",
+          "caption": "SAGE DO Logo"
         },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Digital Presence Engine"
-          },
-          "price": "45000",
-          "priceCurrency": "INR"
+        "description": "India's First AI + Human Hybrid Execution Team. Precision-engineered websites, custom CRMs, and autonomous AI automation for ambitious founders.",
+        "slogan": "Speed of AI. Precision of Humans.",
+        "foundingDate": "2025",
+        "founder": {
+          "@type": "Person",
+          "@id": "https://sagedo.in/#founder",
+          "name": "Mukul Dhiman",
+          "jobTitle": "Founder & CEO",
+          "description": "Former aerospace systems engineer turned AI Founder",
+          "url": "https://www.linkedin.com/in/mukul-dhiman",
+          "sameAs": [
+            "https://www.linkedin.com/in/mukul-dhiman",
+            "https://sagedo.in/about-founder"
+          ]
         },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Sovereign Revenue Engine™"
-          },
-          "price": "150000",
-          "priceCurrency": "INR"
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "SCO-38, Mohali City Centre, Aerocity",
+          "addressLocality": "Mohali",
+          "addressRegion": "Punjab",
+          "postalCode": "140306",
+          "addressCountry": "IN"
         },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Enterprise Infrastructure"
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@sagedo.in",
+          "telephone": "+91-6284925684",
+          "contactType": "Customer Support",
+          "areaServed": "IN",
+          "availableLanguage": ["en", "hi"]
+        },
+        "sameAs": [
+          "https://www.linkedin.com/company/sagedo-in/",
+          "https://www.youtube.com/@SageDo-Ai",
+          "https://www.instagram.com/sagedoai00/",
+          "https://play.google.com/store/apps/details?id=com.sagedo.app"
+        ]
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://sagedo.in/#localbusiness",
+        "name": "SAGE DO",
+        "alternateName": "Sage Do",
+        "image": "https://sagedo.in/sagedo_logo_pro_clean.png",
+        "description": "India's First AI + Human Hybrid Execution Team. Enterprise-grade execution at startup speed with aerospace engineering precision in 24-48 hours.",
+        "parentOrganization": {
+          "@id": "https://sagedo.in/#organization"
+        },
+        "url": "https://sagedo.in",
+        "telephone": "+91-6284925684",
+        "email": "hello@sagedo.in",
+        "priceRange": "₹₹",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "SCO-38, Mohali City Centre, Aerocity",
+          "addressLocality": "Mohali",
+          "addressRegion": "Punjab",
+          "postalCode": "140306",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 30.6558,
+          "longitude": 76.7552
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+          "opens": "09:00",
+          "closes": "21:00"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/company/sagedo-in/",
+          "https://www.youtube.com/@SageDo-Ai",
+          "https://www.instagram.com/sagedoai00/",
+          "https://play.google.com/store/apps/details?id=com.sagedo.app"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "SAGE DO Sovereign Infrastructure Tiers",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Free Preview",
+                "description": "Concept homepage draft, Google profile mockup, and AI visibility snapshot delivered in 24 hours.",
+                "url": "https://sagedo.in/free-demo"
+              },
+              "price": "0",
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Digital Presence Engine",
+                "description": "Logo + brand identity, sub-1.2s mobile storefront, Google Business Profile, WhatsApp Cloud API lead webhook — delivered in 14 days.",
+                "url": "https://sagedo.in/services"
+              },
+              "price": "45000",
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Sovereign Revenue Engine™",
+                "description": "Complete custom CRM with unlimited seats, WhatsApp sales bot, Tally Prime bridge, and lead automation — delivered in 28 days with 10-gate QA certification.",
+                "url": "https://sagedo.in/services"
+              },
+              "price": "150000",
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Enterprise Infrastructure",
+                "description": "Full custom web + native mobile app, admin dashboard, multi-branch dispatch, and dedicated growth engineer.",
+                "url": "https://sagedo.in/services"
+              },
+              "price": "350000",
+              "priceCurrency": "INR"
+            }
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://sagedo.in/#website",
+        "name": "SAGE DO",
+        "url": "https://sagedo.in",
+        "publisher": {
+          "@id": "https://sagedo.in/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://sagedo.in/services?search={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://sagedo.in/#service",
+        "serviceType": "AI + Human Business Execution & Digital Infrastructure",
+        "provider": {
+          "@id": "https://sagedo.in/#organization"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "India"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "SAGE DO Sovereign Infrastructure Tiers",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Free Preview",
+                "description": "Concept homepage draft, Google profile mockup, and AI visibility snapshot delivered in 24 hours.",
+                "url": "https://sagedo.in/free-demo"
+              },
+              "price": "0",
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Digital Presence Engine",
+                "description": "Logo + brand identity, sub-1.2s mobile storefront, Google Business Profile, WhatsApp Cloud API lead webhook — delivered in 14 days.",
+                "url": "https://sagedo.in/services"
+              },
+              "price": "45000",
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Sovereign Revenue Engine™",
+                "description": "Complete custom CRM with unlimited seats, WhatsApp sales bot, Tally Prime bridge, and lead automation — delivered in 28 days with 10-gate QA certification.",
+                "url": "https://sagedo.in/services"
+              },
+              "price": "150000",
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Enterprise Infrastructure",
+                "description": "Full custom web + native mobile app, admin dashboard, multi-branch dispatch, and dedicated growth engineer.",
+                "url": "https://sagedo.in/services"
+              },
+              "price": "350000",
+              "priceCurrency": "INR"
+            }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://sagedo.in/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is SAGE DO?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SAGE DO is India's first AI + Human Hybrid Execution Team. We combine AI speed with human precision to deliver agency-quality websites, apps, branding, and automation — in 24-48 hours with aerospace engineering precision."
+            }
           },
-          "price": "350000",
-          "priceCurrency": "INR"
-        }
-      ]
-    }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "SAGE DO",
-    "url": "https://sagedo.in",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://sagedo.in/services?search={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is SAGE DO?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "SAGE DO is India's first AI + Human Hybrid Execution Team. We combine AI speed with human precision to deliver agency-quality websites, apps, branding, and automation — in 24-48 hours with aerospace engineering precision."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How much does SAGE DO cost?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Individual B2B specialized services start from ₹1,999 (Assisted Compliance) and ₹14,999 (Inbound Gateways). Sovereign digital revenue infrastructure tiers range from ₹45,000 (Digital Presence Engine) to ₹1,50,000 (Sovereign Revenue Engine™) and ₹3,50,000 (Enterprise Infrastructure). Flexible 3-part milestone installments are available for all tiers."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How fast does SAGE DO deliver?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Most specialized services are delivered within 24-48 hours. Digital Presence Engine is delivered in 14 days, and Sovereign Revenue Engine™ in 28 days."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Who founded SAGE DO?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "SAGE DO was founded by Mukul Dhiman, a former aerospace systems engineer turned AI builder. He brings operations experience from top aerospace and logistics companies. He built SAGE DO to bring that execution discipline to help Indian founders launch and scale faster."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is SAGE DO available in my city?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes! SAGE DO serves all of India remotely. Our physical office is at Mohali City Center (SCO-38) in the Chandigarh Tri-City area, and we work with clients across Delhi, Mumbai, Bangalore, Hyderabad, and all other cities via WhatsApp and our web/mobile app."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How much does an AI website cost in India?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "At SAGE DO, institutional digital revenue infrastructure starts at ₹45,000 with our Digital Presence Engine, which includes a sub-1.2s mobile storefront, WhatsApp Cloud API qualification, and automated founder lead alerts — delivered in 14 days. Traditional agencies charge ₹2-5 Lakhs for the same work."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the best budget CRM setup for Indian small businesses?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "SAGE DO offers dedicated CRM pipeline setup starting from ₹24,999, and full enterprise architecture in our Sovereign Revenue Engine™. We configure custom systems specifically optimized for Indian SMBs with WhatsApp integration, lead tracking, and automated follow-ups."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How much does a WhatsApp sales bot cost in India?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "SAGE DO builds WhatsApp automation bots starting at ₹14,999. Our bots handle lead qualification, FAQs, appointment booking, and order updates — all automated. Setup takes 5-7 days and includes integration with your existing business workflow."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How to digitize a small business in India in 2025?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "SAGE DO's Sovereign Revenue Engine™ (from ₹1,50,000) digitizes your entire business in 28 days: full custom CRM, unlimited seats with zero per-seat fees, automated WhatsApp lead routing, and Tally Prime / ERP bridge integration. We handle everything so you can focus on selling."
-        }
+          {
+            "@type": "Question",
+            "name": "How much does SAGE DO cost?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Individual B2B specialized services start from ₹1,999 (Assisted Compliance) and ₹14,999 (Inbound Gateways). Sovereign digital revenue infrastructure tiers range from ₹45,000 (Digital Presence Engine) to ₹1,50,000 (Sovereign Revenue Engine™) and ₹3,50,000 (Enterprise Infrastructure). Flexible 3-part milestone installments are available for all tiers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How fast does SAGE DO deliver?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most specialized services are delivered within 24-48 hours. Digital Presence Engine is delivered in 14 days, and Sovereign Revenue Engine™ in 28 days."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Who founded SAGE DO?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SAGE DO was founded by Mukul Dhiman, a former aerospace systems engineer turned AI builder. He brings operations experience from top aerospace and logistics companies. He built SAGE DO to bring that execution discipline to help Indian founders launch and scale faster."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is SAGE DO available in my city?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! SAGE DO serves all of India remotely. Our physical office is at Mohali City Center (SCO-38) in the Chandigarh Tri-City area, and we work with clients across Delhi, Mumbai, Bangalore, Hyderabad, and all other cities via WhatsApp and our web/mobile app."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much does an AI website cost in India?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "At SAGE DO, institutional digital revenue infrastructure starts at ₹45,000 with our Digital Presence Engine, which includes a sub-1.2s mobile storefront, WhatsApp Cloud API qualification, and automated founder lead alerts — delivered in 14 days. Traditional agencies charge ₹2-5 Lakhs for the same work."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the best budget CRM setup for Indian small businesses?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SAGE DO offers dedicated CRM pipeline setup starting from ₹24,999, and full enterprise architecture in our Sovereign Revenue Engine™. We configure custom systems specifically optimized for Indian SMBs with WhatsApp integration, lead tracking, and automated follow-ups."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much does a WhatsApp sales bot cost in India?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SAGE DO builds WhatsApp automation bots starting at ₹14,999. Our bots handle lead qualification, FAQs, appointment booking, and order updates — all automated. Setup takes 5-7 days and includes integration with your existing business workflow."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How to digitize a small business in India in 2025?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SAGE DO's Sovereign Revenue Engine™ (from ₹1,50,000) digitizes your entire business in 28 days: full custom CRM, unlimited seats with zero per-seat fees, automated WhatsApp lead routing, and Tally Prime / ERP bridge integration. We handle everything so you can focus on selling."
+            }
+          }
+        ]
       }
     ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "AI + Human Business Execution",
-    "provider": {
-      "@type": "Organization",
-      "name": "SAGE DO",
-      "url": "https://sagedo.in"
-    },
-    "areaServed": {
-      "@type": "Country",
-      "name": "India"
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "SAGE DO Services",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Starter Launch Package",
-            "description": "AI Landing Page, Human Brand Identity, Domain Setup, SEO Basics — delivered in 7 days"
-          },
-          "price": "15000",
-          "priceCurrency": "INR"
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Full Launch Package",
-            "description": "Full Website + Content, Human Strategy + Design, Social Media Kit, Analytics Setup — delivered in 10-12 days"
-          },
-          "price": "35000",
-          "priceCurrency": "INR"
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "VIP Launch Package",
-            "description": "Web + Mobile App, Human UX + Testing, Complete Branding, 1-Month Support — delivered in 15 days"
-          },
-          "price": "95000",
-          "priceCurrency": "INR"
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "AI Agent Development",
-            "description": "Autonomous AI employees for sales, support & operations"
-          },
-          "price": "45000",
-          "priceCurrency": "INR"
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Missed-Call Text-Back System",
-            "description": "Automated SMS follow-up for every missed call"
-          },
-          "price": "9999",
-          "priceCurrency": "INR"
-        }
-      ]
-    }
   }
   </script>
 
@@ -455,7 +468,7 @@ document.addEventListener("submit", function(e) {
         <li>Sovereign Revenue Engine™ — ₹1,50,000 – ₹2,50,000 (Full Custom CRM, Zero Per-Seat Fees, WhatsApp Routing, ERP Bridge — 28 days)</li>
         <li>Enterprise Infrastructure — Starting at ₹3,50,000 (Tally Prime Bi-directional Sync, Multi-Branch Dispatch, AI OCR — 45-60 days)</li>
       </ul>
-      <p>Stop paying high agency retainers. Execute faster with our elite Hybrid Tech Stack. Based in Mohali City Center, serving all of India.</p>
+      <p>Stop paying high agency retainers. Execute faster with our elite Hybrid Tech Stack. Headquarters: SCO-38, Mohali City Centre, Aerocity, Mohali, Punjab 140306. Serving Chandigarh Tri-City, Delhi NCR, Mumbai, Bangalore, and all of India.</p>
       <p>Contact: hello@sagedo.in | +91-6284925684</p>
     </noscript>
   </div>

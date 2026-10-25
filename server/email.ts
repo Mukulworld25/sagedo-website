@@ -20,8 +20,8 @@ const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'mukul@sagedo.in';
 // ============================================
 // Interfaces
 // ============================================
-// Utility to sanitize input for HTML emails
-const sanitize = (text: string | undefined | null) => {
+// Utility to sanitize input for HTML emails (Anti-XSS / Anti-Injection)
+export const escapeHtml = (text: string | undefined | null): string => {
   if (!text) return '';
   return String(text)
     .replace(/&/g, "&amp;")
@@ -30,6 +30,7 @@ const sanitize = (text: string | undefined | null) => {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 };
+export const sanitize = escapeHtml;
 
 interface OrderEmailData {
   customerName: string;
@@ -321,22 +322,27 @@ export async function sendPasswordResetEmail(email: string, name: string, resetT
 // ============================================
 export async function sendContactEmail(name: string, email: string, subject: string, message: string) {
   try {
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeSubject = escapeHtml(subject);
+    const safeMessage = escapeHtml(message);
+
     const { error } = await resend.emails.send({
       from: 'SAGE DO Contact <noreply@sagedo.in>',
       to: [ADMIN_EMAIL],
       replyTo: email,
-      subject: `📬 New Contact Message: ${subject}`,
+      subject: `📬 New Contact Message: ${safeSubject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e1e1e1; padding: 20px; border-radius: 8px;">
           <h2 style="color: #333;">New Contact Message Received</h2>
           <div style="background: #f9f9f9; padding: 15px; border-radius: 5px; margin: 20px 0;">
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-            <p><strong>Subject:</strong> ${subject}</p>
+            <p><strong>Name:</strong> ${safeName}</p>
+            <p><strong>Email:</strong> <a href="mailto:${encodeURIComponent(email || '')}">${safeEmail}</a></p>
+            <p><strong>Subject:</strong> ${safeSubject}</p>
           </div>
           <div style="margin: 20px 0;">
             <p style="font-weight: bold;">Message:</p>
-            <p style="white-space: pre-wrap; color: #555;">${message}</p>
+            <p style="white-space: pre-wrap; color: #555;">${safeMessage}</p>
           </div>
           <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
           <p style="color: #888; font-size: 12px;">This message was sent via the SAGE DO website contact form.</p>

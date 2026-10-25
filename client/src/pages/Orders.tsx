@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import { Upload, CheckCircle2, CreditCard, Sparkles, Plus, X, Star, LogIn, Loader2, Clock, Zap, Shield, ArrowRight, CalendarClock, Banknote, Award, TrendingUp, ShieldCheck } from "lucide-react";
+import { Upload, CheckCircle2, CreditCard, Sparkles, Plus, X, Star, LogIn, Loader2, Clock, Zap, Shield, ArrowRight, CalendarClock, Banknote, Award, TrendingUp, ShieldCheck, MessageCircle } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useSearch, Link, useLocation } from "wouter";
@@ -13,6 +13,7 @@ import { allServices } from "@/data/serviceData";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/hooks/useAuth";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
+import { getPricingPackage, PricingPackage, ALL_PACKAGES, SMB_LAUNCHPAD_PACKAGES, ENTERPRISE_SOVEREIGN_SUITES } from "@/config/pricing";
 
 // Declare Razorpay on window
 declare global {
@@ -33,8 +34,11 @@ export default function Orders() {
     service: "",
     requirements: "",
     deliveryPreference: "platform" as "platform" | "email" | "whatsapp",
+    whatsappNumber: "",
   });
   const [createdOrderId, setCreatedOrderId] = useState<string | null>(null);
+  const [selectedPackage, setSelectedPackage] = useState<PricingPackage | null>(null);
+  const [activeTrack, setActiveTrack] = useState<'smb' | 'enterprise'>('smb');
   const [orderAmount, setOrderAmount] = useState(0); // Default 0
   const [isRazorpayLoaded, setIsRazorpayLoaded] = useState(false);
   const [isServiceLocked, setIsServiceLocked] = useState(false);
@@ -52,12 +56,12 @@ export default function Orders() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isGoldenService, setIsGoldenService] = useState(false);
 
-  // Calculate total from cart
+  // Calculate total from cart or selected package
   const cartTotal = cart.reduce((sum, item) => sum + (item.isGoldenEligible ? 0 : item.price), 0);
   const hasOnlyFreeServices = cart.length > 0 && cart.every(item => item.isGoldenEligible);
 
   // Calculate the actual amount due today based on payment plan
-  const totalOrderValue = cartTotal > 0 ? cartTotal : orderAmount;
+  const totalOrderValue = selectedPackage ? selectedPackage.price : (cartTotal > 0 ? cartTotal : orderAmount);
   const dueToday = (() => {
     if (isGoldenService || hasOnlyFreeServices || totalOrderValue === 0) return 0;
     switch (paymentPlan) {
@@ -85,8 +89,8 @@ export default function Orders() {
   useEffect(() => {
     const params = new URLSearchParams(searchString);
     const serviceName = params.get('service');
-    const price = params.get('price');
-    const serviceId = params.get('id');
+    // SECURITY (CWE-472): Never trust ?price= query parameter. Lookup strictly via canonical SKU ID.
+    const packageQueryId = params.get('package_id') || params.get('id') || params.get('sku');
     const goldenTicketMode = params.get('useGoldenTicket');
 
     // Golden Ticket mode - show info toast
@@ -94,37 +98,58 @@ export default function Orders() {
       setTimeout(() => {
         toast({
           title: "🎟️ Starter Credit Mode!",
-          description: "Select any Bar 1 service below and it will be FREE!",
+          description: "Select any eligible service below and it will be FREE!",
         });
       }, 500);
     }
 
-    if (serviceName) {
-      setFormData(prev => ({ ...prev, service: serviceName }));
+    // Resolve package via canonical pricing catalog
+    let resolvedPkg: PricingPackage | undefined = undefined;
+    if (packageQueryId) {
+      resolvedPkg = getPricingPackage(packageQueryId);
+    }
+    if (!resolvedPkg && serviceName) {
+      resolvedPkg = getPricingPackage(serviceName) || ALL_PACKAGES.find(p => p.name.toLowerCase() === serviceName.toLowerCase());
+    }
+
+    if (resolvedPkg) {
+      setSelectedPackage(resolvedPkg);
+      setFormData(prev => ({ ...prev, service: resolvedPkg.name }));
       setIsServiceLocked(true);
-
-      // Lookup service to check if Golden Ticket eligible
-      const service = allServices.find(s => s.name === serviceName || s.id === serviceId);
-      if (service) {
-        const isGolden = service.isGoldenEligible;
+      setIsGoldenService(false);
+      setOrderAmount(resolvedPkg.price);
+      setCart([{
+        id: resolvedPkg.id,
+        name: resolvedPkg.name,
+        price: resolvedPkg.price,
+        isGoldenEligible: false,
+      }]);
+    } else if (serviceName) {
+      // Legacy service fallback
+      const legacyService = allServices.find(s => s.name === serviceName || s.id === packageQueryId);
+      if (legacyService) {
+        const isGolden = legacyService.isGoldenEligible;
         setIsGoldenService(isGolden);
-
-        // Add to cart if not already in
-        if (!cart.find(item => item.id === service.id)) {
-          setCart([{
-            id: service.id,
-            name: service.name,
-            price: service.price,
-            isGoldenEligible: isGolden
-          }]);
-        }
-
-        setOrderAmount(isGolden ? 0 : service.price);
-      } else if (price) {
-        setOrderAmount(parseInt(price, 10));
+        setFormData(prev => ({ ...prev, service: legacyService.name }));
+        setIsServiceLocked(true);
+        setCart([{
+          id: legacyService.id,
+          name: legacyService.name,
+          price: legacyService.price,
+          isGoldenEligible: isGolden,
+        }]);
+        setOrderAmount(isGolden ? 0 : legacyService.price);
+      } else {
+        setSelectedPackage(null);
+        setFormData(prev => ({ ...prev, service: "" }));
+        setOrderAmount(0);
+        setCart([]);
+        setIsServiceLocked(false);
+        setIsGoldenService(false);
       }
     } else {
-      // Direct visit - Clean slate
+      // Direct visit - Clean slate, require package selection before submit
+      setSelectedPackage(null);
       setFormData(prev => ({ ...prev, service: "" }));
       setOrderAmount(0);
       setCart([]);
@@ -155,12 +180,15 @@ export default function Orders() {
 
   const uploadMutation = useMutation({
     mutationFn: async (data: FormData) => {
-      const response = await fetch(`${API_URL}/api/upload`, {
+      const response = await fetch(`/api/upload`, {
         method: "POST",
         body: data,
         credentials: "include",
       });
-      if (!response.ok) throw new Error("Upload failed");
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || "Upload failed");
+      }
       return response.json();
     },
   });
@@ -176,7 +204,7 @@ export default function Orders() {
       setCreatedOrderId(orderId);
 
       // If it's a FREE Golden Ticket service, skip payment and show success
-      if (isGoldenService || hasOnlyFreeServices || orderAmount === 0) {
+      if (isGoldenService || hasOnlyFreeServices || totalOrderValue === 0) {
         navigate(`/order-success?orderId=${orderId}`);
         return; // Skip payment
       }
@@ -191,7 +219,7 @@ export default function Orders() {
           
           body: JSON.stringify({
             amount: dueToday,
-            service_name: 'SAGE DO Service',
+            service_name: selectedPackage ? selectedPackage.name : (formData.service || 'SAGE DO Service'),
             order_id: orderId
           })
         });
@@ -208,7 +236,7 @@ export default function Orders() {
           amount: paymentOrder.amount,
           currency: 'INR',
           name: 'SAGE DO',
-          description: formData.service,
+          description: selectedPackage ? selectedPackage.name : formData.service,
           order_id: paymentOrder.razorpay_order_id,
           handler: async function (response: any) {
             try {
@@ -277,22 +305,83 @@ export default function Orders() {
     },
   });
 
+  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+  const MACRO_EXTENSIONS = ['.doc', '.zip'];
+  const ALLOWED_EXTENSIONS = ['.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png', '.zip', '.txt'];
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFiles(Array.from(e.target.files));
+    if (!e.target.files) return;
+    const selectedFiles = Array.from(e.target.files);
+
+    for (const file of selectedFiles) {
+      if (file.size > MAX_FILE_SIZE) {
+        toast({
+          title: "File Exceeds 5MB Limit",
+          description: `"${file.name}" is ${(file.size / 1024 / 1024).toFixed(2)} MB. Maximum allowed size is 5MB.`,
+          variant: "destructive",
+        });
+        e.target.value = "";
+        return;
+      }
+
+      const ext = '.' + file.name.split('.').pop()?.toLowerCase();
+      if (!ALLOWED_EXTENSIONS.includes(ext)) {
+        toast({
+          title: "Unsupported File Format",
+          description: `"${file.name}" is not an allowed file type. Allowed: PDF, DOC, DOCX, JPG, PNG, ZIP, TXT.`,
+          variant: "destructive",
+        });
+        e.target.value = "";
+        return;
+      }
+
+      if (MACRO_EXTENSIONS.includes(ext) && !isAuthenticated) {
+        toast({
+          title: "Authentication Required",
+          description: `Uploading macro-capable or archive files (${ext}) requires logging in first for malware screening.`,
+          variant: "destructive",
+        });
+        e.target.value = "";
+        return;
+      }
     }
+
+    setFiles(selectedFiles);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.email || !formData.service) {
+    if (!selectedPackage && !isGoldenService) {
+      toast({
+        title: "No Package Selected",
+        description: "Please select a valid package before submitting your order.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!formData.email) {
       toast({
         title: "Missing Information",
         description: "Please enter your email address.",
         variant: "destructive",
       });
       return;
+    }
+
+    // Dynamic WhatsApp Field & Indian Mobile Validation
+    const cleanPhone = formData.whatsappNumber.replace(/[\s\-]/g, '');
+    if (formData.deliveryPreference === 'whatsapp') {
+      const INDIAN_PHONE_REGEX = /^(?:\+91|0)?[6-9]\d{9}$/;
+      if (!cleanPhone || !INDIAN_PHONE_REGEX.test(cleanPhone)) {
+        toast({
+          title: "Invalid WhatsApp Number",
+          description: "Please enter a valid Indian mobile number (e.g. +91 98765 43210 or 9876543210) for WhatsApp delivery.",
+          variant: "destructive",
+        });
+        return;
+      }
     }
 
     let fileUrls: string[] = [];
@@ -306,10 +395,10 @@ export default function Orders() {
       try {
         const uploadResult = await uploadMutation.mutateAsync(uploadFormData);
         fileUrls = uploadResult.urls;
-      } catch (error) {
+      } catch (error: any) {
         toast({
           title: "File Upload Failed",
-          description: "Please try again or proceed without files.",
+          description: error?.message || "Please try again or proceed without files.",
           variant: "destructive",
         });
         return;
@@ -317,20 +406,31 @@ export default function Orders() {
     }
 
     // Build payment plan details to append to requirements
-    const isFree = isGoldenService || hasOnlyFreeServices || totalOrderValue === 0;
+    const isFree = isGoldenService || hasOnlyFreeServices;
     let paymentPlanText = '';
     if (!isFree && paymentPlan !== 'full') {
       const planName = paymentPlan === 'half' ? '50/50 Split' : '3-Part Installments';
       paymentPlanText = `\n\n--- PAYMENT PLAN ---\nPlan: ${planName}\nTotal Contract: ₹${totalOrderValue.toLocaleString('en-IN')}\nDue Today: ₹${dueToday.toLocaleString('en-IN')}\nRemaining: ₹${remainingBalance.toLocaleString('en-IN')}${paymentPlan === 'half' ? ' (due on delivery)' : ` (₹${Math.ceil(totalOrderValue / 3).toLocaleString('en-IN')} at milestone + ₹${(totalOrderValue - Math.ceil(totalOrderValue / 3) * 2).toLocaleString('en-IN')} on delivery)`}\n90% Money-Back Guarantee Acknowledged: Yes\n---`;
     }
 
+    let deliveryNote = '';
+    if (formData.deliveryPreference === 'whatsapp') {
+      deliveryNote = `\n\n--- DELIVERY PREFERENCE: WhatsApp (${cleanPhone}) ---`;
+    }
+
+    const pkgId = selectedPackage?.id || (isGoldenService ? 'starter_credit' : '');
+    const pkgName = selectedPackage?.name || formData.service || 'SAGE DO Service';
+
     orderMutation.mutate({
       customerName: formData.name,
       customerEmail: formData.email,
-      serviceName: formData.service,
-      requirements: (formData.requirements || '') + paymentPlanText,
+      packageId: pkgId,
+      serviceId: pkgId,
+      serviceName: pkgName,
+      requirements: (formData.requirements || '') + paymentPlanText + deliveryNote,
       fileUrls,
       deliveryPreference: formData.deliveryPreference,
+      whatsappNumber: formData.deliveryPreference === 'whatsapp' ? cleanPhone : undefined,
       isFreeOrder: isFree,
     });
   };
@@ -654,24 +754,133 @@ export default function Orders() {
                   <p className="text-xs text-muted-foreground">We'll send order updates to this email</p>
                 </div>
 
-                {/* Service - Show if not locked OR if locked but we want to show it as read-only text (which we do via the cart card above) */}
-                {/* Actually, per requirements: Hide service input if pre-filled/locked. Only show if manually adding. */}
-                {!isServiceLocked && (
-                  <div className="space-y-2">
-                    <Label htmlFor="service" className="text-foreground">
-                      Service Needed <span className="text-destructive">*</span>
+                {/* Package / Service Tier Selection (P0 Security: Lock Orders to Server-Validated SKUs) */}
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <Label className="text-foreground font-semibold text-sm">
+                      Package / Service Tier <span className="text-destructive">*</span>
                     </Label>
-                    <Input
-                      id="service"
-                      value={formData.service}
-                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      placeholder="e.g., AI Ad Copy, Resume, PPT Design"
-                      data-testid="input-service"
-                      required
-                      className="glass border-border/50"
-                    />
+                    {selectedPackage && !isServiceLocked && (
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => {
+                          setSelectedPackage(null);
+                          setOrderAmount(0);
+                          setCart([]);
+                          setFormData(prev => ({ ...prev, service: "" }));
+                        }}
+                        className="h-7 text-xs text-primary hover:text-primary/80"
+                      >
+                        Change Package
+                      </Button>
+                    )}
                   </div>
-                )}
+
+                  {selectedPackage ? (
+                    <div className="p-4 rounded-xl border-2 border-primary/50 bg-gradient-to-r from-primary/10 via-background to-primary/5 flex items-start justify-between gap-3">
+                      <div>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <Badge variant="outline" className="text-xs uppercase font-mono tracking-wider border-primary/40 text-primary">
+                            {selectedPackage.sku}
+                          </Badge>
+                          <span className="font-bold text-foreground text-base">{selectedPackage.name}</span>
+                          {selectedPackage.isPopular && (
+                            <Badge className="bg-primary/20 text-primary border-primary/30 text-[10px]">
+                              Popular
+                            </Badge>
+                          )}
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-1.5">{selectedPackage.tagline}</p>
+                        <div className="flex items-center gap-1.5 mt-2.5 text-xs text-emerald-400 font-medium">
+                          <Clock className="w-3.5 h-3.5 shrink-0" />
+                          <span>{selectedPackage.deliverySLA}</span>
+                        </div>
+                      </div>
+                      <div className="text-right shrink-0">
+                        <span className="text-xl font-black text-primary">{selectedPackage.priceDisplay}</span>
+                        <p className="text-[10px] text-muted-foreground">Fixed Sovereign Price</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-3">
+                      {/* Track Selector Tabs */}
+                      <div className="flex gap-2 p-1 rounded-xl bg-neutral-900 border border-neutral-800">
+                        <button
+                          type="button"
+                          onClick={() => setActiveTrack('smb')}
+                          className={`flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all ${
+                            activeTrack === 'smb'
+                              ? 'bg-primary text-white shadow-sm'
+                              : 'text-neutral-400 hover:text-white'
+                          }`}
+                        >
+                          SMB LaunchPad (₹15k–₹95k)
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setActiveTrack('enterprise')}
+                          className={`flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all ${
+                            activeTrack === 'enterprise'
+                              ? 'bg-primary text-white shadow-sm'
+                              : 'text-neutral-400 hover:text-white'
+                          }`}
+                        >
+                          Enterprise Sovereign (₹45k–₹3.5L)
+                        </button>
+                      </div>
+
+                      {/* Packages Grid */}
+                      <div className="grid grid-cols-1 gap-2.5">
+                        {(activeTrack === 'smb' ? SMB_LAUNCHPAD_PACKAGES : ENTERPRISE_SOVEREIGN_SUITES).map((pkg) => (
+                          <div
+                            key={pkg.id}
+                            onClick={() => {
+                              setSelectedPackage(pkg);
+                              setOrderAmount(pkg.price);
+                              setFormData(prev => ({ ...prev, service: pkg.name }));
+                              setCart([{
+                                id: pkg.id,
+                                name: pkg.name,
+                                price: pkg.price,
+                                isGoldenEligible: false,
+                              }]);
+                            }}
+                            className="p-3.5 rounded-xl border border-border/60 hover:border-primary/60 bg-neutral-900/60 hover:bg-primary/5 cursor-pointer transition-all flex items-center justify-between gap-3 group"
+                          >
+                            <div className="space-y-1">
+                              <div className="flex items-center gap-2">
+                                <span className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">
+                                  {pkg.name}
+                                </span>
+                                {pkg.isPopular && (
+                                  <Badge className="bg-primary/20 text-primary border-primary/30 text-[10px] py-0">
+                                    Popular
+                                  </Badge>
+                                )}
+                              </div>
+                              <p className="text-xs text-muted-foreground line-clamp-1">{pkg.tagline}</p>
+                              <p className="text-[11px] text-emerald-400/90 flex items-center gap-1">
+                                <Clock className="w-3 h-3" /> {pkg.deliverySLA}
+                              </p>
+                            </div>
+                            <div className="text-right shrink-0">
+                              <span className="text-base font-black text-foreground group-hover:text-primary transition-colors">
+                                {pkg.priceDisplay}
+                              </span>
+                              <p className="text-[10px] text-muted-foreground">{pkg.sku}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <p className="text-xs text-amber-400/90 flex items-center gap-1.5 pt-1">
+                        <Shield className="w-3.5 h-3.5 shrink-0" />
+                        Select a package above to continue. All orders backed by 48-Hour Functional Prototype Guarantee.
+                      </p>
+                    </div>
+                  )}
+                </div>
 
                 {/* Requirements - Mandatory */}
                 <div className="space-y-2">
@@ -690,7 +899,7 @@ export default function Orders() {
                   />
                 </div>
 
-                {/* File Upload */}
+                {/* File Upload (P0 Security: 5MB limit & macro authentication) */}
                 <div className="space-y-2">
                   <Label htmlFor="files" className="text-foreground">
                     Upload Files (Optional)
@@ -700,6 +909,7 @@ export default function Orders() {
                       id="files"
                       type="file"
                       multiple
+                      accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.zip,.txt"
                       onChange={handleFileChange}
                       data-testid="input-files"
                       className="hidden"
@@ -714,7 +924,7 @@ export default function Orders() {
                           Click to upload or drag and drop
                         </p>
                         <p className="text-sm text-muted-foreground mt-1">
-                          PDF, DOC, DOCX, ZIP, Images (Max 10MB each)
+                          PDF, DOC, DOCX, ZIP, Images, TXT (Max 5MB each). Login required for .doc and .zip files.
                         </p>
                       </div>
                     </label>
@@ -827,29 +1037,30 @@ export default function Orders() {
                       </div>
                     </label>
                   </div>
-                </div>
 
-                {/* Order Amount - Hide for Golden Ticket OR if Service is Locked (Pre-filled) */}
-                {!isGoldenService && !hasOnlyFreeServices && !isServiceLocked && cart.length === 0 && (
-                  <div className="space-y-2">
-                    <Label htmlFor="amount" className="text-foreground">
-                      Order Amount (₹) <span className="text-destructive">*</span>
-                    </Label>
-                    <Input
-                      id="amount"
-                      type="number"
-                      value={orderAmount}
-                      onChange={(e) => setOrderAmount(parseInt(e.target.value) || 0)}
-                      placeholder="Enter amount"
-                      min="1"
-                      required
-                      className="glass border-border/50"
-                    />
-                    <p className="text-xs text-muted-foreground">
-                      Enter the agreed amount for your order
-                    </p>
-                  </div>
-                )}
+                  {/* Dynamic WhatsApp Phone Input Field */}
+                  {formData.deliveryPreference === 'whatsapp' && (
+                    <div className="space-y-2 mt-4 p-4 rounded-xl bg-primary/5 border border-primary/20 animate-in fade-in duration-200">
+                      <Label htmlFor="whatsapp" className="text-foreground flex items-center gap-1.5 font-semibold text-sm">
+                        <MessageCircle className="w-4 h-4 text-emerald-400" />
+                        Phone / WhatsApp Number <span className="text-destructive">*</span>
+                      </Label>
+                      <Input
+                        id="whatsapp"
+                        type="tel"
+                        value={formData.whatsappNumber}
+                        onChange={(e) => setFormData({ ...formData, whatsappNumber: e.target.value })}
+                        placeholder="+91 98765 43210 or 9876543210"
+                        required
+                        data-testid="input-whatsapp"
+                        className="glass border-border/50 text-base"
+                      />
+                      <p className="text-xs text-muted-foreground">
+                        Required for WhatsApp delivery. We dispatch private milestone previews and deliverables to this number.
+                      </p>
+                    </div>
+                  )}
+                </div>
 
                 {/* Payment Plan Selector - Only for paid orders above threshold */}
                 {!isGoldenService && !hasOnlyFreeServices && totalOrderValue > 0 && (
@@ -1008,16 +1219,16 @@ export default function Orders() {
                   </p>
                 </div>
 
-                {/* Submit Button */}
+                {/* Submit Button (P0 Security: Block Pay ₹0 & Submit tampering state) */}
                 {!createdOrderId ? (
                   <Button
                     type="submit"
                     size="lg"
-                    disabled={orderMutation.isPending || uploadMutation.isPending || !termsAccepted}
+                    disabled={orderMutation.isPending || uploadMutation.isPending || !termsAccepted || (!selectedPackage && !isGoldenService)}
                     data-testid="button-submit-order"
                     className={`w-full text-lg py-6 ${isGoldenService || hasOnlyFreeServices
                       ? 'bg-gradient-to-r from-yellow-500 to-amber-600 hover:opacity-90'
-                      : !termsAccepted
+                      : !termsAccepted || (!selectedPackage && !isGoldenService)
                         ? 'bg-muted text-muted-foreground cursor-not-allowed'
                         : 'bg-gradient-to-r from-primary to-destructive hover:opacity-90'
                       }`}
@@ -1027,6 +1238,8 @@ export default function Orders() {
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                         Submitting...
                       </>
+                    ) : !selectedPackage && !isGoldenService ? (
+                      "Select a Package to Continue"
                     ) : isGoldenService || hasOnlyFreeServices
                       ? "¨ Submit FREE Order"
                       : paymentPlan === 'full'
@@ -1056,7 +1269,9 @@ export default function Orders() {
                       size="sm"
                       variant="ghost"
                       onClick={() => {
-                        setFormData({ name: "", email: "", service: "", requirements: "", deliveryPreference: "platform" });
+                        setFormData({ name: "", email: "", service: "", requirements: "", deliveryPreference: "platform", whatsappNumber: "" });
+                        setSelectedPackage(null);
+                        setOrderAmount(0);
                         setPaymentPlan('full');
                         setTermsAccepted(false);
                         setFiles([]);
@@ -1122,9 +1337,104 @@ export default function Orders() {
             </Card>
           </div>
 
-          {/* Right Side - Service Detail Preview Panel */}
+          {/* Right Side - Service Detail / Package Preview Panel */}
           <div className="flex flex-col lg:w-5/12 lg:sticky lg:top-24 lg:self-start order-2 lg:order-2 mb-8 lg:mb-0">
-            {selectedServiceDetails ? (
+            {selectedPackage ? (
+              <div className="space-y-6">
+                {/* Package Header Card */}
+                <div className="relative rounded-2xl overflow-hidden border border-primary/30 bg-gradient-to-br from-background via-background to-primary/10 p-8 shadow-2xl shadow-primary/10">
+                  {/* Glow accent */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-destructive to-primary" />
+
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-destructive/20 flex items-center justify-center shrink-0 border border-primary/30">
+                      <Sparkles className="w-7 h-7 text-primary" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <Badge variant="outline" className="text-xs uppercase font-mono tracking-wider border-primary/40 text-primary">
+                          {selectedPackage.sku}
+                        </Badge>
+                        <span className="text-xs text-muted-foreground uppercase">{selectedPackage.track === 'enterprise' ? 'Enterprise Sovereign' : 'SMB LaunchPad'}</span>
+                      </div>
+                      <h3 className="text-xl font-black text-foreground leading-tight mt-1">
+                        {selectedPackage.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mt-1">{selectedPackage.tagline}</p>
+                    </div>
+                  </div>
+
+                  {/* Price & Delivery SLA */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="p-4 rounded-xl bg-background/60 border border-border/30">
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Fixed Contract</p>
+                      <p className="text-xl font-black text-primary">{selectedPackage.priceDisplay}</p>
+                      <p className="text-[10px] text-muted-foreground">Zero hidden fees</p>
+                    </div>
+                    <div className="p-4 rounded-xl bg-background/60 border border-border/30">
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Delivery SLA</p>
+                      <p className="text-sm font-bold text-foreground flex items-center gap-1.5">
+                        <Clock className="w-4 h-4 text-primary shrink-0" />
+                        <span>{selectedPackage.deliverySLA}</span>
+                      </p>
+                      <p className="text-[10px] text-emerald-400">48h Functional Prototype</p>
+                    </div>
+                  </div>
+
+                  {/* Features List */}
+                  <div className="mb-5">
+                    <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3">Architectural Deliverables</p>
+                    <div className="space-y-2.5">
+                      {selectedPackage.features.map((feature, i) => (
+                        <div key={i} className="flex items-start gap-3">
+                          <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
+                          <span className="text-sm text-foreground leading-snug">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Sovereign Ownership Guarantee */}
+                  <div className="p-3.5 rounded-xl bg-primary/10 border border-primary/20 text-xs text-neutral-300 flex items-center gap-2.5">
+                    <ShieldCheck className="w-4 h-4 text-primary shrink-0" />
+                    <span>Full source code, IP rights, and sovereign infrastructure handover on final milestone payment.</span>
+                  </div>
+                </div>
+
+                {/* Trust & Guarantee Card */}
+                <RevealOnScroll delay={100}>
+                  <div className="rounded-2xl border border-border/20 bg-background/40 backdrop-blur-sm p-6 space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
+                        <Shield className="w-5 h-5 text-green-500" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-foreground text-sm">90% Money-Back Guarantee</p>
+                        <p className="text-xs text-muted-foreground">90% refund within 7 days of delivery</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <Zap className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-foreground text-sm">AI + Human Excellence</p>
+                        <p className="text-xs text-muted-foreground">Every deliverable is human-verified</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center">
+                        <CheckCircle2 className="w-5 h-5 text-amber-500" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-foreground text-sm">Secure Payment via Razorpay</p>
+                        <p className="text-xs text-muted-foreground">SSL encrypted · UPI · Cards · Netbanking</p>
+                      </div>
+                    </div>
+                  </div>
+                </RevealOnScroll>
+              </div>
+            ) : selectedServiceDetails ? (
               <div className="space-y-6">
                 {/* Service Header Card */}
                 <div className="relative rounded-2xl overflow-hidden border border-primary/20 bg-gradient-to-br from-background via-background to-primary/5 p-8 shadow-2xl shadow-primary/5">

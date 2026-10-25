@@ -754,7 +754,8 @@
 
 /* Mobile ChatWidget FAB offset when cookie consent banner is visible (<768px only) */
 @media (max-width: 767px) {
-  body.has-cookie-banner [data-testid="chat-widget-fab"] {
-    bottom: 74px !important;
+  body.has-cookie-banner [data-testid="chat-widget-fab"],
+  body.has-cookie-banner [data-testid="button-whatsapp-float"] {
+    bottom: calc(88px + env(safe-area-inset-bottom, 0px)) !important;
   }
 }

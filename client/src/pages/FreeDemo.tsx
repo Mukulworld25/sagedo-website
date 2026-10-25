@@ -26,6 +26,7 @@ export default function FreeDemo() {
     const [businessName, setBusinessName] = useState('');
     const [city, setCity] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
+    const [email, setEmail] = useState('');
     const [website, setWebsite] = useState('');
     const [interests, setInterests] = useState<string[]>([]);
     const [note, setNote] = useState('');
@@ -85,6 +86,14 @@ export default function FreeDemo() {
             return;
         }
 
+        // Phone number format validation (valid 10-15 digit Indian or international number)
+        const phoneRegex = /^[+]?[0-9\s-]{10,15}$/;
+        const cleanedPhone = whatsapp.replace(/[\s-]/g, '');
+        if (!phoneRegex.test(whatsapp.trim()) || cleanedPhone.replace(/\+/g, '').length < 10) {
+            setErrorMessage('Please enter a valid 10-digit WhatsApp phone number.');
+            return;
+        }
+
         if (!consent) {
             setErrorMessage('Please accept the WhatsApp contact consent to proceed.');
             return;
@@ -97,6 +106,7 @@ export default function FreeDemo() {
             business_name: businessName.trim(),
             city: city.trim(),
             whatsapp: whatsapp.trim(),
+            email: email.trim() || undefined,
             website: website.trim() || undefined,
             interests,
             note: note.trim() || undefined,
@@ -172,10 +182,20 @@ export default function FreeDemo() {
                     )}
 
                     {/* Headline and Subline */}
-                    <div className="text-center max-w-3xl mx-auto mb-12">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 text-xs font-semibold mb-4">
-                            <Sparkles className="w-3.5 h-3.5 text-rose-500" />
-                            <span>Zero Cost • No Commitment</span>
+                    <div className="text-center max-w-3xl mx-auto mb-10">
+                        <div className="flex flex-wrap items-center justify-center gap-2.5 mb-4">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 text-xs font-semibold">
+                                <Sparkles className="w-3.5 h-3.5 text-rose-500" />
+                                <span>Zero Cost • No Commitment</span>
+                            </div>
+                            <a
+                                href="https://www.trustpilot.com/review/sagedo.in"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold hover:bg-emerald-500/20 transition-colors"
+                            >
+                                <span>★ 4.0/5 on Trustpilot (5 Reviews)</span>
+                            </a>
                         </div>
                         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black font-outfit tracking-tight leading-tight text-white mb-5">
                             See your business the way{' '}
@@ -185,9 +205,19 @@ export default function FreeDemo() {
                             <br />
                             Free preview in 24 hours.
                         </h1>
-                        <p className="text-base sm:text-lg text-zinc-400 leading-relaxed max-w-2xl mx-auto">
+                        <p className="text-base sm:text-lg text-zinc-400 leading-relaxed max-w-2xl mx-auto mb-6">
                             Tell us about your business. We'll send a concept homepage, a Google profile draft and a snapshot of how AI could describe you. No payment. No obligation.
                         </p>
+
+                        {/* Unified Delivery Timelines */}
+                        <div className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-medium py-2 px-4 rounded-full bg-zinc-900/90 border border-zinc-800 text-zinc-300 shadow-inner">
+                            <span className="text-zinc-400 font-semibold">Contractual Timelines:</span>
+                            <span className="text-rose-400 font-bold">24-Hour Preview</span>
+                            <span className="text-zinc-600">•</span>
+                            <span className="text-zinc-200">3–7 Days Websites</span>
+                            <span className="text-zinc-600">•</span>
+                            <span className="text-zinc-200">15–30 Days CRMs</span>
+                        </div>
                     </div>
 
                     {/* Feature value cards */}
@@ -315,6 +345,20 @@ export default function FreeDemo() {
                             </div>
 
                             <div className="space-y-2">
+                                <label htmlFor="email" className="text-sm font-medium text-zinc-300">
+                                    Current Email <span className="text-zinc-500 text-xs">(optional)</span>
+                                </label>
+                                <Input
+                                    id="email"
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="rahul@example.com"
+                                    className="bg-zinc-900 border-zinc-700 text-white placeholder:text-zinc-600 focus-visible:ring-rose-500 h-11"
+                                />
+                            </div>
+
+                            <div className="space-y-2">
                                 <label htmlFor="website" className="text-sm font-medium text-zinc-300">
                                     Current Website <span className="text-zinc-500 text-xs">(optional)</span>
                                 </label>
@@ -413,17 +457,26 @@ export default function FreeDemo() {
                         </form>
                     </div>
 
-                    <div className="flex items-center justify-center gap-4 text-xs text-zinc-500 mt-8">
+                    <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-zinc-500 mt-8 text-center">
                         <div className="flex items-center gap-1.5">
                             <Shield className="w-3.5 h-3.5 text-zinc-400" />
                             <span>100% Confidential</span>
                         </div>
-                        <span>•</span>
+                        <span className="text-zinc-700">•</span>
                         <div className="flex items-center gap-1.5">
                             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
                             <span>24-Hour WhatsApp Delivery</span>
                         </div>
-                        <span>•</span>
+                        <span className="text-zinc-700">•</span>
+                        <a 
+                            href="https://www.trustpilot.com/review/sagedo.in" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors"
+                        >
+                            <span>★ 4.0/5 on Trustpilot (5 Reviews)</span>
+                        </a>
+                        <span className="text-zinc-700">•</span>
                         <div>
                             <span>No Credit Card Required</span>
                         </div>

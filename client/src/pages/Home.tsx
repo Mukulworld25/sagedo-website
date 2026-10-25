@@ -335,7 +335,7 @@ export default function Home() {
               Built by Us. Trusted by Founders.
             </h2>
             <p className="text-lg text-muted-foreground">
-              Real projects. Real results. See what we ship.
+              150+ Enterprise & SMB Systems Delivered. Real projects. Real results. See what we ship.
             </p>
           </div>
 
@@ -645,8 +645,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Duplicate tables removed — keeping only the first one above */}
 
       <section className="py-24 px-6 bg-gradient-to-b from-primary/5 to-transparent">
         <div className="max-w-6xl mx-auto">

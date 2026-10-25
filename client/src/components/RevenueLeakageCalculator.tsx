@@ -23,15 +23,22 @@ export default function RevenueLeakageCalculator() {
   }[responseTime];
 
   // Calculations in INR
-  const lostDealsPerMonth = Math.max(1, Math.round(monthlyLeads * baseConversionRate * responseLagMultiplier));
+  const lostDealsPerMonth = monthlyLeads > 0 ? Math.max(1, Math.round(monthlyLeads * baseConversionRate * responseLagMultiplier)) : 0;
   const monthlyLeakedSalesINR = lostDealsPerMonth * dealValueINR;
+  const annualLeakedSalesINR = monthlyLeakedSalesINR * 12;
   
   // SaaS per-seat tax: ~₹1,500/seat/month on traditional CRM
   const monthlySeatTaxINR = teamSeats * 1500;
+  const annualSeatTaxINR = monthlySeatTaxINR * 12;
   
   const totalMonthlyLeakageINR = monthlyLeakedSalesINR + monthlySeatTaxINR;
   const totalAnnualLeakageINR = totalMonthlyLeakageINR * 12;
-  const recoverableAnnualINR = Math.round(totalAnnualLeakageINR * 0.65);
+
+  // Separated recovery: 65% on lead decay recovery + 100% on SaaS seat tax elimination
+  const recoverableLeadDecayAnnualINR = Math.round(annualLeakedSalesINR * 0.65);
+  const recoverableSeatTaxAnnualINR = Math.round(annualSeatTaxINR * 1.0);
+  const recoverableAnnualINR = recoverableLeadDecayAnnualINR + recoverableSeatTaxAnnualINR;
+
 
   return (
     <section className="py-24 px-6 border-t border-border/30 bg-gradient-to-b from-neutral-950 via-neutral-900/60 to-background relative overflow-hidden">
@@ -62,13 +69,29 @@ export default function RevenueLeakageCalculator() {
               
               {/* Slider 1: Monthly Inbound Leads */}
               <div>
-                <div className="flex justify-between items-center mb-3">
+                <div className="flex justify-between items-center mb-3 gap-2">
                   <label htmlFor="leads-slider" className="text-sm font-bold text-foreground">
                     Monthly Inbound Leads
                   </label>
-                  <span className="text-lg font-black text-primary bg-primary/10 px-3 py-1 rounded-lg">
-                    {monthlyLeads.toLocaleString()} leads / mo
-                  </span>
+                  <div className="flex items-center gap-1.5 bg-primary/10 px-3 py-1 rounded-lg border border-primary/20">
+                    <input
+                      id="leads-input"
+                      aria-label="Monthly Inbound Leads"
+                      type="number"
+                      min="1"
+                      max="10000"
+                      value={monthlyLeads === 0 ? '' : monthlyLeads}
+                      onChange={(e) => {
+                        const val = parseInt(e.target.value, 10);
+                        setMonthlyLeads(isNaN(val) ? 0 : Math.max(0, Math.min(10000, val)));
+                      }}
+                      onBlur={() => {
+                        if (!monthlyLeads || monthlyLeads < 1) setMonthlyLeads(25);
+                      }}
+                      className="w-20 bg-transparent text-right font-black text-primary text-base focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    />
+                    <span className="text-xs font-semibold text-primary/80 whitespace-nowrap">leads / mo</span>
+                  </div>
                 </div>
                 <input
                   id="leads-slider"
@@ -76,7 +99,7 @@ export default function RevenueLeakageCalculator() {
                   min="25"
                   max="1500"
                   step="25"
-                  value={monthlyLeads}
+                  value={Math.min(1500, Math.max(25, monthlyLeads))}
                   onChange={(e) => setMonthlyLeads(Number(e.target.value))}
                   className="calculator-slider w-full h-11 md:h-2 bg-transparent md:bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-primary"
                 />
@@ -89,13 +112,30 @@ export default function RevenueLeakageCalculator() {
 
               {/* Slider 2: Average Deal Size */}
               <div>
-                <div className="flex justify-between items-center mb-3">
+                <div className="flex justify-between items-center mb-3 gap-2">
                   <label htmlFor="deal-slider" className="text-sm font-bold text-foreground">
                     Average Deal Value / Contract Size
                   </label>
-                  <span className="text-lg font-black text-primary bg-primary/10 px-3 py-1 rounded-lg">
-                    {formatAmount(dealValueINR)}
-                  </span>
+                  <div className="flex items-center gap-1.5 bg-primary/10 px-3 py-1 rounded-lg border border-primary/20">
+                    <span className="text-sm font-bold text-primary/80">{currency === 'INR' ? '₹' : '$'}</span>
+                    <input
+                      id="deal-input"
+                      aria-label="Average Deal Value"
+                      type="number"
+                      min="1000"
+                      max="10000000"
+                      step="1000"
+                      value={dealValueINR === 0 ? '' : dealValueINR}
+                      onChange={(e) => {
+                        const val = parseInt(e.target.value, 10);
+                        setDealValueINR(isNaN(val) ? 0 : Math.max(0, Math.min(10000000, val)));
+                      }}
+                      onBlur={() => {
+                        if (!dealValueINR || dealValueINR < 1000) setDealValueINR(10000);
+                      }}
+                      className="w-28 bg-transparent text-right font-black text-primary text-base focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    />
+                  </div>
                 </div>
                 <input
                   id="deal-slider"
@@ -103,7 +143,7 @@ export default function RevenueLeakageCalculator() {
                   min="10000"
                   max="350000"
                   step="5000"
-                  value={dealValueINR}
+                  value={Math.min(350000, Math.max(10000, dealValueINR))}
                   onChange={(e) => setDealValueINR(Number(e.target.value))}
                   className="calculator-slider w-full h-11 md:h-2 bg-transparent md:bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-primary"
                 />
@@ -144,13 +184,30 @@ export default function RevenueLeakageCalculator() {
 
               {/* Slider 3: Sales Reps / Team Seats */}
               <div>
-                <div className="flex justify-between items-center mb-3">
+                <div className="flex justify-between items-center mb-3 gap-2">
                   <label htmlFor="team-slider" className="text-sm font-bold text-foreground">
                     Sales Team Size (CRM Seats)
                   </label>
-                  <span className="text-lg font-black text-foreground bg-neutral-800 px-3 py-1 rounded-lg">
-                    {teamSeats} users
-                  </span>
+                  <div className="flex items-center gap-1.5 bg-neutral-800 px-3 py-1 rounded-lg border border-neutral-700">
+                    <input
+                      id="team-input"
+                      aria-label="Sales Team Size"
+                      type="number"
+                      min="1"
+                      max="500"
+                      step="1"
+                      value={teamSeats === 0 ? '' : teamSeats}
+                      onChange={(e) => {
+                        const val = parseInt(e.target.value, 10);
+                        setTeamSeats(isNaN(val) ? 0 : Math.max(0, Math.min(500, val)));
+                      }}
+                      onBlur={() => {
+                        if (!teamSeats || teamSeats < 1) setTeamSeats(1);
+                      }}
+                      className="w-16 bg-transparent text-right font-black text-foreground text-base focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    />
+                    <span className="text-xs font-semibold text-muted-foreground whitespace-nowrap">users</span>
+                  </div>
                 </div>
                 <input
                   id="team-slider"
@@ -158,7 +215,7 @@ export default function RevenueLeakageCalculator() {
                   min="2"
                   max="50"
                   step="1"
-                  value={teamSeats}
+                  value={Math.min(50, Math.max(2, teamSeats))}
                   onChange={(e) => setTeamSeats(Number(e.target.value))}
                   className="calculator-slider w-full h-11 md:h-2 bg-transparent md:bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-primary"
                 />
@@ -214,6 +271,9 @@ export default function RevenueLeakageCalculator() {
                 </div>
                 <div className="text-2xl font-black text-green-400">
                   {formatAmount(recoverableAnnualINR)} <span className="text-xs text-green-500 font-normal">/ year</span>
+                </div>
+                <div className="text-[11px] text-green-400/90 font-medium mt-1">
+                  65% lead decay recovery ({formatAmount(recoverableLeadDecayAnnualINR)}) + 100% seat tax elimination ({formatAmount(recoverableSeatTaxAnnualINR)})
                 </div>
                 <p className="text-[11px] text-neutral-300 mt-1.5 leading-relaxed">
                   Sub-60s WhatsApp automated qualification + Sovereign CRM (Zero Per-Seat License Fees) stops lead drop-off immediately.

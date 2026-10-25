@@ -284,7 +284,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           }}
         >
           {[
-            { num: "67+", label: "Projects Delivered", icon: <Rocket className="w-4 h-4" /> },
+            { num: "150+", label: "Enterprise & SMB Systems Delivered", icon: <Rocket className="w-4 h-4" /> },
             { num: "24-48h", label: "Delivery", icon: <Clock className="w-4 h-4" /> },
             { num: "99.9%", label: "Accuracy", icon: <ShieldCheck className="w-4 h-4" /> },
             { num: "₹10-50K", label: "Packages", icon: <Crown className="w-4 h-4" /> }

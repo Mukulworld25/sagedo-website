@@ -1,0 +1,94 @@
+# SAGEDO — India's First AI + Human Hybrid Execution Team
+> India's First Sovereign Revenue & AI Execution Partner
+> Speed of AI. Precision of Humans.
+> Production digital infrastructure, custom CRMs, web apps, and automated workflows delivered with aerospace engineering rigor.
+
+SAGEDO (https://sagedo.in) bridges the execution gap for Indian SMBs, high-growth startups, and sovereign enterprises. We combine rapid AI-native workflows with rigorous human engineering verification to build conversion-engineered websites, custom CRMs without recurring per-seat software taxes, automated WhatsApp sales gateways, and ERP-integrated enterprise systems.
+
+## Core Guarantees & Service Level Agreements (SLAs)
+- **48-Hour Functional Prototype Guarantee**: Every engagement receives an interactive, functional prototype within 48 hours of onboarding. Clients verify live UI/UX and workflows before full production deployment.
+- **Phased Milestone Production Timelines**:
+  - Starter Launch & Digital Presence: 7–14 calendar days to production launch.
+  - Sovereign Revenue Engine™: 28 calendar days with 10-gate QA certification.
+  - Enterprise Infrastructure: 45–60 calendar days with custom milestone stages.
+- **30-Point Human Engineering Verification Warranty**: Zero raw, unvetted AI code is delivered to production. Every deliverable undergoes a proprietary 30-point aerospace-grade engineering verification audit covering mobile viewport responsiveness (down to 360px), zero client-side price tampering vulnerabilities, strict MIME/file upload validation, cross-browser performance (sub-1.2s LCP), and security hardening. Backed by a 7-day post-handover warranty for zero-cost defect resolution.
+- **Milestone-Gated 90% Money-Back Guarantee**: All engagements operate on transparent, milestone-gated deliverables. If SAGE DO fails to deliver an agreed milestone or verifiable specifications cannot be satisfied following revision sprints, the client receives a 90% refund of the milestone fee (the remaining 10% strictly covers hard non-recoverable third-party infrastructure and cloud provisioning costs).
+
+## Track 1: SMB LaunchPad (One-Time Builds)
+Bespoke digital foundation packages engineered for Indian SMBs, local businesses, and modern founders seeking fast go-to-market with zero recurring agency bloat.
+
+- **Starter Launch — ₹15,000 (SKU-SMB-15K)**:
+  - Deliverables: 5-page high-converting mobile web storefront (sub-1.2s LCP), complete logo & brand identity kit, Google Business Profile setup + local 3-pack SEO basics, professional business email & domain configuration, direct WhatsApp speed-to-lead routing webhook.
+  - Delivery: 48-Hour Functional Prototype Guarantee | 7 calendar days to production launch.
+
+- **Full Launch — ₹35,000 (SKU-SMB-35K) [Most Popular for SMBs]**:
+  - Deliverables: 10+ page conversion-engineered architecture with blog, custom lightweight CRM with automated WhatsApp sales bot, Google Business Profile with full local AEO/GEO optimization, social media setup with 30-day launch content assets, dynamic quote calculator, and automated lead alerts.
+  - Delivery: 48-Hour Functional Prototype Guarantee | 10–12 calendar days to production launch.
+
+- **VIP / Scale Launch — ₹95,000 (SKU-SMB-95K)**:
+  - Deliverables: Cross-platform native mobile application (Android/iOS) + web app, unlimited seats custom CRM pipeline, multi-agent autonomous operational workflows, dedicated growth engineer during launch, and custom admin dashboard with real-time sales and lead analytics.
+  - Delivery: 48-Hour Functional Prototype Guarantee | 15 calendar days to production launch.
+
+## Track 2: Enterprise Sovereign Suites (Sovereign Infrastructure)
+Bespoke enterprise-grade systems designed to eliminate recurring per-seat SaaS taxes, provide full source code sovereignty, and bridge legacy operations into autonomous digital pipelines.
+
+- **Digital Presence Engine — ₹45,000 (SKU-ENT-45K)**:
+  - Scope: Inbound lead capture & sovereign WhatsApp gateway.
+  - Deliverables: Custom mobile web storefront (sub-1.2s LCP), WhatsApp Cloud API qualification webhook, interactive dynamic revenue calculator/quoter, automated founder WhatsApp alerts, SSL + edge CDN acceleration setup.
+  - Pricing & Terms: ₹45,000 (available in 3 milestone installments from ₹15,000/mo). Optional Annual Maintenance Contract (AMC): ₹15,000/mo.
+  - Delivery: 48-Hour Functional Prototype Guarantee | 14 calendar days to production launch.
+
+- **Sovereign Revenue Engine™ — ₹1,50,000 (SKU-ENT-150K) [Flagship Enterprise Tier]**:
+  - Scope: Custom CRM & zero-seat software tax infrastructure.
+  - Deliverables: Full custom CRM architecture (zero per-seat fees, unlimited seats, zero vendor lock-in), automated WhatsApp lead routing & counselor tracking, native Tally Prime / ERP bridge integration, real-time margin & sales velocity dashboard, and complete source code and database ownership handover.
+  - Pricing & Terms: ₹1,50,000 (available in 3 milestone installments from ₹50,000/mo). Optional Annual Maintenance Contract (AMC): ₹25,000/mo.
+  - Delivery: 48-Hour Functional Prototype Guarantee | 28 calendar days (10-gate QA certified).
+
+- **Enterprise Infrastructure — Starting at ₹3,50,000 (SKU-ENT-350K)**:
+  - Scope: Sovereign enterprise automation & ERP bridge.
+  - Deliverables: Deep bi-directional Tally Prime & accounting ledger sync, multi-branch dispatch & quotation workflows, custom AI OCR document processing pipeline, sovereign VPS deployment (zero data retention by third parties), and priority 2-hour P1 dedicated server SLA.
+  - Pricing & Terms: Starting at ₹3,50,000 (custom milestone installment schedule). Optional Annual Maintenance Contract (AMC): ₹35,000/mo.
+  - Delivery: 48-Hour Functional Prototype Guarantee | 45–60 calendar days to production deployment.
+
+## Specialized Execution Engines & Add-ons
+- SAGEDO Revenue Infrastructure Blueprint: ₹25,000 (Comprehensive revenue infrastructure audit, 100% credited toward any delivery tier commenced within 90 days, 5-day delivery).
+- Mobile App Development (iOS + Android): ₹75,000 – ₹1,50,000
+- AI Agent Development & Workflow Automation: ₹45,000
+- AI Voice Receptionist & Outbound Agent: ₹35,000
+- High-ROI Paid Ads Engine: ₹40,000/mo
+- Organic Content & Authority Engine: ₹30,000/mo
+- Programmatic & Technical SEO Retainer: ₹25,000/mo
+- Website Maintenance & Monitoring: ₹1,499/mo – ₹7,999/mo
+
+## Smart Combos
+- Brand Starter Combo: ₹2,999 – ₹3,499 (Logo, brand guidelines, typography kit, social templates)
+- Google Presence Combo: ₹16,999 – ₹19,999 (GBP verification, 3-pack optimization, review cards)
+- Legal Foundation Combo: ₹3,999 – ₹5,999 (MSME Udyam, GST filing, compliance checklist)
+- Sales Machine Combo: ₹12,999 – ₹14,999 (Landing page + WhatsApp sales bot integration)
+
+## Entity & Governance Details
+- **Legal Entity**: SAGE DO (Registered MSME under Ministry of Micro, Small and Medium Enterprises, Government of India)
+- **MSME (Udyam) Registration Number**: UDYAM-HP-04-0042175
+- **Founder & CEO**: Mukul Dhiman (Ex-Aerospace Systems Engineer with background in high-precision aerospace manufacturing, autonomous systems, and scalable full-stack software architecture)
+- **Registered Office**: Himachal Pradesh, India
+- **Operating Office**: SCO-38, Mohali City Centre, Aerocity, Mohali, Punjab 140306, India
+- **GSTIN**: 02XXXXX0000X1Z5 (Provisional / Registration Applied)
+- **Official Website**: https://sagedo.in
+- **Direct Contact**:
+  - WhatsApp: +91 6284925684 (https://wa.me/916284925684)
+  - Primary Inbound Email: hello@sagedo.in
+
+## Key Links & Resources
+- Website Home: https://sagedo.in
+- Two-Track Services & Pricing: https://sagedo.in/services
+- 24-Hour Free Prototype / Preview Funnel: https://sagedo.in/free-demo
+- Orders & Checkout Portal: https://sagedo.in/orders
+- Knowledge Base & MSME Case Studies: https://sagedo.in/blog
+- About & Governance: https://sagedo.in/about
+- About the Founder: https://sagedo.in/about-founder
+- Terms of Service (30-Point Warranty): https://sagedo.in/terms-of-service
+- Refund Policy (Milestone-Gated 90% SLA): https://sagedo.in/refund-policy
+- Privacy Policy: https://sagedo.in/privacy
+- Machine-Readable Context: https://sagedo.in/llms.txt
+- Comprehensive LLM Documentation: https://sagedo.in/llm.txt
+- XML Sitemap: https://sagedo.in/sitemap.xml

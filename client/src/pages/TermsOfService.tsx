@@ -9,7 +9,7 @@ export default function TermsOfService() {
                 <Card className="glass p-8 space-y-6">
                     <section>
                         <p className="text-sm text-muted-foreground mb-4">
-                            Last Updated: November 22, 2025
+                            Last Updated: October 25, 2026
                         </p>
                         <p className="text-muted-foreground">
                             Welcome to SAGE DO. By accessing or using our website and services, you agree to be bound by these Terms of Service. Please read them carefully.
@@ -107,27 +107,30 @@ export default function TermsOfService() {
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-foreground mb-3">9. Post-Launch Technical Guarantee 🛡️</h2>
-                        <div className="space-y-3 text-muted-foreground bg-emerald-500/10 p-4 rounded-lg border border-emerald-500/30">
+                        <h2 className="text-2xl font-bold text-foreground mb-3">9. 30-Point Human Engineering Verification Warranty & Technical Guarantee 🛡️</h2>
+                        <div className="space-y-3 text-muted-foreground bg-emerald-500/10 p-5 rounded-xl border border-emerald-500/30">
                             <p>
-                                SAGE DO guarantees the <strong className="text-foreground">technical functionality</strong> of all deliverables for <strong className="text-foreground">7 calendar days</strong> following handover ("Guarantee Period"). Any verifiable bugs, broken links, or non-functional features reported during this window will be fixed at no additional cost.
+                                In accordance with our mission-critical engineering heritage, <strong className="text-foreground">SAGE DO guarantees that every deliverable undergoes our proprietary 30-Point Human Engineering Verification Inspection</strong> prior to production handover. No automated AI output is shipped without rigorous human code audit, mobile viewport qualification (down to 360px), API security verification, and performance stress-testing.
                             </p>
-                            <p><strong className="text-foreground">This guarantee covers:</strong></p>
+                            <p>
+                                Deliverables are backed by a <strong className="text-foreground">7 calendar-day technical warranty</strong> following handover ("Warranty Period"). Any verifiable functional defect, script error, or discrepancy against agreed specifications reported during this window will be remediated at zero additional cost.
+                            </p>
+                            <p><strong className="text-foreground">This warranty covers:</strong></p>
                             <ul className="list-disc pl-6 space-y-1">
-                                <li>Code that crashes or produces errors</li>
-                                <li>Pages that fail to load correctly</li>
-                                <li>Forms, buttons, and interactive elements that don't function as specified</li>
-                                <li>Features that do not work as described in the agreed project scope</li>
+                                <li>Code that crashes, has memory leaks, or produces runtime/build errors</li>
+                                <li>Pages or interactive components that fail to load or render properly across viewports</li>
+                                <li>Forms, webhooks, buttons, and API integrations that do not function as specified</li>
+                                <li>Discrepancies against the agreed project scope and technical specifications</li>
                             </ul>
-                            <p><strong className="text-foreground">This guarantee does NOT cover:</strong></p>
+                            <p><strong className="text-foreground">This warranty does NOT cover:</strong></p>
                             <ul className="list-disc pl-6 space-y-1">
-                                <li>Commercial outcomes such as revenue, leads, or traffic</li>
-                                <li>Subjective design preferences after project sign-off</li>
-                                <li>Issues caused by client modifications to the delivered code</li>
-                                <li>Third-party service outages (hosting providers, APIs, etc.)</li>
+                                <li>Commercial outcomes such as specific revenue targets, lead counts, or third-party search rank volatility</li>
+                                <li>Subjective design preference shifts requested after milestone sign-off</li>
+                                <li>Issues caused by unauthorized client or third-party modifications to delivered code</li>
+                                <li>Third-party service outages (external cloud hosting, Meta/WhatsApp API downtime, etc.)</li>
                             </ul>
-                            <p className="font-semibold text-emerald-600 dark:text-emerald-400">
-                                🛡️ Beyond the 7-day Guarantee Period, ongoing support and modifications are available under our maintenance retainer plans.
+                            <p className="font-semibold text-emerald-600 dark:text-emerald-400 text-sm">
+                                🛡️ Verified Human Precision: Aerospace rigor applied to modern digital infrastructure. Beyond the 7-day warranty, ongoing maintenance is available via our retainer plans.
                             </p>
                         </div>
                     </section>
@@ -139,35 +142,35 @@ export default function TermsOfService() {
                             <ul className="list-disc pl-6 space-y-1">
                                 <li>Uninterrupted or error-free service</li>
                                 <li>Specific results or outcomes</li>
-                                <li>Accuracy of AI-generated content (see Section 8 above)</li>
+                                <li>Accuracy of raw third-party AI-generated content (see Section 8 above)</li>
                             </ul>
                             <p className="mt-3">Services are provided "as is" and "as available."</p>
                         </div>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-foreground mb-3">9. Limitation of Liability</h2>
+                        <h2 className="text-2xl font-bold text-foreground mb-3">11. Limitation of Liability</h2>
                         <p className="text-muted-foreground">
                             SAGE DO shall not be liable for any indirect, incidental, special, or consequential damages arising from the use or inability to use our services. Our total liability shall not exceed the amount paid by you for the specific service.
                         </p>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-foreground mb-3">10. Service Modifications</h2>
+                        <h2 className="text-2xl font-bold text-foreground mb-3">12. Service Modifications</h2>
                         <p className="text-muted-foreground">
                             We reserve the right to modify, suspend, or discontinue any service with or without notice. We will not be liable for any modification, suspension, or discontinuation.
                         </p>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-foreground mb-3">11. Account Termination</h2>
+                        <h2 className="text-2xl font-bold text-foreground mb-3">13. Account Termination</h2>
                         <p className="text-muted-foreground">
                             We may terminate or suspend your account immediately, without prior notice, for violation of these Terms. You may delete your account at any time by contacting us.
                         </p>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-foreground mb-3">12. Governing Law and Dispute Resolution</h2>
+                        <h2 className="text-2xl font-bold text-foreground mb-3">14. Governing Law and Dispute Resolution</h2>
                         <div className="space-y-3 text-muted-foreground">
                             <p><strong>Governing Law:</strong> These Terms are governed by the laws of India.</p>
                             <p><strong>Jurisdiction:</strong> Any disputes shall be subject to the exclusive jurisdiction of the courts of India.</p>
@@ -176,14 +179,14 @@ export default function TermsOfService() {
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-foreground mb-3">13. Changes to Terms</h2>
+                        <h2 className="text-2xl font-bold text-foreground mb-3">15. Changes to Terms</h2>
                         <p className="text-muted-foreground">
                             We reserve the right to update these Terms at any time. Changes will be effective immediately upon posting. Continued use of services constitutes acceptance of modified Terms.
                         </p>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-foreground mb-3">14. Contact Information</h2>
+                        <h2 className="text-2xl font-bold text-foreground mb-3">16. Contact Information</h2>
                         <div className="text-muted-foreground">
                             <p>For questions about these Terms:</p>
                             <ul className="list-none space-y-1 mt-2">

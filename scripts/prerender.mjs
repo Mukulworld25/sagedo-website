@@ -808,6 +808,19 @@ function prerender() {
       /<meta property="og:url".*?\/>/,
       `<meta property="og:url" content="${canonicalUrl}" />`
     );
+    // 4b. On subroutes, remove homepage FAQPage from @graph to prevent duplicate FAQPage schemas
+    if (route.path !== '/') {
+      html = html.replace(/<script\s+type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/, (match, jsonContent) => {
+        try {
+          const parsed = JSON.parse(jsonContent.trim());
+          if (parsed['@graph'] && Array.isArray(parsed['@graph'])) {
+            parsed['@graph'] = parsed['@graph'].filter(entity => entity['@type'] !== 'FAQPage');
+            return `<script type="application/ld+json">\n${JSON.stringify(parsed, null, 2)}\n</script>`;
+          }
+        } catch (e) {}
+        return match;
+      });
+    }
 
     // 5. Inject Article JSON-LD schema for blog posts
     //    This gives Google rich snippet data (author, date, reading time)
