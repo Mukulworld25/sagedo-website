@@ -30,11 +30,11 @@ const routes = [
   // ── HOMEPAGE ─────────────────────────────────────────────────────────
   {
     path: '/',
-    title: "SAGEDO — India's First AI + Human Hybrid Execution Team",
-    description: "SAGEDO combines AI speed with human precision to deliver agency-quality websites, apps, branding, and automation in 24-48 hours at freelancer prices. Based in Chandigarh, serving all India.",
+    title: "SAGE DO | Speed of AI. Precision of Humans. Custom Websites, CRMs & AI Automations",
+    description: "SAGE DO hand-codes 0.8s websites, 24/7 WhatsApp auto-qualifiers, and zero-seat custom CRMs. Fixed milestone pricing from ₹15,000 with 100% code ownership. Mohali, Chandigarh, India.",
     content: `
       <h1>SAGE DO — Speed of AI. Precision of Humans.</h1>
-      <p>SAGE DO is India's first AI + Human hybrid execution team. We deliver agency-quality websites, apps, branding, CRM, SEO / GEO / AEO, and business automation — in 24-48 hours at freelancer prices.</p>
+      <p>SAGE DO is a Sovereign AI + Human hybrid execution team. We deliver hand-coded 0.8s websites, custom zero-seat CRMs, WhatsApp RAG bots, and business automation in 24-48 hours with fixed milestone pricing.</p>
       <h2>Why Choose SAGE DO?</h2>
       <p>Every AI needs a human in the loop. We're the best AI generalists in the game. We prompt it right, verify the output, and polish it until it's not just good — it's perfect.</p>
       <h2>Our Top Demand Services</h2>
@@ -55,7 +55,7 @@ const routes = [
         <li>Receive Your Answer — Get a clear, actionable solution sent right back to you.</li>
       </ol>
       <h2>Meet the Founder — Mukul Dhiman</h2>
-      <p>Ex-Aerospace systems engineer turned AI builder. Mukul started SAGE DO because Indian businesses were getting ripped off by agencies charging ₹5 Lakhs for what AI can do in 48 hours. He personally oversees every project.</p>
+      <p>Systems architect and founder of SAGE DO. With 150+ custom systems delivered across India, Mukul founded SAGE DO around an uncompromising zero-defect engineering standard. He personally oversees every project.</p>
       <h2>Testimonials</h2>
       <p>"Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time." — Priya Singh, Verified Trustpilot Review</p>
       <p>"Nice service, very good behaviour. What a cool and knowledgeable experience." — Akshit Kashyap, Verified Trustpilot Review</p>
@@ -104,14 +104,14 @@ const routes = [
   // ── ABOUT ───────────────────────────────────────────────────────────
   {
     path: '/about',
-    title: "About SAGEDO — India's First AI + Human Hybrid Execution Team",
-    description: "Learn about SAGEDO, founded by Mukul Dhiman. Combining 5 years of aerospace precision engineering with modern AI speed to deliver 30+ digital services across India. Based in Chandigarh.",
+    title: "About SAGE DO — Speed of AI. Precision of Humans.",
+    description: "Learn about SAGE DO, founded by Mukul Dhiman. Delivering hand-coded 0.8s websites, WhatsApp RAG bots, and custom zero-seat CRMs with 150+ systems delivered across India. Based in Mohali (Chandigarh Tricity).",
     content: `
       <h1>About SAGE DO</h1>
-      <p>SAGE DO is India's first AI + Human hybrid service platform. We combine the speed and scale of artificial intelligence with the precision and creativity of human experts to deliver professional-grade digital services — from websites and apps to content creation, marketing, and business automation.</p>
+      <p>SAGE DO is a Sovereign AI + Human hybrid execution partner. We combine the speed of artificial intelligence with the precision of senior systems architects to deliver production-grade digital systems.</p>
       <p>With 30+ services across Startup Launch, Marketing, Design, and Engineering categories, we serve visionary founders, high-growth startups, and elite enterprises. Every task is analyzed by AI, verified by humans, and delivered within 24-48 hours.</p>
       <h2>Founder — Mukul Dhiman</h2>
-      <p>Aerospace systems engineer with 5 years in precision manufacturing and high-tolerance systems, Operations Manager (25-person teams, 40% efficiency improvement), Full-stack Developer (SaaS, mobile apps, AI automation), AI Engineer (Built 30+ AI-powered services from scratch).</p>
+      <p>Senior systems architect and operations leader with deep experience in precision manufacturing and high-tolerance systems. Led 25-person engineering teams; architected 150+ systems and custom software platforms.</p>
       <h2>Our Vision</h2>
       <p>To democratize access to world-class digital services for every Indian founder, executive, and forward-thinking business — making enterprise-quality work available at startup-friendly prices, delivered at AI speed.</p>
       <h2>Our Mission</h2>
@@ -156,13 +156,13 @@ const routes = [
     content: `
       <h1>Frequently Asked Questions — SAGEDO</h1>
       <h2>What is SAGE DO?</h2>
-      <p>SAGE DO is India's first AI + Human Hybrid Execution Team. We combine AI speed with human precision to deliver agency-quality websites, apps, branding, and automation in 24-48 hours at freelancer prices.</p>
+      <p>SAGE DO is a Sovereign AI + Human Hybrid Execution Team. We combine AI speed with senior human systems engineering to deliver 0.8s websites, zero-seat CRMs, and WhatsApp automations with 100% code ownership.</p>
       <h2>How much does SAGE DO cost?</h2>
       <p>SAGE DO pricing is structured in three tiers: Digital Presence Engine (₹45,000–₹75,000 one-time, AMC ₹15,000/month), Sovereign Revenue Engine™ (₹1,50,000–₹2,50,000 one-time, AMC ₹25,000/month), and Enterprise Infrastructure (starting at ₹3,50,000, AMC ₹35,000/month).</p>
       <h2>How fast does SAGE DO deliver?</h2>
       <p>The Digital Presence Engine is live in 14 days or you receive a full refund. Sovereign Revenue Engine™ goes live in 28 days, 10-gate QA certified. Enterprise Infrastructure timelines are scoped per engagement.</p>
       <h2>Who founded SAGE DO?</h2>
-      <p>Mukul Dhiman, ex-aerospace systems engineer turned AI founder. He personally oversees every project.</p>
+      <p>Mukul Dhiman, systems architect and AI founder. He personally oversees every project.</p>
       <h2>Is SAGE DO available in my city?</h2>
       <p>Yes! SAGE DO serves all of India remotely. Based in Chandigarh, we work with clients across Delhi, Mumbai, Bangalore, Hyderabad, and all other cities via WhatsApp.</p>
       <h2>How much does an AI website cost in India?</h2>
@@ -196,7 +196,7 @@ const routes = [
   {
     path: '/blog',
     title: "SAGEDO Blog — AI Execution Tips for Indian Startups & Founders",
-    description: "Learn how AI + human execution helps Indian startups grow faster. Case studies, pricing guides, SEO tips, and strategies from SAGEDO — India's first AI hybrid execution team.",
+    description: "Learn how AI + human execution helps Indian startups grow faster. Case studies, pricing guides, SEO tips, and strategies from SAGE DO — Sovereign AI + human execution team.",
     content: `
       <h1>SAGEDO Blog — Insights &amp; Case Studies</h1>
       <p>Real stories from the frontlines of AI execution. No fluff. No theory. Just what works for Indian founders.</p>
@@ -332,9 +332,9 @@ const routes = [
   // ── ABOUT FOUNDER ───────────────────────────────────────────────────
   {
     path: '/about-founder',
-    title: "Mukul Dhiman — Founder of SAGEDO | Aerospace Systems Engineer turned AI Founder",
-    description: "Meet Mukul Dhiman, founder of SAGEDO. Aerospace systems engineer with 5 years in precision manufacturing, Operations Manager, Full-stack Developer, AI Systems Engineer.",
-    content: `<h1>Mukul Dhiman — Founder &amp; CEO, SAGE DO</h1><p>Aerospace systems engineer with 5 years in high-tolerance precision manufacturing. Operations Manager who led 25-person engineering teams. Full-stack developer who built 30+ AI-powered services. Founded SAGEDO to bring aerospace-grade execution precision to Indian businesses at startup-friendly prices.</p>`,
+    title: "Mukul Dhiman — Founder of SAGE DO | Systems Architect & AI Execution Partner",
+    description: "Meet Mukul Dhiman, founder of SAGE DO. Systems architect with 150+ digital systems delivered across India, Operations Leader, Full-stack Developer.",
+    content: `<h1>Mukul Dhiman — Founder &amp; CEO, SAGE DO</h1><p>Systems architect and operations leader with deep experience in precision manufacturing and high-tolerance systems. Founded SAGE DO to bring zero-defect execution precision to Indian businesses with fixed milestone pricing and 100% code ownership.</p>`,
   },
 
   // ── LEGAL PAGES ─────────────────────────────────────────────────────
@@ -368,15 +368,15 @@ const routes = [
     path: '/book-call',
     title: "Book a Free Strategy Call — SAGEDO | Talk to the Founder",
     description: "Book a free 30-minute strategy call with Mukul Dhiman, founder of SAGEDO. Discuss your business challenges and get a tailored execution roadmap. No sales pitch.",
-    content: `<h1>Book a Free Strategy Call with the Founder</h1><p>Talk directly to Mukul Dhiman — aerospace systems engineer turned AI founder. Get a brutally honest assessment of where your business stands digitally and exactly what to fix first.</p><h2>What You'll Get</h2><ul><li>5-Point Digital Health Check — Website, SEO, Social, Automation, Lead Capture scored honestly</li><li>Custom Execution Roadmap — Exactly what to build first, how long, and what it costs</li><li>Competitor Analysis — Quick scan of your top 3 competitors</li><li>No-BS Pricing — Transparent quote on the spot</li></ul><p>Book your slot now at sagedo.in/book-call or WhatsApp +91 6284925684</p>`,
+    content: `<h1>Book a Free Strategy Call with the Founder</h1><p>Talk directly to Mukul Dhiman — systems architect and founder of SAGE DO. Get a brutally honest assessment of where your business stands digitally and exactly what to fix first.</p><h2>What You'll Get</h2><ul><li>5-Point Digital Health Check — Website, SEO, Social, Automation, Lead Capture scored honestly</li><li>Custom Execution Roadmap — Exactly what to build first, how long, and what it costs</li><li>Competitor Analysis — Quick scan of your top 3 competitors</li><li>No-BS Pricing — Transparent quote on the spot</li></ul><p>Book your slot now at sagedo.in/book-call or WhatsApp +91 6284925684</p>`,
   },
 
   // ── CAREERS ───────────────────────────────────────────────────────
   {
     path: '/careers',
-    title: "Careers at SAGEDO — Join India's First AI + Human Execution Team",
+    title: "Careers at SAGE DO — Join Our Sovereign AI Execution Team",
     description: "Join SAGE DO and work at the intersection of AI and human execution. Open roles in systems engineering, architecture, copywriting, SEO, and performance marketing. Remote-first, founder-led.",
-    content: `<h1>Careers at SAGE DO — Build the Future of Execution</h1><p>SAGE DO isn't just another agency. We're building India's first AI + Human hybrid execution engine. If you want to ship real work for real businesses — not sit in meetings — this is your place.</p><h2>Open Positions</h2><ul><li>Senior AI Prompt &amp; Systems Engineer — Full-time / Remote</li><li>Full-Stack Systems Architect (React / Node / Python) — Full-time / Remote</li><li>Conversion Copywriter &amp; Brand Strategist — Full-time / Remote</li><li>Technical SEO &amp; Programmatic Growth Specialist — Full-time / Remote</li><li>Growth Operations &amp; Client Delivery Manager — Full-time / Chandigarh</li><li>Performance Marketing Specialist (Google &amp; Meta Ads) — Full-time / Remote</li></ul><h2>Why Join?</h2><ul><li>Founder-led — Work directly with Mukul, no middle management</li><li>Remote-first — Work from anywhere in India</li><li>Real impact — Every project ships, you see your work live within 48 hours</li></ul><p>Apply at sagedo.in/careers or WhatsApp +91 6284925684</p>`,
+    content: `<h1>Careers at SAGE DO — Build the Future of Execution</h1><p>SAGE DO isn't just another agency. We're building a Sovereign AI + Human hybrid execution engine. If you want to ship real work for real businesses — not sit in meetings — this is your place.</p><h2>Open Positions</h2><ul><li>Senior AI Prompt &amp; Systems Engineer — Full-time / Remote</li><li>Full-Stack Systems Architect (React / Node / Python) — Full-time / Remote</li><li>Conversion Copywriter &amp; Brand Strategist — Full-time / Remote</li><li>Technical SEO &amp; Programmatic Growth Specialist — Full-time / Remote</li><li>Growth Operations &amp; Client Delivery Manager — Full-time / Chandigarh</li><li>Performance Marketing Specialist (Google &amp; Meta Ads) — Full-time / Remote</li></ul><h2>Why Join?</h2><ul><li>Founder-led — Work directly with Mukul, no middle management</li><li>Remote-first — Work from anywhere in India</li><li>Real impact — Every project ships, you see your work live within 48 hours</li></ul><p>Apply at sagedo.in/careers or WhatsApp +91 6284925684</p>`,
   },
 
   // ── PILLAR: CUSTOM CRM VS ZOHO (Sept 2026) ──────────────────────────
