@@ -27,8 +27,10 @@ import {
   Sparkles,
   Lock,
   Compass,
-  Check
+  Check,
+  Gift
 } from "lucide-react";
+import { Link } from "wouter";
 import { useState, useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
