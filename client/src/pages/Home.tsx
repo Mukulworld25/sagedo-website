@@ -1,6 +1,4 @@
 // Premium Homepage - Bhindi-style clean design
-// Like a jeweler engraving a diamond ✨
-
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, CheckCircle2, Zap, Star, Gift, ChevronRight, Briefcase, GraduationCap, User, Sparkles, MessageCircle, Phone, ExternalLink, Shield, Clock, Handshake, CreditCard, Globe, Smartphone, Store, AlertOctagon, ShieldCheck } from "lucide-react";
@@ -13,14 +11,19 @@ import VisualConceptStudio from "@/components/VisualConceptStudio";
 import DevToolsCrimeScene from "@/components/DevToolsCrimeScene";
 import SpeedToLeadInfographic from "@/components/SpeedToLeadInfographic";
 import SovereignGuaranteeCard from "@/components/SovereignGuaranteeCard";
-
+import { SlimStickyHeader } from "@/components/SlimStickyHeader";
+import { InteractivePortfolioGallery } from "@/components/InteractivePortfolioGallery";
+import { CaseStudyTeardowns } from "@/components/CaseStudyTeardowns";
+import { TCOAsymmetryTable } from "@/components/TCOAsymmetryTable";
+import { QAChecklistSection } from "@/components/QAChecklistSection";
+import { ProofAndAudioWall } from "@/components/ProofAndAudioWall";
+import { B2BClinicalFAQ } from "@/components/B2BClinicalFAQ";
 const RevenueLeakageCalculator = lazy(() => import("@/components/RevenueLeakageCalculator"));
 
 export default function Home() {
   const { formatAmount } = useCurrency();
   const [activeStep, setActiveStep] = useState(1);
   const [approvedTestimonials, setApprovedTestimonials] = useState<any[]>([]);
-
   React.useEffect(() => {
     fetch('/api/testimonials/approved')
       .then(res => res.json())
@@ -31,20 +34,17 @@ export default function Home() {
       })
       .catch(err => console.error("Error fetching approved testimonials:", err));
   }, []);
-
   const categories = [
     { name: "Business Growth", count: "12", description: "Websites, ads, landing pages & funnels", icon: <Briefcase className="w-6 h-6 text-primary" /> },
     { name: "Startup Launch", count: "6", description: "MVP development, pitches & wireframing", icon: <Zap className="w-6 h-6 text-primary" /> },
     { name: "Executive Branding", count: "8", description: "LinkedIn branding, executive bios & PR", icon: <User className="w-6 h-6 text-primary" /> },
     { name: "AI Automation", count: "6", description: "CRM setup, workflow bots & scraping", icon: <Sparkles className="w-6 h-6 text-primary" /> }
   ];
-
   const steps = [
     { step: 1, title: "Submit Your Problem", description: "Describe your challenge in plain English or Hindi.", demo: "Tell us what you need..." },
     { step: 2, title: "AI Analysis", description: "Our system instantly analyzes and finds the best solution.", demo: "Processing with AI + Human expertise..." },
     { step: 3, title: "Receive Your Answer", description: "Get a clear, actionable solution sent right back to you.", demo: "Your solution is ready! ✅" }
   ];
-
   const testimonials = [
     { name: "Priya Singh", role: "Verified Trustpilot Review ⭐", text: "Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time. It has a clean interface and smooth onboarding. I've had a great experience with Sagedo.", rating: 5 },
     { name: "Akshit Kashyap", role: "Verified Trustpilot Review ⭐", text: "Why AI is important. Everything is fine, nice service, very good behaviour. What a cool and knowledgeable experience to know about AI.", rating: 5 },
@@ -192,6 +192,11 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          SLIM STICKY HEADER (Operational Beacon & WhatsApp Speed-to-Lead)
+      ═══════════════════════════════════════════════════════════════════ */}
+      <SlimStickyHeader />
 
       {/* ═══════════════════════════════════════════════════════════════════
           FOUNDER TRUST BAR (150+ Builds · Direct WhatsApp · SCO-38)
@@ -356,329 +361,26 @@ export default function Home() {
         </RevealOnScroll>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          SELECTED WORK / PORTFOLIO - Trust Builder
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section id="portfolio" className="py-24 px-6 border-t border-border/30 bg-gradient-to-b from-neutral-900/50 to-transparent">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
-              Our Work
-            </p>
-            <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4">
-              Built by Us. Trusted by Founders.
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              150+ Enterprise & SMB Systems Delivered. Real projects. Real results. See what we ship.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Project 1 - SAGE DO Website */}
-            <RevealOnScroll delay={0} className="h-full">
-              <div className="group relative rounded-2xl border border-border/30 bg-background/50 overflow-hidden hover:border-primary/30 transition-all hover:-translate-y-1 h-full flex flex-col justify-between">
-                <div>
-                  <div className="aspect-video bg-gradient-to-br from-red-500/20 to-orange-500/10 flex items-center justify-center p-3 sm:p-4 overflow-hidden">
-                    {/* Browser-chrome mockup frame */}
-                    <div className="w-full h-full rounded-lg border border-red-500/20 bg-zinc-900/80 flex flex-col overflow-hidden shadow-sm">
-                      {/* Top chrome bar */}
-                      <div className="h-6 bg-zinc-900/95 border-b border-red-500/10 px-2.5 flex items-center gap-2 flex-shrink-0">
-                        <div className="flex items-center gap-1.5">
-                          <div className="w-1.5 h-1.5 rounded-full bg-zinc-600/70" />
-                          <div className="w-1.5 h-1.5 rounded-full bg-zinc-600/70" />
-                          <div className="w-1.5 h-1.5 rounded-full bg-zinc-600/70" />
-                        </div>
-                        <div className="flex-1 max-w-[130px] mx-auto h-3.5 rounded bg-zinc-800/80 border border-white/5 flex items-center justify-center px-1.5">
-                          <span className="text-[9px] text-zinc-400 font-mono tracking-tight truncate">sagedo.in</span>
-                        </div>
-                      </div>
-                      {/* Mockup Screen (roughly 16:10, real screenshot) */}
-                      <div className="flex-1 w-full bg-gradient-to-br from-red-950/20 via-zinc-900 to-neutral-950 relative overflow-hidden flex items-center justify-center">
-                        <img
-                          src="/portfolio-sagedo-prod.webp"
-                          alt="sagedo.in SaaS Platform preview"
-                          className="w-full h-full object-cover object-top"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <span className="text-xs font-bold uppercase tracking-wider text-primary">SaaS Platform</span>
-                    <h3 className="text-lg font-bold text-foreground mt-2">SAGE DO — AI Service Platform</h3>
-                    <p className="text-sm text-muted-foreground mt-2">Full-stack AI + Human hybrid platform with 10 specialized execution engines, payment integration, and real-time tracking.</p>
-                  </div>
-                </div>
-                <div className="px-6 pb-6 pt-0">
-                  <a href="https://sagedo.in" target="_blank" rel="noopener noreferrer" className="tap-inline inline-flex items-center gap-1 text-sm font-bold text-primary hover:underline">
-                    View Live <ExternalLink className="w-3 h-3" />
-                  </a>
-                </div>
-              </div>
-            </RevealOnScroll>
-
-            {/* Project 2 - Mobile App */}
-            <RevealOnScroll delay={100} className="h-full">
-              <div className="group relative rounded-2xl border border-border/30 bg-background/50 overflow-hidden hover:border-primary/30 transition-all hover:-translate-y-1 h-full flex flex-col justify-between">
-                <div>
-                  <div className="aspect-video bg-gradient-to-br from-blue-500/20 to-cyan-500/10 flex items-center justify-center p-2.5 sm:p-3 overflow-hidden">
-                    {/* Phone-frame mockup */}
-                    <div className="h-full aspect-[9/19.5] rounded-[16px] border border-blue-400/20 bg-zinc-900/80 p-1 flex flex-col shadow-sm">
-                      {/* Phone notch / camera dot */}
-                      <div className="w-2.5 h-1 bg-zinc-700/70 rounded-full mx-auto my-0.5 flex-shrink-0" />
-                      {/* Phone screen container */}
-                      <div className="rounded-[12px] overflow-hidden flex-1 bg-gradient-to-b from-blue-950/40 via-zinc-900 to-neutral-950 flex items-center justify-center relative">
-                        <img
-                          src="/portfolio-android-app.webp"
-                          alt="SAGE DO Android Mobile App Preview"
-                          className="w-full h-full object-cover object-top"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <span className="text-xs font-bold uppercase tracking-wider text-blue-400">Mobile App</span>
-                    <h3 className="text-lg font-bold text-foreground mt-2">SAGE DO Mobile — Android</h3>
-                    <p className="text-sm text-muted-foreground mt-2">Native Android app with push notifications, AI chat, order tracking, and admin dashboard.</p>
-                  </div>
-                </div>
-                <div className="px-6 pb-6 pt-0">
-                  <span className="inline-flex items-center gap-1 text-sm font-bold text-blue-400">
-                    Available on Android
-                  </span>
-                </div>
-              </div>
-            </RevealOnScroll>
-
-            {/* Project 3 - Client Work */}
-            <RevealOnScroll delay={200} className="h-full">
-              <div className="group relative rounded-2xl border border-border/30 bg-background/50 overflow-hidden hover:border-primary/30 transition-all hover:-translate-y-1 h-full flex flex-col justify-between">
-              <div className="aspect-video bg-gradient-to-br from-emerald-500/20 to-green-500/10 flex items-center justify-center p-3 sm:p-4 overflow-hidden">
-                {/* Browser-chrome mockup frame */}
-                <div className="w-full h-full rounded-lg border border-emerald-400/20 bg-zinc-900/80 flex flex-col overflow-hidden shadow-sm">
-                  {/* Top chrome bar */}
-                  <div className="h-6 bg-zinc-900/95 border-b border-emerald-400/10 px-2.5 flex items-center gap-2 flex-shrink-0">
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-zinc-600/70" />
-                      <div className="w-1.5 h-1.5 rounded-full bg-zinc-600/70" />
-                      <div className="w-1.5 h-1.5 rounded-full bg-zinc-600/70" />
-                    </div>
-                    <div className="flex-1 max-w-[130px] mx-auto h-3.5 rounded bg-zinc-800/80 border border-white/5 flex items-center justify-center px-1.5">
-                      <span className="text-[9px] text-zinc-400 font-mono tracking-tight truncate">localbusiness.in</span>
-                    </div>
-                  </div>
-                  {/* Designed placeholder mockup for Local Business */}
-                  <div className="flex-1 w-full bg-gradient-to-br from-emerald-950/20 via-zinc-900 to-neutral-950 relative overflow-hidden flex items-center justify-center">
-                    <img
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Cdefs%3E%3ClinearGradient id='eg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230f1f16'/%3E%3Cstop offset='50%25' stop-color='%23101412'/%3E%3Cstop offset='100%25' stop-color='%23090d0b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='250' fill='url(%23eg)'/%3E%3Crect x='20' y='16' width='40' height='8' rx='2' fill='%2310b981' fill-opacity='0.6'/%3E%3Crect x='280' y='17' width='30' height='6' rx='2' fill='%2371717a' fill-opacity='0.4'/%3E%3Crect x='320' y='17' width='30' height='6' rx='2' fill='%2371717a' fill-opacity='0.4'/%3E%3Crect x='360' y='14' width='24' height='12' rx='3' fill='%2310b981' fill-opacity='0.3'/%3E%3Crect x='20' y='42' width='160' height='14' rx='3' fill='%23e4e4e7' fill-opacity='0.7'/%3E%3Crect x='20' y='62' width='220' height='7' rx='2' fill='%23a1a1aa' fill-opacity='0.4'/%3E%3Crect x='20' y='73' width='180' height='7' rx='2' fill='%23a1a1aa' fill-opacity='0.3'/%3E%3Crect x='20' y='88' width='60' height='14' rx='4' fill='%2310b981' fill-opacity='0.5'/%3E%3Crect x='20' y='116' width='110' height='110' rx='6' fill='%2318181b' fill-opacity='0.7' stroke='%2310b981' stroke-opacity='0.2' stroke-width='1'/%3E%3Ccircle cx='40' cy='136' r='8' fill='%2310b981' fill-opacity='0.2'/%3E%3Crect x='32' y='154' width='70' height='7' rx='2' fill='%23d4d4d8' fill-opacity='0.5'/%3E%3Crect x='32' y='167' width='85' height='5' rx='2' fill='%2371717a' fill-opacity='0.3'/%3E%3Crect x='145' y='116' width='110' height='110' rx='6' fill='%2318181b' fill-opacity='0.7' stroke='%2310b981' stroke-opacity='0.2' stroke-width='1'/%3E%3Ccircle cx='165' cy='136' r='8' fill='%2310b981' fill-opacity='0.2'/%3E%3Crect x='157' y='154' width='70' height='7' rx='2' fill='%23d4d4d8' fill-opacity='0.5'/%3E%3Crect x='157' y='167' width='85' height='5' rx='2' fill='%2371717a' fill-opacity='0.3'/%3E%3Crect x='270' y='116' width='110' height='110' rx='6' fill='%2318181b' fill-opacity='0.7' stroke='%2310b981' stroke-opacity='0.2' stroke-width='1'/%3E%3Ccircle cx='290' cy='136' r='8' fill='%2310b981' fill-opacity='0.2'/%3E%3Crect x='282' y='154' width='70' height='7' rx='2' fill='%23d4d4d8' fill-opacity='0.5'/%3E%3Crect x='282' y='167' width='85' height='5' rx='2' fill='%2371717a' fill-opacity='0.3'/%3E%3C/svg%3E"
-                      alt="Local Business Starter Pack website preview"
-                      className="w-full h-full object-cover object-top"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="p-6">
-                <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">Business Website</span>
-                <h3 className="text-lg font-bold text-foreground mt-2">Local Business Starter Pack</h3>
-                  </div>
-                  <div className="px-6 pb-6 pt-0">
-                    <a 
-                      href="https://wa.me/916284925684?text=Hi!%20I%20want%20to%20see%20more%20of%20your%20work." 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      onClick={() => trackWhatsAppClick('portfolio_demo_cta')}
-                      className="tap-inline inline-flex items-center gap-1 text-sm font-bold text-emerald-400 hover:underline"
-                    >
-                      Ask for Demo <MessageCircle className="w-3 h-3" />
-                    </a>
-                  </div>
-                </div>
-              </RevealOnScroll>
-            </div>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
-            <Link href="/about#wall-of-fame">
-              <div className={buttonVariants({ variant: "outline", className: "font-bold px-6 h-12 rounded-xl cursor-pointer border-border/50 hover:bg-muted/50 gap-2 shadow-sm text-foreground hover:text-primary transition-colors" })}>
-                See our delivered work →
-              </div>
-            </Link>
-            <a 
-              href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20want%20to%20discuss%20a%20project%20similar%20to%20what%20I%20saw%20on%20your%20portfolio." 
-              target="_blank" 
-              rel="noopener noreferrer"
-              onClick={() => trackWhatsAppClick('portfolio_discuss_cta')}
-            >
-              <div className={buttonVariants({ className: "bg-green-600 hover:bg-green-500 text-white font-bold px-8 h-12 rounded-xl cursor-pointer" })}>
-                <MessageCircle className="mr-2 h-5 w-5" /> Discuss Your Project on WhatsApp
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          VALUE COMPARISON MATRIX - The "No-Brainer" Table
+          INTERACTIVE REAL-WORK PORTFOLIO GALLERY (8 Real Client Builds)
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 border-t border-border/30 bg-neutral-900/30">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-red-500 mb-4">
-              Stop Overpaying
-            </p>
-            <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4">
-              The "Sovereign AI" Advantage
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              See why we are 10x faster and cheaper than the competition.
-            </p>
-          </div>
+      <InteractivePortfolioGallery />
 
-          {/* Desktop & Tablet Table (>= 640px) */}
-          <div className="hidden sm:block overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="border-b border-white/10">
-                  <th className="p-4 text-sm font-bold text-muted-foreground uppercase tracking-wider">Feature</th>
-                  <th className="p-4 text-sm font-bold text-red-400 uppercase tracking-wider bg-red-500/5 rounded-t-xl">Freelancer (₹15k)</th>
-                  <th className="p-4 text-sm font-bold text-orange-400 uppercase tracking-wider">Agency (₹5 Lakhs+)</th>
-                  <th className="p-4 text-xl font-black text-primary uppercase tracking-wider bg-primary/10 rounded-t-xl border-t-2 border-primary">SAGE DO (From ₹45k)</th>
-                </tr>
-              </thead>
-              <tbody className="text-sm md:text-base">
-                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="p-4 font-semibold text-white">Speed to Launch</td>
-                  <td className="p-4 text-muted-foreground">30 Days (If lucky)</td>
-                  <td className="p-4 text-muted-foreground">3-6 Months</td>
-                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">⚡ 48 Hours</td>
-                </tr>
-                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="p-4 font-semibold text-white">Tech Stack</td>
-                  <td className="p-4 text-muted-foreground">Basic Templates</td>
-                  <td className="p-4 text-muted-foreground">Custom Code</td>
-                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">💎 Enterprise AI Stack</td>
-                </tr>
-                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="p-4 font-semibold text-white">Strategy</td>
-                  <td className="p-4 text-muted-foreground">None (Just Code)</td>
-                  <td className="p-4 text-muted-foreground">₹1 Lakh+ Retainer</td>
-                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">🚀 Viral Launch Kit Included</td>
-                </tr>
-                <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="p-4 font-semibold text-white">Risk</td>
-                  <td className="p-4 text-red-400">High (Ghosting)</td>
-                  <td className="p-4 text-orange-400">Low (Slow)</td>
-                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20">🛡️ Zero (Guaranteed)</td>
-                </tr>
-                <tr>
-                  <td className="p-4 font-semibold text-white">Support</td>
-                  <td className="p-4 text-muted-foreground">Email Only</td>
-                  <td className="p-4 text-muted-foreground">Account Manager</td>
-                  <td className="p-4 font-bold text-green-400 bg-primary/5 border-x border-primary/20 rounded-b-xl border-b-2">🤝 AI + Founder Access</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+      {/* ═══════════════════════════════════════════════════════════════════
+          FLAGSHIP CASE STUDY TEARDOWNS (Kizen, Dental Clinic, Precision Forge)
+      ═══════════════════════════════════════════════════════════════════ */}
+      <CaseStudyTeardowns />
 
-          {/* Mobile Comparison Cards (Shown only below sm: 640px) */}
-          <div className="block sm:hidden space-y-4">
-            {/* SAGE DO Highlight Card */}
-            <div className="p-5 rounded-2xl border-2 border-primary bg-primary/10 shadow-lg shadow-primary/10 relative overflow-hidden">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <span className="text-[10px] font-black uppercase tracking-widest text-primary bg-primary/20 px-2.5 py-1 rounded-full inline-block mb-1">
-                    ★ Sovereign AI Advantage
-                  </span>
-                  <h3 className="text-xl font-black text-white">SAGE DO</h3>
-                </div>
-                <div className="text-right">
-                  <span className="text-xs font-bold text-primary">From ₹45,000</span>
-                </div>
-              </div>
-              <div className="space-y-2.5 text-xs">
-                <div className="flex justify-between items-center py-1.5 border-b border-white/10">
-                  <span className="text-muted-foreground">Speed to Launch</span>
-                  <span className="font-bold text-green-400">⚡ 48 Hours</span>
-                </div>
-                <div className="flex justify-between items-center py-1.5 border-b border-white/10">
-                  <span className="text-muted-foreground">Tech Stack</span>
-                  <span className="font-bold text-green-400">💎 Enterprise AI Stack</span>
-                </div>
-                <div className="flex justify-between items-center py-1.5 border-b border-white/10">
-                  <span className="text-muted-foreground">Strategy</span>
-                  <span className="font-bold text-green-400">🚀 Viral Launch Kit Included</span>
-                </div>
-                <div className="flex justify-between items-center py-1.5 border-b border-white/10">
-                  <span className="text-muted-foreground">Risk</span>
-                  <span className="font-bold text-green-400">🛡️ Zero (Guaranteed)</span>
-                </div>
-                <div className="flex justify-between items-center py-1.5">
-                  <span className="text-muted-foreground">Support</span>
-                  <span className="font-bold text-green-400">🤝 AI + Founder Access</span>
-                </div>
-              </div>
-            </div>
+      {/* ═══════════════════════════════════════════════════════════════════
+          TOTAL COST OF OWNERSHIP (TCO) ASYMMETRY TABLE
+      ═══════════════════════════════════════════════════════════════════ */}
+      <TCOAsymmetryTable />
 
-            {/* Freelancer Card */}
-            <div className="p-5 rounded-2xl border border-white/10 bg-neutral-900/40">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-base font-bold text-neutral-300">Freelancer</h3>
-                <span className="text-xs font-medium text-red-400">₹15,000</span>
-              </div>
-              <div className="space-y-2.5 text-xs">
-                <div className="flex justify-between items-center py-1.5 border-b border-white/5">
-                  <span className="text-muted-foreground">Speed to Launch</span>
-                  <span className="text-neutral-400">30 Days (If lucky)</span>
-                </div>
-                <div className="flex justify-between items-center py-1.5 border-b border-white/5">
-                  <span className="text-muted-foreground">Tech Stack</span>
-                  <span className="text-neutral-400">Basic Templates</span>
-                </div>
-                <div className="flex justify-between items-center py-1.5 border-b border-white/5">
-                  <span className="text-muted-foreground">Strategy</span>
-                  <span className="text-neutral-400">None (Just Code)</span>
-                </div>
-                <div className="flex justify-between items-center py-1.5 border-b border-white/5">
-                  <span className="text-muted-foreground">Risk</span>
-                  <span className="text-red-400 font-medium">High (Ghosting)</span>
-                </div>
-                <div className="flex justify-between items-center py-1.5">
-                  <span className="text-muted-foreground">Support</span>
-                  <span className="text-neutral-400">Email Only</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Traditional Agency Card */}
-            <div className="p-5 rounded-2xl border border-white/10 bg-neutral-900/40">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-base font-bold text-neutral-300">Traditional Agency</h3>
-                <span className="text-xs font-medium text-orange-400">₹5 Lakhs+</span>
-              </div>
-              <div className="space-y-2.5 text-xs">
-                <div className="flex justify-between items-center py-1.5 border-b border-white/5">
-                  <span className="text-muted-foreground">Speed to Launch</span>
-                  <span className="text-neutral-400">3-6 Months</span>
-                </div>
-                <div className="flex justify-between items-center py-1.5 border-b border-white/5">
-                  <span className="text-muted-foreground">Tech Stack</span>
-                  <span className="text-neutral-400">Custom Code</span>
-                </div>
-                <div className="flex justify-between items-center py-1.5 border-b border-white/5">
-                  <span className="text-muted-foreground">Strategy</span>
-                  <span className="text-neutral-400">₹1 Lakh+ Retainer</span>
-                </div>
-                <div className="flex justify-between items-center py-1.5 border-b border-white/5">
-                  <span className="text-muted-foreground">Risk</span>
-                  <span className="text-orange-400 font-medium">Low (Slow)</span>
-                </div>
-                <div className="flex justify-between items-center py-1.5">
-                  <span className="text-muted-foreground">Support</span>
-                  <span className="text-neutral-400">Account Manager</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ═══════════════════════════════════════════════════════════════════
+          THE 30-POINT DEFENCE-GRADE QA INSPECTION PROTOCOL
+      ═══════════════════════════════════════════════════════════════════ */}
+      <QAChecklistSection />
 
       <section className="py-24 px-6 bg-gradient-to-b from-primary/5 to-transparent">
         <div className="max-w-6xl mx-auto">
@@ -1210,6 +912,11 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
+          PROOF & AUDIO/CHAT WALL (Real WhatsApp Streams & Founder Voice Notes)
+      ═══════════════════════════════════════════════════════════════════ */}
+      <ProofAndAudioWall />
+
+      {/* ═══════════════════════════════════════════════════════════════════
           TESTIMONIALS - Clean Cards (Bhindi Style)
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="py-24 px-6 border-t border-border/30 bg-gradient-to-b from-muted/30 to-transparent">
@@ -1289,6 +996,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          B2B CLINICAL FAQS (Enterprise Objection Resolution)
+      ═══════════════════════════════════════════════════════════════════ */}
+      <B2BClinicalFAQ />
 
       {/* ═══════════════════════════════════════════════════════════════════
           FINAL CTA - Clean Banner
