@@ -88,7 +88,7 @@ function Router() {
         <Route path="/"><Suspense fallback={<LoadingFallback />}><Home /></Suspense></Route>
         <Route path="/services"><Suspense fallback={<LoadingFallback />}><Services /></Suspense></Route>
         <Route path="/about"><Suspense fallback={<LoadingFallback />}><About /></Suspense></Route>
-        <Route path="/orders"><Suspense fallback={<LoadingFallback />}><Orders /></Suspense></Route>
+        <Route path="/orders"><Redirect to="/free-demo" /></Route>
         <Route path="/login"><Suspense fallback={<LoadingFallback />}><Login /></Suspense></Route>
         <Route path="/forgot-password"><Suspense fallback={<LoadingFallback />}><ForgotPassword /></Suspense></Route>
         <Route path="/reset-password"><Suspense fallback={<LoadingFallback />}><ResetPassword /></Suspense></Route>

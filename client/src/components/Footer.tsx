@@ -57,7 +57,6 @@ export default function Footer() {
             <div className="text-xs text-neutral-400/90 space-y-1 leading-relaxed">
               <p><strong className="text-neutral-300">Registered Office:</strong> Himachal Pradesh, India</p>
               <p><strong className="text-neutral-300">Operating Office:</strong> SCO-38, Mohali City Centre, Aerocity, Mohali, Punjab 140306</p>
-              <p><strong className="text-neutral-300">GSTIN:</strong> 02XXXXX0000X1Z5 (Provisional / Registration Applied)</p>
               <p className="flex flex-wrap items-center gap-1 pt-0.5">
                 <span className="text-neutral-300 font-medium">MSME (Udyam) Reg:</span>{' '}
                 <a

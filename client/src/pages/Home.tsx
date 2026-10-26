@@ -8,6 +8,11 @@ import React, { useState, Suspense, lazy } from "react";
 import { trackWhatsAppClick } from "@/hooks/useAnalytics";
 import { useCurrency } from "@/contexts/CurrencyContext";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
+import FounderTrustBar from "@/components/FounderTrustBar";
+import VisualConceptStudio from "@/components/VisualConceptStudio";
+import DevToolsCrimeScene from "@/components/DevToolsCrimeScene";
+import SpeedToLeadInfographic from "@/components/SpeedToLeadInfographic";
+import SovereignGuaranteeCard from "@/components/SovereignGuaranteeCard";
 
 const RevenueLeakageCalculator = lazy(() => import("@/components/RevenueLeakageCalculator"));
 
@@ -187,6 +192,35 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          FOUNDER TRUST BAR (150+ Builds · Direct WhatsApp · SCO-38)
+      ═══════════════════════════════════════════════════════════════════ */}
+      <FounderTrustBar />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          INTERACTIVE 3-STEP VISUAL CONCEPT STUDIO
+      ═══════════════════════════════════════════════════════════════════ */}
+      <VisualConceptStudio />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          DEVTOOLS CRIME SCENE FORENSIC TEARDOWN
+      ═══════════════════════════════════════════════════════════════════ */}
+      <DevToolsCrimeScene />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          SPEED-TO-LEAD RESPONSIVE ARCHITECTURE INFOGRAPHIC
+      ═══════════════════════════════════════════════════════════════════ */}
+      <SpeedToLeadInfographic />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          SOVEREIGN RISK-REVERSAL EXECUTION GUARANTEE
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-12 bg-[#0c0e14] border-b border-white/[0.08]">
+        <div className="max-w-6xl mx-auto px-4">
+          <SovereignGuaranteeCard />
+        </div>
+      </section>
 
       {/* NEW: The Execution Gap Section - Redesigned Center Comparison */}
       <section className="py-24 bg-neutral-900 border-y border-neutral-800 relative overflow-hidden">

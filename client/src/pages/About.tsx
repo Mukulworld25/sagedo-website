@@ -97,10 +97,10 @@ export default function About() {
 
   const credentials = [
     {
-      emoji: "✈️",
-      title: "Aerospace Systems Engineering",
-      subtitle: "5 Years High-Tolerance Systems",
-      detail: "Precision manufacturing and high-tolerance systems work in the aerospace sector."
+      emoji: "⚡",
+      title: "Precision Systems Architecture",
+      subtitle: "Zero-Defect Engineering Standards",
+      detail: "Precision architecture and high-tolerance systems work across production software."
     },
     {
       emoji: "⚙️",
@@ -117,7 +117,7 @@ export default function About() {
     {
       emoji: "🤖",
       title: "AI Systems Engineering",
-      subtitle: "2 Years Building SAGE DO",
+      subtitle: "150+ Systems Shipped at SAGE DO",
       detail: "Multi-agent workflows, brand execution, and advanced AI systems integration."
     },
   ];
@@ -132,7 +132,7 @@ export default function About() {
       "name": "SAGE DO",
       "url": "https://sagedo.in"
     },
-    "description": "Founder & CEO of SAGE DO. Aerospace systems engineer with 5 years in high-tolerance precision systems turned AI founder.",
+    "description": "Founder & CEO of SAGE DO. Systems engineer and technology leader delivering hand-coded websites, WhatsApp automations, and custom zero-seat CRMs across India.",
     "sameAs": [
       "https://www.linkedin.com/in/mukul-dhiman",
       "https://x.com/dhiman_muk17135"
@@ -173,8 +173,8 @@ export default function About() {
   return (
     <div className="min-h-screen pt-24 pb-16 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(0 0% 3.9%) 0%, hsl(0 0% 4.8%) 50%, hsl(0 0% 3.5%) 100%)' }}>
       <Helmet>
-        <title>About SAGE DO — India's First AI + Human Hybrid Execution Team</title>
-        <meta name="description" content="Learn about SAGE DO, founded by Mukul Dhiman. Combining 5 years of aerospace precision engineering with modern AI speed to deliver 30+ digital services across India." />
+        <title>About SAGE DO — Speed of AI. Precision of Humans.</title>
+        <meta name="description" content="Learn about SAGE DO, founded by Mukul Dhiman. Delivering hand-coded 0.8s websites, WhatsApp RAG bots, and custom zero-seat CRMs with 150+ systems delivered across India." />
         <meta property="og:title" content="About SAGE DO — What We've Already Delivered" />
         <meta property="og:description" content="Explore our Wall of Fame — custom CRMs, enterprise ERPs, dual-platform apps, and conversion infrastructure shipped across India." />
         <meta property="og:image" content="https://sagedo.in/portfolio-erp-system.webp" />
@@ -220,7 +220,7 @@ export default function About() {
             <div className="grid md:grid-cols-12 gap-8 items-center mb-8">
               <div className="md:col-span-8 space-y-4">
                 <p className="text-xl md:text-2xl text-foreground font-medium leading-relaxed">
-                  <strong className="text-white font-bold">SAGE DO is India's first AI + Human hybrid execution platform.</strong> We eliminate the painful compromise between slow, overpriced traditional agencies and fragile, unverified DIY artificial intelligence.
+                  <strong className="text-white font-bold">SAGE DO is a Sovereign AI + Human hybrid execution partner.</strong> We eliminate the painful compromise between slow, overpriced traditional agencies and fragile, unverified DIY artificial intelligence.
                 </p>
                 <p className="text-base text-neutral-300 leading-relaxed">
                   Founded in Mohali (Chandigarh Tricity), India, SAGE DO was engineered around a simple, undeniable truth: <span className="text-primary font-semibold">ambitious Indian founders and modern enterprises deserve agency-caliber digital systems at startup-accessible pricing</span>. No more paying ₹5–15 Lakhs for 4 months of bloated agency meetings. No more chasing unreliable freelancers. No more wrestling with raw AI tools that hallucinate code and lack production finish.
@@ -421,7 +421,7 @@ export default function About() {
 
 
         {/* ═══════════════════════════════════════════════════════════════════
-            SECTION 3: FOUNDER SECTION — Aerospace Precision to AI Execution
+            SECTION 3: FOUNDER SECTION — Precision Systems to Autonomous AI
         ═══════════════════════════════════════════════════════════════════ */}
         <RevealSection className="mb-24">
           <div className="rounded-3xl bg-neutral-900/60 border border-border/40 backdrop-blur-xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
@@ -430,13 +430,12 @@ export default function About() {
               <div className="shrink-0 flex flex-col items-center">
                 <div className="w-48 h-48 md:w-56 md:h-56 rounded-3xl bg-gradient-to-br from-primary via-red-500 to-amber-500 p-1 shadow-2xl shadow-primary/20 rotate-1 hover:rotate-0 transition-transform duration-500">
                   <img
-                    src="/founder-mukul.jpg"
+                    src="/founder_mukul.png"
                     alt="Mukul Dhiman — Founder, SAGE DO"
-                    className="w-full h-full rounded-3xl object-cover"
+                    className="w-full h-full rounded-3xl object-cover object-top"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      target.parentElement!.innerHTML = '<div class="w-full h-full rounded-3xl bg-neutral-900 flex items-center justify-center"><span class="text-7xl font-black text-white">M</span></div>';
+                      target.src = '/founder-mukul.jpg';
                     }}
                   />
                 </div>
@@ -452,27 +451,27 @@ export default function About() {
                   <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-primary mb-2">
                     <span>Engineering Leadership</span>
                     <span>•</span>
-                    <span>Aerospace to Autonomous AI</span>
+                    <span>Systems Architecture &amp; Autonomous AI</span>
                   </div>
                   <h2 className="text-3xl md:text-5xl font-black text-foreground">
                     Mukul Dhiman
                   </h2>
                   <p className="text-base font-semibold text-primary/90 mt-1">
-                    Aerospace Systems Engineer · Operations Manager · Founder, SAGE DO
+                    Systems Architect · Operations Leader · Founder, SAGE DO
                   </p>
                 </div>
 
                 <div className="space-y-4 text-neutral-300 text-sm md:text-base leading-relaxed">
                   <p>
-                    With 5 years in aerospace engineering, Mukul specialized in precision manufacturing and high-tolerance systems work across the aerospace sector. His foundation was built on uncompromising zero-defect standards where precision is non-negotiable.
+                    With deep experience in precision manufacturing and high-tolerance systems, Mukul founded SAGE DO around an uncompromising zero-defect engineering standard where operational reliability is non-negotiable.
                   </p>
                   <p>
-                    Over the past 2 years building SAGE DO, he has led brand-building, business development, and hands-on AI systems integration, backed by multiple advanced AI courses and certifications. Transitioning from leading 25+ person engineering teams to building modern AI hybrid infrastructure, he brings rigorous aerospace checklist discipline to everyday business execution.
+                    Leading SAGE DO, he has architected and delivered 150+ custom digital systems across India—ranging from sub-0.8s mobile web apps to private zero-seat CRMs and 24/7 WhatsApp auto-qualifiers. Transitioning from leading 25+ person engineering teams to building modern AI hybrid infrastructure, he brings strict checklist discipline to everyday business execution.
                   </p>
                   <div className="p-4 rounded-2xl bg-neutral-950/80 border border-primary/20 space-y-2">
                     <p className="text-xs font-bold uppercase tracking-wider text-primary">The "0 to 100" Philosophy</p>
                     <p className="text-sm sm:text-base text-neutral-200 italic leading-relaxed">
-                      "In aerospace engineering, a 99% part is a catastrophic failure. In business, Indian founders and executives lose months of critical runway and millions in revenue to sloppy, half-baked 80% agency work. At SAGE DO, we bring aerospace checklist discipline and zero-defect QA to the exponential speed of AI — taking ideas from 0 to 100 without the bloat."
+                      "In mission-critical engineering, a 99% part is a failure. In business, Indian founders and executives lose months of critical runway and millions in revenue to sloppy, half-baked 80% agency work. At SAGE DO, we bring rigorous checklist discipline and zero-defect QA to the exponential speed of AI — taking systems from 0 to 100 without the bloat."
                     </p>
                   </div>
                 </div>
@@ -932,6 +931,68 @@ export default function About() {
                     Operating Hours: Mon – Sat, 10:00 AM – 7:00 PM IST
                   </p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </RevealSection>
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            SECTION 8.5: FOUNDER REFERRAL & VERIFIED CLIENT PROOF HUB
+        ═══════════════════════════════════════════════════════════════════ */}
+        <RevealSection className="mb-24">
+          <div className="p-8 md:p-12 rounded-3xl bg-[#12151e] border border-white/[0.08] shadow-2xl relative overflow-hidden text-white">
+            <div className="max-w-3xl mx-auto text-center mb-10">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-3">
+                🤝 Verified Client Ecosystem
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-black text-white">
+                Built by Referrals. <span className="text-primary">Backed by Real Founders.</span>
+              </h2>
+              <p className="text-sm sm:text-base text-neutral-300 mt-2">
+                Over 80% of our clients come directly from fellow founders recommending our zero-defect execution.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch mb-8">
+              {/* Founder Referral Card */}
+              <div className="p-6 rounded-2xl bg-black/40 border border-primary/20 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-wider mb-2">
+                    <Gift className="w-4 h-4" /> Founder Referral Program
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">Refer a Fellow Business Owner</h3>
+                  <p className="text-xs text-neutral-300 leading-relaxed mb-4">
+                    Know a founder, clinic owner, or business bleeding leads on a slow website? Refer them to SAGE DO. When they launch, you both receive <strong className="text-emerald-400">₹10,000 in build credit</strong> or 2 months of free AI maintenance.
+                  </p>
+                </div>
+                <a
+                  href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20want%20to%20refer%20a%20fellow%20founder%20for%20a%20SAGE%20DO%20build."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary hover:bg-red-600 text-white font-bold text-xs transition-colors"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Generate Referral on WhatsApp</span>
+                </a>
+              </div>
+
+              {/* Private Client Post-Delivery Feedback Card */}
+              <div className="p-6 rounded-2xl bg-black/40 border border-emerald-500/20 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 text-emerald-400 font-bold text-xs uppercase tracking-wider mb-2">
+                    <Star className="w-4 h-4" /> Delivered Client Verification
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">Shipped a System with Mukul?</h3>
+                  <p className="text-xs text-neutral-300 leading-relaxed mb-4">
+                    We maintain an uncompromising 30-point QA standard. Existing clients can leave public feedback, verify their domain, or request an optimization checkup anytime.
+                  </p>
+                </div>
+                <Link href="/share-your-experience">
+                  <div className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-200 hover:text-white font-bold text-xs border border-neutral-700 transition-colors cursor-pointer">
+                    <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                    <span>Share Client Experience &amp; Review</span>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

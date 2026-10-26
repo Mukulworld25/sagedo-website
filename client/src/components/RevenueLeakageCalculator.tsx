@@ -67,6 +67,63 @@ export default function RevenueLeakageCalculator() {
           <div className="lg:col-span-7 p-8 rounded-3xl border border-border/40 bg-neutral-900/50 backdrop-blur-sm flex flex-col justify-between">
             <div className="space-y-8">
               
+              {/* Industry Preset Quick Buttons */}
+              <div className="pb-4 border-b border-border/40">
+                <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2.5">
+                  Or select your industry preset for instant calculation:
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMonthlyLeads(120);
+                      setDealValueINR(8000);
+                      setTeamSeats(3);
+                      setResponseTime('moderate');
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-neutral-800/80 hover:bg-neutral-700 text-xs font-semibold text-neutral-200 border border-neutral-700/60 transition-colors"
+                  >
+                    🏥 Dental / Clinic
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMonthlyLeads(800);
+                      setDealValueINR(2500);
+                      setTeamSeats(4);
+                      setResponseTime('moderate');
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-neutral-800/80 hover:bg-neutral-700 text-xs font-semibold text-neutral-200 border border-neutral-700/60 transition-colors"
+                  >
+                    🛍️ D2C / Retail
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMonthlyLeads(150);
+                      setDealValueINR(75000);
+                      setTeamSeats(6);
+                      setResponseTime('slow');
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-neutral-800/80 hover:bg-neutral-700 text-xs font-semibold text-neutral-200 border border-neutral-700/60 transition-colors"
+                  >
+                    🏭 B2B / Manufacturing
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMonthlyLeads(300);
+                      setDealValueINR(45000);
+                      setTeamSeats(8);
+                      setResponseTime('moderate');
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-neutral-800/80 hover:bg-neutral-700 text-xs font-semibold text-neutral-200 border border-neutral-700/60 transition-colors"
+                  >
+                    🚀 Tech / Agency
+                  </button>
+                </div>
+              </div>
+
               {/* Slider 1: Monthly Inbound Leads */}
               <div>
                 <div className="flex justify-between items-center mb-3 gap-2">
