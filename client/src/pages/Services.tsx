@@ -310,7 +310,7 @@ export default function Services() {
                         size="sm"
                         className="min-h-[44px] sm:min-h-0 w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none transition-colors font-semibold text-xs"
                       >
-                        Order → {service.priceRange}
+                        Start Build → {service.priceRange}
                       </Button>
                     </Link>
                     <a
@@ -414,7 +414,7 @@ export default function Services() {
                         <div className="space-y-2">
                           <Link href="/orders?package=smb_starter&service=LaunchPad%20Starter&price=15000&id=smb_starter">
                             <Button className="min-h-[44px] sm:min-h-0 w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none font-semibold transition-all">
-                              Order Starter (₹15,000) <ArrowRight className="w-4 h-4 ml-2" />
+                              Start 48-Hr Build (₹15,000) <ArrowRight className="w-4 h-4 ml-2" />
                             </Button>
                           </Link>
                           <a
@@ -469,7 +469,7 @@ export default function Services() {
                         <div className="space-y-2">
                           <Link href="/orders?package=smb_growth&service=LaunchPad%20Growth&price=35000&id=smb_growth">
                             <Button className="w-full h-12 bg-gradient-to-r from-amber-500 to-yellow-600 hover:to-amber-500 text-black font-black text-lg shadow-lg shadow-amber-500/20">
-                              Order Growth (₹35,000)
+                              Start Growth Build (₹35,000)
                             </Button>
                           </Link>
                           <a
@@ -519,7 +519,7 @@ export default function Services() {
                         <div className="space-y-2">
                           <Link href="/orders?package=smb_scale&service=LaunchPad%20Scale&price=95000&id=smb_scale">
                             <Button className="min-h-[44px] sm:min-h-0 w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none font-semibold transition-all">
-                              Order Scale (₹95,000) <ArrowRight className="w-4 h-4 ml-2" />
+                              Start Custom Build (₹95,000) <ArrowRight className="w-4 h-4 ml-2" />
                             </Button>
                           </Link>
                           <a
@@ -596,7 +596,7 @@ export default function Services() {
                                     size="sm"
                                     className="min-h-[44px] sm:min-h-0 w-full h-10 bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs transition-colors rounded-xl shadow-md"
                                   >
-                                    Order → {service.priceRange.split(' – ')[0]}
+                                    Start Build → {service.priceRange.split(' – ')[0]}
                                   </Button>
                                 </Link>
                                 <a
@@ -698,7 +698,7 @@ export default function Services() {
                                         size="sm"
                                         className="min-h-[44px] sm:min-h-0 w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none transition-colors font-semibold text-xs"
                                       >
-                                        Order → {service.priceRange}
+                                        Start Build → {service.priceRange}
                                       </Button>
                                     </Link>
                                     <a
@@ -1006,7 +1006,7 @@ export default function Services() {
                               <div>
                                 <p className="text-sm font-bold text-amber-500 mb-3">{combo.price}</p>
                                 <Button size="sm" className="w-full bg-white/10 group-hover:bg-amber-500 group-hover:text-black text-white text-xs transition-colors">
-                                  Order Combo <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                                  Start Combo Build <ArrowRight className="w-3.5 h-3.5 ml-1" />
                                 </Button>
                               </div>
                             </div>

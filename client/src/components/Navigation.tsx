@@ -191,17 +191,6 @@ export default function Navigation() {
                         </span>
                       </button>
 
-                      <Link href="/login">
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          data-testid="button-login"
-                          className="h-8 text-xs font-medium text-neutral-300 hover:text-white hover:bg-white/[0.06] rounded-full transition-colors px-3.5"
-                        >
-                          Login
-                        </Button>
-                      </Link>
-
                       {/* Modern Refined WhatsApp Button with Emerald Gradient & Halo Glow */}
                       <a 
                         href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20visited%20SAGE%20DO%20and%20I'm%20interested%20in%20your%20services." 
@@ -375,17 +364,6 @@ export default function Navigation() {
                           <span className="relative">WhatsApp Us</span>
                         </Button>
                       </a>
-                      <Link href="/login">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          data-testid="button-mobile-login"
-                          className="w-full rounded-xl h-10 border-neutral-800 hover:border-neutral-700 bg-neutral-900/60 text-neutral-300 hover:text-white"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          Login / Portal
-                        </Button>
-                      </Link>
                     </div>
                   )}
                 </div>
