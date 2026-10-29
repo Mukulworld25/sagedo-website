@@ -38,6 +38,7 @@ export default function Navigation() {
   const navLinks = [
     { href: "/", label: t("nav.home") },
     { href: "/services", label: t("nav.services") },
+    { href: "/wall-of-fame", label: t("nav.wallOfFame") },
     { href: "/about", label: t("nav.about") },
     { href: "/book-call", label: "Book a Call" },
     { href: "/careers", label: "Careers" },

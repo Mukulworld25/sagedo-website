@@ -199,7 +199,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     solution:
       "Deployed a type-safe TanStack Start / React 19 ERP with Nitro server, sub-90s procurement lifecycle (PR → PO → GRN), multi-warehouse tracking, and automated 42-second WhatsApp quote dispatch.",
     desktopImage: "/portfolio-erp-system.webp",
-    mobileImage: "/sample_sagedo_calculator.png",
+    mobileImage: "/portfolio-erp-system.webp",
     urlMockup: "orbit.joshitools.com/procurement/rfq",
     tags: [
       "TanStack Start",
@@ -408,8 +408,8 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       "Businesses managed cashflow across 4 bank accounts using messy Excel spreadsheets, taking 15 hours every week to manually reconcile statements and constantly suffering from formula errors.",
     solution:
       "Architected a double-entry accounting engine with instant CSV bank statement parsing, automated duplicate detection, interactive D3.js runway curves, and immutable audit logs.",
-    desktopImage: "/sample_sagedo_calculator.png",
-    mobileImage: "/sample-crm-lead-automation.webp",
+    desktopImage: "/portfolio-treasury-engine.webp",
+    mobileImage: "/portfolio-treasury-engine.webp",
     urlMockup: "treasury.internal/cashflow/runway-projection",
     tags: [
       "React 18",
@@ -460,8 +460,8 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       "Indian founders and SMBs were trapped between slow, expensive agencies charging ₹2–5L retainers and unreliable freelancers who ghosted midway, with zero speed-to-lead automation.",
     solution:
       "Engineered an AI-native execution platform combining 24-48h functional prototype delivery, 100% source code ownership, server-side validated orders, and multi-crawler GEO/AEO visibility.",
-    desktopImage: "/portfolio-sagedo-prod.webp",
-    mobileImage: "/sample_sagedo_home.png",
+    desktopImage: "/portfolio-sagedo-platform.webp",
+    mobileImage: "/portfolio-sagedo-platform.webp",
     urlMockup: "sagedo.in/portfolio/overview",
     tags: [
       "React 18 + Vite",

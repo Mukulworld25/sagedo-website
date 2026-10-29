@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { Search, ArrowRight, Crown, Rocket, Star, ShieldCheck, Zap, ChevronRight, TrendingUp, ChevronDown, Sparkles, CreditCard } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { useCurrency } from "@/contexts/CurrencyContext";
 import { apiRequest } from "@/lib/queryClient";
 import { allServices, ServiceDetail } from "@/data/serviceData";
 import { SMB_LAUNCHPAD_PACKAGES, ENTERPRISE_SOVEREIGN_SUITES } from "@/config/pricing";
@@ -67,6 +68,27 @@ const TABS = [
 ];
 
 export default function Services() {
+  const { currency, toggleCurrency, formatAmount } = useCurrency();
+
+  const formatPrice = (rangeStr: string) => {
+    if (!rangeStr) return "";
+    if (currency === 'INR') return rangeStr;
+    return rangeStr.replace(/₹\s*([\d,]+)/g, (_, match) => {
+      const num = parseInt(match.replace(/,/g, ''), 10);
+      if (isNaN(num)) return _;
+      return formatAmount(num);
+    });
+  };
+
+  const getTabSub = (tabId: string) => {
+    if (tabId === "smb") {
+      return `${formatAmount(15000)} / ${formatAmount(35000)} / ${formatAmount(95000)}`;
+    }
+    if (tabId === "enterprise") {
+      return `${formatAmount(45000)} / ${formatAmount(150000)} / Starting at ${formatAmount(350000)}`;
+    }
+    return "Retainers, Maintenance & Bundles";
+  };
   const [activeTab, setActiveTab] = useState<string>("smb");
   const [searchQuery, setSearchQuery] = useState("");
   const [showAllServices, setShowAllServices] = useState(false);
@@ -191,6 +213,39 @@ export default function Services() {
                 />
               </div>
             </div>
+
+            {/* Interactive Currency Switcher */}
+            <div className="flex items-center justify-center mt-5">
+              <div className="inline-flex items-center gap-1.5 p-1 bg-neutral-900/90 border border-white/10 rounded-full shadow-xl backdrop-blur-md">
+                <span className="text-[11px] font-bold text-neutral-400 pl-3 pr-1 uppercase tracking-wider">Currency:</span>
+                <button
+                  type="button"
+                  onClick={() => currency !== 'INR' && toggleCurrency()}
+                  data-testid="services-currency-inr"
+                  className={cn(
+                    "px-3.5 py-1 rounded-full text-xs font-black transition-all cursor-pointer",
+                    currency === 'INR'
+                      ? "bg-amber-500 text-black shadow-lg shadow-amber-500/20 font-black"
+                      : "text-neutral-400 hover:text-white"
+                  )}
+                >
+                  ₹ INR (India)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => currency !== 'USD' && toggleCurrency()}
+                  data-testid="services-currency-usd"
+                  className={cn(
+                    "px-3.5 py-1 rounded-full text-xs font-black transition-all cursor-pointer",
+                    currency === 'USD'
+                      ? "bg-amber-500 text-black shadow-lg shadow-amber-500/20 font-black"
+                      : "text-neutral-400 hover:text-white"
+                  )}
+                >
+                  $ USD (Global)
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -239,7 +294,7 @@ export default function Services() {
                       {tab.label}
                     </p>
                     <p className={cn("text-[11px] font-medium tracking-wider", isActive ? "text-amber-400/90" : "text-gray-500")}>
-                      {tab.sub}
+                      {getTabSub(tab.id)}
                     </p>
                   </div>
                   {isActive && (
@@ -288,7 +343,7 @@ export default function Services() {
                   <div className="absolute bottom-4 left-4 z-20">
                     <h3 className="font-bold text-white text-base leading-tight mb-1">{service.name}</h3>
                     <p className="text-amber-500 font-bold text-sm bg-black/50 px-2 py-0.5 rounded-md inline-block border border-amber-500/20">
-                      {service.priceRange}
+                      {formatPrice(service.priceRange)}
                     </p>
                   </div>
                   {service.badge && (
@@ -310,7 +365,7 @@ export default function Services() {
                         size="sm"
                         className="min-h-[44px] sm:min-h-0 w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none transition-colors font-semibold text-xs"
                       >
-                        Start Build → {service.priceRange}
+                        Start Build → {formatPrice(service.priceRange)}
                       </Button>
                     </Link>
                     <a
@@ -394,7 +449,7 @@ export default function Services() {
                           <p className="text-gray-400 text-sm mb-1">Essential market validation & digital foundation</p>
                           <p className="text-amber-400/80 text-xs font-semibold mb-4 italic">“Establish your digital presence in 7 days.”</p>
                           <div className="flex items-baseline gap-1 mb-1">
-                            <span className="text-3xl font-black text-white">₹15,000</span>
+                            <span className="text-3xl font-black text-white">{formatAmount(15000)}</span>
                             <span className="text-xs text-gray-500">/ one-time</span>
                           </div>
                           <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-medium mb-1">
@@ -414,7 +469,7 @@ export default function Services() {
                         <div className="space-y-2">
                           <Link href="/orders?package=smb_starter&service=LaunchPad%20Starter&price=15000&id=smb_starter">
                             <Button className="min-h-[44px] sm:min-h-0 w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none font-semibold transition-all">
-                              Start 48-Hr Build (₹15,000) <ArrowRight className="w-4 h-4 ml-2" />
+                              Start 48-Hr Build ({formatAmount(15000)}) <ArrowRight className="w-4 h-4 ml-2" />
                             </Button>
                           </Link>
                           <a
@@ -446,7 +501,7 @@ export default function Services() {
                           <p className="text-gray-400 text-sm mb-1">Complete digital acquisition & automated sales engine</p>
                           <p className="text-amber-400 text-xs font-semibold mb-6 italic">“Full sales pipeline & custom CRM in 10-12 days.”</p>
                           <div className="flex items-baseline gap-1 mb-1">
-                            <span className="text-5xl font-black text-white">₹35,000</span>
+                            <span className="text-5xl font-black text-white">{formatAmount(35000)}</span>
                             <span className="text-sm text-gray-500">/ one-time</span>
                           </div>
                           <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-medium mb-1">
@@ -469,7 +524,7 @@ export default function Services() {
                         <div className="space-y-2">
                           <Link href="/orders?package=smb_growth&service=LaunchPad%20Growth&price=35000&id=smb_growth">
                             <Button className="w-full h-12 bg-gradient-to-r from-amber-500 to-yellow-600 hover:to-amber-500 text-black font-black text-lg shadow-lg shadow-amber-500/20">
-                              Start Growth Build (₹35,000)
+                              Start Growth Build ({formatAmount(35000)})
                             </Button>
                           </Link>
                           <a
@@ -499,7 +554,7 @@ export default function Services() {
                           <p className="text-gray-400 text-sm mb-1">Automated operations, multi-channel pipelines & full tech stack</p>
                           <p className="text-amber-400/80 text-xs font-semibold mb-4 italic">“Native mobile app + web + custom admin in 15–21 days.”</p>
                           <div className="flex items-baseline gap-1 mb-1">
-                            <span className="text-3xl font-black text-white">₹95,000</span>
+                            <span className="text-3xl font-black text-white">{formatAmount(95000)}</span>
                             <span className="text-xs text-gray-500">/ one-time</span>
                           </div>
                           <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-medium mb-1">
@@ -519,7 +574,7 @@ export default function Services() {
                         <div className="space-y-2">
                           <Link href="/orders?package=smb_scale&service=LaunchPad%20Scale&price=95000&id=smb_scale">
                             <Button className="min-h-[44px] sm:min-h-0 w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none font-semibold transition-all">
-                              Start Custom Build (₹95,000) <ArrowRight className="w-4 h-4 ml-2" />
+                              Start Custom Build ({formatAmount(95000)}) <ArrowRight className="w-4 h-4 ml-2" />
                             </Button>
                           </Link>
                           <a
@@ -572,7 +627,7 @@ export default function Services() {
                                   {service.name}
                                 </h3>
                                 <p className="text-amber-500 font-extrabold text-base mb-3">
-                                  {service.priceRange}
+                                  {formatPrice(service.priceRange)}
                                 </p>
                                 <p className="text-sm text-gray-400 mb-4 leading-relaxed line-clamp-2">
                                   {service.description}
@@ -596,7 +651,7 @@ export default function Services() {
                                     size="sm"
                                     className="min-h-[44px] sm:min-h-0 w-full h-10 bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs transition-colors rounded-xl shadow-md"
                                   >
-                                    Start Build → {service.priceRange.split(' – ')[0]}
+                                    Start Build → {formatPrice(service.priceRange).split(' – ')[0]}
                                   </Button>
                                 </Link>
                                 <a
@@ -676,7 +731,7 @@ export default function Services() {
                                   <div className="absolute bottom-4 left-4 z-20">
                                     <h3 className="font-bold text-white text-base leading-tight mb-1">{service.name}</h3>
                                     <p className="text-amber-500 font-bold text-sm bg-black/50 px-2 py-0.5 rounded-md inline-block border border-amber-500/20">
-                                      {service.priceRange}
+                                      {formatPrice(service.priceRange)}
                                     </p>
                                   </div>
                                   {service.badge && (
@@ -698,7 +753,7 @@ export default function Services() {
                                         size="sm"
                                         className="min-h-[44px] sm:min-h-0 w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none transition-colors font-semibold text-xs"
                                       >
-                                        Start Build → {service.priceRange}
+                                        Start Build → {formatPrice(service.priceRange)}
                                       </Button>
                                     </Link>
                                     <a
@@ -767,18 +822,18 @@ export default function Services() {
                           <p className="text-gray-400 text-sm mb-1">Inbound lead capture & WhatsApp gateway.</p>
                           <p className="text-amber-400/80 text-xs font-semibold mb-4 italic">“Stop being invisible. Start capturing demand.”</p>
                           <div className="flex items-baseline gap-1 mb-1">
-                            <span className="text-3xl font-black text-white">₹45,000</span>
+                            <span className="text-3xl font-black text-white">{formatAmount(45000)}</span>
                             <span className="text-xs text-gray-500">/ one-time</span>
                           </div>
                           <div className="flex items-center gap-1.5 text-xs text-amber-400 font-medium mb-1">
                             <CreditCard className="w-3.5 h-3.5 flex-shrink-0" />
-                            <span>3-part milestone plan available (from ₹15,000/mo)</span>
+                            <span>3-part milestone plan available (from {formatAmount(15000)}/mo)</span>
                           </div>
                           <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-medium mb-1">
                             <ShieldCheck className="w-3.5 h-3.5 flex-shrink-0" />
                             <span>48-Hour Functional Prototype Guarantee</span>
                           </div>
-                          <p className="text-xs text-gray-400 font-medium mb-6">Production delivery: 14 calendar days · + ₹15,000/mo AMC</p>
+                          <p className="text-xs text-gray-400 font-medium mb-6">Production delivery: 14 calendar days · + {formatAmount(15000)}/mo AMC</p>
                           <ul className="space-y-3 mb-8">
                             {ENTERPRISE_SOVEREIGN_SUITES[0].features.map((item) => (
                               <li key={item} className="flex gap-3 text-sm text-gray-300">
@@ -791,7 +846,7 @@ export default function Services() {
                         <div className="space-y-2">
                           <Link href="/orders?package=launch_starter&service=Digital%20Presence%20Engine&price=45000&id=launch_starter">
                             <Button className="min-h-[44px] sm:min-h-0 w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none font-semibold transition-all">
-                              Deploy Now (₹45,000) <ArrowRight className="w-4 h-4 ml-2" />
+                              Deploy Now ({formatAmount(45000)}) <ArrowRight className="w-4 h-4 ml-2" />
                             </Button>
                           </Link>
                           <a
@@ -823,18 +878,18 @@ export default function Services() {
                           <p className="text-gray-400 text-sm mb-1">Custom CRM & automated WhatsApp pipeline.</p>
                           <p className="text-amber-400 text-xs font-semibold mb-6 italic">“Your sovereign revenue machine — in 28 days.”</p>
                           <div className="flex items-baseline gap-1 mb-1">
-                            <span className="text-5xl font-black text-white">₹1,50,000</span>
+                            <span className="text-5xl font-black text-white">{formatAmount(150000)}</span>
                             <span className="text-sm text-gray-500">/ one-time</span>
                           </div>
                           <div className="flex items-center gap-1.5 text-xs text-amber-400 font-medium mb-1">
                             <CreditCard className="w-3.5 h-3.5 flex-shrink-0" />
-                            <span>3-part milestone plan available (from ₹50,000/mo)</span>
+                            <span>3-part milestone plan available (from {formatAmount(50000)}/mo)</span>
                           </div>
                           <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-medium mb-1">
                             <ShieldCheck className="w-3.5 h-3.5 flex-shrink-0" />
                             <span>48-Hour Functional Prototype Guarantee</span>
                           </div>
-                          <p className="text-xs text-gray-400 font-medium mb-4">Production delivery: 28 calendar days (10-gate QA) · + ₹25,000/mo AMC</p>
+                          <p className="text-xs text-gray-400 font-medium mb-4">Production delivery: 28 calendar days (10-gate QA) · + {formatAmount(25000)}/mo AMC</p>
                           <div className="h-1 w-full bg-gray-800 rounded-full overflow-hidden mb-6">
                             <div className="h-full w-full bg-gradient-to-r from-amber-500 to-yellow-600"></div>
                           </div>
@@ -850,7 +905,7 @@ export default function Services() {
                         <div className="space-y-2">
                           <Link href="/orders?package=launch_full&service=Sovereign%20Revenue%20Engine%E2%84%A2&price=150000&id=launch_full">
                             <Button className="w-full h-12 bg-gradient-to-r from-amber-500 to-yellow-600 hover:to-amber-500 text-black font-black text-lg shadow-lg shadow-amber-500/20">
-                              Hire Your Team (₹1,50,000)
+                              Hire Your Team ({formatAmount(150000)})
                             </Button>
                           </Link>
                           <a
@@ -885,18 +940,18 @@ export default function Services() {
                           <p className="text-slate-600 text-sm mb-1">Sovereign automation & ERP bridge. No compromises.</p>
                           <p className="text-slate-700 text-xs font-semibold mb-4 italic">“Built for businesses that refuse second place.”</p>
                           <div className="flex items-baseline gap-1 mb-1">
-                            <span className="text-4xl font-black text-slate-900">₹3,50,000</span>
+                            <span className="text-4xl font-black text-slate-900">{formatAmount(350000)}</span>
                             <span className="text-xs text-slate-500 font-bold">/ starting at</span>
                           </div>
                           <div className="flex items-center gap-1.5 text-xs text-slate-800 font-bold mb-1">
                             <CreditCard className="w-3.5 h-3.5 flex-shrink-0" />
-                            <span>Custom milestone installments from ₹1,16,667/mo</span>
+                            <span>Custom milestone installments from {formatAmount(116667)}/mo</span>
                           </div>
                           <div className="flex items-center gap-1.5 text-xs text-emerald-700 font-bold mb-1">
                             <ShieldCheck className="w-3.5 h-3.5 flex-shrink-0" />
                             <span>48-Hour Functional Prototype Guarantee</span>
                           </div>
-                          <p className="text-xs text-slate-600 font-medium mb-6">Production delivery: 45–60 calendar days · + ₹35,000/mo AMC</p>
+                          <p className="text-xs text-slate-600 font-medium mb-6">Production delivery: 45–60 calendar days · + {formatAmount(35000)}/mo AMC</p>
                           <ul className="space-y-3 mb-8">
                             {ENTERPRISE_SOVEREIGN_SUITES[2].features.map((item) => (
                               <li key={item} className="flex gap-3 text-sm font-bold text-slate-800">
@@ -909,7 +964,7 @@ export default function Services() {
                         <div className="space-y-2">
                           <Link href="/orders?package=launch_vip&service=Enterprise%20Infrastructure&price=350000&id=launch_vip">
                             <Button className="w-full h-12 bg-black hover:bg-slate-900 text-white font-black text-lg shadow-2xl shadow-black/20 border border-slate-800">
-                              Become a Titan (₹3,50,000)
+                              Become a Titan ({formatAmount(350000)})
                             </Button>
                           </Link>
                           <a
@@ -1004,7 +1059,7 @@ export default function Services() {
                                 <p className="text-xs text-gray-500 mb-4 leading-relaxed">{combo.desc}</p>
                               </div>
                               <div>
-                                <p className="text-sm font-bold text-amber-500 mb-3">{combo.price}</p>
+                                <p className="text-sm font-bold text-amber-500 mb-3">{formatPrice(combo.price)}</p>
                                 <Button size="sm" className="w-full bg-white/10 group-hover:bg-amber-500 group-hover:text-black text-white text-xs transition-colors">
                                   Start Combo Build <ArrowRight className="w-3.5 h-3.5 ml-1" />
                                 </Button>
@@ -1052,7 +1107,7 @@ export default function Services() {
                               <p className="text-xs text-gray-500 mb-1">{opt.type}</p>
                               <p className="font-bold text-white text-base mb-1">{opt.duration}</p>
                               <p className={cn("font-black text-xl mb-2", opt.price_val === 0 ? "text-green-400" : "text-amber-500")}>
-                                {opt.price}
+                                {opt.price_val === 0 ? "FREE" : (opt.price.endsWith('/mo') ? `${formatAmount(opt.price_val)}/mo` : formatAmount(opt.price_val))}
                               </p>
                               <p className="text-xs text-gray-400 mb-4 leading-relaxed">{opt.desc}</p>
                             </div>
@@ -1083,7 +1138,7 @@ export default function Services() {
                             <div>
                               <div className="text-3xl mb-3">{plan.icon}</div>
                               <p className="font-bold text-white text-base mb-1">{plan.name}</p>
-                              <p className="text-blue-400 font-black text-xl mb-2">{plan.price}</p>
+                              <p className="text-blue-400 font-black text-xl mb-2">{formatAmount(plan.price_val)}/mo</p>
                               <p className="text-xs text-gray-400 mb-4 leading-relaxed">{plan.what}</p>
                               <p className="text-[11px] text-gray-500 mb-4 italic">No long lock-ins. Pause or cancel anytime.</p>
                             </div>

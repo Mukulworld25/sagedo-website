@@ -14,6 +14,7 @@ const translations: Record<Language, Record<string, string>> = {
         // Navigation
         "nav.home": "Home",
         "nav.services": "Services",
+        "nav.wallOfFame": "Wall of Fame",
         "nav.about": "About",
         "nav.orders": "Orders",
         "nav.track": "Track",
@@ -77,6 +78,7 @@ const translations: Record<Language, Record<string, string>> = {
         // Navigation
         "nav.home": "होम",
         "nav.services": "सेवाएं",
+        "nav.wallOfFame": "वॉल ऑफ फेम",
         "nav.about": "हमारे बारे में",
         "nav.orders": "ऑर्डर",
         "nav.track": "ट्रैक",

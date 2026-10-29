@@ -12,10 +12,6 @@ import DevToolsCrimeScene from "@/components/DevToolsCrimeScene";
 import SpeedToLeadInfographic from "@/components/SpeedToLeadInfographic";
 import SovereignGuaranteeCard from "@/components/SovereignGuaranteeCard";
 import { SlimStickyHeader } from "@/components/SlimStickyHeader";
-import { InteractivePortfolioGallery } from "@/components/InteractivePortfolioGallery";
-import { CaseStudyTeardowns } from "@/components/CaseStudyTeardowns";
-import { TCOAsymmetryTable } from "@/components/TCOAsymmetryTable";
-import { QAChecklistSection } from "@/components/QAChecklistSection";
 import { ProofAndAudioWall } from "@/components/ProofAndAudioWall";
 import { B2BClinicalFAQ } from "@/components/B2BClinicalFAQ";
 const RevenueLeakageCalculator = lazy(() => import("@/components/RevenueLeakageCalculator"));
@@ -363,24 +359,184 @@ export default function Home() {
 
 
       {/* ═══════════════════════════════════════════════════════════════════
-          INTERACTIVE REAL-WORK PORTFOLIO GALLERY (8 Real Client Builds)
+          WALL OF FAME SHOWCASE PREVIEW (High-Converting Teaser -> /wall-of-fame)
       ═══════════════════════════════════════════════════════════════════ */}
-      <InteractivePortfolioGallery />
+      <section className="py-24 px-6 border-t border-white/[0.08] bg-gradient-to-b from-[#0A0D15] via-[#07090E] to-[#0A0D15] relative overflow-hidden">
+        {/* Subtle Ambient Glows */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-amber-500/5 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-emerald-500/5 blur-[120px] pointer-events-none" />
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          FLAGSHIP CASE STUDY TEARDOWNS (Kizen, Dental Clinic, Precision Forge)
-      ═══════════════════════════════════════════════════════════════════ */}
-      <CaseStudyTeardowns />
+        <div className="max-w-6xl mx-auto relative z-10">
+          <RevealOnScroll>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider mb-3">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  <span>PROVEN TRACK RECORD • WALL OF FAME</span>
+                </div>
+                <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+                  Systems Built to{" "}
+                  <span className="bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent">
+                    Outperform
+                  </span>
+                  .
+                </h2>
+                <p className="text-base text-neutral-400 mt-2 max-w-xl">
+                  Real client infrastructure shipped across India. Sub-second load times, 100% data sovereignty, and zero per-seat software taxes.
+                </p>
+              </div>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          TOTAL COST OF OWNERSHIP (TCO) ASYMMETRY TABLE
-      ═══════════════════════════════════════════════════════════════════ */}
-      <TCOAsymmetryTable />
+              <div className="flex items-center gap-3">
+                <Link href="/wall-of-fame">
+                  <Button className="h-11 px-6 bg-white/10 hover:bg-amber-500 hover:text-black text-white font-bold text-xs rounded-xl border border-white/10 transition-all shadow-md group cursor-pointer">
+                    <span>Explore Full Wall of Fame (8 Systems)</span>
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          THE 30-POINT DEFENCE-GRADE QA INSPECTION PROTOCOL
-      ═══════════════════════════════════════════════════════════════════ */}
-      <QAChecklistSection />
+            {/* 3 Featured Bento Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              {/* Card 1: Kizen CRM */}
+              <div className="group relative bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-amber-500/40 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
+                <div>
+                  <div className="h-48 overflow-hidden relative bg-black/40">
+                    <img
+                      src="/sample-crm-lead-automation.webp"
+                      alt="Kizen Education Zero-Seat Custom CRM"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D15] via-transparent to-transparent opacity-90" />
+                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[10px] font-mono text-emerald-400 font-bold">
+                      ● 45s LATENCY
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <p className="text-xs font-mono text-amber-400 font-semibold mb-1">ENTERPRISE & ERP</p>
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
+                      Kizen Education — Zero-Seat CRM
+                    </h3>
+                    <p className="text-xs text-neutral-400 leading-relaxed mb-4">
+                      Slashed lead response latency from 6 hours to 45s and eliminated ₹3.6L/year in recurring SaaS seat taxes with custom PostgreSQL + Supabase RLS.
+                    </p>
+                    <div className="flex flex-wrap gap-2 text-[11px] font-medium text-neutral-300">
+                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">PostgreSQL</span>
+                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">WhatsApp Webhook</span>
+                      <span className="px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">₹18L+ Salvaged</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 pt-0">
+                  <Link href="/wall-of-fame#gallery">
+                    <div className="text-xs font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1.5 cursor-pointer">
+                      <span>View Architecture & Metrics</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Card 2: Proactive Dental Surgery */}
+              <div className="group relative bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-amber-500/40 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
+                <div>
+                  <div className="h-48 overflow-hidden relative bg-black/40">
+                    <img
+                      src="/sample_dental_desktop.png"
+                      alt="Proactive Dental Surgery Healthcare Platform"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D15] via-transparent to-transparent opacity-90" />
+                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[10px] font-mono text-emerald-400 font-bold">
+                      ● 0.8s LCP
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <p className="text-xs font-mono text-cyan-400 font-semibold mb-1">HEALTHCARE & MEDTECH</p>
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
+                      Proactive Dental — Patient Gateway
+                    </h3>
+                    <p className="text-xs text-neutral-400 leading-relaxed mb-4">
+                      High-velocity clinical patient acquisition engine with sub-0.8s mobile LCP, interactive procedure estimator, and +180% increase in booked appointments.
+                    </p>
+                    <div className="flex flex-wrap gap-2 text-[11px] font-medium text-neutral-300">
+                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Next.js Edge</span>
+                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Local 3-Pack</span>
+                      <span className="px-2 py-0.5 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">+180% Bookings</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 pt-0">
+                  <Link href="/wall-of-fame#gallery">
+                    <div className="text-xs font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1.5 cursor-pointer">
+                      <span>View Architecture & Metrics</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Card 3: Bharat Precision Industrial */}
+              <div className="group relative bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-amber-500/40 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
+                <div>
+                  <div className="h-48 overflow-hidden relative bg-black/40">
+                    <img
+                      src="/portfolio-erp-system.webp"
+                      alt="Bharat Precision Industrial Forge ERP"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D15] via-transparent to-transparent opacity-90" />
+                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[10px] font-mono text-amber-400 font-bold">
+                      ● SUB-90s RFQ
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <p className="text-xs font-mono text-emerald-400 font-semibold mb-1">INDUSTRIAL & ERP</p>
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
+                      Bharat Precision — Industrial ERP
+                    </h3>
+                    <p className="text-xs text-neutral-400 leading-relaxed mb-4">
+                      Type-safe industrial quotation system replacing 48-hour manual email specs with sub-90s procurement, multi-warehouse telemetry, and zero data leakage.
+                    </p>
+                    <div className="flex flex-wrap gap-2 text-[11px] font-medium text-neutral-300">
+                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">TanStack Start</span>
+                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Nitro Engine</span>
+                      <span className="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20">100% Sovereign</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 pt-0">
+                  <Link href="/wall-of-fame#gallery">
+                    <div className="text-xs font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1.5 cursor-pointer">
+                      <span>View Architecture & Metrics</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Banner */}
+            <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 flex-shrink-0">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-white">Want to see all 8 systems, the 30-Point QA audit, and client audio teardowns?</p>
+                  <p className="text-xs text-neutral-400">Everything is open and transparent on our dedicated Wall of Fame.</p>
+                </div>
+              </div>
+              <Link href="/wall-of-fame">
+                <Button className="h-10 px-5 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-black font-extrabold text-xs rounded-xl shadow-md whitespace-nowrap cursor-pointer">
+                  <span>Visit Wall of Fame</span>
+                  <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+                </Button>
+              </Link>
+            </div>
+          </RevealOnScroll>
+        </div>
+      </section>
 
       <section className="py-24 px-6 bg-gradient-to-b from-primary/5 to-transparent">
         <div className="max-w-6xl mx-auto">

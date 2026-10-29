@@ -13,6 +13,7 @@ import { CurrencyProvider } from "@/contexts/CurrencyContext";
 
 const Home = React.lazy(() => import("@/pages/Home"));
 const Services = React.lazy(() => import("@/pages/Services"));
+const WallOfFame = React.lazy(() => import("@/pages/WallOfFame"));
 const About = React.lazy(() => import("@/pages/About"));
 const Orders = React.lazy(() => import("@/pages/Orders"));
 const Dashboard = React.lazy(() => import("@/pages/Dashboard"));
@@ -87,6 +88,7 @@ function Router() {
       <Switch>
         <Route path="/"><Suspense fallback={<LoadingFallback />}><Home /></Suspense></Route>
         <Route path="/services"><Suspense fallback={<LoadingFallback />}><Services /></Suspense></Route>
+        <Route path="/wall-of-fame"><Suspense fallback={<LoadingFallback />}><WallOfFame /></Suspense></Route>
         <Route path="/about"><Suspense fallback={<LoadingFallback />}><About /></Suspense></Route>
         <Route path="/orders"><Redirect to="/free-demo" /></Route>
         <Route path="/login"><Suspense fallback={<LoadingFallback />}><Login /></Suspense></Route>

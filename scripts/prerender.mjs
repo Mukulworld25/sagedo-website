@@ -101,6 +101,32 @@ const routes = [
     `,
   },
 
+  // ── WALL OF FAME ───────────────────────────────────────────────────
+  {
+    path: '/wall-of-fame',
+    title: "Wall of Fame | SAGE DO — Speed of AI. Precision of Humans. Portfolio & Case Studies",
+    description: "Explore 150+ custom systems delivered across India. Hand-coded sub-second web platforms, zero-seat custom CRMs, WhatsApp AI sales gateways, and defence-grade engineering case studies. Mohali, Chandigarh, India.",
+    content: `
+      <h1>SAGE DO Wall of Fame — Sovereign Systems &amp; Engineering Proof</h1>
+      <p>Explore real production systems engineered and shipped by SAGE DO. Sub-second performance, 100% data sovereignty, and zero per-seat software taxes.</p>
+      <h2>Featured Client Case Studies</h2>
+      <ul>
+        <li><strong>Kizen Education — Zero-Seat Custom CRM:</strong> Lead response latency slashed from 6 hours to 45 seconds. ₹3.6L/year recurring SaaS fees eliminated. 29 SQL migrations, 4-tier Supabase RLS.</li>
+        <li><strong>Proactive Dental Surgery — Specialist Patient Gateway:</strong> Sub-0.8s mobile LCP, interactive smile visualizer, +180% qualified appointment bookings.</li>
+        <li><strong>Bharat Precision Industrial Forge — Institutional ERP &amp; Catalog:</strong> Institutional precision engineering portal with real-time RFQ telemetry and sub-1s catalog search.</li>
+        <li><strong>Pause With SK — Somatic Wellness &amp; Membership Mobile App:</strong> Zero-latency streaming, audio progression tracker, offline habit tracking.</li>
+        <li><strong>Aura Essentials — Headless E-Commerce &amp; WhatsApp Cart:</strong> 0.7s LCP storefront with zero-drop WhatsApp cart recovery and 3.2x checkout conversion.</li>
+        <li><strong>Local Domination Engine — Hyperlocal SEO &amp; Maps Infrastructure:</strong> Rank #1 in Google Local 3-Pack across 12 target geo-coordinates.</li>
+        <li><strong>Corporate Treasury Engine — Automated Revenue &amp; Expense Ledger:</strong> Multi-entity margin analytics, automated GST reconciliation, real-time runway telemetry.</li>
+        <li><strong>SAGE DO Sovereign AI Operating Platform:</strong> End-to-end multi-agent execution pipeline delivering sub-48h client deployments with zero-defect QA.</li>
+      </ul>
+      <h2>The 30-Point Defence-Grade QA Protocol</h2>
+      <p>Every system shipped must pass 30 automated and human verification gates across speed, mobile responsiveness, SQL integrity, schema compliance, and legal sovereignty.</p>
+      <h2>Total Cost of Ownership (TCO) Asymmetry</h2>
+      <p>Why pay ₹3,60,000 to ₹12,00,000 annually in per-seat software taxes and agency retainers? SAGE DO delivers fixed milestone builds with 100% code ownership.</p>
+    `,
+  },
+
   // ── ABOUT ───────────────────────────────────────────────────────────
   {
     path: '/about',
