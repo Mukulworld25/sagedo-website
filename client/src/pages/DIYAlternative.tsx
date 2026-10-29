@@ -48,7 +48,7 @@ export default function DIYAlternative() {
                     </div>
 
                     <div className="space-y-6 text-lg text-muted-foreground leading-relaxed mb-16">
-                        <p className="text-xl text-foreground font-semibold border-l-4 border-primary pl-6">SAGEDO already knows the AI stack. We use 20+ AI tools daily. We've built systems for 67+ clients. We know what works and what doesn't.</p>
+                        <p className="text-xl text-foreground font-semibold border-l-4 border-primary pl-6">SAGEDO already knows the AI stack. We use 20+ AI tools daily. We've architected and delivered 150+ custom digital systems across India. We know what works and what doesn't.</p>
                         <p>Instead of spending 3 months learning AI tools, you can have SAGEDO deliver <strong className="text-foreground">a complete website in 7 days, social media content in 24 hours, and automation in 48 hours</strong> — all powered by AI, polished by humans.</p>
                     </div>
 

@@ -583,7 +583,7 @@ export default function About() {
           <div className="text-center mt-10">
             <a href="/services" className="tap-inline">
               <div className={buttonVariants({ variant: "outline", className: "font-bold px-8 h-12 rounded-xl cursor-pointer border-border/50 hover:bg-muted/50 gap-2 shadow-sm" })}>
-                Explore All 30+ Production Services <ArrowRight className="h-4 w-4" />
+                Explore All 29 Production Services <ArrowRight className="h-4 w-4" />
               </div>
             </a>
           </div>

@@ -101,7 +101,7 @@ const BookCall = () => {
             {[
               { icon: Zap, label: '24-Hour Response', color: 'text-amber-400' },
               { icon: Shield, label: 'Zero Sales Pitch', color: 'text-emerald-400' },
-              { icon: Star, label: '67+ Projects Done', color: 'text-rose-400' },
+              { icon: Star, label: '150+ Systems Shipped', color: 'text-rose-400' },
               { icon: MessageCircle, label: 'WhatsApp Follow-up', color: 'text-blue-400' },
             ].map((badge, i) => (
               <div key={i} className="flex flex-col items-center gap-2 bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
