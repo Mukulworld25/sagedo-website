@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Sparkles, Gift, ExternalLink, Settings, MessageCircle } from "lucide-react";
+import { Menu, X, Sparkles, Gift, ExternalLink, Settings, MessageCircle, MessageSquare } from "lucide-react";
 import { useState, useEffect } from "react";
 import { trackWhatsAppClick } from "@/hooks/useAnalytics";
 import { useAuth } from "@/hooks/useAuth";
@@ -164,33 +164,18 @@ export default function Navigation() {
                     </>
                   ) : (
                     <div className="flex items-center gap-2.5">
-                      {/* Refined Segmented Currency Toggle (INR / USD) */}
-                      <button
-                        type="button"
-                        onClick={toggleCurrency}
-                        data-testid="button-currency-toggle"
-                        title={`Current: ${currency}. Click to switch to ${currency === 'INR' ? 'USD ($)' : 'INR (₹)'}`}
-                        className="inline-flex items-center p-0.5 rounded-full bg-neutral-900/80 border border-neutral-800/80 hover:border-neutral-700/80 shadow-inner backdrop-blur-sm transition-all duration-200 cursor-pointer group"
-                      >
-                        <span
-                          className={`px-2.5 py-0.5 text-[11px] font-bold rounded-full transition-all duration-200 ${
-                            currency === 'INR'
-                              ? 'bg-neutral-800 text-primary shadow-sm border border-neutral-700/50'
-                              : 'text-neutral-400 group-hover:text-neutral-300'
-                          }`}
+                      {/* Feedback & Reviews Navigation Pill */}
+                      <Link href="/share-your-experience">
+                        <button
+                          type="button"
+                          data-testid="button-nav-feedback"
+                          title="Share your review or tell us why you didn't buy"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-900/90 border border-neutral-800 hover:border-amber-500/40 text-neutral-300 hover:text-amber-400 text-xs font-semibold shadow-inner backdrop-blur-sm transition-all duration-200 cursor-pointer group"
                         >
-                          ₹ INR
-                        </span>
-                        <span
-                          className={`px-2.5 py-0.5 text-[11px] font-bold rounded-full transition-all duration-200 ${
-                            currency === 'USD'
-                              ? 'bg-neutral-800 text-primary shadow-sm border border-neutral-700/50'
-                              : 'text-neutral-400 group-hover:text-neutral-300'
-                          }`}
-                        >
-                          $ USD
-                        </span>
-                      </button>
+                          <MessageSquare className="w-3.5 h-3.5 text-amber-500 group-hover:scale-110 transition-transform" />
+                          <span>Feedback & Reviews</span>
+                        </button>
+                      </Link>
 
                       {/* Modern Refined WhatsApp Button with Emerald Gradient & Halo Glow */}
                       <a 
@@ -218,34 +203,19 @@ export default function Navigation() {
               )}
             </div>
 
-            {/* Mobile Currency Toggle & Hamburger Menu Button */}
+            {/* Mobile Feedback Link & Hamburger Menu Button */}
             <div className="flex items-center gap-2 md:hidden">
-              <button
-                type="button"
-                onClick={toggleCurrency}
-                data-testid="button-currency-toggle-mobile"
-                aria-label="Toggle currency between INR and USD"
-                className="inline-flex items-center min-h-[44px] px-1 py-1 rounded-full bg-neutral-900/90 border border-neutral-800 shadow-inner cursor-pointer"
-              >
-                <span
-                  className={`px-2.5 py-1 text-xs font-bold rounded-full transition-colors ${
-                    currency === 'INR'
-                      ? 'bg-neutral-800 text-primary shadow-xs'
-                      : 'text-neutral-400'
-                  }`}
+              <Link href="/share-your-experience">
+                <button
+                  type="button"
+                  data-testid="button-currency-toggle-mobile"
+                  aria-label="Share Feedback or Reviews"
+                  className="inline-flex items-center gap-1 min-h-[36px] px-2.5 py-1 rounded-full bg-neutral-900/90 border border-neutral-800 text-neutral-300 text-xs font-semibold shadow-inner"
                 >
-                  ₹
-                </span>
-                <span
-                  className={`px-2.5 py-1 text-xs font-bold rounded-full transition-colors ${
-                    currency === 'USD'
-                      ? 'bg-neutral-800 text-primary shadow-xs'
-                      : 'text-neutral-400'
-                  }`}
-                >
-                  $
-                </span>
-              </button>
+                  <MessageSquare className="w-3.5 h-3.5 text-amber-500" />
+                  <span className="text-[11px]">Feedback</span>
+                </button>
+              </Link>
               <button
                 data-testid="button-mobile-menu"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

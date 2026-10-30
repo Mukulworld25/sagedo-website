@@ -59,8 +59,8 @@ const TABS = [
   },
   {
     id: "scaleops",
-    label: "ScaleOps & Combos",
-    sub: "Retainers, Maintenance & Bundles",
+    label: "Sovereign Partner Ecosystem & Smart Combos",
+    sub: "Bilateral Partners, High-ROI Combos & Retainers",
     icon: TrendingUp,
     color: "from-blue-400 to-cyan-600",
     activeColor: "text-blue-400",
@@ -673,47 +673,20 @@ export default function Services() {
                       ))}
                     </div>
 
-                    {/* EXPANDABLE DRAWER BUTTON */}
-                    <div className="mt-8 mb-4 flex justify-center">
-                      <button
-                        onClick={() => setShowAllServices(!showAllServices)}
-                        className="group relative flex flex-col items-center justify-center w-full max-w-3xl py-5 px-8 bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-amber-500/10 border border-amber-500/20 hover:border-amber-500/50 rounded-2xl transition-all duration-300 shadow-[0_0_20px_rgba(245,158,11,0.05)] hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] cursor-pointer"
-                      >
-                        <div className="relative z-10 flex items-center justify-between w-full">
-                          <div className="flex items-center gap-4 text-left">
-                            <div className="p-3 bg-amber-500/20 rounded-xl text-amber-400 group-hover:scale-110 transition-transform">
-                              <Sparkles className="w-6 h-6" />
-                            </div>
-                            <div>
-                              <h3 className="font-bold text-lg text-white group-hover:text-amber-400 transition-colors">
-                                Explore 20+ Specialized Services
-                              </h3>
-                              <p className="text-xs text-gray-400">
-                                GST, MSME, Trademark, Logos, Pitch Decks, SEO Blogs, and more
-                              </p>
-                            </div>
-                          </div>
-                          <motion.div
-                            animate={{ rotate: showAllServices ? 180 : 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="p-2 bg-white/5 rounded-full text-gray-400 group-hover:text-white"
-                          >
-                            <ChevronDown className="w-5 h-5" />
-                          </motion.div>
-                        </div>
-                      </button>
-                    </div>
-
-                    {/* SPECIALIZED SERVICES DRAWER */}
-                    <AnimatePresence initial={false}>
-                      {showAllServices && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
-                          className="overflow-hidden"
-                        >
+                    {/* PERMANENT OPEN SPECIALIZED SERVICES CATALOG */}
+                    <div className="mt-12 mb-8">
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="h-[1px] bg-white/10 flex-1"></div>
+                        <h3 className="text-sm font-bold uppercase tracking-widest text-amber-400 flex items-center gap-2">
+                          <Sparkles className="w-4 h-4" />
+                          Specialized Solutions & Essential Foundations
+                        </h3>
+                        <div className="h-[1px] bg-white/10 flex-1"></div>
+                      </div>
+                      <p className="text-center text-xs text-neutral-400 max-w-xl mx-auto mb-8">
+                        From company registration and brand identity to legal trademarking and dedicated SEO blogs — all available as standalone modular builds.
+                      </p>
+                      
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-6">
                             {specializedServices.map((service) => (
                               <div
@@ -773,9 +746,8 @@ export default function Services() {
                               </div>
                             ))}
                           </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                        
+                    </div>
                   </div>
                 </div>
               )}
@@ -1036,6 +1008,71 @@ export default function Services() {
                       <p className="text-gray-400 mt-1 max-w-2xl text-sm leading-relaxed">
                         Ready-to-deploy multi-service bundles, 1-on-1 strategic growth audits, and recurring monthly maintenance to keep your search ranks and systems operating at peak velocity.
                       </p>
+                    </div>
+                  </div>
+
+                                    {/* 0. SOVEREIGN PARTNER ECOSYSTEM PILLARS */}
+                  <div className="mb-14">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="h-[1px] bg-white/10 flex-1"></div>
+                      <h3 className="text-sm font-bold uppercase tracking-widest text-blue-400 flex items-center gap-2">
+                        <Crown className="w-4 h-4" />
+                        Bilateral Sovereign Partner Rails
+                      </h3>
+                      <div className="h-[1px] bg-white/10 flex-1"></div>
+                    </div>
+                    <p className="text-center text-xs text-neutral-400 max-w-2xl mx-auto mb-8">
+                      Indian businesses need more than just software. We partner with licensed statutory professionals and CapEx dealers to deliver compliant, end-to-end operational infrastructure.
+                    </p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                      <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/50 transition-all hover:-translate-y-1">
+                        <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 mb-4 text-xl">
+                          ⚖️
+                        </div>
+                        <h4 className="font-bold text-white text-base mb-1">Statutory & Audit Rail</h4>
+                        <p className="text-xs text-blue-400 font-semibold mb-2">ICAI Compliant Retainers</p>
+                        <p className="text-xs text-neutral-400 leading-relaxed mb-4">
+                          Subcontracted pre-audit data mapping with trusted Chartered Accountants. White-labeled compliance portals with native Tally ledger reconciliation.
+                        </p>
+                        <span className="text-[10px] text-neutral-500 font-mono">Bilateral CA Network</span>
+                      </div>
+
+                      <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/50 transition-all hover:-translate-y-1">
+                        <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 mb-4 text-xl">
+                          📜
+                        </div>
+                        <h4 className="font-bold text-white text-base mb-1">Corporate Legal Rail</h4>
+                        <p className="text-xs text-amber-400 font-semibold mb-2">Bar Council Aligned</p>
+                        <p className="text-xs text-neutral-400 leading-relaxed mb-4">
+                          Intellectual Property assignment, Master Services Agreements (MSAs), founder equity drafting, and statutory contract compliance.
+                        </p>
+                        <span className="text-[10px] text-neutral-500 font-mono">Legal Counsel Network</span>
+                      </div>
+
+                      <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-emerald-400/50 transition-all hover:-translate-y-1">
+                        <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-4 text-xl">
+                          👥
+                        </div>
+                        <h4 className="font-bold text-white text-base mb-1">HR & Talent Rail</h4>
+                        <p className="text-xs text-emerald-400 font-semibold mb-2">Vetted Engineering Staffing</p>
+                        <p className="text-xs text-neutral-400 leading-relaxed mb-4">
+                          Fractional CTOs, senior full-stack React/Node engineers, and trained telecalling teams to operate your custom CRM.
+                        </p>
+                        <span className="text-[10px] text-neutral-500 font-mono">Talent Placement Rail</span>
+                      </div>
+
+                      <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-400/50 transition-all hover:-translate-y-1">
+                        <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-4 text-xl">
+                          🏭
+                        </div>
+                        <h4 className="font-bold text-white text-base mb-1">CapEx & Machinery Rail</h4>
+                        <p className="text-xs text-purple-400 font-semibold mb-2">Factory Floor IoT Telemetry</p>
+                        <p className="text-xs text-neutral-400 leading-relaxed mb-4">
+                          Bundled WhatsApp machinery maintenance telemetry with industrial OEM dealers across the Punjab & Haryana manufacturing corridor.
+                        </p>
+                        <span className="text-[10px] text-neutral-500 font-mono">Industrial Telemetry Rail</span>
+                      </div>
                     </div>
                   </div>
 

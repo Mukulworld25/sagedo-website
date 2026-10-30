@@ -20,13 +20,9 @@ export default function ChatWidget() {
     const [messages, setMessages] = useState<Message[]>([
         {
             id: 'welcome',
-            text: "Namaste! 🙏 I'm Bruno, SAGE DO's assistant. How can I help you today?",
+            text: "Namaste! I'm Bruno, Chief of Staff at SAGE DO. How can I assist your business systems today?",
             sender: 'bot',
-            options: [
-                { label: "Browse Services", action: "services" },
-                { label: "Check Pricing", action: "pricing" },
-                { label: "Talk to Human", action: "human" }
-            ]
+            options: [{ label: "Check Pricing", action: "pricing" }, { label: "Wall of Fame", action: "wall_of_fame" }, { label: "Talk to Human", action: "human" }]
         }
     ]);
     const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -131,6 +127,13 @@ export default function ChatWidget() {
                     response = {
                         id: Date.now().toString(),
                         text: "Great! Taking you to the order page now...",
+                        sender: 'bot'
+                    };
+                } else if (action === 'wall_of_fame') {
+                    window.location.href = '/wall-of-fame';
+                    response = {
+                        id: Date.now().toString(),
+                        text: "Opening the Wall of Fame for you to inspect authentic receipts, case studies, and voice notes...",
                         sender: 'bot'
                     };
                 } else if (action === 'services') {
@@ -283,23 +286,32 @@ export default function ChatWidget() {
 
     return (
         <>
-            {/* Toggle Button */}
+            {/* Toggle Button with Official Circular Brand Logo */}
             <button
                 data-testid="chat-widget-fab"
                 onClick={() => setIsOpen(!isOpen)}
-                className={`fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full shadow-xl transition-all duration-300 hover:scale-105 ${isOpen ? "bg-destructive rotate-90" : "bg-gradient-to-tr from-primary to-orange-600 animate-pulse-slow"
-                    }`}
+                aria-label="Open Bruno Chat Assistant"
+                className={`fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 cursor-pointer ${
+                    isOpen 
+                        ? "bg-neutral-900 border border-white/20 rotate-90" 
+                        : "bg-black border-2 border-amber-500/60 shadow-[0_0_25px_rgba(245,158,11,0.4)]"
+                }`}
             >
                 {isOpen ? (
                     <X className="w-6 h-6 text-white" />
                 ) : (
-                    <MessageCircle className="w-7 h-7 text-white" />
+                    <div className="relative w-full h-full rounded-full overflow-hidden p-1 flex items-center justify-center bg-black">
+                        <img
+                            src="/sagedo_logo_final_circle.webp"
+                            alt="Bruno - SAGE DO Chief of Staff"
+                            className="w-full h-full object-cover rounded-full"
+                        />
+                    </div>
                 )}
-                {/* Notification badge */}
                 {!isOpen && (
-                    <span className="absolute -top-1 -right-1 flex h-4 w-4">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-4 w-4 bg-red-500 text-[10px] text-white font-bold items-center justify-center">1</span>
+                    <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 text-[9px] text-white font-bold items-center justify-center">1</span>
                     </span>
                 )}
             </button>
@@ -308,17 +320,25 @@ export default function ChatWidget() {
             {isOpen && (
                 <Card className="fixed bottom-24 right-6 z-50 w-[calc(100vw-3rem)] sm:w-[380px] h-[500px] flex flex-col glass border-primary/20 shadow-2xl animate-in slide-in-from-bottom-10 fade-in duration-300 overflow-hidden rounded-2xl">
                     {/* Header */}
-                    <div className="p-4 bg-gradient-to-r from-primary to-orange-600 flex items-center gap-3 text-white shadow-md">
-                        <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
-                            <Bot className="w-6 h-6" />
+                    <div className="p-4 bg-gradient-to-r from-neutral-900 via-neutral-950 to-black border-b border-white/10 flex items-center justify-between text-white shadow-md">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full overflow-hidden border border-amber-500/50 p-0.5 bg-black shrink-0">
+                                <img src="/sagedo_logo_final_circle.webp" alt="Bruno - Chief of Staff" className="w-full h-full object-cover rounded-full" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-sm text-white flex items-center gap-1.5">
+                                    <span>Bruno</span>
+                                    <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">Chief of Staff</span>
+                                </h3>
+                                <p className="text-[11px] text-neutral-400 flex items-center gap-1">
+                                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                                    Active · Sub-60s Answers
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 className="font-bold text-lg">Bruno - SAGE DO</h3>
-                            <p className="text-xs text-white/80 flex items-center gap-1">
-                                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                                Online Now
-                            </p>
-                        </div>
+                        <button onClick={() => setIsOpen(false)} className="text-neutral-400 hover:text-white p-1 rounded-lg">
+                            <X className="w-4 h-4" />
+                        </button>
                     </div>
 
                     {/* Messages Area */}
