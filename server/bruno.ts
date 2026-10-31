@@ -179,8 +179,8 @@ You're now in "Real Talk" mode - be brutally honest but constructive. Don't suga
             lowerMsg.includes('budget') || lowerMsg.includes('afford') || lowerMsg.includes('fee') ||
             lowerMsg.includes('how much')) {
             return {
-                text: "Our services start from just ₹49! 💰 Most packages are ₹10K-₹50K — that's 10x cheaper than agencies with the same quality. Tell me what you need and I'll get you a custom quote! 🎯",
-                options: ['View Services', 'Get Quote', 'Talk to Human']
+                text: "Here is our verified commercial pricing:\n\n• Websites: SMB ₹10k–₹20k | Enterprise ₹15k–₹30k (Sub-1.2s speed)\n• Custom CRM: SMB ₹30k–₹50k | Enterprise ₹50k–₹1.20L (Zero per-seat tax)\n• Local SEO & GEO: ₹3,999–₹5,999 (Google Maps 3-Pack)\n• WhatsApp Automation Bot: ₹8,000–₹15,000\n• Turnkey Combos: From ₹2,999\n\nAll backed by our 48-Hour Functional Prototype Guarantee (90% Money-Back SLA).",
+                options: ['View Services', 'Book Scoping Call', 'Talk to Human']
             };
         }
 
@@ -205,14 +205,12 @@ You're now in "Real Talk" mode - be brutally honest but constructive. Don't suga
             };
         }
 
-        // --- Resume / Job / Career ---
-        if (lowerMsg.includes('resume') || lowerMsg.includes('cv') || lowerMsg.includes('job') ||
-            lowerMsg.includes('ats') || lowerMsg.includes('career') || lowerMsg.includes('cover letter') ||
-            lowerMsg.includes('linkedin') || lowerMsg.includes('interview') || lowerMsg.includes('hire') ||
-            lowerMsg.includes('application')) {
+        // --- Turnkey Combos & Bundles ---
+        if (lowerMsg.includes('combo') || lowerMsg.includes('bundle') || lowerMsg.includes('package') ||
+            lowerMsg.includes('turnkey') || lowerMsg.includes('all in one')) {
             return {
-                text: "We create ATS-optimized resumes that pass the bots AND impress humans! 💼 Plus cover letters tailored to specific jobs and LinkedIn profile optimization. Your career upgrade starts here! 🚀",
-                options: ['Order Resume', 'View Career Services', 'Talk to Human']
+                text: "Turnkey Smart Combos ready to deploy:\n\n• Brand Starter: ₹2,999 – ₹3,499 (Logo + Colors + Business Email)\n• Legal Foundation: ₹3,999 – ₹5,999 (GST + MSME + Trademark)\n• Sales Machine: ₹12,999 – ₹14,999 (CRM + WhatsApp Bot)\n• Complete Launchpad: ₹19,999 – ₹24,999 (Website + CRM + Bot + SEO)\n• Revenue Command Center: ₹59,999 – ₹75,000 (Full CRM + Tally Bridge)\n• Enterprise Sovereign Suite: ₹1,49,999+ (Full Stack + VPS + SLA).",
+                options: ['View Combos', 'Book Scoping Call', 'Talk to Human']
             };
         }
 

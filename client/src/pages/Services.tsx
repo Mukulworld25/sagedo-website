@@ -22,9 +22,12 @@ function cn(...inputs: (string | undefined | null | false)[]) {
 
 const COMBOS = [
   { name: "Brand Starter", desc: "Logo + Brand Colors + Business Email", price: "₹2,999 – ₹3,499", icon: "🎨", service: "Brand Starter Combo", price_val: 2999 },
-  { name: "Google Presence", desc: "Website + SEO / GEO / AEO + Google Business Profile", price: "₹16,999 – ₹19,999", icon: "🌐", service: "Google Presence Combo", price_val: 16999 },
   { name: "Legal Foundation", desc: "GST + MSME + Trademark Filing", price: "₹3,999 – ₹5,999", icon: "📋", service: "Legal Foundation Combo", price_val: 3999 },
   { name: "Sales Machine", desc: "CRM + WhatsApp Bot + Lead Automation", price: "₹12,999 – ₹14,999", icon: "🤖", service: "Sales Machine Combo", price_val: 12999 },
+  { name: "Complete Business Launchpad", desc: "Website + CRM + WhatsApp Bot + Local SEO", price: "₹19,999 – ₹24,999", icon: "🚀", service: "Complete Business Launchpad Combo", price_val: 19999 },
+  { name: "Google Presence", desc: "Website + SEO / GEO / AEO + Google Business Profile", price: "₹16,999 – ₹19,999", icon: "🌐", service: "Google Presence Combo", price_val: 16999 },
+  { name: "Revenue Command Center", desc: "Custom CRM + Tally Bridge + Telecalling Portal", price: "₹59,999 – ₹75,000", icon: "⚡", service: "Revenue Command Center Combo", price_val: 59999 },
+  { name: "Enterprise Sovereign Suite", desc: "Full Custom Stack + VPS + 24/7 SLA + Dedicated AMC", price: "₹1,49,999+", icon: "👑", service: "Enterprise Sovereign Suite", price_val: 149999 },
 ];
 
 const CONSULT_OPTIONS = [
@@ -59,8 +62,8 @@ const TABS = [
   },
   {
     id: "scaleops",
-    label: "Sovereign Partner Ecosystem & Smart Combos",
-    sub: "Bilateral Partners, High-ROI Combos & Retainers",
+    label: "Modular Services, Combos & Partner Rails",
+    sub: "Turnkey Combos, Standalone Services & Retainers",
     icon: TrendingUp,
     color: "from-blue-400 to-cyan-600",
     activeColor: "text-blue-400",
@@ -87,9 +90,11 @@ export default function Services() {
     if (tabId === "enterprise") {
       return `${formatAmount(45000)} / ${formatAmount(150000)} / Starting at ${formatAmount(350000)}`;
     }
-    return "Retainers, Maintenance & Bundles";
+    return "Combos, Standalone Services & Retainers";
   };
-  const [activeTab, setActiveTab] = useState<string>("smb");
+  const searchParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : new URLSearchParams();
+  const initialTab = searchParams.get('tab') || 'smb';
+  const [activeTab, setActiveTab] = useState<string>(initialTab);
   const [searchQuery, setSearchQuery] = useState("");
   const [showAllServices, setShowAllServices] = useState(false);
   const [selectedService, setSelectedService] = useState<ServiceDetail | null>(null);
@@ -103,9 +108,12 @@ export default function Services() {
   };
 
   const FEATURED_IDS = ["b03", "b02", "b05", "b04"];
+  const ENTERPRISE_IDS = ["launch_starter", "launch_full", "launch_vip"];
   const featuredServices = FEATURED_IDS.map(id => allServices.find(s => s.id === id)).filter(Boolean) as ServiceDetail[];
   const specializedServices = allServices.filter(s =>
-    ["Business", "Startup Launch", "Scale Business", "AI Automation"].includes(s.category) && !FEATURED_IDS.includes(s.id)
+    ["Business", "Startup Launch", "Scale Business", "AI Automation"].includes(s.category) &&
+    !FEATURED_IDS.includes(s.id) &&
+    !ENTERPRISE_IDS.includes(s.id)
   );
   const launchpadServices = allServices.filter(s => ["Business", "Startup Launch", "Scale Business", "AI Automation"].includes(s.category));
   const getFiltered = (list: ServiceDetail[]) => searchQuery.trim() ? list.filter(s => s.name.toLowerCase().includes(searchQuery.toLowerCase()) || s.description.toLowerCase().includes(searchQuery.toLowerCase())) : list;
@@ -673,80 +681,26 @@ export default function Services() {
                       ))}
                     </div>
 
-                    {/* PERMANENT OPEN SPECIALIZED SERVICES CATALOG */}
-                    <div className="mt-12 mb-8">
-                      <div className="flex items-center gap-4 mb-6">
-                        <div className="h-[1px] bg-white/10 flex-1"></div>
-                        <h3 className="text-sm font-bold uppercase tracking-widest text-amber-400 flex items-center gap-2">
-                          <Sparkles className="w-4 h-4" />
-                          Specialized Solutions & Essential Foundations
-                        </h3>
-                        <div className="h-[1px] bg-white/10 flex-1"></div>
+                    {/* Bridge Banner to Track 3 */}
+                    <div className="mt-10 p-6 rounded-2xl bg-gradient-to-r from-amber-500/10 via-white/5 to-transparent border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
+                          <Sparkles className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-bold text-white">Looking for Standalone Services or Turnkey Combos?</h4>
+                          <p className="text-xs text-neutral-400">Logos, GST, MSME, Trademark, Pitch Decks, Mobile Apps & 7 Turnkey Combos are in Track 3.</p>
+                        </div>
                       </div>
-                      <p className="text-center text-xs text-neutral-400 max-w-xl mx-auto mb-8">
-                        From company registration and brand identity to legal trademarking and dedicated SEO blogs — all available as standalone modular builds.
-                      </p>
-                      
-                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-6">
-                            {specializedServices.map((service) => (
-                              <div
-                                key={service.id}
-                                onClick={() => handleCardClick(service)}
-                                className="group relative bg-white/5 border border-white/5 hover:border-amber-500/30 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-                              >
-                                <div className="h-40 overflow-hidden relative">
-                                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
-                                  <img
-                                    src={service.imageUrl}
-                                    alt={service.name}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                  />
-                                  <div className="absolute bottom-4 left-4 z-20">
-                                    <h3 className="font-bold text-white text-base leading-tight mb-1">{service.name}</h3>
-                                    <p className="text-amber-500 font-bold text-sm bg-black/50 px-2 py-0.5 rounded-md inline-block border border-amber-500/20">
-                                      {formatPrice(service.priceRange)}
-                                    </p>
-                                  </div>
-                                  {service.badge && (
-                                    <span className="absolute top-3 right-3 z-20 text-[9px] font-bold uppercase tracking-wider bg-amber-500 text-black px-2 py-0.5 rounded-full">
-                                      {service.badge}
-                                    </span>
-                                  )}
-                                </div>
-                                <div className="p-4">
-                                  <p className="text-xs text-amber-400/80 font-semibold mb-2 italic">{(service as any).whyBuy || ""}</p>
-                                  <p className="text-sm text-gray-400 line-clamp-2 mb-4">{service.description}</p>
-                                  <div className="flex gap-2">
-                                    <Link
-                                      href={`/orders?package=${service.id}&service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}`}
-                                      onClick={(e) => e.stopPropagation()}
-                                      className="flex-1"
-                                    >
-                                      <Button
-                                        size="sm"
-                                        className="min-h-[44px] sm:min-h-0 w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none transition-colors font-semibold text-xs"
-                                      >
-                                        Start Build → {formatPrice(service.priceRange)}
-                                      </Button>
-                                    </Link>
-                                    <a
-                                      href={`https://wa.me/916284925684?text=${encodeURIComponent('Hi Mukul, I want to know more about: ' + service.name + ' (' + service.priceRange + ')')}`}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        trackWhatsAppClick(`services_drawer_${service.id}`);
-                                      }}
-                                      className="min-h-[44px] sm:min-h-0 flex-shrink-0 bg-green-600 hover:bg-green-500 text-white px-2 py-1.5 rounded-md text-xs font-semibold flex items-center transition-colors"
-                                    >
-                                      Ask
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        
+                      <Button
+                        onClick={() => {
+                          setActiveTab("scaleops");
+                          window.scrollTo({ top: 350, behavior: "smooth" });
+                        }}
+                        className="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs h-10 px-5 rounded-xl cursor-pointer"
+                      >
+                        Explore Combos & Modular Services →
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -989,24 +943,23 @@ export default function Services() {
               )}
 
               {/* ───────────────────────────────────────────────────────────── */}
-              {/* TAB 3: SCALEOPS & COMBOS */}
-              {/* ───────────────────────────────────────────────────────────── */}
+              {/* TAB 3: MODULAR SERVICES, COMBOS & PARTNER RAILS */}
               {activeTab === "scaleops" && (
                 <div className="pt-10">
                   <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
                     <div>
                       <div className="flex items-center gap-2 mb-2">
                         <Badge className="bg-blue-500/10 text-blue-400 border-blue-500/20 text-xs font-bold uppercase tracking-wider">
-                          Track 3: ScaleOps & Combos
+                          Track 3: Modular Services, Combos & Partner Rails
                         </Badge>
-                        <span className="text-xs text-neutral-400">Continuous Operations, Retainers & Strategic Bundles</span>
+                        <span className="text-xs text-neutral-400">Turnkey Combos, Standalone Modular Services & Ecosystem Rails</span>
                       </div>
                       <h2 className="text-3xl font-extrabold text-white flex items-center gap-3">
                         <TrendingUp className="w-8 h-8 text-blue-400" />
-                        ScaleOps & Commercial Bundles
+                        Modular Services, Combos & Partner Rails
                       </h2>
                       <p className="text-gray-400 mt-1 max-w-2xl text-sm leading-relaxed">
-                        Ready-to-deploy multi-service bundles, 1-on-1 strategic growth audits, and recurring monthly maintenance to keep your search ranks and systems operating at peak velocity.
+                        Ready-to-deploy multi-service combos, standalone specialized services (Logos, GST, MSME, Pitch Decks), bilateral partner rails, and ongoing maintenance retainers.
                       </p>
                     </div>
                   </div>
@@ -1085,6 +1038,81 @@ export default function Services() {
                       </h3>
                       <div className="h-[1px] bg-white/10 flex-1"></div>
                     </div>
+
+                  {/* 2. STANDALONE SPECIALIZED SOLUTIONS CATALOG */}
+                  <div className="mb-14">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="h-[1px] bg-white/10 flex-1"></div>
+                      <h3 className="text-sm font-bold uppercase tracking-widest text-amber-400 flex items-center gap-2">
+                        <Sparkles className="w-4 h-4" />
+                        Standalone Specialized Services & Legal Foundations
+                      </h3>
+                      <div className="h-[1px] bg-white/10 flex-1"></div>
+                    </div>
+                    <p className="text-center text-xs text-neutral-400 max-w-xl mx-auto mb-8">
+                      From company registration and brand identity to legal trademarking, mobile apps and dedicated SEO blogs — all available as standalone modular builds.
+                    </p>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                      {specializedServices.map((service) => (
+                        <div
+                          key={service.id}
+                          onClick={() => handleCardClick(service)}
+                          className="group relative bg-white/5 border border-white/5 hover:border-amber-500/30 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                        >
+                          <div className="h-40 overflow-hidden relative">
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
+                            <img
+                              src={service.imageUrl}
+                              alt={service.name}
+                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            />
+                            <div className="absolute bottom-4 left-4 z-20">
+                              <h3 className="font-bold text-white text-base leading-tight mb-1">{service.name}</h3>
+                              <p className="text-amber-500 font-bold text-sm bg-black/50 px-2 py-0.5 rounded-md inline-block border border-amber-500/20">
+                                {formatPrice(service.priceRange)}
+                              </p>
+                            </div>
+                            {service.badge && (
+                              <span className="absolute top-3 right-3 z-20 text-[9px] font-bold uppercase tracking-wider bg-amber-500 text-black px-2 py-0.5 rounded-full">
+                                {service.badge}
+                              </span>
+                            )}
+                          </div>
+                          <div className="p-4">
+                            <p className="text-xs text-amber-400/80 font-semibold mb-2 italic">{(service as any).whyBuy || ""}</p>
+                            <p className="text-sm text-gray-400 line-clamp-2 mb-4">{service.description}</p>
+                            <div className="flex gap-2">
+                              <Link
+                                href={`/orders?package=${service.id}&service=${encodeURIComponent(service.name)}&price=${service.price}&id=${service.id}`}
+                                onClick={(e) => e.stopPropagation()}
+                                className="flex-1"
+                              >
+                                <Button
+                                  size="sm"
+                                  className="min-h-[44px] sm:min-h-0 w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none transition-colors font-semibold text-xs"
+                                >
+                                  Start Build → {formatPrice(service.priceRange)}
+                                </Button>
+                              </Link>
+                              <a
+                                href={`https://wa.me/916284925684?text=${encodeURIComponent('Hi Mukul, I want to know more about: ' + service.name + ' (' + service.priceRange + ')')}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  trackWhatsAppClick(`services_tab3_${service.id}`);
+                                }}
+                                className="min-h-[44px] sm:min-h-0 flex-shrink-0 bg-green-600 hover:bg-green-500 text-white px-2 py-1.5 rounded-md text-xs font-semibold flex items-center transition-colors"
+                              >
+                                Ask
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                       {COMBOS.map((combo, i) => (
                         <RevealOnScroll key={combo.name} delay={i * 60}>

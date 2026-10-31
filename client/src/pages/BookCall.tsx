@@ -20,26 +20,20 @@ const TIME_SLOTS = [
   '08:00 PM - 08:30 PM',
 ];
 
-const INTENTS = [
-  { id: 'whatsapp', label: '⚡ Direct WhatsApp (Fastest)', sub: 'Sub-45s response time directly from founder' },
-  { id: 'call', label: '📅 15-Min Scoping Call', sub: 'Interactive technical architecture review' },
-  { id: 'lock', label: '🔒 Lock 48h Sprint (10% Off)', sub: 'Upfront slot lock with 90% SLA money-back guarantee' },
-  { id: 'rfp', label: '🤝 Enterprise / Partner RFP', sub: 'For mid-market systems & CA/Legal bilateral partnerships' },
-];
-
 export default function BookCall() {
   const [location] = useLocation();
   const searchParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : new URLSearchParams();
-  const initialService = searchParams.get('service') || 'General Architecture Scoping';
+  const initialService = searchParams.get('service') || 'Website Design & Development';
 
-  const [activeIntent, setActiveIntent] = useState<'whatsapp' | 'call' | 'lock' | 'rfp'>('whatsapp');
   const [selectedService, setSelectedService] = useState(initialService);
   const [name, setName] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
+  const [email, setEmail] = useState('');
   const [businessName, setBusinessName] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState(TIME_SLOTS[0]);
   const [projectBrief, setProjectBrief] = useState('');
+  const [isSprintLocked, setIsSprintLocked] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -49,6 +43,11 @@ export default function BookCall() {
   tomorrow.setDate(tomorrow.getDate() + 1);
   const minDate = tomorrow.toISOString().split('T')[0];
 
+  useEffect(() => {
+    const s = searchParams.get('service');
+    if (s) setSelectedService(s);
+  }, []);
+
   const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -56,12 +55,14 @@ export default function BookCall() {
     const bookingPayload = {
       name: name.trim(),
       whatsapp: whatsapp.trim(),
+      email: email.trim(),
       businessName: businessName.trim() || 'Not specified',
-      intent: activeIntent,
+      intent: isSprintLocked ? 'lock_10_percent_discount' : 'strategy_call',
       service: selectedService,
       preferredDate: selectedDate,
       preferredTime: selectedTime,
-      brief: projectBrief.trim()
+      brief: projectBrief.trim(),
+      sprintLock: isSprintLocked
     };
 
     try {
@@ -76,13 +77,16 @@ export default function BookCall() {
 
     // Direct WhatsApp redirect with populated context
     const waText = encodeURIComponent(
-      `Hi Mukul! I am requesting a ${activeIntent === 'call' ? '15-Min Strategy Call' : activeIntent === 'lock' ? '48h Sprint Lock (10% Discount)' : 'Project Review'} on SAGE DO.\n\n` +
+      `Hi Mukul! I've booked a strategy session on SAGE DO.\n\n` +
       `• Name: ${name || 'Founder'}\n` +
+      `• WhatsApp: ${whatsapp}\n` +
+      (email ? `• Email: ${email}\n` : '') +
       `• Business: ${businessName || 'MSME'}\n` +
-      `• Selected Need: ${selectedService}\n` +
+      `• Selected System: ${selectedService}\n` +
       (selectedDate ? `• Scheduled Slot: ${selectedDate} at ${selectedTime}\n` : '') +
-      (projectBrief ? `• Scope Details: ${projectBrief}\n` : '') +
-      `\nLooking forward to your technical assessment!`
+      (isSprintLocked ? `• 48h Sprint Lock: YES (10% Instant Advance Discount Applied)\n` : '') +
+      (projectBrief ? `• Scope / Bottleneck: ${projectBrief}\n` : '') +
+      `\nLooking forward to our technical scoping discussion!`
     );
 
     window.open(`https://wa.me/916284925684?text=${waText}`, '_blank');
@@ -93,7 +97,7 @@ export default function BookCall() {
   return (
     <>
       <Helmet>
-        <title>Intake Terminal & Strategy Scoping | SAGE DO</title>
+        <title>Book a Strategy Call & Architecture Scoping | SAGE DO</title>
         <meta name="description" content="Talk directly to Mukul Dhiman, founder of SAGE DO. Guaranteed 48-Hour functional prototype with 90% SLA money-back warranty." />
       </Helmet>
 
@@ -104,7 +108,7 @@ export default function BookCall() {
         <div className="container mx-auto px-4 max-w-6xl relative z-10">
 
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="text-center max-w-3xl mx-auto mb-10">
             <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-1.5 mb-4">
               <Zap className="w-4 h-4 text-amber-400" />
               <span className="text-xs text-amber-300 font-bold uppercase tracking-wider">
@@ -112,10 +116,10 @@ export default function BookCall() {
               </span>
             </div>
             <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
-              Scoping, Sprints & Sovereign Infrastructure
+              Book a Strategy Call & Architecture Scoping
             </h1>
             <p className="text-sm sm:text-base text-neutral-400 leading-relaxed">
-              No junior account managers. No 10-day proposal delays. Choose your intake path below for an immediate technical assessment directly from our founder.
+              No junior account managers. No 10-day proposal delays. Fill your details below to schedule an interactive technical review directly with our founder.
             </p>
           </div>
 
@@ -192,7 +196,7 @@ export default function BookCall() {
                   <div className="flex items-start gap-2.5">
                     <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                     <span className="text-neutral-300">
-                      <strong>42s Auto-RFQ:</strong> Deployed for a Ludhiana metal forging enterprise.
+                      <strong>42s Auto-RFQ:</strong> Deployed for an industrial metal forge in Ludhiana.
                     </span>
                   </div>
                   <div className="flex items-start gap-2.5">
@@ -213,144 +217,140 @@ export default function BookCall() {
             </div>
 
             {/* ───────────────────────────────────────────────────────────── */}
-            {/* RIGHT COLUMN: 4-INTENT DYNAMIC ROUTER TERMINAL (7 Cols)        */}
+            {/* RIGHT COLUMN: PERMANENT VISIBLE INTAKE FORM (7 Cols)          */}
             {/* ───────────────────────────────────────────────────────────── */}
             <div className="lg:col-span-7">
               <div className="p-6 sm:p-8 rounded-3xl bg-[#12141c]/95 border border-white/10 shadow-2xl backdrop-blur-xl">
 
-                {/* Intent Selector Tabs */}
-                <div className="mb-6">
-                  <label className="block text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">
-                    Select Your Intake Channel:
-                  </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {INTENTS.map((intent) => {
-                      const isSelected = activeIntent === intent.id;
-                      return (
-                        <button
-                          key={intent.id}
-                          type="button"
-                          onClick={() => setActiveIntent(intent.id as any)}
-                          className={`p-3 rounded-2xl border text-left transition-all cursor-pointer ${
-                            isSelected
-                              ? 'bg-amber-500/15 border-amber-500 text-white shadow-md'
-                              : 'bg-white/5 border-white/5 text-neutral-400 hover:border-white/10 hover:text-white'
-                          }`}
-                        >
-                          <p className="font-extrabold text-xs sm:text-sm text-white mb-0.5">{intent.label}</p>
-                          <p className="text-[10px] text-neutral-400 line-clamp-1">{intent.sub}</p>
-                        </button>
-                      );
-                    })}
+                {/* FAST TRACK WHATSAPP BANNER */}
+                <div className="mb-6 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                      <MessageCircle className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-black text-white">Prefer Immediate Chat?</p>
+                      <p className="text-[11px] text-neutral-300">Direct WhatsApp with founder Mukul · Avg response &lt;45 seconds</p>
+                    </div>
                   </div>
+                  <a
+                    href="https://wa.me/916284925684?text=Hi%20Mukul!%20I'm%20exploring%20a%20project%20with%20SAGE%20DO%20and%20want%20to%20discuss%20pricing%20and%20timeline."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackWhatsAppClick('book_call_fast_wa')}
+                    className="w-full sm:w-auto"
+                  >
+                    <Button
+                      type="button"
+                      size="sm"
+                      className="w-full sm:w-auto h-9 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs shadow-md cursor-pointer flex items-center justify-center gap-1.5"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      <span>Chat on WhatsApp</span>
+                    </Button>
+                  </a>
                 </div>
 
-                {/* ─────────────────────────────────────────────────────────── */}
-                {/* TAB 1: DIRECT WHATSAPP (FASTEST - 45s)                      */}
-                {/* ─────────────────────────────────────────────────────────── */}
-                {activeIntent === 'whatsapp' && (
-                  <div className="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-center space-y-4 animate-in fade-in duration-200">
-                    <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
-                      <MessageCircle className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-black text-white">Direct WhatsApp Triage</h3>
-                      <p className="text-xs text-neutral-300 mt-1 max-w-sm mx-auto">
-                        Skip forms entirely. Message founder Mukul directly on WhatsApp. Average response time is under 45 seconds during business hours.
-                      </p>
-                    </div>
+                {/* FORM TITLE */}
+                <div className="mb-6">
+                  <h3 className="text-xl font-black text-white flex items-center gap-2">
+                    <span>Schedule 15-Min Scoping Call</span>
+                  </h3>
+                  <p className="text-xs text-neutral-400 mt-1">
+                    Fill the details below. We review your requirements and share an architectural breakdown on the call.
+                  </p>
+                </div>
 
-                    <div className="pt-2">
-                      <a
-                        href="https://wa.me/916284925684?text=Hi%20Mukul!%20I'm%20exploring%20a%20project%20with%20SAGE%20DO%20and%20want%20to%20discuss%20pricing%20and%20timeline."
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => trackWhatsAppClick('book_call_direct_wa')}
-                        className="inline-block w-full sm:w-auto"
-                      >
-                        <Button className="w-full sm:w-auto h-12 px-8 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm shadow-lg shadow-emerald-600/30 cursor-pointer">
-                          <MessageCircle className="w-4 h-4 mr-2" /> Open WhatsApp Chat (+91 6284925684)
-                        </Button>
-                      </a>
-                    </div>
-                    <p className="text-[10px] text-neutral-500 font-mono">Verified WhatsApp Business Direct Line</p>
-                  </div>
-                )}
+                {/* STRUCTURED INTAKE FORM (ALWAYS VISIBLE) */}
+                <form onSubmit={handleBookingSubmit} className="space-y-4">
 
-                {/* ─────────────────────────────────────────────────────────── */}
-                {/* TAB 2, 3 & 4: STRUCTURED INTAKE FORM                        */}
-                {/* ─────────────────────────────────────────────────────────── */}
-                {activeIntent !== 'whatsapp' && (
-                  <form onSubmit={handleBookingSubmit} className="space-y-4 animate-in fade-in duration-200">
-
-                    {activeIntent === 'lock' && (
-                      <div className="p-3.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-semibold flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 shrink-0 text-amber-400" />
-                        <span>10% Instant Advance Discount unlocked. Protected by our 90% SLA money-back warranty.</span>
-                      </div>
-                    )}
-
-                    {activeIntent === 'rfp' && (
-                      <div className="p-3.5 rounded-xl bg-blue-500/15 border border-blue-500/30 text-blue-300 text-xs font-semibold flex items-center gap-2">
-                        <Building2 className="w-4 h-4 shrink-0 text-blue-400" />
-                        <span>Enterprise / Partner RFP mode. We will prepare an architectural breakdown and commercial proposal.</span>
-                      </div>
-                    )}
-
-                    {/* Service Selection */}
-                    <div>
-                      <label className="block text-xs font-bold text-neutral-300 uppercase tracking-wider mb-1">
-                        System or Need to Scope *
-                      </label>
-                      <select
-                        value={selectedService}
-                        onChange={(e) => setSelectedService(e.target.value)}
-                        className="w-full bg-neutral-950/80 border border-neutral-800 text-white text-xs sm:text-sm h-11 rounded-xl px-3 outline-none focus:border-amber-500"
-                      >
-                        <option value="Website Design & Development">Website Design & Development (₹10k–₹30k)</option>
-                        <option value="Lead Generation & Custom CRM">Lead Generation & Custom CRM (₹30k–₹1.20L)</option>
-                        <option value="Google Business Profile & SEO / GEO">Google Business Profile & Local SEO (₹3,999–₹5,999)</option>
-                        <option value="WhatsApp Automation Bot">WhatsApp Automation Bot (₹8k–₹15k)</option>
-                        <option value="Complete Business Launchpad Combo">Complete Business Launchpad Combo (₹19,999)</option>
-                        <option value="Revenue Command Center Combo">Revenue Command Center Combo (₹59,999)</option>
-                        <option value="Enterprise Sovereign Suite">Enterprise Sovereign Suite (₹1,49,999+)</option>
+                  {/* System or Service to Scope */}
+                  <div>
+                    <label className="block text-xs font-bold text-neutral-300 uppercase tracking-wider mb-1.5">
+                      System or Need to Scope *
+                    </label>
+                    <select
+                      value={selectedService}
+                      onChange={(e) => setSelectedService(e.target.value)}
+                      className="w-full bg-neutral-950/80 border border-neutral-800 text-white text-xs sm:text-sm h-11 rounded-xl px-3 outline-none focus:border-amber-500"
+                    >
+                      <optgroup label="Core Digital Engines">
+                        <option value="Website Design & Development (₹10k–₹30k)">Website Design & Development (SMB ₹10k–₹20k | Enterprise ₹15k–₹30k)</option>
+                        <option value="Lead Generation & Custom CRM (₹30k–₹1.20L)">Lead Generation & Custom CRM (SMB ₹30k–₹50k | Enterprise ₹50k–₹1.20L)</option>
+                        <option value="Google Business Profile & Local SEO (₹3,999–₹5,999)">Google Business Profile & Local SEO / GEO (₹3,999–₹5,999)</option>
+                        <option value="WhatsApp Automation Bot (₹8k–₹15k)">WhatsApp Automation Bot (₹8,000–₹15,000)</option>
+                      </optgroup>
+                      <optgroup label="Turnkey Combos">
+                        <option value="Brand Starter Combo (₹2,999)">Brand Starter Combo (₹2,999 – ₹3,499)</option>
+                        <option value="Legal Foundation Combo (₹3,999)">Legal Foundation Combo (₹3,999 – ₹5,999)</option>
+                        <option value="Sales Machine Combo (₹12,999)">Sales Machine Combo (₹12,999 – ₹14,999)</option>
+                        <option value="Complete Business Launchpad Combo (₹19,999)">Complete Business Launchpad Combo (₹19,999)</option>
+                        <option value="Revenue Command Center Combo (₹59,999)">Revenue Command Center Combo (₹59,999)</option>
+                        <option value="Enterprise Sovereign Suite (₹1,49,999+)">Enterprise Sovereign Suite (₹1,49,999+)</option>
+                      </optgroup>
+                      <optgroup label="Specialized Modular Builds">
+                        <option value="Professional Logo Design (₹4,999–₹9,999)">Professional Logo Design (₹4,999–₹9,999)</option>
+                        <option value="GST Registration (₹2,499)">GST Registration (₹2,499)</option>
+                        <option value="MSME Registration (₹1,999)">MSME Udhyam Registration (₹1,999)</option>
+                        <option value="Trademark Filing (₹5,999)">Trademark Filing (₹5,999)</option>
+                        <option value="Pitch Deck Architecture (₹9,999)">Pitch Deck Architecture (₹9,999)</option>
+                        <option value="Mobile App Development (₹35,000+)">Mobile App Development (₹35,000+)</option>
+                        <option value="High-Authority SEO Blogs (₹1,499/blog)">High-Authority SEO Blogs (₹1,499/blog)</option>
+                      </optgroup>
+                      <optgroup label="Enterprise & Partnerships">
                         <option value="Statutory CA / Legal Partnership">Statutory CA / Legal Partnership Inquiry</option>
-                        <option value="Custom Architecture Scoping">Other Custom Architecture Scoping</option>
-                      </select>
-                    </div>
+                        <option value="CapEx Machinery Telemetry Rail">Industrial CapEx Machinery Telemetry Rail</option>
+                        <option value="Custom Architecture Scoping">Other Bespoke Architecture Scoping</option>
+                      </optgroup>
+                    </select>
+                  </div>
 
-                    {/* Name & WhatsApp */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div>
-                        <label className="block text-xs font-bold text-neutral-300 uppercase tracking-wider mb-1">
-                          Full Name *
-                        </label>
-                        <Input
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                          placeholder="Your Name"
-                          required
-                          className="bg-neutral-950/60 border-neutral-800 focus:border-amber-500/60 text-white text-xs sm:text-sm h-11 rounded-xl"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-bold text-neutral-300 uppercase tracking-wider mb-1">
-                          WhatsApp Number *
-                        </label>
-                        <Input
-                          value={whatsapp}
-                          onChange={(e) => setWhatsapp(e.target.value)}
-                          placeholder="+91 XXXXX XXXXX"
-                          required
-                          className="bg-neutral-950/60 border-neutral-800 focus:border-amber-500/60 text-white text-xs sm:text-sm h-11 rounded-xl"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Business Name */}
+                  {/* Name & WhatsApp Number */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-bold text-neutral-300 uppercase tracking-wider mb-1">
-                        Business / Organization Name
+                      <label className="block text-xs font-bold text-neutral-300 uppercase tracking-wider mb-1.5">
+                        Full Name *
+                      </label>
+                      <Input
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Your Name"
+                        required
+                        className="bg-neutral-950/60 border-neutral-800 focus:border-amber-500/60 text-white text-xs sm:text-sm h-11 rounded-xl"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-neutral-300 uppercase tracking-wider mb-1.5">
+                        WhatsApp Number *
+                      </label>
+                      <Input
+                        value={whatsapp}
+                        onChange={(e) => setWhatsapp(e.target.value)}
+                        placeholder="+91 XXXXX XXXXX"
+                        required
+                        className="bg-neutral-950/60 border-neutral-800 focus:border-amber-500/60 text-white text-xs sm:text-sm h-11 rounded-xl"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Email & Business Name */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-xs font-bold text-neutral-300 uppercase tracking-wider mb-1.5">
+                        Email Address *
+                      </label>
+                      <Input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="you@company.com"
+                        required
+                        className="bg-neutral-950/60 border-neutral-800 focus:border-amber-500/60 text-white text-xs sm:text-sm h-11 rounded-xl"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-neutral-300 uppercase tracking-wider mb-1.5">
+                        Business / Company Name
                       </label>
                       <Input
                         value={businessName}
@@ -359,72 +359,101 @@ export default function BookCall() {
                         className="bg-neutral-950/60 border-neutral-800 focus:border-amber-500/60 text-white text-xs sm:text-sm h-11 rounded-xl"
                       />
                     </div>
+                  </div>
 
-                    {/* Date & Time if Call Selected */}
-                    {activeIntent === 'call' && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                          <label className="block text-xs font-bold text-neutral-300 uppercase tracking-wider mb-1">
-                            Preferred Date *
-                          </label>
-                          <Input
-                            type="date"
-                            min={minDate}
-                            value={selectedDate}
-                            onChange={(e) => setSelectedDate(e.target.value)}
-                            required
-                            className="bg-neutral-950/60 border-neutral-800 focus:border-amber-500/60 text-white text-xs sm:text-sm h-11 rounded-xl"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-bold text-neutral-300 uppercase tracking-wider mb-1">
-                            Preferred Time *
-                          </label>
-                          <select
-                            value={selectedTime}
-                            onChange={(e) => setSelectedTime(e.target.value)}
-                            className="w-full bg-neutral-950/80 border border-neutral-800 text-white text-xs sm:text-sm h-11 rounded-xl px-3 outline-none focus:border-amber-500"
-                          >
-                            {TIME_SLOTS.map((slot) => (
-                              <option key={slot} value={slot}>{slot}</option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Project Brief */}
+                  {/* Date & Time Slot */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-bold text-neutral-300 uppercase tracking-wider mb-1">
-                        Brief Scope or Key Bottleneck (Optional)
+                      <label className="block text-xs font-bold text-neutral-300 uppercase tracking-wider mb-1.5">
+                        Preferred Date *
                       </label>
-                      <Textarea
-                        value={projectBrief}
-                        onChange={(e) => setProjectBrief(e.target.value)}
-                        placeholder="e.g. Currently tracking leads manually on Excel sheets. Need a custom CRM with WhatsApp routing for 6 salespeople."
-                        className="bg-neutral-950/60 border-neutral-800 focus:border-amber-500/60 text-white min-h-[80px] text-xs sm:text-sm rounded-xl"
+                      <Input
+                        type="date"
+                        min={minDate}
+                        value={selectedDate}
+                        onChange={(e) => setSelectedDate(e.target.value)}
+                        required
+                        className="bg-neutral-950/60 border-neutral-800 focus:border-amber-500/60 text-white text-xs sm:text-sm h-11 rounded-xl"
                       />
                     </div>
+                    <div>
+                      <label className="block text-xs font-bold text-neutral-300 uppercase tracking-wider mb-1.5">
+                        Preferred Time Slot *
+                      </label>
+                      <select
+                        value={selectedTime}
+                        onChange={(e) => setSelectedTime(e.target.value)}
+                        className="w-full bg-neutral-950/80 border border-neutral-800 text-white text-xs sm:text-sm h-11 rounded-xl px-3 outline-none focus:border-amber-500"
+                      >
+                        {TIME_SLOTS.map((slot) => (
+                          <option key={slot} value={slot}>{slot}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
 
-                    {/* Submit Button */}
+                  {/* What is your biggest challenge / Brief */}
+                  <div>
+                    <label className="block text-xs font-bold text-neutral-300 uppercase tracking-wider mb-1.5">
+                      What is your biggest operational challenge right now?
+                    </label>
+                    <Textarea
+                      value={projectBrief}
+                      onChange={(e) => setProjectBrief(e.target.value)}
+                      placeholder="e.g. Leads are getting missed across WhatsApp chats. Need a centralized pipeline and automatic follow-up bot for our 5-person sales team."
+                      className="bg-neutral-950/60 border-neutral-800 focus:border-amber-500/60 text-white min-h-[85px] text-xs sm:text-sm rounded-xl leading-relaxed"
+                    />
+                  </div>
+
+                  {/* 10% UPFRONT DISCOUNT SPRINT LOCK TOGGLE */}
+                  <div 
+                    onClick={() => setIsSprintLocked(!isSprintLocked)}
+                    className={`p-3.5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-3 ${
+                      isSprintLocked
+                        ? 'bg-amber-500/15 border-amber-500 shadow-md shadow-amber-500/10'
+                        : 'bg-white/5 border-white/10 hover:border-white/20'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-colors ${
+                        isSprintLocked ? 'bg-amber-500 border-amber-500 text-black' : 'border-neutral-600 bg-neutral-900'
+                      }`}>
+                        {isSprintLocked && <CheckCircle className="w-4 h-4 stroke-[3]" />}
+                      </div>
+                      <div>
+                        <p className="text-xs font-black text-white flex items-center gap-1.5">
+                          <span>Lock 48h Sprint Upfront (10% Instant Discount Applied)</span>
+                          <span className="text-[10px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded font-mono">SAVE 10%</span>
+                        </p>
+                        <p className="text-[11px] text-neutral-400">
+                          Priority slot reservation with guaranteed 48-Hour Functional Prototype & 90% SLA money-back warranty.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <div className="pt-2">
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full h-12 bg-amber-500 hover:bg-amber-400 text-black font-black text-sm rounded-xl shadow-lg shadow-amber-500/20 cursor-pointer flex items-center justify-center gap-2 mt-2"
+                      className="w-full h-12 bg-amber-500 hover:bg-amber-400 text-black font-black text-sm rounded-xl shadow-lg shadow-amber-500/20 cursor-pointer flex items-center justify-center gap-2"
                     >
                       <ArrowRight className="w-4 h-4" />
                       <span>
                         {isSubmitting
-                          ? 'Connecting...'
-                          : activeIntent === 'lock'
-                          ? 'Lock 48-Hour Sprint (10% Discount)'
-                          : activeIntent === 'rfp'
-                          ? 'Submit Enterprise RFP'
-                          : 'Confirm 15-Minute Scoping Call'}
+                          ? 'Reserving Your Slot...'
+                          : isSprintLocked
+                          ? 'Lock 48-Hour Sprint (10% Discount Applied)'
+                          : 'Book My Strategy Call & Confirm on WhatsApp'}
                       </span>
                     </Button>
-                  </form>
-                )}
+                  </div>
+
+                  <p className="text-[11px] text-center text-neutral-500 mt-2">
+                    🔒 Zero spam guarantee. Your details are used strictly to coordinate your technical architecture session.
+                  </p>
+                </form>
 
               </div>
             </div>

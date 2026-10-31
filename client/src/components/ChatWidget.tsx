@@ -22,7 +22,12 @@ export default function ChatWidget() {
             id: 'welcome',
             text: "Namaste! I'm Bruno, Chief of Staff at SAGE DO. How can I assist your business systems today?",
             sender: 'bot',
-            options: [{ label: "Check Pricing", action: "pricing" }, { label: "Wall of Fame", action: "wall_of_fame" }, { label: "Talk to Human", action: "human" }]
+            options: [
+                { label: "Check Pricing", action: "pricing" },
+                { label: "Turnkey Combos", action: "combos" },
+                { label: "Book a Call", action: "book_call" },
+                { label: "Talk to Mukul", action: "human" }
+            ]
         }
     ]);
     const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -129,6 +134,20 @@ export default function ChatWidget() {
                         text: "Great! Taking you to the order page now...",
                         sender: 'bot'
                     };
+                } else if (action === 'book_call') {
+                    window.location.href = '/book-call';
+                    response = {
+                        id: Date.now().toString(),
+                        text: "Opening our Founder Intake Terminal for you to schedule your scoping call...",
+                        sender: 'bot'
+                    };
+                } else if (action === 'combos') {
+                    window.location.href = '/services';
+                    response = {
+                        id: Date.now().toString(),
+                        text: "Opening our Modular Services, Combos & Partner Rails catalog...",
+                        sender: 'bot'
+                    };
                 } else if (action === 'wall_of_fame') {
                     window.location.href = '/wall-of-fame';
                     response = {
@@ -174,112 +193,128 @@ export default function ChatWidget() {
     const findAnswer = (query: string): Message => {
         const lowerQuery = query.toLowerCase();
 
-        // Check for "reset" or "start over"
-        if (lowerQuery.includes('reset') || lowerQuery.includes('start over')) {
-            setFallbackCount(0);
+        // 1. Pricing / Cost Queries
+        if (lowerQuery.includes('price') || lowerQuery.includes('pricing') || lowerQuery.includes('cost') || lowerQuery.includes('rate') || lowerQuery.includes('fee') || lowerQuery.includes('how much')) {
             return {
                 id: Date.now().toString(),
-                text: "Sure thing! Ready when you are. What's on your mind?",
+                text: "Here is our verified commercial pricing:\n\n• Websites: SMB ₹10k–₹20k | Enterprise ₹15k–₹30k (Sub-1.2s speed)\n• Custom CRM: SMB ₹30k–₹50k | Enterprise ₹50k–₹1.20L (Zero per-seat tax)\n• Local SEO & GEO: ₹3,999–₹5,999 (Google Maps 3-Pack)\n• WhatsApp Automation Bot: ₹8,000–₹15,000\n• Turnkey Combos: From ₹2,999\n\nAll backed by our 48-Hour Functional Prototype Guarantee (90% Money-Back SLA).",
                 sender: 'bot',
                 options: [
-                    { label: "Pricing", action: "pricing" },
-                    { label: "Trending Services", action: "trending" },
-                    { label: "Talk to Human", action: "human" }
+                    { label: "View Services Catalog", action: "services" },
+                    { label: "Book Scoping Call", action: "book_call" },
+                    { label: "Chat on WhatsApp", action: "human" }
                 ]
             };
         }
 
-        // --- 1. STRICT ESCALATION TRIGGERS ---
-        // "User says 'custom', 'unique', 'urgent', 'confidential'"
-        const escalationKeywords = ['custom', 'unique', 'urgent', 'confidential'];
-        if (escalationKeywords.some(k => lowerQuery.includes(k))) {
+        // 2. Website Queries
+        if (lowerQuery.includes('website') || lowerQuery.includes('web design') || lowerQuery.includes('landing page')) {
             return {
                 id: Date.now().toString(),
-                text: "This looks like something best handled by our human team 👌\n\nShare your email or WhatsApp, or click below, and I’ll make sure the right expert connects with you shortly.",
+                text: "We engineer high-converting websites on React/TypeScript with sub-1.2s load speeds:\n\n• SMB Tier: ₹10,000 – ₹20,000 (5-page lead capture & WhatsApp API)\n• Enterprise Tier: ₹15,000 – ₹30,000 (Full bespoke stack, quoter & CMS)\n\nZero WordPress bloat. Zero monthly plugin fees. Functional prototype in 48 hours.",
                 sender: 'bot',
                 options: [
-                    { label: "Connect on WhatsApp", action: "human" },
-                    { label: "View Services First", action: "services" }
+                    { label: "View Website Details", action: "services" },
+                    { label: "Book Scoping Call", action: "book_call" },
+                    { label: "Ask on WhatsApp", action: "human" }
                 ]
             };
         }
 
-        // --- 2. GOLDEN RULE (Service Requests) ---
-        // "Can you do...", "Can you help with...", "Do you offer...", "I need help with..."
-        const goldenRuleTriggers = ['can you', 'do you offer', 'need help', 'i need', 'help with'];
-        if (goldenRuleTriggers.some(trigger => lowerQuery.includes(trigger))) {
-            // Check if we have a specific FAQ match first (e.g., "resume")
-            const specificMatch = faqs.find(faq =>
-                faq.keywords.some(keyword => lowerQuery.includes(keyword))
-            );
-
-            if (specificMatch) {
-                return {
-                    id: Date.now().toString(),
-                    text: specificMatch.answer, // Use specific answer but add service Link option
-                    sender: 'bot',
-                    options: [
-                        { label: "View Services", action: "services" },
-                        { label: "Actually, I need custom help", action: "human" }
-                    ]
-                };
-            }
-
-            // Generic Golden Rule Response
+        // 3. CRM Queries
+        if (lowerQuery.includes('crm') || lowerQuery.includes('pipeline') || lowerQuery.includes('lead') || lowerQuery.includes('sales system')) {
             return {
                 id: Date.now().toString(),
-                text: "Absolutely — that’s what we’re here for 😊\n\nPlease head over to our Services page to see how we usually handle this type of work.\n\nIf your task feels unique or slightly different, don’t worry — I’ll pass it directly to our team for a custom solution.",
+                text: "Our Custom CRMs replace expensive SaaS licenses:\n\n• SMB Tier: ₹30,000 – ₹50,000 (Lead capture, kanban pipeline, payment/cheque tracking)\n• Enterprise Tier: ₹50,000 – ₹1,20,000 (Multi-branch RBAC, auto-followups, Tally Prime bridge)\n\nZero per-seat software tax. Unlimited users forever. You own the code.",
                 sender: 'bot',
                 options: [
-                    { label: "Explore Services", action: "services" },
-                    { label: "Talk to Human", action: "human" }
+                    { label: "Explore CRM Systems", action: "services" },
+                    { label: "Book Scoping Call", action: "book_call" },
+                    { label: "Ask on WhatsApp", action: "human" }
                 ]
             };
         }
 
-        // --- 3. Keyword search in FAQs ---
-        const match = faqs.find(faq =>
-            faq.keywords.some(keyword => lowerQuery.includes(keyword)) ||
-            faq.question.toLowerCase().includes(lowerQuery)
-        );
-
-        if (match) {
-            setFallbackCount(0); // Success reset
+        // 4. Local SEO / GEO / Google Maps
+        if (lowerQuery.includes('seo') || lowerQuery.includes('maps') || lowerQuery.includes('geo') || lowerQuery.includes('ranking') || lowerQuery.includes('google business')) {
             return {
                 id: Date.now().toString(),
-                text: match.answer,
+                text: "Google Business Profile & SEO / GEO / AEO (₹3,999 – ₹5,999):\n\n• 100% Google Business Profile setup & verification\n• Google Maps 3-Pack local ranking optimization\n• robots.txt, sitemap, Search Console & Schema markup\n• llms.txt AI crawler indexing for ChatGPT & Perplexity discovery.",
                 sender: 'bot',
                 options: [
-                    { label: "Thanks!", action: "reset" },
-                    { label: "Check Prices", action: "pricing" }
+                    { label: "Explore SEO Solutions", action: "services" },
+                    { label: "Book Scoping Call", action: "book_call" },
+                    { label: "Ask on WhatsApp", action: "human" }
                 ]
             };
         }
 
-        // --- 4. Fallback Logic with Escalation ---
-        const newCount = fallbackCount + 1;
-        setFallbackCount(newCount);
-
-        if (newCount >= 3) {
+        // 5. WhatsApp Automation Bot
+        if (lowerQuery.includes('whatsapp') || lowerQuery.includes('bot') || lowerQuery.includes('auto reply') || lowerQuery.includes('chat bot')) {
             return {
                 id: Date.now().toString(),
-                text: "This looks like something best handled by our human team 👌\n\nShare your email or WhatsApp, and I’ll make sure the right expert connects with you shortly.",
+                text: "Official WhatsApp Cloud API Automation Bots (₹8,000 – ₹15,000):\n\n• Sub-45s automated buyer qualification\n• Multi-step conversational sales flows\n• Automatic human handoff & CRM webhook sync\n• Auto follow-up triggers for abandoned leads.",
                 sender: 'bot',
                 options: [
-                    { label: "Connect on WhatsApp", action: "human" },
-                    { label: "Send Email", action: "contact" }
+                    { label: "Explore WhatsApp Bots", action: "services" },
+                    { label: "Book Scoping Call", action: "book_call" },
+                    { label: "Chat with Mukul", action: "human" }
                 ]
             };
         }
 
-        // Professional, Safe Fallback
+        // 6. Turnkey Combos
+        if (lowerQuery.includes('combo') || lowerQuery.includes('bundle') || lowerQuery.includes('package') || lowerQuery.includes('all in one')) {
+            return {
+                id: Date.now().toString(),
+                text: "Turnkey Smart Combos ready to deploy:\n\n• Brand Starter: ₹2,999 – ₹3,499 (Logo + Colors + Business Email)\n• Legal Foundation: ₹3,999 – ₹5,999 (GST + MSME + Trademark)\n• Sales Machine: ₹12,999 – ₹14,999 (CRM + WhatsApp Bot)\n• Complete Launchpad: ₹19,999 – ₹24,999 (Website + CRM + Bot + SEO)\n• Revenue Command Center: ₹59,999 – ₹75,000 (Full CRM + Tally Bridge)\n• Enterprise Sovereign Suite: ₹1,49,999+ (Full Stack + VPS + SLA).",
+                sender: 'bot',
+                options: [
+                    { label: "Explore Combos (Track 3)", action: "combos" },
+                    { label: "Book Scoping Call", action: "book_call" },
+                    { label: "Ask on WhatsApp", action: "human" }
+                ]
+            };
+        }
+
+        // 7. Guarantee / SLA / Money Back
+        if (lowerQuery.includes('guarantee') || lowerQuery.includes('sla') || lowerQuery.includes('refund') || lowerQuery.includes('trust') || lowerQuery.includes('money back')) {
+            return {
+                id: Date.now().toString(),
+                text: "Our 90% Money-Back SLA Guarantee:\n\nEvery build includes an agreed 48-Hour Functional Prototype milestone. If we fail to deliver a live working prototype on your schedule, 90% of your advance fee is refunded immediately.\n\nZero excuses. Zero lock-in. 10% covers raw third-party Cloud API costs.",
+                sender: 'bot',
+                options: [
+                    { label: "View Wall of Fame", action: "wall_of_fame" },
+                    { label: "Book Scoping Call", action: "book_call" },
+                    { label: "Chat with Mukul", action: "human" }
+                ]
+            };
+        }
+
+        // 8. Founder / Mukul / Team
+        if (lowerQuery.includes('founder') || lowerQuery.includes('mukul') || lowerQuery.includes('who are you') || lowerQuery.includes('who made') || lowerQuery.includes('team')) {
+            return {
+                id: Date.now().toString(),
+                text: "SAGE DO was founded by Mukul Dhiman, an ex-aerospace engineer based in Chandigarh.\n\nWe build sovereign digital infrastructure for Indian MSMEs: websites, custom CRMs, and ERP bridges that you own outright forever with zero monthly software taxes.",
+                sender: 'bot',
+                options: [
+                    { label: "Inspect Wall of Fame", action: "wall_of_fame" },
+                    { label: "Book Scoping Call", action: "book_call" },
+                    { label: "Direct WhatsApp", action: "human" }
+                ]
+            };
+        }
+
+        // Default Intelligent Fallback with deep-links
         return {
             id: Date.now().toString(),
-            text: "I want to make sure you get the right answer.\n\nPlease explore our Services page for most solutions, or message our team and I’ll connect you with the right expert.",
+            text: "I can guide you through any SAGE DO system:\n\n1. Fixed-price SMB systems & Enterprise suites\n2. Turnkey Combos (from ₹2,999)\n3. 48-Hour Prototype Guarantee (90% Money-Back SLA)\n\nWhat would you like to explore?",
             sender: 'bot',
             options: [
-                { label: "View Services", action: "services" },
-                { label: "Message Team", action: "human" }
+                { label: "View Services Catalog", action: "services" },
+                { label: "Turnkey Combos", action: "combos" },
+                { label: "Book Scoping Call", action: "book_call" },
+                { label: "Chat on WhatsApp", action: "human" }
             ]
         };
     };
@@ -300,11 +335,11 @@ export default function ChatWidget() {
                 {isOpen ? (
                     <X className="w-6 h-6 text-white" />
                 ) : (
-                    <div className="relative w-full h-full rounded-full overflow-hidden p-1 flex items-center justify-center bg-black">
+                    <div className="relative w-full h-full rounded-full overflow-hidden p-1.5 flex items-center justify-center bg-black border-2 border-amber-500/60 shadow-[0_0_20px_rgba(239,68,68,0.5)]">
                         <img
-                            src="/sagedo_logo_final_circle.webp"
-                            alt="Bruno - SAGE DO Chief of Staff"
-                            className="w-full h-full object-cover rounded-full"
+                            src="/sagedo_logo_icon.png"
+                            alt="SAGE DO Bruno"
+                            className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]"
                         />
                     </div>
                 )}
@@ -322,8 +357,8 @@ export default function ChatWidget() {
                     {/* Header */}
                     <div className="p-4 bg-gradient-to-r from-neutral-900 via-neutral-950 to-black border-b border-white/10 flex items-center justify-between text-white shadow-md">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full overflow-hidden border border-amber-500/50 p-0.5 bg-black shrink-0">
-                                <img src="/sagedo_logo_final_circle.webp" alt="Bruno - Chief of Staff" className="w-full h-full object-cover rounded-full" />
+                            <div className="w-10 h-10 rounded-full overflow-hidden border border-amber-500/50 p-1 bg-black shrink-0 flex items-center justify-center">
+                                <img src="/sagedo_logo_icon.png" alt="SAGE DO Bruno" className="w-full h-full object-contain filter drop-shadow-[0_0_6px_rgba(239,68,68,0.7)]" />
                             </div>
                             <div>
                                 <h3 className="font-bold text-sm text-white flex items-center gap-1.5">
