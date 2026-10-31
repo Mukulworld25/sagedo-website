@@ -168,14 +168,21 @@ export default function PersonaCalibrationEngine() {
       const forParam = params.get("for") as PersonaId;
       if (forParam && PERSONAS[forParam]) {
         setActivePersona(forParam);
-        return;
+      } else {
+        const saved = localStorage.getItem("sagedo_persona") as PersonaId;
+        if (saved && PERSONAS[saved]) {
+          setActivePersona(saved);
+        }
       }
 
-      // Check localStorage
-      const saved = localStorage.getItem("sagedo_persona") as PersonaId;
-      if (saved && PERSONAS[saved]) {
-        setActivePersona(saved);
-      }
+      // Listen for custom persona changes from floating nudge
+      const handleCustomEvent = (e: any) => {
+        if (e.detail && PERSONAS[e.detail as PersonaId]) {
+          selectPersona(e.detail as PersonaId);
+        }
+      };
+      window.addEventListener("sagedo:set-persona", handleCustomEvent);
+      return () => window.removeEventListener("sagedo:set-persona", handleCustomEvent);
     }
   }, []);
 
@@ -193,7 +200,7 @@ export default function PersonaCalibrationEngine() {
   const IconComponent = current.icon;
 
   return (
-    <section className="py-20 px-4 bg-[#050608] border-b border-white/10 relative overflow-hidden">
+    <section id="what-do-you-run" className="py-20 px-4 bg-[#050608] border-b border-white/10 relative overflow-hidden">
       {/* Background radial highlight */}
       <div 
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-[140px] pointer-events-none opacity-15"

@@ -8,14 +8,14 @@ import { useCurrency } from "@/contexts/CurrencyContext";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import FounderTrustBar from "@/components/FounderTrustBar";
 import PersonaCalibrationEngine from "@/components/PersonaCalibrationEngine";
+import PersonaFloatingNudge from "@/components/PersonaFloatingNudge";
 import PhoneSpeedAuditSection from "@/components/PhoneSpeedAuditSection";
 import WhatsApp11PMScenario from "@/components/WhatsApp11PMScenario";
 import VisualConceptStudio from "@/components/VisualConceptStudio";
 import SovereignGuaranteeCard from "@/components/SovereignGuaranteeCard";
 // SlimStickyHeader removed to protect brand header integrity
 // ProofAndAudioWall relocated permanently to /wall-of-fame
-import { B2BClinicalFAQ } from "@/components/B2BClinicalFAQ";
-const RevenueLeakageCalculator = lazy(() => import("@/components/RevenueLeakageCalculator"));
+// B2BClinicalFAQ and RevenueLeakageCalculator removed for human-first simplicity
 
 export default function Home() {
   const { formatAmount } = useCurrency();
@@ -405,13 +405,13 @@ export default function Home() {
 
             {/* 3 Featured Bento Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              {/* Card 1: Kizen CRM */}
+              {/* Card 1: Education Sector Custom CRM */}
               <div className="group relative bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-amber-500/40 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
                 <div>
                   <div className="h-48 overflow-hidden relative bg-black/40">
                     <img
                       src="/sample-crm-lead-automation.webp"
-                      alt="Kizen Education Zero-Seat Custom CRM"
+                      alt="Custom CRM for Education Sector"
                       className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D15] via-transparent to-transparent opacity-90" />
@@ -420,17 +420,17 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="p-6">
-                    <p className="text-xs font-mono text-amber-400 font-semibold mb-1">ENTERPRISE & ERP</p>
+                    <p className="text-xs font-mono text-amber-400 font-semibold mb-1">EDUCATION & INSTITUTES</p>
                     <h3 className="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
-                      Kizen Education — Zero-Seat CRM
+                      Education Sector — Custom Zero-Seat CRM
                     </h3>
                     <p className="text-xs text-neutral-400 leading-relaxed mb-4">
-                      Slashed lead response latency from 6 hours to 45s and eliminated ₹3.6L/year in recurring SaaS seat taxes with custom PostgreSQL + Supabase RLS.
+                      Slashed inquiry response time from 6 hours to 45 seconds. Eliminated ₹3.6L/year in recurring software fees with unlimited staff seats and automated WhatsApp routing.
                     </p>
                     <div className="flex flex-wrap gap-2 text-[11px] font-medium text-neutral-300">
-                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">PostgreSQL</span>
-                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">WhatsApp Webhook</span>
-                      <span className="px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">₹18L+ Salvaged</span>
+                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">WhatsApp Follow-ups</span>
+                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Unlimited Staff Seats</span>
+                      <span className="px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">₹18L+ Saved</span>
                     </div>
                   </div>
                 </div>
@@ -444,13 +444,13 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Card 2: Proactive Dental Surgery */}
+              {/* Card 2: Healthcare & Clinics Patient Gateway */}
               <div className="group relative bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-amber-500/40 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
                 <div>
                   <div className="h-48 overflow-hidden relative bg-black/40">
                     <img
                       src="/sample_dental_desktop.png"
-                      alt="Proactive Dental Surgery Healthcare Platform"
+                      alt="Patient Booking Gateway for Healthcare Clinics"
                       className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D15] via-transparent to-transparent opacity-90" />
@@ -459,16 +459,16 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="p-6">
-                    <p className="text-xs font-mono text-cyan-400 font-semibold mb-1">HEALTHCARE & MEDTECH</p>
+                    <p className="text-xs font-mono text-cyan-400 font-semibold mb-1">HEALTHCARE & CLINICS</p>
                     <h3 className="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
-                      Proactive Dental — Patient Gateway
+                      Healthcare & Clinics — Patient Booking Gateway
                     </h3>
                     <p className="text-xs text-neutral-400 leading-relaxed mb-4">
-                      High-velocity clinical patient acquisition engine with sub-0.8s mobile LCP, interactive procedure estimator, and +180% increase in booked appointments.
+                      High-converting patient booking system that loads in under 1 second on mobile. Automated appointment confirmations, Google Maps local ranking, and +180% increase in scheduled visits.
                     </p>
                     <div className="flex flex-wrap gap-2 text-[11px] font-medium text-neutral-300">
-                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Next.js Edge</span>
-                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Local 3-Pack</span>
+                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Fast on 4G</span>
+                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Auto-Booking</span>
                       <span className="px-2 py-0.5 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">+180% Bookings</span>
                     </div>
                   </div>
@@ -483,13 +483,13 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Card 3: Bharat Precision Industrial */}
+              {/* Card 3: Manufacturing & Factories 90s RFQ */}
               <div className="group relative bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-amber-500/40 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
                 <div>
                   <div className="h-48 overflow-hidden relative bg-black/40">
                     <img
                       src="/portfolio-erp-system.webp"
-                      alt="Bharat Precision Industrial Forge ERP"
+                      alt="Quotation and Order System for Manufacturing"
                       className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D15] via-transparent to-transparent opacity-90" />
@@ -498,17 +498,17 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="p-6">
-                    <p className="text-xs font-mono text-emerald-400 font-semibold mb-1">INDUSTRIAL & ERP</p>
+                    <p className="text-xs font-mono text-emerald-400 font-semibold mb-1">MANUFACTURING & B2B</p>
                     <h3 className="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
-                      Bharat Precision — Industrial ERP
+                      Manufacturing & Factories — 90-Second RFQ System
                     </h3>
                     <p className="text-xs text-neutral-400 leading-relaxed mb-4">
-                      Type-safe industrial quotation system replacing 48-hour manual email specs with sub-90s procurement, multi-warehouse telemetry, and zero data leakage.
+                      Rapid quotation and dispatch system replacing 48-hour manual email delays. Syncs directly with factory inventory, Tally ledgers, and locks sales leads so no inquiry leaks.
                     </p>
                     <div className="flex flex-wrap gap-2 text-[11px] font-medium text-neutral-300">
-                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">TanStack Start</span>
-                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Nitro Engine</span>
-                      <span className="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20">100% Sovereign</span>
+                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">90s RFQ Quotes</span>
+                      <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Tally Prime Sync</span>
+                      <span className="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20">Zero Lead Leakage</span>
                     </div>
                   </div>
                 </div>
@@ -704,11 +704,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Revenue Leakage Calculator (Category C Feature) */}
-      <Suspense fallback={<div className="py-16 text-center text-xs text-muted-foreground/60">Loading calculator...</div>}>
-        <RevenueLeakageCalculator />
-      </Suspense>
-
+      
 
       {/* ═══════════════════════════════════════════════════════════════════
           HOW IT WORKS - Interactive Steps (Bhindi Style)
@@ -1189,11 +1185,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          B2B CLINICAL FAQS (Enterprise Objection Resolution)
-      ═══════════════════════════════════════════════════════════════════ */}
-      <B2BClinicalFAQ />
-
+      
       {/* ═══════════════════════════════════════════════════════════════════
           FINAL CTA - Clean Banner
       ═══════════════════════════════════════════════════════════════════ */}
@@ -1227,6 +1219,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* FLOATING PERSONA CALIBRATION NUDGE */}
+      <PersonaFloatingNudge />
 
     </div>
   );

@@ -959,7 +959,7 @@ export default function Services() {
                         Modular Services & Turnkey Combos
                       </h2>
                       <p className="text-gray-400 mt-1 max-w-2xl text-sm leading-relaxed">
-                        Ready-to-deploy multi-service combos, standalone specialized services (Logos, GST, MSME, Pitch Decks), bilateral partner rails, and ongoing maintenance retainers.
+                        Ready-to-deploy multi-service combos, standalone specialized services (Logos, GST, MSME, Pitch Decks), and ongoing maintenance retainers.
                       </p>
                     </div>
                   </div>

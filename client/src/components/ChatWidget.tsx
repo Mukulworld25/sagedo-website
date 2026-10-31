@@ -326,27 +326,27 @@ export default function ChatWidget() {
                 data-testid="chat-widget-fab"
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label="Open Bruno Chat Assistant"
-                className={`fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 cursor-pointer ${
+                className={`fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-[0_10px_30px_rgba(0,0,0,0.8)] ${
                     isOpen 
                         ? "bg-neutral-900 border border-white/20 rotate-90" 
-                        : "bg-black border-2 border-amber-500/60 shadow-[0_0_25px_rgba(245,158,11,0.4)]"
+                        : "bg-neutral-950 border border-amber-500/50 hover:border-amber-400"
                 }`}
             >
                 {isOpen ? (
                     <X className="w-6 h-6 text-white" />
                 ) : (
-                    <div className="relative w-full h-full rounded-full overflow-hidden p-1.5 flex items-center justify-center bg-black border-2 border-amber-500/60 shadow-[0_0_20px_rgba(239,68,68,0.5)]">
+                    <div className="w-full h-full rounded-full p-2 flex items-center justify-center">
                         <img
                             src="/sagedo_logo_icon.png"
                             alt="SAGE DO Bruno"
-                            className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]"
+                            className="w-full h-full object-contain"
                         />
                     </div>
                 )}
                 {!isOpen && (
-                    <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+                    <span className="absolute -top-1 -right-1 flex h-4 w-4">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 text-[9px] text-white font-bold items-center justify-center">1</span>
+                        <span className="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 text-[10px] text-white font-bold items-center justify-center shadow-sm">1</span>
                     </span>
                 )}
             </button>
