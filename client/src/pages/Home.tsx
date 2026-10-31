@@ -8,7 +8,6 @@ import { useCurrency } from "@/contexts/CurrencyContext";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import FounderTrustBar from "@/components/FounderTrustBar";
 import PersonaCalibrationEngine from "@/components/PersonaCalibrationEngine";
-import PersonaFloatingNudge from "@/components/PersonaFloatingNudge";
 import PhoneSpeedAuditSection from "@/components/PhoneSpeedAuditSection";
 import WhatsApp11PMScenario from "@/components/WhatsApp11PMScenario";
 import VisualConceptStudio from "@/components/VisualConceptStudio";
@@ -167,6 +166,55 @@ export default function Home() {
               </div>
             </Link>
           </div>
+
+          {/* 1-Tap Industry Calibration Strip - Clean & Static (Zero Popups) */}
+          <div className="mt-8 flex flex-col items-center">
+            <p className="text-[11px] sm:text-xs uppercase font-mono tracking-widest text-neutral-400 mb-2.5">
+              Custom business systems engineered for:
+            </p>
+            <div className="flex items-center gap-2 flex-wrap justify-center max-w-2xl">
+              <button
+                type="button"
+                onClick={() => {
+                  window.dispatchEvent(new CustomEvent("sagedo:set-persona", { detail: "factory" }));
+                  document.getElementById("what-do-you-run")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+                className="px-3 py-1.5 rounded-full bg-white/5 hover:bg-amber-500 hover:text-black border border-white/10 hover:border-amber-500 text-xs font-semibold text-neutral-200 transition-all flex items-center gap-1.5 cursor-pointer"
+              >
+                🏭 Factory & B2B
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  window.dispatchEvent(new CustomEvent("sagedo:set-persona", { detail: "shop" }));
+                  document.getElementById("what-do-you-run")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+                className="px-3 py-1.5 rounded-full bg-white/5 hover:bg-amber-500 hover:text-black border border-white/10 hover:border-amber-500 text-xs font-semibold text-neutral-200 transition-all flex items-center gap-1.5 cursor-pointer"
+              >
+                🏪 Shop & Retail
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  window.dispatchEvent(new CustomEvent("sagedo:set-persona", { detail: "startup" }));
+                  document.getElementById("what-do-you-run")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+                className="px-3 py-1.5 rounded-full bg-white/5 hover:bg-amber-500 hover:text-black border border-white/10 hover:border-amber-500 text-xs font-semibold text-neutral-200 transition-all flex items-center gap-1.5 cursor-pointer"
+              >
+                🚀 Startup & D2C
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  window.dispatchEvent(new CustomEvent("sagedo:set-persona", { detail: "practice" }));
+                  document.getElementById("what-do-you-run")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+                className="px-3 py-1.5 rounded-full bg-white/5 hover:bg-amber-500 hover:text-black border border-white/10 hover:border-amber-500 text-xs font-semibold text-neutral-200 transition-all flex items-center gap-1.5 cursor-pointer"
+              >
+                🩺 Clinic & Practice
+              </button>
+            </div>
+          </div>
         </div>
 
       </section>
@@ -222,7 +270,7 @@ export default function Home() {
       </section>
 
       {/* NEW: The Execution Gap Section - Redesigned Center Comparison */}
-      <section className="py-24 bg-neutral-900 border-y border-neutral-800 relative overflow-hidden">
+      <section className="py-12 sm:py-16 bg-neutral-900 border-y border-neutral-800 relative overflow-hidden">
         {/* Static Ambient background glow (Reduced Blur) */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/5 rounded-full blur-[80px] pointer-events-none" />
 
@@ -331,7 +379,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════════
           WHY NOT JUST CHATGPT - Claude's Human-Centric Positioning
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 border-t border-border/30 bg-gradient-to-b from-neutral-950 to-[#050608]">
+      <section className="py-12 sm:py-16 px-6 border-t border-border/30 bg-gradient-to-b from-neutral-950 to-[#050608]">
         <RevealOnScroll>
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-amber-400 mb-4">
@@ -368,7 +416,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════════
           WALL OF FAME SHOWCASE PREVIEW (High-Converting Teaser -> /wall-of-fame)
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 border-t border-white/[0.08] bg-gradient-to-b from-[#0A0D15] via-[#07090E] to-[#0A0D15] relative overflow-hidden">
+      <section className="py-12 sm:py-16 px-6 border-t border-white/[0.08] bg-gradient-to-b from-[#0A0D15] via-[#07090E] to-[#0A0D15] relative overflow-hidden">
         {/* Subtle Ambient Glows */}
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-amber-500/5 blur-[120px] pointer-events-none" />
         <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-emerald-500/5 blur-[120px] pointer-events-none" />
@@ -545,7 +593,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 px-6 bg-gradient-to-b from-primary/5 to-transparent">
+      <section className="py-12 sm:py-16 px-6 bg-gradient-to-b from-primary/5 to-transparent">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
@@ -709,7 +757,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════════
           HOW IT WORKS - Interactive Steps (Bhindi Style)
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 border-t border-border/30">
+      <section className="py-12 sm:py-16 px-6 border-t border-border/30">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-4">
@@ -804,7 +852,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════════
           CATEGORIES - Clean Grid
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 border-t border-border/30">
+      <section className="py-12 sm:py-16 px-6 border-t border-border/30">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-4">
@@ -934,7 +982,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════════
           MEET THE FOUNDER - Human Connection
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 border-t border-border/30">
+      <section className="py-12 sm:py-16 px-6 border-t border-border/30">
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-10">
             {/* Founder Avatar */}
@@ -982,7 +1030,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════════
           WHY FOUNDERS CHOOSE SAGEDO - Trust Pillars
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 border-t border-border/30">
+      <section className="py-12 sm:py-16 px-6 border-t border-border/30">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
@@ -1087,7 +1135,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════════
           TESTIMONIALS - Clean Cards (Bhindi Style)
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 border-t border-border/30 bg-gradient-to-b from-muted/30 to-transparent">
+      <section className="py-12 sm:py-16 px-6 border-t border-border/30 bg-gradient-to-b from-muted/30 to-transparent">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
@@ -1189,7 +1237,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════════
           FINAL CTA - Clean Banner
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 border-t border-border/30 bg-gradient-to-t from-green-500/5 to-transparent">
+      <section className="py-12 sm:py-16 px-6 border-t border-border/30 bg-gradient-to-t from-green-500/5 to-transparent">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
             Let's Talk About Your Business
@@ -1220,9 +1268,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FLOATING PERSONA CALIBRATION NUDGE */}
-      <PersonaFloatingNudge />
-
+      
     </div>
   );
 }

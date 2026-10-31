@@ -335,9 +335,9 @@ export default function ChatWidget() {
                 {isOpen ? (
                     <X className="w-6 h-6 text-white" />
                 ) : (
-                    <div className="w-full h-full rounded-full p-2 flex items-center justify-center">
+                    <div className="w-full h-full rounded-full p-2 flex items-center justify-center overflow-hidden">
                         <img
-                            src="/sagedo_logo_icon.png"
+                            src="/sagedo_logo_final_circle.webp"
                             alt="SAGE DO Bruno"
                             className="w-full h-full object-contain"
                         />
@@ -358,7 +358,7 @@ export default function ChatWidget() {
                     <div className="p-4 bg-gradient-to-r from-neutral-900 via-neutral-950 to-black border-b border-white/10 flex items-center justify-between text-white shadow-md">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-full overflow-hidden border border-amber-500/50 p-1 bg-black shrink-0 flex items-center justify-center">
-                                <img src="/sagedo_logo_icon.png" alt="SAGE DO Bruno" className="w-full h-full object-contain filter drop-shadow-[0_0_6px_rgba(239,68,68,0.7)]" />
+                                <img src="/sagedo_logo_final_circle.webp" alt="SAGE DO Bruno" className="w-full h-full object-contain filter drop-shadow-[0_0_6px_rgba(239,68,68,0.7)]" />
                             </div>
                             <div>
                                 <h3 className="font-bold text-sm text-white flex items-center gap-1.5">

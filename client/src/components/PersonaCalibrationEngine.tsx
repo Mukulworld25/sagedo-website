@@ -200,7 +200,7 @@ export default function PersonaCalibrationEngine() {
   const IconComponent = current.icon;
 
   return (
-    <section id="what-do-you-run" className="py-20 px-4 bg-[#050608] border-b border-white/10 relative overflow-hidden">
+    <section id="what-do-you-run" className="py-10 sm:py-14 px-4 bg-[#050608] border-b border-white/10 relative overflow-hidden">
       {/* Background radial highlight */}
       <div 
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-[140px] pointer-events-none opacity-15"
