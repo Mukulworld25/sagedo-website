@@ -165,8 +165,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/agency-partner">
-                  <span className="text-neutral-400 hover:text-white transition-colors cursor-pointer">For Agencies (White-Label)</span>
+                <Link href="/partnerships">
+                  <span className="text-neutral-400 hover:text-white transition-colors cursor-pointer">Empaneled Partnerships (CAs, Lawyers, Agencies)</span>
                 </Link>
               </li>
             </ul>

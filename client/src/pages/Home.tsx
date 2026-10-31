@@ -7,9 +7,10 @@ import { trackWhatsAppClick } from "@/hooks/useAnalytics";
 import { useCurrency } from "@/contexts/CurrencyContext";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import FounderTrustBar from "@/components/FounderTrustBar";
+import PersonaCalibrationEngine from "@/components/PersonaCalibrationEngine";
+import PhoneSpeedAuditSection from "@/components/PhoneSpeedAuditSection";
+import WhatsApp11PMScenario from "@/components/WhatsApp11PMScenario";
 import VisualConceptStudio from "@/components/VisualConceptStudio";
-import DevToolsCrimeScene from "@/components/DevToolsCrimeScene";
-import SpeedToLeadInfographic from "@/components/SpeedToLeadInfographic";
 import SovereignGuaranteeCard from "@/components/SovereignGuaranteeCard";
 // SlimStickyHeader removed to protect brand header integrity
 // ProofAndAudioWall relocated permanently to /wall-of-fame
@@ -197,19 +198,19 @@ export default function Home() {
       <FounderTrustBar />
 
       {/* ═══════════════════════════════════════════════════════════════════
-          INTERACTIVE 3-STEP VISUAL CONCEPT STUDIO
+          1-TAP PERSONA CALIBRATION ENGINE (What do you run?)
       ═══════════════════════════════════════════════════════════════════ */}
-      <VisualConceptStudio />
+      <PersonaCalibrationEngine />
 
       {/* ═══════════════════════════════════════════════════════════════════
-          DEVTOOLS CRIME SCENE FORENSIC TEARDOWN
+          PHONE SPEED 60-SECOND AUDIT (Replaces DevTools Crime Scene)
       ═══════════════════════════════════════════════════════════════════ */}
-      <DevToolsCrimeScene />
+      <PhoneSpeedAuditSection />
 
       {/* ═══════════════════════════════════════════════════════════════════
-          SPEED-TO-LEAD RESPONSIVE ARCHITECTURE INFOGRAPHIC
+          11 PM WHATSAPP SPEED-TO-LEAD REALITY (Replaces AI Infographic)
       ═══════════════════════════════════════════════════════════════════ */}
-      <SpeedToLeadInfographic />
+      <WhatsApp11PMScenario />
 
       {/* ═══════════════════════════════════════════════════════════════════
           SOVEREIGN RISK-REVERSAL EXECUTION GUARANTEE
@@ -328,28 +329,37 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          AI + HUMAN SECTION - Clean Institutional Positioning
+          WHY NOT JUST CHATGPT - Claude's Human-Centric Positioning
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 border-t border-border/30">
+      <section className="py-24 px-6 border-t border-border/30 bg-gradient-to-b from-neutral-950 to-[#050608]">
         <RevealOnScroll>
           <div className="max-w-4xl mx-auto text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-6">
-              Engineering Discernment
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-amber-400 mb-4">
+              The Real Question
             </p>
-            <blockquote className="text-2xl sm:text-3xl md:text-4xl text-foreground font-medium leading-relaxed mb-6">
-              "Why hire an execution partner when raw AI models are everywhere?"
-            </blockquote>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Raw AI produces statistically plausible drafts; human systems engineers deliver verified revenue infrastructure.
-              We prompt, architect, audit, and harden every deliverable so your business receives <span className="text-foreground font-medium">zero-defect, production-grade assets</span>.
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-6">
+              "Why not just use ChatGPT yourself?"
+            </h2>
+            <p className="text-lg sm:text-xl text-neutral-300 max-w-2xl mx-auto leading-relaxed mb-8">
+              ChatGPT writes the message. We set up the system that sends it, tracks the reply, updates your accounts, and reminds your team to follow up.
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm sm:text-base font-semibold text-neutral-300">
-              <span className="text-primary font-bold">Autonomous AI Speed</span>
-              <span className="text-muted-foreground/50">+</span>
-              <span className="text-white font-bold">Sovereign Human Verification</span>
-              <span className="text-muted-foreground/50">=</span>
-              <span className="text-emerald-400 font-bold">Zero Hallucination Delivery</span>
+            <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/10 max-w-xl mx-auto text-left space-y-3 text-sm text-neutral-300">
+              <p className="flex items-start gap-2.5">
+                <span className="text-emerald-400 font-bold">✓</span>
+                <span>You don't get text drafts on a screen. You get a live, working business system.</span>
+              </p>
+              <p className="flex items-start gap-2.5">
+                <span className="text-emerald-400 font-bold">✓</span>
+                <span>Wired directly to your WhatsApp, your Google profile, and your bank.</span>
+              </p>
+              <p className="flex items-start gap-2.5">
+                <span className="text-emerald-400 font-bold">✓</span>
+                <span>See it working in 48 hours or your money back.</span>
+              </p>
             </div>
+            <p className="text-xs text-neutral-500 tracking-wider uppercase mt-6 font-semibold">
+              — Mukul Dhiman, Founder, SAGE DO
+            </p>
           </div>
         </RevealOnScroll>
       </section>
@@ -542,10 +552,10 @@ export default function Home() {
               Pricing Options
             </p>
             <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4">
-              Simple, Transparent Pricing
+              No Monthly Fee Per Employee. Pay Once.
             </h2>
             <p className="text-lg text-muted-foreground">
-              Choose the package to launch or scale your business. Fixed pricing, no hidden fees.
+              Every lead in one place, WhatsApp follow-ups go out on their own, and the software belongs to you forever.
             </p>
           </div>
 
@@ -765,15 +775,27 @@ export default function Home() {
                 </div>
 
                 {/* Demo Content */}
-                <div className="font-mono text-sm space-y-3">
-                  <div className="text-green-400">$ sagedo process --input</div>
-                  <div className="text-muted-foreground pl-4 animate-pulse">
-                    {steps.find(s => s.step === activeStep)?.demo}
+                <div className="space-y-4 text-sm font-sans">
+                  <div className="p-4 rounded-2xl bg-black/50 border border-white/10 space-y-2">
+                    <p className="text-[11px] text-amber-400 uppercase font-bold tracking-wider">Active Milestone</p>
+                    <p className="text-base font-bold text-white">
+                      {steps.find(s => s.step === activeStep)?.title}
+                    </p>
+                    <p className="text-xs text-neutral-300 leading-relaxed">
+                      {steps.find(s => s.step === activeStep)?.description}
+                    </p>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-neutral-200">
+                    <p className="text-xs font-bold text-amber-400 mb-1">⚡ SAGE DO Engineering Delivery</p>
+                    <p className="text-xs text-neutral-300">
+                      {activeStep === 1 && "Plain Hindi or English description. No complex technical documents required from you."}
+                      {activeStep === 2 && "Senior engineers custom-craft your system. Functional prototype live in 48 hours."}
+                      {activeStep === 3 && "Live handover with video walkthrough, WhatsApp alerts active, and zero per-seat software fees."}
+                    </p>
                   </div>
                   {activeStep === 3 && (
-                    <div className="mt-4 p-4 bg-green-500/10 border border-green-500/30 rounded-xl">
-                      <p className="text-green-400 font-semibold">✓ Task completed successfully!</p>
-                      <p className="text-muted-foreground text-xs mt-1">Delivered in 23 hours</p>
+                    <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold text-center">
+                      ✓ System Live & Verified · 100% Owned by Your Business
                     </div>
                   )}
                 </div>
@@ -971,7 +993,7 @@ export default function Home() {
               The Unfair Advantage
             </p>
             <h2 className="text-3xl md:text-5xl font-black text-foreground">
-              Why Founders Choose SAGEDO
+              Why Founders Choose SAGE DO
             </h2>
           </div>
 

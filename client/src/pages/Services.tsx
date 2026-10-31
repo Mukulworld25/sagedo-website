@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
-import { Search, ArrowRight, Crown, Rocket, Star, ShieldCheck, Zap, ChevronRight, TrendingUp, ChevronDown, Sparkles, CreditCard } from "lucide-react";
+import { Search, ArrowRight, Crown, Rocket, Star, ShieldCheck, Zap, ChevronRight, TrendingUp, ChevronDown, Sparkles, CreditCard, Handshake } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useCurrency } from "@/contexts/CurrencyContext";
 import { apiRequest } from "@/lib/queryClient";
@@ -62,7 +62,7 @@ const TABS = [
   },
   {
     id: "scaleops",
-    label: "Modular Services, Combos & Partner Rails",
+    label: "Modular Services & Turnkey Combos",
     sub: "Turnkey Combos, Standalone Services & Retainers",
     icon: TrendingUp,
     color: "from-blue-400 to-cyan-600",
@@ -950,13 +950,13 @@ export default function Services() {
                     <div>
                       <div className="flex items-center gap-2 mb-2">
                         <Badge className="bg-blue-500/10 text-blue-400 border-blue-500/20 text-xs font-bold uppercase tracking-wider">
-                          Track 3: Modular Services, Combos & Partner Rails
+                          Track 3: Modular Services & Turnkey Combos
                         </Badge>
                         <span className="text-xs text-neutral-400">Turnkey Combos, Standalone Modular Services & Ecosystem Rails</span>
                       </div>
                       <h2 className="text-3xl font-extrabold text-white flex items-center gap-3">
                         <TrendingUp className="w-8 h-8 text-blue-400" />
-                        Modular Services, Combos & Partner Rails
+                        Modular Services & Turnkey Combos
                       </h2>
                       <p className="text-gray-400 mt-1 max-w-2xl text-sm leading-relaxed">
                         Ready-to-deploy multi-service combos, standalone specialized services (Logos, GST, MSME, Pitch Decks), bilateral partner rails, and ongoing maintenance retainers.
@@ -964,69 +964,22 @@ export default function Services() {
                     </div>
                   </div>
 
-                                    {/* 0. SOVEREIGN PARTNER ECOSYSTEM PILLARS */}
-                  <div className="mb-14">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="h-[1px] bg-white/10 flex-1"></div>
-                      <h3 className="text-sm font-bold uppercase tracking-widest text-blue-400 flex items-center gap-2">
-                        <Crown className="w-4 h-4" />
-                        Bilateral Sovereign Partner Rails
-                      </h3>
-                      <div className="h-[1px] bg-white/10 flex-1"></div>
-                    </div>
-                    <p className="text-center text-xs text-neutral-400 max-w-2xl mx-auto mb-8">
-                      Indian businesses need more than just software. We partner with licensed statutory professionals and CapEx dealers to deliver compliant, end-to-end operational infrastructure.
-                    </p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-                      <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/50 transition-all hover:-translate-y-1">
-                        <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 mb-4 text-xl">
-                          ⚖️
-                        </div>
-                        <h4 className="font-bold text-white text-base mb-1">Statutory & Audit Rail</h4>
-                        <p className="text-xs text-blue-400 font-semibold mb-2">ICAI Compliant Retainers</p>
-                        <p className="text-xs text-neutral-400 leading-relaxed mb-4">
-                          Subcontracted pre-audit data mapping with trusted Chartered Accountants. White-labeled compliance portals with native Tally ledger reconciliation.
-                        </p>
-                        <span className="text-[10px] text-neutral-500 font-mono">Bilateral CA Network</span>
+                                    {/* PARTNERSHIP BRIDGE BANNER */}
+                  <div className="mb-12 p-6 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-400 font-bold shrink-0">
+                        <Handshake className="w-5 h-5" />
                       </div>
-
-                      <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/50 transition-all hover:-translate-y-1">
-                        <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 mb-4 text-xl">
-                          📜
-                        </div>
-                        <h4 className="font-bold text-white text-base mb-1">Corporate Legal Rail</h4>
-                        <p className="text-xs text-amber-400 font-semibold mb-2">Bar Council Aligned</p>
-                        <p className="text-xs text-neutral-400 leading-relaxed mb-4">
-                          Intellectual Property assignment, Master Services Agreements (MSAs), founder equity drafting, and statutory contract compliance.
-                        </p>
-                        <span className="text-[10px] text-neutral-500 font-mono">Legal Counsel Network</span>
-                      </div>
-
-                      <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-emerald-400/50 transition-all hover:-translate-y-1">
-                        <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-4 text-xl">
-                          👥
-                        </div>
-                        <h4 className="font-bold text-white text-base mb-1">HR & Talent Rail</h4>
-                        <p className="text-xs text-emerald-400 font-semibold mb-2">Vetted Engineering Staffing</p>
-                        <p className="text-xs text-neutral-400 leading-relaxed mb-4">
-                          Fractional CTOs, senior full-stack React/Node engineers, and trained telecalling teams to operate your custom CRM.
-                        </p>
-                        <span className="text-[10px] text-neutral-500 font-mono">Talent Placement Rail</span>
-                      </div>
-
-                      <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-400/50 transition-all hover:-translate-y-1">
-                        <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-4 text-xl">
-                          🏭
-                        </div>
-                        <h4 className="font-bold text-white text-base mb-1">CapEx & Machinery Rail</h4>
-                        <p className="text-xs text-purple-400 font-semibold mb-2">Factory Floor IoT Telemetry</p>
-                        <p className="text-xs text-neutral-400 leading-relaxed mb-4">
-                          Bundled WhatsApp machinery maintenance telemetry with industrial OEM dealers across the Punjab & Haryana manufacturing corridor.
-                        </p>
-                        <span className="text-[10px] text-neutral-500 font-mono">Industrial Telemetry Rail</span>
+                      <div>
+                        <p className="text-sm font-bold text-white">Are you a Chartered Accountant, Advocate, or Agency?</p>
+                        <p className="text-xs text-neutral-400">Offer verified software to your clients at wholesale partner rates. Zero illegal commissions.</p>
                       </div>
                     </div>
+                    <Link href="/partnerships">
+                      <Button size="sm" className="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs h-9 px-4 rounded-xl shrink-0 cursor-pointer">
+                        View Partner Portal →
+                      </Button>
+                    </Link>
                   </div>
 
                   {/* 1. TURNKEY COMBOS */}

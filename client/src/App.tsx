@@ -45,6 +45,7 @@ const FreelancerAlternative = React.lazy(() => import("@/pages/FreelancerAlterna
 const DIYAlternative = React.lazy(() => import("@/pages/DIYAlternative"));
 const Refer = React.lazy(() => import("@/pages/Refer"));
 const AgencyPartner = React.lazy(() => import("@/pages/AgencyPartner"));
+const Partnerships = React.lazy(() => import("@/pages/Partnerships"));
 const BookCall = React.lazy(() => import("@/pages/BookCall"));
 const Careers = React.lazy(() => import("@/pages/Careers"));
 const Locations = React.lazy(() => import("@/pages/Locations"));
@@ -121,6 +122,8 @@ function Router() {
         <Route path="/alternatives/diy-ai-alternative"><Suspense fallback={<LoadingFallback />}><DIYAlternative /></Suspense></Route>
         <Route path="/refer"><Suspense fallback={<LoadingFallback />}><Refer /></Suspense></Route>
         <Route path="/agency-partner"><Suspense fallback={<LoadingFallback />}><AgencyPartner /></Suspense></Route>
+        <Route path="/partnerships"><Suspense fallback={<LoadingFallback />}><Partnerships /></Suspense></Route>
+        <Route path="/partner"><Redirect to="/partnerships" /></Route>
         <Route path="/book-call"><Suspense fallback={<LoadingFallback />}><BookCall /></Suspense></Route>
         <Route path="/careers"><Suspense fallback={<LoadingFallback />}><Careers /></Suspense></Route>
         <Route path="/locations"><Suspense fallback={<LoadingFallback />}><Locations /></Suspense></Route>
