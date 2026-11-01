@@ -66,38 +66,43 @@ const routes = [
   },
 
   // ── SERVICES ────────────────────────────────────────────────────────
+    // ── SERVICES ────────────────────────────────────────────────────────
   {
     path: '/services',
-    title: "Services | SAGEDO — AI + Human Business Services India",
-    description: "SAGEDO delivers 3 execution tiers from ₹45,000 — Digital Presence Engine, Sovereign Revenue Engine™, Enterprise Infrastructure — plus the ₹25,000 Revenue Infrastructure Blueprint (100% credited) and recurring growth add-ons.",
+    title: "Services & Commercial Catalog | SAGE DO — Speed of AI. Precision of Humans.",
+    description: "SAGE DO Commercial Catalog: SMB LaunchPad (₹15,000 / ₹35,000 / ₹50,000) and Enterprise Sovereign Suites (₹45,000 / ₹1,50,000 / ₹3,50,000). Backed by 48-Hour Functional Prototype Guarantee.",
     content: `
-      <h1>SAGEDO Services — Build Your Legacy</h1>
-      <p>Precision-engineered services for founders, leaders, and visionaries who refuse to settle for average. One consolidated catalog: 3 delivery tiers, the Blueprint audit, standalone AI builds, and recurring add-ons.</p>
-      <h2>The Founder's Stack — Delivery Tiers</h2>
-      <h3>Digital Presence Engine — ₹45,000–₹75,000</h3>
-      <p>Everything a serious business needs to exist online: Logo + Brand Identity, 5-Page Website + SEO / GEO / AEO Basics, Google Business Profile, Business Email, Social Media Setup, GST + MSME Registration. Live in 14 days or full refund. AMC ₹15,000/month.</p>
-      <h3>Sovereign Revenue Engine™ — ₹1,50,000–₹2,50,000 (Most Popular)</h3>
-      <p>Complete execution: Everything in Digital Presence Engine + CRM + Lead Automation, WhatsApp Sales Bot + AI Website Chatbot, Sales Automation, Analytics Dashboard, Missed-Call Text-Back, Review Automation, SEO / GEO / AEO Setup + 4 Blog Posts, 30 Days Social Content. Live in 28 days, 10-gate QA certified. AMC ₹25,000/month.</p>
+      <h1>SAGE DO Commercial Catalog &amp; Services — Speed of AI. Precision of Humans.</h1>
+      <p>Precision-engineered digital machines for founders and growing businesses. Interactive functional prototype guaranteed in 48 hours.</p>
+
+      <h2>Track 1: SMB LaunchPad — One-Time Fixed Price Builds</h2>
+      <h3>LaunchPad Starter — ₹15,000 (7 Calendar Days)</h3>
+      <p>Essential market discovery &amp; digital foundation: 5-Page High-Converting Mobile Web Storefront (Sub-1s LCP), Complete SEO, AEO &amp; GEO Setup + Google Maps 3-Pack, 48-Hour Functional Prototype Guarantee to Validate MVP, Professional Brand Logo, Colors &amp; Vector Asset Kit, GST &amp; MSME Udyam Document Filing Assistance, 1-on-1 Direct Strategy Consultation with Mukul, Domain Setup + Professional @yourdomain.com Email.</p>
+
+      <h3>LaunchPad Growth — ₹35,000 (10–12 Calendar Days) — Most Popular</h3>
+      <p>Interactive dynamic platform &amp; automated sales engine: Everything in ₹15,000 Starter Tier included + 10+ Page Dynamic Website with Interactive Quoter &amp; Forms, 24/7 WhatsApp API Lead Routing &amp; Instant Alert Webhooks, Integrated Blog &amp; Dynamic CMS for Organic Ranking, Advanced 1-on-1 Systems Architecture Consultation, Sovereign Cloud VPS Setup with 99.9% Uptime SLA.</p>
+
+      <h3>LaunchPad Scale — ₹50,000 (14–18 Calendar Days)</h3>
+      <p>Complete sales engine, mini CRM &amp; 90-day sovereign growth: Everything in ₹35,000 Growth Tier included + Custom Sales Dashboard &amp; Mini CRM (Unlimited Seats, Zero User Tax), Omnichannel SMM Setup (Meta Ads, Instagram &amp; Google Unified), 3 Months FREE Continuous SEO / AEO / GEO Optimization, 3 Months FREE Priority Tech Support &amp; Maintenance Retainer, 100% Full Source Code &amp; Self-Hosted Database Handover.</p>
+
+      <h2>Track 2: Enterprise Sovereign Suites — Sovereign Infrastructure</h2>
+      <h3>Digital Presence Engine — ₹45,000</h3>
+      <p>Sovereign foundation: Full brand asset kit, 5-page sub-second webfront, local discoverability, Google Business Profile, and professional email. 14 calendar days.</p>
+      <h3>Sovereign Revenue Engine™ — ₹1,50,000</h3>
+      <p>Full-stack operational machine: Dynamic multi-page web platform, zero-seat sales pipeline CRM, 24/7 WhatsApp conversational agent, and automated invoicing. 28 calendar days.</p>
       <h3>Enterprise Infrastructure — Starting at ₹3,50,000</h3>
-      <p>Enterprise infrastructure: Enterprise Web + Native App, Admin Dashboard, Dedicated Growth Engineer, Legal &amp; IP Contracts + Trademark Filing, HR System Setup. AMC ₹35,000/month.</p>
-      <h2>SAGEDO Revenue Infrastructure Blueprint — ₹25,000</h2>
-      <p>A deep audit of your revenue infrastructure — website, SEO / GEO / AEO, funnel, CRM, automations, analytics — with a prioritized build blueprint. 100% of the fee is credited against any tier build within 90 days.</p>
-      <h2>Standalone Builds &amp; Recurring Add-Ons</h2>
+      <p>Bespoke sovereign systems: Cross-platform native mobile apps (Android/iOS), enterprise role-based CRM, Tally Prime ledger bridge, and dedicated growth engineering.</p>
+
+      <h2>Track 3: Combos &amp; Specialized Add-ons — The SAGE DO Showroom</h2>
+      <p>Explore our full catalog of 21 models across 4 specialized categories:</p>
       <ul>
-        <li>Mobile App Development — ₹59,999 – ₹95,000</li>
-        <li>AI Agent Development &amp; Operations — ₹45,000 – ₹75,000</li>
-        <li>AI Voice &amp; Telephony Agents — ₹45,000 – ₹55,000</li>
-        <li>Google &amp; Meta Ads Management — ₹15,000 – ₹25,000/month</li>
-        <li>AI Content Repurposing Engine — ₹15,000/month</li>
-        <li>SEO / GEO / AEO Content Retainer — ₹15,000/month</li>
+        <li><strong>Websites &amp; Storefronts (6 Models):</strong> Factory B2B Catalog, High-Speed D2C Storefront, Clinic Booking Portal, Coaching EdTech Platform, Hyperlocal Retail Menu, Executive Corporate Portfolio.</li>
+        <li><strong>Custom SaaS &amp; CRMs (6 Models):</strong> Zero-Seat Custom CRM, 90-Second Factory RFQ Quoter, Multi-Godown Stock Tracker, Clinic EHR Records, Telecalling Lead Engine, B2B Client Portal.</li>
+        <li><strong>Automations &amp; Cloud Rails (5 Models):</strong> 24/7 WhatsApp AI Sales Bot, Native Tally Prime Ledger Bridge, Dedicated VPS Server, Omnichannel SMM Lead Sync, Automated Payment &amp; GST Invoicing.</li>
+        <li><strong>Brand &amp; Legal Add-ons (4 Models):</strong> Brand Identity Starter Kit, Legal Foundation Bundle, Trademark &amp; IP Shield, Investor Pitch Deck &amp; Financial Model.</li>
       </ul>
-      <h2>AMC &amp; Expert Guidance</h2>
-      <ul>
-        <li>Tier AMCs — ₹15,000/mo (Tier 1), ₹25,000/mo (Tier 2), ₹35,000/mo (Tier 3)</li>
-        <li>First Discovery Call — 15 min, FREE</li>
-        <li>Growth Retainer — ₹15,000/mo: weekly sync calls + priority WhatsApp access</li>
-      </ul>
-      <p>Contact: WhatsApp +91 6284925684 | Email hello@sagedo.in</p>
+      <p>Interactive Design Sample Studio: View 3–5 bespoke visual variations per model and lock in your style on WhatsApp.</p>
+      <p>Contact Mukul Dhiman: WhatsApp +91 6284925684 | Email hello@sagedo.in</p>
     `,
   },
 
