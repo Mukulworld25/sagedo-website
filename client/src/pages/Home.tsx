@@ -1204,32 +1204,6 @@ export default function Home() {
                   </div>
                 ))}
           </div>
-
-          {/* Prominent 20-Second Feedback & Lost-Lead Engine */}
-          <div className="mt-16 max-w-2xl mx-auto p-6 sm:p-8 rounded-3xl bg-neutral-900/80 border border-white/10 text-center shadow-xl backdrop-blur-md relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-bold uppercase tracking-wider mb-3">
-              <Sparkles className="w-3.5 h-3.5" /> 20-Second Feedback Hub
-            </div>
-            <h3 className="text-xl sm:text-2xl font-black text-white mb-2">
-              Help SAGE DO Build What Indian MSMEs Actually Need
-            </h3>
-            <p className="text-xs sm:text-sm text-neutral-400 max-w-lg mx-auto mb-6 leading-relaxed">
-              Whether you are an active client or decided not to hire us, your blunt truth shapes our pricing, speed, and sovereign roadmap. Zero marketing fluff.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link href="/share-your-experience?mode=review" className="w-full sm:w-auto">
-                <Button className="w-full sm:w-auto h-11 px-6 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs shadow-lg shadow-amber-500/20 cursor-pointer">
-                  ⭐ Review Work We Built
-                </Button>
-              </Link>
-              <Link href="/share-your-experience?mode=objection" className="w-full sm:w-auto">
-                <Button variant="outline" className="w-full sm:w-auto h-11 px-6 rounded-xl border-neutral-700 hover:border-neutral-500 bg-neutral-950/60 hover:bg-neutral-800 text-neutral-200 text-xs font-bold cursor-pointer">
-                  💡 Didn't Hire Us? Tell Us Why
-                </Button>
-              </Link>
-            </div>
-          </div>
         </div>
       </section>
 
