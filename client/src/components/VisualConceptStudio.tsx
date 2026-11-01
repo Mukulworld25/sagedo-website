@@ -103,7 +103,7 @@ export default function VisualConceptStudio() {
     switch (b) {
       case "starter": return "₹15,000 Starter (7 Days)";
       case "growth": return "₹35,000 Growth Stack (10 Days)";
-      case "custom": return "₹95,000+ Sovereign Suite (24h Concept First)";
+      case "custom": return "₹50,000 LaunchPad Scale (24h Concept First)";
     }
   };
 
@@ -227,7 +227,7 @@ Please send me my personalized 24-hour concept preview.`;
                 {[
                   { id: "starter", tier: "₹15,000", name: "Starter Launch", days: "7 Days Delivery", sub: "Core 0.8s website + WhatsApp lead routing" },
                   { id: "growth", tier: "₹35,000", name: "Growth Stack", days: "10 Days Delivery", sub: "Website + WhatsApp RAG Bot + Lead Calculator" },
-                  { id: "custom", tier: "₹95,000+", name: "Sovereign Suite", days: "24h Concept Preview", sub: "Full custom CRM + Web + Omnichannel visibility" },
+                  { id: "custom", tier: "₹50,000", name: "LaunchPad Scale", days: "24h Concept Preview", sub: "Dynamic Web + Mini CRM + SMM + 3mo Free SEO & Support" },
                 ].map((item) => {
                   const isSelected = budgetTier === item.id;
                   return (

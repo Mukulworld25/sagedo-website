@@ -9,6 +9,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { allServices, ServiceDetail } from "@/data/serviceData";
 import { SMB_LAUNCHPAD_PACKAGES, ENTERPRISE_SOVEREIGN_SUITES } from "@/config/pricing";
 import ServiceDetailModal from "@/components/ServiceDetailModal";
+import ShowroomSection from "@/components/ShowroomSection";
 import { motion, AnimatePresence } from "framer-motion";
 import { clsx } from "clsx";
 import { Helmet } from "react-helmet-async";
@@ -47,7 +48,7 @@ const TABS = [
   {
     id: "smb",
     label: "SMB LaunchPad",
-    sub: "₹15,000 / ₹35,000 / ₹95,000",
+    sub: "₹15,000 / ₹35,000 / ₹50,000",
     icon: Rocket,
     color: "from-amber-400 to-yellow-600",
     activeColor: "text-amber-400",
@@ -62,8 +63,8 @@ const TABS = [
   },
   {
     id: "scaleops",
-    label: "Modular Services & Turnkey Combos",
-    sub: "Turnkey Combos, Standalone Services & Retainers",
+    label: "Combos & Add-ons",
+    sub: "The SAGE DO Showroom: Explore Every Category",
     icon: TrendingUp,
     color: "from-blue-400 to-cyan-600",
     activeColor: "text-blue-400",
@@ -85,12 +86,12 @@ export default function Services() {
 
   const getTabSub = (tabId: string) => {
     if (tabId === "smb") {
-      return `${formatAmount(15000)} / ${formatAmount(35000)} / ${formatAmount(95000)}`;
+      return `${formatAmount(15000)} / ${formatAmount(35000)} / ${formatAmount(50000)}`;
     }
     if (tabId === "enterprise") {
       return `${formatAmount(45000)} / ${formatAmount(150000)} / Starting at ${formatAmount(350000)}`;
     }
-    return "Combos, Standalone Services & Retainers";
+    return "The SAGE DO Showroom: Explore Every Category";
   };
   const searchParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : new URLSearchParams();
   const initialTab = searchParams.get('tab') || 'smb';
@@ -122,7 +123,7 @@ export default function Services() {
     <div className="min-h-screen bg-[#0a0a0a] text-gray-100 selection:bg-amber-500/30">
       <Helmet>
         <title>Services & Commercial Catalog | SAGE DO — Speed of AI. Precision of Humans.</title>
-        <meta name="description" content="SAGE DO Commercial Catalog: SMB LaunchPad (₹15,000 / ₹35,000 / ₹95,000) and Enterprise Sovereign Suites (₹45,000 / ₹1,50,000 / ₹3,50,000). Backed by 48-Hour Functional Prototype Guarantee." />
+        <meta name="description" content="SAGE DO Commercial Catalog: SMB LaunchPad (₹15,000 / ₹35,000 / ₹50,000) and Enterprise Sovereign Suites (₹45,000 / ₹1,50,000 / ₹3,50,000). Backed by 48-Hour Functional Prototype Guarantee." />
         <meta name="keywords" content="business services India, website design Chandigarh, SEO GEO AEO India, Google Business Profile Chandigarh, WhatsApp bot setup, CRM setup India, GST registration, logo design India, mobile app development, LaunchPad, ScaleOps, SAGEDO, AI business services" />
         <link rel="canonical" href="https://sagedo.in/services" />
         <meta property="og:title" content="Services & Commercial Catalog | SAGE DO" />
@@ -167,7 +168,7 @@ export default function Services() {
           "offers": [
             { "@type": "Offer", "name": "LaunchPad Starter", "price": "15000", "priceCurrency": "INR" },
             { "@type": "Offer", "name": "LaunchPad Growth", "price": "35000", "priceCurrency": "INR" },
-            { "@type": "Offer", "name": "LaunchPad Scale", "price": "95000", "priceCurrency": "INR" },
+            { "@type": "Offer", "name": "LaunchPad Scale", "price": "50000", "priceCurrency": "INR" },
             { "@type": "Offer", "name": "Digital Presence Engine", "price": "45000", "priceCurrency": "INR" },
             { "@type": "Offer", "name": "Sovereign Revenue Engine™", "price": "150000", "priceCurrency": "INR" },
             { "@type": "Offer", "name": "Enterprise Infrastructure", "price": "350000", "priceCurrency": "INR" }
@@ -416,7 +417,7 @@ export default function Services() {
               transition={{ duration: 0.25 }}
             >
               {/* ───────────────────────────────────────────────────────────── */}
-              {/* TAB 1: SMB LAUNCHPAD (₹15,000 / ₹35,000 / ₹95,000) */}
+              {/* TAB 1: SMB LAUNCHPAD (₹15,000 / ₹35,000 / ₹50,000) */}
               {/* ───────────────────────────────────────────────────────────── */}
               {activeTab === "smb" && (
                 <div className="pt-10">
@@ -454,8 +455,8 @@ export default function Services() {
                             <Zap className="w-6 h-6" />
                           </div>
                           <h3 className="text-xl font-bold text-white mb-1">LaunchPad Starter</h3>
-                          <p className="text-gray-400 text-sm mb-1">Essential market validation & digital foundation</p>
-                          <p className="text-amber-400/80 text-xs font-semibold mb-4 italic">“Establish your digital presence in 7 days.”</p>
+                          <p className="text-gray-400 text-sm mb-1">Essential market discovery & digital foundation</p>
+                          <p className="text-amber-400/80 text-xs font-semibold mb-4 italic">“Sub-1s static site + SEO/AEO/GEO + Logo & Legal docs in 7 days.”</p>
                           <div className="flex items-baseline gap-1 mb-1">
                             <span className="text-3xl font-black text-white">{formatAmount(15000)}</span>
                             <span className="text-xs text-gray-500">/ one-time</span>
@@ -506,8 +507,8 @@ export default function Services() {
                             <Crown className="w-8 h-8" />
                           </div>
                           <h3 className="text-2xl font-black text-white mb-2">LaunchPad Growth</h3>
-                          <p className="text-gray-400 text-sm mb-1">Complete digital acquisition & automated sales engine</p>
-                          <p className="text-amber-400 text-xs font-semibold mb-6 italic">“Full sales pipeline & custom CRM in 10-12 days.”</p>
+                          <p className="text-gray-400 text-sm mb-1">Interactive dynamic platform & automated sales engine</p>
+                          <p className="text-amber-400 text-xs font-semibold mb-6 italic">“Dynamic CMS + Quoter + 24/7 WhatsApp API automation in 10–12 days.”</p>
                           <div className="flex items-baseline gap-1 mb-1">
                             <span className="text-5xl font-black text-white">{formatAmount(35000)}</span>
                             <span className="text-sm text-gray-500">/ one-time</span>
@@ -559,17 +560,17 @@ export default function Services() {
                             <Sparkles className="w-6 h-6" />
                           </div>
                           <h3 className="text-xl font-bold text-white mb-1">LaunchPad Scale</h3>
-                          <p className="text-gray-400 text-sm mb-1">Automated operations, multi-channel pipelines & full tech stack</p>
-                          <p className="text-amber-400/80 text-xs font-semibold mb-4 italic">“Native mobile app + web + custom admin in 15–21 days.”</p>
+                          <p className="text-gray-400 text-sm mb-1">Complete sales engine, mini CRM & 90-day sovereign growth</p>
+                          <p className="text-amber-400/80 text-xs font-semibold mb-4 italic">“Dynamic web + mini CRM + SMM channels + 3 months free SEO & support.”</p>
                           <div className="flex items-baseline gap-1 mb-1">
-                            <span className="text-3xl font-black text-white">{formatAmount(95000)}</span>
+                            <span className="text-3xl font-black text-white">{formatAmount(50000)}</span>
                             <span className="text-xs text-gray-500">/ one-time</span>
                           </div>
                           <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-medium mb-1">
                             <ShieldCheck className="w-3.5 h-3.5 flex-shrink-0" />
                             <span>48-Hour Functional Prototype Guarantee</span>
                           </div>
-                          <p className="text-xs text-gray-400 font-medium mb-6">Production delivery: 15–21 calendar days</p>
+                          <p className="text-xs text-gray-400 font-medium mb-6">Production delivery: 14–18 calendar days</p>
                           <ul className="space-y-3 mb-8">
                             {SMB_LAUNCHPAD_PACKAGES[2].features.map((feature) => (
                               <li key={feature} className="flex gap-3 text-sm text-gray-300">
@@ -580,13 +581,13 @@ export default function Services() {
                           </ul>
                         </div>
                         <div className="space-y-2">
-                          <Link href="/orders?package=smb_scale&service=LaunchPad%20Scale&price=95000&id=smb_scale">
+                          <Link href="/orders?package=smb_scale&service=LaunchPad%20Scale&price=50000&id=smb_scale">
                             <Button className="min-h-[44px] sm:min-h-0 w-full bg-white/10 hover:bg-amber-500 hover:text-black text-white border-none font-semibold transition-all">
-                              Start Custom Build ({formatAmount(95000)}) <ArrowRight className="w-4 h-4 ml-2" />
+                              Start Custom Build ({formatAmount(50000)}) <ArrowRight className="w-4 h-4 ml-2" />
                             </Button>
                           </Link>
                           <a
-                            href={`https://wa.me/916284925684?text=${encodeURIComponent("Hi Mukul, I'm interested in the LaunchPad Scale package (₹95,000).")}`}
+                            href={`https://wa.me/916284925684?text=${encodeURIComponent("Hi Mukul, I'm interested in the LaunchPad Scale package (₹50,000).")}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => trackWhatsAppClick("services_smb_scale")}
@@ -950,16 +951,16 @@ export default function Services() {
                     <div>
                       <div className="flex items-center gap-2 mb-2">
                         <Badge className="bg-blue-500/10 text-blue-400 border-blue-500/20 text-xs font-bold uppercase tracking-wider">
-                          Track 3: Modular Services & Turnkey Combos
+                          Track 3: Combos & Specialized Add-ons
                         </Badge>
                         <span className="text-xs text-neutral-400">Turnkey Combos, Standalone Modular Services & Ecosystem Rails</span>
                       </div>
                       <h2 className="text-3xl font-extrabold text-white flex items-center gap-3">
-                        <TrendingUp className="w-8 h-8 text-blue-400" />
-                        Modular Services & Turnkey Combos
+                        <Sparkles className="w-8 h-8 text-amber-400" />
+                        Combos & Specialized Add-ons
                       </h2>
                       <p className="text-gray-400 mt-1 max-w-2xl text-sm leading-relaxed">
-                        Ready-to-deploy multi-service combos, standalone specialized services (Logos, GST, MSME, Pitch Decks), and ongoing maintenance retainers.
+                        The SAGE DO Showroom: Explore our full catalog of websites, custom SaaS, automations, and business add-ons.
                       </p>
                     </div>
                   </div>
@@ -980,6 +981,11 @@ export default function Services() {
                         View Partner Portal →
                       </Button>
                     </Link>
+                  </div>
+
+                  {/* SAGE DO MASTER SHOWROOM (All Categories & 3-5 Design Samples) */}
+                  <div className="mb-14">
+                    <ShowroomSection />
                   </div>
 
                   {/* 1. TURNKEY COMBOS */}

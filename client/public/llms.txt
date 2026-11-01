@@ -25,9 +25,9 @@ Bespoke digital foundation packages engineered for Indian SMBs, local businesses
   - Deliverables: 10+ page conversion-engineered architecture with blog, custom lightweight CRM with automated WhatsApp sales bot, Google Business Profile with full local AEO/GEO optimization, social media setup with 30-day launch content assets, dynamic quote calculator, and automated lead alerts.
   - Delivery: 48-Hour Functional Prototype Guarantee | 10–12 calendar days to production launch.
 
-- **VIP / Scale Launch — ₹95,000 (SKU-SMB-95K)**:
-  - Deliverables: Cross-platform native mobile application (Android/iOS) + web app, unlimited seats custom CRM pipeline, multi-agent autonomous operational workflows, dedicated growth engineer during launch, and custom admin dashboard with real-time sales and lead analytics.
-  - Delivery: 48-Hour Functional Prototype Guarantee | 15 calendar days to production launch.
+- **LaunchPad Scale — ₹50,000 (SKU-SMB-50K)**:
+  - Deliverables: Everything in ₹35k Growth Tier + custom sales dashboard & mini CRM (unlimited seats, zero user tax), omnichannel SMM setup (Meta Ads, Instagram & Google Unified), 3 months FREE continuous SEO/AEO/GEO optimization, 3 months FREE priority tech support & maintenance retainer, and 100% full source code & database handover.
+  - Delivery: 48-Hour Functional Prototype Guarantee | 14–18 calendar days to production launch.
 
 ## Track 2: Enterprise Sovereign Suites (Sovereign Infrastructure)
 Bespoke enterprise-grade systems designed to eliminate recurring per-seat SaaS taxes, provide full source code sovereignty, and bridge legacy operations into autonomous digital pipelines.

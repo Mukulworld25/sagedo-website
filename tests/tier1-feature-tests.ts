@@ -110,7 +110,7 @@ export async function runTier1Tests(): Promise<TestResult[]> {
 
     assert.ok(starter && starter.price === 15000, 'smb_starter must be ₹15,000');
     assert.ok(growth && growth.price === 35000, 'smb_growth must be ₹35,000');
-    assert.ok(scale && scale.price === 95000, 'smb_scale must be ₹95,000');
+    assert.ok(scale && scale.price === 50000, 'smb_scale must be ₹50,000');
   });
 
   await recordAsync('F2: Pricing Single Source', 'F2.3: Enterprise Sovereign Suites exact prices (₹45k, ₹1.5L, ₹3.5L)', async () => {
