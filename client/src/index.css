@@ -3,6 +3,51 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* ═══════════════════════════════════════════════
+   FILATOV LEVÉ & APPLE SOVEREIGN DESIGN TOKENS
+═══════════════════════════════════════════════ */
+:root {
+  --bg-0: #04060A;
+  --bg-1: #070A10;
+  --bg-2: #0B0F17;
+  --bg-3: #10151F;
+  --bg-4: #161C28;
+  --fg-0: #F2F4F7;
+  --fg-1: #A7B0BE;
+  --fg-2: #7A8495;
+  --crimson: #ef4444;
+  --emerald: #10b981;
+  --amber: #f59e0b;
+  --sky: #38bdf8;
+  --hair: rgba(255, 255, 255, 0.08);
+  --hair-hi: rgba(255, 255, 255, 0.14);
+  --hair-act: rgba(255, 255, 255, 0.22);
+  --edge: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.console-chassis {
+  transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transform-style: preserve-3d;
+}
+
+.console-specular {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.14), transparent 45%);
+}
+
+.console-chassis:hover .console-specular {
+  opacity: 1;
+}
+
+.titanium-chamfer {
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+}
+
 
 /* ═══════════════════════════════════════════════
    HERO SECTION V13 - Arc Reactor / AI Tech
