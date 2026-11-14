@@ -775,6 +775,41 @@ const routes = [
     title: 'Regional Service Locations & Hubs | SAGEDO',
     description: "Explore SAGE DO's regional hubs, local SEO landing pages, and specialized AI automation infrastructure across Bangalore, Chandigarh, Delhi NCR, Mumbai, and nationwide.",
     content: `<h1>Regional Service Locations &amp; Hubs | SAGEDO</h1><p>Headquartered at Mohali City Centre, SAGE DO deploys sovereign revenue engines, AI agent workflows, and digital infrastructure for businesses across every major Indian metro.</p><h2>Major Metro Hubs</h2><ul><li><a href="/digital-marketing-bangalore.html">Bangalore</a></li><li><a href="/digital-marketing-chandigarh.html">Chandigarh Tri-City</a></li><li><a href="/digital-marketing-delhi.html">Delhi NCR</a></li><li><a href="/digital-marketing-hyderabad.html">Hyderabad</a></li><li><a href="/digital-marketing-mumbai.html">Mumbai</a></li><li><a href="/digital-marketing-pune.html">Pune</a></li></ul><h2>Regional Tri-City &amp; Industrial Pillars</h2><ul><li><a href="/custom-crm-development-chandigarh">Custom CRM Development Chandigarh</a></li><li><a href="/custom-crm-development-ludhiana">Custom CRM Development Ludhiana</a></li><li><a href="/custom-crm-development-panchkula">Custom CRM Development Panchkula</a></li><li><a href="/ai-automation-agency-zirakpur">AI Automation Agency Zirakpur</a></li></ul><h2>Nationwide Digital Solutions</h2><ul><li><a href="/website-development-india.html">Website Development India</a></li><li><a href="/app-development-india.html">Mobile App Development India</a></li><li><a href="/google-business-profile-setup.html">Google Business Profile Setup</a></li><li><a href="/new-business-setup-india.html">New Business Setup India</a></li><li><a href="/ai-automation-agency-india">AI Automation Agency India</a></li><li><a href="/b2b-lead-generation-systems">B2B Lead Generation Systems</a></li></ul>`,
+  },
+  {
+    path: '/visibility',
+    title: "Modern Search Visibility (SEO + AEO + GEO) | SAGEDO",
+    description: "Modern Search Visibility across Google Maps 3-Pack, Perplexity, Claude, ChatGPT Search & Gemini. Dedicated search visibility engines for North India SMBs, shops, manufacturers & clinics.",
+    jsonLd: `<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Modern Search Visibility (SEO + AEO + GEO)",
+      "description": "Multi-engine search visibility across Google Maps 3-Pack, Answer Engine Optimization (AEO), and Generative Engine Optimization (GEO).",
+      "provider": {
+        "@type": "Organization",
+        "name": "SAGEDO",
+        "url": "https://sagedo.in"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "serviceType": "Search Engine Optimization & AI Discoverability"
+    }
+    </script>`,
+    content: `
+      <h1>Modern Search Visibility — SEO + AEO + GEO | SAGEDO</h1>
+      <p>Build your local search presence across Google Maps 3-Pack, Answer Engines (Perplexity, Claude), and Generative Search (ChatGPT Search, Google Gemini). Engineered specifically for North Indian local businesses, workshops, and healthcare clinics.</p>
+      <h2>Tailored for Your Exact Business Reality</h2>
+      <h3>Local Shop &amp; Retail</h3>
+      <p>Capture High-Intent Footfall &amp; Direct Phone Calls Within Your Immediate Catchment. Engineered for neighborhood retailers, electronics showrooms, hardware stores, and local service providers in North India.</p>
+      <p>Rigid NAP (Name, Address, Phone) consistency across major directories, localized geo-coordinates, verified photo syndication, and neighborhood landing page schema so nearby buyers find your business directly.</p>
+      <h2>Interactive Need, Budget &amp; Urgency Chooser</h2>
+      <p>Select your core growth challenge, budget bracket, and operational timeline to generate a tailored execution scope promptly delivered via WhatsApp.</p>
+      <h2>The 10-Gate Quality Assurance Standard</h2>
+      <p>All visibility infrastructure is delivered with a SAGEDO Release Certificate governed by the 10-Gate Quality Assurance Standard. [SPEED_CLAIM_PLACEHOLDER], [DATA_OWNERSHIP_CLAIM_PLACEHOLDER], and [RETAINER_TERMS_PLACEHOLDER].</p>
+    `,
   }
 ];
 

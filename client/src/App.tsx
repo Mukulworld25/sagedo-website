@@ -50,6 +50,7 @@ const BookCall = React.lazy(() => import("@/pages/BookCall"));
 const Careers = React.lazy(() => import("@/pages/Careers"));
 const Locations = React.lazy(() => import("@/pages/Locations"));
 const PillarPage = React.lazy(() => import("@/pages/PillarPage"));
+const Visibility = React.lazy(() => import("@/pages/visibility"));
 const NotFound = React.lazy(() => import("@/pages/not-found"));
 
 import Navigation from "@/components/Navigation";
@@ -127,6 +128,8 @@ function Router() {
         <Route path="/book-call"><Suspense fallback={<LoadingFallback />}><BookCall /></Suspense></Route>
         <Route path="/careers"><Suspense fallback={<LoadingFallback />}><Careers /></Suspense></Route>
         <Route path="/locations"><Suspense fallback={<LoadingFallback />}><Locations /></Suspense></Route>
+        
+        <Route path="/visibility"><Suspense fallback={<LoadingFallback />}><Visibility /></Suspense></Route>
         
         {/* AEO / GEO Pillar & City Routes (Tasks B & C) */}
         <Route path="/ai-automation-agency-india"><Suspense fallback={<LoadingFallback />}><PillarPage slug="ai-automation-agency-india" /></Suspense></Route>
