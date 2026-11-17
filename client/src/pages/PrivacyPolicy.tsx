@@ -80,7 +80,7 @@ export default function PrivacyPolicy() {
                                 <li><strong>Grievance:</strong> File a complaint with the Data Protection Board of India</li>
                             </ul>
                             <p className="mt-3">
-                                To exercise these rights, contact us at: <strong>hello@sagedo.in</strong>
+                                To exercise these rights, contact us at: <strong>mukul@sagedo.in</strong>
                             </p>
                         </div>
                     </section>
@@ -97,7 +97,7 @@ export default function PrivacyPolicy() {
                             <ul className="list-disc pl-6 space-y-1">
                                 <li><strong>Permitted Signals:</strong> We record strictly 4 user action signals (<code className="text-xs bg-muted px-1.5 py-0.5 rounded">persona_selected</code>, <code className="text-xs bg-muted px-1.5 py-0.5 rounded">chooser_completed</code>, <code className="text-xs bg-muted px-1.5 py-0.5 rounded">add_to_scope</code>, <code className="text-xs bg-muted px-1.5 py-0.5 rounded">whatsapp_click</code>) and campaign referral tags (<code className="text-xs bg-muted px-1.5 py-0.5 rounded">utm_source</code>, <code className="text-xs bg-muted px-1.5 py-0.5 rounded">utm_medium</code>, <code className="text-xs bg-muted px-1.5 py-0.5 rounded">utm_campaign</code>). Your chosen business need, budget range, and urgency are recorded with the event, without name, phone number, or free-text inputs.</li>
                                 <li><strong>Zero Persistent PII or Behavioral Surveillance:</strong> SAGEDO does not store IP addresses in its event data; the hosting provider may keep standard server logs. We do NOT collect or record scroll depth, session recordings, or free-text inputs.</li>
-                                <li><strong>Consent Gating &amp; Revocation:</strong> Telemetry is entirely gated by your cookie consent status (<code className="text-xs bg-muted px-1.5 py-0.5 rounded">cookie-consent: accepted</code>). If consent is declined or withheld, zero telemetry beacons are dispatched. You may withdraw consent at any time by contacting us at hello@sagedo.in or by resetting your browser preferences.</li>
+                                <li><strong>Consent Gating &amp; Revocation:</strong> Telemetry is entirely gated by your cookie consent status (<code className="text-xs bg-muted px-1.5 py-0.5 rounded">cookie-consent: accepted</code>). If consent is declined or withheld, zero telemetry beacons are dispatched. You may withdraw consent at any time by contacting us at mukul@sagedo.in or by resetting your browser preferences.</li>
                             </ul>
                         </div>
                     </section>
@@ -149,7 +149,6 @@ export default function PrivacyPolicy() {
                                 <li><strong>Email:</strong> hello@sagedo.in</li>
                                 <li><strong>Phone:</strong> +91 6284925684</li>
                                 <li><strong>WhatsApp:</strong> https://wa.me/916284925684</li>
-                                <li><strong>Registered Entity:</strong> SAGEDO (Registered as SAGE DO under Udyam Registration)</li>
                             </ul>
                         </div>
                     </section>
