@@ -9,10 +9,10 @@ export default function PrivacyPolicy() {
                 <Card className="glass p-8 space-y-6">
                     <section>
                         <p className="text-sm text-muted-foreground mb-4">
-                            Last Updated: November 22, 2025
+                            Last Updated: November 14, 2026
                         </p>
                         <p className="text-muted-foreground">
-                            SAGE DO ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and services, in compliance with the Digital Personal Data Protection Act, 2023 (DPDP Act) and other applicable Indian laws.
+                            SAGEDO ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and services, in compliance with the Digital Personal Data Protection Act, 2023 (DPDP Act) and other applicable Indian laws.
                         </p>
                     </section>
 
@@ -80,16 +80,26 @@ export default function PrivacyPolicy() {
                                 <li><strong>Grievance:</strong> File a complaint with the Data Protection Board of India</li>
                             </ul>
                             <p className="mt-3">
-                                To exercise these rights, contact us at: <strong>hello@sagedo.in</strong>
+                                To exercise these rights, contact us at: <strong>mukul@sagedo.in</strong>
                             </p>
                         </div>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-foreground mb-3">6. Cookies</h2>
-                        <p className="text-muted-foreground">
-                            We use essential cookies for authentication and session management. These are necessary for our services to function. We do not use tracking or advertising cookies without your consent.
-                        </p>
+                        <h2 className="text-2xl font-bold text-foreground mb-3">6. Cookies &amp; First-Party Telemetry</h2>
+                        <div className="space-y-3 text-muted-foreground">
+                            <p>
+                                <strong>Essential Cookies:</strong> We use essential cookies for authentication and session management. These are necessary for our services to function.
+                            </p>
+                            <p>
+                                <strong>First-Party High-Intent Telemetry:</strong> Designed to align with the Digital Personal Data Protection Act, 2023 (DPDP Act), we deploy minimal, privacy-first telemetry on select conversion pages (such as our visibility pillar) strictly after you grant consent via our cookie consent banner.
+                            </p>
+                            <ul className="list-disc pl-6 space-y-1">
+                                <li><strong>Permitted Signals:</strong> We record strictly 4 user action signals (<code className="text-xs bg-muted px-1.5 py-0.5 rounded">persona_selected</code>, <code className="text-xs bg-muted px-1.5 py-0.5 rounded">chooser_completed</code>, <code className="text-xs bg-muted px-1.5 py-0.5 rounded">add_to_scope</code>, <code className="text-xs bg-muted px-1.5 py-0.5 rounded">whatsapp_click</code>) and campaign referral tags (<code className="text-xs bg-muted px-1.5 py-0.5 rounded">utm_source</code>, <code className="text-xs bg-muted px-1.5 py-0.5 rounded">utm_medium</code>, <code className="text-xs bg-muted px-1.5 py-0.5 rounded">utm_campaign</code>). Your chosen business need, budget range, and urgency are recorded with the event, without name, phone number, or free-text inputs.</li>
+                                <li><strong>Zero Persistent PII or Behavioral Surveillance:</strong> SAGEDO does not store IP addresses in its event data; the hosting provider may keep standard server logs. We do NOT collect or record scroll depth, session recordings, or free-text inputs.</li>
+                                <li><strong>Consent Gating &amp; Revocation:</strong> Telemetry is entirely gated by your cookie consent status (<code className="text-xs bg-muted px-1.5 py-0.5 rounded">cookie-consent: accepted</code>). If consent is declined or withheld, zero telemetry beacons are dispatched. You may withdraw consent at any time by contacting us at mukul@sagedo.in or by resetting your browser preferences.</li>
+                            </ul>
+                        </div>
                     </section>
 
                     <section>
@@ -120,7 +130,7 @@ export default function PrivacyPolicy() {
                                 In compliance with the Digital Personal Data Protection Act, 2023, we have appointed a Grievance Officer to address data privacy concerns:
                             </p>
                             <div className="bg-accent/20 p-4 rounded-lg space-y-2 mb-3">
-                                <p><strong>Name:</strong> SAGE DO Support Team</p>
+                                <p><strong>Name:</strong> SAGEDO Support Team</p>
                                 <p><strong>Email:</strong> hello@sagedo.in</p>
                                 <p><strong>Phone:</strong> +91 6284925684</p>
                                 <p><strong>Response Time:</strong> Within 24-48 hours</p>
