@@ -807,8 +807,8 @@ const routes = [
       <p>Rigid NAP (Name, Address, Phone) consistency across major directories, localized geo-coordinates, verified photo syndication, and neighborhood landing page schema so nearby buyers find your business directly.</p>
       <h2>Interactive Need, Budget &amp; Urgency Chooser</h2>
       <p>Select your core growth challenge, budget bracket, and operational timeline to generate a tailored execution scope promptly delivered via WhatsApp.</p>
-      <h2>The 10-Gate Quality Assurance Standard</h2>
-      <p>All visibility infrastructure is delivered with a SAGEDO Release Certificate governed by the 10-Gate Quality Assurance Standard. [SPEED_CLAIM_PLACEHOLDER], [DATA_OWNERSHIP_CLAIM_PLACEHOLDER], and [RETAINER_TERMS_PLACEHOLDER].</p>
+      <h2>Our 10-Point Visibility Checklist</h2>
+      <p>Every visibility system deployed by SAGEDO is verified against our 10-point inspection list before delivery.</p>
     `,
   }
 ];

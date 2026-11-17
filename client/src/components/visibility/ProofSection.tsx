@@ -64,20 +64,20 @@ const TEN_GATES: GateItem[] = [
   },
   {
     gateNumber: 8,
-    name: 'DPDP Act 2023 Consent & First-Party Privacy',
-    focus: 'Data Sovereignty',
-    criteria: 'Strict affirmative consent gating before any telemetry dispatch; zero persistent IP storage, zero scroll tracking, zero third-party ads.'
+    name: 'Consent & Privacy Protection',
+    focus: 'Data Privacy',
+    criteria: 'Tracking on this page starts only after you accept cookies. It records your choices (need, budget, timing), and no IP address, name or phone number.'
   },
   {
     gateNumber: 9,
-    name: 'Zero-CLS Layout Stabilization',
+    name: 'Mobile Layout Stability',
     focus: 'Visual Stability',
-    criteria: 'Fixed min-height component containers preventing Cumulative Layout Shift during client-side state transitions.'
+    criteria: "Layout is checked on mobile so the page doesn't jump while loading."
   },
   {
     gateNumber: 10,
-    name: 'SAGEDO Release Certificate & Handover',
-    focus: 'Sovereign Warranty',
+    name: 'Full Ownership & Handover',
+    focus: 'Asset Handover',
     criteria: 'Formal inspection audit sign-off with full source code ownership and complete credential handover to the client.'
   }
 ];
@@ -92,41 +92,38 @@ export default function ProofSection() {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-4">
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Commercial Assurance Protocol</span>
+            <span>Quality Checklist</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-4">
-            The 10-Gate Quality Assurance Standard
+            Our 10-point visibility checklist
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
-            Every visibility system deployed by SAGEDO is verified through an objective 10-gate quality inspection checklist. [COMMERCIAL_DELIVERY_MODEL_CLAIM]
+            Every visibility system deployed by SAGEDO is verified through an objective 10-point inspection checklist.
           </p>
         </div>
 
-        {/* Commercial Guarantee Callout Box */}
+        {/* Quality Checklist Callout Box */}
         <div className="bg-gradient-to-r from-neutral-900 via-neutral-900/90 to-neutral-900 border border-neutral-800 rounded-2xl p-6 sm:p-8 mb-12 shadow-xl relative overflow-hidden">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="space-y-2 max-w-2xl">
               <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
                 <FileCheck className="w-4 h-4" />
-                <span>Commercial Warranty &amp; Certificate</span>
+                <span>Engineering Standards</span>
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-white">
-                SAGEDO Release Certificate
+                Verified Before Handover
               </h3>
               <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                All visibility infrastructure is delivered with a SAGEDO Release Certificate governed by the 10-Gate Quality Assurance Standard. If any gate fails inspection prior to handover, deployment is halted until compliance is verified.
+                All visibility infrastructure is checked against our 10-point visibility checklist before handover to ensure complete setup compliance.
               </p>
             </div>
 
             <div className="bg-neutral-950/80 border border-neutral-800 rounded-xl p-4 shrink-0 text-left md:text-right space-y-1">
               <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider block">
-                Verification Standard
+                Inspection Standard
               </span>
               <span className="text-sm font-bold text-emerald-400 block">
-                10-Gate QA Checklist
-              </span>
-              <span className="text-xs text-zinc-400 block">
-                [RETAINER_TERMS]
+                10-Point Checklist
               </span>
             </div>
           </div>
@@ -135,7 +132,7 @@ export default function ProofSection() {
           <div className="mt-6 pt-5 border-t border-neutral-800 flex items-start gap-3 text-xs text-zinc-400">
             <AlertCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
             <p className="leading-relaxed">
-              <strong className="text-zinc-200">Honest Engineering Commitment:</strong> Search engines and AI models evolve constantly. SAGEDO guarantees complete technical indexability, schema correctness, crawlability, and entity compliance. We do not make unprovable promises of guaranteed #1 rankings or synthetic AI citations.
+              <strong className="text-zinc-200">Honest Engineering Commitment:</strong> We don't promise #1 rankings or AI citations; nobody honestly can. We do the set-up work: correct business details everywhere, clean structured data, a crawlable site and a working WhatsApp path.
             </p>
           </div>
         </div>
@@ -151,7 +148,7 @@ export default function ProofSection() {
                 : 'text-zinc-400 hover:text-zinc-200 hover:bg-neutral-900'
             }`}
           >
-            The 10 Verification Gates
+            The 10 Checklist Points
           </button>
           <button
             type="button"

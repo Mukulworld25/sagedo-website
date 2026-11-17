@@ -5,10 +5,7 @@ import {
   Sparkles, 
   ShieldCheck, 
   ArrowRight, 
-  MapPin, 
-  FileCheck,
-  CheckCircle2,
-  Cpu
+  MapPin
 } from 'lucide-react';
 
 interface VisibilityHeroProps {
@@ -111,17 +108,7 @@ export default function VisibilityHero({
           >
             <div className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>Governed by the 10-Gate Quality Assurance Standard</span>
-            </div>
-            <span className="hidden sm:inline text-zinc-600">•</span>
-            <div className="flex items-center gap-1.5">
-              <FileCheck className="w-4 h-4 text-sky-400" />
-              <span>SAGEDO Release Certificate Included</span>
-            </div>
-            <span className="hidden sm:inline text-zinc-600">•</span>
-            <div className="flex items-center gap-1.5">
-              <Cpu className="w-4 h-4 text-amber-400" />
-              <span>[DATA_OWNERSHIP_TERMS] &amp; [RETAINER_POLICY_TERMS]</span>
+              <span>Governed by our 10-point visibility checklist</span>
             </div>
           </m.div>
         </div>

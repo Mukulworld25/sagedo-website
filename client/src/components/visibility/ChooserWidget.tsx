@@ -31,16 +31,11 @@ interface NeedOption {
 interface BudgetOption {
   id: string;
   label: string;
-  amount: string;
-  description: string;
-  tier: string;
 }
 
 interface UrgencyOption {
   id: string;
   label: string;
-  timeframe: string;
-  description: string;
 }
 
 const NEED_OPTIONS: NeedOption[] = [
@@ -73,45 +68,34 @@ const NEED_OPTIONS: NeedOption[] = [
 const BUDGET_OPTIONS: BudgetOption[] = [
   {
     id: 'starter',
-    label: '₹15,000 Starter',
-    amount: '₹15,000',
-    description: 'Single-location foundation, Google Maps 3-Pack & core schema setup.',
-    tier: 'Single-Location'
+    label: 'Up to ₹15,000'
   },
   {
     id: 'growth',
-    label: '₹35,000 Growth',
-    amount: '₹35,000',
-    description: 'Multi-engine SEO + AEO entity integration & localized citation network.',
-    tier: 'Multi-Engine Growth'
+    label: '₹15,000–₹35,000'
   },
   {
     id: 'scale',
-    label: '₹50,000 Scale',
-    amount: '₹50,000',
-    description: 'Complete enterprise GEO, custom knowledge graph & continuous citation monitoring.',
-    tier: 'Enterprise Scale'
+    label: '₹35,000+'
+  },
+  {
+    id: 'not_sure',
+    label: 'Not sure yet'
   }
 ];
 
 const URGENCY_OPTIONS: UrgencyOption[] = [
   {
     id: 'urgent_7d',
-    label: '7 Days (Immediate Sprint)',
-    timeframe: '7 Days',
-    description: 'Priority sprint with rapid deployment under the 10-Gate QA standard.'
+    label: 'This week'
   },
   {
     id: 'rapid_14d',
-    label: '14 Days (Standard Deployment)',
-    timeframe: '14 Days',
-    description: 'Comprehensive multi-engine build, citation indexing, and entity audit.'
+    label: 'This month'
   },
   {
     id: 'planning_30d',
-    label: 'Planning / Flexible Rollout',
-    timeframe: 'Planning',
-    description: 'Strategic discovery, technical audit, and phased deployment roadmap.'
+    label: 'Just planning'
   }
 ];
 
@@ -204,7 +188,7 @@ Please share the scope and prototype roadmap.`;
             </div>
             <div className="flex items-center gap-1.5 text-zinc-400">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>Governed by 10-Gate Quality Assurance Standard</span>
+              <span>Governed by our 10-point visibility checklist</span>
             </div>
           </div>
 
@@ -273,12 +257,12 @@ Please share the scope and prototype roadmap.`;
                     Select Your Investment Bracket
                   </h3>
                   <p className="text-xs text-zinc-400">
-                    [COMMERCIAL_TERMS_DESCRIPTION]
+                    Pick the range closest to your budget. We'll quote within it.
                   </p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
                 {BUDGET_OPTIONS.map((opt) => {
                   const isSelected = selectedBudget === opt.id;
                   return (
@@ -286,29 +270,19 @@ Please share the scope and prototype roadmap.`;
                       key={opt.id}
                       type="button"
                       onClick={() => setSelectedBudget(opt.id)}
-                      className={`relative flex flex-col justify-between p-4 sm:p-5 rounded-xl text-left transition-all min-h-[110px] cursor-pointer ${
+                      className={`relative flex items-center justify-between p-4 sm:p-5 rounded-xl text-left transition-all min-h-[72px] cursor-pointer ${
                         isSelected
                           ? 'bg-neutral-800 border-2 border-primary shadow-lg shadow-primary/10'
                           : 'bg-neutral-950/60 border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-900/50'
                       }`}
                       aria-pressed={isSelected}
                     >
-                      <div>
-                        <div className="flex items-center justify-between gap-2 mb-2">
-                          <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-neutral-900 text-zinc-300 border border-neutral-700">
-                            {opt.tier}
-                          </span>
-                          {isSelected && (
-                            <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                          )}
-                        </div>
-                        <div className="text-lg sm:text-xl font-extrabold text-white mb-1">
-                          {opt.amount}
-                        </div>
-                      </div>
-                      <p className="text-xs text-zinc-400 leading-relaxed mt-1">
-                        {opt.description}
-                      </p>
+                      <span className="text-sm sm:text-base font-bold text-white">
+                        {opt.label}
+                      </span>
+                      {isSelected && (
+                        <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                      )}
                     </button>
                   );
                 })}
@@ -323,10 +297,10 @@ Please share the scope and prototype roadmap.`;
                 </span>
                 <div>
                   <h3 className="text-base sm:text-lg font-bold text-white">
-                    Select Your Operational Timeline
+                    Select Your Timeline
                   </h3>
                   <p className="text-xs text-zinc-400">
-                    Governed delivery sprints verified by the SAGEDO Release Certificate.
+                    When would you like to start?
                   </p>
                 </div>
               </div>
@@ -339,29 +313,19 @@ Please share the scope and prototype roadmap.`;
                       key={opt.id}
                       type="button"
                       onClick={() => setSelectedUrgency(opt.id)}
-                      className={`relative flex flex-col justify-between p-4 sm:p-5 rounded-xl text-left transition-all min-h-[100px] cursor-pointer ${
+                      className={`relative flex items-center justify-between p-4 sm:p-5 rounded-xl text-left transition-all min-h-[72px] cursor-pointer ${
                         isSelected
                           ? 'bg-neutral-800 border-2 border-primary shadow-lg shadow-primary/10'
                           : 'bg-neutral-950/60 border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-900/50'
                       }`}
                       aria-pressed={isSelected}
                     >
-                      <div>
-                        <div className="flex items-center justify-between gap-2 mb-2">
-                          <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-neutral-900 text-zinc-300 border border-neutral-700">
-                            Sprint Target
-                          </span>
-                          {isSelected && (
-                            <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                          )}
-                        </div>
-                        <h4 className="text-sm sm:text-base font-bold text-white mb-1">
-                          {opt.label}
-                        </h4>
-                      </div>
-                      <p className="text-xs text-zinc-400 leading-relaxed mt-1">
-                        {opt.description}
-                      </p>
+                      <span className="text-sm sm:text-base font-bold text-white">
+                        {opt.label}
+                      </span>
+                      {isSelected && (
+                        <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                      )}
                     </button>
                   );
                 })}
@@ -374,10 +338,10 @@ Please share the scope and prototype roadmap.`;
             <div className="space-y-1.5">
               <div className="text-xs font-semibold uppercase tracking-wider text-primary flex items-center gap-2">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Configured Scope Summary</span>
+                <span>Your pick</span>
               </div>
               <div className="text-sm sm:text-base font-semibold text-white">
-                {activeNeedObj.label} • {activeBudgetObj.amount} • {activeUrgencyObj.timeframe}
+                {activeNeedObj.label} · {activeBudgetObj.label} · {activeUrgencyObj.label}
               </div>
               <p className="text-xs text-zinc-400">
                 Direct WhatsApp consultation with SAGEDO engineering leads. No sales reps, no endless discovery calls.

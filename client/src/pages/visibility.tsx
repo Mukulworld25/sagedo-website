@@ -103,7 +103,7 @@ export default function Visibility() {
             <ArchitectureSection />
           </m.section>
 
-          {/* 10-Gate Quality Assurance & Proof Section */}
+          {/* 10-Point Visibility Checklist Section */}
           <m.section
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

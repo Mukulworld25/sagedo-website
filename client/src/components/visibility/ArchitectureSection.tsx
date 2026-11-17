@@ -210,9 +210,6 @@ export default function ArchitectureSection() {
                       ))}
                     </div>
                   </div>
-                  <span className="text-[11px] text-zinc-400">
-                    Validated against Schema.org standards
-                  </span>
                 </div>
               </div>
             );

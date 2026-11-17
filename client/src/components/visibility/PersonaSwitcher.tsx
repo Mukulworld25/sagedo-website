@@ -262,7 +262,7 @@ export default function PersonaSwitcher({
                 </button>
                 <div className="text-xs text-zinc-500 text-center flex items-center justify-center gap-1.5">
                   <FileCheck className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>10-Gate Quality Assurance Standard</span>
+                  <span>10-point visibility checklist</span>
                 </div>
               </div>
             </div>
@@ -345,7 +345,6 @@ export default function PersonaSwitcher({
 
                 <div className="mt-4 pt-3 border-t border-neutral-800/60 flex items-center justify-between text-[11px] text-zinc-500">
                   <span>Architecture Model: SAGEDO Multi-Pillar Engine</span>
-                  <span className="text-zinc-400 font-medium">Zero Hallucination Grounding</span>
                 </div>
               </div>
 
