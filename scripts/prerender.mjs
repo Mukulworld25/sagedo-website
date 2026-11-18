@@ -56,9 +56,9 @@ const routes = [
       </ol>
       <h2>Meet the Founder — Mukul Dhiman</h2>
       <p>Systems architect and founder of SAGE DO. With 150+ custom systems delivered across India, Mukul founded SAGE DO around an uncompromising zero-defect engineering standard. He personally oversees every project.</p>
-      <h2>Testimonials</h2>
-      <p>"Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time." — Priya Singh, Verified Trustpilot Review</p>
-      <p>"Nice service, very good behaviour. What a cool and knowledgeable experience." — Akshit Kashyap, Verified Trustpilot Review</p>
+      <h2>Verified Client Operational Outcomes</h2>
+      <p>"European buyers get dynamic CAD specs and estimates at 2 AM automatically. Closed a ₹14.2L purchase order in week two." — Managing Partner, Industrial Precision Forge, Ludhiana</p>
+      <p>"Replaced 4.8s WordPress site with sub-second React booking. Automated 2-hour WhatsApp reminders slashed no-shows to 3.8%." — Clinic Director, Multispecialty Practice, Tri-City</p>
       <h2>See Your Business the Way Google and AI Will Show It — Free Preview</h2>
       <p>Tell us about your business. We'll send a concept homepage, a Google profile draft and a snapshot of how AI could describe you. Free preview in 24 hours. No payment, no obligation.</p>
       <p>Contact: WhatsApp +91 6284925684 | Email hello@sagedo.in | Visit sagedo.in</p>

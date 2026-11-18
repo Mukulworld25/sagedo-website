@@ -194,7 +194,7 @@ export default function WallOfFame() {
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          SECTION 5: PROOF & AUDIO VERIFICATION WALL
+          SECTION 5: VERIFIED OPERATIONAL PROOF WALL
       ═══════════════════════════════════════════════════════════════════ */}
       <ProofAndAudioWall />
 

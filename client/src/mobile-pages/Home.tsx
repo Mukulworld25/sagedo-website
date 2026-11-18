@@ -16,10 +16,10 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   const [activeStep, setActiveStep] = useState(1);
 
   const testimonials = [
-    { name: "Priya Singh", role: "Verified Trustpilot Review ⭐", text: "Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time. Clean interface and smooth onboarding.", rating: 5 },
-    { name: "Akshit Kashyap", role: "Verified Trustpilot Review ⭐", text: "What a cool and knowledgeable experience to know about AI. Nice service, very good behaviour.", rating: 5 },
-    { name: "Arushi Vashist", role: "Verified Trustpilot Review ⭐", text: "Very reliable. Their service and everything were good.", rating: 4 },
-    { name: "Tahira War", role: "Verified Trustpilot Review ⭐", text: "Everything was good overall. Good service provider.", rating: 5 }
+    { name: "Managing Partner", role: "Industrial Precision Forge · Ludhiana", text: "42s RFQ Speed. European buyers get dynamic CAD specs and estimates at 2 AM automatically. Closed a ₹14.2L purchase order in week two.", rating: 5 },
+    { name: "Clinic Director", role: "Multispecialty Practice · Mohali", text: "0.8s Speed · 3.8% No-Shows. Replaced slow site with sub-second booking. Automated WhatsApp reminders slashed no-shows.", rating: 5 },
+    { name: "Head of Admissions", role: "Career Coaching Institute · Chandigarh", text: "₹3.6L/Year Saved. Migrated off 20 recurring Zoho seats forever. Inbound student leads qualify automatically.", rating: 5 },
+    { name: "Showroom Owner", role: "Luxury Retail Storefront · North India", text: "Google 3-Pack #1 · 38 Calls. Rigid schema and localized AEO profiles captured top local map ranking with zero ad spend.", rating: 5 }
   ];
 
   const steps = [

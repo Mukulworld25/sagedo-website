@@ -377,7 +377,7 @@ export default function PhoneSpeedAuditSection() {
                     className="inline-flex items-center justify-center gap-2 h-12 px-6 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-xs sm:text-sm rounded-xl cursor-pointer shrink-0 shadow-lg shadow-[#25D366]/30 transition-all hover:-translate-y-0.5"
                   >
                     <WhatsAppIcon className="w-4 h-4" />
-                    <span>Get 60s Voice Teardown on WhatsApp</span>
+                    <span>Get Instant Technical Teardown on WhatsApp</span>
                   </a>
                 </div>
               )}

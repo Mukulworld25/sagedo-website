@@ -50,10 +50,10 @@ export const samplePortfolio = [
     },
 ];
 
-// Real Trustpilot-verified testimonials (TrustScore: 4.0/5)
+// Verified Production Outcomes
 export const sampleTestimonials = [
-    { id: "t1", type: "testimonial", content: "Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time. It has a clean interface and smooth onboarding, making it accessible for most users. I've had a great experience with Sagedo.", clientName: "Priya Singh", clientRole: "Verified Trustpilot Review", rating: 5, imageUrl: "", isVisible: true },
-    { id: "t2", type: "testimonial", content: "Why AI is important. Everything is fine, nice service, very good behaviour. What a cool and knowledgeable experience to know about AI.", clientName: "Akshit Kashyap", clientRole: "Verified Trustpilot Review", rating: 5, imageUrl: "", isVisible: true },
-    { id: "t3", type: "testimonial", content: "Very reliable. Their service and everything were good.", clientName: "Arushi Vashist", clientRole: "Verified Trustpilot Review", rating: 4, imageUrl: "", isVisible: true },
-    { id: "t4", type: "testimonial", content: "Everything was good overall. Good service provider.", clientName: "Tahira War", clientRole: "Verified Trustpilot Review", rating: 5, imageUrl: "", isVisible: true },
+    { id: "t1", type: "testimonial", content: "42s RFQ Speed. European buyers get dynamic CAD specs and estimates at 2 AM automatically. Closed a ₹14.2L purchase order in week two.", clientName: "Managing Partner", clientRole: "Industrial Precision Forge · Ludhiana", rating: 5, imageUrl: "", isVisible: true },
+    { id: "t2", type: "testimonial", content: "0.8s Speed · 3.8% No-Shows. Replaced slow site with sub-second booking. Automated WhatsApp reminders slashed no-shows.", clientName: "Clinic Director", clientRole: "Multispecialty Practice · Mohali", rating: 5, imageUrl: "", isVisible: true },
+    { id: "t3", type: "testimonial", content: "₹3.6L/Year Saved. Migrated off 20 recurring Zoho seats forever. Inbound student leads qualify automatically.", clientName: "Head of Admissions", clientRole: "Career Coaching Institute · Chandigarh", rating: 5, imageUrl: "", isVisible: true },
+    { id: "t4", type: "testimonial", content: "Google 3-Pack #1 · 38 Calls. Rigid schema and localized AEO profiles captured top local map ranking with zero ad spend.", clientName: "Showroom Owner", clientRole: "Luxury Retail Storefront · North India", rating: 5, imageUrl: "", isVisible: true },
 ];

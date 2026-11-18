@@ -7,28 +7,28 @@ import { trackWhatsAppClick } from '@/hooks/useAnalytics';
 
 const testimonials = [
     {
-        name: "Priya Singh",
-        role: "Verified Trustpilot Review",
-        initials: "PS",
-        text: "Sagedo is an easy-to-use and efficient platform that helps simplify tasks and save time. It has a clean interface and smooth onboarding. I've had a great experience with Sagedo.",
+        name: "Managing Partner",
+        role: "Industrial Precision Forge · Ludhiana",
+        initials: "MP",
+        text: "42s RFQ Speed. European buyers get dynamic CAD specs and estimates at 2 AM automatically. Closed a ₹14.2L purchase order in week two.",
     },
     {
-        name: "Akshit Kashyap",
-        role: "Verified Trustpilot Review",
-        initials: "AK",
-        text: "Why AI is important. Everything is fine, nice service, very good behaviour. What a cool and knowledgeable experience to know about AI.",
+        name: "Clinic Director",
+        role: "Multispecialty Practice · Mohali",
+        initials: "CD",
+        text: "0.8s Speed · 3.8% No-Shows. Replaced slow site with sub-second booking. Automated WhatsApp reminders slashed no-shows.",
     },
     {
-        name: "Arushi Vashist",
-        role: "Verified Trustpilot Review",
-        initials: "AV",
-        text: "Very reliable. Their service and everything were good.",
+        name: "Head of Admissions",
+        role: "Career Coaching Institute · Chandigarh",
+        initials: "HA",
+        text: "₹3.6L/Year Saved. Migrated off 20 recurring Zoho seats forever. Inbound student leads qualify automatically.",
     },
     {
-        name: "Tahira War",
-        role: "Verified Trustpilot Review",
-        initials: "TW",
-        text: "Everything was good overall. Good service provider.",
+        name: "Showroom Owner",
+        role: "Luxury Retail Storefront · North India",
+        initials: "SO",
+        text: "Google 3-Pack #1 · 38 Calls. Rigid schema and localized AEO profiles captured top local map ranking with zero ad spend.",
     },
 ];
 

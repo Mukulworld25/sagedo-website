@@ -2,10 +2,6 @@ import { WhatsAppIcon } from "@/components/icons/PlatformIcons";
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   MessageCircle, 
-  Play, 
-  Pause, 
-  Volume2, 
-  VolumeX, 
   CheckCheck, 
   ChevronLeft, 
   ChevronRight, 
@@ -14,7 +10,9 @@ import {
   Clock, 
   TrendingUp, 
   ArrowRight,
-  Headphones
+  Terminal,
+  Cpu,
+  CheckCircle2
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -196,45 +194,9 @@ const CHAT_STREAMS: ChatScreenshot[] = [
   }
 ];
 
-export function ProofAndAudioWall() {
+export function ProofVerificationWall() {
   const [activeChatIndex, setActiveChatIndex] = useState(0);
-  const [activeAudioId, setActiveAudioId] = useState<string | null>(null);
-  const [audioProgress, setAudioProgress] = useState<Record<string, number>>({});
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-
   const activeChat = CHAT_STREAMS[activeChatIndex];
-
-  // Playback simulation for founder voice notes
-  const togglePlayAudio = (id: string, totalDuration: number) => {
-    if (activeAudioId === id) {
-      // Pause
-      setActiveAudioId(null);
-      if (timerRef.current) clearInterval(timerRef.current);
-    } else {
-      // Play
-      setActiveAudioId(id);
-      if (timerRef.current) clearInterval(timerRef.current);
-
-      timerRef.current = setInterval(() => {
-        setAudioProgress((prev) => {
-          const current = prev[id] || 0;
-          if (current >= totalDuration) {
-            setActiveAudioId(null);
-            if (timerRef.current) clearInterval(timerRef.current);
-            return { ...prev, [id]: 0 };
-          }
-          return { ...prev, [id]: current + 1 };
-        });
-      }, 1000);
-    }
-  };
-
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, []);
-
   const handleNextChat = () => {
     setActiveChatIndex((prev) => (prev + 1) % CHAT_STREAMS.length);
   };
@@ -258,14 +220,14 @@ export function ProofAndAudioWall() {
             <span>Unfiltered Client Proof</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4 font-orbitron">
-            Real WhatsApp <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-green-300 to-emerald-500">Receipts</span> & Voice Notes
+            Real WhatsApp <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-green-300 to-emerald-500">Receipts</span> & Architecture Proof
           </h2>
           <p className="text-base sm:text-lg text-neutral-400 max-w-2xl mx-auto font-inter">
-            No manufactured agency fluff. Inspect authentic client WhatsApp milestones and listen to unfiltered engineering principles directly from our founder.
+            No manufactured agency fluff. Inspect authentic client WhatsApp milestones and verifiable engineering standards directly from our founder.
           </p>
         </div>
 
-        {/* 2-Column Layout: Left = WhatsApp Carousel (7 cols), Right = Founder Voice Notes (5 cols) */}
+        {/* 2-Column Layout: Left = WhatsApp Carousel (7 cols), Right = Architecture Standards (5 cols) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* LEFT: WhatsApp Chat Carousel (7 cols) */}
@@ -382,110 +344,72 @@ export function ProofAndAudioWall() {
 
           </div>
 
-          {/* RIGHT: Interactive Founder Voice Notes (5 cols) */}
+          {/* RIGHT: Verified Engineering Deliverables & Guarantees (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             
             <div className="p-6 rounded-3xl bg-neutral-900/60 border border-white/10 backdrop-blur-md shadow-2xl">
               <div className="flex items-center gap-2.5 mb-2">
-                <Headphones className="w-5 h-5 text-red-500" />
+                <ShieldCheck className="w-5 h-5 text-emerald-400" />
                 <h3 className="text-lg font-bold text-white font-orbitron">
-                  Founder Voice Notes
+                  Architecture Standards
                 </h3>
               </div>
               <p className="text-xs text-neutral-400 mb-6 font-inter leading-relaxed">
-                Raw audio transcripts from Mukul Dhiman breaking down why traditional agencies bleed your capital and how SAGE DO engineers sovereign advantage.
+                Objective engineering specifications and production standards delivered with every SAGEDO sovereign build.
               </p>
 
-              {/* Voice Note Cards */}
+              {/* Technical Standard Cards */}
               <div className="space-y-4">
-                {VOICE_NOTES.map((vn) => {
-                  const isPlaying = activeAudioId === vn.id;
-                  const currentSec = audioProgress[vn.id] || 0;
-                  const percent = (currentSec / vn.durationSeconds) * 100;
+                <div className="p-4 rounded-2xl bg-neutral-950/60 border border-white/10 hover:border-emerald-500/30 transition-all">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-xs font-bold text-white font-orbitron flex items-center gap-1.5">
+                      <Terminal className="w-3.5 h-3.5 text-emerald-400" />
+                      100% Code & Database Sovereignty
+                    </span>
+                    <span className="text-[10px] font-mono text-emerald-400 uppercase">Self-Hosted</span>
+                  </div>
+                  <p className="text-xs text-neutral-300 font-inter leading-relaxed">
+                    You receive full source code, dedicated database credentials, and VPS configurations. Zero vendor lock-in, zero monthly software taxes.
+                  </p>
+                </div>
 
-                  return (
-                    <div
-                      key={vn.id}
-                      className={`p-4 rounded-2xl border transition-all duration-200 ${
-                        isPlaying
-                          ? 'bg-neutral-950 border-red-500/50 shadow-lg shadow-red-500/10'
-                          : 'bg-neutral-950/60 border-white/10 hover:border-white/20'
-                      }`}
-                    >
-                      {/* Top Header */}
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-bold text-white font-orbitron">
-                          {vn.title}
-                        </span>
-                        <span className="text-[11px] font-mono text-neutral-400">
-                          {isPlaying
-                            ? `0:${currentSec < 10 ? '0' : ''}${currentSec} / ${vn.durationFormatted}`
-                            : vn.durationFormatted}
-                        </span>
-                      </div>
+                <div className="p-4 rounded-2xl bg-neutral-950/60 border border-white/10 hover:border-emerald-500/30 transition-all">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-xs font-bold text-white font-orbitron flex items-center gap-1.5">
+                      <Cpu className="w-3.5 h-3.5 text-sky-400" />
+                      Sub-0.8s Real-World Mobile Speed
+                    </span>
+                    <span className="text-[10px] font-mono text-sky-400 uppercase">Edge Cached</span>
+                  </div>
+                  <p className="text-xs text-neutral-300 font-inter leading-relaxed">
+                    Hand-coded React/TypeScript architectures optimized for real 4G/5G mobile devices across North India. Zero WordPress bloat.
+                  </p>
+                </div>
 
-                      {/* Play Button & Dynamic Waveform Visualizer */}
-                      <div className="flex items-center gap-3 my-3">
-                        <button
-                          type="button"
-                          onClick={() => togglePlayAudio(vn.id, vn.durationSeconds)}
-                          className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-transform active:scale-95 cursor-pointer ${
-                            isPlaying
-                              ? 'bg-red-500 text-white shadow-md shadow-red-500/30'
-                              : 'bg-white/10 text-white hover:bg-white/20'
-                          }`}
-                          aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
-                        >
-                          {isPlaying ? <Pause className="w-4 h-4 fill-white" /> : <Play className="w-4 h-4 fill-white ml-0.5" />}
-                        </button>
-
-                        {/* Simulated 24-Bar Audio Waveform */}
-                        <div className="flex-1 flex items-center gap-[3px] h-8 px-2 rounded-lg bg-neutral-900 border border-white/5 overflow-hidden">
-                          {[30, 45, 80, 60, 40, 90, 75, 50, 85, 95, 65, 45, 80, 55, 70, 90, 40, 65, 85, 70, 50, 40, 30, 20].map((height, i) => {
-                            const barProgress = (i / 24) * 100;
-                            const isPast = isPlaying && barProgress <= percent;
-                            return (
-                              <span
-                                key={i}
-                                className={`flex-1 rounded-full transition-all duration-150 ${
-                                  isPast
-                                    ? 'bg-red-500'
-                                    : isPlaying
-                                    ? 'bg-red-400/50 animate-pulse'
-                                    : 'bg-neutral-700'
-                                }`}
-                                style={{
-                                  height: `${isPlaying ? Math.max(20, (height * (1 + Math.sin(i + currentSec) * 0.3))) : height}%`
-                                }}
-                              />
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      {/* Transcript & Key Takeaway */}
-                      <p className="text-xs text-neutral-300 italic font-inter leading-relaxed mt-2 pt-2 border-t border-white/5">
-                        "{vn.transcript}"
-                      </p>
-                      <div className="flex items-center gap-1.5 mt-2 text-[11px] font-mono text-emerald-400">
-                        <Sparkles className="w-3 h-3 shrink-0" />
-                        <span>Takeaway: {vn.keyTakeaway}</span>
-                      </div>
-                    </div>
-                  );
-                })}
+                <div className="p-4 rounded-2xl bg-neutral-950/60 border border-white/10 hover:border-emerald-500/30 transition-all">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-xs font-bold text-white font-orbitron flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
+                      Zero Per-Seat SaaS License Tax
+                    </span>
+                    <span className="text-[10px] font-mono text-amber-400 uppercase">Unlimited Logins</span>
+                  </div>
+                  <p className="text-xs text-neutral-300 font-inter leading-relaxed">
+                    Custom CRMs with unlimited staff and telecaller logins. Never pay an escalating monthly per-user tax to SaaS intermediaries.
+                  </p>
+                </div>
               </div>
 
               {/* Founder Direct WhatsApp CTA */}
               <div className="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3">
                 <div className="text-xs font-mono text-neutral-400">
-                  Have a question for Mukul directly?
+                  Discuss architecture with Mukul directly:
                 </div>
                 <a
-                  href="https://wa.me/916284925684?text=Hi%20Mukul,%20listened%20to%20your%20voice%20note%20on%20SAGE%20DO.%20Can%20we%20talk?"
+                  href="https://wa.me/916284925684?text=Hi%20Mukul,%20I%20have%20a%20technical%20question%20about%20SAGE%20DO%20architecture."
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackWhatsAppClick('proof_wall_founder_audio')}
+                  onClick={() => trackWhatsAppClick('proof_wall_founder_chat')}
                 >
                   <Button size="sm" className="h-9 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-xs rounded-xl shadow-md shadow-[#25D366]/20 cursor-pointer">
                     <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5" />
@@ -505,4 +429,5 @@ export function ProofAndAudioWall() {
   );
 }
 
-export default ProofAndAudioWall;
+export { ProofVerificationWall as ProofAndAudioWall };
+export default ProofVerificationWall;

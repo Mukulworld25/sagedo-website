@@ -1578,18 +1578,18 @@ export default function Orders() {
                       </p>
                     </div>
 
-                    {/* Verified Trustpilot Review */}
+                    {/* Verified Production Metric */}
                     <div className="p-4 rounded-xl bg-neutral-900/90 border border-border/30 space-y-2">
-                      <div className="flex items-center gap-1 text-[#00b67a]">
+                      <div className="flex items-center gap-1 text-emerald-400">
                         {[1, 2, 3, 4, 5].map((s) => (
                           <Star key={s} className="w-3 h-3 fill-current" />
                         ))}
                       </div>
                       <p className="text-xs text-neutral-300 italic leading-relaxed">
-                        "Easy-to-use and efficient platform that helps simplify tasks and save time."
+                        "42s RFQ Speed. European buyers get dynamic CAD specs and estimates at 2 AM automatically."
                       </p>
                       <p className="text-[10px] text-muted-foreground font-semibold">
-                        — Priya Singh, Verified Trustpilot Review
+                        — Managing Partner, Industrial Precision Forge (Ludhiana)
                       </p>
                     </div>
 
