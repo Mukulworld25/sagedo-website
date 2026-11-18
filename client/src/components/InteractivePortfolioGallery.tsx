@@ -9,6 +9,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { trackWhatsAppClick } from "@/hooks/useAnalytics";
+import { WhatsAppIcon } from "@/components/icons/PlatformIcons";
 import {
   ExternalLink,
   CheckCircle2,
@@ -695,10 +696,10 @@ export function InteractivePortfolioGallery() {
                     onClick={() =>
                       trackWhatsAppClick(`portfolio_card_${project.id}`)
                     }
-                    className="inline-flex items-center justify-center w-9 h-9 rounded-md bg-emerald-600/90 hover:bg-emerald-500 text-white transition-colors cursor-pointer shrink-0 shadow-[0_0_12px_rgba(16,185,129,0.3)]"
+                    className="inline-flex items-center justify-center w-9 h-9 rounded-md bg-[#25D366] hover:bg-[#20ba5a] text-white transition-colors cursor-pointer shrink-0 shadow-[0_0_12px_rgba(37,211,102,0.35)]"
                     title="Discuss this build directly with Mukul on WhatsApp"
                   >
-                    <MessageSquare className="w-4 h-4" />
+                    <WhatsAppIcon className="w-4 h-4" />
                   </a>
                 </div>
               </div>
@@ -727,9 +728,9 @@ export function InteractivePortfolioGallery() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackWhatsAppClick("portfolio_footer_cta")}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm tracking-wide transition-all shadow-[0_4px_20px_rgba(16,185,129,0.35)] hover:-translate-y-0.5 cursor-pointer shrink-0"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-sm tracking-wide transition-all shadow-[0_4px_20px_rgba(37,211,102,0.35)] hover:-translate-y-0.5 cursor-pointer shrink-0"
           >
-            <MessageSquare className="w-4 h-4" />
+            <WhatsAppIcon className="w-4 h-4" />
             <span>Request 24-48h Prototype</span>
             <ArrowRight className="w-4 h-4" />
           </a>
@@ -969,9 +970,9 @@ export function InteractivePortfolioGallery() {
                     onClick={() =>
                       trackWhatsAppClick(`modal_cta_${selectedProject.id}`)
                     }
-                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs tracking-wide shadow-[0_0_20px_rgba(16,185,129,0.35)] transition-all cursor-pointer"
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-xs tracking-wide shadow-[0_0_20px_rgba(37,211,102,0.35)] transition-all cursor-pointer"
                   >
-                    <MessageSquare className="w-4 h-4" />
+                    <WhatsAppIcon className="w-4 h-4" />
                     <span>Request Prototype Like This</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </a>

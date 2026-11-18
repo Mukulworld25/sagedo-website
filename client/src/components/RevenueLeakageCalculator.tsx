@@ -1,3 +1,4 @@
+import { WhatsAppIcon } from "@/components/icons/PlatformIcons";
 import React, { useState } from 'react';
 import { useCurrency } from '@/contexts/CurrencyContext';
 import { 
@@ -464,7 +465,7 @@ export function RevenueLeakageCalculator() {
                 className="block"
               >
                 <Button size="lg" variant="outline" className="w-full h-11 text-xs font-bold border-neutral-700 hover:border-neutral-600 text-muted-foreground hover:text-foreground rounded-xl cursor-pointer font-mono">
-                  <MessageCircle className="w-3.5 h-3.5 mr-1.5 text-green-500" /> Share Numbers on WhatsApp
+                  <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 text-[#25D366]" /> Share Numbers on WhatsApp
                 </Button>
               </a>
             </div>

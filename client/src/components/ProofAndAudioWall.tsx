@@ -1,3 +1,4 @@
+import { WhatsAppIcon } from "@/components/icons/PlatformIcons";
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   MessageCircle, 
@@ -486,8 +487,8 @@ export function ProofAndAudioWall() {
                   rel="noopener noreferrer"
                   onClick={() => trackWhatsAppClick('proof_wall_founder_audio')}
                 >
-                  <Button size="sm" className="h-9 bg-green-600 hover:bg-green-500 text-white font-bold text-xs rounded-xl shadow-md cursor-pointer">
-                    <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
+                  <Button size="sm" className="h-9 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-xs rounded-xl shadow-md shadow-[#25D366]/20 cursor-pointer">
+                    <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5" />
                     <span>WhatsApp Mukul</span>
                   </Button>
                 </a>

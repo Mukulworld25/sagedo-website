@@ -1,3 +1,4 @@
+import { WhatsAppIcon } from "@/components/icons/PlatformIcons";
 import React from "react";
 import { CheckCircle2, CreditCard, MessageCircle, Phone, ArrowRight, ShieldCheck } from "lucide-react";
 import { Link } from "wouter";
@@ -208,9 +209,9 @@ export default function SovereignPricingSection() {
               target="_blank" 
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick('pricing_bottom_cta')}
-              className="inline-flex items-center justify-center gap-2 h-13 px-8 bg-emerald-600 hover:bg-emerald-500 text-white font-bold font-mono text-xs sm:text-sm rounded-xl shadow-lg shadow-emerald-500/25 transition-all hover:scale-105 cursor-pointer uppercase tracking-wider whitespace-nowrap w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 h-13 px-8 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold font-mono text-xs sm:text-sm rounded-xl shadow-lg shadow-[#25D366]/25 transition-all hover:scale-105 cursor-pointer uppercase tracking-wider whitespace-nowrap w-full sm:w-auto"
             >
-              <MessageCircle className="w-4 h-4" />
+              <WhatsAppIcon className="w-4 h-4" />
               <span>WhatsApp Commercial Desk</span>
             </a>
             <a 

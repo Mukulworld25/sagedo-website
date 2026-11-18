@@ -1,4 +1,4 @@
-import { MessageCircle } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/PlatformIcons";
 
 export default function WhatsAppWidget() {
     const phoneNumber = "916284925684"; // Your WhatsApp number
@@ -9,7 +9,7 @@ export default function WhatsAppWidget() {
             href={`https://wa.me/${phoneNumber}?text=${message}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group"
+            className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] shadow-[0_4px_20px_rgba(37,211,102,0.4)] text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group"
             aria-label="Chat on WhatsApp"
         >
             <svg

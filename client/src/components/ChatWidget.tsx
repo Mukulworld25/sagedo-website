@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Bot, User, ArrowRight, MessageSquare, ExternalLink } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/PlatformIcons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
@@ -445,7 +446,7 @@ export default function ChatWidget() {
                         <div className="mt-2 flex justify-center">
                             <button
                                 onClick={() => handleOptionClick('human')}
-                                className="text-[10px] text-muted-foreground hover:text-primary flex items-center gap-1 transition-colors"
+                                className="text-[10px] text-muted-foreground hover:text-[#25D366] flex items-center gap-1.5 transition-colors font-medium"
                             >
                                 <MessageSquare className="w-3 h-3" />
                                 Talk to Human via WhatsApp

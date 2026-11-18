@@ -1,3 +1,4 @@
+import { WhatsAppIcon, InstagramIcon, LinkedInIcon, YouTubeIcon } from "@/components/icons/PlatformIcons";
 import { Card } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -90,10 +91,10 @@ export default function About() {
     : samplePortfolio;
 
   const socialMedia = [
-    { name: "WhatsApp", icon: MessageCircle, handle: "+91 6284925684", color: "from-green-600 to-emerald-600", url: "https://wa.me/916284925684" },
-    { name: "Instagram", icon: Instagram, handle: "@sagedoai00", color: "from-pink-600 to-purple-600", url: "https://www.instagram.com/sagedoai00/" },
-    { name: "LinkedIn", icon: Linkedin, handle: "SAGE DO", color: "from-blue-600 to-blue-700", url: "https://www.linkedin.com/company/sagedo-in/" },
-    { name: "YouTube", icon: Youtube, handle: "@SageDo-Ai", color: "from-red-600 to-red-700", url: "https://www.youtube.com/@SageDo-Ai" },
+    { name: "WhatsApp", icon: WhatsAppIcon, handle: "+91 6284925684", color: "from-[#25D366] to-[#128C7E]", url: "https://wa.me/916284925684" },
+    { name: "Instagram", icon: InstagramIcon, handle: "@sagedoai00", color: "from-[#f09433] via-[#dc2743] to-[#bc1888]", url: "https://www.instagram.com/sagedoai00/" },
+    { name: "LinkedIn", icon: LinkedInIcon, handle: "SAGE DO", color: "from-[#0A66C2] to-[#004182]", url: "https://www.linkedin.com/company/sagedo-in/" },
+    { name: "YouTube", icon: YouTubeIcon, handle: "@SageDo-Ai", color: "from-[#FF0000] to-[#CC0000]", url: "https://www.youtube.com/@SageDo-Ai" },
     { name: "Email", icon: Mail, handle: "hello@sagedo.in", color: "from-orange-600 to-red-600", url: "mailto:hello@sagedo.in" },
   ];
 
@@ -481,8 +482,8 @@ export default function About() {
                 {/* Direct Action Buttons */}
                 <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
                   <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20saw%20your%20About%20page.%20Can%20we%20discuss%20my%20project%3F" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                    <div className={buttonVariants({ className: "w-full sm:w-auto bg-green-600 hover:bg-green-500 text-white font-bold px-6 h-12 rounded-xl cursor-pointer shadow-lg shadow-green-600/20 flex items-center justify-center" })}>
-                      <MessageCircle className="mr-2 h-5 w-5" /> Message Mukul on WhatsApp
+                    <div className={buttonVariants({ className: "w-full sm:w-auto bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold px-6 h-12 rounded-xl cursor-pointer shadow-lg shadow-[#25D366]/25 flex items-center justify-center" })}>
+                      <WhatsAppIcon className="mr-2 h-5 w-5 text-white" /> Message Mukul on WhatsApp
                     </div>
                   </a>
                   <a href="tel:+916284925684" className="w-full sm:w-auto">
@@ -911,7 +912,7 @@ export default function About() {
                   </p>
                   <p className="flex items-center">
                     <a href="https://wa.me/916284925684" className="inline-flex items-center gap-2.5 py-2.5 min-h-[44px] hover:text-white transition-colors">
-                      <MessageCircle className="w-4 h-4 text-green-400 shrink-0" />
+                      <WhatsAppIcon className="w-4 h-4 text-[#25D366] shrink-0" />
                       <span>+91 6284925684 (WhatsApp)</span>
                     </a>
                   </p>
@@ -1025,8 +1026,8 @@ export default function About() {
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto"
               >
-                <div className={buttonVariants({ size: "lg", className: "w-full sm:w-auto h-14 px-10 text-lg font-semibold bg-green-600 hover:bg-green-500 rounded-xl shadow-lg shadow-green-500/25 transition-all hover:scale-105 cursor-pointer flex items-center justify-center" })}>
-                  <MessageCircle className="mr-2 h-5 w-5" /> WhatsApp Us Now
+                <div className={buttonVariants({ size: "lg", className: "w-full sm:w-auto h-14 px-10 text-lg font-semibold bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-xl shadow-lg shadow-[#25D366]/30 transition-all hover:scale-105 cursor-pointer flex items-center justify-center" })}>
+                  <WhatsAppIcon className="mr-2 h-5 w-5 text-white" /> WhatsApp Us Now
                 </div>
               </a>
               <a href="tel:+916284925684" className="w-full sm:w-auto">

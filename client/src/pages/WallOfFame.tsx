@@ -23,6 +23,7 @@ import { QAChecklistSection } from "@/components/QAChecklistSection";
 import ProofAndAudioWall from "@/components/ProofAndAudioWall";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import { trackWhatsAppClick } from "@/hooks/useAnalytics";
+import { WhatsAppIcon } from "@/components/icons/PlatformIcons";
 
 export default function WallOfFame() {
   return (
@@ -237,9 +238,9 @@ export default function WallOfFame() {
               >
                 <Button
                   variant="outline"
-                  className="w-full sm:w-auto h-12 px-8 bg-white/5 hover:bg-white/10 text-white border-white/15 font-bold text-sm rounded-xl transition-all cursor-pointer"
+                  className="w-full sm:w-auto h-12 px-8 bg-[#25D366] hover:bg-[#20ba5a] text-white border-none font-bold text-sm rounded-xl shadow-lg shadow-[#25D366]/25 transition-all cursor-pointer"
                 >
-                  <MessageCircle className="w-4 h-4 mr-2 text-green-400" />
+                  <WhatsAppIcon className="w-4 h-4 mr-2 text-white" />
                   <span>WhatsApp Mukul Directly</span>
                 </Button>
               </a>

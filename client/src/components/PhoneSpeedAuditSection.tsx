@@ -1,3 +1,4 @@
+import { WhatsAppIcon } from "@/components/icons/PlatformIcons";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { 
@@ -373,9 +374,9 @@ export default function PhoneSpeedAuditSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackWhatsAppClick('speed_audit_teardown_whatsapp')}
-                    className="inline-flex items-center justify-center gap-2 h-12 px-6 bg-red-600 hover:bg-red-500 text-white font-bold text-xs sm:text-sm rounded-xl cursor-pointer shrink-0 shadow-lg shadow-red-600/30 transition-all hover:-translate-y-0.5"
+                    className="inline-flex items-center justify-center gap-2 h-12 px-6 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-xs sm:text-sm rounded-xl cursor-pointer shrink-0 shadow-lg shadow-[#25D366]/30 transition-all hover:-translate-y-0.5"
                   >
-                    <MessageCircle className="w-4 h-4" />
+                    <WhatsAppIcon className="w-4 h-4" />
                     <span>Get 60s Voice Teardown on WhatsApp</span>
                   </a>
                 </div>

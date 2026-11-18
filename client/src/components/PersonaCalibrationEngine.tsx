@@ -16,6 +16,7 @@ import {
   CreditCard 
 } from "lucide-react";
 import { trackWhatsAppClick } from "@/hooks/useAnalytics";
+import { WhatsAppIcon } from "@/components/icons/PlatformIcons";
 
 export type PersonaId = "factory" | "shop" | "startup" | "practice";
 
@@ -311,8 +312,8 @@ export default function PersonaCalibrationEngine() {
                   onClick={() => trackWhatsAppClick(`persona_${activePersona}_cta`)}
                   className="w-full sm:w-auto"
                 >
-                  <Button className="w-full sm:w-auto h-12 px-6 bg-green-600 hover:bg-green-500 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-lg shadow-green-600/20 cursor-pointer">
-                    <MessageCircle className="w-4 h-4 mr-2" />
+                  <Button className="w-full sm:w-auto h-12 px-6 bg-[#25D366] hover:bg-[#20ba5a] text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-lg shadow-[#25D366]/25 cursor-pointer">
+                    <WhatsAppIcon className="w-4 h-4 mr-2" />
                     {current.ctaText} →
                   </Button>
                 </a>

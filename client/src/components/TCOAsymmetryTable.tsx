@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { trackWhatsAppClick } from "@/hooks/useAnalytics";
+import { WhatsAppIcon } from "@/components/icons/PlatformIcons";
 import {
   ShieldCheck,
   CheckCircle2,
@@ -506,9 +507,9 @@ export function TCOAsymmetryTable() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackWhatsAppClick("tco_table_cta")}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm tracking-wide transition-all shadow-[0_4px_20px_rgba(16,185,129,0.35)] hover:-translate-y-0.5 cursor-pointer shrink-0"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-sm tracking-wide transition-all shadow-[0_4px_20px_rgba(37,211,102,0.35)] hover:-translate-y-0.5 cursor-pointer shrink-0"
           >
-            <MessageSquare className="w-4 h-4" />
+            <WhatsAppIcon className="w-4 h-4" />
             <span>Lock In Sovereign CapEx</span>
             <ArrowRight className="w-4 h-4" />
           </a>

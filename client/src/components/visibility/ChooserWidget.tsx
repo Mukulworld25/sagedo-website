@@ -20,6 +20,7 @@ import {
   trackWhatsAppClick 
 } from '@/lib/telemetry';
 import type { PersonaId } from './PersonaSwitcher';
+import { WhatsAppIcon } from '@/components/icons/PlatformIcons';
 
 interface NeedOption {
   id: string;
@@ -353,9 +354,9 @@ Please share the scope and prototype roadmap.`;
                 type="button"
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-sm transition-all shadow-lg shadow-primary/20 min-h-[44px] cursor-pointer disabled:opacity-75"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white font-semibold text-sm transition-all shadow-lg shadow-[#25D366]/30 min-h-[44px] cursor-pointer disabled:opacity-75"
               >
-                <Send className="w-4 h-4" />
+                <WhatsAppIcon className="w-4 h-4 text-white" />
                 <span>
                   {isSubmitting ? 'Opening WhatsApp...' : 'Add to Custom Scope & Connect on WhatsApp'}
                 </span>

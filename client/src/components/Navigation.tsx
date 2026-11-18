@@ -1,6 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Sparkles, Gift, ExternalLink, Settings, MessageCircle, MessageSquare } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/PlatformIcons";
 import { useState, useEffect } from "react";
 import { trackWhatsAppClick } from "@/hooks/useAnalytics";
 import { useAuth } from "@/hooks/useAuth";
@@ -190,11 +191,11 @@ export default function Navigation() {
                           size="sm"
                           variant="default"
                           data-testid="button-signup"
-                          className="relative group overflow-hidden rounded-full px-4 py-1.5 h-8 bg-gradient-to-r from-emerald-600 via-emerald-500 to-green-500 hover:from-emerald-500 hover:via-emerald-400 hover:to-green-400 text-white font-semibold text-xs border border-emerald-400/40 shadow-[0_0_16px_rgba(16,185,129,0.25)] hover:shadow-[0_0_24px_rgba(16,185,129,0.45)] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                          className="relative group overflow-hidden rounded-full px-4 py-1.5 h-8 bg-gradient-to-r bg-[#25D366] hover:bg-[#20ba5a] text-white font-semibold text-xs border border-[#25D366]/40 shadow-[0_0_16px_rgba(37,211,102,0.35)] hover:shadow-[0_0_24px_rgba(37,211,102,0.55)] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                         >
                           {/* Micro-shine shimmer sweep on hover */}
                           <div className="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out pointer-events-none" />
-                          <MessageCircle className="w-3.5 h-3.5 mr-1.5 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6" />
+                          <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6" />
                           <span className="relative font-semibold tracking-tight">WhatsApp Us</span>
                         </Button>
                       </a>
@@ -330,7 +331,7 @@ export default function Navigation() {
                           size="sm"
                           variant="default"
                           data-testid="button-mobile-signup"
-                          className="w-full rounded-xl h-10 bg-gradient-to-r from-emerald-600 via-emerald-500 to-green-500 hover:from-emerald-500 hover:via-emerald-400 hover:to-green-400 text-white font-semibold shadow-[0_0_20px_rgba(16,185,129,0.25)] border border-emerald-400/30"
+                          className="w-full rounded-xl h-10 bg-[#25D366] hover:bg-[#20ba5a] text-white font-semibold shadow-[0_0_20px_rgba(37,211,102,0.35)] border border-[#25D366]/40"
                         >
                           <MessageCircle className="w-4 h-4 mr-1.5" />
                           <span className="relative">WhatsApp Us</span>

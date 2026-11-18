@@ -1,3 +1,4 @@
+import { WhatsAppIcon } from "@/components/icons/PlatformIcons";
 import React, { useState, useEffect } from 'react';
 import { MessageCircle, Zap, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -79,9 +80,9 @@ export function SlimStickyHeader() {
           >
             <Button
               size="sm"
-              className="h-8 min-h-[36px] sm:min-h-0 px-3.5 bg-green-600 hover:bg-green-500 text-white font-bold text-xs rounded-lg shadow-md shadow-green-600/20 flex items-center gap-1.5 cursor-pointer"
+              className="h-8 min-h-[36px] sm:min-h-0 px-3.5 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-xs rounded-lg shadow-md shadow-[#25D366]/20 flex items-center gap-1.5 cursor-pointer"
             >
-              <MessageCircle className="w-3.5 h-3.5" />
+              <WhatsAppIcon className="w-3.5 h-3.5" />
               <span className="hidden xs:inline">1-Tap WhatsApp Triage</span>
               <span className="xs:hidden">WhatsApp</span>
               <span className="text-[10px] bg-green-700/60 px-1.5 py-0.2 rounded font-mono">45s</span>

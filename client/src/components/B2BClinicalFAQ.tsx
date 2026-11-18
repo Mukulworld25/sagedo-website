@@ -22,6 +22,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'wouter';
 import { trackWhatsAppClick } from '@/hooks/useAnalytics';
+import { WhatsAppIcon } from '@/components/icons/PlatformIcons';
 
 interface FAQItem {
   id: string;
@@ -236,8 +237,8 @@ export function B2BClinicalFAQ() {
               onClick={() => trackWhatsAppClick('b2b_faq_ask_founder')}
               className="w-full md:w-auto"
             >
-              <Button className="w-full md:w-auto h-11 bg-green-600 hover:bg-green-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-green-600/20 flex items-center justify-center gap-2 cursor-pointer">
-                <MessageCircle className="w-4 h-4" />
+              <Button className="w-full md:w-auto h-11 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-xs rounded-xl shadow-lg shadow-[#25D366]/25 flex items-center justify-center gap-2 cursor-pointer">
+                <WhatsAppIcon className="w-4 h-4" />
                 <span>Ask Mukul on WhatsApp</span>
               </Button>
             </a>

@@ -1,3 +1,4 @@
+import { WhatsAppIcon } from "@/components/icons/PlatformIcons";
 import { Helmet } from 'react-helmet-async';
 import { Link, useLocation } from 'wouter';
 import { ArrowLeft, ArrowRight, Clock, CheckCircle2, Shield, Zap, MessageCircle, MapPin, Phone } from 'lucide-react';
