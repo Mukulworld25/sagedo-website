@@ -10,6 +10,7 @@ import {
   Lock, ExternalLink, HelpCircle, Building2, User 
 } from 'lucide-react';
 import { trackWhatsAppClick } from '@/hooks/useAnalytics';
+import { WhatsAppIcon } from '@/components/icons/PlatformIcons';
 
 const TIME_SLOTS = [
   '10:30 AM - 11:00 AM',
@@ -225,8 +226,8 @@ export default function BookCall() {
                 {/* FAST TRACK WHATSAPP BANNER */}
                 <div className="mb-6 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
-                      <MessageCircle className="w-5 h-5" />
+                    <div className="w-10 h-10 rounded-xl bg-[#25D366]/20 text-[#25D366] flex items-center justify-center shrink-0">
+                      <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
                     </div>
                     <div>
                       <p className="text-xs font-black text-white">Prefer Immediate Chat?</p>
@@ -243,9 +244,10 @@ export default function BookCall() {
                     <Button
                       type="button"
                       size="sm"
-                      className="w-full sm:w-auto h-9 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs shadow-md cursor-pointer flex items-center justify-center gap-1.5"
+                      variant="whatsapp"
+                      className="w-full sm:w-auto h-9 px-4 rounded-xl font-extrabold text-xs shadow-md cursor-pointer flex items-center justify-center gap-1.5"
                     >
-                      <MessageCircle className="w-3.5 h-3.5" />
+                      <WhatsAppIcon className="w-3.5 h-3.5 text-white" />
                       <span>Chat on WhatsApp</span>
                     </Button>
                   </a>

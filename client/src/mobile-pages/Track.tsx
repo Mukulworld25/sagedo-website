@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Package, Clock, CheckCircle, Flame, Star, MessageCircle, Rocket, ShieldCheck, Target, Heart, Trophy, ArrowRight, Zap, Terminal, Timer, Truck, Home as HomeIcon, Gamepad2, Eye } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/icons/PlatformIcons';
 import { useAuth } from '@/contexts/AuthContext';
 import { apiRequest } from '@/lib/queryClient';
 import { useQuery } from '@tanstack/react-query';
@@ -292,16 +293,16 @@ export const Track: React.FC = () => {
                     href="https://wa.me/916284925684?text=Hi!%20I%20saw%20SAGE%20DO%20app%20and%20want%20to%20learn%20more."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-4 rounded-2xl border border-green-500/20 bg-green-500/5 active:scale-[0.98] transition-all"
+                    className="flex items-center gap-3 p-4 rounded-2xl border border-[#25D366]/30 bg-[#25D366]/10 active:scale-[0.98] transition-all"
                 >
-                    <div className="w-10 h-10 rounded-xl bg-green-600 flex items-center justify-center shrink-0">
-                        <MessageCircle className="w-5 h-5 text-white" />
+                    <div className="w-10 h-10 rounded-xl bg-[#25D366] flex items-center justify-center shrink-0 shadow-md shadow-[#25D366]/30">
+                        <WhatsAppIcon className="w-5 h-5 text-white" />
                     </div>
                     <div>
                         <p className="text-white font-bold text-sm">Talk to the Founder</p>
                         <p className="text-neutral-400 text-[11px]">Direct WhatsApp — 5 min response</p>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-green-500 ml-auto" />
+                    <ArrowRight className="w-4 h-4 text-[#25D366] ml-auto" />
                 </a>
             </section>
         </div>

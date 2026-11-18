@@ -312,7 +312,7 @@ export default function PersonaCalibrationEngine() {
                   onClick={() => trackWhatsAppClick(`persona_${activePersona}_cta`)}
                   className="w-full sm:w-auto"
                 >
-                  <Button className="w-full sm:w-auto h-12 px-6 bg-[#25D366] hover:bg-[#20ba5a] text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-lg shadow-[#25D366]/25 cursor-pointer">
+                  <Button variant="whatsapp" className="w-full sm:w-auto h-12 px-6 font-extrabold text-xs sm:text-sm rounded-xl cursor-pointer">
                     <WhatsAppIcon className="w-4 h-4 mr-2" />
                     {current.ctaText} →
                   </Button>

@@ -411,7 +411,7 @@ export function ProofVerificationWall() {
                   rel="noopener noreferrer"
                   onClick={() => trackWhatsAppClick('proof_wall_founder_chat')}
                 >
-                  <Button size="sm" className="h-9 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-xs rounded-xl shadow-md shadow-[#25D366]/20 cursor-pointer">
+                  <Button size="sm" variant="whatsapp" className="h-9 font-bold text-xs rounded-xl cursor-pointer">
                     <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5" />
                     <span>WhatsApp Mukul</span>
                   </Button>

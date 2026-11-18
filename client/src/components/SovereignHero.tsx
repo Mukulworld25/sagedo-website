@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { ArrowRight, Phone, Zap, MessageCircle, Gauge, CheckCircle2 } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { trackWhatsAppClick } from "@/hooks/useAnalytics";
+import { WhatsAppIcon } from "@/components/icons/PlatformIcons";
 
 type PersonaKey = "default" | "factory" | "retail" | "startup" | "clinic";
 
@@ -154,7 +155,7 @@ export default function SovereignHero() {
 
         {/* 4 Systematic Action Buttons (Book a Call, Services, Free Demo, Test Speed) */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-8 flex-wrap">
-          {/* 1. Book a Call / WhatsApp */}
+          {/* 1. WhatsApp Action */}
           <a 
             href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20want%20to%20book%20a%20call%20to%20discuss%20my%20project." 
             target="_blank" 
@@ -162,10 +163,10 @@ export default function SovereignHero() {
             onClick={() => trackWhatsAppClick('hero_cta_book_call')}
           >
             <div 
-              className={buttonVariants({ size: "lg", className: "h-12 sm:h-13 px-6 sm:px-7 text-sm sm:text-base font-bold bg-red-600 hover:bg-red-500 text-white rounded-xl shadow-lg shadow-red-600/30 transition-all hover:scale-[1.02] cursor-pointer" })}
+              className={buttonVariants({ variant: "whatsapp", size: "lg", className: "h-12 sm:h-13 px-6 sm:px-7 text-sm sm:text-base font-bold rounded-xl shadow-lg shadow-[#25D366]/30 transition-all hover:scale-[1.02] cursor-pointer flex items-center justify-center" })}
               style={{ fontFamily: "'Orbitron', sans-serif", letterSpacing: '1.5px' }}
             >
-              <Phone className="mr-2 h-4 w-4" /> BOOK A CALL
+              <WhatsAppIcon className="mr-2 h-4 w-4 text-white" /> WHATSAPP US
             </div>
           </a>
 

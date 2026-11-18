@@ -237,8 +237,8 @@ export default function WallOfFame() {
                 className="w-full sm:w-auto"
               >
                 <Button
-                  variant="outline"
-                  className="w-full sm:w-auto h-12 px-8 bg-[#25D366] hover:bg-[#20ba5a] text-white border-none font-bold text-sm rounded-xl shadow-lg shadow-[#25D366]/25 transition-all cursor-pointer"
+                  variant="whatsapp"
+                  className="w-full sm:w-auto h-12 px-8 font-bold text-sm rounded-xl transition-all cursor-pointer"
                 >
                   <WhatsAppIcon className="w-4 h-4 mr-2 text-white" />
                   <span>WhatsApp Mukul Directly</span>

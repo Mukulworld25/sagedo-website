@@ -189,9 +189,9 @@ export default function Navigation() {
                       >
                         <Button
                           size="sm"
-                          variant="default"
+                          variant="whatsapp"
                           data-testid="button-signup"
-                          className="relative group overflow-hidden rounded-full px-4 py-1.5 h-8 bg-gradient-to-r bg-[#25D366] hover:bg-[#20ba5a] text-white font-semibold text-xs border border-[#25D366]/40 shadow-[0_0_16px_rgba(37,211,102,0.35)] hover:shadow-[0_0_24px_rgba(37,211,102,0.55)] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                          className="relative group overflow-hidden rounded-full px-4 py-1.5 h-8 bg-[#25D366] hover:bg-[#20ba5a] text-white font-semibold text-xs border border-[#25D366]/40 shadow-[0_0_16px_rgba(37,211,102,0.35)] hover:shadow-[0_0_24px_rgba(37,211,102,0.55)] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                         >
                           {/* Micro-shine shimmer sweep on hover */}
                           <div className="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out pointer-events-none" />
@@ -329,11 +329,11 @@ export default function Navigation() {
                       >
                         <Button
                           size="sm"
-                          variant="default"
+                          variant="whatsapp"
                           data-testid="button-mobile-signup"
                           className="w-full rounded-xl h-10 bg-[#25D366] hover:bg-[#20ba5a] text-white font-semibold shadow-[0_0_20px_rgba(37,211,102,0.35)] border border-[#25D366]/40"
                         >
-                          <MessageCircle className="w-4 h-4 mr-1.5" />
+                          <WhatsAppIcon className="w-4 h-4 mr-1.5" />
                           <span className="relative">WhatsApp Us</span>
                         </Button>
                       </a>

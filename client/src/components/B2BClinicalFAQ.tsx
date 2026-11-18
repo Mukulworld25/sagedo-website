@@ -237,7 +237,7 @@ export function B2BClinicalFAQ() {
               onClick={() => trackWhatsAppClick('b2b_faq_ask_founder')}
               className="w-full md:w-auto"
             >
-              <Button className="w-full md:w-auto h-11 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-xs rounded-xl shadow-lg shadow-[#25D366]/25 flex items-center justify-center gap-2 cursor-pointer">
+              <Button variant="whatsapp" className="w-full md:w-auto h-11 text-xs rounded-xl flex items-center justify-center gap-2 cursor-pointer">
                 <WhatsAppIcon className="w-4 h-4" />
                 <span>Ask Mukul on WhatsApp</span>
               </Button>

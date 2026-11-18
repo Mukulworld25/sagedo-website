@@ -13,6 +13,7 @@ import {
   Server
 } from "lucide-react";
 import { Link } from "wouter";
+import { LinkedInIcon } from "@/components/icons/PlatformIcons";
 
 const CHECKLIST_DOMAINS = [
   {
@@ -315,9 +316,9 @@ export default function StudioReleaseCertificate() {
               href="https://www.linkedin.com/in/mukul-dhiman"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 h-11 rounded-xl bg-[#0077b5] hover:bg-[#006097] text-white font-bold text-xs sm:text-sm shadow-lg shadow-[#0077b5]/20 transition-all cursor-pointer whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 px-6 h-11 rounded-xl bg-[#0A66C2] hover:bg-[#004182] text-white font-bold text-xs sm:text-sm shadow-lg shadow-[#0A66C2]/20 transition-all cursor-pointer whitespace-nowrap"
             >
-              <Linkedin className="w-4 h-4" />
+              <LinkedInIcon className="w-4 h-4 text-white" />
               <span>Connect on LinkedIn</span>
             </a>
           </div>

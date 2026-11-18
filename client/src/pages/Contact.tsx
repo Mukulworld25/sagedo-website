@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { apiRequest } from "@/lib/queryClient";
+import { WhatsAppIcon } from "@/components/icons/PlatformIcons";
 import {
     Mail,
     Phone,
@@ -195,7 +196,7 @@ export default function Contact() {
 
                                 <div className="flex items-start gap-4">
                                     <div className="p-3 rounded-lg bg-[#25D366]/10">
-                                        <MessageCircle className="w-5 h-5 text-[#25D366]" />
+                                        <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
                                     </div>
                                     <div>
                                         <h3 className="font-semibold">WhatsApp</h3>
@@ -254,8 +255,8 @@ export default function Contact() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <Button className="w-full bg-[#25D366] hover:bg-[#128C7E]">
-                                    <MessageCircle className="w-4 h-4 mr-2" />
+                                <Button variant="whatsapp" className="w-full">
+                                    <WhatsAppIcon className="w-4 h-4 mr-2 text-white" />
                                     Chat on WhatsApp
                                 </Button>
                             </a>

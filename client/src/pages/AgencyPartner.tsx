@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { CheckCircle2, Shield, Zap, MessageCircle, Lock, Users, ArrowRight, Clock, Layers } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/icons/PlatformIcons';
 
 export default function AgencyPartner() {
   return (
@@ -36,8 +37,8 @@ export default function AgencyPartner() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button size="lg" className="h-14 px-8 text-lg font-semibold bg-blue-600 hover:bg-blue-500 rounded-xl gap-2">
-                <MessageCircle className="w-5 h-5" />
+              <Button size="lg" variant="whatsapp" className="h-14 px-8 text-lg font-semibold rounded-xl gap-2">
+                <WhatsAppIcon className="w-5 h-5 text-white" />
                 Discuss Partnership on WhatsApp
               </Button>
             </a>
@@ -146,8 +147,8 @@ export default function AgencyPartner() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button size="lg" className="h-14 px-8 text-lg font-semibold bg-blue-600 hover:bg-blue-500 rounded-xl gap-2">
-                  <MessageCircle className="w-5 h-5" />
+                <Button size="lg" variant="whatsapp" className="h-14 px-8 text-lg font-semibold rounded-xl gap-2">
+                  <WhatsAppIcon className="w-5 h-5 text-white" />
                   Start the Conversation
                   <ArrowRight className="w-5 h-5" />
                 </Button>

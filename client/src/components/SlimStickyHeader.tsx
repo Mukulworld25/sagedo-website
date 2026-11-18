@@ -80,7 +80,8 @@ export function SlimStickyHeader() {
           >
             <Button
               size="sm"
-              className="h-8 min-h-[36px] sm:min-h-0 px-3.5 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-xs rounded-lg shadow-md shadow-[#25D366]/20 flex items-center gap-1.5 cursor-pointer"
+              variant="whatsapp"
+              className="h-8 min-h-[36px] sm:min-h-0 px-3.5 font-bold text-xs rounded-lg flex items-center gap-1.5 cursor-pointer"
             >
               <WhatsAppIcon className="w-3.5 h-3.5" />
               <span className="hidden xs:inline">1-Tap WhatsApp Triage</span>

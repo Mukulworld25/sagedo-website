@@ -170,7 +170,7 @@ export default function Partnerships() {
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick("partnerships_hero_direct")}
             >
-              <Button variant="outline" size="lg" className="h-12 px-6 bg-[#25D366] hover:bg-[#20ba5a] text-white font-semibold text-sm rounded-xl shadow-lg shadow-[#25D366]/25 border-none cursor-pointer">
+              <Button variant="whatsapp" size="lg" className="h-12 px-6 font-semibold text-sm rounded-xl cursor-pointer">
                 <WhatsAppIcon className="w-4 h-4 mr-2 text-white" /> Talk to Founder on WhatsApp
               </Button>
             </a>
@@ -290,7 +290,7 @@ export default function Partnerships() {
                   href={`https://wa.me/916284925684?text=${encodeURIComponent(`Hi Mukul, I just submitted the partnership form for ${formData.firmName || formData.name}. Let's discuss.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={buttonVariants({ className: "bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold shadow-lg shadow-[#25D366]/25" })}
+                  className={buttonVariants({ variant: "whatsapp", className: "font-bold" })}
                 >
                   <WhatsAppIcon className="w-4 h-4 mr-2" /> Message Mukul Directly Now
                 </a>

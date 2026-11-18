@@ -482,7 +482,7 @@ export default function About() {
                 {/* Direct Action Buttons */}
                 <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
                   <a href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20saw%20your%20About%20page.%20Can%20we%20discuss%20my%20project%3F" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                    <div className={buttonVariants({ className: "w-full sm:w-auto bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold px-6 h-12 rounded-xl cursor-pointer shadow-lg shadow-[#25D366]/25 flex items-center justify-center" })}>
+                    <div className={buttonVariants({ variant: "whatsapp", className: "w-full sm:w-auto font-bold px-6 h-12 rounded-xl cursor-pointer flex items-center justify-center" })}>
                       <WhatsAppIcon className="mr-2 h-5 w-5 text-white" /> Message Mukul on WhatsApp
                     </div>
                   </a>
@@ -972,9 +972,9 @@ export default function About() {
                   href="https://wa.me/916284925684?text=Hi%20Mukul!%20I%20want%20to%20refer%20a%20fellow%20founder%20for%20a%20SAGE%20DO%20build."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary hover:bg-red-600 text-white font-bold text-xs transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-xs shadow-lg shadow-[#25D366]/25 transition-colors cursor-pointer"
                 >
-                  <MessageCircle className="w-4 h-4" />
+                  <WhatsAppIcon className="w-4 h-4 text-white" />
                   <span>Generate Referral on WhatsApp</span>
                 </a>
               </div>
@@ -1026,7 +1026,7 @@ export default function About() {
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto"
               >
-                <div className={buttonVariants({ size: "lg", className: "w-full sm:w-auto h-14 px-10 text-lg font-semibold bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-xl shadow-lg shadow-[#25D366]/30 transition-all hover:scale-105 cursor-pointer flex items-center justify-center" })}>
+                <div className={buttonVariants({ variant: "whatsapp", size: "lg", className: "w-full sm:w-auto h-14 px-10 text-lg font-semibold rounded-xl shadow-lg shadow-[#25D366]/30 transition-all hover:scale-105 cursor-pointer flex items-center justify-center" })}>
                   <WhatsAppIcon className="mr-2 h-5 w-5 text-white" /> WhatsApp Us Now
                 </div>
               </a>

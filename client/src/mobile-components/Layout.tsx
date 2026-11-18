@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Home, Grid, PlusCircle, Activity, User, Bell, ChevronLeft, MessageCircle, ShoppingBag, X } from 'lucide-react';
 import { AppRoute } from '../mobile-types';
 import { useLanguage } from './LanguageProvider';
+import { WhatsAppIcon } from '@/components/icons/PlatformIcons';
 
 interface BottomNavProps {
   currentRoute: AppRoute;
@@ -47,10 +48,10 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentRoute, onNavigate }
                 href="https://wa.me/916284925684?text=Hi!%20I%20want%20to%20book%20a%20free%20consultation%20call."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-2xl bg-green-600/10 border border-green-500/20 mb-3 active:scale-[0.98] transition-all"
+                className="flex items-center gap-4 p-4 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/30 mb-3 active:scale-[0.98] transition-all"
               >
-                <div className="w-12 h-12 rounded-2xl bg-green-600 flex items-center justify-center shrink-0">
-                  <MessageCircle className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 rounded-2xl bg-[#25D366] flex items-center justify-center shrink-0 shadow-md shadow-[#25D366]/30">
+                  <WhatsAppIcon className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <p className="text-white font-bold text-sm">Book a Free Call</p>
@@ -80,10 +81,10 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentRoute, onNavigate }
         href="https://wa.me/916284925684"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-24 right-4 z-50 w-14 h-14 rounded-full flex items-center justify-center active:scale-90 transition-all"
+        className="fixed bottom-24 right-4 z-50 w-14 h-14 rounded-full flex items-center justify-center active:scale-90 transition-all shadow-lg"
         style={{ background: '#25D366', boxShadow: '0 4px 20px rgba(37,211,102,0.4)' }}
       >
-        <MessageCircle className="w-7 h-7 text-white" />
+        <WhatsAppIcon className="w-7 h-7 text-white" />
       </a>
 
       {/* Bottom Nav */}

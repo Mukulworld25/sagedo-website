@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { useState } from "react";
 import { ChevronDown, ChevronUp, HelpCircle, CreditCard, Clock, Shield, MessageCircle, RefreshCw } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/PlatformIcons";
 
 import { faqs } from "@/data/faqs";
 
@@ -82,9 +83,9 @@ export default function FAQ() {
                             href="https://wa.me/916284925684"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+                            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold rounded-lg shadow-lg shadow-[#25D366]/25 transition-all"
                         >
-                            <MessageCircle className="w-5 h-5" />
+                            <WhatsAppIcon className="w-5 h-5 text-white" />
                             WhatsApp Us
                         </a>
                         <a

@@ -2,6 +2,7 @@
 import React, { useState, useMemo } from 'react';
 import { ArrowRight, Search, Crown, Rocket, Sparkles, Star, Zap, Clock, MessageCircle, ChevronRight, X, CheckCircle2, Shield } from 'lucide-react';
 import { AppRoute } from '../mobile-types';
+import { WhatsAppIcon } from '@/components/icons/PlatformIcons';
 import { allServices, ServiceDetail } from '../data/serviceData';
 
 interface ServicesProps {
@@ -460,16 +461,16 @@ export const Tools: React.FC<ServicesProps> = ({ onNavigate }) => {
                     href="https://wa.me/916284925684?text=Hi!%20I%20need%20help%20choosing%20the%20right%20service%20for%20my%20needs."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-4 rounded-2xl border border-green-500/20 bg-green-500/5 active:scale-[0.98] transition-all"
+                    className="flex items-center gap-4 p-4 rounded-2xl border border-[#25D366]/30 bg-[#25D366]/10 active:scale-[0.98] transition-all"
                 >
-                    <div className="w-12 h-12 rounded-2xl bg-green-600 flex items-center justify-center shrink-0">
-                        <MessageCircle className="w-6 h-6 text-white" />
+                    <div className="w-12 h-12 rounded-2xl bg-[#25D366] flex items-center justify-center shrink-0 shadow-md shadow-[#25D366]/30">
+                        <WhatsAppIcon className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
                         <p className="text-white font-bold text-sm">Can't decide? Let's talk.</p>
                         <p className="text-neutral-400 text-xs">Free consultation on WhatsApp — 5 min response</p>
                     </div>
-                    <ChevronRight className="w-5 h-5 text-green-500" />
+                    <ChevronRight className="w-5 h-5 text-[#25D366]" />
                 </a>
             </div>
         </div>

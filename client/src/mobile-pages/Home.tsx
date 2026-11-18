@@ -5,6 +5,7 @@ import {
   Clock, TrendingUp, CheckCircle2, Rocket, Crown, Users, AlertOctagon
 } from 'lucide-react';
 import { AppRoute } from '../mobile-types';
+import { WhatsAppIcon } from '@/components/icons/PlatformIcons';
 
 interface HomeProps {
   onNavigate: (route: AppRoute) => void;
@@ -382,9 +383,9 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
               target="_blank"
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl text-sm font-bold text-white active:scale-95 transition-all"
-              style={{ background: '#16a34a', boxShadow: '0 6px 24px rgba(22,163,74,0.35)' }}
+              style={{ background: '#25D366', boxShadow: '0 6px 24px rgba(37,211,102,0.35)' }}
             >
-              <MessageCircle className="w-5 h-5" /> WhatsApp Us Now
+              <WhatsAppIcon className="w-5 h-5 text-white" /> WhatsApp Us Now
             </a>
             <a
               href="tel:+916284925684"

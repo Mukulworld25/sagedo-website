@@ -49,7 +49,7 @@ export default function FreeDemoThanks() {
                                 onClick={() => trackWhatsAppClick('demo_thanks_whatsapp_direct')}
                                 className="inline-block w-full"
                             >
-                                <Button className="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-lg shadow-[#25D366]/30 font-bold h-13 text-base rounded-xl transition-all shadow-lg shadow-green-600/25 flex items-center justify-center gap-2 cursor-pointer">
+                                <Button variant="whatsapp" className="w-full font-bold h-13 text-base rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer">
                                     <WhatsAppIcon className="w-5 h-5" />
                                     Chat on WhatsApp (+91 6284925684)
                                 </Button>
