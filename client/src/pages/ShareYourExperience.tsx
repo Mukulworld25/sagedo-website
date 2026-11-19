@@ -176,7 +176,8 @@ export default function ShareYourExperience() {
       }).catch(console.error);
 
       // Supabase direct backup insert
-      await supabase.from('testimonials').insert([reviewPayload]).catch(console.error);
+      const { error } = await supabase.from('testimonials').insert([reviewPayload]);
+      if (error) console.error('Supabase direct backup error:', error);
 
       trackReviewSubmit({ rating, has_media: !!uploadedMediaUrl });
       setIsSuccess(true);
@@ -211,7 +212,8 @@ export default function ShareYourExperience() {
         body: JSON.stringify(objectionPayload)
       }).catch(console.error);
 
-      await supabase.from('testimonials').insert([objectionPayload]).catch(console.error);
+      const { error } = await supabase.from('testimonials').insert([objectionPayload]);
+      if (error) console.error('Supabase direct backup error:', error);
 
       setIsSuccess(true);
     } catch (err: any) {
