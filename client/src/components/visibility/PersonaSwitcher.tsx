@@ -53,109 +53,106 @@ interface PersonaData {
 const PERSONAS: Record<PersonaId, PersonaData> = {
   local_shop: {
     id: 'local_shop',
-    label: 'Local Shop & Retail',
-    sublabel: 'Retailers, Showrooms & Local Services',
+    label: 'Shop / Retail / Services',
+    sublabel: 'Shop / Retail / Services',
     icon: Store,
-    headline: 'Capture High-Intent Footfall & Direct Phone Calls Within Your Immediate Catchment',
-    tagline: 'Engineered for neighborhood retailers, electronics showrooms, hardware stores, and local service providers in North India.',
-    targetAudience: 'Local retail stores, boutique showrooms, distributors, and neighborhood service specialists.',
-    primaryNeed: 'Local Footfall & Inbound Calls',
+    headline: 'Be the shop people find when they search nearby',
+    tagline: 'Customers search "near me" and call the first few names they see. We make sure yours is complete, correct and easy to call.',
+    targetAudience: 'Local retail shops, showrooms and service businesses.',
+    primaryNeed: 'More walk-ins and calls',
     vectors: {
       seo: {
-        title: 'Google Maps 3-Pack & Local SEO',
-        desc: 'Rigid NAP (Name, Address, Phone) consistency across major directories, localized geo-coordinates, verified photo syndication, and neighborhood landing page schema.'
+        title: 'Google Maps',
+        desc: 'Complete profile with photos, hours and categories. Same name, address and phone on every listing.'
       },
       aeo: {
-        title: 'Answer Engine Optimization (Perplexity & Claude)',
-        desc: 'Structured local business entity graphs and real-time inventory/service schemas ensuring AI answer engines cite your physical store for "near me" inquiries.'
+        title: 'AI Search Answers',
+        desc: 'Clear details on the web so Google AI and Perplexity can read your business info.'
       },
       geo: {
-        title: 'Generative Engine Optimization (ChatGPT Search & Gemini)',
-        desc: 'Semantic FAQ matrices and direct conversational citation grounding so AI agents recommend your shop when users ask for trusted local recommendations.'
+        title: 'ChatGPT and Gemini',
+        desc: 'Organised details and content so conversational tools can find and recommend your shop.'
       }
     },
     prototype: {
-      query: 'Best electrical hardware and lighting showroom near Sector 22 Chandigarh with genuine warranty',
-      engine: 'ChatGPT Search & Google Maps Preview',
-      sampleTag: 'Sample Prototype — Retail Search Architecture',
-      responseSnippet: 'SAGEDO-structured local catalog identified with verified physical address, current opening hours, and direct WhatsApp contact for stock availability.',
+      query: 'Electrical hardware and lighting shop near Sector 22 Chandigarh',
+      engine: 'Google Maps & AI Search',
+      sampleTag: 'Sample Search',
+      responseSnippet: 'SAGEDO-verified business details with opening hours, address and direct WhatsApp contact for stock availability.',
       keyDeliverables: [
-        'Google Business Profile complete audit & local citation sync',
-        'LocalBusiness Schema.org JSON-LD with geo-fencing coordinates',
-        'Direct "Click-to-WhatsApp" and "Tap-to-Call" mobile action flow',
-        'Neighborhood catchment page optimized for local voice search'
+        'Complete Google profile with photos, hours and categories.',
+        'Same name, address and phone on every listing.',
+        'Call and WhatsApp buttons that reach you directly.'
       ]
     }
   },
   workshop: {
     id: 'workshop',
-    label: 'Manufacturer & Workshop',
-    sublabel: 'Industrial Units, Fabrication & OEMs',
+    label: 'Manufacturer / Workshop',
+    sublabel: 'Manufacturer / Workshop',
     icon: Wrench,
-    headline: 'Win High-Value B2B RFQs and OEM Procurement Contracts Across Industrial Clusters',
-    tagline: 'Engineered for CNC workshops, metal fabricators, packaging manufacturers, and industrial suppliers in Mohali, Ludhiana, and North Indian industrial belts.',
-    targetAudience: 'Precision machining workshops, industrial component fabricators, auto parts vendors, and contract manufacturers.',
-    primaryNeed: 'High-Value B2B RFQs & Procurement Inquiries',
+    headline: 'Be the supplier buyers can find and check',
+    tagline: 'Buyers look up suppliers online before they send an enquiry. We make what you make, where you are and how to reach you clear.',
+    targetAudience: 'Manufacturers, industrial workshops and fabrication units.',
+    primaryNeed: 'More business enquiries',
     vectors: {
       seo: {
-        title: 'Industrial Keyword & Cluster SEO',
-        desc: 'Technical capability indexing targeting buyer intent keywords like "custom sheet metal stamping supplier Punjab" and "precision CNC turning job work".'
+        title: 'Google Maps & Search',
+        desc: 'Clear location and business profile so buyers can verify your workshop.'
       },
       aeo: {
-        title: 'Answer Engine Optimization (Perplexity & Claude)',
-        desc: 'Machine specification tables, tolerance parameters (±0.01mm), and material grade documentation formatted for technical citation by procurement agents.'
+        title: 'AI Search Answers',
+        desc: 'Product and capability details that answer technical buyer questions directly.'
       },
       geo: {
-        title: 'Generative Engine Optimization (ChatGPT Search & Gemini)',
-        desc: 'Structured entity relationships tying your factory certifications (ISO, MSME) directly into AI procurement intelligence searches.'
+        title: 'ChatGPT and Gemini',
+        desc: 'Structured details so AI search tools can find your capabilities when buyers ask.'
       }
     },
     prototype: {
-      query: 'ISO certified CNC milling workshop in Ludhiana capable of titanium and stainless steel machining',
-      engine: 'Perplexity AI & Claude Citation Preview',
-      sampleTag: 'Sample Prototype — Industrial B2B Search Architecture',
-      responseSnippet: 'Verified facility profile listing active machine capabilities, factory floor certifications, technical RFQ submission gateway, and engineering lead contact.',
+      query: 'CNC milling and fabrication workshop in Ludhiana',
+      engine: 'AI Search & Listings',
+      sampleTag: 'Sample Search',
+      responseSnippet: 'SAGEDO-verified workshop profile with capabilities, location and direct WhatsApp enquiry link.',
       keyDeliverables: [
-        'Technical Machine Capability Catalog with structured specs schema',
-        'B2B RFQ capture interface with drawing upload and instant WhatsApp notification',
-        'Industrial cluster citation syndication (IndiaMART, TradeIndia, Google Business)',
-        'Engineering entity graph linking machine models to material processing tolerances'
+        'Product and capability pages buyers can read.',
+        'Business profile and listings that match.',
+        'An enquiry button that goes to WhatsApp or phone.'
       ]
     }
   },
   clinic: {
     id: 'clinic',
-    label: 'Clinic & Practice',
-    sublabel: 'Doctors, Dentists & Professional Practices',
+    label: 'Clinic / Practice',
+    sublabel: 'Clinic / Practice',
     icon: Stethoscope,
-    headline: 'Establish Clinical Authority & Secure High-Intent Patient Consultations',
-    tagline: 'Engineered for dental clinics, diagnostic centers, eye specialists, and medical practitioners seeking qualified local patient appointments.',
-    targetAudience: 'Specialist physicians, dental surgeons, physiotherapy clinics, and diagnostic centers.',
-    primaryNeed: 'Patient Consultations & Inquiries',
+    headline: 'Be the practice people trust at first glance',
+    tagline: 'People check reviews, timings and location before they call. We make sure the details are right and easy to find.',
+    targetAudience: 'Clinics, dental practices, diagnostic centres and healthcare specialists.',
+    primaryNeed: 'More patient enquiries',
     vectors: {
       seo: {
-        title: 'Medical Authority & Maps 3-Pack',
-        desc: 'Google Business Profile optimized for medical specializations, accepted insurance, verified clinic timings, and physician qualification credentials.'
+        title: 'Google Maps & Search',
+        desc: 'Profile with services, timings and location so patients can find you easily.'
       },
       aeo: {
-        title: 'Answer Engine Optimization (Perplexity & Claude)',
-        desc: 'Condition-specific patient education schemas and practitioner credibility matrices that answer medical query prompts with your clinic details.'
+        title: 'AI Search Answers',
+        desc: 'Pages that answer common patient questions directly.'
       },
       geo: {
-        title: 'Generative Engine Optimization (ChatGPT Search & Gemini)',
-        desc: 'Conversational symptom-to-specialist matching profiles grounded in verified clinical qualifications and direct appointment booking pathways.'
+        title: 'ChatGPT and Gemini',
+        desc: 'Clear practice details and timings organised for AI search tools.'
       }
     },
     prototype: {
-      query: 'Experienced pediatric dentist in Panchkula with painless laser treatment for children',
-      engine: 'ChatGPT Search & Perplexity Medical Entity Preview',
-      sampleTag: 'Sample Prototype — Healthcare Clinical Architecture',
-      responseSnippet: 'Verified medical specialist card displaying verified degrees, clinic address, hygiene protocols, and 1-tap WhatsApp consultation slot inquiry.',
+      query: 'Dental clinic in Panchkula with evening hours',
+      engine: 'AI Search & Maps',
+      sampleTag: 'Sample Search',
+      responseSnippet: 'SAGEDO-verified clinic profile with services, timings, location and one-tap booking.',
       keyDeliverables: [
-        'Physician & MedicalClinic Schema.org structured credentialing markup',
-        'Treatment-specific landing architecture for specialized clinical services',
-        'Frictionless patient appointment booking integration via WhatsApp',
-        'Google Health & Local Maps compliance verification'
+        'Profile with services, timings and location.',
+        'Pages that answer common patient questions.',
+        'One-tap call or WhatsApp booking.'
       ]
     }
   }
@@ -188,13 +185,13 @@ export default function PersonaSwitcher({
         <div className="text-center max-w-3xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20 mb-4">
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>North India SMB Architecture</span>
+            <span>Pick your kind of business</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-4">
-            Tailored For Your Exact Business Reality
+            Pick your kind of business
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
-            Search visibility is not one-size-fits-all. A local retail store needs physical footfall within 5 kilometers, while an industrial workshop requires high-value B2B procurement citations across North India.
+            When someone nearby searches for what you sell, your business should show up with the right name, phone and hours.
           </p>
         </div>
 
@@ -257,12 +254,12 @@ export default function PersonaSwitcher({
                   onClick={() => onConfigureClick?.(current.id)}
                   className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-primary hover:bg-primary/90 text-white font-medium text-sm transition-colors min-h-[44px] shadow-sm shadow-primary/20"
                 >
-                  <span>Configure for This Model</span>
+                  <span>See it for your business</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
                 <div className="text-xs text-zinc-500 text-center flex items-center justify-center gap-1.5">
                   <FileCheck className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>10-point visibility checklist</span>
+                  <span>Our 10-point checklist</span>
                 </div>
               </div>
             </div>
@@ -273,7 +270,7 @@ export default function PersonaSwitcher({
               <div className="bg-neutral-950/60 border border-neutral-800/60 rounded-xl p-5 hover:border-neutral-700/80 transition-colors">
                 <div className="flex items-center gap-2 text-primary font-semibold text-xs uppercase tracking-wider mb-2">
                   <MapPin className="w-4 h-4" />
-                  <span>Local SEO Pillar</span>
+                  <span>01 Google Maps</span>
                 </div>
                 <h4 className="text-sm sm:text-base font-bold text-white mb-2">
                   {current.vectors.seo.title}
@@ -287,7 +284,7 @@ export default function PersonaSwitcher({
               <div className="bg-neutral-950/60 border border-neutral-800/60 rounded-xl p-5 hover:border-neutral-700/80 transition-colors">
                 <div className="flex items-center gap-2 text-sky-400 font-semibold text-xs uppercase tracking-wider mb-2">
                   <Bot className="w-4 h-4" />
-                  <span>AEO Answer Engine</span>
+                  <span>02 AI search answers</span>
                 </div>
                 <h4 className="text-sm sm:text-base font-bold text-white mb-2">
                   {current.vectors.aeo.title}
@@ -301,7 +298,7 @@ export default function PersonaSwitcher({
               <div className="bg-neutral-950/60 border border-neutral-800/60 rounded-xl p-5 hover:border-neutral-700/80 transition-colors">
                 <div className="flex items-center gap-2 text-amber-400 font-semibold text-xs uppercase tracking-wider mb-2">
                   <Sparkles className="w-4 h-4" />
-                  <span>GEO Generative AI</span>
+                  <span>03 ChatGPT and Gemini</span>
                 </div>
                 <h4 className="text-sm sm:text-base font-bold text-white mb-2">
                   {current.vectors.geo.title}
@@ -328,14 +325,14 @@ export default function PersonaSwitcher({
 
                 <div className="space-y-3">
                   <div className="bg-neutral-900/90 rounded-lg p-3 text-xs text-zinc-300 font-mono flex items-start gap-2 border border-neutral-800">
-                    <span className="text-primary font-bold shrink-0">User Query:</span>
+                    <span className="text-primary font-bold shrink-0">Search query:</span>
                     <span className="text-zinc-200">"{current.prototype.query}"</span>
                   </div>
 
                   <div className="p-3.5 rounded-lg bg-neutral-900/50 border border-neutral-800/80 space-y-2">
                     <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-medium">
                       <CheckCircle2 className="w-3.5 h-3.5" />
-                      <span>Synthesized Multi-Engine Citation Grounding</span>
+                      <span>Search &amp; AI Result</span>
                     </div>
                     <p className="text-xs text-zinc-300 leading-relaxed">
                       {current.prototype.responseSnippet}
@@ -344,7 +341,7 @@ export default function PersonaSwitcher({
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-neutral-800/60 flex items-center justify-between text-[11px] text-zinc-500">
-                  <span>Architecture Model: SAGEDO Multi-Pillar Engine</span>
+                  <span>SAGEDO Search Visibility</span>
                 </div>
               </div>
 
@@ -352,7 +349,7 @@ export default function PersonaSwitcher({
               <div className="lg:col-span-5 bg-neutral-950/40 border border-neutral-800/60 rounded-xl p-5">
                 <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-3 flex items-center gap-2">
                   <Globe className="w-3.5 h-3.5 text-primary" />
-                  <span>Deployment Deliverables</span>
+                  <span>What you get</span>
                 </h4>
                 <ul className="space-y-2.5">
                   {current.prototype.keyDeliverables.map((item, idx) => (

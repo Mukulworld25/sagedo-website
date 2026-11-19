@@ -4,12 +4,8 @@ import {
   Bot, 
   Sparkles, 
   CheckCircle2, 
-  ArrowRight, 
-  ShieldCheck, 
   Code2, 
-  Cpu, 
-  Network,
-  Share2
+  Cpu
 } from 'lucide-react';
 
 interface EnginePillar {
@@ -21,7 +17,7 @@ interface EnginePillar {
   subtitle: string;
   description: string;
   targetPlatforms: string[];
-  protocolSteps: {
+  whatWeDo: {
     title: string;
     detail: string;
   }[];
@@ -31,78 +27,78 @@ interface EnginePillar {
 const PILLARS: EnginePillar[] = [
   {
     number: '01',
-    badge: 'Local Proximity Engine',
+    badge: 'Google Maps',
     badgeColor: 'text-primary bg-primary/10 border-primary/20',
     icon: MapPin,
-    title: 'Google Maps 3-Pack & Local SEO',
-    subtitle: 'Neighborhood Catchment & Proximity Intent',
-    description: 'When potential customers search for services "near me" or within your city sector, Google prioritizes the Maps 3-Pack before organic listings. We build an airtight physical footprint that signals immediate proximity, verified business legitimacy, and active operational hours.',
-    targetPlatforms: ['Google Maps', 'Google Search (Local Pack)', 'Apple Maps', 'Local Voice Search'],
-    protocolSteps: [
+    title: 'Google Maps',
+    subtitle: 'Show up when people search nearby',
+    description: 'Google shows a few local businesses first. We fix the basics it looks at: a complete profile, correct details and consistent listings.',
+    targetPlatforms: ['Google Maps', 'Google Search', 'Apple Maps', 'Local Voice Search'],
+    whatWeDo: [
       {
-        title: 'Rigid NAP Synchronization',
-        detail: 'Name, Address, and Phone standardization across Google Business Profile, Apple Business Connect, and top regional directories to eliminate citation ambiguity.'
+        title: 'Complete Google profile',
+        detail: 'Photos, hours, categories and business details set up properly.'
       },
       {
-        title: 'LocalBusiness Schema & GeoCoordinates',
-        detail: 'Microdata and JSON-LD markup embedding latitude/longitude bounding polygons, neighborhood service areas, and localized opening schedules directly into page source.'
+        title: 'Same details everywhere',
+        detail: 'Same name, address and phone across directories and listings.'
       },
       {
-        title: 'Localized Mobile Action Pipeline',
-        detail: 'Zero-friction tap-to-call and click-to-WhatsApp routing engineered to capture high-intent buyers ready to visit or call within the hour.'
+        title: 'Direct call & WhatsApp links',
+        detail: 'Tested buttons that connect customers directly to your phone or WhatsApp.'
       }
     ],
     schemaArtifacts: ['LocalBusiness', 'PostalAddress', 'GeoCoordinates', 'OpeningHoursSpecification']
   },
   {
     number: '02',
-    badge: 'Factual Citation Engine',
+    badge: 'AI search answers',
     badgeColor: 'text-sky-400 bg-sky-500/10 border-sky-500/20',
     icon: Bot,
-    title: 'Answer Engine Optimization (AEO)',
-    subtitle: 'Direct Citations on Perplexity & Claude',
-    description: 'Answer engines do not return 10 blue links; they synthesize a single, direct, factual answer with cited references. If your website lacks structured entity relationships, AI answer engines ignore your business. We engineer authoritative knowledge datasets so your company is directly cited as the definitive source.',
-    targetPlatforms: ['Perplexity AI', 'Anthropic Claude', 'You.com', 'SearchGPT Synthesis'],
-    protocolSteps: [
+    title: 'AI search answers',
+    subtitle: 'Be easy for AI to read',
+    description: 'Tools like Google AI and Perplexity answer questions directly. They use businesses whose details are clear on the web. We make yours clear.',
+    targetPlatforms: ['Google AI', 'Perplexity', 'SearchGPT', 'Answer Engines'],
+    whatWeDo: [
       {
-        title: 'Semantic Entity Relationship Graphing',
-        detail: 'Mapping your commercial capabilities, machinery, certifications, and medical specializations into unambiguous Schema.org entity graphs.'
+        title: 'Structured business details',
+        detail: 'Products, services and details marked up so AI tools can read them without guessing.'
       },
       {
-        title: 'Structured Factual Q&A Matrices',
-        detail: 'Authoring concise, fact-dense data blocks that match the exact syntax patterns used by retrieval-augmented generation (RAG) pipelines.'
+        title: 'Answers to customer questions',
+        detail: 'Clear answers to common questions written the way customers actually ask.'
       },
       {
-        title: 'Multi-Engine Crawler Allowlisting',
-        detail: 'Auditing robots.txt and serverless headers to ensure PerplexityBot, ClaudeBot, and research crawlers can ingest your structured data without blocking.'
+        title: 'Crawler access verified',
+        detail: 'Your site can be read smoothly by Google and AI crawlers.'
       }
     ],
-    schemaArtifacts: ['Service', 'FAQPage', 'Organization', 'MedicalSpecialty / TechnicalSpecification']
+    schemaArtifacts: ['Service', 'FAQPage', 'Organization']
   },
   {
     number: '03',
-    badge: 'Generative Synthesis Engine',
+    badge: 'ChatGPT and Gemini',
     badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/20',
     icon: Sparkles,
-    title: 'Generative Engine Optimization (GEO)',
-    subtitle: 'Conversational Grounding on ChatGPT Search & Gemini',
-    description: 'Conversational search engines evaluate context, intent, and multi-modal relevance when answering user recommendations. We optimize your digital presence for generative engines, ensuring your offerings are selected and recommended during complex multi-turn inquiries.',
-    targetPlatforms: ['ChatGPT Search', 'Google Gemini', 'Microsoft Copilot', 'Meta AI'],
-    protocolSteps: [
+    title: 'ChatGPT and Gemini',
+    subtitle: 'Be easy to find when people ask',
+    description: 'People now ask "best [your trade] near me". We organise your details and content so these tools can read them.',
+    targetPlatforms: ['ChatGPT', 'Google Gemini', 'Microsoft Copilot', 'Conversational AI'],
+    whatWeDo: [
       {
-        title: 'Conversational Prompt Alignment',
-        detail: 'Anticipating real-world buyer prompts (e.g. "recommend an ISO-certified CNC workshop in Punjab that does titanium machining") and structuring context nodes to match.'
+        title: 'Organised business content',
+        detail: 'Clear information about what you sell, where you are and how to reach you.'
       },
       {
-        title: 'Brand Entity Validation & Grounding',
-        detail: 'Connecting external authority signals (certifications, trade portals, press citations) to establish high-confidence entity resolution.'
+        title: 'Customer phrasing alignment',
+        detail: 'Content written around how real customers search and ask for recommendations.'
       },
       {
-        title: 'Real-Time Content Freshness Architecture',
-        detail: 'Pre-rendered static HTML with dynamic update pipelines ensuring conversational models read current pricing brackets and active capacity.'
+        title: 'Fast and mobile-ready',
+        detail: 'Pages load fast and work smoothly on any phone.'
       }
     ],
-    schemaArtifacts: ['DefinedTermSet', 'AboutPage', 'Brand', 'OfferCatalog']
+    schemaArtifacts: ['AboutPage', 'Brand', 'OfferCatalog']
   }
 ];
 
@@ -114,13 +110,13 @@ export default function ArchitectureSection() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20 mb-4">
             <Cpu className="w-3.5 h-3.5" />
-            <span>Tri-Engine Search Blueprint</span>
+            <span>Three Parts</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-4">
-            The Three Pillars of Modern Search Visibility
+            What we do
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
-            Old-school SEO targeted keyword density and backlink volume. Modern visibility requires a unified tri-engine architecture designed simultaneously for geographic proximity, AI citation synthesis, and generative conversation.
+            When someone nearby searches for what you sell, your business should show up with the right name, phone and hours across maps and AI search.
           </p>
         </div>
 
@@ -173,22 +169,22 @@ export default function ArchitectureSection() {
                   {pillar.description}
                 </p>
 
-                {/* Technical Protocol Grid */}
+                {/* What We Do Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 pt-2">
-                  {pillar.protocolSteps.map((step, idx) => (
+                  {pillar.whatWeDo.map((item, idx) => (
                     <div
                       key={idx}
                       className="bg-neutral-950/70 border border-neutral-800/70 rounded-xl p-4 sm:p-5"
                     >
                       <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400 mb-2">
                         <CheckCircle2 className="w-4 h-4 shrink-0" />
-                        <span>Protocol {idx + 1}</span>
+                        <span>What we do</span>
                       </div>
                       <h4 className="text-sm font-bold text-white mb-1.5">
-                        {step.title}
+                        {item.title}
                       </h4>
                       <p className="text-xs text-zinc-400 leading-relaxed">
-                        {step.detail}
+                        {item.detail}
                       </p>
                     </div>
                   ))}
@@ -198,7 +194,7 @@ export default function ArchitectureSection() {
                 <div className="mt-6 pt-4 border-t border-neutral-800/60 flex flex-wrap items-center justify-between gap-3 text-xs text-zinc-500">
                   <div className="flex items-center gap-2">
                     <Code2 className="w-4 h-4 text-primary" />
-                    <span>Injected Schema Structures:</span>
+                    <span>Search engine markup:</span>
                     <div className="flex flex-wrap gap-1.5">
                       {pillar.schemaArtifacts.map((schema, sIdx) => (
                         <code

@@ -40,9 +40,7 @@ export default function VisibilityHero({
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-neutral-900 border border-neutral-800 text-zinc-300 mb-6 shadow-sm"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-primary font-bold">Multi-Engine Search Architecture</span>
-            <span className="text-zinc-600">•</span>
-            <span className="text-zinc-400">SEO + AEO + GEO</span>
+            <span className="text-primary font-bold">SEO · AEO · GEO</span>
           </m.div>
 
           {/* Primary Headline */}
@@ -52,10 +50,7 @@ export default function VisibilityHero({
             transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] mb-6"
           >
-            Modern Search Visibility — <br className="hidden sm:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-primary to-amber-500">
-              SEO + AEO + GEO
-            </span>
+            Get found on Google Maps and in AI search
           </m.h1>
 
           {/* Subheading */}
@@ -65,7 +60,7 @@ export default function VisibilityHero({
             transition={{ duration: 0.4, delay: 0.2, ease: 'easeOut' }}
             className="text-base sm:text-lg md:text-xl text-zinc-300 max-w-3xl mx-auto leading-relaxed mb-8"
           >
-            Build your local search presence across Google Maps 3-Pack, Answer Engines (Perplexity, Claude), and Generative Search (ChatGPT Search, Google Gemini). Engineered specifically for North Indian local businesses, workshops, and healthcare clinics.
+            When someone nearby searches for what you sell, your business should show up with the right name, phone and hours. We set that up so customers reach you by call or WhatsApp.
           </m.p>
 
           {/* CTA Group */}
@@ -83,7 +78,7 @@ export default function VisibilityHero({
               }}
               className="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 py-3.5 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-sm transition-all shadow-lg shadow-primary/25 min-h-[44px] cursor-pointer"
             >
-              <span>Configure Your Visibility Engine</span>
+              <span>Choose what you need</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 
@@ -95,11 +90,11 @@ export default function VisibilityHero({
               }}
               className="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-6 py-3.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-zinc-200 border border-neutral-700 font-medium text-sm transition-colors min-h-[44px] cursor-pointer"
             >
-              <span>Explore Tailored Personas</span>
+              <span>See it for your business</span>
             </button>
           </m.div>
 
-          {/* Trust Standard Banner */}
+          {/* Hero Proof Line */}
           <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -108,7 +103,7 @@ export default function VisibilityHero({
           >
             <div className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>Governed by our 10-point visibility checklist</span>
+              <span>Based in Mohali, built for businesses across Punjab, Chandigarh and Himachal.</span>
             </div>
           </m.div>
         </div>
@@ -119,13 +114,13 @@ export default function VisibilityHero({
           <div className="bg-neutral-900/60 border border-neutral-800 rounded-xl p-5 backdrop-blur-sm">
             <div className="flex items-center gap-2 text-primary font-semibold text-xs uppercase tracking-wider mb-2">
               <MapPin className="w-4 h-4" />
-              <span>Pillar 1: Local SEO</span>
+              <span>01 Google Maps</span>
             </div>
             <h3 className="text-base font-bold text-white mb-1.5">
-              Google Maps 3-Pack Visibility
+              Show up when people search nearby
             </h3>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              Localized NAP alignment, high-relevance proximity signals, and GeoCoordinates schema to capture immediate neighborhood footfall.
+              Google shows a few local businesses first. We fix the basics it looks at: a complete profile, correct details and consistent listings.
             </p>
           </div>
 
@@ -133,13 +128,13 @@ export default function VisibilityHero({
           <div className="bg-neutral-900/60 border border-neutral-800 rounded-xl p-5 backdrop-blur-sm">
             <div className="flex items-center gap-2 text-sky-400 font-semibold text-xs uppercase tracking-wider mb-2">
               <Bot className="w-4 h-4" />
-              <span>Pillar 2: AEO Citations</span>
+              <span>02 AI search answers</span>
             </div>
             <h3 className="text-base font-bold text-white mb-1.5">
-              Answer Engine Optimization
+              Be easy for AI to read
             </h3>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              Structured entity knowledge graphs for Perplexity and Claude, answering technical buyer and clinical questions with direct citations.
+              Tools like Google AI and Perplexity answer questions directly. They use businesses whose details are clear on the web. We make yours clear.
             </p>
           </div>
 
@@ -147,13 +142,13 @@ export default function VisibilityHero({
           <div className="bg-neutral-900/60 border border-neutral-800 rounded-xl p-5 backdrop-blur-sm">
             <div className="flex items-center gap-2 text-amber-400 font-semibold text-xs uppercase tracking-wider mb-2">
               <Sparkles className="w-4 h-4" />
-              <span>Pillar 3: GEO Grounding</span>
+              <span>03 ChatGPT and Gemini</span>
             </div>
             <h3 className="text-base font-bold text-white mb-1.5">
-              Generative Engine Optimization
+              Be easy to find when people ask
             </h3>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              Context-grounded knowledge sets and conversational prompt alignment for ChatGPT Search and Google Gemini recommendations.
+              People now ask "best [your trade] near me". We organise your details and content so these tools can read them.
             </p>
           </div>
         </div>

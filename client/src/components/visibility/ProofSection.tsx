@@ -2,88 +2,81 @@ import { useState } from 'react';
 import { 
   ShieldCheck, 
   FileCheck, 
-  CheckCircle2, 
-  AlertCircle, 
-  Search, 
-  Sparkles, 
-  Bot, 
-  MapPin, 
-  Lock,
-  ArrowRight
+  AlertCircle
 } from 'lucide-react';
 
-interface GateItem {
-  gateNumber: number;
+interface ChecklistItem {
+  itemNumber: number;
   name: string;
   focus: string;
   criteria: string;
 }
 
-const TEN_GATES: GateItem[] = [
+const CHECKLIST_ITEMS: ChecklistItem[] = [
   {
-    gateNumber: 1,
-    name: 'Schema.org & JSON-LD Validation',
-    focus: 'Entity Syntax',
-    criteria: 'Zero syntax errors or missing required fields in LocalBusiness, Service, and FAQPage schemas via validator tools.'
+    itemNumber: 1,
+    name: 'Search Engine Markup',
+    focus: 'Search engines',
+    criteria: 'Business details marked up so search engines read them correctly'
   },
   {
-    gateNumber: 2,
-    name: 'Multi-Engine Bot Crawler Emulation',
-    focus: 'Crawl Accessibility',
-    criteria: 'Verified 200 OK responses with unblocked access for Googlebot, PerplexityBot, ClaudeBot, and GPTBot in robots.txt.'
+    itemNumber: 2,
+    name: 'Crawler Access',
+    focus: 'AI & Google crawlers',
+    criteria: 'Your site can be read by Google and AI crawlers'
   },
   {
-    gateNumber: 3,
-    name: 'Mobile LCP & Viewport Layout Enforcement',
-    focus: 'Core Web Vitals',
-    criteria: 'Clean layout responsiveness down to 360px viewport width with zero horizontal overflow and swift mobile content render.'
+    itemNumber: 3,
+    name: 'Mobile Speed',
+    focus: 'Phone performance',
+    criteria: 'Loads fast and works on a phone'
   },
   {
-    gateNumber: 4,
-    name: 'Local NAP & Geo-Coordinates Sync',
-    focus: 'Proximity Accuracy',
-    criteria: 'Exact Name, Address, and Phone matching across Google Business Profile, Apple Maps, and local directory citations.'
+    itemNumber: 4,
+    name: 'Consistent Details',
+    focus: 'Name, address, phone',
+    criteria: 'Same name, address and phone everywhere'
   },
   {
-    gateNumber: 5,
-    name: 'AEO Factual Accuracy & Semantic Graphing',
-    focus: 'Direct AI Citations',
-    criteria: 'Unambiguous linking of machine models, pricing brackets, and clinical specialties into machine-readable knowledge nodes.'
+    itemNumber: 5,
+    name: 'Customer Questions',
+    focus: 'Clear answers',
+    criteria: 'Clear answers to common customer questions'
   },
   {
-    gateNumber: 6,
-    name: 'GEO Conversational Intent Grounding',
-    focus: 'Generative Context',
-    criteria: 'Authoring context blocks that match high-intent conversational prompts in ChatGPT Search and Google Gemini.'
+    itemNumber: 6,
+    name: 'Natural Content',
+    focus: 'Customer phrasing',
+    criteria: 'Content written the way customers actually ask'
   },
   {
-    gateNumber: 7,
-    name: 'Conversion Action & WhatsApp Routing',
-    focus: 'Inbound Inquiries',
-    criteria: 'End-to-end verification of click-to-call, click-to-WhatsApp, and contact triggers with pre-filled structured parameters.'
+    itemNumber: 7,
+    name: 'Contact Pathways',
+    focus: 'Call & WhatsApp',
+    criteria: 'Call and WhatsApp buttons tested and working'
   },
   {
-    gateNumber: 8,
-    name: 'Consent & Privacy Protection',
-    focus: 'Data Privacy',
-    criteria: 'Tracking on this page starts only after you accept cookies. It records your choices (need, budget, timing), and no IP address, name or phone number.'
+    itemNumber: 8,
+    name: 'Privacy & Consent',
+    focus: 'Cookie choice',
+    criteria: 'Visitor tracking only after they accept cookies'
   },
   {
-    gateNumber: 9,
-    name: 'Mobile Layout Stability',
-    focus: 'Visual Stability',
-    criteria: "Layout is checked on mobile so the page doesn't jump while loading."
+    itemNumber: 9,
+    name: 'Layout Stability',
+    focus: 'Visual comfort',
+    criteria: "Page doesn't jump while loading"
   },
   {
-    gateNumber: 10,
-    name: 'Full Ownership & Handover',
-    focus: 'Asset Handover',
-    criteria: 'Formal inspection audit sign-off with full source code ownership and complete credential handover to the client.'
+    itemNumber: 10,
+    name: 'Full Handover',
+    focus: 'Asset delivery',
+    criteria: 'At the end, you get your files and logins'
   }
 ];
 
 export default function ProofSection() {
-  const [activeTab, setActiveTab] = useState<'gates' | 'prototypes'>('gates');
+  const [activeTab, setActiveTab] = useState<'checklist' | 'prototypes'>('checklist');
 
   return (
     <div id="proof" className="w-full py-16 scroll-mt-20">
@@ -92,10 +85,10 @@ export default function ProofSection() {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-4">
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Quality Checklist</span>
+            <span>Checklist</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-4">
-            Our 10-point visibility checklist
+            Our 10-point checklist
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
             Every visibility system deployed by SAGEDO is verified through an objective 10-point inspection checklist.
@@ -108,22 +101,22 @@ export default function ProofSection() {
             <div className="space-y-2 max-w-2xl">
               <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
                 <FileCheck className="w-4 h-4" />
-                <span>Engineering Standards</span>
+                <span>Verification</span>
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-white">
                 Verified Before Handover
               </h3>
               <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                All visibility infrastructure is checked against our 10-point visibility checklist before handover to ensure complete setup compliance.
+                All visibility infrastructure is checked against our 10-point checklist before handover to ensure complete setup compliance.
               </p>
             </div>
 
             <div className="bg-neutral-950/80 border border-neutral-800 rounded-xl p-4 shrink-0 text-left md:text-right space-y-1">
               <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider block">
-                Inspection Standard
+                Standard
               </span>
               <span className="text-sm font-bold text-emerald-400 block">
-                10-Point Checklist
+                Our 10-point checklist
               </span>
             </div>
           </div>
@@ -132,23 +125,23 @@ export default function ProofSection() {
           <div className="mt-6 pt-5 border-t border-neutral-800 flex items-start gap-3 text-xs text-zinc-400">
             <AlertCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
             <p className="leading-relaxed">
-              <strong className="text-zinc-200">Honest Engineering Commitment:</strong> We don't promise #1 rankings or AI citations; nobody honestly can. We do the set-up work: correct business details everywhere, clean structured data, a crawlable site and a working WhatsApp path.
+              <strong className="text-zinc-200">Honest note:</strong> We don't promise #1 rankings or that AI tools will name you. Nobody honestly can. We do the groundwork: correct details everywhere, clean data, a site that can be read, and a working WhatsApp path.
             </p>
           </div>
         </div>
 
-        {/* Tab Toggle: 10 Gates vs Sample Prototypes */}
+        {/* Tab Toggle: Checklist vs Sample Prototypes */}
         <div className="flex items-center justify-center gap-2 mb-8">
           <button
             type="button"
-            onClick={() => setActiveTab('gates')}
+            onClick={() => setActiveTab('checklist')}
             className={`px-4 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all min-h-[44px] cursor-pointer ${
-              activeTab === 'gates'
+              activeTab === 'checklist'
                 ? 'bg-neutral-800 text-white border border-neutral-700 shadow-sm'
                 : 'text-zinc-400 hover:text-zinc-200 hover:bg-neutral-900'
             }`}
           >
-            The 10 Checklist Points
+            Our 10-point checklist
           </button>
           <button
             type="button"
@@ -159,40 +152,40 @@ export default function ProofSection() {
                 : 'text-zinc-400 hover:text-zinc-200 hover:bg-neutral-900'
             }`}
           >
-            Sample Prototypes
+            Sample Searches
           </button>
         </div>
 
-        {/* TAB 1: 10 Gates Grid */}
-        {activeTab === 'gates' && (
+        {/* TAB 1: 10 Checklist Points Grid */}
+        {activeTab === 'checklist' && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            {TEN_GATES.map((gate) => (
+            {CHECKLIST_ITEMS.map((item) => (
               <div
-                key={gate.gateNumber}
+                key={item.itemNumber}
                 className="bg-neutral-900/60 border border-neutral-800 rounded-xl p-5 hover:border-neutral-700 transition-colors"
               >
                 <div className="flex items-center justify-between gap-3 mb-2.5">
                   <div className="flex items-center gap-2">
                     <span className="flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/10 text-emerald-400 font-mono font-bold text-xs border border-emerald-500/20">
-                      {gate.gateNumber}
+                      {item.itemNumber}
                     </span>
                     <h4 className="text-sm sm:text-base font-bold text-white">
-                      {gate.name}
+                      {item.name}
                     </h4>
                   </div>
                   <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-neutral-950 text-zinc-400 border border-neutral-800">
-                    {gate.focus}
+                    {item.focus}
                   </span>
                 </div>
                 <p className="text-xs text-zinc-400 leading-relaxed pl-8">
-                  {gate.criteria}
+                  {item.criteria}
                 </p>
               </div>
             ))}
           </div>
         )}
 
-        {/* TAB 2: Sample Prototypes Preview */}
+        {/* TAB 2: Sample Searches Preview */}
         {activeTab === 'prototypes' && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Prototype 1 */}
@@ -200,21 +193,21 @@ export default function ProofSection() {
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
                   <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                    Sample Prototype
+                    Sample Search
                   </span>
-                  <span className="text-xs text-zinc-500 font-mono">Retail Footfall</span>
+                  <span className="text-xs text-zinc-500 font-mono">Retail Shop</span>
                 </div>
                 <h4 className="text-sm font-bold text-white mb-2">
-                  Maps 3-Pack Catchment
+                  Google Maps Search
                 </h4>
                 <div className="p-3 bg-neutral-950 rounded-lg border border-neutral-800 text-xs text-zinc-300 font-mono space-y-1.5 mb-3">
                   <div className="text-zinc-500">Query: "Hardware store near me Sector 22"</div>
-                  <div className="text-emerald-400 font-semibold">Result: Maps 3-Pack Pin #1</div>
+                  <div className="text-emerald-400 font-semibold">Result: Maps Listing #1</div>
                   <div className="text-zinc-400 text-[11px]">Includes verified opening hours &amp; direct WhatsApp quote button.</div>
                 </div>
               </div>
               <div className="text-[11px] text-zinc-500 pt-3 border-t border-neutral-800">
-                Simulated search layout for illustration only.
+                Sample search layout for illustration only.
               </div>
             </div>
 
@@ -223,21 +216,21 @@ export default function ProofSection() {
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
                   <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                    Sample Prototype
+                    Sample Search
                   </span>
-                  <span className="text-xs text-zinc-500 font-mono">Industrial B2B</span>
+                  <span className="text-xs text-zinc-500 font-mono">Workshop</span>
                 </div>
                 <h4 className="text-sm font-bold text-white mb-2">
-                  Perplexity AEO Direct Citation
+                  AI Search Answer
                 </h4>
                 <div className="p-3 bg-neutral-950 rounded-lg border border-neutral-800 text-xs text-zinc-300 font-mono space-y-1.5 mb-3">
-                  <div className="text-zinc-500">Query: "CNC machining tolerances Ludhiana"</div>
-                  <div className="text-sky-400 font-semibold">Cited Source: [1] Technical Spec Catalog</div>
-                  <div className="text-zinc-400 text-[11px]">Direct citation of factory machinery &amp; ISO certification credentials.</div>
+                  <div className="text-zinc-500">Query: "CNC machining workshop in Ludhiana"</div>
+                  <div className="text-sky-400 font-semibold">Result: Verified Profile</div>
+                  <div className="text-zinc-400 text-[11px]">Direct details of workshop machinery and WhatsApp enquiry.</div>
                 </div>
               </div>
               <div className="text-[11px] text-zinc-500 pt-3 border-t border-neutral-800">
-                Simulated search layout for illustration only.
+                Sample search layout for illustration only.
               </div>
             </div>
 
@@ -246,21 +239,21 @@ export default function ProofSection() {
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
                   <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                    Sample Prototype
+                    Sample Search
                   </span>
-                  <span className="text-xs text-zinc-500 font-mono">Healthcare Practice</span>
+                  <span className="text-xs text-zinc-500 font-mono">Clinic</span>
                 </div>
                 <h4 className="text-sm font-bold text-white mb-2">
-                  ChatGPT Search Medical Specialist Card
+                  AI Recommendation
                 </h4>
                 <div className="p-3 bg-neutral-950 rounded-lg border border-neutral-800 text-xs text-zinc-300 font-mono space-y-1.5 mb-3">
-                  <div className="text-zinc-500">Query: "Pediatric dentist Panchkula laser"</div>
-                  <div className="text-amber-400 font-semibold">Recommended Clinic: Verified Profile</div>
-                  <div className="text-zinc-400 text-[11px]">Displays degrees, treatment scope, and 1-tap WhatsApp consultation.</div>
+                  <div className="text-zinc-500">Query: "Dental clinic Panchkula evening hours"</div>
+                  <div className="text-amber-400 font-semibold">Recommended Practice: Verified Profile</div>
+                  <div className="text-zinc-400 text-[11px]">Displays timings, address, and 1-tap WhatsApp consultation.</div>
                 </div>
               </div>
               <div className="text-[11px] text-zinc-500 pt-3 border-t border-neutral-800">
-                Simulated search layout for illustration only.
+                Sample search layout for illustration only.
               </div>
             </div>
           </div>

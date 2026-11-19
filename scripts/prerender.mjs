@@ -778,14 +778,14 @@ const routes = [
   },
   {
     path: '/visibility',
-    title: "Modern Search Visibility (SEO + AEO + GEO) | SAGEDO",
-    description: "Modern Search Visibility across Google Maps 3-Pack, Perplexity, Claude, ChatGPT Search & Gemini. Dedicated search visibility engines for North India SMBs, shops, manufacturers & clinics.",
+    title: "Get Found on Google Maps & AI Search | SAGEDO",
+    description: "Get your shop, workshop or clinic found on Google Maps and AI search. Chat with SAGEDO on WhatsApp for a plan that fits your budget.",
     jsonLd: `<script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      "name": "Modern Search Visibility (SEO + AEO + GEO)",
-      "description": "Multi-engine search visibility across Google Maps 3-Pack, Answer Engine Optimization (AEO), and Generative Engine Optimization (GEO).",
+      "name": "Get Found on Google Maps & AI Search",
+      "description": "Get your shop, workshop or clinic found on Google Maps and AI search. Chat with SAGEDO on WhatsApp for a plan that fits your budget.",
       "provider": {
         "@type": "Organization",
         "name": "SAGEDO",
@@ -795,20 +795,42 @@ const routes = [
         "@type": "Country",
         "name": "India"
       },
-      "serviceType": "Search Engine Optimization & AI Discoverability"
+      "serviceType": "Local SEO & AI Search Visibility"
     }
     </script>`,
     content: `
-      <h1>Modern Search Visibility — SEO + AEO + GEO | SAGEDO</h1>
-      <p>Build your local search presence across Google Maps 3-Pack, Answer Engines (Perplexity, Claude), and Generative Search (ChatGPT Search, Google Gemini). Engineered specifically for North Indian local businesses, workshops, and healthcare clinics.</p>
-      <h2>Tailored for Your Exact Business Reality</h2>
-      <h3>Local Shop &amp; Retail</h3>
-      <p>Capture High-Intent Footfall &amp; Direct Phone Calls Within Your Immediate Catchment. Engineered for neighborhood retailers, electronics showrooms, hardware stores, and local service providers in North India.</p>
-      <p>Rigid NAP (Name, Address, Phone) consistency across major directories, localized geo-coordinates, verified photo syndication, and neighborhood landing page schema so nearby buyers find your business directly.</p>
-      <h2>Interactive Need, Budget &amp; Urgency Chooser</h2>
-      <p>Select your core growth challenge, budget bracket, and operational timeline to generate a tailored execution scope promptly delivered via WhatsApp.</p>
-      <h2>Our 10-Point Visibility Checklist</h2>
-      <p>Every visibility system deployed by SAGEDO is verified against our 10-point inspection list before delivery.</p>
+      <h1>Get found on Google Maps and in AI search</h1>
+      <p>When someone nearby searches for what you sell, your business should show up with the right name, phone and hours. We set that up so customers reach you by call or WhatsApp.</p>
+      <p>Based in Mohali, built for businesses across Punjab, Chandigarh and Himachal.</p>
+      <h2>Pick your kind of business</h2>
+      <h3>Shop / Retail / Services</h3>
+      <p>Be the shop people find when they search nearby</p>
+      <p>Customers search "near me" and call the first few names they see. We make sure yours is complete, correct and easy to call.</p>
+      <ul>
+        <li>Complete Google profile with photos, hours and categories.</li>
+        <li>Same name, address and phone on every listing.</li>
+        <li>Call and WhatsApp buttons that reach you directly.</li>
+      </ul>
+      <h2>What we do</h2>
+      <p>01 Google Maps. Show up when people search nearby. Google shows a few local businesses first. We fix the basics it looks at: a complete profile, correct details and consistent listings.</p>
+      <p>02 AI search answers. Be easy for AI to read. Tools like Google AI and Perplexity answer questions directly. They use businesses whose details are clear on the web. We make yours clear.</p>
+      <p>03 ChatGPT and Gemini. Be easy to find when people ask. People now ask "best [your trade] near me". We organise your details and content so these tools can read them.</p>
+      <h2>Our 10-point checklist</h2>
+      <ol>
+        <li>Business details marked up so search engines read them correctly</li>
+        <li>Your site can be read by Google and AI crawlers</li>
+        <li>Loads fast and works on a phone</li>
+        <li>Same name, address and phone everywhere</li>
+        <li>Clear answers to common customer questions</li>
+        <li>Content written the way customers actually ask</li>
+        <li>Call and WhatsApp buttons tested and working</li>
+        <li>Visitor tracking only after they accept cookies</li>
+        <li>Page doesn't jump while loading</li>
+        <li>At the end, you get your files and logins</li>
+      </ol>
+      <p>We don't promise #1 rankings or that AI tools will name you. Nobody honestly can. We do the groundwork: correct details everywhere, clean data, a site that can be read, and a working WhatsApp path.</p>
+      <h2>Tell us what you need</h2>
+      <p>Three taps. Your choices come to us on WhatsApp and we reply there.</p>
     `,
   }
 ];
@@ -873,6 +895,15 @@ function prerender() {
     html = html.replace(
       /<meta property="og:url".*?\/>/,
       `<meta property="og:url" content="${canonicalUrl}" />`
+    );
+    // 4c. Replace Twitter title and description
+    html = html.replace(
+      /<meta name="twitter:title".*?\/>/,
+      `<meta name="twitter:title" content="${escapeHtml(route.title)}" />`
+    );
+    html = html.replace(
+      /<meta name="twitter:description"[\s\S]*?\/>/,
+      `<meta name="twitter:description" content="${escapeHtml(route.description)}" />`
     );
     // 4b. On subroutes, remove homepage FAQPage from @graph to prevent duplicate FAQPage schemas
     if (route.path !== '/') {

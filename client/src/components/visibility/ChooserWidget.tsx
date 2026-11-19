@@ -1,18 +1,10 @@
 import { useState } from 'react';
 import { 
-  Target, 
-  IndianRupee, 
-  Clock, 
-  Send, 
   CheckCircle2, 
   Sparkles, 
   ShieldCheck, 
   ArrowRight,
-  Layers,
-  MapPin,
-  Bot,
-  Stethoscope,
-  Briefcase
+  Layers
 } from 'lucide-react';
 import { 
   trackChooserCompleted, 
@@ -42,27 +34,27 @@ interface UrgencyOption {
 const NEED_OPTIONS: NeedOption[] = [
   {
     id: 'local_footfall',
-    label: 'Local Footfall & Inbound Calls',
-    description: 'Optimize Google Maps 3-Pack and voice search for nearby local customers.',
-    badge: 'Maps 3-Pack SEO'
+    label: 'More walk-ins and calls',
+    description: 'When people nearby search for what you sell, show up first on Google Maps.',
+    badge: 'Maps'
   },
   {
     id: 'b2b_rfqs',
-    label: 'High-Value B2B RFQs & Procurement',
-    description: 'Get cited on Perplexity and Claude for technical buyer and RFP queries.',
-    badge: 'AEO Citations'
+    label: 'More business enquiries',
+    description: 'Make what you make and how to reach you clear so buyers find and check you.',
+    badge: 'Enquiries'
   },
   {
     id: 'patient_bookings',
-    label: 'Patient Consultations & Inquiries',
-    description: 'Establish clinical authority and secure qualified patient appointments.',
-    badge: 'Clinical Authority'
+    label: 'More patient enquiries',
+    description: 'Verified clinic details, reviews, and one-tap booking for patients.',
+    badge: 'Bookings'
   },
   {
     id: 'omnichannel_search',
-    label: 'Full Multi-Engine Search Engine',
-    description: 'Combined SEO + AEO + GEO architecture across Google, Perplexity & ChatGPT.',
-    badge: 'Complete SEO+AEO+GEO'
+    label: 'Everything: Maps and AI search',
+    description: 'Complete setup across Google Maps, Google AI, Perplexity, ChatGPT and Gemini.',
+    badge: 'Maps + AI'
   }
 ];
 
@@ -101,9 +93,9 @@ const URGENCY_OPTIONS: UrgencyOption[] = [
 ];
 
 const PERSONA_LABELS: Record<PersonaId, string> = {
-  local_shop: 'Local Shop / Retail / Services',
+  local_shop: 'Shop / Retail / Services',
   workshop: 'Manufacturer / Workshop',
-  clinic: 'Clinic / Professional Practice'
+  clinic: 'Clinic / Practice'
 };
 
 const WHATSAPP_CONTACT = '916284925684';
@@ -138,15 +130,13 @@ export default function ChooserWidget({ activePersona }: ChooserWidgetProps) {
     trackWhatsAppClick(payload);
 
     // Deep-link to WhatsApp with pre-filled structured text
-    const personaTitle = PERSONA_LABELS[activePersona] || 'Modern SMB';
-    const message = `Hi SAGEDO team, I am interested in building a Modern Search Visibility engine.
-
-• Business Model: ${personaTitle}
-• Core Need: ${activeNeedObj.label}
-• Target Budget: ${activeBudgetObj.label}
-• Timeline: ${activeUrgencyObj.label}
-
-Please share the scope and prototype roadmap.`;
+    const personaTitle = PERSONA_LABELS[activePersona] || 'Shop / Retail / Services';
+    const message = `Hi SAGEDO team, I'd like help getting my business found on Google Maps and AI search.
+• Business: ${personaTitle}
+• Need: ${activeNeedObj.label}
+• Budget: ${activeBudgetObj.label}
+• Start: ${activeUrgencyObj.label}
+Please send me a plan.`;
 
     const whatsappUrl = `https://wa.me/${WHATSAPP_CONTACT}?text=${encodeURIComponent(message)}`;
 
@@ -167,13 +157,13 @@ Please share the scope and prototype roadmap.`;
         <div className="text-center max-w-3xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-4">
             <Layers className="w-3.5 h-3.5" />
-            <span>Interactive Scope Builder</span>
+            <span>Tell us what you need</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-4">
-            3-Tap Need, Budget &amp; Urgency Chooser
+            Tell us what you need
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
-            Select your core growth requirement, investment bracket, and timeline to configure your custom scope. We package your parameters directly into WhatsApp for instant engineer triage.
+            Three taps. Your choices come to us on WhatsApp and we reply there.
           </p>
         </div>
 
@@ -182,14 +172,14 @@ Please share the scope and prototype roadmap.`;
           {/* Active Model Indicator */}
           <div className="flex flex-wrap items-center justify-between gap-3 pb-6 mb-8 border-b border-neutral-800 text-xs">
             <div className="flex items-center gap-2 text-zinc-300">
-              <span className="text-zinc-500 font-medium">Selected Model:</span>
+              <span className="text-zinc-500 font-medium">Selected business type:</span>
               <span className="font-semibold text-white px-2.5 py-1 bg-neutral-800 border border-neutral-700 rounded-md">
                 {PERSONA_LABELS[activePersona]}
               </span>
             </div>
             <div className="flex items-center gap-1.5 text-zinc-400">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>Governed by our 10-point visibility checklist</span>
+              <span>Our 10-point checklist</span>
             </div>
           </div>
 
@@ -202,10 +192,10 @@ Please share the scope and prototype roadmap.`;
                 </span>
                 <div>
                   <h3 className="text-base sm:text-lg font-bold text-white">
-                    Select Your Primary Growth Need
+                    What do you want most?
                   </h3>
                   <p className="text-xs text-zinc-400">
-                    What outcome does your business need to unlock first?
+                    Pick what you want to unlock first.
                   </p>
                 </div>
               </div>
@@ -255,10 +245,10 @@ Please share the scope and prototype roadmap.`;
                 </span>
                 <div>
                   <h3 className="text-base sm:text-lg font-bold text-white">
-                    Select Your Investment Bracket
+                    Roughly what budget?
                   </h3>
                   <p className="text-xs text-zinc-400">
-                    Pick the range closest to your budget. We'll quote within it.
+                    Pick the closest. We'll quote within it.
                   </p>
                 </div>
               </div>
@@ -298,10 +288,10 @@ Please share the scope and prototype roadmap.`;
                 </span>
                 <div>
                   <h3 className="text-base sm:text-lg font-bold text-white">
-                    Select Your Timeline
+                    When do you want to start?
                   </h3>
                   <p className="text-xs text-zinc-400">
-                    When would you like to start?
+                    Pick your preferred start timing.
                   </p>
                 </div>
               </div>
@@ -345,7 +335,7 @@ Please share the scope and prototype roadmap.`;
                 {activeNeedObj.label} · {activeBudgetObj.label} · {activeUrgencyObj.label}
               </div>
               <p className="text-xs text-zinc-400">
-                Direct WhatsApp consultation with SAGEDO engineering leads. No sales reps, no endless discovery calls.
+                You'll chat with the SAGEDO team on WhatsApp. No obligation.
               </p>
             </div>
 
@@ -358,7 +348,7 @@ Please share the scope and prototype roadmap.`;
               >
                 <WhatsAppIcon className="w-4 h-4 text-white" />
                 <span>
-                  {isSubmitting ? 'Opening WhatsApp...' : 'Add to Custom Scope & Connect on WhatsApp'}
+                  {isSubmitting ? 'Opening WhatsApp...' : 'Send on WhatsApp'}
                 </span>
                 <ArrowRight className="w-4 h-4" />
               </button>

@@ -30,8 +30,8 @@ export default function Visibility() {
   const serviceJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Modern Search Visibility (SEO + AEO + GEO)',
-    description: 'Multi-engine search visibility across Google Maps 3-Pack, Answer Engine Optimization (AEO), and Generative Engine Optimization (GEO).',
+    name: 'Get Found on Google Maps & AI Search',
+    description: 'Get your shop, workshop or clinic found on Google Maps and AI search. Chat with SAGEDO on WhatsApp for a plan that fits your budget.',
     provider: {
       '@type': 'Organization',
       name: 'SAGEDO',
@@ -41,7 +41,7 @@ export default function Visibility() {
       '@type': 'Country',
       name: 'India'
     },
-    serviceType: 'Search Engine Optimization & AI Discoverability'
+    serviceType: 'Local SEO & AI Search Visibility'
   };
 
   return (
@@ -49,19 +49,24 @@ export default function Visibility() {
       <MotionConfig reducedMotion="user">
         <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-primary/20 selection:text-primary">
           <Helmet>
-            <title>Modern Search Visibility (SEO + AEO + GEO) | SAGEDO</title>
+            <title>Get Found on Google Maps & AI Search | SAGEDO</title>
             <meta
               name="description"
-              content="Modern Search Visibility across Google Maps 3-Pack, Perplexity, Claude, ChatGPT Search & Gemini. Dedicated search visibility engines for North India SMBs, shops, manufacturers & clinics."
+              content="Get your shop, workshop or clinic found on Google Maps and AI search. Chat with SAGEDO on WhatsApp for a plan that fits your budget."
             />
             <link rel="canonical" href="https://sagedo.in/visibility" />
-            <meta property="og:title" content="Modern Search Visibility (SEO + AEO + GEO) | SAGEDO" />
+            <meta property="og:title" content="Get Found on Google Maps & AI Search | SAGEDO" />
             <meta
               property="og:description"
-              content="Modern Search Visibility across Google Maps 3-Pack, Perplexity, Claude, ChatGPT Search & Gemini. Dedicated search visibility engines for North India SMBs, shops, manufacturers & clinics."
+              content="Get your shop, workshop or clinic found on Google Maps and AI search. Chat with SAGEDO on WhatsApp for a plan that fits your budget."
             />
             <meta property="og:url" content="https://sagedo.in/visibility" />
             <meta property="og:type" content="website" />
+            <meta name="twitter:title" content="Get Found on Google Maps & AI Search | SAGEDO" />
+            <meta
+              name="twitter:description"
+              content="Get your shop, workshop or clinic found on Google Maps and AI search. Chat with SAGEDO on WhatsApp for a plan that fits your budget."
+            />
             <script type="application/ld+json">
               {JSON.stringify(serviceJsonLd)}
             </script>
