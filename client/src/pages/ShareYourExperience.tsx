@@ -169,15 +169,17 @@ export default function ShareYourExperience() {
         status: 'pending'
       };
 
-      await fetch('/api/testimonials', {
+      const res = await fetch('/api/testimonials', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(reviewPayload)
-      }).catch(console.error);
+      });
 
-      // Supabase direct backup insert
-      const { error } = await supabase.from('testimonials').insert([reviewPayload]);
-      if (error) console.error('Supabase direct backup error:', error);
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        setErrorMessage(errData.error || 'Could not submit review. Please try again.');
+        return;
+      }
 
       trackReviewSubmit({ rating, has_media: !!uploadedMediaUrl });
       setIsSuccess(true);
@@ -206,14 +208,17 @@ export default function ShareYourExperience() {
         consent: false
       };
 
-      await fetch('/api/testimonials', {
+      const res = await fetch('/api/testimonials', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(objectionPayload)
-      }).catch(console.error);
+      });
 
-      const { error } = await supabase.from('testimonials').insert([objectionPayload]);
-      if (error) console.error('Supabase direct backup error:', error);
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        setErrorMessage(errData.error || 'Submission failed. Please try again.');
+        return;
+      }
 
       setIsSuccess(true);
     } catch (err: any) {
