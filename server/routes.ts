@@ -1140,13 +1140,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Analytics routes
   app.post('/api/track-visit', async (req, res) => {
     try {
-      const ip = req.ip || req.connection.remoteAddress;
-      const userAgent = req.headers['user-agent'];
       const path = req.body.path || '/';
 
       await storage.logVisit({
-        ipHash: ip ? Buffer.from(ip).toString('base64') : 'unknown', // Simple hashing
-        userAgent: userAgent || 'unknown',
+        ipHash: null,
+        userAgent: null,
         path,
       });
 

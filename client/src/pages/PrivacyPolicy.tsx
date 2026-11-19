@@ -92,6 +92,9 @@ export default function PrivacyPolicy() {
                                 <strong>Essential Cookies:</strong> We use essential cookies for authentication and session management. These are necessary for our services to function.
                             </p>
                             <p>
+                                <strong>Page-Visit Tracking:</strong> If you accept cookies, we log the visited page path and timestamp to understand aggregate traffic. We do not store your IP address or browser user agent, and no visit tracking request is made if cookies are rejected.
+                            </p>
+                            <p>
                                 <strong>First-Party High-Intent Telemetry:</strong> Designed to align with the Digital Personal Data Protection Act, 2023 (DPDP Act), we deploy minimal, privacy-first telemetry on select conversion pages (such as our visibility pillar) strictly after you grant consent via our cookie consent banner.
                             </p>
                             <ul className="list-disc pl-6 space-y-1">

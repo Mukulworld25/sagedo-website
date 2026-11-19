@@ -12,10 +12,12 @@ export function useAnalytics() {
     const [location] = useLocation();
 
     useEffect(() => {
-        // Fire-and-forget visit tracking
+        // Fire-and-forget visit tracking - gated strictly by cookie consent
         const track = async () => {
             try {
-                await apiRequest("POST", "/api/track-visit", { path: location });
+                if (typeof window !== 'undefined' && window.localStorage.getItem('cookie-consent') === 'accepted') {
+                    await apiRequest("POST", "/api/track-visit", { path: location });
+                }
             } catch (error) {
                 console.error("Analytics error:", error);
             }
@@ -23,8 +25,8 @@ export function useAnalytics() {
 
         track();
 
-        // Also trigger Google Analytics if available
-        if (typeof window.gtag === 'function') {
+        // Also trigger Google Analytics if available and consented
+        if (typeof window !== 'undefined' && window.localStorage.getItem('cookie-consent') === 'accepted' && typeof window.gtag === 'function') {
             window.gtag('config', 'G-YHNDTN14K7', {
                 'page_path': location
             });
